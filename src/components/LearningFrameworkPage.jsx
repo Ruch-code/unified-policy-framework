@@ -1,6 +1,5 @@
 import { useState, useEffect, Fragment } from 'react';
 import { Clock, RefreshCw, ArrowRight, BookOpen, ExternalLink } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 const STORAGE_PREFIX = 'compliance-learning-';
 
@@ -141,10 +140,10 @@ export default function LearningFrameworkPage({ framework }) {
         {/* Header */}
         <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <Link to="/iso42001" className="inline-flex items-center gap-2 text-sm text-[#7c3aed] hover:text-[#5b21b6] mb-2 transition-colors">
+            <a href="https://inspiring-ganache-fdd3be.netlify.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-[#7c3aed] hover:text-[#5b21b6] mb-2 transition-colors">
               <ArrowRight className="w-4 h-4" />
               ISO 42001 AI Governance Roadmap
-            </Link>
+            </a>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">{framework.name}</h1>
             <p className="text-gray-600 text-lg max-w-2xl">
               Interactive learning roadmap with progress tracking, milestones, and hands-on checklists for new compliance professionals
@@ -304,13 +303,15 @@ export default function LearningFrameworkPage({ framework }) {
                 </p>
               </div>
             </div>
-            <Link
-              to="/iso42001"
+            <a
+              href="https://inspiring-ganache-fdd3be.netlify.app/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-[#7c3aed] text-white px-5 py-2.5 rounded-lg hover:bg-[#6d28d9] transition font-medium whitespace-nowrap"
             >
               <ArrowRight className="w-4 h-4" />
               View ISO 42001 Roadmap
-            </Link>
+            </a>
           </div>
         </div>
 
