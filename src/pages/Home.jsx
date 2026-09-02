@@ -56,7 +56,7 @@ const INDUSTRIES = [
   {
     name: 'Healthcare',
     icon: '🏥',
-    frameworks: ['HIPAA', 'HITRUST', 'NIST CSF 2.0', 'SOC 2', 'ISO 27001 LI'],
+    frameworks: ['HIPAA', 'HITRUST CSF', 'NIST CSF 2.0', 'SOC 2', 'ISO 27001 LI'],
     policyFocus: 'PHI handling, BAAs, encryption, breach notification, business continuity',
   },
   {

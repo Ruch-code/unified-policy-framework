@@ -5,6 +5,39 @@ const FRAMEWORK = {
   name: "HITRUST CSF (Health Information Trust Alliance)",
   region: "United States",
   color: "beige",
+  startupGaps: [
+    {
+      gap: "Trying to stand up a HITRUST assessment without a scoping/readiness step",
+      pushback: "Let's just buy the certification assessment and pass it.",
+      reality: "HITRUST is a full framework (14 control domains, 45+ control categories, thousands of requirements mapped from HIPAA, NIST, ISO 27001, PCI, and state rules). Jumping straight to an authorized assessor without a readiness review means failing on evidence you could've fixed cheaply.",
+      leantip: "Run a self-assessment / HITRUST e1 or CSF Quick Start self-assessment first. Use the Results of the CSF 2.x 'HITRUST i1' or 'e1' as a pragmatic entry point before a full certification."
+    },
+    {
+      gap: "Confusing a HITRUST certification with HIPAA compliance",
+      pushback: "Once we pass HITRUST, HIPAA is handled.",
+      reality: "HITRUST is an assessment framework, not a law. A certification demonstrates control maturity, but you're still a HIPAA covered entity / business associate with your own legal obligations.",
+      leantip: "Treat HITRUST as the evidence engine that maps to HIPAA (and a dozen other frameworks), not a replacement. Keep your HIPAA risk analysis and BAAs on top."
+    },
+    {
+      gap: "No evidence package tied to the 14 control domains",
+      pushback: "We have the controls, we just need to tick boxes in the portal.",
+      reality: "HITRUST assessors need documented, sampled evidence per control reference — policies, configs, logs, access reviews, training records. Ad-hoc evidence scatters and slows certification.",
+      leantip: "Organize evidence by control domain in a structured repository (or the HITRUST portal). Automate evidence collection (cloud audit logs, IDP reports, scan history) so it's continuously ready."
+    },
+    {
+      gap: "Ignoring privacy of information & BAA for data flows",
+      pushback: "We kept PHI with our analytics vendor; they said they're HIPAA compliant.",
+      reality: "Control domain 12 (Privacy of Information) and supplier-relationship controls (domain 10) apply. Any PHI-touching vendor needs a signed BAA, and data flows must be mapped.",
+      leantip: "Inventory every vendor touching PHI, get a signed BAA, and document the data flow in your ROPI (HITRUST-aligned privacy record). No BAA → no PHI with that tool."
+    },
+    {
+      gap: "No continuous risk management, so the assessment is a two-week panic",
+      pushback: "We'll pull it together right before the assessor arrives.",
+      reality: "HITRUST rewards sustained control operation. A two-week scramble yields weak evidence across domains, risks 'Send Back' findings, and fails the spirit (and sample) of continuous compliance.",
+      leantip: "Run quarterly control checks and maintain a risk register year-round. Screenshot dashboards monthly. Continuous operation = a far smoother and cheaper assessment."
+    }
+  ],
+  privacyStartupNotes: "HITRUST note: HITRUST's 'privacy of information' control domain (12) overlaps with — but is not identical to — GDPR's ROPA/DPIA. If you process EU data, you still need a ROPA and DPIA where required. HITRUST harmonizes dozens of sources, but it doesn't remove your legal obligations under HIPAA, state privacy laws, or GDPR — it wires them into one evidence set.",
   weeks: 4,
   milestones: 3,
   referenceUrl: "https://hitrustalliance.net/",
