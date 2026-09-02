@@ -4,6 +4,9 @@ const FRAMEWORK = {
   id: 'cippe-us',
   name: 'CIPPE/US - Critical Infrastructure Protection (US)',
   region: 'United States',
+  flag: "🇺🇸",
+  flagAnimation: "bounce",
+  basePath: "/cippe/us",
   color: 'blue',
   weeks: [
     {
@@ -170,3 +173,5 @@ const FRAMEWORK = {
 export default function CippeUs() {
   return <LearningFrameworkPage framework={FRAMEWORK} />;
 }
+
+export { FRAMEWORK };

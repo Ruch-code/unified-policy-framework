@@ -4,6 +4,9 @@ const FRAMEWORK = {
   id: "iso27701",
   name: "ISO/IEC 27701:2019 Privacy Information Management",
   region: "Global",
+  flag: "🌐",
+  flagAnimation: "float",
+  basePath: "/iso-27701",
   color: "purple",
   weeks: 4,
   milestones: 3,
@@ -167,3 +170,5 @@ const FRAMEWORK = {
 export default function Iso27701Page() {
   return <LearningFrameworkPage framework={FRAMEWORK} />;
 }
+
+export { FRAMEWORK };

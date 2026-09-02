@@ -5,6 +5,9 @@ const FRAMEWORK = {
   name: "ISO/IEC 27001:2022 Lead Implementer",
   color: "purple",
   region: "Global",
+  flag: "🌐",
+  flagAnimation: "float",
+  basePath: "/iso/27001/li",
   referenceUrl: "https://www.iso.org/standard/27001",
   weeks: [
     {
@@ -186,3 +189,5 @@ const FRAMEWORK = {
 export default function Iso27001LiPage() {
   return <LearningFrameworkPage framework={FRAMEWORK} />;
 }
+
+export { FRAMEWORK };

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import WorldMap from '../components/WorldMap';
 
 const REGIONS = [
   {
@@ -11,6 +12,7 @@ const REGIONS = [
       { path: '/iso-27701', name: 'ISO 27701', desc: 'Privacy Information Management (PIMS)' },
       { path: '/pci-dss', name: 'PCI-DSS', desc: 'Payment card data security' },
       { path: '/soc2', name: 'SOC 2', desc: 'Trust services (TSC) for service orgs' },
+      { path: '/cis', name: 'CIS Controls v8', desc: 'CIS 18 Controls & Implementation Groups' },
     ],
   },
   {
@@ -44,43 +46,64 @@ const REGIONS = [
       { path: '/cert-in', name: 'CERT-In', desc: 'Indian CERT incident directives' },
     ],
   },
+  {
+    name: 'South America',
+    tag: 'bg-green-100 text-green-700',
+    frameworks: [
+      { path: '/lgpd', name: 'LGPD', desc: 'Brazil Lei Geral de Proteção de Dados' },
+    ],
+  },
+  {
+    name: 'South East Asia',
+    tag: 'bg-red-100 text-red-700',
+    frameworks: [
+      { path: '/pdpa', name: 'PDPA', desc: 'Singapore Personal Data Protection Act' },
+    ],
+  },
+  {
+    name: 'East Asia',
+    tag: 'bg-rose-100 text-rose-700',
+    frameworks: [
+      { path: '/pipl', name: 'PIPL', desc: "China Personal Information Protection Law" },
+    ],
+  },
 ];
 
 const INDUSTRIES = [
   {
     name: 'Financial Services',
     icon: '🏦',
-    frameworks: ['PCI-DSS', 'SOC 2', 'RBI', 'SEBI', 'ISO 27001 LA', 'ISO 27001 LI'],
+    frameworks: ['PCI-DSS', 'SOC 2', 'RBI', 'SEBI', 'ISO 27001 LA', 'ISO 27001 LI', 'CIS Controls v8'],
     policyFocus: 'Data at rest/in transit, fraud monitoring, access control, audit trails, vendor risk',
   },
   {
     name: 'Healthcare',
     icon: '🏥',
-    frameworks: ['HIPAA', 'HITRUST CSF', 'NIST CSF 2.0', 'SOC 2', 'ISO 27001 LI'],
+    frameworks: ['HIPAA', 'HITRUST CSF', 'NIST CSF 2.0', 'SOC 2', 'ISO 27001 LI', 'CIS Controls v8'],
     policyFocus: 'PHI handling, BAAs, encryption, breach notification, business continuity',
   },
   {
     name: 'Technology / SaaS',
     icon: '💻',
-    frameworks: ['SOC 2', 'ISO 27001 LA', 'ISO 27001 LI', 'CCPA / CPRA', 'GDPR', 'ISO 27701'],
+    frameworks: ['SOC 2', 'ISO 27001 LA', 'ISO 27001 LI', 'CCPA / CPRA', 'GDPR', 'ISO 27701', 'CIS Controls v8', 'LGPD', 'PDPA', 'PIPL'],
     policyFocus: 'Trust services criteria, DPIA, ROPA, encryption, SDLC security, incident response',
   },
   {
     name: 'E-commerce / Retail',
     icon: '🛒',
-    frameworks: ['PCI-DSS', 'CCPA / CPRA', 'GDPR', 'COPPA', 'ISO 27701', 'DPDPA'],
+    frameworks: ['PCI-DSS', 'CCPA / CPRA', 'GDPR', 'COPPA', 'ISO 27701', 'DPDPA', 'LGPD', 'PDPA', 'PIPL'],
     policyFocus: 'Payment security, consent management, children privacy, data minimization',
   },
   {
     name: 'Cloud / Infrastructure',
     icon: '☁️',
-    frameworks: ['ISO 27001 LA', 'SOC 2', 'NIST CSF 2.0', 'CERT-In', 'ISO 31000'],
+    frameworks: ['ISO 27001 LA', 'SOC 2', 'NIST CSF 2.0', 'CERT-In', 'ISO 31000', 'CIS Controls v8'],
     policyFocus: 'Multi-cloud controls (AWS/Azure/GCP/Alibaba), logging, encryption keys, availability',
   },
   {
     name: 'Telecom / Data Centre',
     icon: '📡',
-    frameworks: ['CERT-In', 'CSCRF', 'ISO 27001 LI', 'ISO 31000', 'GDPR'],
+    frameworks: ['CERT-In', 'CSCRF', 'ISO 27001 LI', 'ISO 31000', 'GDPR', 'CIS Controls v8'],
     policyFocus: 'Traffic logging, 180-day retention, incident reporting (6-hr), SIM security',
   },
 ];
@@ -90,12 +113,25 @@ export default function Home() {
     <section className="min-h-screen bg-gray-50 py-12">
       <div className="container mx-auto px-4">
         {/* Hero */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-bold text-[#1e293b] mb-4">Unified Compliance Framework</h1>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             A single playbook of security & privacy standards — grouped by region and industry — so controls and policies
             align into one unified framework for your organization.
           </p>
+        </div>
+
+        {/* Interactive Globe */}
+        <div className="mb-14">
+          <h2 className="text-2xl font-bold text-[#1e293b] mb-2 flex items-center gap-2">
+            <span className="w-1.5 h-6 bg-[#0ea5e9] rounded-full inline-block" />
+            Explore the Globe
+          </h2>
+          <p className="text-gray-500 text-sm mb-5 max-w-2xl">
+            Drag to rotate the world, scroll to zoom. Latitudes, longitudes and time zones update live. Hover a country or tap a
+            waving flag to see the privacy & security laws that apply there — then open its playbook.
+          </p>
+          <WorldMap height={540} />
         </div>
 
         {/* Region View */}

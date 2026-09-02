@@ -1,11 +1,13 @@
 import LearningFrameworkPage from "../../components/LearningFrameworkPage";
 
-export default function CertIn() {
-  const FRAMEWORK = {
+const FRAMEWORK = {
     id: 'cert-in',
     name: 'CERT-In (Indian Computer Emergency Response Team)',
     shortName: 'CERT-In',
     region: 'India',
+  flag: "🇮🇳",
+  flagAnimation: "pulse",
+  basePath: "/cert-in",
     color: 'beige',
     weeks: [
       {
@@ -167,7 +169,10 @@ export default function CertIn() {
       { day: 60, label: 'Audit & Multi-Cloud Ready', color: 'green' }
     ],
     referenceUrl: 'https://www.cert-in.org.in/'
-  };
+};
 
+export default function CertIn() {
   return <LearningFrameworkPage framework={FRAMEWORK} />;
 }
+
+export { FRAMEWORK };

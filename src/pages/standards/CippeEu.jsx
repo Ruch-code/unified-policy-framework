@@ -4,6 +4,9 @@ const FRAMEWORK = {
   id: 'cippe-eu',
   name: 'CIPPE/EU - Critical Infrastructure (EU)',
   region: 'European Union',
+  flag: "🇪🇺",
+  flagAnimation: "pulse",
+  basePath: "/cippe/eu",
   color: 'purple',
   weeks: [
     {
@@ -170,3 +173,5 @@ const FRAMEWORK = {
 export default function CippeEu() {
   return <LearningFrameworkPage framework={FRAMEWORK} />;
 }
+
+export { FRAMEWORK };

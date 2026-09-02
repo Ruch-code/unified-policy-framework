@@ -5,6 +5,9 @@ const FRAMEWORK = {
   name: "PCI-DSS v4.0",
   color: "beige",
   region: "Global",
+  flag: "🌐",
+  flagAnimation: "float",
+  basePath: "/pci-dss",
   startupGaps: [
     {
       itgc: "Access Management",
@@ -830,3 +833,5 @@ const FRAMEWORK = {
 export default function PciDss() {
   return <LearningFrameworkPage framework={FRAMEWORK} />;
 }
+
+export { FRAMEWORK };

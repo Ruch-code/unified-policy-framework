@@ -44,3 +44,68 @@ body {
     text-wrap: balance;
   }
 }
+
+/* ---- World Map / Globe ---- */
+.globe-flag {
+  position: absolute;
+  transform: translate(-50%, -110%);
+  z-index: 5;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.waving-flag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  font-size: 18px;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  animation: flag-wave 1.6s ease-in-out infinite;
+  transform-origin: left center;
+}
+
+@keyframes flag-wave {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  25% { transform: rotate(-6deg) translateY(-2px); }
+  50% { transform: rotate(4deg) translateY(-1px); }
+  75% { transform: rotate(-3deg) translateY(-2px); }
+}
+
+.tick {
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.globe-flag:hover .waving-flag {
+  animation-duration: 0.7s;
+  transform: scale(1.25);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+}
+
+/* Flag animation variants for framework page headers */
+.flag-float { animation: flag-float 3s ease-in-out infinite; }
+.flag-bounce { animation: flag-bounce 1.4s ease-in-out infinite; }
+.flag-pulse { animation: flag-pulse 1.8s ease-in-out infinite; }
+
+@keyframes flag-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes flag-bounce {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-8px); }
+  60% { transform: translateY(-4px); }
+}
+@keyframes flag-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.15); opacity: 0.85; }
+}

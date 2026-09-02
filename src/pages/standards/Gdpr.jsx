@@ -4,6 +4,9 @@ const FRAMEWORK = {
   id: 'gdpr',
   name: 'GDPR (EU 2016/679)',
   region: 'European Union',
+  flag: "🇪🇺",
+  flagAnimation: "pulse",
+  basePath: "/gdpr",
   color: 'navy',
   startupGaps: [
     {
@@ -203,3 +206,5 @@ const FRAMEWORK = {
 export default function Gdpr() {
   return <LearningFrameworkPage framework={FRAMEWORK} />;
 }
+
+export { FRAMEWORK };

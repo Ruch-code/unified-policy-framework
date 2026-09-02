@@ -4,6 +4,9 @@ const FRAMEWORK = {
   id: "soc2",
   name: "SOC 2 Type II",
   region: "Global",
+  flag: "🌐",
+  flagAnimation: "float",
+  basePath: "/soc2",
   color: "green",
   startupGaps: [
     {
@@ -1103,3 +1106,5 @@ const FRAMEWORK = {
 export default function Soc2() {
   return <LearningFrameworkPage framework={FRAMEWORK} />;
 }
+
+export { FRAMEWORK };

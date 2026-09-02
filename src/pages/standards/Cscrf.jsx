@@ -1,11 +1,13 @@
 import LearningFrameworkPage from "../../components/LearningFrameworkPage";
 
-export default function Cscrf() {
-  const FRAMEWORK = {
+const FRAMEWORK = {
     id: 'cscrf',
     name: 'CSCRF (India Cyber Security)',
     shortName: 'CSCRF',
     region: 'India',
+  flag: "🇮🇳",
+  flagAnimation: "pulse",
+  basePath: "/cscrf",
     color: 'golden',
     weeks: [
       {
@@ -167,9 +169,10 @@ export default function Cscrf() {
       { day: 28, label: 'Full CSCRF Compliance Active', color: 'green' }
     ],
     referenceUrl: 'https://www.cert-in.org.in'
-  };
+};
 
-  return (
-    <LearningFrameworkPage framework={FRAMEWORK} />
-  );
+export default function Cscrf() {
+  return <LearningFrameworkPage framework={FRAMEWORK} />;
 }
+
+export { FRAMEWORK };

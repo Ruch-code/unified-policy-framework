@@ -5,6 +5,9 @@ const FRAMEWORK = {
   name: "ISO/IEC 27001:2022 Lead Auditor Playbook",
   color: "navy",
   region: "Global",
+  flag: "🌐",
+  flagAnimation: "float",
+  basePath: "/iso/27001/la",
   referenceUrl: "https://www.iso.org/standard/27001",
   milestones: [
     { day: 7, label: "Foundation Complete" },
@@ -170,3 +173,5 @@ const FRAMEWORK = {
 export default function Iso27001La() {
   return <LearningFrameworkPage framework={FRAMEWORK} />;
 }
+
+export { FRAMEWORK };

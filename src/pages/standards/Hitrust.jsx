@@ -4,6 +4,9 @@ const FRAMEWORK = {
   id: "hitrust",
   name: "HITRUST CSF (Health Information Trust Alliance)",
   region: "United States",
+  flag: "🇺🇸",
+  flagAnimation: "bounce",
+  basePath: "/hitrust",
   color: "beige",
   startupGaps: [
     {
@@ -812,3 +815,5 @@ const FRAMEWORK = {
 export default function Hitrust() {
   return <LearningFrameworkPage framework={FRAMEWORK} />;
 }
+
+export { FRAMEWORK };

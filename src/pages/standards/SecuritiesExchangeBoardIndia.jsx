@@ -4,6 +4,9 @@ const FRAMEWORK = {
   id: 'sebi',
   name: 'SEBI (Securities and Exchange Board of India)',
   region: 'India',
+  flag: "🇮🇳",
+  flagAnimation: "pulse",
+  basePath: "/sebi",
   color: 'golden',
   weeks: [
     {
@@ -170,3 +173,5 @@ const FRAMEWORK = {
 export default function SecuritiesExchangeBoardIndia() {
   return <LearningFrameworkPage framework={FRAMEWORK} />;
 }
+
+export { FRAMEWORK };

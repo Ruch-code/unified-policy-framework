@@ -4,6 +4,9 @@ const FRAMEWORK = {
   id: "ccpa-cpra",
   name: "CCPA / CPRA (California)",
   region: "United States",
+  flag: "🇺🇸",
+  flagAnimation: "bounce",
+  basePath: "/ccpa",
   color: "golden",
   weeks: 4,
   milestones: 3,
@@ -890,3 +893,5 @@ const FRAMEWORK = {
 export default function CcpaCpra() {
   return <LearningFrameworkPage framework={FRAMEWORK} />;
 }
+
+export { FRAMEWORK };

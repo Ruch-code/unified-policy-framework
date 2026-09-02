@@ -1,11 +1,13 @@
 import LearningFrameworkPage from "../../components/LearningFrameworkPage";
 
-export default function Iso31000() {
-  const FRAMEWORK = {
+const FRAMEWORK = {
     id: 'iso31000',
     name: 'ISO 31000:2018 Risk Management',
     shortName: 'ISO 31000',
     region: 'Global',
+  flag: "🌐",
+  flagAnimation: "float",
+  basePath: "/iso-31000",
     color: 'navy',
     weeks: [
       {
@@ -167,9 +169,10 @@ export default function Iso31000() {
       { day: 28, label: 'Certification Ready', color: 'green' }
     ],
     referenceUrl: 'https://www.iso.org/standard/65034.html'
-  };
+};
 
-  return (
-    <LearningFrameworkPage framework={FRAMEWORK} />
-  );
+export default function Iso31000() {
+  return <LearningFrameworkPage framework={FRAMEWORK} />;
 }
+
+export { FRAMEWORK };

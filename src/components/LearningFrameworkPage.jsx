@@ -1,6 +1,6 @@
 import { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { Clock, RefreshCw, ArrowRight, BookOpen, ExternalLink, Lock, CheckCircle, ChevronDown, ChevronRight, Zap, Shield, Award, Target, TrendingUp, AlertTriangle, Lightbulb } from 'lucide-react';
+import { Clock, RefreshCw, ArrowRight, BookOpen, ExternalLink, Lock, CheckCircle, ChevronDown, ChevronRight, Zap, Shield, Award, Target, TrendingUp, AlertTriangle, Lightbulb, ClipboardList } from 'lucide-react';
 
 const STORAGE_PREFIX = 'compliance-learning-';
 
@@ -164,6 +164,13 @@ function normalizeFramework(framework) {
     if (Array.isArray(w.days) && w.days.length > 0) {
       tasks = w.days.flatMap(d => (Array.isArray(d.tasks) ? d.tasks : []));
     }
+    const DEFAULT_LEVEL_HOURS = [3, 6, 4, 2];
+    const perTaskHours = (framework.hoursByLevel && framework.hoursByLevel[idx]) || DEFAULT_LEVEL_HOURS[idx] || 3;
+    tasks = tasks.map(t => {
+      if (typeof t === 'string') return { title: t, hours: perTaskHours || 3 };
+      if (typeof t.hours === 'number') return t;
+      return { ...t, hours: perTaskHours || 3 };
+    });
     return {
       ...w,
       week: w.week || idx + 1,
@@ -209,6 +216,12 @@ export default function LearningFrameworkPage({ framework }) {
     return weekStats[prev.week]?.pct >= 80;
   };
 
+  const totalHours = data.weeks.reduce((sum, w) => sum + w.tasks.reduce((s, t) => s + (t.hours || 0), 0), 0);
+  const levelHours = {};
+  data.weeks.forEach(w => {
+    levelHours[w.week] = w.tasks.reduce((s, t) => s + (t.hours || 0), 0);
+  });
+
   const unlockedLevels = data.weeks.filter((_, i) => isWeekUnlocked(i)).length;
 
   const handleToggle = (week, index) => {
@@ -248,6 +261,11 @@ export default function LearningFrameworkPage({ framework }) {
               ← Back to Home
             </Link>
             <h1 className="text-3xl font-bold text-gray-900 mb-2 flex items-center gap-3 flex-wrap">
+              {framework.flag && (
+                <span className={`text-3xl inline-block ${framework.flagAnimation === 'bounce' ? 'flag-bounce' : framework.flagAnimation === 'pulse' ? 'flag-pulse' : 'flag-float'}`} aria-label={framework.name}>
+                  {framework.flag}
+                </span>
+              )}
               {framework.name}
               {framework.region && (
                 <span className={`text-xs font-semibold px-3 py-1 rounded-full inline-flex items-center ${
@@ -255,6 +273,9 @@ export default function LearningFrameworkPage({ framework }) {
                   framework.region === 'United States' ? 'bg-blue-100 text-blue-700' :
                   framework.region === 'European Union' ? 'bg-gradient-to-r from-blue-100 to-yellow-100 text-blue-700' :
                   framework.region === 'India' ? 'bg-gradient-to-r from-orange-100 to-green-100 text-orange-700' :
+                  framework.region === 'Brazil' ? 'bg-gradient-to-r from-green-100 to-yellow-100 text-green-700' :
+                  framework.region === 'Singapore' ? 'bg-red-100 text-red-700' :
+                  framework.region === 'China' ? 'bg-red-100 text-red-700' :
                   framework.region === 'Asia-Pacific' ? 'bg-red-100 text-red-700' :
                   'bg-gray-200 text-gray-700'
                 }`}>
@@ -267,6 +288,12 @@ export default function LearningFrameworkPage({ framework }) {
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
+            {framework.basePath && (
+              <Link to={`${framework.basePath}/assess`} className="inline-flex items-center gap-2 bg-[#1e293b] text-white px-5 py-2.5 rounded-lg hover:bg-[#0f172a] transition font-medium">
+                <ClipboardList className="w-4 h-4" />
+                Environment Assessment
+              </Link>
+            )}
             {framework.referenceUrl && (
               <a href={framework.referenceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-gray-100 text-gray-700 px-5 py-2.5 rounded-lg hover:bg-gray-200 transition font-medium">
                 <ExternalLink className="w-4 h-4" />
@@ -288,6 +315,7 @@ export default function LearningFrameworkPage({ framework }) {
               <div className="absolute inset-0 flex flex-col items-center justify-center">
                 <span className="text-4xl font-bold text-gray-900">{progressPercent}%</span>
                 <span className="text-sm text-gray-500">{completedTasks}/{totalTasks} complete</span>
+                <span className="text-xs text-gray-400 mt-1 flex items-center gap-1"><Clock className="w-3 h-3" /> ~{totalHours}h total</span>
               </div>
             </div>
 
@@ -371,6 +399,11 @@ export default function LearningFrameworkPage({ framework }) {
                   <div className={`text-right px-3 py-1 rounded-full text-sm font-medium ${weekStats[week.week]?.pct >= 80 ? 'bg-white/30 text-white' : 'bg-white/10 text-white/70'}`}>
                     {weekStats[week.week]?.completed || 0}/{week.tasks.length} {weekStats[week.week]?.pct >= 80 ? '✓' : ''}
                   </div>
+                  {levelHours[week.week] > 0 && (
+                    <div className="text-right px-3 py-1 rounded-full text-xs font-medium bg-white/10 text-white/80">
+                      <Clock className="w-3.5 h-3.5 inline mr-1 -mt-0.5" /> ~{levelHours[week.week]}h
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -405,9 +438,16 @@ export default function LearningFrameworkPage({ framework }) {
                             onClick={(e) => e.stopPropagation()}
                           />
                           <div className="flex-1 min-w-0">
-                            <p className={`font-medium ${done ? 'text-gray-400 line-through' : 'text-gray-900'}`}>
-                              {typeof task === 'string' ? task : task.title}
-                            </p>
+                            <div className="flex items-center gap-2 flex-wrap">
+                              <p className={`font-medium ${done ? 'text-gray-400 line-through' : 'text-gray-900'}`}>
+                                {typeof task === 'string' ? task : task.title}
+                              </p>
+                              {typeof task === 'object' && typeof task.hours === 'number' && (
+                                <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-gray-600 bg-gray-100 px-2 py-0.5 rounded-full">
+                                  <Clock className="w-3 h-3" /> {task.hours}h
+                                </span>
+                              )}
+                            </div>
                             {typeof task === 'object' && !done && (
                               <div className="mt-2 space-y-1.5">
                                 <TaskDetail label="Control" value={task.control} color={colors.text} />

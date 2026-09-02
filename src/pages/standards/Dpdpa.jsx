@@ -4,6 +4,9 @@ const FRAMEWORK = {
   id: 'dpdpa',
   name: 'DPDP Act 2023 (India)',
   region: 'India',
+  flag: "🇮🇳",
+  flagAnimation: "pulse",
+  basePath: "/dpdpa",
   color: 'green',
   startupGaps: [
     {
@@ -204,3 +207,5 @@ const FRAMEWORK = {
 export default function Dpdpa() {
   return <LearningFrameworkPage framework={FRAMEWORK} />;
 }
+
+export { FRAMEWORK };

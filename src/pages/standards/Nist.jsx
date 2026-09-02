@@ -4,6 +4,9 @@ const FRAMEWORK = {
   id: 'nist',
   name: 'NIST CSF 2.0',
   region: 'United States',
+  flag: "🇺🇸",
+  flagAnimation: "bounce",
+  basePath: "/nist",
   color: 'navy',
   weeks: [
     {
@@ -170,3 +173,5 @@ const FRAMEWORK = {
 export default function Nist() {
   return <LearningFrameworkPage framework={FRAMEWORK} />;
 }
+
+export { FRAMEWORK };

@@ -4,6 +4,9 @@ const FRAMEWORK = {
   id: "coppa",
   name: "COPPA (Children Online Privacy)",
   region: "United States",
+  flag: "🇺🇸",
+  flagAnimation: "bounce",
+  basePath: "/coppa",
   color: "green",
   weeks: 4,
   milestones: 3,
@@ -768,3 +771,5 @@ const FRAMEWORK = {
 export default function Coppa() {
   return <LearningFrameworkPage framework={FRAMEWORK} />;
 }
+
+export { FRAMEWORK };

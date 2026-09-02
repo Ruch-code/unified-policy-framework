@@ -4,6 +4,9 @@ const FRAMEWORK = {
   id: 'rbi',
   name: 'RBI Cyber Security Framework',
   region: 'India',
+  flag: "🇮🇳",
+  flagAnimation: "pulse",
+  basePath: "/rbi",
   color: 'navy',
   weeks: [
     {
@@ -170,3 +173,5 @@ const FRAMEWORK = {
 export default function ReserveBankOfIndia() {
   return <LearningFrameworkPage framework={FRAMEWORK} />;
 }
+
+export { FRAMEWORK };

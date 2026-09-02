@@ -7,14 +7,17 @@ const STANDARDS = [
   { path: '/iso/27001/li', label: 'ISO 27001 LI' },
   { path: '/pci-dss', label: 'PCI-DSS' },
   { path: '/soc2', label: 'SOC 2' },
+  { path: '/cis', label: 'CIS' },
   { path: '/hipaa', label: 'HIPAA' },
-  { path: '/dpdpa', label: 'DPDPA' },
+  { path: '/hitrust', label: 'HITRUST' },
   { path: '/nist', label: 'NIST' },
   { path: '/gdpr', label: 'GDPR' },
-  { path: '/cippe/us', label: 'CIPPE/US' },
-  { path: '/cippe/eu', label: 'CIPPE/EU' },
-  { path: '/sebi', label: 'SEBI' },
-  { path: '/rbi', label: 'RBI' },
+  { path: '/ccpa', label: 'CCPA' },
+  { path: '/coppa', label: 'COPPA' },
+  { path: '/dpdpa', label: 'DPDPA' },
+  { path: '/lgpd', label: 'LGPD' },
+  { path: '/pdpa', label: 'PDPA' },
+  { path: '/pipl', label: 'PIPL' },
 ];
 
 export default function Layout() {

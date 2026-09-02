@@ -5,6 +5,9 @@ const FRAMEWORK = {
   name: "HIPAA",
   color: "golden",
   region: "United States",
+  flag: "🇺🇸",
+  flagAnimation: "bounce",
+  basePath: "/hipaa",
   startupGaps: [
     {
       gap: "No BAA in place before sharing PHI (or using PHI-adjacent tools)",
@@ -812,3 +815,5 @@ const FRAMEWORK = {
 export default function Hipaa() {
   return <LearningFrameworkPage framework={FRAMEWORK} />;
 }
+
+export { FRAMEWORK };
