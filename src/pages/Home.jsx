@@ -48,10 +48,6 @@ export default function Home() {
             <h3 className="text-2xl font-bold text-primary-600 mb-2">CIPPE/EU</h3>
             <p className="text-gray-600 line-clamp-2">CIPPE European Union framework</p>
           </Link>
-          <Link to="/lms" className="group block bg-white rounded-lg p-6 hover:shadow-xl transition-shadow">
-            <h3 className="text-2xl font-bold text-primary-600 mb-2">LMS</h3>
-            <p className="text-gray-600 line-clamp-2">Learning Management System for compliance training</p>
-          </Link>
           <Link to="/sebi" className="group block bg-white rounded-lg p-6 hover:shadow-xl transition-shadow">
             <h3 className="text-2xl font-bold text-primary-600 mb-2">SEBI</h3>
             <p className="text-gray-600 line-clamp-2">Securities and Exchange Board of India</p>

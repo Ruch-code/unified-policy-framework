@@ -14,7 +14,6 @@ import Nist from './pages/standards/Nist';
 import Gdpr from './pages/standards/Gdpr';
 import CippeUs from './pages/standards/CippeUs';
 import CippeEu from './pages/standards/CippeEu';
-import Lms from './pages/standards/Lms';
 import SecuritiesExchangeBoardIndia from './pages/standards/SecuritiesExchangeBoardIndia';
 import ReserveBankOfIndia from './pages/standards/ReserveBankOfIndia';
 
@@ -57,7 +56,6 @@ function App() {
         <Route path="gdpr" element={<Gdpr />} />
         <Route path="cippe/us" element={<CippeUs />} />
         <Route path="cippe/eu" element={<CippeEu />} />
-        <Route path="lms" element={<Lms />} />
         <Route path="sebi" element={<SecuritiesExchangeBoardIndia />} />
         <Route path="rbi" element={<ReserveBankOfIndia />} />
       </Route>
