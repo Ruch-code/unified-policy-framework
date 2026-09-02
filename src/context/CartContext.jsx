@@ -10,7 +10,8 @@ export function CartProvider({ children }) {
   const fetchCart = async () => {
     try {
       const { data } = await api.get('/cart');
-      setCart(data.cart);
+      const validCart = data && Array.isArray(data.cart?.items) ? data.cart : { items: [] };
+      setCart(validCart);
     } catch {
       setCart({ items: [] });
     }
@@ -64,8 +65,8 @@ export function CartProvider({ children }) {
     }
   };
 
-  const itemCount = cart.items?.reduce((sum, item) => sum + item.quantity, 0) || 0;
-  const subtotal = cart.items?.reduce((sum, item) => sum + item.price * item.quantity, 0) || 0;
+  const itemCount = (cart?.items || []).reduce((sum, item) => sum + item.quantity, 0);
+  const subtotal = (cart?.items || []).reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   const value = {
     cart,
