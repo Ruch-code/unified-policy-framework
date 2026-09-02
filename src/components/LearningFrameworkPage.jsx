@@ -13,7 +13,9 @@ import {
   Award,
   ExternalLink,
   RefreshCw,
-  BarChart3
+  BarChart3,
+  FileText,
+  Check
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -21,7 +23,7 @@ const STORAGE_PREFIX = 'compliance-learning-';
 
 export default function LearningFrameworkPage({ framework }) {
   const [progress, setProgress] = useState({});
-  const [showExcelModal, setShowExcelModal] = useState(false);
+  const [showProgressModal, setShowProgressModal] = useState(false);
   const [activeWeek, setActiveWeek] = useState(null);
 
   // Initialize progress from localStorage
@@ -48,7 +50,7 @@ export default function LearningFrameworkPage({ framework }) {
       if (progress[`w${week.week}-${i}`]) completed++;
     });
     weekStats[week.week] = { completed, total: week.tasks.length };
-  }
+  };
 
   const handleToggle = (week, index) => {
     const key = `w${week}-${index}`;
@@ -73,16 +75,237 @@ export default function LearningFrameworkPage({ framework }) {
 
   const getColorClasses = (color) => {
     const colors = {
-      blue: { bg: 'bg-blue-600', bgLight: 'bg-blue-50', text: 'text-blue-600', border: 'border-blue-200', badge: 'bg-blue-600', ring: 'blue' },
-      indigo: { bg: 'bg-indigo-600', bgLight: 'bg-indigo-50', text: 'text-indigo-600', border: 'border-indigo-200', badge: 'bg-indigo-600', ring: 'indigo' },
-      purple: { bg: 'bg-purple-600', bgLight: 'bg-purple-50', text: 'text-purple-600', border: 'border-purple-200', badge: 'bg-purple-600', ring: 'purple' },
-      teal: { bg: 'bg-teal-600', bgLight: 'bg-teal-50', text: 'text-teal-600', border: 'border-teal-200', badge: 'bg-teal-600', ring: 'teal' },
-      green: { bg: 'bg-green-600', bgLight: 'bg-green-50', text: 'text-green-600', border: 'bg-green-200', badge: 'bg-green-600', ring: 'green' },
-      orange: { bg: 'bg-orange-600', bgLight: 'bg-orange-50', text: 'text-orange-600', border: 'border-orange-200', badge: 'bg-orange-600', ring: 'orange' },
-      red: { bg: 'bg-red-600', bgLight: 'bg-red-50', text: 'text-red-600', border: 'border-red-200', badge: 'bg-red-600', ring: 'red' },
-      blue: { bg: 'bg-blue-600', bgLight: 'bg-blue-50', text: 'text-blue-600', border: 'border-blue-200', badge: 'bg-blue-600', ring: 'blue' },
+      navy: { 
+        bg: 'bg-navy-600', 
+        bgLight: 'bg-navy-50', 
+        text: 'text-navy-600', 
+        border: 'border-navy-200', 
+        badge: 'bg-navy-600', 
+        ring: 'navy',
+        gradient: 'from-navy-600 to-navy-800'
+      },
+      purple: { 
+        bg: 'bg-purple-600', 
+        bgLight: 'bg-purple-50', 
+        text: 'text-purple-600', 
+        border: 'border-purple-200', 
+        badge: 'bg-purple-600', 
+        ring: 'purple',
+        gradient: 'from-purple-600 to-purple-800'
+      },
+      green: { 
+        bg: 'bg-emerald-600', 
+        bgLight: 'bg-emerald-50', 
+        text: 'text-emerald-600', 
+        border: 'border-emerald-200', 
+        badge: 'bg-emerald-600', 
+        ring: 'emerald',
+        gradient: 'from-emerald-600 to-emerald-800'
+      },
+      beige: { 
+        bg: 'bg-amber-700', 
+        bgLight: 'bg-amber-50', 
+        text: 'text-amber-700', 
+        border: 'border-amber-200', 
+        badge: 'bg-amber-700', 
+        ring: 'amber',
+        gradient: 'from-amber-700 to-amber-900'
+      },
+      golden: { 
+        bg: 'bg-yellow-600', 
+        bgLight: 'bg-yellow-50', 
+        text: 'text-yellow-600', 
+        border: 'border-yellow-200', 
+        badge: 'bg-yellow-600', 
+        ring: 'yellow',
+        gradient: 'from-yellow-600 to-amber-700'
+      },
+      navy: { 
+        bg: 'bg-slate-800', 
+        bgLight: 'bg-slate-50', 
+        text: 'text-slate-700', 
+        border: 'border-slate-200', 
+        badge: 'bg-slate-800', 
+        ring: 'slate',
+        gradient: 'from-slate-800 to-slate-900'
+      },
+      purple: { 
+        bg: 'bg-violet-600', 
+        bgLight: 'bg-violet-50', 
+        text: 'text-violet-600', 
+        border: 'border-violet-200', 
+        badge: 'bg-violet-600', 
+        ring: 'violet',
+        gradient: 'from-violet-600 to-purple-800'
+      },
+      green: { 
+        bg: 'bg-teal-600', 
+        bgLight: 'bg-teal-50', 
+        text: 'text-teal-600', 
+        border: 'border-teal-200', 
+        badge: 'bg-teal-600', 
+        ring: 'teal',
+        gradient: 'from-teal-600 to-emerald-800'
+      },
+      beige: { 
+        bg: 'bg-stone-700', 
+        bgLight: 'bg-stone-50', 
+        text: 'text-stone-700', 
+        border: 'border-stone-200', 
+        badge: 'bg-stone-700', 
+        ring: 'stone',
+        gradient: 'from-stone-700 to-stone-900'
+      },
+      golden: { 
+        bg: 'bg-amber-600', 
+        bgLight: 'bg-amber-50', 
+        text: 'text-amber-600', 
+        border: 'border-amber-200', 
+        badge: 'bg-amber-600', 
+        ring: 'amber',
+        gradient: 'from-amber-600 to-yellow-700'
+      },
     };
-    return colors[color] || colors.blue;
+    return colors[color] || colors.navy;
+  };
+
+  const colors = getColorClasses(framework.color);
+
+  // Calculate week stats
+  const weekStats = {};
+  framework.weeks.forEach(week => {
+    let completed = 0;
+    week.tasks.forEach((_, i) => {
+      if (progress[`w${week.week}-${i}`]) completed++;
+    });
+    weekStats[week.week] = { completed, total: week.tasks.length };
+  }
+
+  const totalTasks = framework.weeks.reduce((sum, w) => sum + w.tasks.length, 0);
+  const completedTasks = Object.values(progress).filter(Boolean).length;
+  const progressPercent = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
+
+  const weekStats = {};
+  framework.weeks.forEach(week => {
+    let completed = 0;
+    week.tasks.forEach((_, i) => {
+      if (progress[`w${week.week}-${i}`]) completed++;
+    });
+    weekStats[week.week] = { completed, total: week.tasks.length };
+  };
+
+  const handleToggle = (week, index) => {
+    const key = `w${week}-${index}`;
+    setProgress(prev => {
+      const newProgress = { ...prev };
+      if (newProgress[`w${week}-${index}`]) {
+        delete newProgress[`w${week}-${index}`];
+      } else {
+        newProgress[`w${week}-${index}`] = true;
+      }
+      localStorage.setItem(`compliance-learning-${framework.id}`, JSON.stringify(newProgress));
+      return newProgress;
+    });
+  };
+
+  const resetProgress = () => {
+    if (window.confirm('Reset all progress? This cannot be undone.')) {
+      localStorage.removeItem(`compliance-learning-${framework.id}`);
+      setProgress({});
+    }
+  };
+
+  const colors = {
+    navy: { 
+      bg: 'bg-slate-800', 
+      bgLight: 'bg-slate-50', 
+      text: 'text-slate-700', 
+      border: 'border-slate-200', 
+      badge: 'bg-slate-800', 
+      ring: 'slate',
+      gradient: 'from-slate-800 to-slate-900'
+    },
+    purple: { 
+      bg: 'bg-violet-600', 
+      bgLight: 'bg-violet-50', 
+      text: 'text-violet-600', 
+      border: 'border-violet-200', 
+      badge: 'bg-violet-600', 
+      ring: 'violet',
+      gradient: 'from-violet-600 to-purple-800'
+    },
+    green: { 
+      bg: 'bg-teal-600', 
+      bgLight: 'bg-teal-50', 
+      text: 'text-teal-600', 
+      border: 'border-teal-200', 
+      badge: 'bg-teal-600', 
+      ring: 'teal',
+      gradient: 'from-teal-600 to-emerald-800'
+    },
+    beige: { 
+      bg: 'bg-stone-700', 
+      bgLight: 'bg-stone-50', 
+      text: 'text-stone-700', 
+      border: 'border-stone-200', 
+      badge: 'bg-stone-700', 
+      ring: 'stone',
+      gradient: 'from-stone-700 to-stone-900'
+    },
+    golden: { 
+      bg: 'bg-amber-600', 
+      bgLight: 'bg-amber-50', 
+      text: 'text-amber-600', 
+      border: 'border-amber-200', 
+      badge: 'bg-amber-600', 
+      ring: 'amber',
+      gradient: 'from-amber-600 to-yellow-700'
+    },
+    navy: { 
+      bg: 'bg-slate-800', 
+      bgLight: 'bg-slate-50', 
+      text: 'text-slate-700', 
+      border: 'border-slate-200', 
+      badge: 'bg-slate-800', 
+      ring: 'slate',
+      gradient: 'from-slate-800 to-slate-900'
+    },
+    purple: { 
+      bg: 'bg-violet-600', 
+      bgLight: 'bg-violet-50', 
+      text: 'text-violet-600', 
+      border: 'border-violet-200', 
+      badge: 'bg-violet-600', 
+      ring: 'violet',
+      gradient: 'from-violet-600 to-purple-800'
+    },
+    green: { 
+      bg: 'bg-teal-600', 
+      bgLight: 'bg-teal-50', 
+      text: 'text-teal-600', 
+      border: 'border-teal-200', 
+      badge: 'bg-teal-600', 
+      ring: 'teal',
+      gradient: 'from-teal-600 to-emerald-800'
+    },
+    beige: { 
+      bg: 'bg-stone-700', 
+      bgLight: 'bg-stone-50', 
+      text: 'text-stone-700', 
+      border: 'border-stone-200', 
+      badge: 'bg-stone-700', 
+      ring: 'stone',
+      gradient: 'from-stone-700 to-stone-900'
+    },
+    golden: { 
+      bg: 'bg-amber-600', 
+      bgLight: 'bg-amber-50', 
+      text: 'text-amber-600', 
+      border: 'border-amber-200', 
+      badge: 'bg-amber-600', 
+      ring: 'amber',
+      gradient: 'from-amber-600 to-yellow-700'
+    },
   };
 
   const colors = getColorClasses(framework.color);
@@ -98,16 +321,9 @@ export default function LearningFrameworkPage({ framework }) {
               ISO 42001 AI Governance Roadmap
             </Link>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">{framework.name}</h1>
-            <p className="text-gray-600 text-lg max-w-2xl">Interactive learning roadmap with progress tracking, milestones, and downloadable checklists</p>
+            <p className="text-gray-600 text-lg max-w-2xl">Interactive learning roadmap with progress tracking, milestones, and hands-on checklists for new compliance professionals</p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <button 
-              onClick={() => setShowExcelModal(true)}
-              className="inline-flex items-center gap-2 bg-green-600 text-white px-5 py-2.5 rounded-lg hover:bg-green-700 transition font-medium shadow-sm"
-            >
-              <Download className="w-4 h-4" />
-              Download Excel Checklist
-            </button>
             <a 
               href={framework.referenceUrl} 
               target="_blank" 
@@ -225,13 +441,7 @@ export default function LearningFrameworkPage({ framework }) {
                 >
                   <input
                     type="checkbox"
-                    className={`w-5 h-5 mt-0.5 rounded border-gray-300 focus:ring-2 ${colors.ring === 'blue' ? 'focus:ring-blue-500' : 
-                                colors.ring === 'indigo' ? 'focus:ring-indigo-500' : 
-                                colors.ring === 'purple' ? 'focus:ring-purple-500' : 
-                                colors.ring === 'teal' ? 'focus:ring-teal-500' : 
-                                colors.ring === 'green' ? 'focus:ring-green-500' : 
-                                colors.ring === 'orange' ? 'focus:ring-orange-500' : 
-                                'focus:ring-red-500'} text-${colors.ring}-600`}
+                    className={`w-5 h-5 mt-0.5 rounded border-gray-300 focus:ring-2 focus:ring-${colors.ring}-500 text-${colors.ring}-600`}
                     data-week={week.week}
                     data-index={index}
                     checked={!!progress[`w${week.week}-${index}`]}
@@ -239,6 +449,9 @@ export default function LearningFrameworkPage({ framework }) {
                   />
                   <div className="flex-1">
                     <p className="font-medium text-gray-900">{task}</p>
+                    {week.task_descriptions && week.task_descriptions[index] && (
+                      <p className="text-sm text-gray-500 mt-1">{week.task_descriptions[index]}</p>
+                    )}
                   </div>
                 </label>
               ))}
@@ -267,36 +480,6 @@ export default function LearningFrameworkPage({ framework }) {
             </Link>
           </div>
         </div>
-
-        {/* Excel Download Modal */}
-        {showExcelModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-2xl max-w-md w-full p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-bold text-gray-900">Download Excel Checklist</h3>
-                <button onClick={() => setShowExcelModal(false)} className="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</button>
-              </div>
-              <div className="space-y-3">
-                <p className="text-gray-600">Download the comprehensive Excel checklist for <strong>{framework.name}</strong> with all tasks, evidence columns, status tracking, and due dates.</p>
-                <a 
-                  href={framework.excelUrl} 
-                  download
-                  className="block w-full text-center bg-green-600 text-white px-5 py-3 rounded-lg hover:bg-green-700 transition font-medium"
-                >
-                  <Download className="w-5 h-5 inline mr-2" />
-                  Download Excel Checklist (.xlsx)
-                </a>
-                <p className="text-xs text-gray-500 text-center mt-3">File will be generated with all {framework.weeks.reduce((sum, w) => sum + w.tasks.length, 0)} tasks across {framework.weeks.length} weeks</p>
-              </div>
-              <button 
-                onClick={() => setShowExcelModal(false)}
-                className="mt-4 w-full text-center text-gray-500 hover:text-gray-700 font-medium"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        )}
 
         <footer className="mt-12 pt-8 border-t border-gray-800 text-center">
           <p className="text-gray-400 text-sm">Made by Ruchi Kandpal</p>
