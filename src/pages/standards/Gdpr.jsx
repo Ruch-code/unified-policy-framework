@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import LearningFrameworkPage from "../../components/LearningFrameworkPage";
 
 export default function Gdpr() {
   const FRAMEWORK = {
