@@ -5,6 +5,38 @@ const FRAMEWORK = {
   name: "SOC 2 Type II",
   region: "Global",
   color: "green",
+  startupGaps: [
+    {
+      gap: "Startups fail to distinguish Trust Services Criteria until the report",
+      pushback: "We'll worry about which TSC categories apply once we get closer to the audit.",
+      reality: "SOC 2 requires you to select the TSC in-scope (Security always; Confidentiality/Privacy/Integrity/Availability optional). Picking late means controls designed for the wrong scope.",
+      leantip: "Decide TSC scope WHEN choosing the auditor — Security + Availability covers most SaaS. Add Confidentiality if you hold customers' secrets. Confirm each control maps to a chosen TSC."
+    },
+    {
+      gap: "Type II evidence gap — controls exist but weren't operated over time",
+      pushback: "We did everything at the end, so just back-date it.",
+      reality: "Type II needs controls operating over the audit period (typically 6-12 months) with evidence dated throughout. Backdated evidence is a red flag and can sink the report.",
+      leantip: "Turn on continuous evidence capture early: cloud audit logs, access-review records, vulnerability-scan history, ticket timestamps. Screenshot dashboards monthly — cheap and legit."
+    },
+    {
+      gap: "No evidence of access reviews, change management, or vendor risk",
+      pushback: "We review access informally in Slack; changes go straight to prod.",
+      reality: "These are the most common SOC 2 findings. Without periodic access reviews, documented change control, and vendor risk assessments, you'll get exceptions.",
+      leantip: "Automate access reviews via your IDP quarterly, gate changes through CI/CD approvals with audit trails, and maintain a one-page vendor risk register reviewed every 6 months."
+    },
+    {
+      gap: "Single point of control — one person holds all the cloud keys & knowledge",
+      pushback: "It's just faster if one engineer does everything.",
+      reality: "SOC 2 expects separation of duties. One person with all keys + no peer review = high risk finding and a real operational liability.",
+      leantip: "Use short-lived credentials via an IDP/role assumption, require a second approver for production changes, and document control owners (even if the same 3 people wear many hats)."
+    },
+    {
+      gap: "No defined uptime/availability commitments or DR testing",
+      pushback: "We're a startup; 'good enough' availability is fine.",
+      reality: "If Availability is in-scope, SOC 2 expects defined availability objectives and evidence of DR/BCP readiness, not just best-effort uptime.",
+      leantip: "Document a target availability %, add monitoring/health checks, and do a lightweight DR tabletop or failover test once — keep the report as evidence."
+    }
+  ],
   weeks: 4,
   milestones: 3,
   referenceUrl:

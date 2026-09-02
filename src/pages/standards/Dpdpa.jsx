@@ -5,6 +5,39 @@ const FRAMEWORK = {
   name: 'DPDP Act 2023 (India)',
   region: 'India',
   color: 'green',
+  startupGaps: [
+    {
+      gap: "Relying on implicit/vague consent instead of a valid notice + consent request",
+      pushback: "People sign up and tick a box; that's consent.",
+      reality: "DPDPA (Sec 5, 6) requires a clear notice BEFORE processing and consent that's separate, informed, and freely given. Pre-ticked boxes or bundled consent fail.",
+      leantip: "Implement a plain-language notice, a granular consent checkbox, and a way to withdraw. Log consent (who, what, when) as evidence — use a consent-management tool."
+    },
+    {
+      gap: "Collecting more data than needed with no purpose limitation",
+      pushback: "We may need this data later, so we collect it now.",
+      reality: "DPDPA enforces purpose limitation and data minimization (Sec 4). Over-collecting is a compliance failure and a breach liability.",
+      leantip: "Review each field you collect — if you can't state its purpose, don't collect it. Add a data inventory and prune unused fields."
+    },
+    {
+      gap: "Storing data abroad / no clarity on cross-border transfers",
+      pushback: "Our cloud is fine wherever it is.",
+      reality: "DPDPA (Sec 16) restricts cross-border transfers (draft rules exempt certain 'whitelisted' countries; notifications pending). Transfers need notice and consent.",
+      leantip: "Map where personal data physically resides. For India, prefer India regions (AWS ap-south-1 Mumbai, Azure Central India, GCP asia-south1, Alibaba Mumbai) and track transfer intent."
+    },
+    {
+      gap: "No breach notification runbook to the DPDP Board",
+      pushback: "Breach? We'll figure that out if ever.",
+      reality: "DPDPA (Sec 8(6)) requires notifying the Board and affected data principals of a data breach with details per rules. There's no 'wait and see' option.",
+      leantip: "Write a one-page breach runbook: detect → assess → notify Board + data principal within the prescribed window → document. Assign a 24/7 on-call owner."
+    },
+    {
+      gap: "No grievance redressal mechanism for data principals",
+      pushback: "It's just a feedback email address.",
+      reality: "DPDPA (Sec 11) requires a mechanism for data principals to exercise rights (access, correction, erasure) and redress grievances.",
+      leantip: "Stand up a support workflow for data-principal requests with ownership and SLAs. Keep request logs as evidence of the mechanism existing."
+    }
+  ],
+  privacyStartupNotes: "DPDPA-specific note: India's DPDP Act expects notice + consent, purpose limitation, and breach notification to the DPDP Board. It does NOT statutorily mandate a GDPR-style ROPA, but keep an internal record of processing activities as best practice. DPIA is appropriate for high-risk processing even where not literally prescribed — run one to show diligence.",
   weeks: [
     {
       week: 1,

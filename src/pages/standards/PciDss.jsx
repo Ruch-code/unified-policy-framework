@@ -5,6 +5,38 @@ const FRAMEWORK = {
   name: "PCI-DSS v4.0",
   color: "beige",
   region: "Global",
+  startupGaps: [
+    {
+      gap: "Cardholder data stored where it shouldn't be",
+      pushback: "We only store card numbers for a few seconds, it's fine.",
+      reality: "Any stored cardholder data (even in logs, databases, or third-party tools) massively expands PCI scope and risk. Unnecessary storage is the top scope killer.",
+      leantip: "Tokenize via a 3rd party provider, strip PANs from logs/databases, and enable masking. If you don't need the PAN, don't store it — reduce scope to near-zero."
+    },
+    {
+      gap: "Shared hosting / flat network without segmentation",
+      pushback: "One network, one server, it's cheaper.",
+      reality: "The cardholder data environment (CDE) must be isolated. Without segmentation the WHOLE network is in scope, which is unaffordable for a startup.",
+      leantip: "Create a segmented CDE (separate VLAN/VPC/account) containing only card-processing components. Document the segmentation with a scope diagram."
+    },
+    {
+      gap: "No quarterly scans / annual pen test evidence",
+      pushback: "We scanned once last year, that's enough.",
+      reality: "PCI-DSS requires quarterly external ASV scans and annual penetration tests with evidence. Missed scans = immediate non-compliance.",
+      leantip: "Automate scans on a schedule, keep the reports, and run an annual pen test. Store all scan reports in one folder dated correctly."
+    },
+    {
+      gap: "Default credentials and weak service accounts",
+      pushback: "It's an internal tool, nobody outside will find it.",
+      reality: "Default/weak credentials on any system touching the CDE are a critical finding and a real breach vector target.",
+      leantip: "Change all defaults, enforce strong/unique creds, enable MFA, and use the cloud provider's managed secrets where possible."
+    },
+    {
+      gap: "Third-party processors misunderstand scope",
+      pushback: "Our payment provider handles everything, so we're compliant.",
+      reality: "Using a validated processor removes some responsibility but NOT your duty to validate your own CDE, controls, and SAQ/ROC status.",
+      leantip: "Confirm your provider is PCI-DSS validated (list on PCI SSC), and complete your own SAQ/ROC correctly. Don't assume the provider covers you."
+    }
+  ],
   weeks: 4,
   milestones: 3,
   referenceUrl: "https://www.pcisecuritystandards.org/document_library/",

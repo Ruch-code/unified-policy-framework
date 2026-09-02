@@ -1,6 +1,6 @@
 import { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { Clock, RefreshCw, ArrowRight, BookOpen, ExternalLink, Lock, CheckCircle, ChevronDown, ChevronRight, Zap, Shield, Award, Target } from 'lucide-react';
+import { Clock, RefreshCw, ArrowRight, BookOpen, ExternalLink, Lock, CheckCircle, ChevronDown, ChevronRight, Zap, Shield, Award, Target, TrendingUp, AlertTriangle, Lightbulb } from 'lucide-react';
 
 const STORAGE_PREFIX = 'compliance-learning-';
 
@@ -20,6 +20,59 @@ const LEVEL_META = [
   { icon: Target, label: 'Verifier', desc: 'How to check and validate' },
   { icon: Award, label: 'Certified', desc: 'Master exam scenarios and edge cases' },
 ];
+
+const GENERIC_GAPS = [
+  {
+    gap: 'No documented controls or evidence yet',
+    pushback: '"We\'re too early to have formal evidence — we just ship features."',
+    reality: 'Auditors/frameworks need proof of at least the core controls (access, encryption, logging, change management). Without it, a certification or customer security review stalls.',
+    leantip: 'Start a lightweight evidence/asset register. Document what you DO have (IDP source of truth, CI/CD, cloud config) and map it to the framework — you likely have more than you think.',
+  },
+  {
+    gap: 'No dedicated security/compliance person',
+    pushback: '"We can\'t afford a compliance hire yet."',
+    reality: 'Startups are expected to be lean, but a single accountable owner (even part-time engineering lead) prevents orphaned controls and drift.',
+    leantip: 'Assign a "security champion" within engineering. Use cloud-native dashboards and automated scans so compliance is a byproduct, not extra headcount.',
+  },
+  {
+    gap: 'Shadow IT and unmanaged cloud accounts',
+    pushback: '"Devs spin up their own AWS/Azure/GCP accounts for speed."',
+    reality: 'Unknown assets are the #1 startup audit gap — you can\'t protect what you haven\'t inventoried, and scope creep explodes later.',
+    leantip: 'Enforce an organization/landing-zone with guardrails (SCPs on AWS, policy on Azure/GCP). Add an unmanaged-asset discovery scan to find attackers\' favorite footholds.',
+  },
+  {
+    gap: 'Production, staging, development not segregated',
+    pushback: '"We test in production sometimes — it\'s just faster."',
+    reality: 'Shared dev/prod environments mean a dev change can silently touch real customer data or PCI/PHI scope. Frameworks expect separation.',
+    leantip: 'At minimum split prod from non-prod (separate accounts/VPCs/namespaces with IAM boundaries). Use realistic anonymized test data, never real cardholder/PHI/PII in dev.',
+  },
+  {
+    gap: 'No formal risk assessment or scanning cadence',
+    pushback: '"We\'ll do it closer to the audit."',
+    reality: 'Frameworks require evidence that risks were identified, prioritized, and tracked over time — retroactive assessments look like window-dressing.',
+    leantip: 'Run an automated external scan + a lightweight risk register (10-15 risks max). Revisit quarterly. Screenshot the dashboard history as evidence.',
+  },
+  {
+    gap: 'Vendor / tool sprawl without oversight',
+    pushback: '"Everyone picks their own SaaS tools."',
+    reality: 'Each vendor that touches data is a risk + potentially a BAA/DPA requirement. Startup pushback ignores the compounding exposure.',
+    leantip: 'Keep a one-page vendor inventory with data-types touched and whether a DPA/BAA is needed. Use an approval gating in procurement for new tools.',
+  },
+  {
+    gap: 'Weak passwords / no MFA on everything',
+    pushback: '"MFA is annoying for devs."',
+    reality: 'Credential compromise is the leading breach vector. Most frameworks require MFA for privileged access at minimum.',
+    leantip: 'Enforce MFA organization-wide via the IDP (Okta/Entra ID). Kill static cloud keys (use short-lived credentials) — it\'s free and reduces breach surface massively.',
+  },
+  {
+    gap: 'No documented incident response process',
+    pushback: '"We\'ll figure it out if something happens."',
+    reality: 'When a real incident hits, ad-hoc response burns time, breaches regulatory reporting windows (e.g., 72h GDPR, 6h CERT-In), and damages trust.',
+    leantip: 'Write a one-page runbook: who to call, how to contain, logs to preserve, who notifies whom. Run a 30-minute tabletop once a quarter.',
+  },
+];
+
+const PRIVACY_GAP_NOTE = 'Privacy laws also add these specific startup pitfalls:';
 
 function getColors(color) { return COLOR_MAP[color] || COLOR_MAP.navy; }
 
@@ -323,6 +376,36 @@ export default function LearningFrameworkPage({ framework }) {
           </div>
         </div>
 
+        {/* Startup Gaps & Pushback */}
+        {(() => {
+          const isPrivacy = /privacy|gdpr|dpdpa|ccpa|coppa|27701|lgpd|pdpa|pipl/i.test(framework.name);
+          const gaps = framework.startupGaps && framework.startupGaps.length
+            ? framework.startupGaps
+            : GENERIC_GAPS;
+          return (
+            <div className={`bg-white rounded-2xl border ${colors.border} p-6 mb-8`}>
+              <h2 className="text-xl font-bold text-gray-900 mb-1 flex items-center gap-2">
+                <span className="w-8 h-8 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center"><TrendingUp className="w-4 h-4" /></span>
+                Common Gaps & Startup Pushback
+              </h2>
+              <p className="text-gray-500 text-sm mb-6 max-w-2xl">
+                What most new startups miss (and the excuses that get them into trouble) — plus the lean way through it.
+                {isPrivacy && <span className="font-medium text-gray-700"> {PRIVACY_GAP_NOTE}</span>}
+              </p>
+              <div className="grid md:grid-cols-2 gap-5">
+                {gaps.map((item, i) => (
+                  <GapCard key={i} item={item} colors={colors} />
+                ))}
+              </div>
+              {isPrivacy && framework.privacyStartupNotes && (
+                <div className={`mt-6 p-4 rounded-xl ${colors.bgLight} text-sm ${colors.text}`}>
+                  {framework.privacyStartupNotes}
+                </div>
+              )}
+            </div>
+          );
+        })()}
+
       </div>
     </section>
   );
@@ -340,6 +423,48 @@ function TaskDetail({ label, value, color }) {
         <ChevronRight className={`w-3 h-3 transition-transform ${open ? 'rotate-90' : ''}`} />
       </button>
       {open && <p className="text-gray-600 mt-1 ml-7 leading-relaxed">{value}</p>}
+    </div>
+  );
+}
+
+function GapCard({ item, colors }) {
+  const [open, setOpen] = useState(false);
+  const hasPushback = !!item.pushback;
+  return (
+    <div className={`border rounded-xl ${colors.border} overflow-hidden transition-shadow hover:shadow-md`}>
+      <button
+        onClick={() => setOpen(!open)}
+        className={`w-full flex items-start gap-3 p-4 text-left ${colors.bgLight}`}
+      >
+        <AlertTriangle className={`w-5 h-5 mt-0.5 shrink-0 ${colors.text}`} />
+        <div className="flex-1">
+          <h4 className="font-bold text-gray-900 flex items-center justify-between gap-2">
+            {item.gap}
+            <ChevronRight className={`w-4 h-4 shrink-0 text-gray-400 transition-transform ${open ? 'rotate-90' : ''}`} />
+          </h4>
+          {!open && (
+            <p className="text-sm text-gray-500 mt-1 italic">"{item.pushback || 'Read common pushback & how to respond'}"</p>
+          )}
+        </div>
+      </button>
+      {open && (
+        <div className="p-4 space-y-3 bg-white">
+          {hasPushback && (
+            <div className="rounded-lg bg-amber-50 border border-amber-100 p-3">
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-700 uppercase tracking-wide"><AlertTriangle className="w-3.5 h-3.5" /> What founders/staff say</span>
+              <p className="text-sm text-gray-700 italic mt-1">"{item.pushback}"</p>
+            </div>
+          )}
+          <div className="rounded-lg bg-blue-50 border border-blue-100 p-3">
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-700 uppercase tracking-wide"><TrendingUp className="w-3.5 h-3.5" /> Why it matters</span>
+            <p className="text-sm text-gray-700 mt-1">{item.reality}</p>
+          </div>
+          <div className="rounded-lg bg-green-50 border border-green-100 p-3">
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-green-700 uppercase tracking-wide"><Lightbulb className="w-3.5 h-3.5" /> The lean way</span>
+            <p className="text-sm text-gray-700 mt-1">{item.leantip}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -5,6 +5,39 @@ const FRAMEWORK = {
   name: 'GDPR (EU 2016/679)',
   region: 'European Union',
   color: 'navy',
+  startupGaps: [
+    {
+      gap: "Processing personal data with no ROPA or lawful-basis map",
+      pushback: "We use a few email/CRM tools, a spreadsheet is overkill.",
+      reality: "ROPA (Art. 30) is a legal requirement and you must map a lawful basis (Art. 6) per processing activity. Regulators and B2B customers ask for this.",
+      leantip: "Build a minimal ROPA: each data flow's purpose, categories, lawful basis, recipients, retention. One shared sheet with ~15 rows is a compliant start that grows later."
+    },
+    {
+      gap: "Storing EU data without a data-residency / transfer mechanism",
+      pushback: "Everything's in US cloud regions, that's fine right?",
+      reality: "Sending EU personal data outside the EEA needs a valid transfer mechanism (SCCs, adequacy, BCRs) and your processors need DPAs in place.",
+      leantip: "Sign SCCs with processors, prefer EU-hosted regions for personal data, and map each third party's country. Document the transfer basis per processor."
+    },
+    {
+      gap: "Ignoring DPIA for high-risk processing",
+      pushback: "A DPIA sounds like a bureaucratic template.",
+      reality: "DPIA (Art. 35) is REQUIRED for profiling, large-scale processing, special categories, or public monitoring. Skipping it when required is a direct violation.",
+      leantip: "Use SaaS DPIA templates (e.g., CNIL/ICO). Run one for you highest-risk processing recognizing triggers — 80% of the drafting is a structured commentary you already know."
+    },
+    {
+      gap: "No DSAR workflow, so rights requests go unanswered",
+      pushback: "We've only had one request all year.",
+      reality: "Data subject access requests (Art. 15-22) must be answered in 1 month (extendable 2). Missed/wrong DSARs are an easy, common enforcement trigger.",
+      leantip: "Set up a DSAR@ inbox + a simple triage checklist, and locate data programmatically (search across DBs/tools). Mark the 1-month deadline in your ticketing system."
+    },
+    {
+      gap: "Unlimited log/analytics retention and no deletion",
+      pushback: "More data = more insights, and deleting is scary.",
+      reality: "Storage limitation (Art. 5(1)(e)) and data minimization require defined retention and deletion. Hoarding data raises breach impact and risk.",
+      leantip: "Set a retention policy per data type and a technical job to delete/prune old data. Turn off unnecessary tracking for EU traffic (cookie banners won't fix backend logging)."
+    }
+  ],
+  privacyStartupNotes: "GDPR-specific startup note: even pre-revenue startups count as data controllers once they process EU residents' personal data. You don't need to be 'big' to be liable — set up ROPA, consent, and DSAR basics from day one. A DPIA is mandatory for high-risk processing (profiling, children, special categories, large scale, public monitoring).",
   weeks: [
     {
       week: 1,

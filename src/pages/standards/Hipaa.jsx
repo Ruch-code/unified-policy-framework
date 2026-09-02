@@ -5,6 +5,39 @@ const FRAMEWORK = {
   name: "HIPAA",
   color: "golden",
   region: "United States",
+  startupGaps: [
+    {
+      gap: "No BAA in place before sharing PHI (or using PHI-adjacent tools)",
+      pushback: "It's just an analytics tool / email tool, do we really need a BAA?",
+      reality: "A Business Associate Agreement is REQUIRED (HIPAA Privacy/Security Rule) before a vendor that handles PHI/business associate data starts working. Tooling that touches PHI without a BAA is a common, serious finding.",
+      leantip: "Inventory which vendors touch PHI and get a signed BAA (most major SaaS offer a HIPAA addendum / BAA form). No BAA → no PHI. Prefer vendors that support BAA from the start."
+    },
+    {
+      gap: "Mistaking BAA for 'the vendor handles compliance for me'",
+      pushback: "Our cloud provider has a BAA, so we're covered.",
+      reality: "A BAA allocates responsibilities; it does NOT transfer your compliance. You remain the covered entity / business associate responsible for safeguards and breach notification.",
+      leantip: "Treat the BAA as a risk-shifting document, not a waiver. Keep primary responsibility for the Security Rule safeguards and your own risk analysis."
+    },
+    {
+      gap: "No HIPAA Security Rule risk analysis on the books",
+      pushback: "We did a pen test; that's basically the same.",
+      reality: "HIPAA requires a risk analysis (an assessment of threats/vulnerabilities to ePHI) distinct from a pentest. Missing it is a top OCR penalty factor.",
+      leantip: "Run a structured risk analysis (identify ePHI flows, threats, likelihood/impact), document results, and log follow-ups. Repeat annually or on material change."
+    },
+    {
+      gap: "Sending ePHI unencrypted (email, spreadsheets)",
+      pushback: "It's internal, and encryption is a pain.",
+      reality: "Encryption is addressable but expected for ePHI in transit/at rest; unencrypted exposure is a breach and a frequent finding.",
+      leantip: "Enable encryption by default (TLS, encrypted storage, encrypted email — Cipher, Zix, or cloud-native), and disable unencrypted channels for anything with PHI."
+    },
+    {
+      gap: "No workforce training or access-control documentation",
+      pushback: "Everyone here is trustworthy, training is overkill.",
+      reality: "The Security Rule requires workforce training and least-privilege access. AUTHG/audit and access logs are checked in audits and investigations.",
+      leantip: "Run an annual HIPAA training, restrict access via your IDP to least privilege, and enable audit logs that you review periodically."
+    }
+  ],
+  privacyStartupNotes: "HIPAA note: unlike GDPR, HIPAA doesn't use 'ROPA/DPIA' — its equivalents are the Security Rule risk analysis and the Privacy Rule's use/disclosure safeguards. For US healthcare startups dealing with PHI, the BAA is the single highest-impact, most-commonly-missed document — get it signed with every vendor that touches ePHI, from day one.",
   weeks: 4,
   milestones: 3,
   referenceUrl: "https://www.hhs.gov/hipaa/index.html",
