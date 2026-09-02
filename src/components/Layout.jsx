@@ -185,55 +185,9 @@ export default function Layout() {
         <Outlet />
       </main>
 
-      <footer className="bg-gray-900 text-gray-400 py-12">
-        <div className="container">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div>
-              <h4 className="text-white font-semibold mb-4">Shop</h4>
-              <ul className="space-y-2">
-                <li><Link to="/products" className="hover:text-white transition-colors">All Products</Link></li>
-                <li><Link to="/products?category=Electronics" className="hover:text-white transition-colors">Electronics</Link></li>
-                <li><Link to="/products?category=Sports" className="hover:text-white transition-colors">Sports</Link></li>
-                <li><Link to="/products?category=Home%20%26%20Kitchen" className="hover:text-white transition-colors">Home & Kitchen</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-white font-semibold mb-4">Help</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="hover:text-white transition-colors">Contact Us</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">FAQs</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Shipping Info</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Returns</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-white font-semibold mb-4">Account</h4>
-              <ul className="space-y-2">
-                {isAuthenticated ? (
-                  <>
-                    <li><Link to="/profile" className="hover:text-white transition-colors">My Account</Link></li>
-                    <li><Link to="/orders" className="hover:text-white transition-colors">Order History</Link></li>
-                  </>
-                ) : (
-                  <>
-                    <li><Link to="/login" className="hover:text-white transition-colors">Sign In</Link></li>
-                    <li><Link to="/register" className="hover:text-white transition-colors">Create Account</Link></li>
-                  </>
-                )}
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-white font-semibold mb-4">Legal</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Cookie Policy</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="mt-8 pt-8 border-t border-gray-800 text-center">
-            <p>&copy; 2026 Unified Compliance Framework. All rights reserved.</p>
-          </div>
+      <footer className="bg-gray-900 text-gray-400 py-8">
+        <div className="container text-center">
+          <p className="text-sm">Made by Ruchi Kandpal</p>
         </div>
       </footer>
     </div>
