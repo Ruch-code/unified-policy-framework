@@ -21,58 +21,137 @@ const LEVEL_META = [
   { icon: Award, label: 'Certified', desc: 'Master exam scenarios and edge cases' },
 ];
 
+;
+
+const PRIVACY_GAP_NOTE = 'Privacy laws also add these specific startup pitfalls:';
+
+const ITGC_DOMAINS = {
+  Access: 'Access Management',
+  Change: 'Change Management',
+  Ops: 'IT Operations',
+  ProgramDev: 'Program / System Development',
+  Privacy: 'Data Privacy / Governance',
+  Continuity: 'Business Continuity & Incident',
+};
+
+const ITGC_COLORS = {
+  'Access Management': 'bg-blue-50 text-blue-700 border-blue-200',
+  'Change Management': 'bg-purple-50 text-purple-700 border-purple-200',
+  'IT Operations': 'bg-emerald-50 text-emerald-700 border-emerald-200',
+  'Program / System Development': 'bg-amber-50 text-amber-700 border-amber-200',
+  'Data Privacy / Governance': 'bg-rose-50 text-rose-700 border-rose-200',
+  'Business Continuity & Incident': 'bg-cyan-50 text-cyan-700 border-cyan-200',
+  'General / Cross-Cutting': 'bg-slate-100 text-slate-700 border-slate-200',
+};
+
+function itgcColor(domain) { return ITGC_COLORS[domain] || ITGC_COLORS['General / Cross-Cutting']; }
+
 const GENERIC_GAPS = [
   {
+    itgc: 'Access Management',
     gap: 'No documented controls or evidence yet',
     pushback: '"We\'re too early to have formal evidence — we just ship features."',
     reality: 'Auditors/frameworks need proof of at least the core controls (access, encryption, logging, change management). Without it, a certification or customer security review stalls.',
+    policy: 'Information Security Policy, Access Control Policy, Evidence & Records Retention Policy',
+    compensating: [
+      'Central identity source (IDP) shows who has access',
+      'CI/CD pipeline logs show code changes',
+      'Cloud configuration gives an evidence trail',
+    ],
     leantip: 'Start a lightweight evidence/asset register. Document what you DO have (IDP source of truth, CI/CD, cloud config) and map it to the framework — you likely have more than you think.',
   },
   {
+    itgc: 'Access Management',
     gap: 'No dedicated security/compliance person',
     pushback: '"We can\'t afford a compliance hire yet."',
     reality: 'Startups are expected to be lean, but a single accountable owner (even part-time engineering lead) prevents orphaned controls and drift.',
+    policy: 'Security Roles & Responsibilities Policy, Acceptable Use Policy',
+    compensating: [
+      'Designated "security champion" inside engineering',
+      'Cloud-native dashboards give visibility without a dedicated IR team',
+      'Managed services reduce the surface the team must own',
+    ],
     leantip: 'Assign a "security champion" within engineering. Use cloud-native dashboards and automated scans so compliance is a byproduct, not extra headcount.',
   },
   {
+    itgc: 'Access Management',
     gap: 'Shadow IT and unmanaged cloud accounts',
     pushback: '"Devs spin up their own AWS/Azure/GCP accounts for speed."',
     reality: 'Unknown assets are the #1 startup audit gap — you can\'t protect what you haven\'t inventoried, and scope creep explodes later.',
+    policy: 'Asset Management Policy, Cloud Usage / Procurement Policy, Access Control Policy',
+    compensating: [
+      'Organization-level landing zone with guardrails',
+      'Unmanaged-asset discovery scans',
+      'Single sign-on limits which accounts can exist',
+    ],
     leantip: 'Enforce an organization/landing-zone with guardrails (SCPs on AWS, policy on Azure/GCP). Add an unmanaged-asset discovery scan to find attackers\' favorite footholds.',
   },
   {
+    itgc: 'Change Management',
     gap: 'Production, staging, development not segregated',
     pushback: '"We test in production sometimes — it\'s just faster."',
     reality: 'Shared dev/prod environments mean a dev change can silently touch real customer data or PCI/PHI scope. Frameworks expect separation.',
+    policy: 'Environment / SDLC Policy, Change Management Policy, Data Classification Policy',
+    compensating: [
+      'IAM boundaries isolating prod from non-prod',
+      'Realistic anonymized test data instead of real PII/PHI/PCI',
+      'CI/CD approvals as a change-record trail',
+    ],
     leantip: 'At minimum split prod from non-prod (separate accounts/VPCs/namespaces with IAM boundaries). Use realistic anonymized test data, never real cardholder/PHI/PII in dev.',
   },
   {
+    itgc: 'IT Operations',
     gap: 'No formal risk assessment or scanning cadence',
     pushback: '"We\'ll do it closer to the audit."',
     reality: 'Frameworks require evidence that risks were identified, prioritized, and tracked over time — retroactive assessments look like window-dressing.',
+    policy: 'Risk Assessment Policy, Vulnerability Management Policy, Monitoring & Logging Policy',
+    compensating: [
+      'Automated external scanning on a schedule',
+      'Lightweight risk register tracked quarterly',
+      'Dashboard history left as evidence of cadence',
+    ],
     leantip: 'Run an automated external scan + a lightweight risk register (10-15 risks max). Revisit quarterly. Screenshot the dashboard history as evidence.',
   },
   {
+    itgc: 'Program / System Development',
     gap: 'Vendor / tool sprawl without oversight',
     pushback: '"Everyone picks their own SaaS tools."',
     reality: 'Each vendor that touches data is a risk + potentially a BAA/DPA requirement. Startup pushback ignores the compounding exposure.',
+    policy: 'Vendor / Third-Party Risk Management Policy, Procurement Policy, Data Protection (DPA/BAA) Policy',
+    compensating: [
+      'One-page vendor inventory with data-types touched',
+      'Approval gating in procurement for new tools',
+      'Standard vendor security questionnaire',
+    ],
     leantip: 'Keep a one-page vendor inventory with data-types touched and whether a DPA/BAA is needed. Use an approval gating in procurement for new tools.',
   },
   {
+    itgc: 'Access Management',
     gap: 'Weak passwords / no MFA on everything',
     pushback: '"MFA is annoying for devs."',
     reality: 'Credential compromise is the leading breach vector. Most frameworks require MFA for privileged access at minimum.',
+    policy: 'Access Control Policy, Password / Authentication Policy, Remote Access Policy',
+    compensating: [
+      'IDP-enforced MFA organization-wide',
+      'Short-lived credentials instead of static cloud keys',
+      'Privileged access management for admins',
+    ],
     leantip: 'Enforce MFA organization-wide via the IDP (Okta/Entra ID). Kill static cloud keys (use short-lived credentials) — it\'s free and reduces breach surface massively.',
   },
   {
+    itgc: 'Business Continuity & Incident',
     gap: 'No documented incident response process',
     pushback: '"We\'ll figure it out if something happens."',
     reality: 'When a real incident hits, ad-hoc response burns time, breaches regulatory reporting windows (e.g., 72h GDPR, 6h CERT-In), and damages trust.',
+    policy: 'Incident Response Policy, Breach Notification Policy, Business Continuity & Disaster Recovery (BCDR) Policy',
+    compensating: [
+      'One-page incident runbook with contacts & preserve steps',
+      'Quarterly 30-minute tabletop exercises',
+      'Centralized log aggregation to investigate faster',
+    ],
     leantip: 'Write a one-page runbook: who to call, how to contain, logs to preserve, who notifies whom. Run a 30-minute tabletop once a quarter.',
   },
 ];
-
-const PRIVACY_GAP_NOTE = 'Privacy laws also add these specific startup pitfalls:';
 
 function getColors(color) { return COLOR_MAP[color] || COLOR_MAP.navy; }
 
@@ -384,14 +463,18 @@ export default function LearningFrameworkPage({ framework }) {
             : GENERIC_GAPS;
           return (
             <div className={`bg-white rounded-2xl border ${colors.border} p-6 mb-8`}>
-              <h2 className="text-xl font-bold text-gray-900 mb-1 flex items-center gap-2">
+              <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
                 <span className="w-8 h-8 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center"><TrendingUp className="w-4 h-4" /></span>
-                Common Gaps & Startup Pushback
+                Common Gaps & Startup Pushback (ITGC)
               </h2>
-              <p className="text-gray-500 text-sm mb-6 max-w-2xl">
-                What most new startups miss (and the excuses that get them into trouble) — plus the lean way through it.
-                {isPrivacy && <span className="font-medium text-gray-700"> {PRIVACY_GAP_NOTE}</span>}
+              <p className="text-gray-500 text-sm mb-4 max-w-2xl">
+                Common startup gaps mapped to <strong>IT General Control</strong> domains — what's typically missing, the pushback, the <strong>compensating controls</strong> already in place, and the <strong>policy</strong> that ties each control to this framework.
               </p>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {Object.keys(ITGC_COLORS).map(d => (
+                  <span key={d} className={`text-[11px] font-semibold px-2.5 py-1 rounded-full border ${itgcColor(d)}`}>{d}</span>
+                ))}
+              </div>
               <div className="grid md:grid-cols-2 gap-5">
                 {gaps.map((item, i) => (
                   <GapCard key={i} item={item} colors={colors} />
@@ -430,6 +513,9 @@ function TaskDetail({ label, value, color }) {
 function GapCard({ item, colors }) {
   const [open, setOpen] = useState(false);
   const hasPushback = !!item.pushback;
+  const dom = item.itgc || 'General / Cross-Cutting';
+  const compensating = Array.isArray(item.compensating) ? item.compensating : [];
+  const policy = item.policy || '';
   return (
     <div className={`border rounded-xl ${colors.border} overflow-hidden transition-shadow hover:shadow-md`}>
       <button
@@ -438,6 +524,9 @@ function GapCard({ item, colors }) {
       >
         <AlertTriangle className={`w-5 h-5 mt-0.5 shrink-0 ${colors.text}`} />
         <div className="flex-1">
+          <span className={`inline-block text-[10px] font-semibold px-2 py-0.5 rounded-full border uppercase tracking-wide mb-1.5 ${itgcColor(dom)}`}>
+            ITGC · {dom}
+          </span>
           <h4 className="font-bold text-gray-900 flex items-center justify-between gap-2">
             {item.gap}
             <ChevronRight className={`w-4 h-4 shrink-0 text-gray-400 transition-transform ${open ? 'rotate-90' : ''}`} />
@@ -458,6 +547,20 @@ function GapCard({ item, colors }) {
           <div className="rounded-lg bg-blue-50 border border-blue-100 p-3">
             <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-700 uppercase tracking-wide"><TrendingUp className="w-3.5 h-3.5" /> Why it matters</span>
             <p className="text-sm text-gray-700 mt-1">{item.reality}</p>
+          </div>
+          {compensating.length > 0 && (
+            <div className="rounded-lg bg-indigo-50 border border-indigo-100 p-3">
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-700 uppercase tracking-wide"><CheckCircle className="w-3.5 h-3.5" /> Compensating controls already in place</span>
+              <ul className="mt-1 space-y-1 text-sm text-gray-700">
+                {compensating.map((c, i) => (
+                  <li key={i} className="flex items-start gap-2"><span className="text-indigo-400 mt-0.5">•</span>{c}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+          <div className="rounded-lg bg-violet-50 border border-violet-100 p-3">
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-violet-700 uppercase tracking-wide"><BookOpen className="w-3.5 h-3.5" /> Policy that ties to this framework</span>
+            <p className="text-sm text-gray-700 mt-1">{policy || 'Align controls to your Information Security Policy set.'}</p>
           </div>
           <div className="rounded-lg bg-green-50 border border-green-100 p-3">
             <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-green-700 uppercase tracking-wide"><Lightbulb className="w-3.5 h-3.5" /> The lean way</span>
