@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Linkedin } from 'lucide-react';
 import { useState } from 'react';
 
 const STANDARDS = [
@@ -105,8 +105,20 @@ export default function Layout() {
       </main>
 
       <footer className="bg-gray-900 text-gray-400 py-8">
-        <div className="container text-center">
-          <p className="text-sm">Made by Ruchi Kandpal</p>
+        <div className="container text-center flex flex-col items-center gap-3">
+          <p className="text-sm font-bold text-white">Made by Ruchi Kandpal</p>
+          <a
+            href="https://www.linkedin.com/in/ruchi-k/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 text-gray-400 hover:text-[#0a66c2] transition-colors duration-300"
+            aria-label="LinkedIn Profile"
+          >
+            <span className="relative flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 group-hover:bg-[#0a66c2]/20 transition-all duration-300 group-hover:scale-110 group-hover:rotate-[360deg] group-hover:shadow-[0_0_20px_rgba(10,102,194,0.4)]">
+              <Linkedin className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
+            </span>
+            <span className="text-sm hidden sm:inline opacity-0 group-hover:opacity-100 transition-opacity duration-300">Let's connect</span>
+          </a>
         </div>
       </footer>
     </div>
