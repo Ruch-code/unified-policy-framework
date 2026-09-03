@@ -123,8 +123,8 @@ export default function WorldMap({ height = 560 }) {
     }
     const controls = globeRef.current?.controls?.();
     if (controls) {
-      controls.autoRotate = true;
-      controls.autoRotateSpeed = 0.4;
+      controls.autoRotate = false;
+      controls.autoRotateSpeed = 0;
       controls.enableDamping = true;
     }
   }, []);
