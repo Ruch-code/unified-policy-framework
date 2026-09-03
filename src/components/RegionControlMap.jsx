@@ -16,7 +16,7 @@ const DOMAIN_COLORS = {
 
 export default function RegionControlMap({ frameworks }) {
   const [selectedDomain, setSelectedDomain] = useState(null);
-  const [minimized, setMinimized] = useState(false);
+  const [minimized, setMinimized] = useState(true);
 
   const names = useMemo(() => frameworks.map(f => f.name), [frameworks]);
 

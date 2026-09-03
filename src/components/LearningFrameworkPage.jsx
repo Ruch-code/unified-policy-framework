@@ -1,6 +1,7 @@
 import { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Clock, RefreshCw, ArrowRight, BookOpen, ExternalLink, Lock, CheckCircle, ChevronDown, ChevronRight, Zap, Shield, Award, Target, TrendingUp, AlertTriangle, Lightbulb, ClipboardList } from 'lucide-react';
+import FindingsDatabase from './FindingsDatabase';
 
 const STORAGE_PREFIX = 'compliance-learning-';
 
@@ -528,6 +529,10 @@ export default function LearningFrameworkPage({ framework }) {
             </div>
           );
         })()}
+
+        {framework.commonFindings && framework.commonFindings.length > 0 && (
+          <FindingsDatabase color={colors} />
+        )}
 
       </div>
     </section>

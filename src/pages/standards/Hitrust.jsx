@@ -8,6 +8,7 @@ const FRAMEWORK = {
   flagAnimation: "bounce",
   basePath: "/hitrust",
   color: "beige",
+  commonFindings: ["hitrust"],
   startupGaps: [
     {
       gap: "Trying to stand up a HITRUST assessment without a scoping/readiness step",
