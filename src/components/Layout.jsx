@@ -1,6 +1,7 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { Menu, X, Linkedin } from 'lucide-react';
 import { useState } from 'react';
+import VisitorCounter from './VisitorCounter';
 
 const STANDARDS = [
   { path: '/iso/27001/la', label: 'ISO 27001 LA' },
@@ -122,6 +123,7 @@ export default function Layout() {
             </span>
             <span className="text-sm hidden sm:inline opacity-0 group-hover:opacity-100 transition-opacity duration-300">Let's connect</span>
           </a>
+          <VisitorCounter />
         </div>
       </footer>
     </div>
