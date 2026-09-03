@@ -109,3 +109,207 @@ body {
   0%, 100% { transform: scale(1); opacity: 1; }
   50% { transform: scale(1.15); opacity: 0.85; }
 }
+
+/* ---- Nav hover loading bar ---- */
+.nav-load-bar {
+  display: block;
+  width: 36px;
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.15);
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+.nav-load-fill {
+  display: block;
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #7c3aed, #ec4899, #06b6d4);
+  animation: nav-load 0.55s ease-in-out forwards;
+}
+@keyframes nav-load {
+  0%   { width: 0%; }
+  100% { width: 100%; }
+}
+
+/* ---- Nav flag float ---- */
+.nav-flag-float {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  animation: nav-pop-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.nav-flag-emoji {
+  font-size: 28px;
+  line-height: 1;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+}
+.nav-flag-label {
+  font-size: 9px;
+  font-weight: 700;
+  color: white;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(4px);
+  padding: 1px 6px;
+  border-radius: 6px;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+/* ---- Nerdy Globe ---- */
+.nerdy-globe-float {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: nav-pop-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes nav-pop-in {
+  0%   { opacity: 0; transform: scale(0.5) translateY(-6px); }
+  100% { opacity: 1; transform: scale(1)   translateY(0); }
+}
+
+.nerdy-globe-wrap {
+  position: relative;
+  width: 48px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nerdy-globe-body {
+  font-size: 36px;
+  line-height: 1;
+  z-index: 1;
+  animation: nerdy-wobble 3s ease-in-out infinite;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+}
+
+@keyframes nerdy-wobble {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  25%      { transform: rotate(-5deg) translateY(-2px); }
+  75%      { transform: rotate(5deg) translateY(-1px); }
+}
+
+/* Glasses */
+.nerdy-glasses {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  z-index: 3;
+  pointer-events: none;
+}
+.nerdy-lens {
+  width: 11px;
+  height: 9px;
+  border: 2px solid #1e293b;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  position: relative;
+}
+.nerdy-bridge {
+  width: 5px;
+  height: 2px;
+  background: #1e293b;
+  margin: 0 -1px;
+  border-radius: 1px;
+}
+
+/* Eyes inside glasses */
+.nerdy-eyes {
+  position: absolute;
+  top: 13px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 4;
+  pointer-events: none;
+}
+.nerdy-eye {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: white;
+  position: relative;
+  overflow: hidden;
+}
+.nerdy-pupil {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #1e293b;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: nerdy-look 4s ease-in-out infinite;
+}
+@keyframes nerdy-look {
+  0%, 100% { transform: translate(-50%, -50%); }
+  20%      { transform: translate(-20%, -60%); }
+  40%      { transform: translate(-70%, -40%); }
+  60%      { transform: translate(-30%, -30%); }
+  80%      { transform: translate(-60%, -60%); }
+}
+
+/* Brain popping out */
+.nerdy-brain {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  pointer-events: none;
+}
+.brain-label {
+  font-size: 18px;
+  display: block;
+  line-height: 1;
+  animation: brain-pop 2.8s ease-in-out infinite;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.2));
+}
+.brain-lobes {
+  position: absolute;
+  top: 1px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 2px;
+  opacity: 0;
+  animation: brain-lobes-fade 2.8s ease-in-out infinite;
+}
+.brain-left, .brain-right {
+  width: 6px;
+  height: 4px;
+  border-radius: 50% 50% 40% 40%;
+  background: #f9a8d4;
+}
+@keyframes brain-pop {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-3px) scale(1.08); }
+}
+@keyframes brain-lobes-fade {
+  0%, 100% { opacity: 0; transform: translateX(-50%) scale(0.6); }
+  50%      { opacity: 0.7; transform: translateX(-50%) scale(1); }
+}
+
+.nerdy-label {
+  position: absolute;
+  bottom: -2px;
+  font-size: 8px;
+  font-weight: 700;
+  color: white;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(4px);
+  padding: 1px 6px;
+  border-radius: 6px;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}

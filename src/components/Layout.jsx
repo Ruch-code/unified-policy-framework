@@ -2,6 +2,7 @@ import { Outlet, Link, useLocation } from 'react-router-dom';
 import { Menu, X, Linkedin } from 'lucide-react';
 import { useState } from 'react';
 import VisitorCounter from './VisitorCounter';
+import NavHoverIcon from './NavHoverIcon';
 
 const STANDARDS = [
   { path: '/iso/27001/la', label: 'ISO 27001 LA' },
@@ -45,17 +46,18 @@ export default function Layout() {
 
             <nav className="hidden lg:flex items-center gap-1">
               {STANDARDS.map(s => (
-                <Link
-                  key={s.path}
-                  to={s.path}
-                  className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${
-                    location.pathname === s.path
-                      ? 'bg-[#1e293b] text-white'
-                      : 'text-gray-600 hover:text-[#1e293b] hover:bg-gray-100'
-                  }`}
-                >
-                  {s.label}
-                </Link>
+                <NavHoverIcon key={s.path} name={s.label}>
+                  <Link
+                    to={s.path}
+                    className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${
+                      location.pathname === s.path
+                        ? 'bg-[#1e293b] text-white'
+                        : 'text-gray-600 hover:text-[#1e293b] hover:bg-gray-100'
+                    }`}
+                  >
+                    {s.label}
+                  </Link>
+                </NavHoverIcon>
               ))}
             </nav>
 
@@ -75,18 +77,19 @@ export default function Layout() {
           <div className="lg:hidden border-t border-gray-100 bg-white">
             <div className="container py-4 flex flex-col gap-1">
               {STANDARDS.map(s => (
-                <Link
-                  key={s.path}
-                  to={s.path}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                    location.pathname === s.path
-                      ? 'bg-[#1e293b] text-white'
-                      : 'text-gray-700 hover:bg-gray-100'
-                  }`}
-                >
-                  {s.label}
-                </Link>
+                <NavHoverIcon key={s.path} name={s.label}>
+                  <Link
+                    to={s.path}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                      location.pathname === s.path
+                        ? 'bg-[#1e293b] text-white'
+                        : 'text-gray-700 hover:bg-gray-100'
+                    }`}
+                  >
+                    {s.label}
+                  </Link>
+                </NavHoverIcon>
               ))}
               <div className="mt-2 pt-2 border-t border-gray-100">
                 <a

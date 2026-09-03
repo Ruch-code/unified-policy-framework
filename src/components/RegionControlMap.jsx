@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 import { ITGC_DOMAINS, domainsFor } from '../data/itgcMatrix';
 import { GENERIC_ASSESSMENT } from '../data/assessments';
 
@@ -15,6 +16,7 @@ const DOMAIN_COLORS = {
 
 export default function RegionControlMap({ frameworks }) {
   const [selectedDomain, setSelectedDomain] = useState(null);
+  const [minimized, setMinimized] = useState(false);
 
   const names = useMemo(() => frameworks.map(f => f.name), [frameworks]);
 
@@ -44,9 +46,19 @@ export default function RegionControlMap({ frameworks }) {
             <span className="text-[11px] font-medium text-gray-400">control once → satisfies many</span>
           </h4>
         </div>
-        <span className="text-[11px] text-gray-400">{names.length} frameworks · {ITGC_DOMAINS.length} ITGC domains</span>
+        <span className="text-[11px] text-gray-400 hidden sm:inline">{names.length} frameworks · {ITGC_DOMAINS.length} ITGC domains</span>
+        <button
+          onClick={() => setMinimized(!minimized)}
+          className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold text-gray-600 bg-gray-100 hover:bg-gray-200 transition-colors"
+          aria-expanded={!minimized}
+        >
+          {minimized ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronUp className="w-3.5 h-3.5" />}
+          {minimized ? 'Expand' : 'Minimize'}
+        </button>
       </div>
 
+      {!minimized && (
+      <>
       {/* Shared baseline ribbon */}
       {sharedAll.length > 0 && (
         <div className="mb-4 rounded-xl border border-emerald-200 bg-emerald-50 p-3">
@@ -153,7 +165,7 @@ export default function RegionControlMap({ frameworks }) {
               ))}
             </ul>
           ) : (
-            <p className="text-xs text-gray-600">This control domain is addressed across the frameworks' playbooks — open any framework above to see its tailored tasks.</p>
+            <p className="text-xs text-gray-500">No mapped tool recommendations for this domain.</p>
           )}
         </div>
       )}
@@ -163,6 +175,8 @@ export default function RegionControlMap({ frameworks }) {
           🔗 Partially shared ({names.length ? 'some frameworks' : ''}):{' '}
           {sharedSome.map(d => d.domain).join(', ')} — click a row to see who shares it and the recommended tools.
         </p>
+      )}
+      </>
       )}
     </div>
   );

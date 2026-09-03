@@ -17,18 +17,6 @@ const REGIONS = [
     ],
   },
   {
-    name: 'United States',
-    tag: 'bg-blue-100 text-blue-700',
-    frameworks: [
-      { path: '/hipaa', name: 'HIPAA', desc: 'Healthcare privacy & security' },
-      { path: '/nist', name: 'NIST CSF 2.0', desc: 'Cybersecurity framework' },
-      { path: '/cippe/us', name: 'CIPPE/US', desc: 'Certified Information Privacy Professional' },
-      { path: '/hitrust', name: 'HITRUST CSF', desc: 'Healthcare security & privacy cert' },
-      { path: '/coppa', name: 'COPPA', desc: "Children's online privacy" },
-      { path: '/ccpa', name: 'CCPA / CPRA', desc: 'California consumer privacy' },
-    ],
-  },
-  {
     name: 'European Union',
     tag: 'bg-indigo-100 text-indigo-700',
     frameworks: [
