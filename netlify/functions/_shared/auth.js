@@ -45,17 +45,20 @@ userSchema.methods.toJSON = function () {
 
 export const User = mongoose.models.User || mongoose.model('User', userSchema);
 
-export const signToken = (user) =>
-  jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET || 'dev-secret', {
-    expiresIn: '30d',
-  });
+export const signToken = (user) => {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) throw new Error('JWT_SECRET env var is not set');
+  return jwt.sign({ id: user._id, role: user.role }, secret, { expiresIn: '30d' });
+};
 
 export async function authUser(req) {
   const header = req.headers.get('authorization') || '';
   const token = header.startsWith('Bearer ') ? header.slice(7) : '';
   if (!token) return null;
+  const secret = process.env.JWT_SECRET;
+  if (!secret) return null;
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'dev-secret');
+    const decoded = jwt.verify(token, secret);
     const user = await User.findById(decoded.id);
     if (!user || user.status !== 'active' || user.deletedAt) return null;
     return user;
@@ -83,7 +86,10 @@ export function json(data, status = 200) {
 }
 
 // Default password shown to a user on first login / when admin sets one.
-export const DEFAULT_PASSWORD = process.env.DEFAULT_USER_PASSWORD || 'ChangeMe#123';
+export const DEFAULT_PASSWORD = process.env.DEFAULT_USER_PASSWORD;
+if (!DEFAULT_PASSWORD) {
+  console.warn('DEFAULT_USER_PASSWORD env var is not set');
+}
 
 export function hashPassword(pw) {
   return bcrypt.hash(pw, 10);
@@ -98,14 +104,15 @@ export function makeResetToken() {
 
 // Ensure the default admin exists (idempotent). Call after connectDb on login/admin init.
 export async function seedAdmin() {
-  if (!process.env.ADMIN_EMAIL && !process.env.ADMIN_PASSWORD) return;
-  const email = (process.env.ADMIN_EMAIL || 'admin@example.com').toLowerCase();
+  const email = (process.env.ADMIN_EMAIL || '').toLowerCase().trim();
+  const password = process.env.ADMIN_PASSWORD || '';
+  if (!email || !password) return;
   const exists = await User.findOne({ email });
   if (exists) return;
   await User.create({
     name: 'Administrator',
     email,
-    password: await bcrypt.hash(process.env.ADMIN_PASSWORD || 'Admin#123', 10),
+    password: await bcrypt.hash(password, 10),
     role: 'admin',
     status: 'active',
     approvedAt: new Date(),

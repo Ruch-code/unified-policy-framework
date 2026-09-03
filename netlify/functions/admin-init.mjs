@@ -6,8 +6,8 @@ export default async (req) => {
   try {
     await connectDb();
     await seedAdmin();
-    const email = (process.env.ADMIN_EMAIL || 'admin@example.com').toLowerCase();
-    return json({ message: 'Default admin ensured.', email });
+    const email = (process.env.ADMIN_EMAIL || '').toLowerCase();
+    return json({ message: 'Default admin ensured.', email: email || null });
   } catch (err) {
     return json({ message: err.message }, 500);
   }

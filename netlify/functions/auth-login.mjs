@@ -22,7 +22,8 @@ export default async (req) => {
     }
 
     const token = signToken(user);
-    return json({ token, user, isDefaultPassword: password === (process.env.DEFAULT_USER_PASSWORD || 'ChangeMe#123') });
+    const defaultPw = process.env.DEFAULT_USER_PASSWORD;
+    return json({ token, user, isDefaultPassword: !!defaultPw && password === defaultPw });
   } catch (err) {
     return json({ message: err.message }, 500);
   }
