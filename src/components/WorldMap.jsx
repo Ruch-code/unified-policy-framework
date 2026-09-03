@@ -234,7 +234,7 @@ export default function WorldMap({ height = 560 }) {
 
       {/* Selected regulation modal */}
       {selected && (
-        <div className="absolute inset-0 bg-black/40 flex items-center justify-center p-4 z-20" onClick={() => setSelected(null)}>
+        <div className="absolute inset-0 bg-black/40 flex items-center justify-center p-4 z-50" onClick={() => setSelected(null)}>
           <div className="bg-white rounded-3xl shadow-2xl max-w-md w-full overflow-hidden" onClick={(e) => e.stopPropagation()}>
             <div className="h-2" style={{ background: selected.color }} />
             <div className="p-6">
@@ -266,10 +266,10 @@ export default function WorldMap({ height = 560 }) {
 
       {/* Hover popup panel (bottom-left) with available regs */}
       {activeReg && !selected && (
-        <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur rounded-2xl shadow-xl p-4 max-w-xs w-72">
+        <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur rounded-2xl shadow-xl p-4 max-w-xs w-72 z-40">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="text-2xl">{activeReg.flag || '🌐'}</span>
+              <span className="text-2xl waving-flag inline-block">{activeReg.flag || '🌐'}</span>
               <div>
                 <div className="font-bold text-gray-900 text-sm">{activeReg.region} <span className="text-gray-400 font-normal">/ {activeReg.sub}</span></div>
                 <div className="text-xs text-gray-500">{activeReg.country} · {activeReg.timezone}</div>

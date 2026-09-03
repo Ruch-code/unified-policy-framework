@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import WorldMap from '../components/WorldMap';
+import RegionControlMap from '../components/RegionControlMap';
 
 const REGIONS = [
   {
@@ -159,6 +160,7 @@ export default function Home() {
                 </Link>
               ))}
             </div>
+            {region.frameworks.length > 1 && <RegionControlMap frameworks={region.frameworks} />}
           </div>
         ))}
 
