@@ -2,6 +2,13 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import AssessmentPage from './components/AssessmentPage';
+import RequireAuth from './components/RequireAuth';
+import { AuthProvider } from './context/AuthContext';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import ForgotPassword from './pages/ForgotPassword';
+import AdminPanel from './pages/AdminPanel';
+import Profile from './pages/Profile';
 import { getFramework, FRAMEWORKS } from './data/registry';
 
 import Iso27001La from './pages/standards/Iso27001La';
@@ -42,37 +49,55 @@ function AssessRoute() {
   return <AssessmentPage framework={fw} />;
 }
 
+const Protected = ({ children }) => (
+  <RequireAuth>
+    <ProtectedRouteContent>{children}</ProtectedRouteContent>
+  </RequireAuth>
+);
+
+function ProtectedRouteContent({ children }) {
+  return <>{children}</>;
+}
+
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="iso/27001/la" element={<Iso27001La />} />
-        <Route path="iso/27001/li" element={<Iso27001Li />} />
-        <Route path="iso-31000" element={<Iso31000 />} />
-        <Route path="iso-27701" element={<Iso27701 />} />
-        <Route path="pci-dss" element={<PciDss />} />
-        <Route path="soc2" element={<Soc2 />} />
-        <Route path="hipaa" element={<Hipaa />} />
-        <Route path="nist" element={<Nist />} />
-        <Route path="cippe/us" element={<CippeUs />} />
-        <Route path="hitrust" element={<Hitrust />} />
-        <Route path="coppa" element={<Coppa />} />
-        <Route path="ccpa" element={<CcpaCpra />} />
-        <Route path="gdpr" element={<Gdpr />} />
-        <Route path="cippe/eu" element={<CippeEu />} />
-        <Route path="dpdpa" element={<Dpdpa />} />
-        <Route path="sebi" element={<SecuritiesExchangeBoardIndia />} />
-        <Route path="rbi" element={<ReserveBankOfIndia />} />
-        <Route path="cscrf" element={<Cscrf />} />
-        <Route path="cert-in" element={<CertIn />} />
-        <Route path="lgpd" element={<Lgpd />} />
-        <Route path="pdpa" element={<Pdpa />} />
-        <Route path="pipl" element={<Pipl />} />
-        <Route path="cis" element={<Cis />} />
-        <Route path="*" element={<AssessRoute />} />
-      </Route>
-    </Routes>
+    <AuthProvider>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="forgot" element={<ForgotPassword />} />
+          <Route path="admin" element={<RequireAuth admin><AdminPanel /></RequireAuth>} />
+          <Route path="profile" element={<RequireAuth><Profile /></RequireAuth>} />
+
+          <Route path="iso/27001/la" element={<Protected><Iso27001La /></Protected>} />
+          <Route path="iso/27001/li" element={<Protected><Iso27001Li /></Protected>} />
+          <Route path="iso-31000" element={<Protected><Iso31000 /></Protected>} />
+          <Route path="iso-27701" element={<Protected><Iso27701 /></Protected>} />
+          <Route path="pci-dss" element={<Protected><PciDss /></Protected>} />
+          <Route path="soc2" element={<Protected><Soc2 /></Protected>} />
+          <Route path="hipaa" element={<Protected><Hipaa /></Protected>} />
+          <Route path="nist" element={<Protected><Nist /></Protected>} />
+          <Route path="cippe/us" element={<Protected><CippeUs /></Protected>} />
+          <Route path="hitrust" element={<Protected><Hitrust /></Protected>} />
+          <Route path="coppa" element={<Protected><Coppa /></Protected>} />
+          <Route path="ccpa" element={<Protected><CcpaCpra /></Protected>} />
+          <Route path="gdpr" element={<Protected><Gdpr /></Protected>} />
+          <Route path="cippe/eu" element={<Protected><CippeEu /></Protected>} />
+          <Route path="dpdpa" element={<Protected><Dpdpa /></Protected>} />
+          <Route path="sebi" element={<Protected><SecuritiesExchangeBoardIndia /></Protected>} />
+          <Route path="rbi" element={<Protected><ReserveBankOfIndia /></Protected>} />
+          <Route path="cscrf" element={<Protected><Cscrf /></Protected>} />
+          <Route path="cert-in" element={<Protected><CertIn /></Protected>} />
+          <Route path="lgpd" element={<Protected><Lgpd /></Protected>} />
+          <Route path="pdpa" element={<Protected><Pdpa /></Protected>} />
+          <Route path="pipl" element={<Protected><Pipl /></Protected>} />
+          <Route path="cis" element={<Protected><Cis /></Protected>} />
+          <Route path="*" element={<Protected><AssessRoute /></Protected>} />
+        </Route>
+      </Routes>
+    </AuthProvider>
   );
 }
 

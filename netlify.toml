@@ -5,3 +5,12 @@
 
 [build.environment]
   NODE_VERSION = "20"
+
+[functions]
+  node_bundler = "esbuild_zisi"
+  external_node_modules = ["mongoose", "bcryptjs", "jsonwebtoken", "mongodb"]
+
+[[redirects]]
+  from = "/api/*"
+  to = "/index.html"
+  status = 200

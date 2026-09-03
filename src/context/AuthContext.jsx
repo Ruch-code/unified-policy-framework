@@ -1,77 +1,52 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import api from '../utils/api';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 const AuthContext = createContext(null);
+const TOKEN_KEY = 'compliance_token';
+
+const api = async (path, opts = {}) => {
+  const headers = { 'Content-Type': 'application/json', ...(opts.headers || {}) };
+  const token = localStorage.getItem(TOKEN_KEY);
+  if (token) headers.Authorization = `Bearer ${token}`;
+  const res = await fetch(path, { ...opts, headers });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    const err = new Error(data.message || 'Request failed');
+    err.status = res.status;
+    throw err;
+  }
+  return data;
+};
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const initAuth = async () => {
-      const stored = localStorage.getItem('user');
-      if (stored) {
-        try {
-          const { data } = await api.get('/auth/me');
-          setUser(data.user);
-        } catch {
-          localStorage.removeItem('user');
-        }
-      }
-      setLoading(false);
-    };
-    initAuth();
+    const token = localStorage.getItem(TOKEN_KEY);
+    if (!token) { setLoading(false); return; }
+    api('/api/auth/me')
+      .then(({ user }) => setUser(user))
+      .catch(() => localStorage.removeItem(TOKEN_KEY))
+      .finally(() => setLoading(false));
   }, []);
 
   const login = async (email, password) => {
-    const { data } = await api.post('/auth/login', { email, password });
+    const data = await api('/api/auth/login', { method: 'POST', body: JSON.stringify({ email, password }) });
+    localStorage.setItem(TOKEN_KEY, data.token);
     setUser(data.user);
-    localStorage.setItem('user', JSON.stringify(data.user));
     return data;
   };
 
-  const register = async (name, email, password) => {
-    const { data } = await api.post('/auth/register', { name, email, password });
-    setUser(data.user);
-    localStorage.setItem('user', JSON.stringify(data.user));
-    return data;
-  };
-
-  const logout = async () => {
-    await api.post('/auth/logout');
+  const logout = () => {
+    localStorage.removeItem(TOKEN_KEY);
     setUser(null);
-    localStorage.removeItem('user');
   };
 
-  const updateProfile = async (updates) => {
-    const { data } = await api.put('/auth/profile', updates);
-    setUser(data.user);
-    localStorage.setItem('user', JSON.stringify(data.user));
-    return data;
-  };
+  const changePassword = (currentPassword, newPassword) =>
+    api('/api/auth/password', { method: 'POST', body: JSON.stringify({ currentPassword, newPassword }) });
 
-  const value = {
-    user,
-    loading,
-    login,
-    register,
-    logout,
-    updateProfile,
-    isAuthenticated: !!user,
-    isAdmin: user?.role === 'admin'
-  };
-
-  return (
-    <AuthContext.Provider value={value}>
-      {!loading && children}
-    </AuthContext.Provider>
-  );
+  const value = { user, loading, login, logout, changePassword, api };
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
-export function useAuth() {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within AuthProvider');
-  }
-  return context;
-}
+export const useAuth = () => useContext(AuthContext);

@@ -1,8 +1,9 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { Menu, X, Linkedin } from 'lucide-react';
+import { Menu, X, Linkedin, User as UserIcon, ShieldCheck, LogOut } from 'lucide-react';
 import { useState } from 'react';
 import VisitorCounter from './VisitorCounter';
 import NavHoverIcon from './NavHoverIcon';
+import { useAuth } from '../context/AuthContext';
 
 const STANDARDS = [
   { path: '/iso/27001/la', label: 'ISO 27001 LA' },
@@ -25,6 +26,7 @@ const STANDARDS = [
 export default function Layout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { user, logout } = useAuth();
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
@@ -70,6 +72,28 @@ export default function Layout() {
               ISO 42001 AI
               <span className="text-[10px] opacity-70">↗</span>
             </a>
+
+            <div className="ml-2 hidden sm:flex items-center gap-1.5">
+              {!user ? (
+                <Link to="/login" className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors">
+                  <UserIcon className="w-4 h-4" /> Login
+                </Link>
+              ) : (
+                <>
+                  {user.role === 'admin' && (
+                    <Link to="/admin" className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-violet-700 hover:bg-violet-50 transition-colors">
+                      <ShieldCheck className="w-4 h-4" /> Admin
+                    </Link>
+                  )}
+                  <Link to="/profile" className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors">
+                    <UserIcon className="w-4 h-4" /> <span className="max-w-[90px] truncate">{user.name || user.email}</span>
+                  </Link>
+                  <button onClick={logout} className="inline-flex items-center gap-1.5 px-2.5 py-2 rounded-lg text-sm font-medium text-gray-500 hover:bg-gray-100 transition-colors" aria-label="Log out">
+                    <LogOut className="w-4 h-4" />
+                  </button>
+                </>
+              )}
+            </div>
           </div>
         </div>
 
