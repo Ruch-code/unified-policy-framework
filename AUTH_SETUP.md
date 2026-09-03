@@ -30,6 +30,17 @@ Set these in the Netlify dashboard (Site settings → Environment variables):
 | `ADMIN_EMAIL` | Email of the default admin account | `<admin-email>` |
 | `ADMIN_PASSWORD` | Password for the default admin account | `<admin-password>` |
 | `DEFAULT_USER_PASSWORD` | Temporary password assigned to new/approved users | e.g. `<temp-password>` |
+| `RESEND_API_KEY` | (optional) API key to email the admin on new signups | `re_...` |
+| `RESEND_FROM` | (optional) sender for notification emails | `onboarding@resend.dev` (free test sender; delivers to your own signed-up email) |
+
+## Admin signup notifications (resend)
+When `RESEND_API_KEY` and `ADMIN_EMAIL` are set, `/api/auth/register` emails the
+admin each time a new pending account signs up. Setup:
+1. Create a free Resend account: https://resend.com/signup
+2. Get an API key: https://resend.com/api-keys (Create API Key → copy `re_...`)
+3. Use sender `onboarding@resend.dev` (free, no DNS) — it only delivers to the
+   email you signed up to Resend with, so `ADMIN_EMAIL` must be that address for
+   the notification to arrive. To send to anyone, verify your own domain (DNS records).
 
 ## Default accounts
 - **Admin:** created automatically on first login from `ADMIN_EMAIL` / `ADMIN_PASSWORD`.
