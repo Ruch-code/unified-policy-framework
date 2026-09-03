@@ -3,6 +3,23 @@
 This site uses Netlify serverless functions backed by MongoDB (Atlas) for
 user registration, admin approval, login, and password resets.
 
+## 1. Create a free MongoDB Atlas cluster (if you don't have one)
+
+1. Go to https://www.mongodb.com/cloud/atlas/register and create an account.
+2. In Atlas, click **Build a Database** and pick the **M0 Free** (Serverless/Shared)
+   tier — no credit card required.
+3. Leave the default cloud provider/region (or pick one near your users).
+4. During setup, create a **database user** (username + password) and under
+   **Network Access** click **Add Your Current IP**. (For a demo you may allow
+   access from anywhere = `0.0.0.0/0`.)
+5. Go to **Database → Connect → Drivers → Node.js**, and copy the connection
+   string (`mongodb+srv://<user>:<pass>@cluster0.xxxx.mongodb.net/...`).
+   Replace `<user>` and `<pass>` with your database user's credentials.
+
+You now have a connection string — set it as `MONGODB_URI` below.
+
+## 2. Required Netlify environment variables
+
 ## Required Netlify environment variables
 Set these in the Netlify dashboard (Site settings → Environment variables):
 
@@ -10,9 +27,9 @@ Set these in the Netlify dashboard (Site settings → Environment variables):
 |----------|---------|---------|
 | `MONGODB_URI` | MongoDB Atlas connection string | `mongodb+srv://user:pass@cluster.mongodb.net/compliance` |
 | `JWT_SECRET` | Signing secret for auth tokens | long random string |
-| `ADMIN_EMAIL` | Email of the default admin account | `admin@yourdomain.com` |
-| `ADMIN_PASSWORD` | Password for the default admin account | strong password |
-| `DEFAULT_USER_PASSWORD` | Temporary password assigned to new/approved users | e.g. `ChangeMe#123` |
+| `ADMIN_EMAIL` | Email of the default admin account | `<admin-email>` |
+| `ADMIN_PASSWORD` | Password for the default admin account | `<admin-password>` |
+| `DEFAULT_USER_PASSWORD` | Temporary password assigned to new/approved users | e.g. `<temp-password>` |
 
 ## Default accounts
 - **Admin:** created automatically on first login from `ADMIN_EMAIL` / `ADMIN_PASSWORD`.

@@ -5,6 +5,7 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  SECRETS_SCAN_OMIT_KEYS = "ADMIN_EMAIL,ADMIN_PASSWORD,MONGODB_URI,JWT_SECRET,DEFAULT_USER_PASSWORD"
 
 [functions]
   node_bundler = "esbuild"
