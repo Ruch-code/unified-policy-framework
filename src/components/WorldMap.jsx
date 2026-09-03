@@ -121,6 +121,12 @@ export default function WorldMap({ height = 560 }) {
     if (globeRef.current && typeof globeRef.current.pointOfView === 'function') {
       globeRef.current.pointOfView({ lat: pov.lat, lng: pov.lng, altitude: pov.altitude }, 400);
     }
+    const controls = globeRef.current?.controls?.();
+    if (controls) {
+      controls.autoRotate = true;
+      controls.autoRotateSpeed = 0.4;
+      controls.enableDamping = true;
+    }
   }, []);
 
   const onZoom = ({ lat, lng, altitude }) => setPov({ lat, lng, altitude });
@@ -142,7 +148,7 @@ export default function WorldMap({ height = 560 }) {
   const flagged = hovered && hovered.properties && hovered.properties.region !== 'Other';
 
   return (
-    <div className="relative w-full overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900">
+    <div className="relative w-full rounded-3xl bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900" style={{ touchAction: 'none' }}>
       <Globe
         ref={globeRef}
         width="100%"
@@ -173,13 +179,13 @@ export default function WorldMap({ height = 560 }) {
               <div style="font-weight:700;font-size:15px">${p.flag} ${p.name}</div>
               <div style="color:#a5b4fc;font-size:12px;margin-top:2px">${p.region} · ${p.sub}</div>
               <div style="color:#cbd5e1;font-size:12px;margin-top:4px">🕐 ${p.timezone}</div>
-              <div style="color:#34d399;font-size:11px;margin-top:6px">Click to see regulations</div>
+              <div style="color:#34d399;font-size:11px;margin-top:6px">Tap to see regulations</div>
             </div>`;
         }}
         onPolygonHover={onPolygonHover}
         onPolygonClick={onPolygonClick}
         onZoom={onZoom}
-        autoRotateSpeed={0.4}
+        enablePointerInteraction
         labelsData={labelData}
         labelLat="lat"
         labelLng="lng"
