@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { Menu, X, Linkedin, User as UserIcon, ShieldCheck, LogOut } from 'lucide-react';
+import { Menu, X, Linkedin, User as UserIcon, ShieldCheck, LogOut, BookOpenCheck } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import VisitorCounter from './VisitorCounter';
 import NavHoverIcon from './NavHoverIcon';
@@ -97,6 +97,9 @@ export default function Layout() {
                       <ShieldCheck className="w-4 h-4" /> Admin
                     </Link>
                   )}
+                  <Link to="/knowledge" className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-[#7c3aed] hover:bg-indigo-50 transition-colors">
+                    <BookOpenCheck className="w-4 h-4" /> GRC KB
+                  </Link>
                   <Link to="/profile" className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors">
                     <UserIcon className="w-4 h-4" /> <span className="max-w-[90px] truncate">{user.name || user.email}</span>
                   </Link>

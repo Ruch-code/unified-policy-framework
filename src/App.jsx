@@ -8,6 +8,7 @@ import Signup from './pages/Signup';
 import ForgotPassword from './pages/ForgotPassword';
 import AdminPanel from './pages/AdminPanel';
 import NewsletterEditor from './pages/NewsletterEditor';
+import KnowledgeBase from './pages/KnowledgeBase';
 import Profile from './pages/Profile';
 import { getFramework, FRAMEWORKS } from './data/registry';
 
@@ -69,6 +70,7 @@ function App() {
           <Route path="forgot" element={<ForgotPassword />} />
           <Route path="admin" element={<RequireAuth admin><AdminPanel /></RequireAuth>} />
           <Route path="newsletter" element={<RequireAuth admin><NewsletterEditor /></RequireAuth>} />
+          <Route path="knowledge" element={<RequireAuth><KnowledgeBase /></RequireAuth>} />
           <Route path="profile" element={<RequireAuth><Profile /></RequireAuth>} />
 
           <Route path="iso/27001/la" element={<Protected><Iso27001La /></Protected>} />
