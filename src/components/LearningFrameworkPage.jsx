@@ -2,6 +2,7 @@ import { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Clock, RefreshCw, ArrowRight, BookOpen, ExternalLink, Lock, CheckCircle, ChevronDown, ChevronRight, Zap, Shield, Award, Target, TrendingUp, AlertTriangle, Lightbulb, ClipboardList } from 'lucide-react';
 import FindingsDatabase from './FindingsDatabase';
+import PrivacyDocuments from './PrivacyDocuments';
 
 const STORAGE_PREFIX = 'compliance-learning-';
 
@@ -533,6 +534,8 @@ export default function LearningFrameworkPage({ framework }) {
         {framework.commonFindings && framework.commonFindings.length > 0 && (
           <FindingsDatabase color={colors} />
         )}
+
+        <PrivacyDocuments framework={framework} colors={colors} />
 
       </div>
     </section>
