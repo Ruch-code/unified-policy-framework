@@ -165,8 +165,46 @@ export function recommendCertifications(profile) {
   const hasPHI = data.includes('phi');
   const hasCard = data.includes('card');
 
+  // Signal detection: (keywords, confidence% + hint)
+  const SIG = [
+    { kw: ['hipaa', 'health', 'clinic', 'medical', 'hospital', 'care', 'pharma', 'bio'], cap: 'HIPAA', delta: (h) => (h.hasPHI ? 0 : +2), note: 'Health data is present — HIPAA/PHI controls matter.' },
+    { kw: ['pay', 'payment', 'card', 'checkout', 'purchase', 'store', 'shop', 'commerce', 'marketplace', 'sell'], cap: 'PCI-DSS', delta: () => +2, note: 'Card/purchase activity detected — PCI-DSS is relevant.' },
+    { kw: ['bank', 'fintech', 'lend', 'invest', 'loan', 'finance', 'money', 'payments'], cap: 'ISO 27001', delta: () => +1, note: 'Financial services — strong security baseline expected.' },
+    { kw: ['adult', 'dating', 'gambling', 'social', 'children', 'kids', 'school', 'education', 'student', 'kids'], cap: 'GDPR', delta: () => +2, note: 'Sensitive audience — prioritize privacy (GDPR/regional).' },
+    { kw: ['gov', 'government', 'public', 'municipal', 'defense', 'military'], cap: 'NIST CSF', delta: () => +2, note: 'Public-sector/regulated — NIST CSF is the trusted baseline.' },
+    { kw: ['cloud', 'saas', 'software', 'platform', 'api', 'dev', 'data', 'b2b', 'enterprise'], cap: 'CIS Controls + SOC 2', delta: () => +1, note: 'Tech/cloud operation — CIS + SOC 2 give a strong foundation.' },
+  ];
+
+  let businessInsight = null;
+  const website = (profile.website || '').trim();
+  if (website) {
+    const url = website.toLowerCase();
+    const hits = SIG.filter(s => s.kw.some(k => url.includes(k)));
+    if (hits.length) {
+      businessInsight = {
+        source: 'website',
+        missUrl: url.replace(/^https?:\/\/(www\.)?/i, ''),
+        found: hits.map(h => ({ cap: h.cap, note: h.note })),
+        boosts: hits.reduce((acc, h) => {
+          const capKey = h.cap;
+          acc[capKey] = (acc[capKey] || 0) + h.delta({ hasPHI, hasCard });
+          return acc;
+        }, {}),
+      };
+    }
+  }
+
   const scored = Object.entries(CERT_CATALOG).map(([name, c]) => {
     let score = c.evaluate(profile);
+    if (businessInsight) {
+      // Apply any website-signal boosts whose cap keyword matches this framework name.
+      Object.entries(businessInsight.boosts).forEach(([cap, boost]) => {
+        const capWord = cap.toLowerCase().split(' ')[0]; // e.g. "HIPAA", "PCI-DSS", "regional", "nist", "cis"
+        if (name.toLowerCase().includes(capWord)) score += boost;
+      });
+      // A site that mentions payments also nudges the foundational SOC 2 / ISO pair.
+      if (businessInsight.boosts['PCI-DSS'] && (name === 'SOC 2')) score += 1;
+    }
     if (hasPHI && name === 'SOC 2') score += 1; // SOC 2 proves HIPAA effectiveness
     if (hasCard && name === 'SOC 2') score += 1;
     return { name, c, score };
@@ -183,5 +221,5 @@ export function recommendCertifications(profile) {
     return { ...x, priority };
   });
 
-  return { tiers, hasPHI, hasCard };
+  return { tiers, hasPHI, hasCard, businessInsight };
 }

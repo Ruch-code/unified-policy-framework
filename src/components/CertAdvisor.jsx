@@ -5,7 +5,9 @@ import { PROFILE_QUESTIONS, CERT_CATALOG, PRIORITY_META, recommendCertifications
 export default function CertAdvisor() {
   const [step, setStep] = useState(0); // 0-3 = questions, 4 = results
   const [answers, setAnswers] = useState({});
+  const [website, setWebsite] = useState('');
   const [result, setResult] = useState(null);
+  const [bizInsight, setBizInsight] = useState(null);
 
   const q = PROFILE_QUESTIONS[step];
 
@@ -34,15 +36,16 @@ export default function CertAdvisor() {
   const goNext = () => {
     if (step < 3) return setStep(step + 1);
     // Build profile
-    const profile = { industry: answers.industry, data: answers.data || [], geo: answers.geo, stage: answers.stage };
-    const { tiers } = recommendCertifications(profile);
+    const profile = { industry: answers.industry, data: answers.data || [], geo: answers.geo, stage: answers.stage, website: website.trim() };
+    const { tiers, businessInsight } = recommendCertifications(profile);
     setResult(tiers);
+    setBizInsight(businessInsight);
     setStep(4);
   };
 
   const goBack = () => { if (step > 0) setStep(step - 1); };
 
-  const restart = () => { setStep(0); setAnswers({}); setResult(null); };
+  const restart = () => { setStep(0); setAnswers({}); setResult(null); setBizInsight(null); setWebsite(''); };
 
   const priorityForLevel = (level) => PRIORITY_META.find(p => p.level === level) || PRIORITY_META[0];
 
@@ -105,6 +108,21 @@ export default function CertAdvisor() {
               })}
             </div>
           )}
+          {step === 3 && (
+            <div className="mt-5 pt-4 border-t border-dashed border-gray-200">
+              <label className="block text-sm font-semibold text-gray-800 mb-1.5">
+                Your website URL <span className="font-normal text-gray-400">(optional)</span>
+              </label>
+              <p className="text-xs text-gray-500 mb-2.5">
+                Add it and we'll factor in your business model, operations and data flow for even smarter advice.
+              </p>
+              <input type="url"
+                value={website}
+                onChange={e => setWebsite(e.target.value)}
+                placeholder="https://yourcompany.com"
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent" />
+            </div>
+          )}
           <div className="mt-5 flex items-center gap-3">
             {step > 0 && <button onClick={goBack} className="px-4 py-2 rounded-lg bg-gray-100 text-gray-600 text-sm font-semibold hover:bg-gray-200">← Back</button>}
             <button onClick={goNext} disabled={!canProceed}
@@ -122,6 +140,26 @@ export default function CertAdvisor() {
           <p className="text-sm text-gray-600 mb-4">
             Based on your profile, here is your full upskill roadmap — ordered by impact. All relevant frameworks are shown (some are legally required, others are foundational hygiene):
           </p>
+
+          {/* Website-based business insights */}
+          {bizInsight && (
+            <div className="mb-6 rounded-xl border border-indigo-200 bg-indigo-50 p-4">
+              <h5 className="flex items-center gap-2 font-bold text-indigo-900 text-sm mb-2">
+                <Shield className="w-4 h-4" /> Read from <span className="font-mono text-xs bg-white px-1.5 py-0.5 rounded">{bizInsight.missUrl}</span>
+              </h5>
+              <p className="text-sm text-indigo-800 mb-2">
+                Based on your business model, operations and data flow, we've adjusted priorities below:
+              </p>
+              <ul className="space-y-1.5">
+                {bizInsight.found.map((f, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-indigo-900">
+                    <Star className="w-3.5 h-3.5 text-indigo-500 mt-0.5 shrink-0" />
+                    <span><strong>{f.cap}</strong> — {f.note}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           {/* Priority legend */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">

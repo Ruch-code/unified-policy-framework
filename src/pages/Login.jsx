@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import AuthorAboutPopup from '../components/AuthorAboutPopup';
+import PetMascots from '../components/PetMascots';
 import { UserRound } from 'lucide-react';
 
 export default function Login() {
@@ -13,6 +14,7 @@ export default function Login() {
   const [info, setInfo] = useState('');
   const [loading, setLoading] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
+  const [showPets, setShowPets] = useState(false);
 
   const submit = async (e) => {
     e.preventDefault();
@@ -58,11 +60,18 @@ export default function Login() {
           <p>Don't have an account? <Link to="/signup" className="text-indigo-600 font-medium hover:underline">Request access</Link></p>
           <p>Forgot password? <Link to="/forgot" className="text-indigo-600 font-medium hover:underline">Reset it</Link></p>
         </div>
-        <div className="mt-6 pt-4 border-t border-gray-100 flex items-center gap-2">
-          <button onClick={() => setShowAbout(true)}
-            className="inline-flex items-center gap-2 text-[#7c3aed] text-sm font-semibold hover:underline transition">
-            <UserRound className="w-4 h-4" /> About the author
-          </button>
+        <div className="mt-6 pt-4 border-t border-gray-100 relative">
+          <div
+            onMouseEnter={() => setShowPets(true)}
+            onMouseLeave={() => setShowPets(false)}
+            className="inline-flex items-center gap-2 group cursor-pointer"
+            onClick={() => setShowAbout(true)}
+          >
+            <span className="inline-flex items-center gap-2 text-[#7c3aed] text-sm font-semibold group-hover:underline transition">
+              <UserRound className="w-4 h-4" /> About the author
+            </span>
+          </div>
+          <PetMascots show={showPets} />
         </div>
       </div>
 
