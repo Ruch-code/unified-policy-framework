@@ -3,7 +3,6 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import AssessmentPage from './components/AssessmentPage';
 import RequireAuth from './components/RequireAuth';
-import { AuthProvider } from './context/AuthContext';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ForgotPassword from './pages/ForgotPassword';
@@ -61,8 +60,7 @@ function ProtectedRouteContent({ children }) {
 
 function App() {
   return (
-    <AuthProvider>
-      <Routes>
+    <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
@@ -97,7 +95,6 @@ function App() {
           <Route path="*" element={<Protected><AssessRoute /></Protected>} />
         </Route>
       </Routes>
-    </AuthProvider>
   );
 }
 

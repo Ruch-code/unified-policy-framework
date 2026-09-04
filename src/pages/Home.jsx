@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import WorldMap from '../components/WorldMap';
 import RegionControlMap from '../components/RegionControlMap';
 import CertAdvisor from '../components/CertAdvisor';
+import ErrorBoundary from '../components/ErrorBoundary';
 
 const REGIONS = [
   {
@@ -125,7 +126,9 @@ export default function Home() {
         </div>
 
         {/* Certification Advisor */}
-        <CertAdvisor />
+        <ErrorBoundary>
+          <CertAdvisor />
+        </ErrorBoundary>
 
         {/* Region View */}
         <h2 className="text-2xl font-bold text-[#1e293b] mb-6 flex items-center gap-2">
