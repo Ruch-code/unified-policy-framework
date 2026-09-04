@@ -8,6 +8,7 @@ export default function CertAdvisor() {
   const [website, setWebsite] = useState('');
   const [result, setResult] = useState(null);
   const [bizInsight, setBizInsight] = useState(null);
+  const [currency, setCurrency] = useState('INR');
 
   const q = PROFILE_QUESTIONS[step];
 
@@ -171,6 +172,18 @@ export default function CertAdvisor() {
             ))}
           </div>
 
+          {/* Currency toggle */}
+          <div className="flex items-center justify-end mb-4">
+            <div className="inline-flex items-center rounded-lg bg-gray-100 p-1">
+              {['INR', 'USD'].map(cur => (
+                <button key={cur} onClick={() => setCurrency(cur)}
+                  className={`px-3 py-1.5 rounded-md text-xs font-bold transition ${currency === cur ? 'bg-indigo-600 text-white shadow' : 'text-gray-600 hover:text-gray-900'}`}>
+                  {cur === 'INR' ? '₹ INR' : '$ USD'}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <div className="space-y-4">
             {result.map(({ name, c, priority, score }, idx) => {
               const pm = priorityForLevel(priority);
@@ -198,7 +211,7 @@ export default function CertAdvisor() {
                   </div>
                   <div className="px-4 py-3 bg-white flex flex-wrap gap-4 text-xs text-gray-600">
                     <span className="inline-flex items-center gap-1.5 font-semibold"><Clock className="w-3.5 h-3.5 text-gray-400" /> {c.timeline}</span>
-                    <span className="inline-flex items-center gap-1.5 font-semibold"><DollarSign className="w-3.5 h-3.5 text-gray-400" /> {c.cost}</span>
+                    <span className="inline-flex items-center gap-1.5 font-semibold"><DollarSign className="w-3.5 h-3.5 text-gray-400" /> {currency === 'INR' ? c.costINR : c.cost}</span>
                     {c.note && <span className="text-gray-500 italic">💡 {c.note}</span>}
                   </div>
                 </div>

@@ -58,6 +58,7 @@ export const CERT_CATALOG = {
     color: '#6366f1',
     timeline: 'Type I 3–6 mo · Type II 9–15 mo',
     cost: '$50K–$150K year 1 (all-in)',
+    costINR: '₹40L–₹1.2Cr year 1 (all-in)',
     why: 'The de facto US B2B procurement standard. Most US enterprise buyers require a SOC 2 Type II report.',
     note: 'Only the Security criterion is mandatory. Add Availability / Confidentiality / Privacy based on your service.',
     evaluate: ({ industry, geo, stage }) => {
@@ -73,6 +74,7 @@ export const CERT_CATALOG = {
     color: '#10b981',
     timeline: '6–12 months, 3-yr cycle + annual surveillance',
     cost: '$30K–$100K year 1',
+    costINR: '₹25L–₹80L year 1',
     why: 'The internationally recognised ISMS standard (170+ countries). The baseline for Europe/APAC/India buyers, governments, and regulated industries.',
     note: 'Build the ISMS first; risk-based with 93 Annex A controls (2022). Pairs naturally with GDPR / ISO 27701.',
     evaluate: ({ industry, geo, stage }) => {
@@ -88,6 +90,7 @@ export const CERT_CATALOG = {
     color: '#0d9488',
     timeline: '1–3 months to baseline',
     cost: '$5K–$25K',
+    costINR: '₹4L–₹20L',
     why: 'The pragmatic, vendor-neutral security controls checklist. The fastest high-impact baseline for any technical team — a strong foundation before formal certification.',
     note: 'Pairs with NIST and maps directly into SOC 2 / ISO controls. Best first step for early-stage teams.',
     evaluate: ({ stage, industry }) => {
@@ -102,6 +105,7 @@ export const CERT_CATALOG = {
     color: '#06b6d4',
     timeline: 'Ongoing (self / independent review)',
     cost: 'Varies',
+    costINR: 'Varies',
     why: 'An outcome-focused framework to baseline and mature your cybersecurity posture and map to other standards. Great readiness step before certification.',
     note: 'Use as a readiness step before or alongside certification. Often requested alongside NIST 800-171 for US federal.',
     evaluate: ({ industry }) => {
@@ -116,6 +120,7 @@ export const CERT_CATALOG = {
     color: '#ef4444',
     timeline: 'L4 3–6 mo · L1 6–12 mo, validated annually',
     cost: '$500–$5K (L4) … $20K–$100K (L1)',
+    costINR: '₹40K–₹4L (L4) … ₹16L–₹80L (L1)',
     why: 'Not optional — if you store, process, or transmit cardholder data, your acquirer and card brands require it. Non-compliance risks fines and loss of processing privileges.',
     note: 'Requirement level depends on transaction volume.',
     evaluate: ({ data }) => (data.includes('card') ? 10 : 1),
@@ -125,6 +130,7 @@ export const CERT_CATALOG = {
     color: '#0ea5e9',
     timeline: 'Ongoing; 2–4 mo to baseline if controls exist',
     cost: '$10K–$50K initial, $5K–$25K ongoing',
+    costINR: '₹8L–₹40L initial, ₹4L–₹20L ongoing',
     why: 'A legal obligation for every Covered Entity and Business Associate that touches PHI. There is no “HIPAA certified” — you demonstrate compliance via policies, risk analysis, safeguards, and BAAs.',
     note: 'Buyers/healthcare customers push you for it even when you are just a BAA-signing vendor.',
     evaluate: ({ data, industry }) => (data.includes('phi') || industry === 'healthtech' ? 9 : 1),
@@ -134,6 +140,7 @@ export const CERT_CATALOG = {
     color: '#b45309',
     timeline: '6–9 months (r2), e1 faster',
     cost: '$40K–$100K+ (all-in)',
+    costINR: '₹30L–₹80L+ (all-in)',
     why: 'Certifiable, harmonised framework (HIPAA + NIST + ISO + PCI + state laws in one). The “gold standard” healthcare cert — large payers/hospitals often require r2 over a plain SOC 2. Use e1 to start.',
     note: 'If health-tech and SOC 2 alone is not unlocking payer/providers, add HITRUST. e1 → i1 → r2 scale-pathing.',
     evaluate: ({ data, industry }) => (data.includes('phi') || industry === 'healthtech' ? 8 : 0),
@@ -143,6 +150,7 @@ export const CERT_CATALOG = {
     color: '#8b5cf6',
     timeline: 'Ongoing compliance',
     cost: 'Varies by scope',
+    costINR: 'Varies by scope',
     why: 'Legal obligations wherever you process residents’ personal data. Pick based on your customer geography (GDPR for EU, DPDPA for India, LGPD Brazil, PDPA Singapore, PIPL China).',
     note: 'These are laws to comply with, not certificates to display; pair with SOC 2 / ISO 27001 for assurance.',
     evaluate: ({ data, geo }) => {
