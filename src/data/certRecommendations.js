@@ -1,5 +1,8 @@
-// Decision rules: given a company profile, which certifications to pursue and in what priority order.
-// Built from current industry guidance (SOC 2 = US B2B default; ISO 27001 = global/EMEA; HIPAA/PCI = mandatory-by-data; HITRUST = healthcare depth).
+// Certification Advisor decision engine.
+// Given a company profile, ranks the full set of relevant certifications/frameworks
+// in the order they should be pursued ("upskill roadmap"). Considers every
+// combination of industry, data, geography and stage — a framework is never
+// silently dropped; it is always present with an appropriate priority.
 
 export const PROFILE_QUESTIONS = [
   {
@@ -47,124 +50,138 @@ export const PROFILE_QUESTIONS = [
   },
 ];
 
-// Each certification entry: triggers, priority tier, rationale, path, typical timeline & cost.
+// Each framework: metadata for display + an evaluate function returning a score 0-10
+// (the higher, the more it should be prioritised for "upskilling").
 export const CERT_CATALOG = {
   'SOC 2': {
     type: 'Attestation (report), not a certification',
-    tier: 1,
     color: '#6366f1',
-    // Which elements of a selection prioritize SOC 2
-    priorityScore: ({ industry, geo }) => {
-      let s = 0;
-      if (['saas', 'fintech', 'ecommerce', 'enterprise'].includes(industry)) s += 2;
-      if (['us', 'global'].includes(geo)) s += 2;
-      return s;
-    },
-    why: 'The de facto US B2B procurement standard. 91% of US orgs pursuing compliance start here; most US enterprise buyers require a SOC 2 Type II report.',
     timeline: 'Type I 3–6 mo · Type II 9–15 mo',
     cost: '$50K–$150K year 1 (all-in)',
+    why: 'The de facto US B2B procurement standard. Most US enterprise buyers require a SOC 2 Type II report.',
     note: 'Only the Security criterion is mandatory. Add Availability / Confidentiality / Privacy based on your service.',
+    evaluate: ({ industry, geo, stage }) => {
+      let s = 6;
+      if (['saas', 'fintech', 'ecommerce', 'enterprise'].includes(industry)) s += 2;
+      if (['us', 'global'].includes(geo)) s += 1;
+      if (stage === 'growth' || stage === 'established') s += 1;
+      return Math.min(s, 10);
+    },
   },
   'ISO 27001': {
     type: 'Certification (accredited body)',
-    tier: 1,
     color: '#10b981',
-    priorityScore: ({ industry, geo }) => {
-      let s = 0;
-      if (['enterprise', 'global'].includes(industry)) s += 2;
-      if (['emea', 'global', 'asia', 'india'].includes(geo)) s += 2;
-      return s;
-    },
-    why: 'The internationally recognised ISMS standard (170+ countries). The baseline for Europe/APAC/India buyers, governments, and regulated industries.',
     timeline: '6–12 months, 3-yr cycle + annual surveillance',
     cost: '$30K–$100K year 1',
+    why: 'The internationally recognised ISMS standard (170+ countries). The baseline for Europe/APAC/India buyers, governments, and regulated industries.',
     note: 'Build the ISMS first; risk-based with 93 Annex A controls (2022). Pairs naturally with GDPR / ISO 27701.',
+    evaluate: ({ industry, geo, stage }) => {
+      let s = 6;
+      if (['enterprise', 'global'].includes(industry)) s += 1;
+      if (['emea', 'global', 'asia', 'india'].includes(geo)) s += 2;
+      if (stage === 'established') s += 1;
+      return Math.min(s, 10);
+    },
   },
-  'PCI-DSS': {
-    type: 'Industry requirement (card brands)',
-    mandatory: true,
-    color: '#ef4444',
-    priorityScore: ({ data }) => (data.includes('card') ? 10 : -10),
-    why: 'Not optional — if you store, process, or transmit cardholder data, your acquirer and card brands require it. Non-compliance risks fines and loss of processing privileges.',
-    timeline: 'L4 3–6 mo · L1 6–12 mo, validated annually',
-    cost: '$500–$5K (L4) … $20K–$100K (L1)',
-    note: 'Requirement level depends on transaction volume.',
-  },
-  'HIPAA (Security & Privacy)': {
-    type: 'Federal law (mandatory if PHI)',
-    mandatory: true,
-    color: '#0ea5e9',
-    priorityScore: ({ data }) => (data.includes('phi') ? 10 : -10),
-    why: 'A legal obligation for every Covered Entity and Business Associate that touches PHI. There is no “HIPAA certified” — you demonstrate compliance via policies, risk analysis, safeguards, and BAAs.',
-    timeline: 'Ongoing; 2–4 mo to baseline if controls exist',
-    cost: '$10K–$50K initial, $5K–$25K ongoing',
-    note: 'Buyers/healthcare customers push you for it even when you are just a BAA-signing vendor.',
-  },
-  'HITRUST CSF': {
-    type: 'Certification (HITRUST Alliance)',
-    tier: 2,
-    color: '#b45309',
-    priorityScore: ({ industry, data }) => (['healthtech'].includes(industry) || data.includes('phi') ? 3 : 0),
-    why: 'Certifiable, harmonised framework (HIPAA + NIST + ISO + PCI + state laws in one). The “gold standard” healthcare cert — large payers/hospitals often require r2 over a plain SOC 2. Use e1 to start.',
-    timeline: '6–9 months (r2), e1 faster',
-    cost: '$40K–$100K+ (all-in)',
-    note: 'If health-tech and SOC 2 alone is not unlocking payer/providers, add HITRUST. e1 → i1 → r2 scale-pathing.',
+  'CIS Controls': {
+    type: 'Technical security baseline',
+    color: '#0d9488',
+    timeline: '1–3 months to baseline',
+    cost: '$5K–$25K',
+    why: 'The pragmatic, vendor-neutral security controls checklist. The fastest high-impact baseline for any technical team — a strong foundation before formal certification.',
+    note: 'Pairs with NIST and maps directly into SOC 2 / ISO controls. Best first step for early-stage teams.',
+    evaluate: ({ stage, industry }) => {
+      let s = 5;
+      if (['saas', 'fintech', 'ecommerce'].includes(industry)) s += 1;
+      if (stage === 'early' || stage === 'growth') s += 2; // cheapest, earliest win
+      return Math.min(s, 10);
+    },
   },
   'NIST CSF 2.0': {
     type: 'Guidance framework (not certifiable)',
     color: '#06b6d4',
-    priorityScore: ({ industry }) => (industry === 'enterprise' || industry === 'global' ? 1 : 0),
-    why: 'Not a certification — an outcome-focused framework to baseline and mature your cybersecurity posture and map to other standards (great for a readiness NIST gap assessment first).',
     timeline: 'Ongoing (self / independent review)',
     cost: 'Varies',
-    note: 'Use as a readiness step before or alongside certification.',
+    why: 'An outcome-focused framework to baseline and mature your cybersecurity posture and map to other standards. Great readiness step before certification.',
+    note: 'Use as a readiness step before or alongside certification. Often requested alongside NIST 800-171 for US federal.',
+    evaluate: ({ industry }) => {
+      let s = 4;
+      if (['enterprise', 'global'].includes(industry)) s += 2;
+      if (['fintech', 'healthtech'].includes(industry)) s += 1;
+      return Math.min(s, 10);
+    },
+  },
+  'PCI-DSS': {
+    type: 'Industry requirement (card brands)',
+    color: '#ef4444',
+    timeline: 'L4 3–6 mo · L1 6–12 mo, validated annually',
+    cost: '$500–$5K (L4) … $20K–$100K (L1)',
+    why: 'Not optional — if you store, process, or transmit cardholder data, your acquirer and card brands require it. Non-compliance risks fines and loss of processing privileges.',
+    note: 'Requirement level depends on transaction volume.',
+    evaluate: ({ data }) => (data.includes('card') ? 10 : 1),
+  },
+  'HIPAA (Security & Privacy)': {
+    type: 'Federal law (mandatory if PHI)',
+    color: '#0ea5e9',
+    timeline: 'Ongoing; 2–4 mo to baseline if controls exist',
+    cost: '$10K–$50K initial, $5K–$25K ongoing',
+    why: 'A legal obligation for every Covered Entity and Business Associate that touches PHI. There is no “HIPAA certified” — you demonstrate compliance via policies, risk analysis, safeguards, and BAAs.',
+    note: 'Buyers/healthcare customers push you for it even when you are just a BAA-signing vendor.',
+    evaluate: ({ data, industry }) => (data.includes('phi') || industry === 'healthtech' ? 9 : 1),
+  },
+  'HITRUST CSF': {
+    type: 'Certification (HITRUST Alliance)',
+    color: '#b45309',
+    timeline: '6–9 months (r2), e1 faster',
+    cost: '$40K–$100K+ (all-in)',
+    why: 'Certifiable, harmonised framework (HIPAA + NIST + ISO + PCI + state laws in one). The “gold standard” healthcare cert — large payers/hospitals often require r2 over a plain SOC 2. Use e1 to start.',
+    note: 'If health-tech and SOC 2 alone is not unlocking payer/providers, add HITRUST. e1 → i1 → r2 scale-pathing.',
+    evaluate: ({ data, industry }) => (data.includes('phi') || industry === 'healthtech' ? 8 : 0),
   },
   'GDPR / DPDPA / LGPD / PDPA / PIPL': {
     type: 'Regional privacy law (mandatory where applicable)',
-    mandatory: true,
     color: '#8b5cf6',
-    priorityScore: ({ geo }) => (['emea', 'global', 'india', 'asia'].includes(geo) ? 2 : 0),
-    why: 'Legal obligations wherever you process residents’ personal data. Pick based on your customer geography (GDPR for EU, DPDPA for India, LGPD Brazil, PDPA Singapore, PIPL China).',
     timeline: 'Ongoing compliance',
     cost: 'Varies by scope',
+    why: 'Legal obligations wherever you process residents’ personal data. Pick based on your customer geography (GDPR for EU, DPDPA for India, LGPD Brazil, PDPA Singapore, PIPL China).',
     note: 'These are laws to comply with, not certificates to display; pair with SOC 2 / ISO 27001 for assurance.',
+    evaluate: ({ data, geo }) => {
+      if (['emea', 'global', 'india', 'asia'].includes(geo)) return 7;
+      if (data.includes('pii')) return 5;
+      return 2;
+    },
   },
 };
 
 export const PRIORITY_META = [
   { level: 1, label: 'Priority 1 — Start here', desc: 'Highest impact: unblocks the most revenue or is legally mandated.' },
   { level: 2, label: 'Priority 2 — Add as you scale', desc: 'Second market or regulatory requirement; builds on control overlap.' },
-  { level: 3, label: 'Priority 3 — Consider later', desc: 'Deeper/market-specific assurance once strategic need is clear.' },
+  { level: 3, label: 'Priority 3 — Foundational hygiene', desc: 'Strengthens the baseline even when not externally demanded.' },
 ];
 
-// Compute a ranked list of recommendations for a given profile.
+// Rank the full set of frameworks for a given profile.
 export function recommendCertifications(profile) {
   const data = profile.data || [];
   const hasPHI = data.includes('phi');
   const hasCard = data.includes('card');
 
   const scored = Object.entries(CERT_CATALOG).map(([name, c]) => {
-    let score = c.priorityScore(profile);
-    // Nudge overlap-friendly combos
+    let score = c.evaluate(profile);
     if (hasPHI && name === 'SOC 2') score += 1; // SOC 2 proves HIPAA effectiveness
     if (hasCard && name === 'SOC 2') score += 1;
     return { name, c, score };
   });
 
-  const recommended = scored
-    .filter(x => x.score > 0)
-    .sort((a, b) => b.score - a.score);
+  // Always return the complete set, sorted by score desc.
+  const sorted = scored.sort((a, b) => b.score - a.score);
 
-  // Assign priority: mandatory first, then by score into tiers.
-  const rankOrder = [];
-  const mandatory = recommended.filter(x => x.c.mandatory || x.c.mandatoryIf?.(profile));
-  const voluntary = recommended.filter(x => !x.c.mandatory);
-
-  // mandatory items are highest priority regardless of score
-  const tiers = [...mandatory, ...voluntary].map((x, i) => ({
-    ...x,
-    priority: i < mandatory.length ? 1 : 2,
-  }));
+  // Tier assignment: score thresholds.
+  const tiers = sorted.map((x, i) => {
+    let priority = 3;
+    if (x.score >= 7) priority = 1;
+    else if (x.score >= 4) priority = 2;
+    return { ...x, priority };
+  });
 
   return { tiers, hasPHI, hasCard };
 }

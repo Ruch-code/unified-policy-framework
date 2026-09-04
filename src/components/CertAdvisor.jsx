@@ -27,9 +27,9 @@ export default function CertAdvisor() {
     setAnswers({ ...answers, [q.id]: next.length ? next : [] });
   };
 
-  const qValue = q?.multiple ? (answers[q.id] || []) : answers[q.id];
+  const qValue = q ? (q.multiple ? (answers[q.id] || []) : answers[q.id]) : undefined;
 
-  const canProceed = q?.multiple ? (qValue.length > 0) : !!qValue;
+  const canProceed = q ? (q.multiple ? (qValue.length > 0) : !!qValue) : false;
 
   const goNext = () => {
     if (step < 3) return setStep(step + 1);
@@ -119,6 +119,10 @@ export default function CertAdvisor() {
       {/* Results */}
       {step === 4 && result && (
         <div className="mt-6">
+          <p className="text-sm text-gray-600 mb-4">
+            Based on your profile, here is your full upskill roadmap — ordered by impact. All relevant frameworks are shown (some are legally required, others are foundational hygiene):
+          </p>
+
           {/* Priority legend */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
             {PRIORITY_META.map(pm => (
@@ -129,26 +133,29 @@ export default function CertAdvisor() {
             ))}
           </div>
 
-          {result.length === 0 && (
-            <p className="text-sm text-gray-600 bg-gray-50 rounded-xl p-4">No certification is triggered by your current profile. Consider broadening your data/geo scope as you scale.</p>
-          )}
-
           <div className="space-y-4">
-            {result.map(({ name, c, priority }) => {
+            {result.map(({ name, c, priority, score }, idx) => {
               const pm = priorityForLevel(priority);
+              const relevance = Math.round((score / 10) * 100);
               return (
                 <div key={name} className="rounded-xl border overflow-hidden" style={{ borderColor: c.color + '55' }}>
                   <div className="flex items-center gap-3 p-4" style={{ background: c.color + '0a' }}>
                     <span className="shrink-0 w-9 h-9 rounded-lg text-white text-sm font-bold flex items-center justify-center" style={{ background: c.color }}>
-                      P{priority}
+                      {idx + 1}
                     </span>
-                    <div className="flex-1">
+                    <div className="flex-1 min-w-0">
                       <div className="flex flex-wrap items-center gap-2">
                         <h4 className="font-bold text-gray-900">{name}</h4>
                         <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-white border border-gray-200 text-gray-600">{c.type}</span>
-                        {c.mandatory && <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-red-100 text-red-700 border border-red-200">MANDATORY</span>}
+                        {priority === 1 && <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-red-100 text-red-700 border border-red-200 uppercase tracking-wide">Priority · upskill first</span>}
                       </div>
                       <p className="text-sm text-gray-700 mt-1">{c.why}</p>
+                      <div className="mt-2 flex items-center gap-2">
+                        <div className="w-40 h-1.5 rounded-full bg-gray-200 overflow-hidden">
+                          <div className="h-full rounded-full" style={{ width: relevance + '%', background: c.color }} />
+                        </div>
+                        <span className="text-[11px] text-gray-500 font-medium">Relevance {relevance}%</span>
+                      </div>
                     </div>
                   </div>
                   <div className="px-4 py-3 bg-white flex flex-wrap gap-4 text-xs text-gray-600">
