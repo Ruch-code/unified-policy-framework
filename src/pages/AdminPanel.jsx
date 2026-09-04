@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Send } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 const STATUS_META = {
@@ -53,6 +55,10 @@ export default function AdminPanel() {
     <div className="container px-4 py-10">
       <h1 className="text-2xl font-bold text-gray-900 mb-1">Admin — User Access Control</h1>
       <p className="text-gray-500 text-sm mb-6">Review access requests, approve accounts, and manage users. Signed in as {user.email}.</p>
+
+      <Link to="/newsletter" className="inline-flex items-center gap-2 mb-4 bg-[#7c3aed] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-[#6d28d9] transition">
+        <Send className="w-4 h-4" /> Send Newsletter
+      </Link>
 
       {msg && <div className="mb-4 p-3 rounded-lg bg-emerald-50 text-emerald-700 text-sm border border-emerald-200">{msg}</div>}
       {err && <div className="mb-4 p-3 rounded-lg bg-red-50 text-red-700 text-sm border border-red-200">{err}</div>}

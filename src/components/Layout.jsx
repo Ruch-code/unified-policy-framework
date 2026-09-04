@@ -1,8 +1,9 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { Menu, X, Linkedin, User as UserIcon, ShieldCheck, LogOut } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import VisitorCounter from './VisitorCounter';
 import NavHoverIcon from './NavHoverIcon';
+import NewsletterPopup from './NewsletterPopup';
 import { useAuth } from '../context/AuthContext';
 
 const STANDARDS = [
@@ -27,6 +28,17 @@ export default function Layout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const { user, logout } = useAuth();
+  const [newsletterOpen, setNewsletterOpen] = useState(false);
+
+  useEffect(() => {
+    const key = 'newsletter_shown';
+    if (localStorage.getItem(key)) return;
+    const t = setTimeout(() => {
+      setNewsletterOpen(true);
+      localStorage.setItem(key, '1');
+    }, 5000);
+    return () => clearTimeout(t);
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
@@ -153,6 +165,8 @@ export default function Layout() {
           <VisitorCounter />
         </div>
       </footer>
+
+      <NewsletterPopup open={newsletterOpen} onClose={() => setNewsletterOpen(false)} />
     </div>
   );
 }
