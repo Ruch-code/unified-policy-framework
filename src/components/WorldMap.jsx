@@ -2,8 +2,9 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import Globe from 'react-globe.gl';
 import { feature } from 'topojson-client';
 import wCountries from 'world-countries';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Compass, Clock, MapPin, X, ExternalLink, ChevronRight } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 import countriesTopo from 'world-atlas/countries-110m.json';
 import { COUNTRY_TO_REGION, REGION_GROUPS, REGULATIONS, COUNTRY_META } from '../data/regions';
 
@@ -34,6 +35,8 @@ function getSubForCountry(alpha2) {
 
 export default function WorldMap({ height = 560 }) {
   const globeRef = useRef();
+  const navigate = useNavigate();
+  const { user } = useAuth();
   const [activeReg, setActiveReg] = useState(null);
   const [pov, setPov] = useState({ lat: 20, lng: 10, altitude: 2.5 });
   const [hovered, setHovered] = useState(null);
@@ -72,6 +75,15 @@ export default function WorldMap({ height = 560 }) {
     return { ...r, lat, lng, flag: meta.flag || r.flag, id: r.id };
   }), []);
 
+  const requireAuth = (evt) => {
+    if (!user) {
+      evt && evt.preventDefault && evt.preventDefault();
+      navigate('/login', { state: { from: '/' } });
+      return false;
+    }
+    return true;
+  };
+
   const flagElements = useMemo(() => {
     const el = (d) => {
       const a = document.createElement('a');
@@ -90,12 +102,13 @@ export default function WorldMap({ height = 560 }) {
       a.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
+        if (!requireAuth()) return;
         setSelected(d);
       });
       return a;
     };
     return regMarkers.map(d => ({ ...d, el: el(d) }));
-  }, [regMarkers]);
+  }, [regMarkers, user, navigate]);
 
   const labelData = useMemo(() => REGION_GROUPS.map(g => {
     const subs = g.subCategories;
@@ -137,6 +150,7 @@ export default function WorldMap({ height = 560 }) {
 
   const onPolygonClick = (p) => {
     if (!p || !p.properties || p.properties.region === 'Other') return;
+    if (!requireAuth()) return;
     const reg = p.properties.region;
     const subs = p.properties.sub;
     setActiveReg({ region: reg, sub: subs, flag: p.properties.flag, timezone: p.properties.timezone, country: p.properties.name });
