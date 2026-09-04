@@ -103,12 +103,27 @@ export function makeResetToken() {
 }
 
 // Ensure the default admin exists (idempotent). Call after connectDb on login/admin init.
+// Also syncs the admin's email/password to the current env vars, so updating
+// ADMIN_EMAIL / ADMIN_PASSWORD in Netlify and redeploying resets the admin.
 export async function seedAdmin() {
   const email = (process.env.ADMIN_EMAIL || '').toLowerCase().trim();
   const password = process.env.ADMIN_PASSWORD || '';
   if (!email || !password) return;
   const exists = await User.findOne({ email });
-  if (exists) return;
+  if (exists) {
+    const needsUpdate =
+      exists.role !== 'admin' ||
+      exists.status !== 'active' ||
+      !(await bcrypt.compare(password, exists.password));
+    if (needsUpdate) {
+      exists.role = 'admin';
+      exists.status = 'active';
+      exists.approvedAt = exists.approvedAt || new Date();
+      exists.password = await bcrypt.hash(password, 10);
+      await exists.save();
+    }
+    return;
+  }
   await User.create({
     name: 'Administrator',
     email,
