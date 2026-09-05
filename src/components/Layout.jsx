@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import VisitorCounter from './VisitorCounter';
 import NavHoverIcon from './NavHoverIcon';
 import NewsletterPopup from './NewsletterPopup';
+import InspectorCursor from './InspectorCursor';
 import { useAuth } from '../context/AuthContext';
 
 const STANDARDS = [
@@ -170,6 +171,7 @@ export default function Layout() {
       </footer>
 
       <NewsletterPopup open={newsletterOpen} onClose={() => setNewsletterOpen(false)} />
+      <InspectorCursor />
     </div>
   );
 }
