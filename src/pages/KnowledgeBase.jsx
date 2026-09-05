@@ -9,7 +9,7 @@ import {
 } from '../data/grcKnowledgeBase';
 import GrcAssistant from '../components/GrcAssistant';
 
-const order = ['soc2', 'iso27001', 'pci', 'hipaa', 'nist', 'gdpr', 'cis', 'hitrust', 'dpdpa'];
+const order = ['soc2', 'iso27001', 'pci', 'hipaa', 'nist', 'gdpr', 'cis', 'hitrust', 'dpdpa', 'fedramp', 'cjis'];
 const TABS = [
   { id: 'policies', label: 'Policies → Controls', icon: BookOpenCheck },
   { id: 'audit', label: 'Audit & Rebuttals', icon: ShieldAlert },

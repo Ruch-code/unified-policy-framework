@@ -12,7 +12,7 @@ import {
   ASSISTANT_SUGGESTIONS,
 } from './grcKnowledgeBase.js';
 
-const order = ['soc2', 'iso27001', 'pci', 'hipaa', 'nist', 'gdpr', 'cis', 'hitrust', 'dpdpa'];
+const order = ['soc2', 'iso27001', 'pci', 'hipaa', 'nist', 'gdpr', 'cis', 'hitrust', 'dpdpa', 'fedramp', 'cjis'];
 
 const INTENTS = [
   { id: 'pushback', words: ['pushback', 'push back', 'rebut', 'respond', 'dispute', 'challenge', 'defend', 'appeal', 'argue', 'push-back', 'disagreement'] },
@@ -38,6 +38,8 @@ const FW_MATCH = [
   { slug: 'pdpa', re: /\bpdpa\b|singapore data|singapore privacy|pdpc\b/i },
   { slug: 'pipl', re: /\bpipl\b|china personal|personal information protection|\bccac\b/i },
   { slug: 'ccpa', re: /\bccpa\b|california consumer|california privacy|cpra\b|do not sell/i },
+  { slug: 'fedramp', re: /\bfedramp\b|\bat o\b|3pao\b|joint authorization|fips 199|\b800-53\b|security assessment plan|\bssp\b/i },
+  { slug: 'cjis', re: /\bcjis\b|criminal justice|ncic\b|nleats?\b|n-dex|\bfbi\b|background check|fingerprint/i },
 ];
 
 // Alias groups for fuzzy matching.

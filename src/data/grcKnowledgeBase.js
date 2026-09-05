@@ -306,11 +306,76 @@ export const FRAMEWORK_KB = {
       { title: 'DPDPA obligations', text: 'Vendor shall process personal data only per documented instructions of Client as Data Fiduciary, maintain consent notices and withdrawal mechanisms, and assist in breach notifications to the DPDPA Board.', required: true },
       { title: 'CERT-In incident reporting', text: 'Vendor shall report security incidents to Client within 6 hours (per CERT-In directions) so Client can meet its statutory reporting timelines.', required: true },
     ],
-    discrepancies: [
-      'DPDPA "without delay" vs GDPR 72h vs HIPAA 60 days vs CERT-In 6-hour — the contract should define the most stringent and cascade it.',
-    ],
-  },
-};
+     discrepancies: [
+       'DPDPA "without delay" vs GDPR 72h vs HIPAA 60 days vs CERT-In 6-hour — the contract should define the most stringent and cascade it.',
+     ],
+   },
+   fedramp: {
+     id: 'fedramp',
+     name: 'FedRAMP',
+     color: '#1e40af',
+     desc: 'US federal cloud security authorization program — NIST SP 800-53 baselines (Low/Moderate/High), continuous monitoring, and Authorizations to Operate (ATO).',
+     whoCanWork: 'Anyone worldwide can build controls and prepare the documentation. The 3PAO assessor and the Authorizing Official (AO) must be US-citizen / US-government roles; FedRAMP itself is a US-government program. Non-US citizens can own the security posture but the authorization chain is US-specific.',
+     policies: [
+       { area: 'Control Baselines (Low/Moderate/High)', controls: ['NIST SP 800-53 Rev 5 baseline controls per impact level; FedRAMP baselines', 'FIPS 199 system categorization (low/moderate/high impact)', 'FIPS 200 minimum security controls'], note: 'The selected baseline determines the control set; Moderate is the most common for SaaS.' },
+       { area: 'Documentation (SSP, SAP, POA&M)', controls: ['System Security Plan (SSP)', 'Security Assessment Plan (SAP)', 'Plan of Action & Milestones (POA&M)', 'Security Assessment Report (SAR)'], note: 'The SSP is foundational — system boundary, data types, connections, inherited/common controls.' },
+       { area: 'Continuous Monitoring & ConMon', controls: ['FedRAMP Continuous Monitoring Strategy', 'NIST SP 800-137 ISCM', 'Recurring self-assessments', 'Automated control monitoring'], note: 'FedRAMP is ongoing, not point-in-time — the ATO must be renewed and controls monitored continuously.' },
+       { area: 'Authorization & 3PAO', controls: ['Third-Party Assessment Organization (3PAO)', 'Joint Authorization Board (JAB)', 'Authorizing Official (AO)', 'Authorization to Operate (ATO)'], note: 'The 3PAO assesses and issues the SAR; the AO grants the ATO.' },
+     ],
+     observations: [
+       { finding: 'Incomplete SSP scoping', why: 'The SSP omits system boundary, data types, or connections; the assessor cannot scope the SAP without it.' },
+       { finding: 'Missing inherited vs. assigned control map', why: 'Failing to distinguish CSP-inherited controls from customer-configured controls leaves gaps the customer must own.' },
+       { finding: 'POA&M gaps unresolved at assessment', why: 'Open POA&M items with no target dates or evidence of closure lead to assessment findings.' },
+       { finding: 'Continuous monitoring not operational', why: 'ATO granted but ConMon is manual/annual — FedRAMP requires ongoing control monitoring and recurring self-assessment.' },
+     ],
+     rebuttals: [
+       { finding: 'SSP scoping incomplete', pushback: 'Challenge the assessor scope with the signed SSP — if a component is out of scope, it is not assessed. Request the assessor isolate the in-scope boundary explicitly.', evidence: 'Signed SSP, system boundary diagram.' },
+       { finding: 'Inherited control gap attributed to customer', pushback: 'Cite the shared-responsibility matrix showing the control is inherited from the FedRAMP-authorized CSP; ask the assessor to confirm the inherited control list in the SSP.', evidence: 'CSP FedRAMP authorization package, shared-responsibility matrix.' },
+       { finding: 'ConMon not evidenced', pushback: 'Present the ConMon strategy, automated monitoring tools, and recurring self-assessment schedule — show continuous operation, not a point-in-time snapshot.', evidence: 'ConMon strategy, monitoring dashboards, self-assessment logs.' },
+     ],
+     clauses: [
+       { title: 'FedRAMP authorization status', text: 'Vendor represents it is FedRAMP Authorized at the stated baseline (Low/Moderate/High) with a current ATO, and shall maintain authorization and notify Client of any suspension or downgrade.', required: true },
+       { title: '3PAO / SAR evidence', text: 'Vendor shall provide the most recent Security Assessment Report (SAR) and Plan of Action & Milestones (POA&M) annually and upon Client request.', required: true },
+       { title: 'Continuous monitoring', text: 'Vendor shall maintain a Continuous Monitoring strategy, perform recurring self-assessments, and report control changes or incidents to Client promptly.', required: true },
+     ],
+     discrepancies: [
+       'FedRAMP authorizes the CSP at a baseline, but the customer configures the services — the shared-responsibility boundary is the #1 assessment gap.',
+       'FedRAMP Moderate inherits NIST 800-53 controls but the customer must still implement the assigned controls; conflating inherited vs. assigned is a common finding.',
+     ],
+   },
+   cjis: {
+     id: 'cjis',
+     name: 'CJIS (Criminal Justice Info Services)',
+     color: '#7f1d1d',
+     desc: 'FBI CJIS Security Policy — governs access to criminal justice information (NCIC, NLETS, N-DEx) for law enforcement, courts, corrections, and affiliated vendors.',
+     whoCanWork: 'Access to CJI requires US citizenship, a fingerprint-based background check, and affiliation with a criminal justice agency or authorized entity. Non-US persons generally cannot access CJI. Anyone can build compliant controls and documentation, but the personnel with CJI access are US-citizen, cleared, and agency-affiliated.',
+     policies: [
+       { area: 'CJI Classification & Access', controls: ['CJI vs SCJI (Sensitive Criminal Justice Information) classification', 'Need-to-know and official purpose requirements', 'User agreement and acknowledgement'], note: 'CJI includes arrest records, criminal histories, identification data; SCJI includes intelligence, undercover, and forensic data.' },
+       { area: 'User Access & Background', controls: ['Fingerprint-based background check (FBI and state)', 'US citizenship requirement for most CJI access', 'Annual re-checks and user agreement renewal'], note: 'Only US citizens (and certain authorized non-citizens) can access NCIC/NLETS. Private vendors (e.g., background-check companies) must be CJIS-compliant and personnel cleared.' },
+       { area: 'Security Controls', controls: ['Encryption of CJI in transit and at rest', 'Audit logging and access monitoring', 'Two-factor authentication for remote access', 'System security plan and risk assessment'], note: 'Controls map partially to NIST 800-53, HIPAA, and FedRAMP.' },
+       { area: 'Training & Compliance', controls: ['CJIS Security Policy training (initial + annual)', 'Incident reporting to the FBI', 'Compliance audits by the CJIS Policy Board'], note: 'Non-compliance can result in loss of CJIS access and FBI notification.' },
+     ],
+     observations: [
+       { finding: 'Non-citizen or uncleared personnel accessing CJI', why: 'Background checks or citizenship verification lapsed; non-agency users with CJI access without proper clearance.' },
+       { finding: 'Audit log gaps', why: 'Remote access or terminal activity not fully logged; logs retained below the CJIS retention requirement.' },
+       { finding: 'Encryption not enforced for CJI in transit', why: 'CJI transmitted over unencrypted channels or stored unencrypted on endpoints/backups.' },
+       { finding: 'User agreement or annual re-check expired', why: 'User agreements not renewed annually; re-checks lapsed; access not revoked promptly.' },
+     ],
+     rebuttals: [
+       { finding: 'Uncleared user access', pushback: 'Present the fingerprint-based background check results, citizenship verification, and the signed user agreement; isolate the user and revoke access pending resolution.', evidence: 'Background check records, user agreement, access logs.' },
+       { finding: 'Audit log gap', pushback: 'Show the logging configuration and retention schedule; demonstrate the gap was due to a temporary system issue with a documented root cause and fix.', evidence: 'Logging config, retention policy, incident record.' },
+       { finding: 'Encryption exception', pushback: 'Cite the CJIS encryption requirements and show the compensating controls (network segmentation, MFA, monitoring) in place; document the risk acceptance.', evidence: 'Encryption policy, network diagram, compensating-control declaration.' },
+     ],
+     clauses: [
+       { title: 'CJIS compliance', text: 'Vendor shall maintain CJIS Security Policy compliance, ensure all personnel with CJI access are US citizens with current fingerprint-based background checks, and promptly notify Client of any compliance issue or access revocation.', required: true },
+       { title: 'Audit logging & encryption', text: 'Vendor shall maintain audit logs of all CJI access for the CJIS retention period, encrypt CJI in transit and at rest, and provide access reports to Client on request.', required: true },
+     ],
+     discrepancies: [
+       'CJIS requires US citizenship + fingerprint-based background checks for CJI access, while FedRAMP/GDPR focus on technical controls — combining both requires both a cleared workforce and technical controls.',
+       'CJIS audit-log retention (minimum 1 year, 5 years recommended) overlaps with PCI 12-month logs and HIPAA 6-year records — use a single retention matrix.',
+     ],
+   },
+ };
 
 // Central policy areas → which frameworks + control references + the honest tension.
 export const UNIFIED_POLICY_MAP = [
@@ -330,14 +395,14 @@ export const UNIFIED_POLICY_MAP = [
     discrepancy: 'PCI/GDPR-implementing crypto is effectively required; HIPAA is "addressable". Use PCI-grade crypto for cardholder flows; document HIPAA rationale for the rest. Watch crypto agility (post-quantum prep).',
   },
   {
-    area: 'Incident Response & Notification',
-    map: { 'SOC 2': 'CC7.2–7.4', 'ISO 27001': 'A.5.24–5.28', 'PCI-DSS': 'Req 12.10', HIPAA: '164.410', 'NIST CSF': 'RS', GDPR: 'Art 33–34', DPDPA: 'notice', 'CERT-In': '6-hour rule' },
-    discrepancy: 'Notification timelines conflict: CERT-In 6h, GDPR 72h, HIPAA ≤60d. Contract the most stringent and time-box internal triage to survive the tightest SLA.',
+     area: 'Incident Response & Notification',
+     map: { 'SOC 2': 'CC7.2–7.4', 'ISO 27001': 'A.5.24–5.28', 'PCI-DSS': 'Req 12.10', HIPAA: '164.410', 'NIST CSF': 'RS', GDPR: 'Art 33–34', DPDPA: 'notice', 'CERT-In': '6-hour rule', 'FedRAMP': 'ConMon / SAR / POA&M', 'CJIS': 'Incident reporting to FBI' },
+     discrepancy: 'Notification timelines conflict: CERT-In 6h, GDPR 72h, HIPAA ≤60d. Contract the most stringent and time-box internal triage to survive the tightest SLA. FedRAMP ConMon and CJIS FBI reporting add separate incident obligations.',
   },
   {
-    area: 'Vendor / Third-Party & Sub-processors',
-    map: { 'SOC 2': 'CC9.1–9.2', 'ISO 27001': 'A.5.19–5.21', 'PCI-DSS': 'Req 12.8', HIPAA: '164.504 (BAA)', 'NIST CSF': 'ID.SC', GDPR: 'Art 28', CIS: 'Safeguard 3' },
-    discrepancy: 'HIPAA needs BAA + downstream BAAs; GDPR needs Art 28 DPA + sub-processor list; PCI wants 12.8 evidence; SOC 2 wants carve-out monitoring. One vendor mgmt program with per-regulation addenda is the answer.',
+     area: 'Vendor / Third-Party & Sub-processors',
+     map: { 'SOC 2': 'CC9.1–9.2', 'ISO 27001': 'A.5.19–5.21', 'PCI-DSS': 'Req 12.8', HIPAA: '164.504 (BAA)', 'NIST CSF': 'ID.SC', GDPR: 'Art 28', CIS: 'Safeguard 3', 'FedRAMP': 'FedRAMP-authorized CSP / sub-processors', 'CJIS': 'CJIS-compliant vendor; cleared personnel' },
+     discrepancy: 'HIPAA needs BAA + downstream BAAs; GDPR needs Art 28 DPA + sub-processor list; PCI wants 12.8 evidence; SOC 2 wants carve-out monitoring; FedRAMP wants an authorized CSP chain; CJIS wants a CJIS-compliant vendor with cleared personnel. One vendor program with per-regulation addenda is the answer.',
   },
   {
     area: 'Data Retention & Destruction',
@@ -355,13 +420,18 @@ export const UNIFIED_POLICY_MAP = [
     discrepancy: 'SOC 2 only requires availability if asserted; HIPAA mandates a contingency plan & testing; NIST RC wants TTX. If you claim availability, adopt HIPAA/NIST rigor and test to RTOs.',
   },
   {
-    area: 'Password & Authentication Policy',
-    map: { 'ISO 27001': 'A.8.5', 'PCI-DSS': 'Req 8', 'NIST CSF': 'PR.AA', CIS: 'Safeguard 6', 'SOC 2': 'CC6.6' },
-    discrepancy: 'NIST 800-63B and PCI v4 long ago removed forced periodic rotation; if your auditor still demands 90-day rotation, push back with the current standard text.',
-  },
-];
+     area: 'Password & Authentication Policy',
+     map: { 'ISO 27001': 'A.8.5', 'PCI-DSS': 'Req 8', 'NIST CSF': 'PR.AA', CIS: 'Safeguard 6', 'SOC 2': 'CC6.6' },
+     discrepancy: 'NIST 800-63B and PCI v4 long ago removed forced periodic rotation; if your auditor still demands 90-day rotation, push back with the current standard text.',
+   },
+   {
+     area: 'FedRAMP Authorization & CJIS Access',
+     map: { 'FedRAMP': 'Low/Moderate/High baseline; SSP; SAP; POA&M; SAR; 3PAO; ATO', 'CJIS': 'CJI/SCJI classification; fingerprint background; US citizenship; audit logs; encryption; training' },
+     discrepancy: 'FedRAMP focuses on cloud authorization and technical controls; CJIS focuses on personnel eligibility (US citizenship + cleared background) and access governance. A system serving federal agencies AND criminal justice data must satisfy both — the cleared-workforce requirement is unique to CJIS and cannot be substituted by a FedRAMP ATO.',
+   },
+ ];
 
-// Cross-framework conflict "radar".
+ // Cross-framework conflict "radar".
 export const DISCREPANCY_MATRIX = [
   {
     topic: 'Audit / access log retention',
@@ -398,12 +468,22 @@ export const DISCREPANCY_MATRIX = [
     conflict: 'SOC 2 carve-out vs inclusive; HIPAA BAA flow-down; GDPR sub-processor consent; PCI 12.8 evidence.',
     reconcile: 'One vendor program, three artifacts: security assessment (SOC/ISO), privacy addenda (BAA/DPA), and compliance evidence (PCI 12.8).',
   },
-  {
-    topic: 'Password storage & secrets',
-    conflict: 'ISO A.8.5.4 (secrets cryptography) vs SSR/PCI (no hardcoded secrets); SOC 2 CC6.1 (credentials); CIS 16/5.',
-    reconcile: 'Implement a vault + rotation of secrets across frameworks; a single capability evidences many controls.',
-  },
-];
+   {
+     topic: 'Password storage & secrets',
+     conflict: 'ISO A.8.5.4 (secrets cryptography) vs SSR/PCI (no hardcoded secrets); SOC 2 CC6.1 (credentials); CIS 16/5.',
+     reconcile: 'Implement a vault + rotation of secrets across frameworks; a single capability evidences many controls.',
+   },
+   {
+     topic: 'FedRAMP authorization vs CJIS access',
+     conflict: 'FedRAMP authorizes the CSP + technical controls (ATO); CJIS requires US-citizen cleared personnel + fingerprint background checks for CJI access. FedRAMP does NOT satisfy CJIS personnel requirements, and CJIS does not grant a FedRAMP ATO.',
+     reconcile: 'For systems serving both federal agencies and criminal justice data, maintain BOTH: the FedRAMP ATO/ConMon package AND CJIS-compliant cleared personnel with background checks. One does not substitute for the other.',
+   },
+   {
+     topic: 'FedRAMP ConMon vs annual certification',
+     conflict: 'SOC 2/ISO 27001 are point-in-time certifications; FedRAMP requires continuous monitoring (ConMon) and annual reassessment.',
+     reconcile: 'Build ConMon as the continuous layer; the annual certification becomes a checkpoint within the ongoing ConMon program.',
+   },
+ ];
 
 // Vendor contract clause builder — base always applies; conditional per framework.
 export const VENDOR_CLAUSE_BASE = [
@@ -427,8 +507,10 @@ export const VENDOR_CLAUSE_CONDITIONAL = {
   dpdpa: { label: 'DPDPA (India)', clause: 'Where personal data of Indian data principals is processed, the parties shall observe DPDPA obligations: notice and consent records, purpose limitation, grievance redress, breach notification without delay, and compliance with CERT-In incident reporting timelines.' },
   nist: { label: 'NIST CSF', clause: 'Vendor shall maintain a cybersecurity programme aligned to NIST CSF 2.0 at a documented maturity tier and report posture metrics to Client annually.' },
   cis: { label: 'CIS Controls', clause: 'Vendor shall implement CIS Controls v8 at least to Implementation Group [1|2], enforce MFA on all externally exposed and privileged accounts, and remediate known-exploited vulnerabilities within 15 days.' },
-  hitrust: { label: 'HITRUST', clause: 'If Vendor claims HITRUST certification, it shall maintain the applicable certification (e1/i1/r2), provide its certification report annually, and notify Client of any adverse QA outcome.' },
-};
+   hitrust: { label: 'HITRUST', clause: 'If Vendor claims HITRUST certification, it shall maintain the applicable certification (e1/i1/r2), provide its certification report annually, and notify Client of any adverse QA outcome.' },
+   fedramp: { label: 'FedRAMP', clause: 'Where the Services are FedRAMP-eligible or used by US federal agencies, Vendor shall maintain FedRAMP Authorization at the stated baseline (Low/Moderate/High) with a current ATO, provide the SAR and POA&M annually, and maintain the Continuous Monitoring strategy.' },
+   cjis: { label: 'CJIS', clause: 'Where CJI is accessed or processed, Vendor shall maintain CJIS Security Policy compliance, ensure all CJI-accessing personnel are US citizens with current fingerprint-based background checks, maintain audit logs per CJIS retention, and encrypt CJI in transit and at rest.' },
+ };
 
 // General GRC response "battle card" — how to challenge any finding professionally.
 export const GRC_RESPONSE_PLAYBOOK = [

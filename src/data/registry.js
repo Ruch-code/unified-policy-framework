@@ -21,6 +21,7 @@ import { FRAMEWORK as Lgpd } from '../pages/standards/Lgpd';
 import { FRAMEWORK as Pdpa } from '../pages/standards/Pdpa';
 import { FRAMEWORK as Pipl } from '../pages/standards/Pipl';
 import { FRAMEWORK as Cis } from '../pages/standards/Cis';
+import { FRAMEWORK as FedRamp } from '../pages/standards/FedRamp';
 
 export const FRAMEWORKS = {
   [Iso27001La.id]: Iso27001La,
@@ -45,8 +46,9 @@ export const FRAMEWORKS = {
   [Lgpd.id]: Lgpd,
   [Pdpa.id]: Pdpa,
   [Pipl.id]: Pipl,
-  [Cis.id]: Cis,
-};
+   [Cis.id]: Cis,
+   [FedRamp.id]: FedRamp,
+ };
 
 export function getFramework(id) {
   return FRAMEWORKS[id] || null;

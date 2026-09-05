@@ -17,6 +17,7 @@ const STANDARDS = [
   { path: '/hipaa', label: 'HIPAA' },
   { path: '/hitrust', label: 'HITRUST' },
   { path: '/nist', label: 'NIST' },
+  { path: '/fedramp', label: 'FedRAMP' },
   { path: '/gdpr', label: 'GDPR' },
   { path: '/ccpa', label: 'CCPA' },
   { path: '/coppa', label: 'COPPA' },
@@ -24,6 +25,7 @@ const STANDARDS = [
   { path: '/lgpd', label: 'LGPD' },
   { path: '/pdpa', label: 'PDPA' },
   { path: '/pipl', label: 'PIPL' },
+  { path: '/cjis', label: 'CJIS' },
 ];
 
 export default function Layout() {

@@ -52,13 +52,24 @@ const REGIONS = [
     ],
   },
   {
-    name: 'East Asia',
-    tag: 'bg-rose-100 text-rose-700',
-    frameworks: [
-      { path: '/pipl', name: 'PIPL', desc: "China Personal Information Protection Law" },
-    ],
-  },
-];
+     name: 'East Asia',
+     tag: 'bg-rose-100 text-rose-700',
+     frameworks: [
+       { path: '/pipl', name: 'PIPL', desc: "China Personal Information Protection Law" },
+     ],
+   },
+   {
+     name: 'United States / Federal',
+     tag: 'bg-slate-800 text-white',
+     frameworks: [
+       { path: '/fedramp', name: 'FedRAMP', desc: 'Federal cloud authorization (Low/Mod/High, ATO, ConMon)' },
+       { path: '/cjis', name: 'CJIS', desc: 'FBI Criminal Justice Information Services policy' },
+       { path: '/nist', name: 'NIST', desc: 'NIST CSF / SP 800-53' },
+       { path: '/hipaa', name: 'HIPAA', desc: 'US health data protection' },
+       { path: '/ccpa', name: 'CCPA/CPRA', desc: 'California consumer privacy' },
+     ],
+   },
+ ];
 
 const INDUSTRIES = [
   {
