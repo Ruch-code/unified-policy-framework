@@ -33,7 +33,7 @@ function getSubForCountry(alpha2) {
   return COUNTRY_TO_REGION[alpha2] || 'Unknown';
 }
 
-export default function WorldMap({ height = 560 }) {
+export default function WorldMap({ height = 560, dark = false }) {
   const globeRef = useRef();
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -167,20 +167,25 @@ export default function WorldMap({ height = 560 }) {
         ref={globeRef}
         width="100%"
         height={height}
-        backgroundColor="rgba(0,0,0,0)"
+        backgroundColor={dark ? '#0b1120' : 'rgba(0,0,0,0)'}
         showAtmosphere
-        atmosphereColor="#4f46e5"
+        atmosphereColor={dark ? '#818cf8' : '#4f46e5'}
         atmosphereAltitude={0.18}
         showGraticules
         showGlobe
-        globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
+        globeImageUrl={dark ? '//unpkg.com/three-globe/example/img/earth-night.jpg' : '//unpkg.com/three-globe/example/img/earth-blue-marble.jpg'}
         polygonsData={geo}
-        polygonCapColor={f => SUB_FILL[f.properties.sub] || (REGION_FILL[f.properties.region] && REGION_FILL[f.properties.region].cap) || '#334155'}
+        polygonCapColor={f => dark ? (SUB_FILL[f.properties.sub] || (REGION_FILL[f.properties.region] && REGION_FILL[f.properties.region].cap) || '#f59e0b') : (SUB_FILL[f.properties.sub] || (REGION_FILL[f.properties.region] && REGION_FILL[f.properties.region].cap) || '#334155')}
         polygonSideColor={f => {
+          if (dark) {
+            const sub = f.properties.sub;
+            const neon = { 'North America': '#ef4444', 'South America': '#f59e0b', 'Latin America & Caribbean': '#fbbf24', 'European Union': '#818cf8', 'United Kingdom': '#a78bfa', 'EMEA - Europe': '#c0c0c0', 'Middle East & Africa': '#1e3a8a', 'North Asia': '#f472b6', 'Central Asia': '#fbbf24', 'East Asia': '#dc2626', 'South Asia': '#f472b6', 'South East Asia': '#fb923c', 'Oceania': '#4ade80' };
+            return neon[sub] || '#f59e0b';
+          }
           const c = SUB_FILL[f.properties.sub] || (REGION_FILL[f.properties.region] && REGION_FILL[f.properties.region].side);
           return c || '#1e293b';
         }}
-        polygonStrokeColor={f => (hovered && hovered === f) ? '#ffffff' : 'rgba(255,255,255,0.15)'}
+        polygonStrokeColor={f => (hovered && hovered === f) ? (dark ? '#f59e0b' : '#ffffff') : (dark ? '#f59e0b66' : 'rgba(255,255,255,0.15)')}
         polygonAltitude={f => {
           const region = f.properties.region;
           return f === hovered ? 0.06 : (REGION_FILL[region] ? 0.015 : 0.005);
@@ -205,7 +210,7 @@ export default function WorldMap({ height = 560 }) {
         labelLng="lng"
         labelText={d => d.region}
         labelSize={1.4}
-        labelColor={() => 'rgba(255,255,255,0.9)'}
+        labelColor={() => (dark ? '#f59e0bb3' : 'rgba(255,255,255,0.9)')}
         labelAltitude={0.03}
         labelResolution={2}
         htmlElementsData={flagElements}

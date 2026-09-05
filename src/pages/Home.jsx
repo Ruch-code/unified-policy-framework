@@ -3,6 +3,13 @@ import WorldMap from '../components/WorldMap';
 import RegionControlMap from '../components/RegionControlMap';
 import CertAdvisor from '../components/CertAdvisor';
 import ErrorBoundary from '../components/ErrorBoundary';
+import { useState, useEffect } from 'react';
+
+function useDark() {
+  const [dark, setDark] = useState(() => document.documentElement.classList.contains('dark'));
+  useEffect(() => { try { if (localStorage.getItem('compliance-dark') === '1') { document.documentElement.classList.add('dark'); setDark(true); } } catch {} }, []);
+  return dark;
+}
 
 const REGIONS = [
   {
@@ -111,6 +118,7 @@ const INDUSTRIES = [
 ];
 
 export default function Home() {
+  const isDark = useDark();
   return (
     <section className="min-h-screen bg-gray-50 py-12">
       <div className="container mx-auto px-4">
@@ -133,7 +141,7 @@ export default function Home() {
             Drag to rotate the world, scroll to zoom. Latitudes, longitudes and time zones update live. Hover a country or tap a
             waving flag to see the privacy & security laws that apply there — then open its playbook.
           </p>
-          <WorldMap height={540} />
+           <WorldMap height={540} dark={isDark} />
         </div>
 
         {/* Certification Advisor */}

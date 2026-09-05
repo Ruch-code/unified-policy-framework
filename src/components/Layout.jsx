@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { Menu, X, Linkedin, User as UserIcon, ShieldCheck, LogOut, BookOpenCheck } from 'lucide-react';
+import { Menu, X, Linkedin, User as UserIcon, ShieldCheck, LogOut, BookOpenCheck, Sun, Moon } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import VisitorCounter from './VisitorCounter';
 import NavHoverIcon from './NavHoverIcon';
@@ -33,6 +33,14 @@ export default function Layout() {
   const location = useLocation();
   const { user, logout } = useAuth();
   const [newsletterOpen, setNewsletterOpen] = useState(false);
+  const [isDark, setIsDark] = useState(() => document.documentElement.classList.contains('dark'));
+  const toggleDark = () => {
+    const next = !isDark;
+    document.documentElement.classList.toggle('dark', next);
+    localStorage.setItem('compliance-dark', next ? '1' : '0');
+    setIsDark(next);
+  };
+  useEffect(() => { try { if (localStorage.getItem('compliance-dark') === '1') { document.documentElement.classList.add('dark'); setIsDark(true); } } catch {} }, []);
 
   useEffect(() => {
     const key = 'newsletter_shown';
@@ -79,6 +87,13 @@ export default function Layout() {
               ))}
             </nav>
 
+            <button
+              onClick={toggleDark}
+              className="hidden md:inline-flex items-center justify-center w-9 h-9 rounded-lg border border-gray-200 bg-white text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors"
+              aria-label="Toggle dark mode"
+            >
+              {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            </button>
             <a
               href="https://inspiring-ganache-fdd3be.netlify.app/"
               target="_blank"
@@ -88,7 +103,6 @@ export default function Layout() {
               ISO 42001 AI
               <span className="text-[10px] opacity-70">↗</span>
             </a>
-
             <div className="ml-2 hidden sm:flex items-center gap-1.5">
               {!user ? (
                 <Link to="/login" className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors">
