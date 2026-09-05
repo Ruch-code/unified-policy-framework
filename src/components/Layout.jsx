@@ -5,6 +5,7 @@ import VisitorCounter from './VisitorCounter';
 import NavHoverIcon from './NavHoverIcon';
 import NewsletterPopup from './NewsletterPopup';
 import InspectorCursor from './InspectorCursor';
+import ChatWidget from './ChatWidget';
 import { useAuth } from '../context/AuthContext';
 
 const STANDARDS = [
@@ -172,6 +173,7 @@ export default function Layout() {
 
       <NewsletterPopup open={newsletterOpen} onClose={() => setNewsletterOpen(false)} />
       <InspectorCursor />
+      <ChatWidget />
     </div>
   );
 }

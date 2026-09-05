@@ -4,9 +4,36 @@ import { askGrcAssistant } from '../data/grcAssistant';
 import { FRAMEWORK_KB } from '../data/grcKnowledgeBase';
 
 function AnswerView({ answer }) {
+  const rec = answer?.recommendation;
   return (
     <div className="text-sm text-gray-700 space-y-3">
       {answer.summary && <p className="font-semibold text-gray-900">{answer.summary}</p>}
+      {rec && (
+        <div className="rounded-xl bg-indigo-50 border border-indigo-200 p-4">
+          <h5 className="text-xs font-bold uppercase tracking-wide text-indigo-700 mb-2 flex items-center gap-1.5"><Sparkles className="w-3.5 h-3.5" /> Wise Advisor — what to do next</h5>
+          <ol className="space-y-2">
+            {rec.steps.map((s, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm">
+                <span className="w-5 h-5 rounded-full bg-indigo-600 text-white text-xs flex items-center justify-center font-bold shrink-0 mt-0.5">{i + 1}</span>
+                <div>
+                  <p className="font-semibold text-gray-900">{s.title}</p>
+                  <p className="text-xs text-gray-500 mt-0.5">{s.why}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+          {rec.nextSteps && rec.nextSteps.length > 0 && (
+            <div className="mt-3 pt-3 border-t border-indigo-100">
+              <p className="text-[11px] font-semibold text-indigo-600 uppercase tracking-wide mb-1.5">Quick steps</p>
+              <div className="flex flex-wrap gap-1.5">
+                {rec.nextSteps.slice(0, 4).map((s, i) => (
+                  <span key={i} className="text-[11px] font-medium px-2 py-1 rounded-full bg-white border border-indigo-200 text-indigo-800">{s}</span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
       {answer.frameworks && answer.frameworks.length > 0 && (
         <div className="flex flex-wrap gap-1.5">
           {answer.frameworks.map(f => {
@@ -21,10 +48,11 @@ function AnswerView({ answer }) {
       )}
       {answer.sections.map((s, i) => (
         <div key={i} className="rounded-xl bg-slate-50 border border-slate-200 p-3">
-          <h5 className="text-xs font-bold uppercase tracking-wide text-slate-500 mb-1.5">{s.heading}</h5>
+          <h5 className="text-xs font-bold uppercase tracking-wide text-slate-500 mb-1">{s.heading}</h5>
+          {s.why && <p className="text-[11px] text-indigo-600 mb-1.5">{s.why}</p>}
           <div className="space-y-1">
             {s.bullets.map((b, j) => (
-              <p key={j} className="whitespace-pre-wrap leading-relaxed">{b}</p>
+              <p key={j} className="whitespace-pre-wrap leading-relaxed text-xs">{b}</p>
             ))}
           </div>
         </div>
