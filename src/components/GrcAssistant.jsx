@@ -67,18 +67,31 @@ export default function GrcAssistant({ compact = false }) {
   const [thinking, setThinking] = useState(false);
   const scrollRef = useRef(null);
 
-  const ask = (text) => {
+  const ask = async (text) => {
     const value = (text ?? query).trim();
     if (!value) return;
     setHistory(h => [...h, { role: 'user', text: value }]);
     setQuery('');
     setThinking(true);
-    setTimeout(() => {
+    try {
       const answer = askGrcAssistant(value);
-      setHistory(h => [...h, { role: 'assistant', answer }]);
-      setThinking(false);
-      setTimeout(() => scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' }), 50);
-    }, 250);
+      const isFallback = answer?.sections?.some(s => s.heading?.startsWith('Try phrasing'));
+      let final = answer;
+      if (isFallback) {
+        try {
+          const res = await fetch('/api/gemini', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ query: value }) });
+          if (res.ok) {
+            const data = await res.json();
+            final = { summary: 'AI-sourced from Gemini:', sections: [{ heading: 'Gemini answer', bullets: [data.answer] }], frameworks: [], suggestions: [] };
+          }
+        } catch { /* fall back to the rule-based answer */ }
+      }
+      setHistory(h => [...h, { role: 'assistant', answer: final }]);
+    } catch {
+      setHistory(h => [...h, { role: 'assistant', answer: { summary: 'Error.', sections: [] } }]);
+    }
+    setThinking(false);
+    setTimeout(() => scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' }), 50);
   };
 
   const suggestions = (history.length ? history[history.length - 1]?.answer?.suggestions : null) || [];
