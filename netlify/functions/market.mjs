@@ -7,7 +7,7 @@ const UA =
 
 
 let cache = { at: 0, payload: null };
-const CACHE_TTL = 15000;
+const CACHE_TTL = 60000;
 
 function cached(payload) {
   const now = Date.now();
@@ -122,12 +122,47 @@ async function fetchSensexYahoo() {
   return null;
 }
 
+async function fetchSensexTwelveData() {
+  const apiKey = process.env.TWELVE_DATA_API_KEY;
+  if (!apiKey) return null;
+  try {
+    const res = await fetch(`https://api.twelvedata.com/quote?symbol=BSESN&apikey=${encodeURIComponent(apiKey)}`, {
+      headers: { 'User-Agent': UA, Accept: 'application/json' },
+    });
+    if (!res.ok) return null;
+    const d = await res.json();
+    if (d.status === 'error' || d.code) return null;
+    const last = num(d.close) ?? num(d.price);
+    const prev = num(d.previous_close);
+    const open = num(d.open);
+    return {
+      name: 'SENSEX',
+      last,
+      previousClose: prev,
+      change: last != null && prev != null ? +(last - prev).toFixed(2) : null,
+      changePercent: num(d.percent_change),
+      open,
+      high: num(d.high),
+      low: num(d.low),
+      timestamp: d.datetime,
+      source: 'twelvedata',
+    };
+  } catch {
+    return null;
+  }
+}
+
 export default async (req) => {
   try {
     const now = Date.now();
     if (cache.payload && now - cache.at < CACHE_TTL) return json(cache.payload);
-    const [nse, sensex] = await Promise.all([fetchNseIndices(), fetchSensexYahoo()]);
+    const [nse, sensexYahoo, sensexTwelve] = await Promise.all([
+      fetchNseIndices(),
+      fetchSensexYahoo(),
+      fetchSensexTwelveData(),
+    ]);
     const data = { ...nse.ok };
+    const sensex = sensexYahoo || sensexTwelve;
     if (sensex) data['SENSEX'] = sensex;
 
     const rows = Object.values(data).filter(Boolean);
