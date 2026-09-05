@@ -315,32 +315,36 @@ export const FRAMEWORK_KB = {
      name: 'FedRAMP',
      color: '#1e40af',
      desc: 'US federal cloud security authorization program — NIST SP 800-53 baselines (Low/Moderate/High), continuous monitoring, and Authorizations to Operate (ATO).',
-     whoCanWork: 'Anyone worldwide can build controls and prepare the documentation. The 3PAO assessor and the Authorizing Official (AO) must be US-citizen / US-government roles; FedRAMP itself is a US-government program. Non-US citizens can own the security posture but the authorization chain is US-specific.',
+     whoCanWork: 'Anyone worldwide can build controls and prepare the SSP/SAP/POA&M documentation — there is no citizenship requirement for the security work. The 3PAO assessor and the Authorizing Official (AO) must be US-citizen / US-government roles, and FedRAMP is a US-government program. Non-US citizens can own the security posture but the authorization chain is US-specific.',
      policies: [
-       { area: 'Control Baselines (Low/Moderate/High)', controls: ['NIST SP 800-53 Rev 5 baseline controls per impact level; FedRAMP baselines', 'FIPS 199 system categorization (low/moderate/high impact)', 'FIPS 200 minimum security controls'], note: 'The selected baseline determines the control set; Moderate is the most common for SaaS.' },
-       { area: 'Documentation (SSP, SAP, POA&M)', controls: ['System Security Plan (SSP)', 'Security Assessment Plan (SAP)', 'Plan of Action & Milestones (POA&M)', 'Security Assessment Report (SAR)'], note: 'The SSP is foundational — system boundary, data types, connections, inherited/common controls.' },
-       { area: 'Continuous Monitoring & ConMon', controls: ['FedRAMP Continuous Monitoring Strategy', 'NIST SP 800-137 ISCM', 'Recurring self-assessments', 'Automated control monitoring'], note: 'FedRAMP is ongoing, not point-in-time — the ATO must be renewed and controls monitored continuously.' },
-       { area: 'Authorization & 3PAO', controls: ['Third-Party Assessment Organization (3PAO)', 'Joint Authorization Board (JAB)', 'Authorizing Official (AO)', 'Authorization to Operate (ATO)'], note: 'The 3PAO assesses and issues the SAR; the AO grants the ATO.' },
+       { area: 'Control Baselines (Low/Moderate/High)', controls: ['NIST SP 800-53 Rev 5 control baselines per impact level', 'FedRAMP baselines (Low, Moderate, High)', 'FIPS 199 system categorization (low/moderate/high impact)', 'FIPS 200 minimum security controls'], check: 'State the selected baseline, the FIPS 199 category, and the list of inherited vs. common vs. assigned controls.' },
+       { area: 'Documentation (SSP, SAP, POA&M)', controls: ['System Security Plan (SSP) — system boundary, data types, connections', 'Security Assessment Plan (SAP)', 'Plan of Action & Milestones (POA&M)', 'Security Assessment Report (SAR)'], check: 'SSP reviewed by security lead; system boundary, baselines, and inherited/common controls all documented and consistent.' },
+       { area: 'Continuous Monitoring & ConMon', controls: ['FedRAMP Continuous Monitoring Strategy', 'NIST SP 800-137 ISCM', 'Recurring self-assessments', 'Automated control monitoring (CM-8 asset inventory, CM-11 media acceptance, SI/SC controls)'], check: 'ConMon strategy documented; automated monitoring in place; POA&M tracked with owners and target dates.' },
+       { area: 'Authorization & 3PAO', controls: ['Third-Party Assessment Organization (3PAO)', 'Joint Authorization Board (JAB)', 'Authorizing Official (AO)', 'Authorization to Operate (ATO)', 'Asset inventory + SBOM for federal software'], check: 'ATO package submitted; AO risk acceptance documented; ATO granted or conditions listed.' },
      ],
      observations: [
        { finding: 'Incomplete SSP scoping', why: 'The SSP omits system boundary, data types, or connections; the assessor cannot scope the SAP without it.' },
        { finding: 'Missing inherited vs. assigned control map', why: 'Failing to distinguish CSP-inherited controls from customer-configured controls leaves gaps the customer must own.' },
        { finding: 'POA&M gaps unresolved at assessment', why: 'Open POA&M items with no target dates or evidence of closure lead to assessment findings.' },
        { finding: 'Continuous monitoring not operational', why: 'ATO granted but ConMon is manual/annual — FedRAMP requires ongoing control monitoring and recurring self-assessment.' },
+       { finding: 'No SBOM or asset inventory', why: 'Federal software deliveries lack a machine-generated SBOM; asset inventory (physical servers, on-prem databases, cloud services, purchased assets) is incomplete — CM-8 and CM-11 controls not evidenced.' },
      ],
      rebuttals: [
        { finding: 'SSP scoping incomplete', pushback: 'Challenge the assessor scope with the signed SSP — if a component is out of scope, it is not assessed. Request the assessor isolate the in-scope boundary explicitly.', evidence: 'Signed SSP, system boundary diagram.' },
        { finding: 'Inherited control gap attributed to customer', pushback: 'Cite the shared-responsibility matrix showing the control is inherited from the FedRAMP-authorized CSP; ask the assessor to confirm the inherited control list in the SSP.', evidence: 'CSP FedRAMP authorization package, shared-responsibility matrix.' },
        { finding: 'ConMon not evidenced', pushback: 'Present the ConMon strategy, automated monitoring tools, and recurring self-assessment schedule — show continuous operation, not a point-in-time snapshot.', evidence: 'ConMon strategy, monitoring dashboards, self-assessment logs.' },
+       { finding: 'SBOM/asset inventory missing', pushback: 'Present the asset inventory (cloud services, on-prem servers, physical servers, databases, purchased assets) and the machine-generated SBOM; show CM-8 (asset inventory) and CM-11 (media acceptance) evidence.', evidence: 'Asset inventory, SBOM generation tool output, CM-8/CM-11 artifacts.' },
      ],
      clauses: [
        { title: 'FedRAMP authorization status', text: 'Vendor represents it is FedRAMP Authorized at the stated baseline (Low/Moderate/High) with a current ATO, and shall maintain authorization and notify Client of any suspension or downgrade.', required: true },
        { title: '3PAO / SAR evidence', text: 'Vendor shall provide the most recent Security Assessment Report (SAR) and Plan of Action & Milestones (POA&M) annually and upon Client request.', required: true },
        { title: 'Continuous monitoring', text: 'Vendor shall maintain a Continuous Monitoring strategy, perform recurring self-assessments, and report control changes or incidents to Client promptly.', required: true },
+       { title: 'SBOM & asset inventory', text: 'Vendor shall maintain a software bill of materials (SBOM) and a current asset inventory (on-prem servers, physical servers, databases, cloud services, purchased assets) and ensure endpoint security (EDR/MDM/encryption) on all corporate devices.', required: true },
      ],
      discrepancies: [
        'FedRAMP authorizes the CSP at a baseline, but the customer configures the services — the shared-responsibility boundary is the #1 assessment gap.',
        'FedRAMP Moderate inherits NIST 800-53 controls but the customer must still implement the assigned controls; conflating inherited vs. assigned is a common finding.',
+       'FedRAMP requires a SBOM and asset inventory (CM-8/CM-11) for federal software — an on-prem or purchased-asset environment must produce these artifacts for every component.',
      ],
    },
    cjis: {
@@ -350,10 +354,10 @@ export const FRAMEWORK_KB = {
      desc: 'FBI CJIS Security Policy — governs access to criminal justice information (NCIC, NLETS, N-DEx) for law enforcement, courts, corrections, and affiliated vendors.',
      whoCanWork: 'Access to CJI requires US citizenship, a fingerprint-based background check, and affiliation with a criminal justice agency or authorized entity. Non-US persons generally cannot access CJI. Anyone can build compliant controls and documentation, but the personnel with CJI access are US-citizen, cleared, and agency-affiliated.',
      policies: [
-       { area: 'CJI Classification & Access', controls: ['CJI vs SCJI (Sensitive Criminal Justice Information) classification', 'Need-to-know and official purpose requirements', 'User agreement and acknowledgement'], note: 'CJI includes arrest records, criminal histories, identification data; SCJI includes intelligence, undercover, and forensic data.' },
-       { area: 'User Access & Background', controls: ['Fingerprint-based background check (FBI and state)', 'US citizenship requirement for most CJI access', 'Annual re-checks and user agreement renewal'], note: 'Only US citizens (and certain authorized non-citizens) can access NCIC/NLETS. Private vendors (e.g., background-check companies) must be CJIS-compliant and personnel cleared.' },
-       { area: 'Security Controls', controls: ['Encryption of CJI in transit and at rest', 'Audit logging and access monitoring', 'Two-factor authentication for remote access', 'System security plan and risk assessment'], note: 'Controls map partially to NIST 800-53, HIPAA, and FedRAMP.' },
-       { area: 'Training & Compliance', controls: ['CJIS Security Policy training (initial + annual)', 'Incident reporting to the FBI', 'Compliance audits by the CJIS Policy Board'], note: 'Non-compliance can result in loss of CJIS access and FBI notification.' },
+       { area: 'CJI Classification & Access', controls: ['CJI vs SCJI (Sensitive Criminal Justice Information) classification — CJI includes arrest records, criminal histories, identification data; SCJI includes intelligence, undercover, and forensic data', 'Need-to-know and official purpose requirements for every access', 'User agreement and acknowledgement signed by each user'], check: 'Confirm every CJI-accessing user has a signed user agreement and a documented need-to-know; verify SCJI access is limited to authorized personnel.' },
+       { area: 'User Access & Background', controls: ['Fingerprint-based background check (FBI and state) for every CJI user', 'US citizenship requirement for most CJI/NCIC/NLETS access', 'Annual re-checks and user agreement renewal'], check: 'Verify background checks are current (no lapsed checks), citizenship verified, and re-checks are on an annual cycle.' },
+       { area: 'Security Controls', controls: ['Encryption of CJI in transit (TLS) and at rest (disk/database encryption)', 'Audit logging of all CJI access with retained logs', 'Two-factor authentication for remote access', 'System security plan and periodic risk assessment'], check: 'Confirm encryption is enforced (no plaintext CJI), audit logs capture every access with retention meeting CJIS minimums, and remote access uses MFA.' },
+       { area: 'Training & Compliance', controls: ['CJIS Security Policy training (initial + annual) for all users', 'Incident reporting to the FBI per CJIS timelines', 'Compliance audits by the CJIS Policy Board'], check: 'Confirm training records exist for all users (initial + annual), and an incident-reporting process is documented and tested.' },
      ],
      observations: [
        { finding: 'Non-citizen or uncleared personnel accessing CJI', why: 'Background checks or citizenship verification lapsed; non-agency users with CJI access without proper clearance.' },
@@ -367,12 +371,13 @@ export const FRAMEWORK_KB = {
        { finding: 'Encryption exception', pushback: 'Cite the CJIS encryption requirements and show the compensating controls (network segmentation, MFA, monitoring) in place; document the risk acceptance.', evidence: 'Encryption policy, network diagram, compensating-control declaration.' },
      ],
      clauses: [
-       { title: 'CJIS compliance', text: 'Vendor shall maintain CJIS Security Policy compliance, ensure all personnel with CJI access are US citizens with current fingerprint-based background checks, and promptly notify Client of any compliance issue or access revocation.', required: true },
+       { title: 'CJIS compliance', text: 'Vendor shall maintain CJIS Security Policy compliance, ensure all CJI-accessing personnel are US citizens with current fingerprint-based background checks, and promptly notify Client of any compliance issue or access revocation.', required: true },
        { title: 'Audit logging & encryption', text: 'Vendor shall maintain audit logs of all CJI access for the CJIS retention period, encrypt CJI in transit and at rest, and provide access reports to Client on request.', required: true },
      ],
      discrepancies: [
        'CJIS requires US citizenship + fingerprint-based background checks for CJI access, while FedRAMP/GDPR focus on technical controls — combining both requires both a cleared workforce and technical controls.',
        'CJIS audit-log retention (minimum 1 year, 5 years recommended) overlaps with PCI 12-month logs and HIPAA 6-year records — use a single retention matrix.',
+       'Carve-out vs carve-in for CJIS vendors: a carve-in vendor must be CJIS-compliant with cleared personnel; a carve-out requires CUECs from the client.',
      ],
    },
  };
@@ -429,6 +434,11 @@ export const UNIFIED_POLICY_MAP = [
      map: { 'FedRAMP': 'Low/Moderate/High baseline; SSP; SAP; POA&M; SAR; 3PAO; ATO', 'CJIS': 'CJI/SCJI classification; fingerprint background; US citizenship; audit logs; encryption; training' },
      discrepancy: 'FedRAMP focuses on cloud authorization and technical controls; CJIS focuses on personnel eligibility (US citizenship + cleared background) and access governance. A system serving federal agencies AND criminal justice data must satisfy both — the cleared-workforce requirement is unique to CJIS and cannot be substituted by a FedRAMP ATO.',
    },
+   {
+     area: 'Control Environment — Assets, Endpoints & Boundary',
+     map: { 'SOC 2': 'CC6.1/CC7.1/CC7.2', 'ISO 27001': 'A.5.15/A.8.1/A.8.2', 'PCI-DSS': 'Req 2/Req 9/Req 11', HIPAA: '164.310(a)(2)', 'NIST CSF': 'ID.AM', CIS: 'Safeguard 1/4/10', 'FedRAMP': 'SC/LM/IR baselines; CM-8; CM-11', 'CJIS': 'CJI device & access controls', 'CCPA/CPRA': 'inventory of PI' },
+     discrepancy: 'SBOM, asset inventory, and endpoint security must be scoped per asset class — cloud (CSP-inherited), on-prem/physical servers (owned), purchased assets (vendor-managed), BYOD (personal), and databases (data-at-rest controls). Define the control objective and boundary for each; carve-out vs carve-in determines who evidences what.',
+   },
  ];
 
  // Cross-framework conflict "radar".
@@ -478,12 +488,32 @@ export const DISCREPANCY_MATRIX = [
      conflict: 'FedRAMP authorizes the CSP + technical controls (ATO); CJIS requires US-citizen cleared personnel + fingerprint background checks for CJI access. FedRAMP does NOT satisfy CJIS personnel requirements, and CJIS does not grant a FedRAMP ATO.',
      reconcile: 'For systems serving both federal agencies and criminal justice data, maintain BOTH: the FedRAMP ATO/ConMon package AND CJIS-compliant cleared personnel with background checks. One does not substitute for the other.',
    },
-   {
-     topic: 'FedRAMP ConMon vs annual certification',
-     conflict: 'SOC 2/ISO 27001 are point-in-time certifications; FedRAMP requires continuous monitoring (ConMon) and annual reassessment.',
-     reconcile: 'Build ConMon as the continuous layer; the annual certification becomes a checkpoint within the ongoing ConMon program.',
-   },
- ];
+    {
+      topic: 'FedRAMP ConMon vs annual certification',
+      conflict: 'SOC 2/ISO 27001 are point-in-time certifications; FedRAMP requires continuous monitoring (ConMon) and annual reassessment.',
+      reconcile: 'Build ConMon as the continuous layer; the annual certification becomes a checkpoint within the ongoing ConMon program.',
+    },
+    {
+      topic: 'SBOM & asset inventory',
+      conflict: 'SOC 2/ISO 27001 want an asset inventory; FedRAMP mandates Software Bill of Materials (SBOM) for federal software; PCI wants an inventory of cardholder data assets; CJIS wants a CJI device inventory.',
+      reconcile: 'Maintain one asset inventory (physical servers, on-prem databases, cloud services, purchased assets) with a machine-generated SBOM per component; tag each asset with its control objective and environment (cloud / on-prem / BYOD / purchased).',
+    },
+    {
+      topic: 'Carve-out vs carve-in vendor assessment',
+      conflict: 'SOC 2 "carve-out" excludes a subservice organization from the scope (client must assess complementary controls); "carve-in" includes it (vendor must provide evidence). FedRAMP inherits the CSP baseline but the customer configures; CJIS requires the vendor to be CJIS-compliant.',
+      reconcile: 'For every vendor decide carve-out vs carve-in explicitly; document the complementary user entity controls (CUECs) for carve-out, or require the vendor evidence for carve-in. The choice drives who provides the evidence to the auditor.',
+    },
+    {
+      topic: 'BYOD vs corporate endpoint security',
+      conflict: 'BYOD devices access CJI/PII/personal data on personal hardware; corporate endpoint security (EDR, MDM, disk encryption) is mandatory on corporate devices but cannot be enforced on personal devices without a mobile device management (MDM) profile.',
+      reconcile: 'Segregate: corporate assets (purchased/on-prem/physical servers) get full EDR/MDM/encryption; personal/BYOD access via a managed workspace (container/VDI) or are blocked from sensitive data. Document the control objective per device class.',
+    },
+    {
+      topic: 'On-prem / physical servers vs cloud',
+      conflict: 'Cloud inherits baseline controls from the CSP (FedRAMP-authorized); on-prem/physical servers and on-prem databases are fully the customer\u2019s responsibility — physical access, environmental controls, disk encryption, and network segmentation are owned outright.',
+      reconcile: 'Map the shared-responsibility matrix: cloud (CSP-inherited + customer-configured), on-prem/physical servers & databases (100% customer), purchased assets (vendor-supported). Define the control objective for each and evidence accordingly.',
+    },
+  ];
 
 // Vendor contract clause builder — base always applies; conditional per framework.
 export const VENDOR_CLAUSE_BASE = [
@@ -495,8 +525,9 @@ export const VENDOR_CLAUSE_BASE = [
   { title: 'Sub-contracting & flow-down', text: 'Vendor shall flow down these obligations to all subcontractors and sub-processors used to deliver the Services, and shall remain responsible for their compliance.' },
   { title: 'Change notice', text: 'Vendor shall notify Client of any material change to its security posture, certifications, sub-processors, or data processing locations at least 30 days in advance where feasible.' },
   { title: 'Liability & indemnity', text: 'Vendor shall indemnify Client for losses caused by Vendor\u2019s breach of these security obligations or applicable law, subject to agreed liability caps; security events are carved out from the general cap where required.' },
-  { title: 'Cyber insurance', text: 'Vendor shall maintain cyber liability insurance with limits of not less than [US$X] covering data breaches and notify carriers of the services.' },
-];
+   { title: 'Cyber insurance', text: 'Vendor shall maintain cyber liability insurance with limits of not less than [US$X] covering data breaches and notify carriers of the services.' },
+   { title: 'SBOM, asset inventory & endpoint security', text: 'Vendor shall maintain a software bill of materials (SBOM) for all deliverables, a current asset inventory (including on-prem servers, physical servers, databases, cloud services, and purchased assets), and endpoint security (EDR/MDM/disk encryption) on all corporate devices accessing Client data. Carve-out vs carve-in vendor assessments shall be documented, with complementary user entity controls (CUECs) specified where carved out. BYOD devices shall be restricted to a managed container/VDI or blocked from sensitive data.' },
+ ];
 
 export const VENDOR_CLAUSE_CONDITIONAL = {
   soc2: { label: 'SOC 2', clause: 'Vendor shall provide its most recent SOC 2 Type II report (scoped to the services, including exceptions) annually and in response to any exception, and evidence that its applicable subservice organisations are monitored. Where availability/confidentiality are asserted, Vendor shall meet the stated SLA metrics.' },

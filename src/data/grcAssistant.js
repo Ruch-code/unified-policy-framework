@@ -16,10 +16,11 @@ const order = ['soc2', 'iso27001', 'pci', 'hipaa', 'nist', 'gdpr', 'cis', 'hitru
 
 const INTENTS = [
   { id: 'pushback', words: ['pushback', 'push back', 'rebut', 'respond', 'dispute', 'challenge', 'defend', 'appeal', 'argue', 'push-back', 'disagreement'] },
-  { id: 'contract', words: ['contract', 'clause', 'vendor', 'msa', 'sla', 'dpa', 'subprocess', 'sub-process', 'third.party', 'flow.down', 'engage', 'outsource', 'procure', 'vendor risk', 'daa', 'addendum'] },
+  { id: 'contract', words: ['contract', 'clause', 'vendor', 'msa', 'sla', 'dpa', 'subprocess', 'sub-process', 'third.party', 'flow.down', 'engage', 'outsource', 'procure', 'vendor risk', 'daa', 'addendum', 'sbom', 'software bill of materials', 'asset inventory', 'carve.out', 'carve.in', 'byod', 'endpoint security', 'control objective', 'physical server', 'on-prem'] },
   { id: 'audit', words: ['audit', 'observation', 'finding', 'nc', 'non.conform', 'noncompliance', 'gap', 'deficit', 'finding'] },
   { id: 'discrepancy', words: ['discrep', 'conflict', 'overlap', 'differ', 'contradict', 'mismatch', 'vs', 'versus', 'between', 'tension', 'clash'] },
   { id: 'map', words: ['policy', 'control', 'map', 'tie', 'relate', 'link', 'connect', 'which framework', 'what framework', 'which control'] },
+  { id: 'environment', words: ['sbom', 'software bill of materials', 'asset inventory', 'carve.out', 'carve.in', 'byod', 'endpoint security', 'control objective', 'physical server', 'on-prem', 'on-premises', 'purchased asset', 'mdm', 'edr', 'disk encryption', 'inherited control', 'shared responsibility'] },
 ];
 
 const FW_MATCH = [
@@ -106,6 +107,7 @@ function buildRecommendation(intents, fws, q) {
   const hasContract = intents.some(i => i.id === 'contract');
   const hasDiscrepancy = intents.some(i => i.id === 'discrepancy');
   const hasMap = intents.some(i => i.id === 'map');
+  const hasEnvironment = intents.some(i => i.id === 'environment');
 
   // Generic quick wins (always useful).
   const quickWins = [
@@ -123,6 +125,20 @@ function buildRecommendation(intents, fws, q) {
         { title: 'Require evidence on a cadence, not a sticker', why: 'Certifications lapse — contract maintenance + evidence delivery, not just the certificate attachment.', evidence: 'Annual reports, exception addenda, subservice SOC 2 reports.' },
       ],
       nextSteps: ['Ask for the most recent SOC 2 / ISO report', 'Confirm sub-processor list and DPA chain', 'Agree the most stringent breach-notification SLA'],
+    };
+  }
+
+  if (hasEnvironment) {
+    return {
+      heading: 'What I recommend you do next',
+      steps: [
+        { title: 'Build a single asset inventory', why: 'Every control evaluation starts from an accurate asset inventory — cloud services, on-prem servers, physical servers, databases, and purchased assets. Tag each asset with its environment and control objective.', evidence: 'Asset inventory (cloud + on-prem + purchased), CM-8 artifacts.' },
+        { title: 'Generate and maintain a machine SBOM', why: 'FedRAMP (CM-11) and federal procurement now require a software bill of materials for every deliverable. An SBOM makes the software supply chain visible to the auditor.', evidence: 'SBOM generation tool output (CycloneDX/SPDX), CI pipeline integration.' },
+        { title: 'Decide carve-out vs carve-in per vendor', why: 'The carve-out/carve-in choice determines who provides evidence to the auditor. Document it explicitly — auditors ask for this decision, not a default.', evidence: 'Vendor carve-out/carve-in decision log; CUECs for carve-out; vendor evidence for carve-in.' },
+        { title: 'Segment BYOD from sensitive data', why: 'BYOD devices cannot be fully controlled like corporate endpoints. Restrict BYOD to a managed container/VDI or block access to sensitive data (CJI, PII, PHI).', evidence: 'MDM/EDR policy, container/VDI config, BYOD access rules.' },
+        { title: 'Define the shared-responsibility matrix', why: 'Cloud inherits CSP controls; on-prem/physical servers and on-prem databases are fully customer-owned. The matrix shows what each party evidences.', evidence: 'Shared-responsibility matrix per asset class.' },
+      ],
+      nextSteps: ['Complete the asset inventory', 'Generate the SBOM', 'Decide carve-out/carve-in for each vendor', 'Restrict BYOD from sensitive data'],
     };
   }
 
@@ -236,7 +252,18 @@ export function askGrcAssistant(query) {
     });
   }
 
-  // 2) Audit observations + 3) pushback
+   // 0.5) Control environment — SBOM, asset inventory, carve-out/in, BYOD, endpoint security
+   if (primary === 'environment' || intents.some(i => i.id === 'environment')) {
+     summary = 'Evaluating the control environment: SBOM, asset inventory, carve-out/carve-in, control objectives, BYOD, endpoint security, and on-prem vs cloud.';
+     sections.push(
+       { heading: 'Asset inventory & SBOM', why: 'Every control evaluation starts from an accurate asset inventory — cloud services, on-prem servers, physical servers, databases, and purchased assets. FedRAMP (CM-8/CM-11) and federal procurement require a machine-generated SBOM.', bullets: ['• Maintain one asset inventory across all environments (cloud, on-prem/physical servers, on-prem databases, purchased assets).', '• Generate a machine-readable SBOM (CycloneDX/SPDX) for every software deliverable; keep it updated in CI.', '• Tag each asset with its environment and control objective (confidentiality/integrity/availability).'] },
+       { heading: 'Carve-out vs carve-in vendor assessment', why: 'The carve-out/carve-in choice determines who provides evidence to the auditor — it must be decided explicitly, not assumed.', bullets: ['• Carve-out: the subservice is excluded; the client must assess complementary user entity controls (CUECs).', '• Carve-in: the vendor is in scope; the vendor must provide evidence (SOC 2, FedRAMP ATO, CJIS compliance).', '• Document the decision and the evidence each party provides.'] },
+       { heading: 'BYOD & endpoint security', why: 'Corporate endpoints get full EDR/MDM/disk encryption; BYOD devices cannot be controlled the same way and must be segregated.', bullets: ['• Corporate assets (purchased, on-prem servers, physical servers): full EDR/MDM/disk encryption.', '• BYOD: restrict to a managed container/VDI, or block access to sensitive data (CJI, PII, PHI).', '• Define endpoint security control objectives per device class and evidence accordingly.'] },
+       { heading: 'On-prem / physical vs cloud shared responsibility', why: 'Cloud inherits CSP baseline controls; on-prem servers, physical servers, and on-prem databases are fully customer-owned.', bullets: ['• Cloud: CSP-inherited + customer-configured controls.', '• On-prem/physical servers & databases: 100% customer (physical access, environmental, encryption, segmentation).', '• Purchased assets: vendor-supported — clarify support scope in the contract.', '• Publish a shared-responsibility matrix per asset class.'] },
+     );
+   }
+
+   // 2) Audit observations + 3) pushback
   if (primary === 'audit') {
     const list = (fws.length ? fws : order).map(id => FRAMEWORK_KB[id]).filter(Boolean);
     summary = 'Common audit observations by framework — and what really drives them:';
