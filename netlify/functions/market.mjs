@@ -5,7 +5,6 @@ export const config = { path: '/api/market' };
 const UA =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
 
-const TWELVE = 'https://api.twelvedata.com/quote';
 
 let cache = { at: 0, payload: null };
 const CACHE_TTL = 15000;
@@ -92,40 +91,42 @@ async function fetchNseIndices() {
   return { ok: {}, source: 'nse' };
 }
 
-async function fetchSensex() {
-  const apiKey = process.env.TWELVE_DATA_API_KEY;
-  if (!apiKey) return null;
-  try {
-    const url = `${TWELVE}?symbol=BSESN&interval=1day&apikey=${encodeURIComponent(apiKey)}`;
-    const res = await fetch(url, { headers: { 'User-Agent': UA } });
-    if (!res.ok) return null;
-    const d = await res.json();
-    if (d.status === 'error' || d.code) return null;
-    const last = num(d.close) ?? num(d.price);
-    const prev = num(d.previous_close);
-    const open = num(d.open);
-    return {
-      name: 'SENSEX',
-      last,
-      previousClose: prev,
-      change: last != null && prev != null ? +(last - prev).toFixed(2) : null,
-      changePercent: num(d.percent_change),
-      open,
-      high: num(d.high),
-      low: num(d.low),
-      timestamp: d.datetime,
-      source: 'twelvedata',
-    };
-  } catch {
-    return null;
+async function fetchSensexYahoo() {
+  for (const host of ['query1.finance.yahoo.com', 'query2.finance.yahoo.com']) {
+    try {
+      const url = `https://${host}/v8/finance/chart/%5EBSESN?interval=1d&range=5d`;
+      const res = await fetch(url, { headers: { 'User-Agent': UA, Accept: 'application/json' } });
+      if (res.status === 429) continue;
+      if (!res.ok) continue;
+      const d = await res.json();
+      const r = d?.chart?.result?.[0]?.meta;
+      if (!r) continue;
+      const last = num(r.regularMarketPrice);
+      const prev = num(r.regularMarketPreviousClose);
+      return {
+        name: 'SENSEX',
+        last,
+        previousClose: prev,
+        change: last != null && prev != null ? +(last - prev).toFixed(2) : null,
+        changePercent: num(r.regularMarketChangePercent),
+        open: num(r.regularMarketOpen),
+        high: num(r.regularMarketDayHigh),
+        low: num(r.regularMarketDayLow),
+        timestamp: r.regularMarketTime
+          ? new Date(r.regularMarketTime * 1000).toISOString()
+          : null,
+        source: 'yahoo',
+      };
+    } catch {}
   }
+  return null;
 }
 
 export default async (req) => {
   try {
     const now = Date.now();
     if (cache.payload && now - cache.at < CACHE_TTL) return json(cache.payload);
-    const [nse, sensex] = await Promise.all([fetchNseIndices(), fetchSensex()]);
+    const [nse, sensex] = await Promise.all([fetchNseIndices(), fetchSensexYahoo()]);
     const data = { ...nse.ok };
     if (sensex) data['SENSEX'] = sensex;
 
