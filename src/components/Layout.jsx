@@ -6,6 +6,7 @@ import NavHoverIcon from './NavHoverIcon';
 import NewsletterPopup from './NewsletterPopup';
 import InspectorCursor from './InspectorCursor';
 import ChatWidget from './ChatWidget';
+import MarketTicker from './MarketTicker';
 import { useAuth } from '../context/AuthContext';
 
 const STANDARDS = [
@@ -163,6 +164,12 @@ export default function Layout() {
           </div>
         )}
       </header>
+
+      <div className="bg-gradient-to-r from-indigo-50 via-white to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 border-b border-gray-200 dark:border-slate-700">
+        <div className="container py-1.5">
+          <MarketTicker compact refreshMs={60000} />
+        </div>
+      </div>
 
       <main className="flex-1">
         <Outlet />
