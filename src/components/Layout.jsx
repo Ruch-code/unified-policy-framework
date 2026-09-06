@@ -6,7 +6,6 @@ import NavHoverIcon from './NavHoverIcon';
 import NewsletterPopup from './NewsletterPopup';
 import InspectorCursor from './InspectorCursor';
 import ChatWidget from './ChatWidget';
-import MarketTicker from './MarketTicker';
 import { useAuth } from '../context/AuthContext';
 
 const STANDARDS = [
@@ -165,12 +164,6 @@ export default function Layout() {
         )}
       </header>
 
-      <div className="bg-gradient-to-r from-indigo-50 via-white to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 border-b border-gray-200 dark:border-slate-700">
-        <div className="container py-1.5">
-          <MarketTicker compact refreshMs={60000} />
-        </div>
-      </div>
-
       <main className="flex-1">
         <Outlet />
       </main>
@@ -190,6 +183,15 @@ export default function Layout() {
             </span>
             <span className="text-sm hidden sm:inline opacity-0 group-hover:opacity-100 transition-opacity duration-300">Let's connect</span>
           </a>
+          <div className="relative flex items-center gap-2">
+            <span
+              className="cursor-pointer text-xl text-gray-400 hover:text-yellow-500 transition-colors"
+              title="Ethereum: 0xdd1e9C99Fa2D42F48f5c5F0c155b48E9b31b9C42"
+            >
+              Ξ
+            </span>
+            <span className="text-xs text-gray-500 dark:text-slate-400">Donate</span>
+          </div>
           <VisitorCounter />
         </div>
       </footer>
