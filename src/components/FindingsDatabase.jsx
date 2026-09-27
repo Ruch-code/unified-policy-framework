@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
-import { ClipboardList, ChevronDown, TrendingUp, FileWarning, ShieldCheck, AlertTriangle, Search } from 'lucide-react';
-import { HITRUST_COMMON_FINDINGS, FINDINGS_DOMAINS, FINDING_SCORING, domLabel } from '../data/findings';
+import { ClipboardList, ChevronDown, TrendingUp, FileWarning, ShieldCheck, AlertTriangle, Search, ListChecks, CheckCircle2 } from 'lucide-react';
+import { HITRUST_COMMON_FINDINGS, FINDINGS_DOMAINS, FINDING_SCORING, domLabel } from '../data/findings.js';
 
 const SEVERITY_COLORS = {
   High: 'bg-red-100 text-red-700 border-red-200',
@@ -139,6 +139,18 @@ export default function FindingsDatabase({ color }) {
                     <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-green-700 uppercase tracking-wide"><ShieldCheck className="w-3.5 h-3.5" /> Prevention</span>
                     <p className="text-sm text-gray-700 mt-1">{f.prevent}</p>
                   </div>
+                  {f.evidencePack && (
+                    <div className="md:col-span-3 rounded-lg bg-indigo-50 border border-indigo-100 p-3">
+                      <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-700 uppercase tracking-wide"><ListChecks className="w-3.5 h-3.5" /> ITGC evidence pack — what auditors test for</span>
+                      <ul className="mt-1.5 space-y-1.5">
+                        {f.evidencePack.map((e, j) => (
+                          <li key={j} className="text-sm text-gray-700 flex gap-1.5">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-indigo-500 mt-0.5 shrink-0" /> {e}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
               )}
             </div>

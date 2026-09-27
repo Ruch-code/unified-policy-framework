@@ -1,8 +1,9 @@
-import LearningFrameworkPage from "../../components/LearningFrameworkPage";
+import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
+import Iso27001Sections from "../../components/Iso27001Sections.jsx";
 
 const FRAMEWORK = {
   id: "iso27001-li",
-  name: "ISO/IEC 27001:2022 Lead Implementer",
+  name: "ISO/IEC 27001:2022 ISMS Implementation",
   color: "purple",
   region: "Global",
   flag: "🌐",
@@ -129,7 +130,7 @@ const FRAMEWORK = {
     },
     {
       week: 4,
-      title: "L4 Certified: Certification and Continual Improvement",
+      title: "L4 Certification Readiness: Audit Preparation and Continual Improvement",
       days: "Days 22-28",
       description:
         "Prepare for and achieve ISO 27001 certification, address common implementation challenges, and establish mechanisms for continual improvement through the PDCA cycle.",
@@ -180,14 +181,21 @@ const FRAMEWORK = {
     },
     {
       week: 4,
-      title: "Certification Ready",
-      description: "Audit preparation complete, PDCA cycle embedded, and organization ready for ISO 27001 certification audit."
+      title: "Certification Audit Ready",
+      description: "Audit preparation complete, PDCA cycle embedded, and the organization ready to sit an independent ISO/IEC 27001 certification audit. Readiness is not certification: the certificate is issued by a certification body, not by this app or by completing these levels."
     }
   ]
 };
 
 export default function Iso27001LiPage() {
-  return <LearningFrameworkPage framework={FRAMEWORK} />;
+  return (
+    <>
+      <LearningFrameworkPage
+        framework={FRAMEWORK}
+        extraSections={[<Iso27001Sections key="iso27001" basePath={FRAMEWORK.basePath} />]}
+      />
+    </>
+  );
 }
 
 export { FRAMEWORK };

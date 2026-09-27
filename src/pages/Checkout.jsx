@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import { useCart } from '../context/CartContext';
-import { useAuth } from '../context/AuthContext';
-import api from '../utils/api';
+import { useCart } from '../context/CartContext.jsx';
+import { useAuth } from '../context/AuthContext.jsx';
+import api from '../utils/api.js';
 import { Truck, Shield, Lock, ChevronRight } from 'lucide-react';
 import toast from 'react-hot-toast';
 

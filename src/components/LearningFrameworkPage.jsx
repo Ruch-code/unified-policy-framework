@@ -1,8 +1,18 @@
 import { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { Clock, RefreshCw, ArrowRight, BookOpen, ExternalLink, Lock, CheckCircle, ChevronDown, ChevronRight, Zap, Shield, Award, Target, TrendingUp, AlertTriangle, Lightbulb, ClipboardList } from 'lucide-react';
-import FindingsDatabase from './FindingsDatabase';
-import PrivacyDocuments from './PrivacyDocuments';
+import { Clock, RefreshCw, ArrowRight, BookOpen, ExternalLink, Lock, CheckCircle, ChevronDown, ChevronRight, Zap, Shield, Award, Target, TrendingUp, AlertTriangle, Lightbulb, ClipboardList, Info } from 'lucide-react';
+import FindingsDatabase from './FindingsDatabase.jsx';
+import PrivacyDocuments from './PrivacyDocuments.jsx';
+import { useHipaaRole, HipaaRoleProvider, HipaaRoleGate, HipaaRoleChip, HipaaScopeIntake, UnresolvedFlowsBanner } from './HipaaRoleGate.jsx';
+import { ROLE_OPTIONS } from '../data/hipaaDomain.js';
+
+const ROLE_SHORTS = ROLE_OPTIONS.reduce((acc, r) => ({ ...acc, [r.id]: r.short }), {});
+
+// PrivacyDocuments carries GDPR / cookie / ROPA / DPIA / SCC material. It is not
+// HIPAA guidance, so HIPAA pages must not render it.
+function isHipaaFramework(framework) {
+  return framework.roleAware === true;
+}
 
 const STORAGE_PREFIX = 'compliance-learning-';
 
@@ -20,7 +30,7 @@ const LEVEL_META = [
   { icon: Shield, label: 'Foundation', desc: 'Learn what controls to look for' },
   { icon: Zap, label: 'Implementer', desc: 'Hands-on implementation guide' },
   { icon: Target, label: 'Verifier', desc: 'How to check and validate' },
-  { icon: Award, label: 'Certified', desc: 'Master exam scenarios and edge cases' },
+  { icon: Award, label: 'Audit-ready', desc: 'Master exam scenarios and edge cases' },
 ];
 
 ;
@@ -37,13 +47,13 @@ const ITGC_DOMAINS = {
 };
 
 const ITGC_COLORS = {
-  'Access Management': 'bg-blue-50 text-blue-700 border-blue-200',
-  'Change Management': 'bg-purple-50 text-purple-700 border-purple-200',
-  'IT Operations': 'bg-emerald-50 text-emerald-700 border-emerald-200',
-  'Program / System Development': 'bg-amber-50 text-amber-700 border-amber-200',
-  'Data Privacy / Governance': 'bg-rose-50 text-rose-700 border-rose-200',
-  'Business Continuity & Incident': 'bg-cyan-50 text-cyan-700 border-cyan-200',
-  'General / Cross-Cutting': 'bg-slate-100 text-slate-700 border-slate-200',
+  'Access Management': 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800',
+  'Change Management': 'bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-900/30 dark:text-purple-300 dark:border-purple-800',
+  'IT Operations': 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-800',
+  'Program / System Development': 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800',
+  'Data Privacy / Governance': 'bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-900/30 dark:text-rose-300 dark:border-rose-800',
+  'Business Continuity & Incident': 'bg-cyan-50 text-cyan-700 border-cyan-200 dark:bg-cyan-900/30 dark:text-cyan-300 dark:border-cyan-800',
+  'General / Cross-Cutting': 'bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:border-slate-600',
 };
 
 function itgcColor(domain) { return ITGC_COLORS[domain] || ITGC_COLORS['General / Cross-Cutting']; }
@@ -185,11 +195,38 @@ function normalizeFramework(framework) {
   return { ...framework, weeks };
 }
 
-export default function LearningFrameworkPage({ framework }) {
+export default function LearningFrameworkPage({ framework, extraSections }) {
+  const isHipaa = framework.roleAware === true;
+  const inner = <FrameworkBody framework={framework} extraSections={extraSections} key={framework.id} />;
+  if (!isHipaa) return inner;
+  return (
+    <HipaaRoleProvider>
+      <HipaaRoleGate>
+        <InnerGateScope>
+          {inner}
+        </InnerGateScope>
+      </HipaaRoleGate>
+    </HipaaRoleProvider>
+  );
+}
+
+function InnerGateScope({ children }) {
+  const ctx = useHipaaRole();
+  return (
+    <>
+      <UnresolvedFlowsBanner />
+      {children}
+    </>
+  );
+}
+
+function FrameworkBody({ framework, extraSections }) {
   const data = normalizeFramework(framework);
+  const extensionNodes = extraSections ?? framework.extraSections;
   const [progress, setProgress] = useState({});
   const [expandedTask, setExpandedTask] = useState(null);
   const storageKey = `${STORAGE_PREFIX}${framework.id}`;
+  const hipaaRole = useHipaaRole();
 
   useEffect(() => {
     try {
@@ -328,12 +365,12 @@ export default function LearningFrameworkPage({ framework }) {
                 const Meta = LEVEL_META[idx] || LEVEL_META[0];
                 const Icon = Meta.icon;
                 return (
-                  <div key={week.week} className={`text-center p-3 rounded-xl border transition-all ${unlocked ? colors.bgLight + ' border-current ' + colors.border : 'bg-gray-50 border-gray-200 opacity-50'}`}>
-                    <Icon className={`w-6 h-6 mx-auto mb-1 ${unlocked ? colors.text : 'text-gray-400'}`} />
-                    <div className={`text-lg font-bold ${unlocked ? colors.text : 'text-gray-400'}`}>
+                  <div key={week.week} className={`text-center p-3 rounded-xl border transition-all ${unlocked ? colors.bgLight + ' border-current ' + colors.border : 'bg-gray-50 border-gray-200 opacity-50 dark:bg-slate-800/60 dark:border-slate-700 dark:opacity-90'}`}>
+                    <Icon className={`w-6 h-6 mx-auto mb-1 ${unlocked ? colors.text : 'text-gray-500 dark:text-slate-300'}`} />
+                    <div className={`text-lg font-bold ${unlocked ? colors.text : 'text-gray-500 dark:text-slate-300'}`}>
                       {unlocked ? `${weekStats[week.week]?.pct || 0}%` : <Lock className="w-4 h-4 inline" />}
                     </div>
-                    <div className={`text-xs font-medium ${unlocked ? colors.text : 'text-gray-400'}`}>Lvl {idx + 1}: {Meta.label}</div>
+                    <div className={`text-xs font-medium ${unlocked ? colors.text : 'text-gray-500 dark:text-slate-300'}`}>Lvl {idx + 1}: {Meta.label}</div>
                   </div>
                 );
               })}
@@ -380,24 +417,24 @@ export default function LearningFrameworkPage({ framework }) {
           const justUnlocked = unlocked && idx > 0 && !progress[`seen-level-${week.week}`];
 
           return (
-            <div key={week.week} className={`mb-8 rounded-2xl border overflow-hidden transition-all ${unlocked ? 'bg-white border-gray-200 shadow-sm' : 'bg-gray-50 border-gray-200 opacity-60'}`}>
+            <div key={week.week} className={`mb-8 rounded-2xl border overflow-hidden transition-all ${unlocked ? 'bg-white border-gray-200 shadow-sm' : 'bg-gray-50 border-gray-200 opacity-60 dark:bg-slate-800/50 dark:border-slate-700 dark:opacity-90'}`}>
               {/* Level Header */}
-              <div className={`px-6 py-5 flex items-center justify-between ${unlocked ? colors.bg : 'bg-gray-400'}`}>
-                <div className="flex items-center gap-3">
+              <div className={`px-5 sm:px-6 py-5 flex flex-wrap items-center justify-between gap-x-4 gap-y-3 ${unlocked ? colors.bg : 'bg-gray-400 dark:bg-gray-700'}`}>
+                <div className="flex items-start gap-3 min-w-0 flex-1 basis-[240px]">
                   {unlocked ? (
-                    <Icon className="w-6 h-6 text-white" />
+                    <Icon className="w-6 h-6 text-white shrink-0 mt-0.5" />
                   ) : (
-                    <Lock className="w-6 h-6 text-white/60" />
+                    <Lock className="w-6 h-6 text-white/70 dark:text-slate-300 shrink-0 mt-0.5" />
                   )}
-                  <div>
-                    <h2 className="text-xl font-bold text-white flex items-center gap-2">
+                  <div className="min-w-0">
+                    <h2 className="text-lg sm:text-xl font-bold leading-snug text-white flex flex-wrap items-center gap-x-2 gap-y-1.5">
                       Level {idx + 1}: {Meta.label}
-                      <span className="text-xs font-normal opacity-80 bg-white/20 px-2 py-0.5 rounded-full">{week.title}</span>
+                      <span className="text-[11px] sm:text-xs font-medium text-white bg-white/25 ring-1 ring-white/30 px-2.5 py-0.5 rounded-full max-w-full whitespace-normal">{week.title}</span>
                     </h2>
-                    <p className="text-sm text-white/80 mt-0.5">{Meta.desc} — {week.description}</p>
+                    <p className="text-sm text-white/90 mt-0.5">{Meta.desc} — {week.description}</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 pr-16 shrink-0 ml-auto">
                   <div className={`text-right px-3 py-1 rounded-full text-sm font-medium ${weekStats[week.week]?.pct >= 80 ? 'bg-white/30 text-white' : 'bg-white/10 text-white/70'}`}>
                     {weekStats[week.week]?.completed || 0}/{week.tasks.length} {weekStats[week.week]?.pct >= 80 ? '✓' : ''}
                   </div>
@@ -412,8 +449,8 @@ export default function LearningFrameworkPage({ framework }) {
               {/* Level Content */}
               {!unlocked && (
                 <div className="px-6 py-8 text-center">
-                  <Lock className="w-10 h-10 text-gray-300 mx-auto mb-3" />
-                  <p className="text-gray-500 text-sm">Complete <strong>{LEVEL_META[idx - 1]?.label || 'previous level'}</strong> ({weekStats[data.weeks[idx - 1]?.week]?.pct || 0}% / 80%) to unlock this level</p>
+                  <Lock className="w-10 h-10 text-gray-500 mx-auto mb-3 dark:text-slate-300" />
+                  <p className="text-gray-600 dark:text-slate-300 text-sm">Complete <strong>{LEVEL_META[idx - 1]?.label || 'previous level'}</strong> ({weekStats[data.weeks[idx - 1]?.week]?.pct || 0}% / 80%) to unlock this level</p>
                 </div>
               )}
 
@@ -455,6 +492,40 @@ export default function LearningFrameworkPage({ framework }) {
                                 <TaskDetail label="Control" value={task.control} color={colors.text} />
                                 <TaskDetail label="How" value={task.how} color={colors.text} />
                                 <TaskDetail label="Check" value={task.check} color={colors.text} />
+                                {task.citation && (
+                                  <CitationRow
+                                    citation={{
+                                      ...task.citation,
+                                      applies: hipaaRole ? hipaaRole.roleApplies(task.citation.roles) : null,
+                                      roleShorts: ROLE_SHORTS,
+                                    }}
+                                  />
+                                )}
+                                {Array.isArray(task.links) && task.links.length > 0 && (
+                                  <div className="flex flex-wrap gap-2 mt-1 ml-5">
+                                    {task.links.map((link, li) => (
+                                      <a
+                                        key={li}
+                                        href={link.href}
+                                        onClick={(e) => {
+                                          e.stopPropagation();
+                                          if (link.href && link.href.startsWith('#')) {
+                                            e.preventDefault();
+                                            const el = document.getElementById(link.href.slice(1));
+                                            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                          }
+                                        }}
+                                        target={link.href && link.href.startsWith('http') ? '_blank' : undefined}
+                                        rel={link.href && link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                                        className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border transition ${colors.bgLight} ${colors.text} ${colors.border} hover:opacity-80`}
+                                      >
+                                        <BookOpen className="w-3.5 h-3.5" />
+                                        {link.label}
+                                        {link.href && link.href.startsWith('http') && <ExternalLink className="w-3 h-3" />}
+                                      </a>
+                                    ))}
+                                  </div>
+                                )}
                               </div>
                             )}
                           </div>
@@ -471,23 +542,28 @@ export default function LearningFrameworkPage({ framework }) {
               {/* Level Complete Banner */}
               {unlocked && weekStats[week.week]?.pct >= 100 && (
                 <div className={`px-6 py-4 text-center text-sm font-medium bg-green-50 text-green-700 border-t border-green-200`}>
-                  ✓ Level {idx + 1} complete! {idx < data.weeks.length - 1 ? `Level ${idx + 2} is now unlocked.` : 'All levels complete! You\'re certified!'}
+                  ✓ Level {idx + 1} complete! {idx < data.weeks.length - 1 ? `Level ${idx + 2} is now unlocked.` : 'All levels complete. You are audit-ready — this is not a certification, and nobody has validated your organization.'}
                 </div>
               )}
             </div>
           );
         })}
 
+        {/* Framework-specific extension slots (opt-in via framework.extraSections) */}
+        {Array.isArray(extensionNodes) && extensionNodes.map((node, i) => (
+          <Fragment key={`extra-${i}`}>{node}</Fragment>
+        ))}
+
         {/* ISO 42001 Link */}
         <div className={`bg-white rounded-2xl border ${colors.border} p-6 mb-8`}>
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-gradient-to-r from-[#ede9fe] to-[#fef3c7] rounded-xl">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-gradient-to-r from-[#ede9fe] to-[#fef3c7] dark:from-[#2d1b69] dark:to-[#3a2a17] rounded-xl">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-xl bg-[#7c3aed] flex items-center justify-center">
                 <BookOpen className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900">ISO/IEC 42001:2023 — AI Governance</h3>
-                <p className="text-gray-600 text-sm">Extend your compliance expertise to AI governance with the world's first AI management system standard</p>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-text-dark-primary">ISO/IEC 42001:2023 — AI Governance</h3>
+                <p className="text-gray-600 dark:text-text-dark-secondary text-sm">Extend your compliance expertise to AI governance with the world's first AI management system standard</p>
               </div>
             </div>
             <a href="https://inspiring-ganache-fdd3be.netlify.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#7c3aed] text-white px-5 py-2.5 rounded-lg hover:bg-[#6d28d9] transition font-medium whitespace-nowrap">
@@ -499,7 +575,7 @@ export default function LearningFrameworkPage({ framework }) {
 
         {/* Startup Gaps & Pushback */}
         {(() => {
-          const isPrivacy = /privacy|gdpr|dpdpa|ccpa|coppa|27701|lgpd|pdpa|pipl/i.test(framework.name);
+          const isPrivacy = isHipaaFramework(framework) || /privacy|gdpr|dpdpa|ccpa|coppa|27701|lgpd|pdpa|pipl/i.test(framework.name);
           const gaps = framework.startupGaps && framework.startupGaps.length
             ? framework.startupGaps
             : GENERIC_GAPS;
@@ -535,7 +611,7 @@ export default function LearningFrameworkPage({ framework }) {
           <FindingsDatabase color={colors} />
         )}
 
-        <PrivacyDocuments framework={framework} colors={colors} />
+        {!isHipaaFramework(framework) && <PrivacyDocuments framework={framework} colors={colors} />}
 
       </div>
     </section>
@@ -554,6 +630,100 @@ function TaskDetail({ label, value, color }) {
         <ChevronRight className={`w-3 h-3 transition-transform ${open ? 'rotate-90' : ''}`} />
       </button>
       {open && <p className="text-gray-600 mt-1 ml-7 leading-relaxed">{value}</p>}
+    </div>
+  );
+}
+
+const MANDATE_STYLES = {
+  required: 'bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-900/30 dark:text-rose-200 dark:border-rose-800',
+  addressable: 'bg-amber-50 text-amber-800 border-amber-200 dark:bg-amber-900/30 dark:text-amber-200 dark:border-amber-800',
+  mixed: 'bg-violet-50 text-violet-700 border-violet-200 dark:bg-violet-900/30 dark:text-violet-200 dark:border-violet-800',
+  guidance: 'bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-700 dark:text-slate-200 dark:border-slate-500',
+};
+
+const MANDATE_LABELS = {
+  required: 'Required',
+  addressable: 'Addressable',
+  mixed: 'Mixed range',
+  guidance: 'Not a HIPAA requirement',
+};
+
+function CitationRow({ citation }) {
+  const { status, sections, note, source, roles, roleNote, applies, roleShorts } = citation;
+  return (
+    <div className="mt-3 ml-5 p-3 rounded-lg border border-gray-200 dark:border-slate-600 bg-gray-50 dark:bg-slate-800/50">
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="text-[10px] font-bold uppercase tracking-wide text-gray-500 dark:text-slate-400">Citation</span>
+        {sections.length > 0 && (
+          <span className="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-200 text-slate-800 dark:bg-slate-600 dark:text-slate-100">
+            {sections.join(', ')}
+          </span>
+        )}
+        {status && status !== 'none' && (
+          <span className={`text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded border ${MANDATE_STYLES[status]}`}>
+            {MANDATE_LABELS[status]}
+          </span>
+        )}
+        {source && (
+          <a
+            href={source.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="inline-flex items-center gap-1 text-[11px] font-semibold text-blue-600 dark:text-blue-300 hover:underline"
+          >
+            {source.label} <ExternalLink className="w-3 h-3" />
+          </a>
+        )}
+      </div>
+
+      {status === 'addressable' && (
+        <p className="text-[11px] text-amber-800 dark:text-amber-200 mt-2 flex items-start gap-1.5">
+          <AlertTriangle className="w-3.5 h-3.5 shrink-0 mt-px" />
+          <span>Addressable is not optional. §164.306(d) requires you to assess whether it is reasonable and appropriate in your circumstances; if you do not implement it, document the decision and the alternative safeguard you used.</span>
+        </p>
+      )}
+      {status === 'mixed' && (
+        <p className="text-[11px] text-violet-800 dark:text-violet-200 mt-2 flex items-start gap-1.5">
+          <AlertTriangle className="w-3.5 h-3.5 shrink-0 mt-px" />
+          <span>This range mixes required and addressable specifications. Check the individual spec before treating it as required — e.g. §164.312(a)(1)(ii)(A) and (B) are addressable, while §164.312(b) and (c)(1) are required.</span>
+        </p>
+      )}
+
+      {status === 'guidance' && (
+        <p className="text-[11px] text-slate-600 dark:text-slate-300 mt-2 flex items-start gap-1.5">
+          <Info className="w-3.5 h-3.5 shrink-0 mt-px" />
+          <span>No CFR section is cited because this is not a HIPAA requirement. It is HHS guidance, a third-party framework, or internal practice — useful, but you are not obliged to do it.</span>
+        </p>
+      )}
+
+      {Array.isArray(roles) && roles.length > 0 && (
+        <div className="mt-2 pt-2 border-t border-gray-200 dark:border-slate-600">
+          <div className="flex flex-wrap items-center gap-1.5">
+            <span className="text-[10px] font-bold uppercase tracking-wide text-gray-500 dark:text-slate-400">Applies to</span>
+            {roles.map(r => (
+              <span
+                key={r}
+                className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border ${
+                  applies === null
+                    ? 'bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-700 dark:text-slate-200 dark:border-slate-500'
+                    : applies
+                      ? 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-200 dark:border-emerald-800'
+                      : 'bg-gray-100 text-gray-400 border-gray-200 dark:bg-slate-800 dark:text-slate-500 dark:border-slate-600'
+                }`}
+              >
+                {roleShorts[r] || r}
+              </span>
+            ))}
+            {applies === false && (
+              <span className="text-[10px] font-semibold text-gray-400 dark:text-slate-500">outside your role</span>
+            )}
+          </div>
+          {roleNote && (
+            <p className="text-[11px] text-gray-600 dark:text-slate-300 mt-1.5 leading-relaxed">{roleNote}</p>
+          )}
+        </div>
+      )}
     </div>
   );
 }
@@ -580,7 +750,7 @@ function GapCard({ item, colors }) {
             <ChevronRight className={`w-4 h-4 shrink-0 text-gray-400 transition-transform ${open ? 'rotate-90' : ''}`} />
           </h4>
           {!open && (
-            <p className="text-sm text-gray-500 mt-1 italic">"{item.pushback || 'Read common pushback & how to respond'}"</p>
+            <p className="text-sm text-gray-700 mt-1 italic dark:text-slate-300">"{item.pushback || 'Read common pushback & how to respond'}"</p>
           )}
         </div>
       </button>

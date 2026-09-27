@@ -11,8 +11,9 @@ import {
   GRC_RESPONSE_PLAYBOOK,
   ASSISTANT_SUGGESTIONS,
 } from './grcKnowledgeBase.js';
+import { buildSystemPrompt } from './retrieval.js';
 
-const order = ['soc2', 'iso27001', 'pci', 'hipaa', 'nist', 'gdpr', 'cis', 'hitrust', 'dpdpa', 'fedramp', 'cjis'];
+const order = ['soc2', 'iso27001', 'iso42001', 'pci', 'hipaa', 'nist', 'gdpr', 'cis', 'hitrust', 'dpdpa', 'fedramp', 'cjis'];
 
 const INTENTS = [
   { id: 'pushback', words: ['pushback', 'push back', 'rebut', 'respond', 'dispute', 'challenge', 'defend', 'appeal', 'argue', 'push-back', 'disagreement'] },
@@ -26,6 +27,7 @@ const INTENTS = [
 const FW_MATCH = [
   { slug: 'soc2', re: /\bsoc[ _\-]?2\b|trust services|tsc/i },
   { slug: 'iso27001', re: /\biso[ _\-]?27001\b|isms|\bism\b/i },
+  { slug: 'iso42001', re: /\biso[ _\-]?42001\b|ai management system|\baims\b|ai governance\b|bias assessment|foundation model|model card/i },
   { slug: 'pci', re: /\bpci[ _\-]?dss?\b|cardholder|payment card|\bpan\b|pci-dss/i },
   { slug: 'hipaa', re: /\bhipaa\b|\bphi\b|health insurance|hipaa\b/i },
   { slug: 'nist', re: /\bnist\b|\bcsf\b|800-171|800-53/i },
@@ -357,7 +359,7 @@ export function askGrcAssistant(query) {
     const fw = fwObjs[0];
     summary = `Deep dive into ${fw.name}. Here is the essentials:`;
     if (fw.policies.length) {
-      sections.push({ heading: `${fw.name} — key policies → controls`, why: 'Controls are the concrete requirements the auditor will test.', bullets: fw.policies.map(p => `• ${p.area}: ${p.controls.join('; ')} ${p.note ? '— ' + p.note : ''}`) });
+      sections.push({ heading: `${fw.name} — key policies → controls`, why: 'Controls are the concrete requirements the auditor will test.', bullets: fw.policies.map(p => `• ${p.area}: ${p.controls.map(c => typeof c === 'object' ? c.text + (c.freq ? ' (frequency: ' + c.freq + ')' : '') : c).join('; ')} ${p.note ? '— ' + p.note : ''}`) });
     }
     if (fw.observations.length) {
       sections.push({ heading: 'Common audit observations', why: 'Findings usually trace back to missing evidence.', bullets: fw.observations.map(o => `• ${o.finding} — ${o.why}`) });
@@ -402,4 +404,93 @@ export function askGrcAssistant(query) {
   const nextSteps = recommendation.nextSteps;
 
   return { summary, sections, recommendation, nextSteps, intents: intents.map(i => i.id), frameworks: fws, suggestions: ASSISTANT_SUGGESTIONS, rawQuery: query };
+}
+
+// ---------- structured JSON output schema ----------
+// Flattens the local rule-based answer into the canonical assistant schema used
+// by the chat UI: { summary, steps[{number,title,description}], discrepancies, quick_actions }.
+export function buildStructuredAnswer(answer = {}) {
+  const rec = answer.recommendation || {};
+  const steps = (rec.steps || []).map((s, i) => ({
+    number: i + 1,
+    title: s.title || '',
+    description: s.why || s.evidence || '',
+  }));
+
+  const discrepancies = [];
+  if (
+    answer.intents?.includes('discrepancy') ||
+    (answer.sections || []).some(s => /discrepan/i.test(s.heading))
+  ) {
+    const rel = (answer.frameworks?.length
+      ? DISCREPANCY_MATRIX.filter(row => {
+          const s = JSON.stringify(row).toLowerCase();
+          return answer.frameworks.some(f => s.includes((FRAMEWORK_KB[f]?.name || f).toLowerCase().split(' ')[0]));
+        })
+      : DISCREPANCY_MATRIX);
+    rel.slice(0, 4).forEach(r => discrepancies.push(`${r.topic}: ${r.conflict}\n→ Reconcile: ${r.reconcile}`));
+  }
+
+  const quick_actions = (rec.nextSteps || answer.nextSteps || []).slice(0, 4);
+
+  return {
+    summary: answer.summary || '',
+    steps,
+    discrepancies,
+    quick_actions,
+    // legacy fields kept for the existing section renderer
+    recommendation: answer.recommendation,
+    sections: answer.sections || [],
+    frameworks: answer.frameworks || [],
+    suggestions: (answer.suggestions || []).slice(0, 4),
+    intents: answer.intents || [],
+    rawQuery: answer.rawQuery,
+  };
+}
+
+/**
+ * Full reply path: RAG retrieval context (top control mappings) + last N turns
+ * are injected into the system prompt for the remote LLM; the LLM is asked to
+ * return the structured JSON schema. If the remote path is unavailable (offline,
+ * mocked, 404, timeout) this falls back to the fully local rule-based answer,
+ * still normalized to the same structured schema.
+ */
+export async function replyStructured(query, { context = [], history = [], useRemote = true } = {}) {
+  const local = buildStructuredAnswer(askGrcAssistant(query));
+
+  if (useRemote) {
+    try {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 7000);
+      const res = await fetch('/api/gemini', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: query.trim(), context, history, structured: true, system_prompt: buildSystemPrompt(query, context, history) }),
+        signal: controller.signal,
+      });
+      clearTimeout(timer);
+      if (res.ok) {
+        const data = await res.json();
+        const structured = data?.structured || data?.answer || data;
+        if (structured && typeof structured === 'object' && (Array.isArray(structured.steps) || structured.summary)) {
+          return {
+            summary: structured.summary || local.summary,
+            steps: Array.isArray(structured.steps)
+              ? structured.steps.map((s, i) => ({ number: s.number || i + 1, title: s.title || '', description: s.description || '' }))
+              : local.steps,
+            discrepancies: Array.isArray(structured.discrepancies) ? structured.discrepancies : local.discrepancies,
+            quick_actions: Array.isArray(structured.quick_actions) ? structured.quick_actions.slice(0, 4) : local.quick_actions,
+            sections: [],
+            frameworks: local.frameworks,
+            suggestions: local.suggestions,
+            intents: local.intents,
+            rawQuery: query,
+            built_from: 'gemini-rag',
+          };
+        }
+      }
+    } catch { /* fall through to the local answer */ }
+  }
+
+  return { ...local, built_from: useRemote ? 'local-rag-fallback' : 'local-rag' };
 }

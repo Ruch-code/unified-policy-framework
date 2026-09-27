@@ -1,4 +1,6 @@
-import LearningFrameworkPage from "../../components/LearningFrameworkPage";
+import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
+import StatementOfApplicability from "../../components/StatementOfApplicability.jsx";
+import ScopeWalkthrough from "../../components/ScopeWalkthrough.jsx";
 
 const FRAMEWORK = {
   id: "iso-27001-la",
@@ -32,6 +34,12 @@ const FRAMEWORK = {
           control: "Annex A in ISO 27001:2022 contains 93 controls across 4 themes: Organizational (37), People (8), Physical (14), Technological (34). Know where A.5 through A.8 fall.",
           how: "Build a reference card mapping each Annex A control family to the Statement of Applicability (SoA). Mark which controls are selected and justify any exclusions.",
           check: "Confirm every control listed in the SoA has a documented implementation status, responsible owner, and evidence location recorded.",
+          links: [
+            {
+              href: "#iso27001-soa",
+              label: "Open the Annex A reference card & SoA builder",
+            },
+          ],
         },
         {
           title: "Distinguish audit types: internal, external, and surveillance",
@@ -171,7 +179,13 @@ const FRAMEWORK = {
 };
 
 export default function Iso27001La() {
-  return <LearningFrameworkPage framework={FRAMEWORK} />;
+  return (
+    <>
+      <LearningFrameworkPage framework={FRAMEWORK} />
+      <ScopeWalkthrough />
+      <StatementOfApplicability />
+    </>
+  );
 }
 
 export { FRAMEWORK };

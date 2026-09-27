@@ -4,9 +4,9 @@ import { feature } from 'topojson-client';
 import wCountries from 'world-countries';
 import { Link, useNavigate } from 'react-router-dom';
 import { Compass, Clock, MapPin, X, ExternalLink, ChevronRight } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext.jsx';
 import countriesTopo from 'world-atlas/countries-110m.json';
-import { COUNTRY_TO_REGION, REGION_GROUPS, REGULATIONS, COUNTRY_META } from '../data/regions';
+import { COUNTRY_TO_REGION, REGION_GROUPS, REGULATIONS, COUNTRY_META } from '../data/regions.js';
 
 const numToAlpha2 = {};
 wCountries.forEach(c => {

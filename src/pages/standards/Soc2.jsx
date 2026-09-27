@@ -1,4 +1,6 @@
-import LearningFrameworkPage from "../../components/LearningFrameworkPage";
+import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
+import TscControlMatrix from "../../components/TscControlMatrix.jsx";
+import Soc2TechnicalSection from "../../components/Soc2TechnicalSection.jsx";
 
 const FRAMEWORK = {
   id: "soc2",
@@ -1104,7 +1106,13 @@ const FRAMEWORK = {
 };
 
 export default function Soc2() {
-  return <LearningFrameworkPage framework={FRAMEWORK} />;
+  return (
+    <>
+      <LearningFrameworkPage framework={FRAMEWORK} />
+      <Soc2TechnicalSection />
+      <TscControlMatrix />
+    </>
+  );
 }
 
 export { FRAMEWORK };

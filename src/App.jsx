@@ -1,41 +1,43 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
-import Layout from './components/Layout';
-import Home from './pages/Home';
-import AssessmentPage from './components/AssessmentPage';
-import RequireAuth from './components/RequireAuth';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import ForgotPassword from './pages/ForgotPassword';
-import AdminPanel from './pages/AdminPanel';
-import NewsletterEditor from './pages/NewsletterEditor';
-import KnowledgeBase from './pages/KnowledgeBase';
-import Profile from './pages/Profile';
-import { getFramework, FRAMEWORKS } from './data/registry';
+import Layout from './components/Layout.jsx';
+import Home from './pages/Home.jsx';
+import AssessmentPage from './components/AssessmentPage.jsx';
+import RequireAuth from './components/RequireAuth.jsx';
+import Login from './pages/Login.jsx';
+import Signup from './pages/Signup.jsx';
+import ForgotPassword from './pages/ForgotPassword.jsx';
+import AdminPanel from './pages/AdminPanel.jsx';
+import NewsletterEditor from './pages/NewsletterEditor.jsx';
+import KnowledgeBase from './pages/KnowledgeBase.jsx';
+import Profile from './pages/Profile.jsx';
+import { getFramework, FRAMEWORKS } from './data/registry.js';
 
-import Iso27001La from './pages/standards/Iso27001La';
-import Iso27001Li from './pages/standards/Iso27001Li';
-import Iso31000 from './pages/standards/Iso31000';
-import Iso27701 from './pages/standards/Iso27701';
-import PciDss from './pages/standards/PciDss';
-import Soc2 from './pages/standards/Soc2';
-import Hipaa from './pages/standards/Hipaa';
-import Nist from './pages/standards/Nist';
-import CippeUs from './pages/standards/CippeUs';
-import Hitrust from './pages/standards/Hitrust';
-import Coppa from './pages/standards/Coppa';
-import CcpaCpra from './pages/standards/CcpaCpra';
-import Gdpr from './pages/standards/Gdpr';
-import CippeEu from './pages/standards/CippeEu';
-import Dpdpa from './pages/standards/Dpdpa';
-import SecuritiesExchangeBoardIndia from './pages/standards/SecuritiesExchangeBoardIndia';
-import ReserveBankOfIndia from './pages/standards/ReserveBankOfIndia';
-import Cscrf from './pages/standards/Cscrf';
-import CertIn from './pages/standards/CertIn';
+import Iso27001La from './pages/standards/Iso27001La.jsx';
+import Iso27001Li from './pages/standards/Iso27001Li.jsx';
+import Iso31000 from './pages/standards/Iso31000.jsx';
+import Iso27701 from './pages/standards/Iso27701.jsx';
+import PciDss from './pages/standards/PciDss.jsx';
+import Soc2 from './pages/standards/Soc2.jsx';
+import Hipaa from './pages/standards/Hipaa.jsx';
+import Nist from './pages/standards/Nist.jsx';
+import CippeUs from './pages/standards/CippeUs.jsx';
+import Hitrust from './pages/standards/Hitrust.jsx';
+import Coppa from './pages/standards/Coppa.jsx';
+import CcpaCpra from './pages/standards/CcpaCpra.jsx';
+import Gdpr from './pages/standards/Gdpr.jsx';
+import CippeEu from './pages/standards/CippeEu.jsx';
+import Dpdpa from './pages/standards/Dpdpa.jsx';
+import SecuritiesExchangeBoardIndia from './pages/standards/SecuritiesExchangeBoardIndia.jsx';
+import ReserveBankOfIndia from './pages/standards/ReserveBankOfIndia.jsx';
+import Cscrf from './pages/standards/Cscrf.jsx';
+import CertIn from './pages/standards/CertIn.jsx';
 
-import Lgpd from './pages/standards/Lgpd';
-import Pdpa from './pages/standards/Pdpa';
-import Pipl from './pages/standards/Pipl';
-import Cis from './pages/standards/Cis';
+import Lgpd from './pages/standards/Lgpd.jsx';
+import Pdpa from './pages/standards/Pdpa.jsx';
+import Pipl from './pages/standards/Pipl.jsx';
+import Cis from './pages/standards/Cis.jsx';
+import Aigp from './pages/standards/Aigp.jsx';
+import AIGovernance from './pages/AIGovernance.jsx';
 
 function AssessRoute() {
   const { pathname } = useLocation();
@@ -64,7 +66,7 @@ function App() {
   return (
     <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<RequireAuth><Home /></RequireAuth>} />
+          <Route index element={<Protected><Home /></Protected>} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
           <Route path="forgot" element={<ForgotPassword />} />
@@ -96,6 +98,8 @@ function App() {
           <Route path="pdpa" element={<Protected><Pdpa /></Protected>} />
           <Route path="pipl" element={<Protected><Pipl /></Protected>} />
           <Route path="cis" element={<Protected><Cis /></Protected>} />
+          <Route path="aigp" element={<Protected><Aigp /></Protected>} />
+          <Route path="ai-governance" element={<Protected><AIGovernance /></Protected>} />
           <Route path="*" element={<Protected><AssessRoute /></Protected>} />
         </Route>
       </Routes>

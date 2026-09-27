@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import api from '../utils/api';
-import ProductCard from '../components/ProductCard';
+import api from '../utils/api.js';
+import ProductCard from '../components/ProductCard.jsx';
 import { Filter, X, ChevronDown, ChevronUp } from 'lucide-react';
 
 export default function Products() {

@@ -1,4 +1,5 @@
-import LearningFrameworkPage from "../../components/LearningFrameworkPage";
+import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
+import { buildCitation, classifyRoles } from "../../data/hipaaDomain.js";
 
 const FRAMEWORK = {
   id: "hipaa",
@@ -10,37 +11,37 @@ const FRAMEWORK = {
   basePath: "/hipaa",
   startupGaps: [
     {
-      gap: "No BAA in place before sharing PHI (or using PHI-adjacent tools)",
+      gap: "Sharing PHI with a vendor before you know whether a BAA is required",
       pushback: "It's just an analytics tool / email tool, do we really need a BAA?",
-      reality: "A Business Associate Agreement is REQUIRED (HIPAA Privacy/Security Rule) before a vendor that handles PHI/business associate data starts working. Tooling that touches PHI without a BAA is a common, serious finding.",
-      leantip: "Inventory which vendors touch PHI and get a signed BAA (most major SaaS offer a HIPAA addendum / BAA form). No BAA → no PHI. Prefer vendors that support BAA from the start."
+      reality: "A BAA is required when the vendor is a business associate — meaning it creates, receives, maintains or transmits PHI on your behalf (45 CFR §160.103, §164.504(e)). A tool that never handles PHI is not a business associate just because it handles personal data, and a BAA is not a general data-processing contract. The test is factual: what does the vendor actually do with the data?",
+      leantip: "For each vendor, write down whether it handles PHI on your behalf. If yes, no BAA means no PHI. If no, the ordinary privacy and security terms apply instead. Note that a BAA only helps if it binds the vendor's own subprocessors — ask for the subprocessor list."
     },
     {
       gap: "Mistaking BAA for 'the vendor handles compliance for me'",
       pushback: "Our cloud provider has a BAA, so we're covered.",
-      reality: "A BAA allocates responsibilities; it does NOT transfer your compliance. You remain the covered entity / business associate responsible for safeguards and breach notification.",
-      leantip: "Treat the BAA as a risk-shifting document, not a waiver. Keep primary responsibility for the Security Rule safeguards and your own risk analysis."
+      reality: "A BAA allocates responsibilities; it does NOT transfer your compliance. You remain the covered entity or business associate responsible for the safeguards you choose and for breach reporting.",
+      leantip: "Treat the BAA as a risk-shifting document, not a waiver. You still own the Security Rule risk analysis and the controls you are required to implement yourself."
     },
     {
       gap: "No HIPAA Security Rule risk analysis on the books",
       pushback: "We did a pen test; that's basically the same.",
-      reality: "HIPAA requires a risk analysis (an assessment of threats/vulnerabilities to ePHI) distinct from a pentest. Missing it is a top OCR penalty factor.",
-      leantip: "Run a structured risk analysis (identify ePHI flows, threats, likelihood/impact), document results, and log follow-ups. Repeat annually or on material change."
+      reality: "§164.308(a)(1)(ii)(A) requires an accurate and thorough assessment of potential risks and vulnerabilities to ePHI. A penetration test is one input to that, not a substitute for it. HHS expects the risk analysis to cover all ePHI, not just the system that was tested.",
+      leantip: "Run a structured risk analysis across all ePHI — assets, threats, likelihood, impact — and document the result. The rule requires periodic re-evaluation as circumstances change; it does not prescribe a fixed interval, so set and justify your own cadence."
     },
     {
       gap: "Sending ePHI unencrypted (email, spreadsheets)",
       pushback: "It's internal, and encryption is a pain.",
-      reality: "Encryption is addressable but expected for ePHI in transit/at rest; unencrypted exposure is a breach and a frequent finding.",
-      leantip: "Enable encryption by default (TLS, encrypted storage, encrypted email — Cipher, Zix, or cloud-native), and disable unencrypted channels for anything with PHI."
+      reality: "Encryption of ePHI at rest (§164.312(a)(2)(iv)) and in transit (§164.312(e)(2)(ii)) are addressable, which means you must assess and document the decision either way. Unencrypted ePHI that is later lost or exposed is what turns a gap into a reportable breach.",
+      leantip: "Enable encryption by default (TLS, encrypted storage, encrypted email) and document your assessment. If you decide not to implement it, §164.306(d) requires you to record why, and what alternative you used."
     },
     {
       gap: "No workforce training or access-control documentation",
       pushback: "Everyone here is trustworthy, training is overkill.",
-      reality: "The Security Rule requires workforce training and least-privilege access. AUTHG/audit and access logs are checked in audits and investigations.",
-      leantip: "Run an annual HIPAA training, restrict access via your IDP to least privilege, and enable audit logs that you review periodically."
+      reality: "§164.308(a)(5) requires workforce training, and §164.308(a)(4) requires policies for authorising access. HIPAA training is judged on whether you can produce records of it, not on whether people already knew the rules.",
+      leantip: "Run HIPAA training and keep the records. The rule requires reminders at least annually and retraining when responsibilities change or material happens; new workforce members need it within a reasonable time after joining. Restrict access to least privilege through your identity provider and enable the audit logging you will need as evidence."
     }
   ],
-  privacyStartupNotes: "HIPAA note: unlike GDPR, HIPAA doesn't use 'ROPA/DPIA' — its equivalents are the Security Rule risk analysis and the Privacy Rule's use/disclosure safeguards. For US healthcare startups dealing with PHI, the BAA is the single highest-impact, most-commonly-missed document — get it signed with every vendor that touches ePHI, from day one.",
+  privacyStartupNotes: "Scope note: HIPAA has no ROPA or DPIA equivalent. The nearest Privacy Rule analogue is the Security Rule risk analysis, and the Privacy Rule's use-and-disclosure limits. The NPP is a covered-entity obligation — if you are a business associate you support the covered entity's notice rather than publishing your own. Guidance and enforcement: HHS OCR (hhs.gov/hipaa) and the current 45 CFR Part 164 text on eCFR.",
   weeks: 4,
   milestones: 3,
   referenceUrl: "https://www.hhs.gov/hipaa/index.html",
@@ -620,7 +621,7 @@ const FRAMEWORK = {
     },
     {
       week: 4,
-      title: "HIPAA Certified — Audit Readiness, Enforcement, and Certification",
+      title: "Audit Readiness, Enforcement, and What Certification Does Not Mean",
       days: [
         {
           day: "Monday",
@@ -811,6 +812,35 @@ const FRAMEWORK = {
     }
   ]
 };
+
+// Attach a structured citation to every task, derived from its existing
+// `control` string. This is an additive layer: task titles, order, count and
+// therefore the saved progress keys (w{week}-{index}) are all untouched.
+function withCitations(modules) {
+  return modules.map(week => ({
+    ...week,
+    days: (week.days || []).map(day => ({
+      ...day,
+      tasks: (day.tasks || []).map(task => {
+        if (typeof task === 'string') return task;
+        const citation = buildCitation(task.control);
+        const role = classifyRoles(task.title, task.control);
+        return {
+          ...task,
+          citation: {
+            ...citation,
+            roles: role.roles,
+            kind: role.kind,
+            roleNote: role.note,
+          },
+        };
+      }),
+    })),
+  }));
+}
+
+FRAMEWORK.modules = withCitations(FRAMEWORK.modules);
+FRAMEWORK.roleAware = true;
 
 export default function Hipaa() {
   return <LearningFrameworkPage framework={FRAMEWORK} />;

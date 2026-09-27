@@ -1,4 +1,4 @@
-import LearningFrameworkPage from "../../components/LearningFrameworkPage";
+import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 
 const FRAMEWORK = {
   id: 'dpdpa',
