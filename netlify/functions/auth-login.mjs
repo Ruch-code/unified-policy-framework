@@ -1,3 +1,4 @@
+// DEPLOY MARKER: jose-v1
 import { connectDb, User, signToken, json, seedAdmin } from './_shared/auth.js';
 import bcrypt from 'bcryptjs';
 
