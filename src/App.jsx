@@ -64,7 +64,7 @@ function App() {
   return (
     <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
+          <Route index element={<RequireAuth><Home /></RequireAuth>} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
           <Route path="forgot" element={<ForgotPassword />} />

@@ -3,6 +3,7 @@ import WorldMap from '../components/WorldMap';
 import RegionControlMap from '../components/RegionControlMap';
 import CertAdvisor from '../components/CertAdvisor';
 import ErrorBoundary from '../components/ErrorBoundary';
+import VendorRiskManagement from '../components/VendorRiskManagement';
 import { useState, useEffect } from 'react';
 
 function useDark() {
@@ -120,6 +121,7 @@ const INDUSTRIES = [
 export default function Home() {
   const isDark = useDark();
   return (
+    <>
     <section className="min-h-screen bg-gray-50 py-12">
       <div className="container mx-auto px-4">
         {/* Hero */}
@@ -239,5 +241,7 @@ export default function Home() {
         </div>
       </div>
     </section>
+    <VendorRiskManagement isDark={isDark} />
+    </>
   );
 }

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import AuthorAboutPopup from '../components/AuthorAboutPopup';
-import PetMascots from '../components/PetMascots';
 import { UserRound } from 'lucide-react';
 
 export default function Login() {
@@ -14,7 +13,6 @@ export default function Login() {
   const [info, setInfo] = useState('');
   const [loading, setLoading] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
-  const [showPets, setShowPets] = useState(false);
 
   const submit = async (e) => {
     e.preventDefault();
@@ -71,7 +69,6 @@ export default function Login() {
               <UserRound className="w-4 h-4" /> About the author
             </span>
           </div>
-          <PetMascots show={showPets} />
         </div>
       </div>
 
