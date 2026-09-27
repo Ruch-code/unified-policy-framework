@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Cookie, FileSearch, Database, FileText, ShieldCheck, Wrench, AlertTriangle, Lightbulb, ListChecks, ExternalLink, ChevronRight, CheckCircle2 } from 'lucide-react';
 
-const PRIVACY_DOC_IDS = ['gdpr', 'dpdpa', 'ccpa-cpra', 'coppa', 'lgpd', 'pdpa', 'pipl', 'iso27701', 'hipaa', 'hitrust', 'cippe-eu', 'cippe-us'];
+// These are the non-HIPAA privacy regimes. HIPAA is deliberately absent: the
+// Notice of Privacy Practices, the Security Rule risk analysis and BAA tracking
+// are covered by the HIPAA scope and citation layer instead, and GDPR/cookie/
+// ROPA/DPIA material would misrepresent them as HIPAA duties.
+const PRIVACY_DOC_IDS = ['gdpr', 'dpdpa', 'ccpa-cpra', 'coppa', 'lgpd', 'pdpa', 'pipl', 'iso27701', 'hitrust', 'cippe-eu', 'cippe-us'];
 
 const CHECKLIST_KEY_PREFIX = 'compliance-privacy-docs-';
 

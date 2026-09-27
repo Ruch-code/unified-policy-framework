@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { X, Mail, Rocket, ShieldCheck, MessagesSquare } from 'lucide-react';
-import { AUTHOR } from '../data/author';
+import { AUTHOR } from '../data/author.js';
 
 export default function AuthorAboutPopup({ open, onClose }) {
   const [tab, setTab] = useState('about');

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Send } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext.jsx';
 
 const STATUS_META = {
   pending: { label: 'Pending', cls: 'bg-amber-100 text-amber-700 border-amber-200' },
@@ -82,8 +82,8 @@ export default function AdminPanel() {
 
       {/* All users */}
       <h2 className="text-lg font-bold text-gray-800 mt-8 mb-3">All users ({others.length})</h2>
-      <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
-        <table className="w-full text-sm">
+      <div className="bg-white rounded-2xl border border-gray-200 overflow-x-auto">
+        <table className="w-full text-sm min-w-[720px]">
           <thead className="bg-gray-50 text-left text-xs text-gray-500 uppercase tracking-wide">
             <tr>
               <th className="p-3 font-semibold">Name</th>

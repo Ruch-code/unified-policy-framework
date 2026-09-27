@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { ChevronRight, ChevronDown, CheckCircle, Shield, Star, Clock, DollarSign } from 'lucide-react';
-import { PROFILE_QUESTIONS, CERT_CATALOG, PRIORITY_META, recommendCertifications } from '../data/certRecommendations';
+import { Link } from 'react-router-dom';
+import { ChevronRight, ChevronDown, CheckCircle, Shield, Star, Clock, DollarSign, BookOpenCheck } from 'lucide-react';
+import { PROFILE_QUESTIONS, CERT_CATALOG, PRIORITY_META, recommendCertifications } from '../data/certRecommendations.js';
+import { relevantPlaybooks } from '../data/playbookFilter.js';
 
 export default function CertAdvisor() {
   const [step, setStep] = useState(0); // 0-3 = questions, 4 = results
@@ -49,6 +51,8 @@ export default function CertAdvisor() {
   const restart = () => { setStep(0); setAnswers({}); setResult(null); setBizInsight(null); setWebsite(''); };
 
   const priorityForLevel = (level) => PRIORITY_META.find(p => p.level === level) || PRIORITY_META[0];
+
+  const livePlaybooks = relevantPlaybooks(answers);
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200 p-6 mb-8">
@@ -132,6 +136,31 @@ export default function CertAdvisor() {
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
+
+          {livePlaybooks.length > 0 && (
+            <div className="mt-5 rounded-xl border border-indigo-200 bg-indigo-50/50 p-4">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <h4 className="text-xs font-bold text-indigo-800 uppercase tracking-wide flex items-center gap-1.5">
+                  <BookOpenCheck className="w-3.5 h-3.5" /> Playbooks that match your profile
+                </h4>
+                <span className="text-[11px] text-indigo-600 font-semibold">{livePlaybooks.length} in scope</span>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {livePlaybooks.slice(0, 8).map(p => (
+                  <Link key={p.id} to={p.path}
+                    className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold border transition ${
+                      p.highlight
+                        ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm'
+                        : 'bg-white text-indigo-800 border-indigo-200 hover:bg-indigo-100'
+                    }`}
+                    title={p.reasons.slice(0, 2).join(' · ')}>
+                    {p.name}
+                  </Link>
+                ))}
+              </div>
+              <p className="mt-2 text-[11px] text-indigo-900/70">Updating live as you answer — highlighted ones stack onto a single control baseline.</p>
+            </div>
+          )}
         </div>
       )}
 
@@ -171,6 +200,35 @@ export default function CertAdvisor() {
               </div>
             ))}
           </div>
+
+          {/* Relevant playbooks */}
+          {livePlaybooks.length > 0 && (
+            <div className="mb-6 rounded-xl border border-slate-200 bg-slate-50 p-4">
+              <h4 className="text-sm font-bold text-gray-900 mb-1 flex items-center gap-2">
+                <BookOpenCheck className="w-4 h-4 text-indigo-600" /> Open the playbooks that match this profile
+              </h4>
+              <p className="text-xs text-gray-600 mb-3">Dive straight into the full implementation runbooks — no sign-up walls, each one is your step-by-step build guide.</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {livePlaybooks.slice(0, 8).map(p => (
+                  <Link key={p.id} to={p.path}
+                    className={`flex items-center gap-3 p-3 rounded-xl border text-sm transition ${
+                      p.highlight
+                        ? 'bg-indigo-600 text-white border-indigo-600'
+                        : 'bg-white text-gray-800 border-gray-200 hover:border-indigo-300'
+                    }`}>
+                    <Star className={`w-4 h-4 shrink-0 ${p.highlight ? 'text-amber-300' : 'text-indigo-400'}`} />
+                    <span className="min-w-0">
+                      <span className="block font-semibold leading-snug">{p.name}</span>
+                      <span className={`block text-[11px] ${p.highlight ? 'text-indigo-100' : 'text-gray-500'}`}>
+                        {p.reasons.slice(0, 2).join(' · ') || 'Matches your profile'}
+                      </span>
+                    </span>
+                    <ChevronRight className="w-4 h-4 ml-auto shrink-0 opacity-60" />
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Currency toggle */}
           <div className="flex items-center justify-end mb-4">

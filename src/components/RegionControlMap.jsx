@@ -1,8 +1,8 @@
-import { useMemo, useState } from 'react';
+import { useId, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import { ITGC_DOMAINS, domainsFor } from '../data/itgcMatrix';
-import { GENERIC_ASSESSMENT } from '../data/assessments';
+import { ITGC_DOMAINS, domainsFor } from '../data/itgcMatrix.js';
+import { GENERIC_ASSESSMENT } from '../data/assessments.js';
 
 const DOMAIN_COLORS = {
   'Access Management': '#6366f1',
@@ -15,6 +15,7 @@ const DOMAIN_COLORS = {
 };
 
 export default function RegionControlMap({ frameworks }) {
+  const uid = useId();
   const [selectedDomain, setSelectedDomain] = useState(null);
   const [minimized, setMinimized] = useState(true);
 
@@ -51,13 +52,19 @@ export default function RegionControlMap({ frameworks }) {
           onClick={() => setMinimized(!minimized)}
           className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold text-gray-600 bg-gray-100 hover:bg-gray-200 transition-colors"
           aria-expanded={!minimized}
+          aria-controls={`rcm-body-${uid}`}
         >
           {minimized ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronUp className="w-3.5 h-3.5" />}
           {minimized ? 'Expand' : 'Minimize'}
         </button>
       </div>
 
-      {!minimized && (
+      <div
+        id={`rcm-body-${uid}`}
+        className={`grid transition-all duration-300 ease-out ${minimized ? 'grid-rows-[0fr] opacity-0 invisible' : 'grid-rows-[1fr] opacity-100 visible'}`}
+        aria-hidden={minimized}
+      >
+      <div className="overflow-hidden">
       <>
       {/* Shared baseline ribbon */}
       {sharedAll.length > 0 && (
@@ -177,7 +184,8 @@ export default function RegionControlMap({ frameworks }) {
         </p>
       )}
       </>
-      )}
+      </div>
+      </div>
     </div>
   );
 }

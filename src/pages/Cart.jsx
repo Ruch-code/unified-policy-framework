@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useCart } from '../context/CartContext';
+import { useCart } from '../context/CartContext.jsx';
 import { Plus, Minus, Trash2, ChevronLeft } from 'lucide-react';
 
 export default function Cart() {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Sparkles, X, MessageSquare } from 'lucide-react';
-import GrcAssistant from './GrcAssistant';
+import GrcAssistant from './GrcAssistant.jsx';
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);

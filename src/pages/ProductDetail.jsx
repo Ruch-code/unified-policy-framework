@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import api from '../utils/api';
-import { useCart } from '../context/CartContext';
+import api from '../utils/api.js';
+import { useCart } from '../context/CartContext.jsx';
 import { ShoppingCart, Heart, Share2, Truck, Shield, RotateCcw, Star, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext.jsx';
 import toast from 'react-hot-toast';
 
 export default function ProductDetail() {

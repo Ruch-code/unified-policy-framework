@@ -1,0 +1,12 @@
+/* Landing page 3D canvas styles */
+.landing-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .landing-canvas canvas {
+    animation: none !important;
+  }
+}

@@ -5,6 +5,7 @@ const FRAMEWORK_RE = /^\/(gdpr|dpdpa|ccpa-cpra|coppa|lgpd|pdpa|pipl|iso27701|hip
 const ACCENT = '#7c3aed';
 
 function lerp(a, b, t) { return a + (b - a) * t; }
+const LERP_SPEED = 0.35; // faster tracking
 
 export default function InspectorCursor() {
   const targetRef = useRef({ x: -999, y: -999 });
@@ -107,8 +108,8 @@ export default function InspectorCursor() {
 
     const loop = () => {
       const t = 0.15;
-      visRef.current.x = lerp(visRef.current.x, targetRef.current.x, t);
-      visRef.current.y = lerp(visRef.current.y, targetRef.current.y, t);
+      visRef.current.x = lerp(visRef.current.x, targetRef.current.x, LERP_SPEED);
+      visRef.current.y = lerp(visRef.current.y, targetRef.current.y, LERP_SPEED);
       const v = visRef.current;
       fl.style.left = v.x + 'px';
       fl.style.top = v.y + 'px';
