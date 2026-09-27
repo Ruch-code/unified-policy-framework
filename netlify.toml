@@ -6,6 +6,7 @@
 [build.environment]
   NODE_VERSION = "20"
   NODE_OPTIONS = "--max-old-space-size=4096"
+  NPM_INSTALL = "false"
   SECRETS_SCAN_OMIT_KEYS = "ADMIN_EMAIL,ADMIN_PASSWORD,MONGODB_URI,JWT_SECRET,DEFAULT_USER_PASSWORD,GEMINI_API_KEY"
 
 # Proxy /api/auth/* to Netlify Functions
