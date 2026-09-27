@@ -14,6 +14,35 @@ export default defineConfig({
   },
   build: {
     target: 'es2015',
-    minify: 'terser'
+    minify: 'terser',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          'vendor-lucide': ['lucide-react'],
+          'vendor-three': ['three', 'topojson-client'],
+          'iso-data': [
+            'src/data/iso27001.js',
+            'src/data/iso27001AnnexA.js',
+            'src/data/iso27001Classification.js',
+            'src/data/iso27001Soa.js'
+          ],
+          'interview-data': [
+            'src/data/interview-roles.json',
+            'src/data/interviewAnswers.js',
+            'src/data/interviewQuestions.js',
+            'src/data/interviewRolesData.js'
+          ],
+          'vendor-risk': [
+            'src/components/VendorRiskManagement.jsx',
+            'src/components/VendorIncidentBrief.jsx',
+            'src/data/vendorIncidentStories.js',
+            'src/utils/posterRenderer.js'
+          ],
+          'hipaa-data': ['src/data/hipaaDomain.js'],
+          'search': ['src/components/SearchBar.jsx', 'src/data/searchIndex.js'],
+        }
+      }
+    }
   }
-});
+})
