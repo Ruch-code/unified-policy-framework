@@ -10,7 +10,14 @@
 [functions]
   node_bundler = "esbuild"
 
+# Proxy /api/auth/* to Netlify Functions
 [[redirects]]
-  from = "/api/*"
+  from = "/api/auth/*"
+  to = "/.netlify/functions/auth-:splat"
+  status = 200
+
+# SPA fallback for everything else
+[[redirects]]
+  from = "/*"
   to = "/index.html"
   status = 200
