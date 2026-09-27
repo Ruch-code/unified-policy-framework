@@ -251,8 +251,8 @@ export default function Layout() {
             
             {/* Brand/Title - scales and truncates, no wrapping */}
             <Link to="/" className="flex-shrink-0 flex items-center gap-2 ml-3 text-base sm:text-lg font-semibold tracking-tight whitespace-nowrap truncate max-w-[140px] sm:max-w-none text-slate-900 dark:text-white"
-              aria-label="Unified Compliance Home">
-              Unified Compliance
+              aria-label="Unified Compliance Platform Home">
+              Unified Compliance Platform
             </Link>
           </div>
 
@@ -306,7 +306,7 @@ export default function Layout() {
                   )}
                   <div className="relative group">
                     <Link to="/" className={NAV_LINK + ' pr-2.5'}>
-                      <Building2 className="w-4 h-4" /> Unified Compliance & GRC Platform
+                      <Building2 className="w-4 h-4" /> Unified Compliance Platform & GRC Platform
                     </Link>
                     <div className="absolute right-0 top-full mt-2 w-80 z-[110] opacity-0 invisible translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200
                       bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-xl shadow-2xl shadow-slate-950/40">
@@ -410,7 +410,7 @@ export default function Layout() {
                         </Link>
                       )}
                       <Link to="/" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-3 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:hover:bg-indigo-900/50 dark:text-indigo-300 font-medium rounded-lg text-center transition-colors border border-indigo-200 dark:border-indigo-800/30">
-                        Unified Compliance & GRC Platform
+                        Unified Compliance Platform & GRC Platform
                         <span className="block mt-1 text-xs font-normal text-indigo-500 dark:text-indigo-400/80">Centralized framework mapping, risk matrices, vendor governance, interview prep, and access controls</span>
                       </Link>
                       <Link to="/knowledge" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-3 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:hover:bg-indigo-900/50 dark:text-indigo-300 font-medium rounded-lg text-center transition-colors border border-indigo-200 dark:border-indigo-800/30">
