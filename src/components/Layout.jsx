@@ -58,7 +58,7 @@ export default function Layout() {
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="container">
           <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 shrink-0">
               <button
                 className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -71,7 +71,7 @@ export default function Layout() {
               </Link>
             </div>
 
-            <nav className="hidden lg:flex items-center gap-1">
+            <nav className="hidden lg:flex items-center gap-1 min-w-0 flex-1 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {STANDARDS.map(s => (
                 <NavHoverIcon key={s.path} name={s.label}>
                   <Link
@@ -104,7 +104,7 @@ export default function Layout() {
               ISO 42001 AI
               <span className="text-[10px] opacity-70">↗</span>
             </a>
-            <div className="ml-2 hidden sm:flex items-center gap-1.5">
+            <div className="ml-2 hidden sm:flex items-center gap-1.5 shrink-0">
               {!user ? (
                 <Link to="/login" className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors">
                   <UserIcon className="w-4 h-4" /> Login
@@ -166,6 +166,49 @@ export default function Layout() {
                 >
                   ISO 42001 AI Governance →
                 </a>
+              </div>
+              <div className="mt-2 pt-2 border-t border-gray-100 flex flex-col gap-1">
+                {!user ? (
+                  <Link
+                    to="/login"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="px-4 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors"
+                  >
+                    Login
+                  </Link>
+                ) : (
+                  <>
+                    {user.role === 'admin' && (
+                      <Link
+                        to="/admin"
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="px-4 py-2.5 rounded-lg text-sm font-medium text-violet-700 hover:bg-violet-50 transition-colors"
+                      >
+                        Admin
+                      </Link>
+                    )}
+                    <Link
+                      to="/knowledge"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="px-4 py-2.5 rounded-lg text-sm font-medium text-[#7c3aed] hover:bg-indigo-50 transition-colors"
+                    >
+                      GRC KB
+                    </Link>
+                    <Link
+                      to="/profile"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="px-4 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors"
+                    >
+                      Profile
+                    </Link>
+                    <button
+                      onClick={() => { setMobileMenuOpen(false); logout(); }}
+                      className="px-4 py-2.5 rounded-lg text-sm font-medium text-gray-500 hover:bg-gray-100 transition-colors text-left"
+                    >
+                      Log out
+                    </button>
+                  </>
+                )}
               </div>
             </div>
           </div>
