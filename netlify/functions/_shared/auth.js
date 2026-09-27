@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import { SignJWT, jwtVerify } from 'jose';
 
 let cachedConnection = null;
 
@@ -44,16 +44,23 @@ userSchema.methods.toJSON = function () {
 
 export const User = mongoose.models.User || mongoose.model('User', userSchema);
 
-export const signToken = (user) => {
+const getSecret = () => {
   const secret = process.env.JWT_SECRET;
   if (!secret) throw new Error('JWT_SECRET env var is not set');
-  return jwt.sign({ id: user._id, email: user.email, role: user.role }, secret, { expiresIn: '7d' });
+  return new TextEncoder().encode(secret);
 };
 
-export const verifyToken = (token) => {
-  const secret = process.env.JWT_SECRET;
-  if (!secret) throw new Error('JWT_SECRET env var is not set');
-  return jwt.verify(token, secret);
+export const signToken = async (user) => {
+  return await new SignJWT({ id: user._id, email: user.email, role: user.role })
+    .setProtectedHeader({ alg: 'HS256' })
+    .setIssuedAt()
+    .setExpirationTime('7d')
+    .sign(getSecret());
+};
+
+export const verifyToken = async (token) => {
+  const { payload } = await jwtVerify(token, getSecret());
+  return payload;
 };
 
 export const json = (data, status = 200) => {
