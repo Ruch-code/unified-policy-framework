@@ -6,6 +6,7 @@ import NavHoverIcon from './NavHoverIcon';
 import NewsletterPopup from './NewsletterPopup';
 import InspectorCursor from './InspectorCursor';
 import ChatWidget from './ChatWidget';
+import SearchBar from './SearchBar.jsx';
 import { useAuth } from '../context/AuthContext';
 
 const STANDARDS = [
@@ -128,6 +129,13 @@ export default function Layout() {
               )}
             </div>
           </div>
+        </div>
+
+        {/* Search gets its own full-width row. The standards nav above is wider
+            than the container on this branch, so a centered flex slot would
+            collapse the input to a few pixels. */}
+        <div className="container pb-3">
+          <SearchBar isDark={isDark} />
         </div>
 
         {mobileMenuOpen && (
