@@ -156,4 +156,136 @@ export default function Iso22317() {
   return <LearningFrameworkPage framework={FRAMEWORK} />;
 }
 
+,
+    {
+      week: 5,
+      title: "BIA Walkthrough Scenarios & Incident Response Integration",
+      days: "Days 29–35",
+      description: "Validate BIA outputs through realistic scenario walkthroughs. Each scenario tests RTO/RPO assumptions, communication flows, decision authority, and recovery procedures against the BIA outputs. Includes questions to ask during tabletop exercises.",
+      tasks: [
+        {
+          title: "Scenario 1: Ransomware Infection — Finance Laptop",
+          control: "ISO 22317 Clause 6.4/6.5: Tests RTO/RPO for Finance processes, data integrity verification, and recovery from backup/cloud copies. Validates incident notification timeframes (4-hour delay here).",
+          how: "Run tabletop: Finance laptop encrypted via phishing. Customer PII + bank routing data on laptop. Cloud copies exist. IT notified 4 hours post-infection via text. Walk through:
+1. Detection & notification: Who received the text? Was escalation policy followed? 4-hour gap acceptable per RTO?
+2. Containment: Network isolation, account disable, forensic image.
+3. Impact assessment: PII exposure scope, bank data risk, cloud copy integrity verification.
+4. Recovery: Restore from cloud share, integrity checks, device rebuild/replace.
+5. Notification: Regulatory (GDPR 72hr, state breach laws), customer communication, law enforcement.
+6. Post-incident: Root cause, phishing training, backup validation, notification SLA review.",
+          check: "RTO for Finance process met? Cloud copy integrity validated within RPO? Notification SLAs met (GDPR 72hr, state laws)? Root cause documented and phishing controls improved?",
+          questions: [
+            "What is the Finance team's RTO per BIA? Was the 4-hour notification delay within acceptable limits?",
+            "How do you verify cloud copy integrity before restore? What checks confirm no ransomware propagation to cloud?",
+            "What is the RPO for Finance data? Does the cloud share meet this RPO (last sync timestamp)?",
+            "Who has authority to trigger customer/regulatory notification? Was the 72-hour GDPR window at risk?",
+            "What compensating controls exist for Finance during laptop recovery (loaner device, VDI access)?",
+            "How is the 4-hour notification gap addressed in the Incident Response Plan? Is text-to-IT an approved channel?",
+            "What evidence is preserved for forensic/legal purposes? Chain of custody for the laptop?",
+            "Does the backup/cloud share have immutable snapshots to prevent ransomware encryption of backups?",
+            "How are Finance team operations maintained during recovery (manual workarounds, alternative systems)?",
+            "What contractual obligations exist for bank data exposure (PCI-DSS, banking partner agreements)?"
+          ]
+        },
+        {
+          title: "Scenario 2: DDoS Attack on Primary Infrastructure",
+          control: "ISO 22317 Clause 6.4/6.5: Tests Availability RTO for internal business applications, WAF/rate-limiting effectiveness, and failover mechanisms. 12-hour outage tests MTPD.",
+          how: "Run tabletop: Coordinated multi-region DDoS overwhelms WAF/rate limits. Core apps (client mgmt, order processing, reporting, comms) down 12 hours. Walk through:
+1. Detection: Monitoring alerts trigger — automated vs manual detection time.
+2. Mitigation: Cloud DDoS protection tools, manual filtering rules, failover activation.
+3. Impact: 12-hour unavailability of client mgmt, order processing, reporting, comms. Manual workarounds implemented.
+4. Communication: Internal teams, clients, partners. Status page updates.
+4. Recovery: Traffic normalization, WAF tuning, DR team post-event review.
+5. Post-incident: Long-term DDoS defense improvements, incident response automation.",
+          check: "Application RTOs met? 12-hour outage within MTPD for each app? Failover mechanisms activated correctly? Communication SLAs met?",
+          questions: [
+            "What are the RTO/MTPD for each affected app (client mgmt, order processing, reporting, comms) per BIA?",
+            "Did the 12-hour outage exceed any application's MTPD? What are the consequences?",
+            "Why did WAF and rate-limiting fail? Were thresholds tuned to baseline traffic?",
+            "How quickly did automated failover activate? Was manual intervention required?",
+            "What manual workarounds were used? Were they documented in BC plans?",
+            "How was client communication managed during the 12-hour outage? Status page? Direct outreach?",
+            "What DDoS protection improvements are planned (layer 7, volumetric, application-layer)?",
+            "Are there single points of failure in the architecture that the DDoS exposed?",
+            "How is 'normal' traffic baseline established for anomaly detection?",
+            "What is the escalation path when automated DDoS mitigation is insufficient?"
+          ]
+        },
+        {
+          title: "Scenario 3: Natural Disaster — Tampa Facility Power Outage (5 Days)",
+          control: "ISO 22317 Clause 6.4/6.5: Tests facility-level RTO/MTPD, remote work capability, physical resource dependencies, and supply chain/logistics continuity. 5-day outage tests MTPD for on-prem operations.",
+          how: "Run tabletop: Tampa hub (product delivery, logistics, customer support) loses power for 5 days. On-prem servers, inventory systems, comms down. Staff remote within 24hr. Walk through:
+1. Facility impact: On-prem inventory/docs, internal servers, comms lines, physical resource handling down.
+2. Transition: Staff remote within 24hr. Cloud comms/coordination dependency.
+3. Operations: Logistics/delivery disrupted. Load redistribution to alt facilities. Virtual coordination.
+4. Customer impact: Shipment delays, support delays. Contingency actions activated.
+5. Recovery: Facility reoccupation after 5 days. Long-term resilience assessment.",
+          check: "Facility RTO met? Remote work capability sufficient for critical processes? Alt facility load redistribution executed? Customer SLA breaches documented?",
+          questions: [
+            "What is the Tampa facility's RTO/MTPD per BIA? Was 5-day outage within MTPD?",
+            "Which critical processes depend on on-prem infrastructure (inventory mgmt, physical docs)?",
+            "How was the 24-hour remote transition executed? What gaps appeared?",
+            "What logistics/delivery processes were disrupted? How was load redistributed to alt facilities?",
+            "What cloud-based coordination tools were used? Were they sufficient for decentralized ops?",
+            "What customer SLA breaches occurred (shipment confirmations, support response times)?",
+            "Are there single points of failure in the Tampa facility (single power feed, no generator)?",
+            "How were physical inventory records accessed remotely? Digitization status?",
+            "What is the facility reoccupation validation process (power stability, system integrity)?",
+            "What long-term resilience enhancements are planned (backup power, geo-redundancy)?"
+          ]
+        },
+        {
+          title: "Scenario 4: AWS Fail-Over — Primary Region Outage + Stale Snapshot",
+          control: "ISO 22317 Clause 6.4/6.5: Tests cloud RTO/RPO, failover execution, backup/replication configuration, and data loss tolerance decision. 3-hour stale snapshot tests RPO.",
+          how: "Run tabletop: Primary AWS region outage at 2:13 AM. Monolithic datastore offline. Failover to passive region — but last replicated snapshot is 3 hours old (misconfigured backup sync). Walk through:
+1. Detection: Monitoring alerts, 30-min investigation before failover decision.
+2. Failover execution: Active-passive failover initiated. Snapshot 3hrs old discovered.
+2. Decision point: Restore from 3hr-old snapshot (data loss) vs wait for primary region recovery.
+3. Impact: Appointments, payments, client mgmt down. Same-day transfers paused. Revenue loss.
+3. Communication: Customer service overwhelmed, stakeholders demand timeline, partners escalate.
+4. Recovery: Snapshot restore vs primary region recovery. Data integrity validation.
+4. Post-incident: Backup sync fix, DR drill schedule, monolithic datastore architecture review.",
+          check: "RTO for appointment/payment/client mgmt met? RPO (3hr data loss) acceptable per BIA? Decision authority clear? Communication SLAs met?",
+          questions: [
+            "What are the RTO/RPO for appointment scheduling, payment processing, and client management per BIA?",
+            "Is 3-hour data loss (RPO) acceptable for payments/client records? What are regulatory/contractual obligations?",
+            "Who has authority to make the restore-vs-wait decision at 2:43 AM? Is it documented in IR plan?",
+            "Why was the backup sync misconfigured? Was it caught in any DR drill?",
+            "How is the monolithic datastore a single point of failure? Sharding/replication strategy?",
+            "What communication was sent to professionals during outage? Status page? Direct notification?",
+            "How are same-day transfers handled during outage? Manual processing? Partner SLAs?",
+            "What is the failover validation process (data integrity, application health checks)?",
+            "How frequently are full DR drills executed (not just tabletop)? Last full failover test date?",
+            "What architectural changes are planned (datastore sharding, multi-active regions, RPO reduction)?"
+          ]
+        },
+        {
+          title: "Integrate Scenario Findings into BIA & BCMS",
+          control: "ISO 22317 Clause 7.3 / ISO 22301 Clause 8.2-8.5: Scenario walkthrough findings must update BIA assumptions, RTO/RPO values, BC strategies, BC plans, and exercise program.",
+          how: "For each scenario: document gaps between BIA assumptions and actual walkthrough results. Update: RTO/RPO values if gaps found, resource requirements, dependency maps, BC strategies, BC plan procedures, exercise scenarios. Track in BCMS improvement register.",
+          check: "All scenario gaps documented with severity. BIA updated where assumptions invalidated. BC plans updated with corrected procedures. Next exercise program includes scenario variations.",
+          questions: [
+            "Which BIA assumptions were invalidated by each scenario walkthrough?",
+            "What RTO/RPO values need adjustment based on actual vs planned performance?",
+            "What new resource requirements or dependencies were discovered?",
+            "Which BC plan procedures failed or were missing during walkthroughs?",
+            "What new exercise scenarios should be added to the program?",
+            "What supplier/contractual gaps were exposed (backup vendors, cloud providers)?",
+            "How are scenario findings communicated to senior management and the board?",
+            "What is the timeline for implementing corrective actions from each scenario?",
+            "How will the next BIA review cycle incorporate these scenario findings?",
+            "What metrics will track improvement in scenario readiness over time?"
+          ]
+        }
+      ],
+    }
+  ],
+};
+
+export default function Iso22317() {
+  return <LearningFrameworkPage framework={FRAMEWORK} />;
+}
+
+export { FRAMEWORK };
+
 export { FRAMEWORK };
