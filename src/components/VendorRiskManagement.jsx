@@ -1,4 +1,5 @@
 import React, { useState, Suspense, lazy } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 
 // Loaded on demand. The incident corpus is editorial copy that is meant to stay
@@ -346,7 +347,28 @@ function ReviewTierCard({ tier, index, expandedReview, setExpandedReview }) {
 }
 
 export default function VendorRiskManagement({ isDark = false }) {
-  const [activeTab, setActiveTab] = useState('Sectors');
+  const [activeTab, setActiveTab] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const section = params.get('section');
+      const validTabs = ['Sectors', 'Regional Laws', 'Sub-Processors', 'Review Frequency', 'Incident Brief'];
+      if (section) {
+        const mapped = {
+          'sub-processors': 'Sub-Processors',
+          'review-frequency': 'Review Frequency',
+          'incident-brief': 'Incident Brief',
+          'regional-laws': 'Regional Laws',
+          'sectors': 'Sectors'
+        };
+        if (mapped[section.toLowerCase()]) return mapped[section.toLowerCase()];
+      }
+      // Fallback to hash for backwards compatibility
+      const hash = window.location.hash.slice(1);
+      const validTabs = ['Sectors', 'Regional Laws', 'Sub-Processors', 'Review Frequency', 'Incident Brief'];
+      if (validTabs.includes(hash)) return hash;
+    }
+    return 'Sectors';
+  });
   const [expandedSector, setExpandedSector] = useState(null);
   const [expandedRegion, setExpandedRegion] = useState(null);
   const [expandedSubProcessor, setExpandedSubProcessor] = useState(null);
@@ -386,8 +408,8 @@ export default function VendorRiskManagement({ isDark = false }) {
               onClick={() => setActiveTab(tab)}
               role="tab"
               aria-selected={activeTab === tab}
-              aria-controls={`panel-${tab}`}
-              id={`vtab-${tab}`}
+              aria-controls={`panel-${tab.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")}`}
+              id={`vtab-${tab.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")}`}
               className={`px-6 py-3 rounded-xl font-medium transition-all duration-300
                 ${activeTab === tab
                   ? 'bg-indigo-600 text-white shadow-lg'
@@ -400,7 +422,7 @@ export default function VendorRiskManagement({ isDark = false }) {
         </div>
 
         {activeTab === 'Sectors' && (
-          <div id="panel-Sectors" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" role="tabpanel" aria-labelledby="vtab-Sectors">
+          <div id="panel-sectors" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" role="tabpanel" aria-labelledby="vtab-sectors">
             {Object.entries(VENDOR_RISK_SECTORS).map(([sector, data]) => (
               <SectorCard 
                 key={sector} 
@@ -415,7 +437,7 @@ export default function VendorRiskManagement({ isDark = false }) {
         )}
 
         {activeTab === 'Regional Laws' && (
-          <div id="panel-Regional Laws" className="space-y-4" role="tabpanel" aria-labelledby="vtab-Regional Laws">
+          <div id="panel-regional-laws" className="space-y-4" role="tabpanel" aria-labelledby="vtab-regional-laws">
             {Object.entries(REGION_LAWS).map(([region, laws]) => (
               <RegionCard 
                 key={region}
@@ -430,7 +452,7 @@ export default function VendorRiskManagement({ isDark = false }) {
         )}
 
         {activeTab === 'Sub-Processors' && (
-          <div id="panel-Sub-Processors" className="space-y-4" role="tabpanel" aria-labelledby="vtab-Sub-Processors">
+          <div id="panel-sub-processors" className="space-y-4" role="tabpanel" aria-labelledby="vtab-sub-processors">
             {SUB_PROCESSOR_RISKS.map((risk, i) => (
               <SubProcessorCard
                 key={i}
@@ -445,7 +467,7 @@ export default function VendorRiskManagement({ isDark = false }) {
         )}
 
         {activeTab === 'Review Frequency' && (
-          <div id="panel-Review Frequency" className="space-y-4" role="tabpanel" aria-labelledby="vtab-Review Frequency">
+          <div id="panel-review-frequency" className="space-y-4" role="tabpanel" aria-labelledby="vtab-review-frequency">
             {REVIEW_FREQUENCY_MATRIX.map((tier, i) => (
               <ReviewTierCard
                 key={i}
@@ -460,7 +482,8 @@ export default function VendorRiskManagement({ isDark = false }) {
         )}
 
         {activeTab === briefTab && (
-          <Suspense fallback={
+          <div id="panel-vendor-incident-brief" className="space-y-4" role="tabpanel" aria-labelledby="vtab-vendor-incident-brief">
+            <Suspense fallback={
             <div className="py-16 text-center text-sm text-navy-500" data-testid="vendor-brief-loading">
               Loading brief generator...
             </div>

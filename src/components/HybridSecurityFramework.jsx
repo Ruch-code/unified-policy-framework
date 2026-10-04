@@ -3,16 +3,20 @@ import { ShieldCheck, HardDrive, Smartphone, Cpu, Network, MapPin, LockKeyhole, 
 import CodeBlock from './ui/CodeBlock.jsx';
 const scenariosData = [];
 
-const agentPs1 = 'Windows agent code';
-const agentSh = 'Linux/macOS agent code';
+const agentPs1 = `# Device Health Agent - placeholder
+Write-Host "Device health check placeholder"`;
+const agentSh = `#!/bin/bash
+# Device Health Agent - placeholder
+echo "Device health check placeholder"`;
 const intuneXml = `<!-- Intune OMA-URI placeholder -->`;
 const jamfXml = `<!-- Jamf FileVault Profile placeholder -->`;
 const condAccessJson = {};
-const iacTf = 'Terraform IaC code';
-const socWebhook = 'SOC webhook code';
-const tokenRevoke = 'Token revocation code';
+const iacTf = `# Terraform placeholder
+resource "aws_instance" "example" {}`;
+const socWebhook = `export async function post(payload) {}`;
+const tokenRevoke = `export async function revoke() {}`;
 const scenariosJsonRaw = '{}';
-const readmeMd = 'Runbook';
+const readmeMd = '# Hybrid Security Framework';
 
 const DOMAINS = [
   { icon: HardDrive, title: '1 · Removable media encryption', tone: 'bg-sky-600', desc: 'USB/external media is never writable unencrypted — BitLocker To Go / AES-256 CSP, with the crypto-compliance flag blocking raw writes.' },

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
-import { SignJWT, jwtVerify } from 'jose';
+import crypto from 'crypto';
 
 let cachedConnection = null;
 
@@ -47,21 +47,61 @@ export const User = mongoose.models.User || mongoose.model('User', userSchema);
 const getSecret = () => {
   const secret = process.env.JWT_SECRET;
   if (!secret) throw new Error('JWT_SECRET env var is not set');
-  return new TextEncoder().encode(secret);
+  return secret;
 };
 
+const base64url = (buf) => Buffer.from(buf).toString('base64').replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
+
+const b64u = (s) => Buffer.from(s).toString('base64').replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
+
 export const signToken = async (user) => {
-  return await new SignJWT({ id: user._id, email: user.email, role: user.role })
-    .setProtectedHeader({ alg: 'HS256' })
-    .setIssuedAt()
-    .setExpirationTime('7d')
-    .sign(getSecret());
+  const secret = getSecret();
+  const header = b64u(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
+  const now = Math.floor(Date.now() / 1000);
+  const payload = b64u(JSON.stringify({ id: user._id, email: user.email, role: user.role, iat: now, exp: now + 604800 }));
+  const data = `${header}.${payload}`;
+  const sig = crypto.createHmac('sha256', secret).update(data).digest();
+  return `${data}.${base64url(sig)}`;
 };
 
 export const verifyToken = async (token) => {
-  const { payload } = await jwtVerify(token, getSecret());
-  return payload;
+  const secret = getSecret();
+  const [header, payload, sig] = token.split('.');
+  const data = `${header}.${payload}`;
+  const expected = crypto.createHmac('sha256', secret).update(data).digest();
+  if (!crypto.timingSafeEqual(Buffer.from(sig.replace(/-/g, '+').replace(/_/g, '/'), 'base64'), expected)) {
+    throw new Error('Invalid signature');
+  }
+  const p = JSON.parse(Buffer.from(payload.replace(/-/g, '+').replace(/_/g, '/'), 'base64').toString());
+  if (p.exp * 1000 < Date.now()) throw new Error('Token expired');
+  return p;
 };
+
+export const authUser = async (req) => {
+  const auth = req.headers.get('authorization');
+  if (!auth || !auth.startsWith('Bearer ')) return null;
+  try {
+    return await verifyToken(auth.slice(7));
+  } catch {
+    return null;
+  }
+};
+
+export const authAdmin = async (req) => {
+  const user = await authUser(req);
+  if (!user || user.role !== 'admin') return null;
+  return user;
+};
+
+export const hashPassword = async (password) => {
+  return await bcrypt.hash(password, 12);
+};
+
+export const makeResetToken = () => {
+  return crypto.randomBytes(32).toString('hex');
+};
+
+export const DEFAULT_PASSWORD = process.env.DEFAULT_USER_PASSWORD || '';
 
 export const json = (data, status = 200) => {
   return new Response(JSON.stringify(data), {

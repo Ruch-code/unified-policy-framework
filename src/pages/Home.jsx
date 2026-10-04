@@ -23,7 +23,15 @@ function useDark() {
 
 // Locked section component - single login prompt at top, then locked cards
 function LockedSection({ title, description, children, icon: Icon, showLoginPrompt = false }) {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+  if (loading) return (
+    <div className="min-h-[40vh] flex items-center justify-center p-6">
+      <div className="text-center text-gray-500 dark:text-text-dark-secondary">
+        <div className="w-8 h-8 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+        <p className="text-sm text-gray-500 dark:text-text-dark-secondary">Loading...</p>
+      </div>
+    </div>
+  );
   if (user) return <>{children}</>;
   
   return (
