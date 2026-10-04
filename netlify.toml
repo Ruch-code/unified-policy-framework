@@ -14,24 +14,6 @@
   to = "/index.html"
   status = 200
 
-# Legacy hash-based URLs redirect to clean query params
-# /#vendor-risk#Sub-Processors -> /#/vendor-risk?section=sub-processors
-[[redirects]]
-  from = "/#vendor-risk#Sub-Processors"
-  to = "/#/vendor-risk?section=sub-processors"
-  status = 301
-  conditions = {Query = ""}
-
-[[redirects]]
-  from = "/#vendor-risk#Review Frequency"
-  to = "/#/vendor-risk?section=review-frequency"
-  status = 301
-
-[[redirects]]
-  from = "/#vendor-risk#Review-Frequency"
-  to = "/#/vendor-risk?section=review-frequency"
-  status = 301
-
 # Force HTTPS
 [[headers]]
   for = "/*"
