@@ -203,8 +203,8 @@ export default function VendorRiskManagement({ isDark = false }) {
       }
       // Fallback to hash for backwards compatibility
       const hash = window.location.hash.slice(1);
-      const validTabs = ['Sectors', 'Regional Laws', 'Sub-Processors', 'Review Frequency', 'Incident Brief'];
-      if (validTabs.includes(hash)) return hash;
+      const validTabsHash = ['Sectors', 'Regional Laws', 'Sub-Processors', 'Review Frequency', 'Incident Brief'];
+      if (validTabsHash.includes(hash)) return hash;
     }
     return 'Sectors';
   });
@@ -215,6 +215,15 @@ export default function VendorRiskManagement({ isDark = false }) {
 
   const { user } = useAuth();
   const briefTab = 'Incident Brief';
+
+  const tabToId = (tab) => {
+    return tab.toLowerCase()
+      .split(' ')
+      .join('-')
+      .split('')
+      .filter(c => 'abcdefghijklmnopqrstuvwxyz0123456789-'.includes(c))
+      .join('');
+  };
 
   const tabs = [
     'Sectors',
@@ -347,6 +356,7 @@ export default function VendorRiskManagement({ isDark = false }) {
                           </ul>
                         </div>
                         {data.subProcessorReq && (
+                          <>
                           <div>
                             <h4 className="font-semibold text-navy-900 dark:text-text-dark-primary mb-2">Sub-Processor Requirements</h4>
                             <ul className="space-y-1 text-sm text-gray-600 dark:text-text-dark-secondary">
@@ -358,7 +368,8 @@ export default function VendorRiskManagement({ isDark = false }) {
                               ))}
                             </ul>
                           </div>
-                        }
+                          </>
+                        )}
                         <div>
                           <h4 className="font-semibold text-navy-900 dark:text-text-dark-primary mb-2">Regulations</h4>
                           <div className="flex flex-wrap gap-1">
@@ -559,4 +570,3 @@ export default function VendorRiskManagement({ isDark = false }) {
   );
 }
 
-export default VendorRiskManagement;

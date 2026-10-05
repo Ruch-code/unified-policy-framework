@@ -1,4 +1,5 @@
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
+import soc2Template from "../../data/soc2-template.json";
 import TscControlMatrix from "../../components/TscControlMatrix.jsx";
 import Soc2TechnicalSection from "../../components/Soc2TechnicalSection.jsx";
 
@@ -91,7 +92,42 @@ const FRAMEWORK = {
         {
           day: 1,
           title: "Security \u2014 Common Criteria CC6\u2013CC8 Deep Dive",
-          tasks: [
+          tasks: [            {
+              title:
+                "Write the System Description document per TSC requirements",
+              control:
+                "TSC Common Criteria — System Description",
+              how:
+                "Write the System Description document (required for SOC 2 Type II reports) covering: system overview (purpose, scope, boundaries, and infrastructure), trust services criteria applicability (Security, Availability, Processing Integrity, Confidentiality, Privacy), principal service commitments and system requirements, system components (infrastructure, software, people, procedures, data), system boundaries and interfaces, complementary user entity controls (CUECs), complementary subservice organization controls (CSOCs), and relevant aspects of the control environment. Use the AICPA SOC 2 System Description template. Include: organization background, services provided, system components (hardware, software, network, people, data), system boundaries (what is in scope vs. out of scope), and flow diagrams for data and process flows. This document is foundational — it defines what the auditor tests against.",
+              check:
+                "System Description document completed with organization background, services, system components, boundaries, trust criteria applicability, CUECs, CSOCs, and data/process flow diagrams, using AICPA SOC 2 template"
+            },            {
+              title:
+                "AICPA SOC 2 System Description Template — Complete Reference (Bullet Points)",
+              control:
+                "TSC Common Criteria — System Description Template",
+              how:
+                soc2Template.how,
+              check:
+                "Template copied and all sections populated with organization-specific details, diagrams attached, reviewed by Security Lead and CTO"
+            },
+            {
+              title:
+                "Download AICPA SOC 2 System Description Template (Markdown)",
+              control:
+                "TSC Common Criteria — System Description Template Download",
+              how:
+                "Click the link below to download the complete AICPA SOC 2 System Description Template in Markdown format. Save as .md file and open in any markdown editor (VS Code, Obsidian, Notion, etc.) or convert to PDF/Word using pandoc.",
+              check:
+                "Template downloaded successfully as .md file",
+              links: [
+                {
+                  href: "/soc2-system-description-template.md",
+                  text: "📥 Download AICPA SOC 2 System Description Template (.md)",
+                  download: true
+                }
+              ]
+            },
             {
               title:
                 "Map logical access controls to Common Criteria CC6.1\u2013CC6.8",

@@ -1,4 +1,5 @@
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
+import week5Data from "../../data/iso22317-week5.json";
 
 const FRAMEWORK = {
   id: "iso-22317",
@@ -151,6 +152,9 @@ const FRAMEWORK = {
     },
   ],
 };
+
+// Inject week 5 from external JSON
+FRAMEWORK.weeks.push(week5Data);
 
 export default function Iso22317() {
   return <LearningFrameworkPage framework={FRAMEWORK} />;

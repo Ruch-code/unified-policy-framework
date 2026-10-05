@@ -160,12 +160,57 @@ const FRAMEWORK = {
           check: 'Verify threat intelligence feeds are integrated from SEBI/CERT-In sources. Confirm vulnerability SLAs are being met — critical within 24 hours, high within 7 days. Validate quarterly architecture reviews are scheduled and documented. Review lessons-learned register for actionability and completion rates.'
         }
       ]
+    },
+    {
+      week: 5,
+      title: 'SEBI LODR — Listing Obligations & Disclosure Requirements Compliance',
+      days: 'Days 29-35',
+      description: 'SEBI LODR (Listing Obligations and Disclosure Requirements) Regulations 2015 compliance for listed entities — governance, disclosures, board procedures, related party transactions, and continuous disclosure requirements',
+      tasks: [
+        {
+          title: 'Establish LODR Governance Framework & Board Composition',
+          control: 'LODR Regulations 17-20: Board composition, independent directors, board committees, and meeting requirements',
+          how: 'Implement board composition tracking per LODR Regulation 17: minimum 50% independent directors for listed entities with executive chairperson; separate chairperson/CEO roles. Document board committee structure per LODR 18-21: Audit Committee (minimum 3 directors, 2/3 independent), Nomination & Remuneration Committee, Stakeholders Relationship Committee, Risk Management Committee (top 1000 listed entities). Implement board meeting calendar per LODR 17(2) — minimum 4 meetings per year, max 120 days gap. Maintain digital board portal with agenda, minutes, and action tracking.',
+          check: 'Verify board composition meets LODR 17 requirements — independent director percentage, chairperson/CEO separation. Confirm all mandatory committees constituted per LODR 18-21. Validate board meeting frequency and quorum compliance. Document board evaluation process per LODR 17(10).'
+        },
+        {
+          title: 'Implement Continuous Disclosure & Stock Exchange Filings',
+          control: 'LODR Regulation 30: Continuous disclosure of material events and information to stock exchanges',
+          how: 'Implement a materiality assessment framework per LODR 30 read with SEBI circular on materiality. Create an event classification matrix: deemed material events (Regulation 30(4)) — acquisitions, board decisions, financial results, key managerial personnel changes; subjective materiality events — apply quantitative/qualitative thresholds. Build automated workflow: event detection → materiality assessment → disclosure drafting → compliance officer review → stock exchange filing via NSE/BSE portals → website posting. Maintain disclosure register with timestamps and acknowledgments.',
+          check: 'Verify all deemed material events are filed within 24 hours (or 30 minutes for price-sensitive events during trading hours). Confirm quarterly financial results filed within 45 days (60 days for FY-end). Validate related party transaction disclosures per LODR 23(9). Check website posting of disclosures within 24 hours.'
+        },
+        {
+          title: 'Implement Related Party Transaction Framework per LODR 23',
+          control: 'LODR Regulation 23: Related party transactions — approval, disclosure, and reporting requirements',
+          how: 'Build an RPT management framework: maintain a register of related parties per LODR 2(1)(zb). Define materiality threshold per LODR 23(1) — transaction exceeding 10% of annual consolidated turnover. Implement approval workflow: Audit Committee prior approval for material RPTs; shareholder approval for material RPTs exceeding threshold. Document omnibus approval for routine transactions per LODR 23(3). Implement quarterly RPT disclosure to stock exchanges per LODR 23(9) — format as per SEBI format. Annual disclosure in Annual Report per LODR 23(10).',
+          check: 'Verify RPT register is complete and updated quarterly. Confirm Audit Committee approval for all material RPTs. Validate shareholder approval for material RPTs exceeding thresholds. Check quarterly RPT disclosures filed with stock exchanges within 15 days of quarter-end. Confirm annual RPT disclosure in Annual Report matches quarterly filings.'
+        },
+        {
+          title: 'Implement Corporate Governance Report & Compliance Certificate',
+          control: 'LODR Regulations 27, 34(3): Quarterly Corporate Governance Report and annual compliance certificate',
+          how: 'Automate quarterly Corporate Governance Report (CGR) per LODR 27(2) — format as per SEBI format (Annexure I). Report on: board composition, committee meetings, compliance with mandatory/non-mandatory requirements, related party transactions, vigil mechanism, subsidiary monitoring. Implement compliance certificate per LODR 34(3) read with Schedule V — signed by CEO/CFO certifying: financial statements accuracy, internal controls, code of conduct compliance, no fraud. Annual Secretarial Audit Report per LODR 24A — engage practicing company secretary. File all reports within timelines: CGR within 21 days of quarter-end; Annual Report within 21 days of AGM.',
+          check: 'Verify CGR filed within 21 days of each quarter-end. Confirm Annual Report filed within 21 days of AGM. Validate Secretarial Audit Report per LODR 24A for material subsidiaries. Confirm CEO/CFO certification is included in Annual Report. Validate all certificates are digitally signed and filed on NSE/BSE portals.'
+        },
+        {
+          title: 'Implement Subsidiary Governance & Material Subsidiary Framework',
+          control: 'LODR Regulation 24: Governance of material subsidiaries and unlisted subsidiaries',
+          how: 'Identify material subsidiaries per LODR 24(1) — subsidiary whose income/net worth exceeds 10% of consolidated income/net worth. Implement governance framework: at least one independent director of listed entity on material subsidiary board (LODR 24(2)). Review subsidiary financial statements by Audit Committee of listed entity (LODR 24(3)). Monitor significant transactions/arrangements of unlisted subsidiaries (LODR 24(4)). Disclose material subsidiary details in Annual Report per Schedule V. Implement consolidated monitoring dashboard for all subsidiaries.',
+          check: 'Verify all material subsidiaries identified and tracked. Confirm independent director appointment on material subsidiary boards. Validate Audit Committee reviews subsidiary financials quarterly. Check disclosure of material subsidiaries in Annual Report. Confirm compliance certificate for unlisted material subsidiaries.'
+        },
+        {
+          title: 'Implement Vigil Mechanism & Whistleblower Framework',
+          control: 'LODR Regulation 22: Vigil mechanism for directors and employees to report genuine concerns',
+          how: 'Establish vigil mechanism (whistleblower policy) per LODR 22: accessible to all directors, employees, and stakeholders. Appoint vigil mechanism chair (independent director or Audit Committee chair). Implement secure reporting channels: dedicated email, toll-free hotline, web portal, post. Ensure anonymity protection and retaliation prohibition. Define investigation process with timelines: acknowledgment within 7 days, preliminary assessment within 30 days, investigation completion within 90 days. Report summary to Audit Committee quarterly. Publish vigil mechanism details on website per LODR 46.',
+          check: 'Verify vigil mechanism policy is approved by board and published on website. Confirm all reporting channels are operational. Validate investigation timelines are met. Check quarterly reporting to Audit Committee. Validate protection against retaliation is documented and enforced.'
+        }
+      ]
     }
   ],
   milestones: [
     { day: 7, label: 'SEBI Regulatory Baseline Established', color: 'golden' },
     { day: 14, label: 'Audit Trails & CCMP Implemented', color: 'golden' },
-    { day: 28, label: 'Multi-Cloud Controls & Ongoing Compliance Active', color: 'golden' }
+    { day: 28, label: 'Multi-Cloud Controls & Ongoing Compliance Active', color: 'golden' },
+    { day: 35, label: 'LODR Governance & Disclosure Framework Active', color: 'golden' }
   ],
   referenceUrl: 'https://www.sebi.gov.in/'
 };
