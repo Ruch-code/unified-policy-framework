@@ -169,6 +169,215 @@ const FRAMEWORK = {
     }
 ,
     {
+,
+              howDetail: `Internal Audit Program Elements (Clause 9.2):
+- Audit criteria: ISO 27001 clauses + selected Annex A controls + organizational policies
+- Audit scope: all ISMS processes, controls, locations, and third-party services
+- Audit frequency: risk-based (critical controls quarterly, standard annually)
+- Auditor competence: ISO 19011 knowledge, ISMS knowledge, independence from audited area
+- Audit methods: interviews, observation, document review, technical testing, sampling
+- Finding classification: Major NC (systemic failure), Minor NC (isolated lapse), OFI (enhancement)
+- Reporting: audit report with findings, evidence references, severity ratings
+- Follow-up: corrective action tracking with root cause analysis, implementation verification
+
+Risk-Based Audit Scheduling:
+- Quarterly: Access control, incident management, change management, backup/recovery
+- Semi-annual: Physical security, supplier management, training/awareness
+- Annual: Policy review, legal compliance, supplier contracts, business continuity
+
+Audit Evidence Requirements:
+- Interview records with date, participants, topics
+- Document references with version and date
+- Screenshots/configuration exports with timestamps
+- Sampling records with population and sample size
+- Technical test results with tool output`
+,
+              check: 'Annual audit schedule covers all ISMS elements, audit procedures documented, auditors competent and independent, audit reports produced with classified findings, corrective actions tracked to closure, audit program reviewed annually.',
+              questions: [
+                'Is the internal audit program risk-based and covers all controls annually?',
+                'Are auditors independent from the areas they audit?',
+                'Are findings classified correctly (Major/Minor/OFI) with evidence?',
+                'Are corrective actions tracked to closure with root cause analysis?',
+                'Is the audit program itself reviewed and improved annually?',
+              ]
+            },
+            {
+              title: 'Implement Monitoring, Measurement, Analysis & Evaluation (Clause 9.1)',
+              control: 'ISO 27001 Clause 9.1 - Monitoring, Measurement, Analysis and Evaluation',
+              how: `Establish a comprehensive monitoring and measurement framework per Clause 9.1. Define what to monitor/measure for each control domain, methods, frequency, responsible parties, and reporting. Build automated dashboards and reporting cadences.`,
+,
+              howDetail: `Key Monitoring Areas by Control Domain:
+
+Access Control (A.5.15-A.5.18):
+- % of terminated accounts disabled within SLA (target: 100% within 24h)
+- Privileged access reviews completed quarterly (target: 100%)
+- MFA enforcement rate on privileged accounts (target: 100%)
+- Dormant accounts identified and removed (target: 0 accounts >90 days inactive)
+
+Incident Management (A.5.24-A.5.28):
+- Mean Time to Detect (MTTD) - target < 1 hour
+- Mean Time to Respond (MTTR) - target < 4 hours
+- Incident closure rate within SLA (target > 95%)
+- Root cause analysis completion rate for major incidents (target: 100%)
+
+Vulnerability Management (A.8.8):
+- Critical vulnerability remediation within 24h (target: 100%)
+- High vulnerability remediation within 7 days (target: >90%)
+- Scan coverage across all assets (target: 100%)
+
+Backup & Recovery (A.8.13):
+- Backup success rate (target: 100%)
+- Recovery Time Objective (RTO) test results vs targets
+- Recovery Point Objective (RPO) validation
+- DR test completion rate (target: 100% quarterly)
+
+Supplier Management (A.5.19-A.5.23):
+- Critical supplier assessments completed on schedule
+- Contractual security clauses in place (target: 100%)
+- Incident notification SLAs met by suppliers
+
+Reporting Cadence:
+- Daily: Automated alerts for critical metrics breaches
+- Weekly: Operational dashboards to ISMS owner
+- Monthly: Performance reports to CISO/management
+- Quarterly: Management review input package
+- Annually: Comprehensive ISMS performance report`
+,
+              check: 'Monitoring framework documented with KPIs per control domain, automated dashboards operational, measurement methods produce comparable results, reporting cadences established and followed, results feed into management review.',
+              questions: [
+                'Are KPIs defined for all critical controls with clear targets?',
+                'Is measurement automated where possible (vs manual)?',
+                'Are measurement methods producing comparable, reproducible results?',
+                'Do monitoring results feed directly into management review inputs?',
+                'Are measurement methods reviewed for effectiveness annually?',
+              ]
+            },
+            {
+              title: 'Implement Continual Improvement (Clause 10) & Root Cause Analysis',
+              control: 'ISO 27001 Clause 10 - Improvement',
+              how: `Embed the Plan-Do-Check-Act (PDCA) cycle into all ISMS operations as the engine of continual improvement per Clause 10. Establish: improvement opportunity identification sources (audits, incidents, monitoring, management review, stakeholder feedback), corrective action process with root cause analysis (5 Whys, Ishikawa), preventive action identification, effectiveness verification, and closure criteria. Implement a Corrective Action Request (CAR) system with: CAR form, root cause analysis template (5 Whys/Ishikawa), action plan with owner/deadline, effectiveness verification method, closure approval. Track metrics: CAR aging, closure rate, recurrence rate.`,
+,
+              howDetail: `Corrective Action Process (Clause 10.1-10.2):
+1. Identify: Nonconformity detected (audit, incident, monitoring, review)
+2. Contain: Immediate containment actions
+3. Analyze: Root cause analysis (5 Whys or Ishikawa/Fishbone)
+4. Plan: Corrective action plan with owner, deadline, resources
+5. Implement: Execute corrective actions
+6. Verify: Effectiveness verification (not just implementation)
+7. Close: Closure with evidence of effectiveness
+
+Root Cause Analysis Methods:
+- 5 Whys: Iterative questioning to reach root cause
+- Ishikawa/Fishbone: Categories (People, Process, Technology, Environment, Measurement, Management)
+- Fault Tree Analysis: For complex systemic failures
+
+Preventive Action (Clause 10.1):
+- Proactive risk identification from trends
+- Improvement opportunities from monitoring/management review
+- Innovation adoption (new controls, automation)
+- Lessons learned integration
+
+CAR Metrics to Track:
+- CAR aging (open > 30/60/90 days)
+- Closure rate (target: >90% within SLA)
+- Recurrence rate (target: 0% for major NCs)
+- Effectiveness verification rate (target: 100%)
+- Root cause analysis completion rate (target: 100%)
+
+Continual Improvement Register:
+- Improvement opportunity ID, source, description
+- Priority, owner, target date
+- Status (planned, in progress, verified, closed)
+- Effectiveness evidence`
+,
+              check: 'CAR process documented with root cause analysis requirement, CAR register maintained with aging/tracking, effectiveness verification mandatory before closure, recurrence rate tracked, improvement opportunities from all sources captured, PDCA cycle evidenced in management review minutes.',
+              questions: [
+                'Is root cause analysis mandatory for all Major NCs?',
+                'Is effectiveness verified before CAR closure (not just implementation)?',
+                'What is the recurrence rate for closed Major NCs?',
+                'Are preventive actions identified from trends (not just reactive)?',
+                'Is the CAR register reviewed in management review?',
+              ]
+            },
+            {
+              title: 'Quarterly Review Pack Preparation & Execution',
+              control: 'Integrated Quarterly Review: Management Review + Internal Audit + Monitoring + Improvement',
+              how: `Create a standardized quarterly review pack that consolidates all Clause 9.1-9.3 and Clause 10 inputs into a single management review package. Execute quarterly review meetings with structured agenda, pre-read pack distribution (5 business days prior), decision capture, and action tracking.`,
+,
+              howDetail: `Quarterly Review Pack Contents (Pre-read, distributed 5 business days prior):
+
+Section A: Management Review Inputs (Clause 9.3.2)
+- [ ] Status of actions from previous reviews
+- [ ] Changes in internal/external issues (Clause 4.1)
+- [ ] Changes in interested party needs (Clause 4.2)
+- [ ] Nonconformity & corrective action trends
+- [ ] Monitoring & measurement results (Clause 9.1 dashboards)
+- [ ] Internal audit results (since last review)
+- [ ] External audit results (if any)
+- [ ] Risk assessment status & treatment effectiveness
+- [ ] Assumptions/limitations, recommendations
+
+Section B: Monitoring & Measurement Results (Clause 9.1)
+- [ ] Access control KPIs
+- [ ] Incident management KPIs
+- [ ] Vulnerability management KPIs
+- [ ] Backup/recovery KPIs
+- [ ] Supplier management KPIs
+- [ ] Training/awareness completion rates
+- [ ] Policy compliance rates
+
+Section C: Audit Results (Clause 9.2)
+- [ ] Internal audit findings since last review
+- [ ] External audit findings (if any)
+- [ ] Corrective action status (aging, closure rate)
+- [ ] Recurrence analysis
+
+Section D: Risk & Treatment Status
+- [ ] Risk register changes (new/updated/closed)
+- [ ] Treatment plan progress
+- [ ] Residual risk acceptance decisions
+
+Section E: Improvement (Clause 10)
+- [ ] CAR aging report (open >30/60/90 days)
+- [ ] CAR closure rate & recurrence rate
+- [ ] Preventive actions implemented
+- [ ] Lessons learned from incidents/audits
+
+Section F: Decisions & Actions Required
+- [ ] Resource requests
+- [ ] Policy/procedure changes
+- [ ] Scope changes
+- [ ] Objective updates
+- [ ] Resource allocation decisions
+
+Quarterly Review Meeting Agenda (90 minutes):
+1. Opening & previous actions status (10 min)
+2. Monitoring & measurement review (15 min)
+3. Audit results & CAR status (20 min)
+4. Risk & treatment status (10 min)
+4. Improvement & lessons learned (10 min)
+5. Decisions & resource allocation (15 min)
+6. Action item capture & owners (5 min)
+
+Post-Review Actions:
+- Minutes distributed within 2 business days
+- Action items entered in tracker with owners/deadlines
+- Evidence package archived for audit
+- Next review date confirmed`
+,
+              check: 'Quarterly review pack template created, pre-read distributed 5 days prior, meeting conducted with quorum, minutes captured with decisions/actions, action tracker updated, evidence package archived for audit.',
+              questions: [
+                'Is the quarterly review pack distributed 5 business days before the meeting?',
+                'Does the pack include ALL Clause 9.3.2 required inputs?',
+                'Are decisions translated into tracked action items with owners/deadlines?',
+                'Is the evidence package complete and audit-ready?',
+                'Are trends (KPIs, CARs, audit findings) analyzed vs previous quarters?',
+              ]
+            }
+      ],
+    }
+,
+    {
       week: 5,
       title: 'L5 Expert: ISMS Management Review, Internal Audit & Continuous Improvement',
       days: 'Days 29-35',
