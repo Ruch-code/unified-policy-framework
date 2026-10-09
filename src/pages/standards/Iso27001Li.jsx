@@ -634,8 +634,145 @@ Post-Review Actions:
             }
       ],
     }
+          ,
+
+        ,
+        {
+          title: 'Build and Maintain Data Inventory Map & ROPA (Records of Processing Activities)',
+          control: 'GDPR Article 30 / ISO 27001 Clause 7.5 - Records of Processing Activities (ROPA)',
+          how: 'Build and maintain a comprehensive Data Inventory Map that serves as your Record of Processing Activities (ROPA) per GDPR Article 30. This living document must catalog every processing activity involving personal and sensitive data across the organization.',
+          howDetail: `**Data Inventory Map / ROPA Required Elements (GDPR Art. 30):**
+
+**For Each Processing Activity, Document:**
+1. **Controller Details**: Name and contact details of controller (and representative/DPO if applicable)
+2. **Processing Purposes**: Specific purpose(s) for each processing activity
+3. **Categories of Data Subjects**: Employees, customers, prospects, suppliers, website visitors, job applicants, etc.
+4. **Categories of Personal Data**: 
+   - Identifiers (name, ID numbers, online identifiers)
+   - Contact details (email, phone, address)
+   - Financial data (payment info, billing records)
+   - Special category data (health, biometric, racial/ethnic origin, political opinions, etc.)
+   - Technical data (IP, cookies, device fingerprint, location)
+   - HR data (employment history, performance, compensation)
+5. **Categories of Recipients**: Internal departments, processors, joint controllers, third parties, international transfers
+6. **Legal Basis for Processing**: Consent, contract, legal obligation, vital interests, public task, legitimate interests (document LIA for each)
+7. **Retention Periods**: Specific retention schedules per data category with legal/regulatory justification
+8. **International Transfers**: Third country transfers with safeguards (SCCs, BCRs, adequacy decisions, derogations)
+9. **Technical & Organizational Measures**: Encryption, pseudonymization, access controls, retention enforcement
+
+**Data Inventory Map Structure:**
+- **System/Process Level**: Each business process/system (HRIS, CRM, Marketing Platform, Payment Gateway, etc.)
+- **Data Flow Mapping**: Source -> Processing -> Storage -> Sharing -> Disposal
+- **Risk Classification**: High/Medium/Low based on data sensitivity and processing scope
+- **Owner Assignment**: Process owner, DPO liaison, system owner
+
+**Maintenance & Governance:**
+- Quarterly review by DPO and process owners
+- Automated discovery scans (AWS Macie, Azure Purview, GCP DLP, Microsoft Purview)
+- Change management integration: new systems/processes trigger inventory update
+- Annual attestation by process owners
+- Version control with change log
+
+**Tools & Automation:**
+- Data catalog tools: Collibra, Alation, Atlan, Microsoft Purview, OneTrust, TrustArc
+- Automated discovery: AWS Macie, Azure Purview, GCP DLP, Microsoft Purview Information Protection
+- Integration with CMDB (ServiceNow, Jira Assets) for system mapping
+- API-based inventory updates from SaaS applications`,
+          check: 'Data Inventory Map/ROPA is complete, current, and covers all processing activities. All Art. 30 elements documented per processing activity. Retention periods defined with legal basis. DPO sign-off quarterly. Automated discovery integrated.',
+          questions: [
+            'Does the ROPA cover ALL processing activities including shadow IT?',
+            'Are retention periods tied to legal requirements with citations?',
+            'Is the legal basis documented for EVERY processing activity?',
+            'Are international transfers mapped with appropriate safeguards?',
+            'Is the inventory reviewed quarterly by DPO and process owners?',
+            'Are automated discovery tools configured and running?',
+          ],
+        },
+        {
+          title: 'Affiliates, Business Partners & Third-Party Data Sharing Governance',
+          control: 'GDPR Articles 28, 26, 44-50 / ISO 27001 A.5.19-A.5.23 - Supplier/Third Party Management',
+          how: 'Establish a comprehensive governance framework for all data sharing with affiliates, business partners, joint ventures, and third parties. This covers contractual requirements, data protection impact assessments, transfer mechanisms, and ongoing monitoring.',
+          howDetail: `**Categories of Data Sharing Scenarios:**
+
+**1. Affiliates & Joint Venture Partners:**
+- **Intra-group transfers**: Intra-group agreement (IGA) or Binding Corporate Rules (BCRs) for intra-group transfers
+- **Joint venture data pooling**: Data sharing agreement defining purpose limitation, access controls, retention, and deletion
+- **Shared services**: Centralized HR, IT, Finance functions across group entities -- document as processor/controller relationships
+
+**2. Business Partners & Strategic Alliances:**
+- **Co-marketing/co-selling**: Data sharing agreements specifying purpose, data categories, access controls, and deletion timelines
+- **Product integrations/API partnerships**: Data Processing Agreements (DPAs) with standard contractual clauses (SCCs)
+- **Channel partners/resellers**: Clear controller/processor designation, data minimization, purpose limitation
+
+**3. Service Providers & Processors (Article 28 GDPR):**
+- **DPAs with all processors**: Mandatory clauses per Art. 28(3) -- purpose, duration, nature, types of data, categories of data subjects, controller obligations/rights
+- **Sub-processor management**: Prior written authorization, flow-down of DPA terms, liability allocation
+- **Sub-processor register**: Maintained and available to controller
+
+**4. Business Transactions (M&A, Divestiture, Asset Sale):**
+- **Due diligence data rooms**: Access controls, watermarking, audit logging, time-limited access
+- **Data transfer agreements**: Pre-closing data transfer agreements with representations/warranties
+- **Post-closing integration**: Data migration plans, system integration, record consolidation
+- **Carve-out scenarios**: Data separation, system cloning, transition services agreements (TSAs)
+
+**5. Law Enforcement & Regulatory Requests:**
+- **Request validation**: Legal basis verification, scope limitation, proportionality assessment
+- **Court orders/subpoenas**: Legal review, privilege assessment, narrow compliance
+- **Government access requests**: Transparency reporting, user notification (where legally permissible)
+- **CERT-In/SEBI/RBI/IRDAI notifications**: Sector-specific incident reporting timelines
+
+**6. Consent-Based Disclosure:**
+- **Explicit consent management**: Granular consent capture, withdrawal mechanism, consent records with timestamps
+- **Consent for new purposes**: Re-consent when purpose changes beyond original scope
+- **Consent withdrawal**: Automated propagation to all downstream systems/partners
+
+**Contractual Requirements for ALL Data Sharing Agreements:**
+
+**Mandatory Clauses (GDPR Art. 28, 26, 44-50):**
+- **Purpose limitation**: Specific, documented purposes only
+- **Data minimization**: Only necessary data categories shared
+- **Security measures**: Encryption (AES-256 at rest, TLS 1.3 in transit), access controls, logging
+- **Data subject rights facilitation**: 30-day response for DSARs, automated deletion/rectification propagation
+- **Breach notification**: 24-72 hour notification to controller, cooperation obligations
+- **Audit rights**: Controller audit rights, SOC 2 Type II / ISO 27001 evidence acceptance
+- **Sub-processor flow-down**: Equivalent protections, prior authorization
+- **International transfer safeguards**: SCCs (2021), BCRs, adequacy decisions, derogations
+- **Data retention & deletion**: Return/destroy at contract end, certification of deletion
+- **Liability & indemnification**: Clear allocation, insurance requirements
+- **Audit & certification**: SOC 2 Type II, ISO 27001, right to audit
+- **Termination provisions**: Data return/destruction, transition assistance, certification
+
+**Governance & Monitoring:**
+- **Vendor/partner tiering**: Critical/High/Medium/Low based on data sensitivity and business criticality
+- **Annual assessments**: DPA review, security posture, compliance certifications
+- **Continuous monitoring**: Security ratings (SecurityScorecard, BitSight), breach monitoring
+- **Incident notification SLAs**: 24h for critical, 72h for GDPR notifiable breaches
+- **Annual reassessment**: Contract renewal, risk reassessment, DPA updates
+
+**Data Subject Transparency:**
+- Privacy notice updates for new sharing relationships
+- Records of processing activities (ROPA) reflect all sharing
+- Data subject access request (DSAR) includes third-party recipients
+- Automated consent/preference propagation to partners`,
+          check: 'All data sharing relationships documented with DPAs/agreements. DPA register current with all Art. 28 clauses. SCCs/BCRs in place for international transfers. Sub-processor flow-down enforced. Annual vendor assessments completed. DSAR process includes third-party propagation. Breach notification SLAs tested.',
+          questions: [
+            'Are ALL data sharing relationships covered by written agreements with Art. 28/26 clauses?',
+            'Are SCCs (2021) or BCRs in place for ALL international transfers?',
+            'Is there a sub-processor register with flow-down verification?',
+            'Are breach notification SLAs (24-72h) tested and documented?',
+            'Does DSAR process automatically propagate to all processors/partners?',
+            'Is there an annual vendor assessment program with risk-based tiering?',
+            'Are data residency requirements enforced for Indian data (LODR/RBI/SEBI)?',
+          ],
+        }
+      ]
+    }
   ],
-  milestones: [
+  milestones:
+      ]
+    }
+  ],
+  milestones:
     {
       week: 1,
       title: "ISMS Foundation Complete",
