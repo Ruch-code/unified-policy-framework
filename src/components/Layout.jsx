@@ -250,9 +250,15 @@ export default function Layout() {
             </button>
             
             {/* Brand/Title - scales and truncates, no wrapping */}
-            <Link to="/" className="flex-shrink-0 flex items-center gap-2 ml-3 text-base sm:text-lg font-semibold tracking-tight whitespace-nowrap truncate max-w-[140px] sm:max-w-none text-slate-900 dark:text-white"
-              aria-label="Unified Compliance Platform Home">
-              Unified Compliance Platform
+            <Link to="/" className="flex-shrink-0 flex items-center gap-2 ml-3 text-base sm:text-lg font-semibold tracking-tight whitespace-nowrap truncate max-w-[180px] sm:max-w-none text-slate-900 dark:text-white"
+              aria-label="OneLens by Ruchi Home">
+              <svg className="w-6 h-6 text-indigo-600 dark:text-indigo-400" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.3"/>
+                <circle cx="16" cy="16" r="10" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.6"/>
+                <circle cx="16" cy="16" r="6" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.9"/>
+                <circle cx="16" cy="16" r="2.5" fill="currentColor"/>
+              </svg>
+              OneLens
             </Link>
           </div>
 
@@ -450,7 +456,8 @@ export default function Layout() {
 
       <footer className="bg-gray-900 text-gray-400 py-8">
         <div className="container text-center flex flex-col items-center gap-3">
-          <p className="text-sm font-bold text-white">Made by Ruchi Kandpal</p>
+          <p className="text-sm font-bold text-white">OneLens by Ruchi <span className="font-normal text-xs text-gray-500">(formerly Unified Compliance Framework)</span></p>
+          <p className="text-xs text-gray-500">Built by Ruchi Kandpal, ISO 27001 & ISO 42001 certified</p>
           <a
             href="https://www.linkedin.com/in/ruchi-k/"
             target="_blank"
