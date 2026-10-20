@@ -10,7 +10,8 @@ const FRAMEWORK = {
   color: "purple",
   weeks: 4,
   milestones: 3,
-  referenceUrl: "https://www.iso.org/standard/71670.html",
+  referenceUrl: "https://www.iso.org/standard/27701",
+  referenceNote: "ISO/IEC 27701:2025 is published as a standalone Privacy Information Management System standard; it no longer requires ISO 27001 as a base. The 2019 edition was an extension to ISO 27001/27002. Certification bodies set transition periods. Source: https://www.iso.org/standard/27701 [VERIFY LINK]",
   weeksData: [
     {
       week: 1,
