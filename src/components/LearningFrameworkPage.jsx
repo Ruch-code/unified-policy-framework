@@ -171,7 +171,9 @@ function normalizeFramework(framework) {
   let raw = framework.weeks;
   if (Array.isArray(raw) && raw.length === 0) raw = framework.weeksData || framework.modules;
   if (!Array.isArray(raw)) raw = framework.weeksData || framework.modules || [];
-  const weeks = raw.map((w, idx) => {
+  // Filter out any undefined/null elements that could cause runtime errors
+  const cleanRaw = raw.filter(Boolean);
+  const weeks = cleanRaw.map((w, idx) => {
     let tasks = Array.isArray(w.tasks) ? w.tasks : [];
     if (Array.isArray(w.days) && w.days.length > 0) {
       tasks = w.days.flatMap(d => (Array.isArray(d.tasks) ? d.tasks : []));

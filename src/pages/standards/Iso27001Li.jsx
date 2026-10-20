@@ -166,217 +166,7 @@ const FRAMEWORK = {
           check: "PDCA cycle is operational across all ISMS processes, improvement opportunities are systematically identified, corrective actions are tracked to completion, and continual improvement is reported at management reviews."
         }
       ]
-    }
-,
-    {
-,
-              howDetail: `Internal Audit Program Elements (Clause 9.2):
-- Audit criteria: ISO 27001 clauses + selected Annex A controls + organizational policies
-- Audit scope: all ISMS processes, controls, locations, and third-party services
-- Audit frequency: risk-based (critical controls quarterly, standard annually)
-- Auditor competence: ISO 19011 knowledge, ISMS knowledge, independence from audited area
-- Audit methods: interviews, observation, document review, technical testing, sampling
-- Finding classification: Major NC (systemic failure), Minor NC (isolated lapse), OFI (enhancement)
-- Reporting: audit report with findings, evidence references, severity ratings
-- Follow-up: corrective action tracking with root cause analysis, implementation verification
-
-Risk-Based Audit Scheduling:
-- Quarterly: Access control, incident management, change management, backup/recovery
-- Semi-annual: Physical security, supplier management, training/awareness
-- Annual: Policy review, legal compliance, supplier contracts, business continuity
-
-Audit Evidence Requirements:
-- Interview records with date, participants, topics
-- Document references with version and date
-- Screenshots/configuration exports with timestamps
-- Sampling records with population and sample size
-- Technical test results with tool output`
-,
-              check: 'Annual audit schedule covers all ISMS elements, audit procedures documented, auditors competent and independent, audit reports produced with classified findings, corrective actions tracked to closure, audit program reviewed annually.',
-              questions: [
-                'Is the internal audit program risk-based and covers all controls annually?',
-                'Are auditors independent from the areas they audit?',
-                'Are findings classified correctly (Major/Minor/OFI) with evidence?',
-                'Are corrective actions tracked to closure with root cause analysis?',
-                'Is the audit program itself reviewed and improved annually?',
-              ]
-            },
-            {
-              title: 'Implement Monitoring, Measurement, Analysis & Evaluation (Clause 9.1)',
-              control: 'ISO 27001 Clause 9.1 - Monitoring, Measurement, Analysis and Evaluation',
-              how: `Establish a comprehensive monitoring and measurement framework per Clause 9.1. Define what to monitor/measure for each control domain, methods, frequency, responsible parties, and reporting. Build automated dashboards and reporting cadences.`,
-,
-              howDetail: `Key Monitoring Areas by Control Domain:
-
-Access Control (A.5.15-A.5.18):
-- % of terminated accounts disabled within SLA (target: 100% within 24h)
-- Privileged access reviews completed quarterly (target: 100%)
-- MFA enforcement rate on privileged accounts (target: 100%)
-- Dormant accounts identified and removed (target: 0 accounts >90 days inactive)
-
-Incident Management (A.5.24-A.5.28):
-- Mean Time to Detect (MTTD) - target < 1 hour
-- Mean Time to Respond (MTTR) - target < 4 hours
-- Incident closure rate within SLA (target > 95%)
-- Root cause analysis completion rate for major incidents (target: 100%)
-
-Vulnerability Management (A.8.8):
-- Critical vulnerability remediation within 24h (target: 100%)
-- High vulnerability remediation within 7 days (target: >90%)
-- Scan coverage across all assets (target: 100%)
-
-Backup & Recovery (A.8.13):
-- Backup success rate (target: 100%)
-- Recovery Time Objective (RTO) test results vs targets
-- Recovery Point Objective (RPO) validation
-- DR test completion rate (target: 100% quarterly)
-
-Supplier Management (A.5.19-A.5.23):
-- Critical supplier assessments completed on schedule
-- Contractual security clauses in place (target: 100%)
-- Incident notification SLAs met by suppliers
-
-Reporting Cadence:
-- Daily: Automated alerts for critical metrics breaches
-- Weekly: Operational dashboards to ISMS owner
-- Monthly: Performance reports to CISO/management
-- Quarterly: Management review input package
-- Annually: Comprehensive ISMS performance report`
-,
-              check: 'Monitoring framework documented with KPIs per control domain, automated dashboards operational, measurement methods produce comparable results, reporting cadences established and followed, results feed into management review.',
-              questions: [
-                'Are KPIs defined for all critical controls with clear targets?',
-                'Is measurement automated where possible (vs manual)?',
-                'Are measurement methods producing comparable, reproducible results?',
-                'Do monitoring results feed directly into management review inputs?',
-                'Are measurement methods reviewed for effectiveness annually?',
-              ]
-            },
-            {
-              title: 'Implement Continual Improvement (Clause 10) & Root Cause Analysis',
-              control: 'ISO 27001 Clause 10 - Improvement',
-              how: `Embed the Plan-Do-Check-Act (PDCA) cycle into all ISMS operations as the engine of continual improvement per Clause 10. Establish: improvement opportunity identification sources (audits, incidents, monitoring, management review, stakeholder feedback), corrective action process with root cause analysis (5 Whys, Ishikawa), preventive action identification, effectiveness verification, and closure criteria. Implement a Corrective Action Request (CAR) system with: CAR form, root cause analysis template (5 Whys/Ishikawa), action plan with owner/deadline, effectiveness verification method, closure approval. Track metrics: CAR aging, closure rate, recurrence rate.`,
-,
-              howDetail: `Corrective Action Process (Clause 10.1-10.2):
-1. Identify: Nonconformity detected (audit, incident, monitoring, review)
-2. Contain: Immediate containment actions
-3. Analyze: Root cause analysis (5 Whys or Ishikawa/Fishbone)
-4. Plan: Corrective action plan with owner, deadline, resources
-5. Implement: Execute corrective actions
-6. Verify: Effectiveness verification (not just implementation)
-7. Close: Closure with evidence of effectiveness
-
-Root Cause Analysis Methods:
-- 5 Whys: Iterative questioning to reach root cause
-- Ishikawa/Fishbone: Categories (People, Process, Technology, Environment, Measurement, Management)
-- Fault Tree Analysis: For complex systemic failures
-
-Preventive Action (Clause 10.1):
-- Proactive risk identification from trends
-- Improvement opportunities from monitoring/management review
-- Innovation adoption (new controls, automation)
-- Lessons learned integration
-
-CAR Metrics to Track:
-- CAR aging (open > 30/60/90 days)
-- Closure rate (target: >90% within SLA)
-- Recurrence rate (target: 0% for major NCs)
-- Effectiveness verification rate (target: 100%)
-- Root cause analysis completion rate (target: 100%)
-
-Continual Improvement Register:
-- Improvement opportunity ID, source, description
-- Priority, owner, target date
-- Status (planned, in progress, verified, closed)
-- Effectiveness evidence`
-,
-              check: 'CAR process documented with root cause analysis requirement, CAR register maintained with aging/tracking, effectiveness verification mandatory before closure, recurrence rate tracked, improvement opportunities from all sources captured, PDCA cycle evidenced in management review minutes.',
-              questions: [
-                'Is root cause analysis mandatory for all Major NCs?',
-                'Is effectiveness verified before CAR closure (not just implementation)?',
-                'What is the recurrence rate for closed Major NCs?',
-                'Are preventive actions identified from trends (not just reactive)?',
-                'Is the CAR register reviewed in management review?',
-              ]
-            },
-            {
-              title: 'Quarterly Review Pack Preparation & Execution',
-              control: 'Integrated Quarterly Review: Management Review + Internal Audit + Monitoring + Improvement',
-              how: `Create a standardized quarterly review pack that consolidates all Clause 9.1-9.3 and Clause 10 inputs into a single management review package. Execute quarterly review meetings with structured agenda, pre-read pack distribution (5 business days prior), decision capture, and action tracking.`,
-,
-              howDetail: `Quarterly Review Pack Contents (Pre-read, distributed 5 business days prior):
-
-Section A: Management Review Inputs (Clause 9.3.2)
-- [ ] Status of actions from previous reviews
-- [ ] Changes in internal/external issues (Clause 4.1)
-- [ ] Changes in interested party needs (Clause 4.2)
-- [ ] Nonconformity & corrective action trends
-- [ ] Monitoring & measurement results (Clause 9.1 dashboards)
-- [ ] Internal audit results (since last review)
-- [ ] External audit results (if any)
-- [ ] Risk assessment status & treatment effectiveness
-- [ ] Assumptions/limitations, recommendations
-
-Section B: Monitoring & Measurement Results (Clause 9.1)
-- [ ] Access control KPIs
-- [ ] Incident management KPIs
-- [ ] Vulnerability management KPIs
-- [ ] Backup/recovery KPIs
-- [ ] Supplier management KPIs
-- [ ] Training/awareness completion rates
-- [ ] Policy compliance rates
-
-Section C: Audit Results (Clause 9.2)
-- [ ] Internal audit findings since last review
-- [ ] External audit findings (if any)
-- [ ] Corrective action status (aging, closure rate)
-- [ ] Recurrence analysis
-
-Section D: Risk & Treatment Status
-- [ ] Risk register changes (new/updated/closed)
-- [ ] Treatment plan progress
-- [ ] Residual risk acceptance decisions
-
-Section E: Improvement (Clause 10)
-- [ ] CAR aging report (open >30/60/90 days)
-- [ ] CAR closure rate & recurrence rate
-- [ ] Preventive actions implemented
-- [ ] Lessons learned from incidents/audits
-
-Section F: Decisions & Actions Required
-- [ ] Resource requests
-- [ ] Policy/procedure changes
-- [ ] Scope changes
-- [ ] Objective updates
-- [ ] Resource allocation decisions
-
-Quarterly Review Meeting Agenda (90 minutes):
-1. Opening & previous actions status (10 min)
-2. Monitoring & measurement review (15 min)
-3. Audit results & CAR status (20 min)
-4. Risk & treatment status (10 min)
-4. Improvement & lessons learned (10 min)
-5. Decisions & resource allocation (15 min)
-6. Action item capture & owners (5 min)
-
-Post-Review Actions:
-- Minutes distributed within 2 business days
-- Action items entered in tracker with owners/deadlines
-- Evidence package archived for audit
-- Next review date confirmed`
-,
-              check: 'Quarterly review pack template created, pre-read distributed 5 days prior, meeting conducted with quorum, minutes captured with decisions/actions, action tracker updated, evidence package archived for audit.',
-              questions: [
-                'Is the quarterly review pack distributed 5 business days before the meeting?',
-                'Does the pack include ALL Clause 9.3.2 required inputs?',
-                'Are decisions translated into tracked action items with owners/deadlines?',
-                'Is the evidence package complete and audit-ready?',
-                'Are trends (KPIs, CARs, audit findings) analyzed vs previous quarters?',
-              ]
-            }
-      ],
-    }
-,
+    },
     {
       week: 5,
       title: 'L5 Expert: ISMS Management Review, Internal Audit & Continuous Improvement',
@@ -386,9 +176,7 @@ Post-Review Actions:
       tasks: [
             {
               title: 'Design and Implement the Management Review Process (Clause 9.3)',
-              control: 'ISO 27001 Clause 9.3 - Management Review',
               how: `Design a comprehensive management review process per ISO 27001:2022 Clause 9.3. Define: frequency (minimum annual, recommended quarterly), required participants (top management, ISMS owner, CISO, DPO, CTO, risk owner, audit lead), required inputs (see below), required outputs (decisions, actions, resource needs, ISMS changes), documentation (minutes, action tracker, evidence retention). Create a management review template with structured agenda, input checklist, and action tracker. Establish escalation paths for decisions requiring board approval.`,
-,
               howDetail: `Management Review Required Inputs (Clause 9.3.2):
 - Status of actions from previous management reviews
 - Changes in external and internal issues (Clause 4.1)
@@ -411,9 +199,7 @@ Management Review Outputs (Clause 9.3.3):
 Quarterly Review Cadence (Recommended):
 - Q1: Annual strategy alignment + risk assessment update
 - Q2: Mid-year performance review + internal audit results
-- Q3: Risk assessment refresh + control effectiveness testing
-- Q4: Annual management review + certification readiness`
-,
+- Q4: Annual management review + certification readiness`,
               check: 'Management review process documented with template, quarterly calendar established, top management participation confirmed, inputs/outputs tracked, action items assigned with owners and deadlines, minutes retained as evidence.',
               questions: [
                 'How frequently does top management review the ISMS? Is it at least annually?',
@@ -425,9 +211,7 @@ Quarterly Review Cadence (Recommended):
             },
             {
               title: 'Design and Execute the Internal Audit Program (Clause 9.2)',
-              control: 'ISO 27001 Clause 9.2 - Internal Audit',
               how: `Build a comprehensive internal audit program per Clause 9.2. Define: audit frequency (all controls at least annually, critical controls quarterly), audit criteria (ISO 27001 clauses + Annex A controls + organizational policies), audit methods (interviews, observation, document review, technical testing, sampling), auditor selection (independence, objectivity, competence per ISO 19011), audit planning (risk-based scheduling), reporting (findings classification: major NC, minor NC, OFI), corrective action tracking, and audit program management. Create: annual audit schedule, audit checklists per control domain, audit report template, NCR template, corrective action tracker.`,
-,
               howDetail: `Internal Audit Program Elements (Clause 9.2):
 - Audit criteria: ISO 27001 clauses + selected Annex A controls + organizational policies
 - Audit scope: all ISMS processes, controls, locations, and third-party services
@@ -447,9 +231,7 @@ Audit Evidence Requirements:
 - Interview records with date, participants, topics
 - Document references with version and date
 - Screenshots/configuration exports with timestamps
-- Sampling records with population and sample size
-- Technical test results with tool output`
-,
+- Technical test results with tool output`,
               check: 'Annual audit schedule covers all ISMS elements, audit procedures documented, auditors competent and independent, audit reports produced with classified findings, corrective actions tracked to closure, audit program reviewed annually.',
               questions: [
                 'Is the internal audit program risk-based and covers all controls annually?',
@@ -461,9 +243,7 @@ Audit Evidence Requirements:
             },
             {
               title: 'Implement Monitoring, Measurement, Analysis & Evaluation (Clause 9.1)',
-              control: 'ISO 27001 Clause 9.1 - Monitoring, Measurement, Analysis and Evaluation',
               how: `Establish a comprehensive monitoring and measurement framework per Clause 9.1. Define what to monitor/measure for each control domain, methods, frequency, responsible parties, and reporting. Build automated dashboards and reporting cadences.`,
-,
               howDetail: `Key Monitoring Areas by Control Domain:
 
 Access Control (A.5.15-A.5.18):
@@ -498,9 +278,7 @@ Reporting Cadence:
 - Daily: Automated alerts for critical metrics breaches
 - Weekly: Operational dashboards to ISMS owner
 - Monthly: Performance reports to CISO/management
-- Quarterly: Management review input package
-- Annually: Comprehensive ISMS performance report`
-,
+- Annually: Comprehensive ISMS performance report`,
               check: 'Monitoring framework documented with KPIs per control domain, automated dashboards operational, measurement methods produce comparable results, reporting cadences established and followed, results feed into management review.',
               questions: [
                 'Are KPIs defined for all critical controls with clear targets?',
@@ -512,9 +290,7 @@ Reporting Cadence:
             },
             {
               title: 'Implement Continual Improvement (Clause 10) & Root Cause Analysis',
-              control: 'ISO 27001 Clause 10 - Improvement',
               how: `Embed the Plan-Do-Check-Act (PDCA) cycle into all ISMS operations as the engine of continual improvement per Clause 10. Establish: improvement opportunity identification sources (audits, incidents, monitoring, management review, stakeholder feedback), corrective action process with root cause analysis (5 Whys, Ishikawa), preventive action identification, effectiveness verification, and closure criteria. Implement a Corrective Action Request (CAR) system with: CAR form, root cause analysis template (5 Whys/Ishikawa), action plan with owner/deadline, effectiveness verification method, closure approval. Track metrics: CAR aging, closure rate, recurrence rate.`,
-,
               howDetail: `Corrective Action Process (Clause 10.1-10.2):
 1. Identify: Nonconformity detected (audit, incident, monitoring, review)
 2. Contain: Immediate containment actions
@@ -545,9 +321,7 @@ CAR Metrics to Track:
 Continual Improvement Register:
 - Improvement opportunity ID, source, description
 - Priority, owner, target date
-- Status (planned, in progress, verified, closed)
-- Effectiveness evidence`
-,
+- Effectiveness evidence`,
               check: 'CAR process documented with root cause analysis requirement, CAR register maintained with aging/tracking, effectiveness verification mandatory before closure, recurrence rate tracked, improvement opportunities from all sources captured, PDCA cycle evidenced in management review minutes.',
               questions: [
                 'Is root cause analysis mandatory for all Major NCs?',
@@ -559,9 +333,7 @@ Continual Improvement Register:
             },
             {
               title: 'Quarterly Review Pack Preparation & Execution',
-              control: 'Integrated Quarterly Review: Management Review + Internal Audit + Monitoring + Improvement',
               how: `Create a standardized quarterly review pack that consolidates all Clause 9.1-9.3 and Clause 10 inputs into a single management review package. Execute quarterly review meetings with structured agenda, pre-read pack distribution (5 business days prior), decision capture, and action tracking.`,
-,
               howDetail: `Quarterly Review Pack Contents (Pre-read, distributed 5 business days prior):
 
 Section A: Management Review Inputs (Clause 9.3.2)
@@ -620,9 +392,7 @@ Quarterly Review Meeting Agenda (90 minutes):
 Post-Review Actions:
 - Minutes distributed within 2 business days
 - Action items entered in tracker with owners/deadlines
-- Evidence package archived for audit
-- Next review date confirmed`
-,
+- Next review date confirmed`,
               check: 'Quarterly review pack template created, pre-read distributed 5 days prior, meeting conducted with quorum, minutes captured with decisions/actions, action tracker updated, evidence package archived for audit.',
               questions: [
                 'Is the quarterly review pack distributed 5 business days before the meeting?',
@@ -764,15 +534,24 @@ Post-Review Actions:
             'Is there an annual vendor assessment program with risk-based tiering?',
             'Are data residency requirements enforced for Indian data (LODR/RBI/SEBI)?',
           ],
+        },
+        {
+          title: 'BAA (Business Associate Agreement) & DPA (Data Processing Agreement) \u2014 HIPAA & Privacy Law Compliance',
+          control: 'HIPAA 45 CFR 164.502(e), 164.504(e) / GDPR Art. 28 / US State Privacy Laws (CCPA/CPRA, VCDPA, CPA, etc.)',
+          how: 'Implement a structured program to identify, execute, and maintain Business Associate Agreements (BAAs) for PHI and Data Processing Agreements (DPAs) for personal data across all vendor relationships. This ensures compliance with HIPAA, GDPR, CCPA/CPRA, and other privacy regulations.',
+          howDetail: '**BAA (Business Associate Agreement) \u2014 HIPAA 45 CFR 164.502(e), 164.504(e)**\n\n**When a BAA Is Required:**\nA BAA is mandatory whenever a vendor **creates, receives, maintains, or transmits PHI** on behalf of a covered entity or another business associate (45 CFR 164.502(e), 164.504(e)). The trigger is **whether the vendor has access to PHI**, not the volume. Even incidental PHI in logs, error payloads, or analytics events triggers the requirement.\n\n**Exceptions (No BAA Needed):**\n- Pure "conduits" that only transmit data without storage (e.g., ISPs, postal service)\n- Vendors with **zero PHI access** at all\n\n**Encrypted PHI Still Requires a BAA:**\nStoring encrypted PHI still requires a BAA even if the vendor holds no decryption key (HHS Cloud Computing Guidance). The vendor is still a business associate because it maintains PHI on behalf of the covered entity.\n\n**BAA Required Clauses (45 CFR 164.504(e)):**\n- Permitted uses/disclosures of PHI\n- Safeguards (administrative, physical, technical) per Security Rule\n- Reporting of breaches and security incidents\n- Subcontractor flow-down (BAAs with subcontractors)\n- Access to PHI for individuals (right of access)\n- Availability of PHI for HHS investigations\n- Termination provisions and data return/destruction\n\n**DPA (Data Processing Agreement) \u2014 GDPR Art. 28 & US State Laws**\n\n**When a DPA Is Required:**\nA DPA is mandatory whenever a processor handles personal data on behalf of a controller.\n- **GDPR Art. 28**: Mandatory for any processor handling EU/UK personal data (including employee data)\n- **US State Laws**: CCPA/CPRA requires contracts for "service providers"; VA (CDPA), CO (CPA), CT (CTDPA), UT (UCPA), and other comprehensive state laws have similar processor contract requirements\n- **SOC 2 / ISO 27001**: Don\u2019t mandate DPAs by name, but auditors expect vendor agreements covering confidentiality and data protection terms; a DPA is the standard way to demonstrate this\n\n**Typical DPA Scope:**\nCovers any personal data: employee PII, customer contact details, user identifiers, etc.\n\n**How BAA and DPA Interact:**\n- A vendor handling PHI usually needs **both**, because PHI is also personal data\n- A vendor handling personal data but no PHI needs **only a DPA**\n- A vendor with neither (rare) needs only standard confidentiality terms\n\n**Operational Implementation:**\n\n**1. Vendor Classification Workflow:**\n- Inventory all vendors with data access\n- Classify each: PHI? Personal data? Both? Neither?\n- Route to BAA workflow, DPA workflow, both, or confidentiality-only\n\n**2. Contractual Execution:**\n- Maintain template BAA (HIPAA-compliant) and template DPA (GDPR/CCPA-compliant)\n- Track execution status in vendor register\n- Link to vendor risk tier (Critical/High/Medium/Low)\n\n**3. Ongoing Governance:**\n- Annual review of BAA/DPA status\n- Sub-processor flow-down verification\n- Breach notification SLA monitoring (24-72h for HIPAA, 72h for GDPR)\n- Annual reassessment on contract renewal\n\n**Quick Reference \u2014 Decision Matrix:**\n\n| Vendor Access | Agreement Needed |\n|---------------|------------------|\n| PHI (any amount) | BAA + DPA |\n| Personal data (no PHI) | DPA only |\n| Neither | Confidentiality clause only |\n| Encrypted PHI (no key) | BAA + DPA (still a BA) |',
+          check: 'BAA/DPA register complete for all vendors with PHI/personal data access. Templates current with HIPAA/GDPR/CCPA clauses. Sub-processor flow-down enforced. Breach notification SLAs defined and tested. Annual review completed.',
+          questions: [
+            'Is there a complete inventory of vendors with PHI access?',
+            'Do all PHI vendors have executed BAAs with current HIPAA clauses?',
+            'Do all personal data processors have DPAs with GDPR/CCPA clauses?',
+            'Are sub-processor flow-down clauses enforced in all vendor agreements?',
+            'Are breach notification SLAs (24-72h HIPAA, 72h GDPR) defined and tested?',
+            'Is there an annual review process for BAA/DPA register?',
+          ],
         }
-      ]
-    }
   ],
-  milestones:
-      ]
-    }
-  ],
-  milestones:
+  milestones: [
     {
       week: 1,
       title: "ISMS Foundation Complete",

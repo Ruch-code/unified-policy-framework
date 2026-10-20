@@ -17,6 +17,7 @@ import { FRAMEWORK as Sebi } from '../pages/standards/SecuritiesExchangeBoardInd
 import { FRAMEWORK as Rbi } from '../pages/standards/ReserveBankOfIndia.jsx';
 import { FRAMEWORK as Cscrf } from '../pages/standards/Cscrf.jsx';
 import { FRAMEWORK as CertIn } from '../pages/standards/CertIn.jsx';
+import { FRAMEWORK as Cjis } from '../pages/standards/Cjis.jsx';
 import { FRAMEWORK as Lgpd } from '../pages/standards/Lgpd.jsx';
 import { FRAMEWORK as Pdpa } from '../pages/standards/Pdpa.jsx';
 import { FRAMEWORK as Pipl } from '../pages/standards/Pipl.jsx';
@@ -24,6 +25,7 @@ import { FRAMEWORK as Cis } from '../pages/standards/Cis.jsx';
 import { FRAMEWORK as FedRamp } from '../pages/standards/FedRamp.jsx';
 import { FRAMEWORK as Iso22317 } from '../pages/standards/Iso22317.jsx';
 import { FRAMEWORK as Aigp } from '../pages/standards/Aigp.jsx';
+import { FRAMEWORK as Iso27090 } from '../pages/standards/Iso27090.jsx';
 
 export const FRAMEWORKS = {
   [Iso27001La.id]: Iso27001La,
@@ -45,14 +47,16 @@ export const FRAMEWORKS = {
   [Rbi.id]: Rbi,
   [Cscrf.id]: Cscrf,
   [CertIn.id]: CertIn,
+  [Cjis.id]: Cjis,
   [Lgpd.id]: Lgpd,
   [Pdpa.id]: Pdpa,
   [Pipl.id]: Pipl,
    [Cis.id]: Cis,
    [FedRamp.id]: FedRamp,
-  [Iso22317.id]: Iso22317,
-   [Aigp.id]: Aigp,
- };
+[Iso22317.id]: Iso22317,
+  [Aigp.id]: Aigp,
+  [Iso27090.id]: Iso27090,
+};
 
 export function getFramework(id) {
   return FRAMEWORKS[id] || null;

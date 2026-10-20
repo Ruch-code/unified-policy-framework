@@ -176,12 +176,14 @@ const FRAMEWORK_KEYWORDS = {
   rbi: ['rbi', 'reserve bank', 'banking', 'banks', 'financial', 'india', 'payment systems', 'cyber security', 'fintech'],
   cscrf: ['cscrf', 'india cyber security', 'cyber security framework', 'csirt', 'incident', 'cert', 'cyber crisis management', 'availability', 'forensic'],
   'cert-in': ['cert in', 'cert-in', 'india', 'incident response', 'cyber security', 'mandatory directives', '6 hour reporting', '180 day logs', 'vpn logs', 'csirt', 'coordination'],
+  cjis: ['cjis', 'criminal justice', 'fbi', 'cji', 'chri', 'fingerprint', 'background check', 'security addendum', 'csa', 'law enforcement', 'federal'],
   lgpd: ['lgpd', 'lei geral', 'brazil', 'anpd', 'data protection', 'privacy', 'personal data', 'consent', 'portuguese'],
   pdpa: ['pdpa', 'singapore', 'personal data protection act', 'privacy', 'consent', 'data protection officer', 'pdpc', 'personal data', 'dpo'],
   pipl: ['pipl', 'china', 'chinese', 'personal information protection law', 'personal information', 'privacy', 'data protection', 'cross-border', 'security assessment', 'cac', 'sensitive personal information', 'consent', 'privacy policy'],
   cis: ['cis', 'cis controls', 'center for internet security', 'v8', 'cyber hygiene', 'implementation groups', 'ig1', 'ig2', 'ig3', 'essential security', 'saf', '18 controls', 'baseline'],
   fedramp: ['fedramp', 'federal risk', 'authorization', 'fisma', 'us federal', 'government', 'government cloud', 'agency', 'cloud service provider', 'csp', 'jab', 'security assessment'],
   'iso-22317': ['iso 22317', 'bia', 'business impact analysis', 'business continuity', 'mtp', 'mtd', 'mpr', 'rto', 'recovery', 'criticality', 'dependency'],
+  'iso-27090': ['iso 27090', 'ai', 'artificial intelligence', 'ai security', 'machine learning', 'model security', 'data poisoning', 'evasion', 'model extraction', 'model inversion', 'prompt injection', 'ai governance', 'ai supply chain', 'ai red teaming', 'ai incident response', 'mitre atlas', 'owasp llm', 'iso 42001'],
   aigp: ['aigp', 'iapp', 'ai', 'artificial intelligence', 'ai governance', 'ai act', 'model governance', 'model risk', 'bias', 'responsible ai', 'algorithm', 'automated decision', 'governance professional', 'certification'],
 };
 

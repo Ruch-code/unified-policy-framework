@@ -230,7 +230,7 @@ export default function AIPrivacyRisks({ isDark = false }) {
                     <h4 className="text-xs font-semibold text-navy-500 dark:text-text-dark-muted uppercase tracking-wider mb-2">Regulations Triggered</h4>
                     <div className="flex flex-wrap gap-1.5">
                       {risk.regulations.map((reg, j) => (
-                        <span key={j} className={`px-2 py-1 text-xs font-medium rounded-lg ${isDark ? darkChip : 'bg-indigo-50 text-indigo-600 border border-indigo-100'}`}>
+                        <span key={j} className={`px-2 py-1 text-xs font-medium rounded-lg ${isDark ? 'bg-indigo-900/30 text-indigo-300 border border-indigo-700' : 'bg-indigo-50 text-indigo-600 border border-indigo-100'}`}>
                           {reg}
                         </span>
                       ))}
