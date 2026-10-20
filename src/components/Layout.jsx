@@ -8,6 +8,7 @@ import NewsletterPopup from './NewsletterPopup.jsx';
 import InspectorCursor from './InspectorCursor.jsx';
 import ChatWidget from './ChatWidget.jsx';
 import SearchBar from './SearchBar.jsx';
+import ErrorBoundary from './ErrorBoundary.jsx';
 import { FEATURES } from '../config/features.js';
 
 const STANDARDS = [
@@ -111,6 +112,12 @@ export default function Layout() {
   const { user, logout } = useAuth();
   const [newsletterOpen, setNewsletterOpen] = useState(false);
   const [isDark, setIsDark] = useState(() => document.documentElement.classList.contains('dark'));
+
+  const NAV_LINK =
+    'inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors ' +
+    'text-slate-700 hover:text-indigo-600 hover:bg-slate-100 ' +
+    'dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800 ' +
+    'focus:outline-none focus:ring-2 focus:ring-indigo-500/40';
 
   const toggleDark = () => {
     const next = !isDark;
@@ -584,7 +591,9 @@ export default function Layout() {
       )}
 
       <main className="flex-1 pt-16 sm:pt-20">
-        <Outlet />
+        <ErrorBoundary>
+          <Outlet />
+        </ErrorBoundary>
       </main>
 
       <footer className="bg-gray-900 text-gray-400 py-8">
