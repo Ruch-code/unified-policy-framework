@@ -365,8 +365,7 @@ export default function UserAccessReview({ isDark = false }) {
                   <h5 className="grc-card-title font-bold">{tier.tier}</h5>
                 </div>
                 <p className="text-sm text-navy-600 dark:text-text-dark-secondary mb-3"><span className="font-semibold">Scope:</span> {tier.desc}</p>
-                <p className={`text-sm font-semibold px-3 py-2 rounded-lg mb-3
-                  ${isDark ? 'bg-[#312e81]/40 text-[#c7d2fe] border border-[#4338ca]' : 'bg-indigo-50 text-indigo-700 border border-indigo-100'}`}>
+                <p className="text-sm font-semibold px-3 py-2 rounded-lg mb-3 bg-indigo-50 text-indigo-700 border border-indigo-100 dark:bg-[#312e81]/40 dark:border-[#4338ca] dark:text-[#c7d2fe]">
                   <span className="font-semibold">Frequency:</span> {tier.frequency}
                 </p>
                 <p className="text-xs text-navy-500 dark:text-text-dark-muted"><span className="font-semibold text-navy-600 dark:text-text-dark-muted">Examples:</span> {tier.examples}</p>
