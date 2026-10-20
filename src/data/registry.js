@@ -25,6 +25,15 @@ import { FRAMEWORK as FedRamp } from '../pages/standards/FedRamp.jsx';
 import { FRAMEWORK as Iso22317 } from '../pages/standards/Iso22317.jsx';
 import { FRAMEWORK as Aigp } from '../pages/standards/Aigp.jsx';
 
+import { FRAMEWORK as Iso42001 } from '../pages/standards/Iso42001';
+import { FRAMEWORK as Iso27017 } from '../pages/standards/Iso27017';
+import { FRAMEWORK as Iso27018 } from '../pages/standards/Iso27018';
+import { FRAMEWORK as Iso22301 } from '../pages/standards/Iso22301';
+import { FRAMEWORK as Nis2 } from '../pages/standards/Nis2';
+import { FRAMEWORK as Dora } from '../pages/standards/Dora';
+import { FRAMEWORK as Nist800171Cmmc } from '../pages/standards/Nist800171Cmmc';
+import { FRAMEWORK as UkGdpr } from '../pages/standards/UkGdpr';
+
 export const FRAMEWORKS = {
   [Iso27001La.id]: Iso27001La,
   [Iso27001Li.id]: Iso27001Li,
@@ -48,11 +57,19 @@ export const FRAMEWORKS = {
   [Lgpd.id]: Lgpd,
   [Pdpa.id]: Pdpa,
   [Pipl.id]: Pipl,
-   [Cis.id]: Cis,
-   [FedRamp.id]: FedRamp,
+  [Cis.id]: Cis,
+  [FedRamp.id]: FedRamp,
   [Iso22317.id]: Iso22317,
-   [Aigp.id]: Aigp,
- };
+  [Aigp.id]: Aigp,
+  [Iso42001.id]: Iso42001,
+  [Iso27017.id]: Iso27017,
+  [Iso27018.id]: Iso27018,
+  [Iso22301.id]: Iso22301,
+  [Nis2.id]: Nis2,
+  [Dora.id]: Dora,
+  [Nist800171Cmmc.id]: Nist800171Cmmc,
+  [UkGdpr.id]: UkGdpr,
+};
 
 export function getFramework(id) {
   return FRAMEWORKS[id] || null;

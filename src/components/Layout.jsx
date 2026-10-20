@@ -12,6 +12,10 @@ import SearchBar from './SearchBar.jsx';
 const STANDARDS = [
   { path: '/iso/27001/la', label: 'ISO 27001 LA' },
   { path: '/iso/27001/li', label: 'ISO 27001 LI' },
+  { path: '/iso/42001', label: 'ISO 42001' },
+  { path: '/iso/27017', label: 'ISO 27017' },
+  { path: '/iso/27018', label: 'ISO 27018' },
+  { path: '/iso/22301', label: 'ISO 22301' },
   { path: '/pci-dss', label: 'PCI-DSS' },
   { path: '/soc2', label: 'SOC 2' },
   { path: '/aigp', label: 'AIGP' },
@@ -28,6 +32,10 @@ const STANDARDS = [
   { path: '/pdpa', label: 'PDPA' },
   { path: '/pipl', label: 'PIPL' },
   { path: '/cjis', label: 'CJIS' },
+  { path: '/nis2', label: 'NIS2' },
+  { path: '/dora', label: 'DORA' },
+  { path: '/uk-gdpr', label: 'UK GDPR' },
+  { path: '/cmmc', label: 'CMMC 2.0' },
 ];
 
 // Uniform desktop header nav link treatment (harmonized Admin / GRC KB / Platform / Profile / Login)

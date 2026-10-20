@@ -156,11 +156,16 @@ const REGIONS = [
       { path: '/iso/27001/la', name: 'ISO 27001 LA', desc: 'ISMS auditing & certification' },
       { path: '/iso/27001/li', name: 'ISO 27001 LI', desc: 'ISMS implementation' },
       { path: '/iso-22317', name: 'ISO 22317', desc: 'Business Impact Analysis (2021)' },
+      { path: '/iso/42001', name: 'ISO 42001', desc: 'AI Management System' },
+      { path: '/iso/27017', name: 'ISO 27017', desc: 'Cloud security controls' },
+      { path: '/iso/27018', name: 'ISO 27018', desc: 'Cloud PII protection' },
+      { path: '/iso/22301', name: 'ISO 22301', desc: 'Business continuity management' },
       { path: '/iso-31000', name: 'ISO 31000', desc: 'Enterprise risk management' },
       { path: '/iso-27701', name: 'ISO 27701', desc: 'Privacy Information Management (PIMS)' },
       { path: '/pci-dss', name: 'PCI-DSS', desc: 'Payment card data security' },
       { path: '/soc2', name: 'SOC 2', desc: 'Trust services (TSC) for service orgs' },
       { path: '/cis', name: 'CIS Controls v8', desc: 'CIS 18 Controls & Implementation Groups' },
+      { path: '/cmmc', name: 'CMMC 2.0', desc: 'NIST 800-171 / DoD cyber maturity' },
     ],
   },
   {
@@ -169,6 +174,9 @@ const REGIONS = [
     frameworks: [
       { path: '/gdpr', name: 'GDPR', desc: 'EU data protection regulation' },
       { path: '/cippe/eu', name: 'CIPPE/EU', desc: 'EU privacy professional' },
+      { path: '/nis2', name: 'NIS2', desc: 'Network & Information Security Directive 2' },
+      { path: '/dora', name: 'DORA', desc: 'Digital Operational Resilience Act' },
+      { path: '/uk-gdpr', name: 'UK GDPR', desc: 'UK data protection post-Brexit' },
     ],
   },
   {
@@ -220,20 +228,20 @@ const INDUSTRIES = [
   {
     name: 'Financial Services',
     icon: '🏦',
-    frameworks: ['PCI-DSS', 'SOC 2', 'RBI', 'SEBI', 'ISO 27001 LA', 'ISO 27001 LI', 'CIS Controls v8'],
-    policyFocus: 'Data at rest/in transit, fraud monitoring, access control, audit trails, vendor risk',
+    frameworks: ['PCI-DSS', 'SOC 2', 'RBI', 'SEBI', 'ISO 27001 LA', 'ISO 27001 LI', 'CIS Controls v8', 'DORA', 'NIS2', 'ISO 22301'],
+    policyFocus: 'Data at rest/in transit, fraud monitoring, access control, audit trails, vendor risk, operational resilience',
   },
   {
     name: 'Healthcare',
     icon: '🏥',
-    frameworks: ['HIPAA', 'HITRUST CSF', 'NIST CSF 2.0', 'SOC 2', 'ISO 27001 LI', 'CIS Controls v8'],
+    frameworks: ['HIPAA', 'HITRUST CSF', 'NIST CSF 2.0', 'SOC 2', 'ISO 27001 LI', 'CIS Controls v8', 'ISO 22301'],
     policyFocus: 'PHI handling, BAAs, encryption, breach notification, business continuity',
   },
   {
     name: 'Technology / SaaS',
     icon: '💻',
-    frameworks: ['SOC 2', 'ISO 27001 LA', 'ISO 27001 LI', 'CCPA / CPRA', 'GDPR', 'ISO 27701', 'CIS Controls v8', 'LGPD', 'PDPA', 'PIPL'],
-    policyFocus: 'Trust services criteria, DPIA, ROPA, encryption, SDLC security, incident response',
+    frameworks: ['SOC 2', 'ISO 27001 LA', 'ISO 27001 LI', 'CCPA / CPRA', 'GDPR', 'ISO 27701', 'CIS Controls v8', 'LGPD', 'PDPA', 'PIPL', 'ISO 42001', 'ISO 27017', 'ISO 27018'],
+    policyFocus: 'Trust services criteria, DPIA, ROPA, encryption, SDLC security, incident response, AI governance, cloud security',
   },
   {
     name: 'E-commerce / Retail',
@@ -244,14 +252,20 @@ const INDUSTRIES = [
   {
     name: 'Cloud / Infrastructure',
     icon: '☁️',
-    frameworks: ['ISO 27001 LA', 'SOC 2', 'NIST CSF 2.0', 'CERT-In', 'ISO 31000', 'CIS Controls v8'],
-    policyFocus: 'Multi-cloud controls (AWS/Azure/GCP/Alibaba), logging, encryption keys, availability',
+    frameworks: ['ISO 27001 LA', 'SOC 2', 'NIST CSF 2.0', 'CERT-In', 'ISO 31000', 'CIS Controls v8', 'ISO 27017', 'ISO 27018', 'ISO 22301'],
+    policyFocus: 'Multi-cloud controls (AWS/Azure/GCP/Alibaba), logging, encryption keys, availability, cloud PII protection',
   },
   {
     name: 'Telecom / Data Centre',
     icon: '📡',
-    frameworks: ['CERT-In', 'CSCRF', 'ISO 27001 LI', 'ISO 31000', 'GDPR', 'CIS Controls v8'],
-    policyFocus: 'Traffic logging, 180-day retention, incident reporting (6-hr), SIM security',
+    frameworks: ['CERT-In', 'CSCRF', 'ISO 27001 LI', 'ISO 31000', 'GDPR', 'CIS Controls v8', 'NIS2', 'ISO 22301'],
+    policyFocus: 'Traffic logging, 180-day retention, incident reporting (6-hr), SIM security, network resilience',
+  },
+  {
+    name: 'Defense / Government Contractors',
+    icon: '🛡️',
+    frameworks: ['CMMC 2.0', 'NIST 800-171', 'NIST CSF 2.0', 'FedRAMP', 'ISO 27001 LA', 'ISO 27001 LI'],
+    policyFocus: 'CUI protection, DFARS compliance, supply chain risk, continuous monitoring, assessment readiness',
   },
 ];
 

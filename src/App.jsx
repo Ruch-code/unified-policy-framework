@@ -39,6 +39,15 @@ import Cis from './pages/standards/Cis.jsx';
 import Aigp from './pages/standards/Aigp.jsx';
 import AIGovernance from './pages/AIGovernance.jsx';
 
+import Iso42001 from './pages/standards/Iso42001';
+import Iso27017 from './pages/standards/Iso27017';
+import Iso27018 from './pages/standards/Iso27018';
+import Iso22301 from './pages/standards/Iso22301';
+import Nis2 from './pages/standards/Nis2';
+import Dora from './pages/standards/Dora';
+import Nist800171Cmmc from './pages/standards/Nist800171Cmmc';
+import UkGdpr from './pages/standards/UkGdpr';
+
 function AssessRoute() {
   const { pathname } = useLocation();
   const base = pathname.replace(/\/assess$/, '');
@@ -98,8 +107,16 @@ function App() {
           <Route path="pdpa" element={<Protected><Pdpa /></Protected>} />
           <Route path="pipl" element={<Protected><Pipl /></Protected>} />
           <Route path="cis" element={<Protected><Cis /></Protected>} />
-          <Route path="aigp" element={<Protected><Aigp /></Protected>} />
+<Route path="aigp" element={<Protected><Aigp /></Protected>} />
           <Route path="ai-governance" element={<Protected><AIGovernance /></Protected>} />
+          <Route path="iso/42001" element={<Protected><Iso42001 /></Protected>} />
+          <Route path="iso/27017" element={<Protected><Iso27017 /></Protected>} />
+          <Route path="iso/27018" element={<Protected><Iso27018 /></Protected>} />
+          <Route path="iso/22301" element={<Protected><Iso22301 /></Protected>} />
+          <Route path="nis2" element={<Protected><Nis2 /></Protected>} />
+          <Route path="dora" element={<Protected><Dora /></Protected>} />
+          <Route path="cmmc" element={<Protected><Nist800171Cmmc /></Protected>} />
+          <Route path="uk-gdpr" element={<Protected><UkGdpr /></Protected>} />
           <Route path="*" element={<Protected><AssessRoute /></Protected>} />
         </Route>
       </Routes>
