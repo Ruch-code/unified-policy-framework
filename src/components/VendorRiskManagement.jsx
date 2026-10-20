@@ -154,6 +154,379 @@ const SUB_PROCESSOR_RISKS = {
   },
 };
 
+// ========== NEW DATA STRUCTURES FOR PHASE 6 TABS ==========
+
+// Lifecycle: 8-stage stepper
+const LIFECYCLE_STAGES = [
+  { 
+    id: 1, 
+    name: 'Intake', 
+    icon: Building,
+    purpose: 'Capture vendor request, categorize spend, identify data types, assign owner',
+    owner: 'Procurement / Vendor Manager',
+    inputs: ['Vendor request form', 'Spend estimate', 'Data types questionnaire'],
+    outputs: ['Vendor record created', 'Inherent risk score assigned', 'Intake approval'],
+    evidence: ['Intake form', 'Risk score worksheet', 'Approval email'],
+    regulations: ['GDPR Art. 28', 'NIS2 Art. 28', 'DORA Art. 28'],
+  },
+  { 
+    id: 2, 
+    name: 'Inherent Risk Scoring', 
+    icon: BarChart2,
+    purpose: 'Assess vendor risk before contract using data sensitivity, system access, criticality',
+    owner: 'Security / Risk Team',
+    inputs: ['Vendor questionnaire', 'Data types', 'System access', 'Spend', 'Criticality'],
+    outputs: ['Inherent risk tier (1-4)', 'Due diligence scope', 'Contract tier'],
+    evidence: ['Risk scoring worksheet', 'Tier assignment', 'Scope memo'],
+    regulations: ['GDPR Art. 28', 'NIS2 Art. 21', 'DORA Art. 28', 'PCI DSS 12.8'],
+  },
+  { 
+    id: 3, 
+    name: 'Due Diligence', 
+    icon: Search,
+    purpose: 'Collect evidence, assess controls, validate vendor security posture',
+    owner: 'Security / Risk Team',
+    inputs: ['SOC 2 Type II', 'ISO 27001', 'Pen test', 'SIG Lite', 'DPA', 'Insurance'],
+    outputs: ['Due diligence report', 'Control gaps identified', 'Remediation plan'],
+    evidence: ['SOC 2 report', 'Pen test summary', 'SIG Lite', 'DPA executed'],
+    regulations: ['GDPR Art. 28', 'NIS2 Art. 28', 'DORA Art. 28', 'PCI DSS 12.10'],
+  },
+  { 
+    id: 4, 
+    name: 'Contracting', 
+    icon: FileText,
+    purpose: 'Execute contract with DPA/BAA, security addendum, breach SLAs, right to audit',
+    owner: 'Legal / Procurement',
+    inputs: ['Master Services Agreement', 'DPA/BAA', 'Security addendum', 'Right to audit clause'],
+    outputs: ['Executed contract', 'DPA/BAA executed', 'Security addendum attached'],
+    evidence: ['Executed MSA', 'DPA/BAA', 'Security addendum', 'Right to audit clause'],
+    regulations: ['GDPR Art. 28', 'HIPAA BAA', 'PCI DSS 12.8', 'NIS2 Art. 28'],
+  },
+  { 
+    id: 5, 
+    name: 'Onboarding', 
+    icon: Users,
+    purpose: 'Provision access, configure monitoring, register sub-processors, train vendor',
+    owner: 'IT / Security / Vendor Manager',
+    inputs: ['Access request', 'Monitoring config', 'Sub-processor list', 'Training materials'],
+    outputs: ['Access provisioned', 'Monitoring active', 'Sub-processors registered', 'Training completed'],
+    evidence: ['Access logs', 'Monitoring dashboard', 'Sub-processor register', 'Training records'],
+    regulations: ['GDPR Art. 28', 'NIS2 Art. 28', 'HIPAA BAA'],
+  },
+  { 
+    id: 6, 
+    name: 'Ongoing Monitoring', 
+    icon: Shield,
+    purpose: 'Continuous control monitoring, security ratings, breach alerts, performance tracking',
+    owner: 'Security / Vendor Manager',
+    inputs: ['Security ratings (SecurityScorecard/BitSight)', 'SIEM alerts', 'Vendor self-assessment', 'Sub-processor updates'],
+    outputs: ['Monitoring dashboard', 'Risk score updates', 'Alerts generated', 'Sub-processor updates'],
+    evidence: ['SecurityScorecard/BitSight reports', 'SIEM alerts', 'Self-assessment results'],
+    regulations: ['GDPR Art. 28', 'NIS2 Art. 23', 'DORA Art. 11', 'PCI DSS 12.10'],
+  },
+  { 
+    id: 7, 
+    name: 'Issue Management', 
+    icon: AlertTriangle,
+    purpose: 'Track findings, remediation, risk acceptance, escalation, compensating controls',
+    owner: 'Risk / Security / Vendor Manager',
+    inputs: ['Findings from monitoring', 'Audit findings', 'Incidents', 'Vendor self-disclosure'],
+    outputs: ['Issue register', 'Remediation plans', 'Risk acceptances', 'Compensating controls', 'Escalations'],
+    evidence: ['Issue register', 'Remediation plans with owners/dates', 'Risk acceptance forms', 'Escalation logs'],
+    regulations: ['GDPR Art. 28', 'NIS2 Art. 23', 'PCI DSS 12.10', 'DORA Art. 11'],
+  },
+  { 
+    id: 8, 
+    name: 'Offboarding', 
+    icon: RefreshCw,
+    purpose: 'Revoke access, return/destroy data, certify destruction, update records',
+    owner: 'IT / Legal / Procurement',
+    inputs: ['Termination notice', 'Data return/destruction request', 'Access revocation list'],
+    outputs: ['Access revoked', 'Data returned/destroyed', 'Destruction certificate', 'Records updated'],
+    evidence: ['Termination notice', 'Destruction certificate', 'Access revocation logs', 'Updated vendor register'],
+    regulations: ['GDPR Art. 28', 'HIPAA BAA', 'PCI DSS 12.8', 'DORA Art. 28'],
+  },
+];
+
+// Tiering Calculator: 6 questions
+const TIERING_QUESTIONS = [
+  { id: 1, text: 'What types of data does the vendor handle?', weight: 25, options: [
+    { value: 1, label: 'No sensitive data', score: 1 },
+    { value: 2, label: 'Internal/PII only', score: 2 },
+    { value: 3, label: 'SPI/PHI/Financial/CJI', score: 4 },
+    { value: 4, label: 'Critical infrastructure/OT', score: 5 },
+  ]},
+  { id: 2, text: 'What level of system access does the vendor have?', weight: 20, options: [
+    { value: 1, label: 'No system access', score: 1 },
+    { value: 2, label: 'Limited SaaS access', score: 2 },
+    { value: 3, label: 'Admin/privileged access', score: 4 },
+    { value: 4, label: 'Critical infrastructure/OT access', score: 5 },
+  ]},
+  { id: 3, text: 'How critical is the vendor to your operations?', weight: 20, options: [
+    { value: 1, label: 'Easily replaceable', score: 1 },
+    { value: 2, label: 'Replaceable with effort', score: 2 },
+    { value: 3, label: 'Difficult to replace', score: 4 },
+    { value: 4, label: 'Single source / irreplaceable', score: 5 },
+  ]},
+  { id: 4, text: 'Does a viable substitute exist?', weight: 15, options: [
+    { value: 1, label: 'Multiple alternatives', score: 1 },
+    { value: 2, label: 'Alternative with effort', score: 2 },
+    { value: 3, label: 'No viable substitute', score: 4 },
+    { value: 4, label: 'Single source monopoly', score: 5 },
+  ]},
+  { id: 5, text: 'Annual spend with vendor?', weight: 10, options: [
+    { value: 1, label: 'Under $10K', score: 1 },
+    { value: 2, label: '$10K - $100K', score: 2 },
+    { value: 3, label: '$100K - $1M', score: 3 },
+    { value: 4, label: '$1M+', score: 5 },
+  ]},
+  { id: 6, text: 'Does the vendor use AI on your data?', weight: 10, options: [
+    { value: 1, label: 'No AI', score: 1 },
+    { value: 2, label: 'AI for internal ops only', score: 2 },
+    { value: 3, label: 'AI trained on your data', score: 4 },
+    { value: 4, label: 'Vendor trains models on your data', score: 5 },
+  ]},
+];
+
+// Tiering results
+const TIERING_RESULTS = [
+  { min: 6, max: 12, tier: 4, label: 'Tier 4: Commodity/Non-critical', frequency: 'Biennial or Contract-driven', evidence: ['Contract terms', 'Spend records'], cadence: 'Biennial', clauses: ['Standard terms', 'Data protection'] },
+  { min: 13, max: 20, tier: 3, label: 'Tier 3: Low Risk', frequency: 'Annual Self-assessment', evidence: ['Self-assessment questionnaire', 'Contract review'], cadence: 'Annual', clauses: ['Standard DPA', 'Right to audit'] },
+  { min: 21, max: 30, tier: 2, label: 'Tier 2: Medium Risk', frequency: 'Semi-annual + Annual Onsite', evidence: ['SOC 2 Type II', 'Annual self-assessment', 'Onsite visit report'], cadence: 'Semi-annual', clauses: ['DPA/BAA', 'Right to audit', 'Breach SLA 24h', 'Sub-processor approval'] },
+  { min: 31, max: 36, tier: 1, label: 'Tier 1: Critical/High Risk', frequency: 'Continuous + Quarterly Deep Dive', evidence: ['SOC 2 Type II', 'ISO 27001 + SoA', 'Pen test', 'Continuous monitoring', 'Quarterly review'], cadence: 'Quarterly', clauses: ['DPA/BAA', 'Right to audit', 'Breach SLA 4-24h', 'Sub-processor approval', 'Right to audit onsite', 'Cyber insurance', 'Exit assistance'] },
+];
+
+// Due Diligence Evidence Matrix by Tier
+const EVIDENCE_MATRIX = {
+  1: { // Tier 1
+    required: ['SOC 2 Type II', 'ISO 27001 + SoA', 'Pen test summary (last 12mo)', 'SIG Lite/CAIQ', 'BCP/DR test results', 'Cyber insurance cert', 'DPA/BAA executed', 'AI questionnaire (if applicable)'],
+    recommended: ['ISO 22301', 'Pen test (last 6mo)', 'Continuous monitoring access', 'Sub-processor registry'],
+  },
+  2: { // Tier 2
+    required: ['SOC 2 Type II', 'Pen test summary (last 12mo)', 'SIG Lite/CAIQ', 'BCP/DR summary', 'Cyber insurance cert', 'DPA/BAA executed', 'AI questionnaire (if applicable)'],
+    recommended: ['ISO 27001', 'Pen test (last 6mo)', 'Sub-processor registry'],
+  },
+  3: { // Tier 3
+    required: ['SOC 2 Type II or self-assessment', 'Pen test summary (last 12mo)', 'SIG Lite', 'DPA/BAA executed'],
+    recommended: ['Cyber insurance', 'BCP/DR summary'],
+  },
+  4: { // Tier 4
+    required: ['Contract review', 'Data processing terms'],
+    recommended: ['Security questionnaire'],
+  },
+};
+
+// SOC 2 Report Review Checklist
+const SOC2_REVIEW_CHECKLIST = [
+  { section: 'Scope & Period', items: ['System description accuracy', 'Period covered (Type I vs Type II)', 'Subservice orgs: carve-out vs inclusive', 'CSOCs included'] },
+  { section: 'Opinion Type', items: ['Unqualified (clean)', 'Qualified (exceptions noted)', 'Adverse', 'Disclaimer'] },
+  { section: 'Exceptions (if any)', items: ['Control deficiency description', 'Severity (design vs operating)', 'Compensating controls', 'Remediation status'] },
+  { section: 'CUECs (Complementary User Entity Controls)', items: ['All CUECs identified', 'Your org\'s implementation status', 'Gaps documented', 'Remediation plan'] },
+  { section: 'Subservice Organizations', items: ['Carve-out vs inclusive method', 'Subservice controls covered', 'Your monitoring of subservice orgs'] },
+  { section: 'CSOCs (Complementary Subservice Org Controls)', items: ['Identified', 'Monitored', 'Gaps tracked'] },
+  { section: 'Bridge Letter', items: ['Required if report > 12 months old', 'Period covered', 'No material changes attested'] },
+];
+
+// Contract Clause Library
+const CLAUSE_LIBRARY = [
+  { title: 'DPA (GDPR Art. 28)', category: 'Data Protection', source: 'https://eur-lex.europa.eu/eli/reg/2016/679/oj', clauses: [
+    { name: 'Processing scope & purpose', text: 'Processor shall only process personal data on documented instructions from the controller...' },
+    { name: 'Confidentiality', text: 'Processor shall ensure that persons authorised to process personal data have committed themselves to confidentiality...' },
+    { name: 'Security measures', text: 'Taking into account the state of the art, the processor shall implement appropriate technical and organisational measures...' },
+    { name: 'Sub-processor flow-down', text: 'The processor shall not engage another processor without prior written authorisation...' },
+    { name: 'Data subject rights assistance', text: 'The processor shall assist the controller in fulfilling its obligations to respond to data subject requests...' },
+    { name: 'Breach notification', text: 'The processor shall notify the controller without undue delay after becoming aware of a personal data breach...' },
+    { name: 'Data return/destruction', text: 'After the end of the provision of processing services, the processor shall delete or return all personal data...' },
+  ]},
+  { title: 'BAA (HIPAA)', category: 'Healthcare', source: 'https://www.hhs.gov/hipaa/', clauses: [
+    { name: 'Permitted uses/disclosures', text: 'Business Associate shall not use or disclose PHI other than as permitted or required by the Agreement or as Required by Law...' },
+    { name: 'Safeguards', text: 'Business Associate shall implement administrative, physical, and technical safeguards that reasonably and appropriately protect the confidentiality, integrity, and availability of ePHI...' },
+    { name: 'Breach notification', text: 'Business Associate shall notify Covered Entity of any breach of unsecured PHI without unreasonable delay...' },
+    { name: 'Subcontractor flow-down', text: 'Business Associate shall ensure that any subcontractor agrees to the same restrictions and conditions...' },
+    { name: 'Termination & return/destruction', text: 'Upon termination, Business Associate shall return or destroy all PHI received from Covered Entity...' },
+  ]},
+  { title: 'Right to Audit', category: 'Governance', clauses: [
+    { name: 'On-site audit right', text: 'Controller/Customer shall have the right to audit Processor/Vendor\'s compliance with this Agreement...' },
+    { name: 'Audit frequency & notice', text: 'Audits may be conducted annually upon 30 days written notice, or upon reasonable belief of material non-compliance...' },
+    { name: 'Third-party auditor', text: 'Customer may engage a qualified third-party auditor at Customer\'s expense...' },
+    { name: 'Audit scope', text: 'Audit may cover facilities, systems, processes, personnel, and documentation relevant to the services...' },
+  ]},
+  { title: 'Breach Notification SLA', category: 'Incident Response', clauses: [
+    { name: 'Notification timeline', text: 'Vendor shall notify Customer of any security incident within 4 hours (critical) / 24 hours (high) / 72 hours (GDPR notifiable)...' },
+    { name: 'Incident details', text: 'Notification shall include: nature of incident, categories of data affected, number of data subjects, likely consequences, measures taken...' },
+    { name: 'Cooperation', text: 'Vendor shall cooperate with Customer in investigating, mitigating, and remediating the incident...' },
+  ]},
+  { title: 'Security Addendum', category: 'Security', clauses: [
+    { name: 'Encryption standards', text: 'Vendor shall encrypt all Customer Data at rest using AES-256 or equivalent, and in transit using TLS 1.2+...' },
+    { name: 'Access control', text: 'Vendor shall implement MFA for all access to Customer Data, least privilege, and quarterly access reviews...' },
+    { name: 'Vulnerability management', text: 'Vendor shall patch critical vulnerabilities within 24 hours, high within 7 days, and maintain a vulnerability management program...' },
+    { name: 'Logging & monitoring', text: 'Vendor shall maintain audit logs for all access to Customer Data for a minimum of 1 year...' },
+  ]},
+  { title: 'Sub-Processor Approval', category: 'Governance', clauses: [
+    { name: 'Prior written authorization', text: 'Vendor shall not engage any sub-processor without Customer\'s prior written authorization...' },
+    { name: 'Sub-processor register', text: 'Vendor shall maintain an up-to-date register of all sub-processors...' },
+    { name: 'Flow-down obligations', text: 'Vendor shall ensure sub-processors are bound by equivalent data protection obligations...' },
+    { name: 'Objection right', text: 'Customer may object to new sub-processor within 30 days of notification...' },
+  ]},
+  { title: 'Data Location / Residency', category: 'Data Sovereignty', clauses: [
+    { name: 'Data residency', text: 'Customer Data shall be stored and processed only in the following jurisdictions: [List approved jurisdictions]...' },
+    { name: 'Data transfer restriction', text: 'Vendor shall not transfer Customer Data outside approved jurisdictions without prior written consent...' },
+  ]},
+  { title: 'Exit & Data Return/Deletion', category: 'Offboarding', clauses: [
+    { name: 'Data return', text: 'Upon termination, Vendor shall return all Customer Data in a standard, machine-readable format within 30 days...' },
+    { name: 'Data destruction', text: 'Vendor shall securely destroy all copies of Customer Data and certify destruction in writing...' },
+    { name: 'Transition assistance', text: 'Vendor shall provide reasonable transition assistance for 90 days post-termination...' },
+  ]},
+  { title: 'AI Data Usage Restriction', category: 'AI Governance', clauses: [
+    { name: 'Training prohibition', text: 'Vendor shall not use Customer Data to train, fine-tune, or improve any AI/ML models without explicit written consent...' },
+    { name: 'Model isolation', text: 'Vendor shall ensure Customer Data is not used to benefit other customers through shared models...' },
+    { name: 'Output ownership', text: 'All outputs generated from Customer Data using Vendor\'s AI shall remain Customer\'s property...' },
+  ]},
+];
+
+// Issue Management
+const ISSUE_MANAGEMENT_STAGES = [
+  { name: 'Finding Identification', description: 'Issue discovered via monitoring, audit, self-disclosure, or incident', owner: 'Security / Vendor Manager', evidence: ['Finding report', 'Source (monitoring/audit/incident)'] },
+  { name: 'Risk Assessment', description: 'Assess severity, likelihood, impact, and urgency', owner: 'Risk Team', evidence: ['Risk assessment worksheet', 'Severity rating (Critical/High/Medium/Low)'] },
+  { name: 'Remediation Planning', description: 'Define remediation steps, owner, deadline, and compensating controls', owner: 'Vendor / Risk Team', evidence: ['Remediation plan', 'Owner assigned', 'Deadline', 'Compensating controls documented'] },
+  { name: 'Remediation Execution', description: 'Implement remediation steps per plan', owner: 'Vendor', evidence: ['Progress updates', 'Evidence of completion'] },
+  { name: 'Verification & Closure', description: 'Verify remediation effectiveness, close issue or escalate', owner: 'Risk / Security', evidence: ['Verification evidence', 'Closure approval', 'Lessons learned'] },
+  { name: 'Risk Acceptance', description: 'Formal acceptance of residual risk with executive sign-off', owner: 'CISO / Executive', evidence: ['Risk acceptance form', 'Executive sign-off', 'Compensating controls', 'Review date'] },
+];
+
+// AI Vendor Due Diligence
+const AI_VENDOR_CHECKLIST = [
+  { category: 'Training on Customer Data', items: [
+    'Prohibits training on customer data without explicit consent',
+    'Documents if/how customer data is used for model improvement',
+    'Provides opt-out for model training',
+    'Documents data separation guarantees',
+  ]},
+  { category: 'Model Provenance', items: [
+    'Documents model lineage (base model, fine-tuning data)',
+    'Provides model cards / transparency reports',
+    'Discloses known limitations and biases',
+    'Documents supply chain (open-source components, third-party models)',
+  ]},
+  { category: 'ISO 42001 Certification', items: [
+    'Vendor holds ISO 42001 certification or is pursuing',
+    'Provides scope of certification',
+    'Shares audit findings summary',
+  ]},
+  { category: 'EU AI Act Role', items: [
+    'Identifies role: Provider vs Deployer',
+    'Documents high-risk AI system classification (Annex III)',
+    'Provides conformity assessment evidence (if high-risk)',
+    'Documents post-market monitoring plan',
+  ]},
+  { category: 'Output Logging & Monitoring', items: [
+    'Logs prompts, outputs, and tool calls with retention rules',
+    'Implements abuse detection and alerting',
+    'Supports DSAR for AI-generated outputs',
+    'Implements output filtering for PII/secrets/unsafe content',
+  ]},
+  { category: 'Security & Privacy', items: [
+    'Prompt injection defences (Prompt Shields, Guardrails)',
+    'Output filtering for PII/secrets/unsafe content',
+    'Red teaming performed (PyRIT, garak, promptfoo)',
+    'Membership inference / inversion testing',
+    'Data minimization in tool/function calls',
+  ]},
+];
+
+// Regional Laws additions
+const REGIONAL_LAWS_ADDITIONS = {
+  'India': {
+    name: 'India',
+    laws: [
+      'RBI Master Direction on Outsourcing of IT Services (April 2023, effective Oct 2023)',
+      'RBI Master Direction on IT Governance, Risk, Controls (Nov 2023, effective 1 Apr 2024)',
+      'SEBI CSCRF (20 Aug 2024)',
+      'DPDP Act 2023 & Rules 2025 (phased)',
+      'CERT-In Directions (28 Apr 2022): 6hr reporting, 180-day logs, NTP sync',
+    ],
+  },
+  'UAE': {
+    name: 'UAE',
+    laws: ['PDPL (Federal Decree-Law 45/2021)', 'DIFC Data Protection Law 2020', 'ADGM Data Protection Regulations 2021'],
+  },
+  'Saudi Arabia': {
+    name: 'Saudi Arabia',
+    laws: ['PDPL (Royal Decree M/19, 2021, effective 2023)', 'NCA Essential Cybersecurity Controls'],
+  },
+  'South Africa': {
+    name: 'South Africa',
+    laws: ['POPIA (Protection of Personal Information Act, effective 2021)', 'Information Regulator guidelines'],
+  },
+  'South Korea': {
+    name: 'South Korea',
+    laws: ['PIPA (Personal Information Protection Act)', 'PIPL amendments 2023', 'PIPC enforcement'],
+  },
+};
+
+// Update existing REGIONAL_LAWS with TDPSA rename and new countries
+const UPDATED_REGIONAL_LAWS = {
+  'United States': {
+    federal: ['SOX', 'GLBA', 'HIPAA', 'FERPA', 'FISMA', 'FedRAMP', 'PCI DSS', 'CISA'],
+    states: [
+      { name: 'California', laws: ['CCPA/CPRA', 'CalOPPA', 'CCPA Regulations', 'CPPA Enforcement'] },
+      { name: 'New York', laws: ['SHIELD Act', 'DFS 500', 'NYPA'] },
+      { name: 'Texas', laws: ['Texas Data Privacy and Security Act (TDPSA), effective 1 July 2024', 'Identity Theft Enforcement'] },
+      { name: 'Virginia', laws: ['VCDPA', 'Consumer Data Protection Act'] },
+      { name: 'Colorado', laws: ['CPA', 'Colorado Privacy Act'] },
+      { name: 'Connecticut', laws: ['CTDPA'] },
+      { name: 'Utah', laws: ['UCPA'] },
+    ],
+  },
+  'European Union': {
+    gdpr: 'GDPR (2016/679)',
+    laws: ['ePrivacy Directive', 'NIS2', 'DORA', 'AI Act', 'Data Act', 'DSA/DMA'],
+    countries: [
+      { name: 'Germany', laws: ['BDSG', 'TTDSG'] },
+      { name: 'France', laws: ['CNIL Guidelines', 'Loi Informatique et Libertés'] },
+      { name: 'Netherlands', laws: ['UAVG', 'GDPR Implementation Act'] },
+    ],
+  },
+  'United Kingdom': {
+    laws: ['UK GDPR', 'Data Protection Act 2018', 'PECR', 'NIS Regulations'],
+  },
+  'Canada': {
+    laws: ['PIPEDA', 'CPPA (Bill C-27)', 'Quebec Law 25', 'Alberta PIPA'],
+  },
+  'Australia': {
+    laws: ['Privacy Act 1988', 'Notifiable Data Breaches Scheme', 'APRA CPS 234'],
+  },
+  'Singapore': {
+    laws: ['PDPA', 'Cybersecurity Act', 'MAS TRM Guidelines'],
+  },
+  'Japan': {
+    laws: ['APPI', 'CSL', 'FIEA'],
+  },
+  'Brazil': {
+    laws: ['LGPD', 'BCB Resolutions'],
+  },
+  'India': {
+    laws: [
+      'DPDP Act 2023 & Rules 2025 (phased)',
+      'RBI IT Outsourcing Master Direction (2023)',
+      'SEBI CSCRF (20 Aug 2024)',
+      'CERT-In Directions (28 Apr 2022): 6hr reporting, 180-day logs, NTP sync',
+    ],
+  },
+  'UAE': {
+    laws: ['PDPL (Federal Decree-Law 45/2021)', 'DIFC Data Protection Law 2020', 'ADGM Data Protection Regulations 2021'],
+  },
+  'Saudi Arabia': {
+    laws: ['PDPL (Royal Decree M/19, 2021, effective 2023)', 'NCA Essential Cybersecurity Controls'],
+  },
+  'South Africa': {
+    laws: ['POPIA (Protection of Personal Information Act, effective 2021)', 'Information Regulator guidelines'],
+  },
+  'South Korea': {
+    laws: ['PIPA (Personal Information Protection Act)', 'PIPL amendments 2023', 'PIPC enforcement'],
+  },
+};
+
 const REVIEW_FREQUENCY = [
   { tier: 'Tier 1: Critical/High Risk', frequency: 'Continuous + Quarterly Deep Dive', color: '#ef4444', triggers: ['SOC 2 changes', 'Breach notification', 'M&A', 'Regulatory action', 'Service changes'] },
   { tier: 'Tier 2: Medium Risk', frequency: 'Semi-annual + Annual Onsite', color: '#f59e0b', triggers: ['Contract renewal', 'Control failures', 'Regulatory changes', 'Sub-processor changes'] },
