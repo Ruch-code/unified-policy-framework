@@ -14,6 +14,7 @@ import HybridSecurityFramework from '../components/HybridSecurityFramework.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 import { useState, useEffect } from 'react';
 import { Lock, AlertCircle, Shield, AlertTriangle, Building, Users, ShieldCheck, Globe, Lock as LockIcon, Briefcase, GraduationCap, MessageSquare, Star, ArrowRight, Key, Server, Database, ClipboardCheck, ChevronRight, Menu, X, ExternalLink } from 'lucide-react';
+import { FEATURES } from '../constants/features.js';
 
 function useDark() {
   const [dark, setDark] = useState(() => document.documentElement.classList.contains('dark'));
@@ -515,88 +516,82 @@ export default function Home() {
     <section className="min-h-screen bg-surface-50 dark:bg-dark-bg py-8">
       <div className="container mx-auto px-4">
         {/* Hero Banner - FEATURES.newHero */}
-        <div className="mb-16 relative">
-          {/* Animated lens visualization */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <svg viewBox="0 0 400 400" className="w-64 h-64 mx-auto opacity-10" aria-hidden="true">
-              <defs>
-                <linearGradient id="heroRingGradient" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
-                  <stop offset="0%" stop-color="#6366f1"/>
-                  <stop offset="50%" stop-color="#8b5cf6"/>
-                  <stop offset="100%" stop-color="#06b6d4"/>
-                </linearGradient>
-              </defs>
-              <circle cx="200" cy="200" r="180" stroke="url(#heroRingGradient)" stroke-width="2" fill="none" opacity="0.4" className="animate-pulse"/>
-              <circle cx="200" cy="200" r="130" stroke="url(#heroRingGradient)" stroke-width="2" fill="none" opacity="0.6" className="animate-pulse" style={{animationDelay: '0.5s'}}/>
-              <circle cx="200" cy="200" r="80" stroke="url(#heroRingGradient)" stroke-width="2" fill="none" opacity="0.8" className="animate-pulse" style={{animationDelay: '1s'}}/>
-              <circle cx="200" cy="200" r="30" fill="url(#heroRingGradient)"/>
-              <g stroke="#6366f1" stroke-width="1.5" opacity="0.4">
-                <line x1="200" y1="0" x2="200" y2="40"/>
-                <line x1="200" y1="360" x2="200" y2="400"/>
-                <line x1="0" y1="200" x2="40" y2="200"/>
-                <line x1="360" y1="200" x2="400" y2="200"/>
-              </g>
-            </svg>
-          </div>
-          
-          <div className="relative z-10 text-center max-w-5xl mx-auto py-12">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary mb-4 flex items-center justify-center gap-3 flex-wrap">
-              <span className="text-4xl md:text-5xl" aria-hidden="true">🔍</span>
-              OneLens by Ruchi
-            </h1>
-            <p className="text-xl text-secondary mb-6 max-w-2xl mx-auto">One lens. Every framework. Map a control once and see everywhere it counts.</p>
-            <p className="text-lg text-muted mb-8 max-w-xl mx-auto">
-              {Object.keys(REGIONS).length} frameworks across {REGIONS.reduce((acc, r) => acc + r.frameworks.length, 0)} frameworks, built by a practising GRC engineer.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <button 
-                onClick={() => setActiveTab('regional')}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-on-accent font-semibold rounded-xl hover:bg-accent-hover transition-colors text-base"
-              >
-                <ArrowRight className="w-5 h-5" />
-                Find your certification path
-              </button>
-              <button 
-                onClick={() => setActiveTab('regional')}
-                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-surface-3 dark:border-surface-4 text-primary font-semibold rounded-xl hover:bg-surface-2 dark:hover:bg-surface-3 transition-colors text-base"
-              >
-                Explore frameworks
-              </button>
-              <button 
-                onClick={() => setActiveTab('vendor-risk')}
-                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-surface-3 dark:border-surface-4 text-primary font-semibold rounded-xl hover:bg-surface-2 dark:hover:bg-surface-3 transition-colors text-base"
-              >
-                <Users className="w-5 h-5" />
-                Vendor risk toolkit
-              </button>
+        {FEATURES.newHero && (
+          <div className="mb-16 relative">
+            {/* Animated lens visualization */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <svg viewBox="0 0 400 400" className="w-64 h-64 mx-auto opacity-10" aria-hidden="true">
+                <defs>
+                  <linearGradient id="heroRingGradient" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
+                    <stop offset="0%" stop-color="#6366f1"/>
+                    <stop offset="50%" stop-color="#8b5cf6"/>
+                    <stop offset="100%" stop-color="#06b6d4"/>
+                  </linearGradient>
+                </defs>
+                <circle cx="200" cy="200" r="180" stroke="url(#heroRingGradient)" stroke-width="2" fill="none" opacity="0.4" className="animate-pulse"/>
+                <circle cx="200" cy="200" r="130" stroke="url(#heroRingGradient)" stroke-width="2" fill="none" opacity="0.6" className="animate-pulse" style={{animationDelay: '0.5s'}}/>
+                <circle cx="200" cy="200" r="80" stroke="url(#heroRingGradient)" stroke-width="2" fill="none" opacity="0.8" className="animate-pulse" style={{animationDelay: '1s'}}/>
+                <circle cx="200" cy="200" r="30" fill="url(#heroRingGradient)"/>
+                <g stroke="#6366f1" stroke-width="1.5" opacity="0.4">
+                  <line x1="200" y1="0" x2="200" y2="40"/>
+                  <line x1="200" y1="360" x2="200" y2="400"/>
+                  <line x1="0" y1="200" x2="40" y2="200"/>
+                  <line x1="360" y1="200" x2="400" y2="200"/>
+                </g>
+              </svg>
             </div>
-            <div className="flex items-center justify-center gap-4 text-sm text-muted">
-              <span className="flex items-center gap-1">
-                <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                Last updated: Oct 2026
-              </span>
-              <a 
-                href="https://www.linkedin.com/in/ruchi-k/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 hover:text-accent transition-colors"
-              >
-                Built by Ruchi Kandpal
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
+            
+            <div className="relative z-10 text-center max-w-5xl mx-auto py-12">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary mb-4 flex items-center justify-center gap-3 flex-wrap">
+                <span className="text-4xl md:text-5xl" aria-hidden="true">🔍</span>
+                OneLens by Ruchi
+              </h1>
+              <p className="text-xl text-secondary mb-6 max-w-2xl mx-auto">One lens. Every framework. Map a control once and see everywhere it counts.</p>
+              <p className="text-lg text-muted mb-8 max-w-xl mx-auto">
+                {Object.keys(REGIONS).length} frameworks across {REGIONS.reduce((acc, r) => acc + r.frameworks.length, 0)} frameworks, built by a practising GRC engineer.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                <button 
+                  onClick={() => setActiveTab('regional')}
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-on-accent font-semibold rounded-xl hover:bg-accent-hover transition-colors text-base"
+                >
+                  <ArrowRight className="w-5 h-5" />
+                  Find your certification path
+                </button>
+                <button 
+                  onClick={() => setActiveTab('regional')}
+                  className="inline-flex items-center gap-2 px-6 py-3 border-2 border-surface-3 dark:border-surface-4 text-primary font-semibold rounded-xl hover:bg-surface-2 dark:hover:bg-surface-3 transition-colors text-base"
+                >
+                  Explore frameworks
+                </button>
+                <button 
+                  onClick={() => setActiveTab('vendor-risk')}
+                  className="inline-flex items-center gap-2 px-6 py-3 border-2 border-surface-3 dark:border-surface-4 text-primary font-semibold rounded-xl hover:bg-surface-2 dark:hover:bg-surface-3 transition-colors text-base"
+                >
+                  <Users className="w-5 h-5" />
+                  Vendor risk toolkit
+                </button>
+              </div>
+              <div className="flex items-center justify-center gap-4 text-sm text-muted">
+                <span className="flex items-center gap-1">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                  Last updated: Oct 2026
+                </span>
+                <a 
+                  href="https://www.linkedin.com/in/ruchi-k/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 hover:text-accent transition-colors"
+                >
+                  Built by Ruchi Kandpal
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* Page Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-extrabold text-primary mb-3">
-            OneLens by Ruchi
-          </h1>
-          <p className="text-secondary max-w-3xl">
-            Centralized framework mapping, risk matrices, vendor governance, interview prep, and access controls — organized in discoverable modules.
-          </p>
-        </div>
 
         {/* Tab Navigation */}
         <div className="mb-6">
