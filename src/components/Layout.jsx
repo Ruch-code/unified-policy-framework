@@ -376,8 +376,12 @@ export default function Layout() {
             </button>
             
             {/* OneLens Brand - Logo + Title */}
-            <Link to="/" className="flex-shrink-0 flex items-center gap-2 ml-3 text-base sm:text-lg font-semibold tracking-tight whitespace-nowrap truncate max-w-[180px] sm:max-w-none text-slate-900 dark:text-white"
-              aria-label="OneLens by Ruchi Home">
+            <Link
+              to="/"
+              className="flex-shrink-0 flex items-center gap-2 ml-3 text-base sm:text-lg font-semibold tracking-tight whitespace-nowrap truncate max-w-[180px] sm:max-w-none text-slate-900 dark:text-white cursor-pointer hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-950"
+              aria-label="OneLens by Ruchi, go to homepage"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            >
               <OneLensLogo size={28} />
               <span className="hidden sm:inline">OneLens by Ruchi</span>
             </Link>
@@ -470,10 +474,15 @@ export default function Layout() {
           <div className="flex flex-col h-full">
             {/* Mobile Menu Header */}
             <div className="flex items-center justify-between h-16 px-4 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/95">
-              <div className="flex items-center gap-2">
+              <Link
+                to="/"
+                className="flex items-center gap-2"
+                aria-label="OneLens by Ruchi, go to homepage"
+                onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); setMobileMenuOpen(false); }}
+              >
                 <OneLensLogo size={24} />
                 <h2 className="text-lg font-semibold text-gray-900 dark:text-white">OneLens by Ruchi</h2>
-              </div>
+              </Link>
               <button
                 onClick={() => setMobileMenuOpen(false)}
                 className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-white transition-colors"
