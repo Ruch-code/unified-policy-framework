@@ -1,11 +1,43 @@
 import React, { useState, Suspense, lazy, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
+import { getColorStyles } from '../utils/colorStyles.js';
 
-// Loaded on demand. The incident corpus is editorial copy that is meant to stay
-// behind sign in, and a static import would fold all of it into the bundle that
-// every anonymous visitor downloads. Lazy keeps it in its own chunk that is only
-// ever requested once an authenticated user opens the tab.
+// ExpandableCard component to replace <details>/<summary> for better JSX compatibility
+function ExpandableCard({ title, subtitle, impact, children, icon: Icon, color }) {
+  const [open, setOpen] = useState(false);
+  const c = getColorStyles(color);
+  return (
+    <div className={`group rounded-2xl border ${c.box} overflow-hidden`}>
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full p-4 flex items-center justify-between gap-4 cursor-pointer list-none hover:bg-surface-2 dark:hover:bg-surface-3"
+        aria-expanded={open}
+      >
+        <div className="flex items-center gap-3 min-w-0">
+          <span className={`shrink-0 w-2.5 h-2.5 rounded-full ${c.dot}`} />
+          <span className="font-semibold text-primary leading-snug">{title}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className={`shrink-0 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full border ${
+            impact === 'Critical' 
+              ? 'bg-red-50 border-red-200 text-red-700 dark:bg-red-900/30 dark:text-red-400 dark:border-red-800/30' 
+              : 'bg-amber-50 border-amber-200 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 dark:border-amber-800/30'
+          }`}>
+            {impact}
+          </span>
+          <ChevronDown className={`w-5 h-5 text-muted transition-transform ${open ? 'rotate-180' : ''}`} />
+        </div>
+      </button>
+      {open && (
+        <div className="px-4 pb-4 space-y-3 animate-in slide-in-from-top-2 duration-200">
+          {children}
+        </div>
+      )}
+    </div>
+  );
+}
+
 const VendorIncidentBrief = lazy(() => import('./VendorIncidentBrief.jsx'));
 
 import { 
@@ -160,22 +192,6 @@ const REVIEW_FREQUENCY = [
   { tier: 'Tier 3: Low Risk', frequency: 'Annual Self-assessment', color: '#eab308', triggers: ['Contract renewal', 'Major incidents', 'Regulatory updates'] },
   { tier: 'Tier 4: Commodity/Non-critical', frequency: 'Biennial or Contract-driven', color: '#10b981', triggers: ['Contract renewal only'] },
 ];
-
-function getColorStyles(color) {
-  const colors = {
-    '#ef4444': { bg: 'bg-red-50', icon: 'text-red-600', dot: 'bg-red-500', trigger: 'bg-red-500' },
-    '#f59e0b': { bg: 'bg-amber-50', icon: 'text-amber-600', dot: 'bg-amber-500', trigger: 'bg-amber-500' },
-    '#eab308': { bg: 'bg-yellow-50', icon: 'text-yellow-600', dot: 'bg-yellow-500', trigger: 'bg-yellow-500' },
-    '#10b981': { bg: 'bg-emerald-50', icon: 'text-emerald-600', dot: 'bg-emerald-500', trigger: 'bg-emerald-500' },
-    '#4f46e5': { bg: 'bg-indigo-50', icon: 'text-indigo-600', dot: 'bg-indigo-500', trigger: 'bg-indigo-500' },
-    '#8b5cf6': { bg: 'bg-violet-50', icon: 'text-violet-600', dot: 'bg-violet-500', trigger: 'bg-violet-500' },
-    '#84cc16': { bg: 'bg-lime-50', icon: 'text-lime-600', dot: 'bg-lime-500', trigger: 'bg-lime-500' },
-    '#dc2626': { bg: 'bg-red-50', icon: 'text-red-600', dot: 'bg-red-500', trigger: 'bg-red-500' },
-    '#059669': { bg: 'bg-emerald-50', icon: 'text-emerald-600', dot: 'bg-emerald-500', trigger: 'bg-emerald-500' },
-    '#f59e0b': { bg: 'bg-amber-50', icon: 'text-amber-600', dot: 'bg-amber-500', trigger: 'bg-amber-500' },
-  };
-  return colors[color] || colors['#4f46e5'];
-}
 
 export default function VendorRiskManagement({ isDark = false }) {
   const [activeTab, setActiveTab] = useState(() => {
