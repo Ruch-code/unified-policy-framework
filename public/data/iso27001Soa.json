@@ -1,0 +1,22 @@
+{
+  "DECISION": {
+    "undecided": "undecided",
+    "necessary": "necessary",
+    "notNecessary": "notNecessary"
+  },
+  "IMPLEMENTATION_STATUS": {
+    "notStarted": "not-started",
+    "planned": "planned",
+    "partial": "partial",
+    "implemented": "implemented",
+    "notApplicable": "not-applicable"
+  },
+  "SOA_STORAGE_KEY": "iso27001-soa-v1",
+  "STATUS_LABELS": {
+    "not-started": "Not started",
+    "planned": "Planned",
+    "partial": "Partially implemented",
+    "implemented": "Implemented",
+    "not-applicable": "Not applicable to this decision"
+  }
+}

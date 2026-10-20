@@ -151,7 +151,7 @@ const TABS = [
 const REGIONS = [
   {
     name: 'Global',
-    tag: 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300',
+    tag: 'bg-region-global text-region-global border-region-global',
     frameworks: [
       { path: '/iso/27001/la', name: 'ISO 27001 LA', desc: 'ISMS auditing & certification' },
       { path: '/iso/27001/li', name: 'ISO 27001 LI', desc: 'ISMS implementation' },
@@ -165,7 +165,7 @@ const REGIONS = [
   },
   {
     name: 'European Union',
-    tag: 'bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300',
+    tag: 'bg-region-eu text-region-eu border-region-eu',
     frameworks: [
       { path: '/gdpr', name: 'GDPR', desc: 'EU data protection regulation' },
       { path: '/cippe/eu', name: 'CIPPE/EU', desc: 'EU privacy professional' },
@@ -173,7 +173,7 @@ const REGIONS = [
   },
   {
     name: 'India',
-    tag: 'bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300',
+    tag: 'bg-region-india text-region-india border-region-india',
     frameworks: [
       { path: '/dpdpa', name: 'DPDPA', desc: 'Digital Personal Data Protection Act' },
       { path: '/sebi', name: 'SEBI', desc: 'Securities & Exchange Board of India' },
@@ -184,28 +184,28 @@ const REGIONS = [
   },
   {
     name: 'South America',
-    tag: 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300',
+    tag: 'bg-region-brazil text-region-brazil border-region-brazil',
     frameworks: [
       { path: '/lgpd', name: 'LGPD', desc: 'Brazil Lei Geral de Proteção de Dados' },
     ],
   },
   {
     name: 'South East Asia',
-    tag: 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300',
+    tag: 'bg-region-sea text-region-sea border-region-sea',
     frameworks: [
       { path: '/pdpa', name: 'PDPA', desc: 'Singapore Personal Data Protection Act' },
     ],
   },
   {
     name: 'East Asia',
-    tag: 'bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300',
+    tag: 'bg-region-apac text-region-apac border-region-apac',
     frameworks: [
       { path: '/pipl', name: 'PIPL', desc: "China Personal Information Protection Law" },
     ],
   },
   {
     name: 'United States / Federal',
-    tag: 'bg-slate-800 text-white',
+    tag: 'bg-region-us text-region-us border-region-us',
     frameworks: [
       { path: '/fedramp', name: 'FedRAMP', desc: 'Federal cloud authorization (Low/Mod/High, ATO, ConMon)' },
       { path: '/cjis', name: 'CJIS', desc: 'FBI Criminal Justice Information Services policy' },

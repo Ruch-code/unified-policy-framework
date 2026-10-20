@@ -366,13 +366,22 @@ function FrameworkBody({ framework, extraSections }) {
                 const unlocked = isWeekUnlocked(idx);
                 const Meta = LEVEL_META[idx] || LEVEL_META[0];
                 const Icon = Meta.icon;
+                const levelTokens = [
+                  { bg: 'bg-level-foundation', text: 'text-level-foundation' },
+                  { bg: 'bg-level-implementer', text: 'text-level-implementer' },
+                  { bg: 'bg-level-verifier', text: 'text-level-verifier' },
+                  { bg: 'bg-level-audit', text: 'text-level-audit' }
+                ][idx] || { bg: 'bg-level-foundation', text: 'text-level-foundation' };
                 return (
-                  <div key={week.week} className={`text-center p-3 rounded-xl border transition-all ${unlocked ? colors.bgLight + ' border-current ' + colors.border : 'bg-gray-50 border-gray-200 opacity-50 dark:bg-slate-800/60 dark:border-slate-700 dark:opacity-90'}`}>
-                    <Icon className={`w-6 h-6 mx-auto mb-1 ${unlocked ? colors.text : 'text-gray-500 dark:text-slate-300'}`} />
-                    <div className={`text-lg font-bold ${unlocked ? colors.text : 'text-gray-500 dark:text-slate-300'}`}>
+                  <div key={week.week} className={`text-center p-3 rounded-xl border transition-all ${unlocked 
+                    ? `${levelTokens.bg} ${levelTokens.text} border-current` 
+                    : 'bg-counter text-counter border-surface-3 dark:border-surface-4 opacity-50'
+                  }`}>
+                    <Icon className={`w-6 h-6 mx-auto mb-1 ${unlocked ? levelTokens.text : 'text-muted'}`} />
+                    <div className={`text-lg font-bold ${unlocked ? levelTokens.text : 'text-muted'}`}>
                       {unlocked ? `${weekStats[week.week]?.pct || 0}%` : <Lock className="w-4 h-4 inline" />}
                     </div>
-                    <div className={`text-xs font-medium ${unlocked ? colors.text : 'text-gray-500 dark:text-slate-300'}`}>Lvl {idx + 1}: {Meta.label}</div>
+                    <div className={`text-xs font-medium ${unlocked ? levelTokens.text : 'text-muted'}`}>Lvl {idx + 1}: {Meta.label}</div>
                   </div>
                 );
               })}
@@ -387,22 +396,22 @@ function FrameworkBody({ framework, extraSections }) {
 
         {/* Timeline */}
         {data.milestones && data.milestones.length > 0 && (
-          <div className={`bg-white rounded-2xl border ${colors.border} p-6 mb-8`}>
-            <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-              <Clock className="w-5 h-5" style={{ color: colors.hex }} />
+          <div className="bg-surface-1 dark:bg-surface-2 rounded-2xl border border-surface-3 dark:border-surface-4 p-6 mb-8">
+            <h2 className="text-xl font-bold text-primary mb-6 flex items-center gap-2">
+              <Clock className="w-5 h-5 text-accent" />
               Implementation Timeline
             </h2>
             <div className="flex items-center justify-between">
               <div className="flex flex-col items-center">
-                <div className={`w-10 h-10 rounded-full ${colors.bg} text-white flex items-center justify-center text-sm font-bold shadow-lg ring-4 ring-white`}>D1</div>
-                <span className="text-xs text-gray-500 mt-1 font-medium">Start</span>
+                <div className="w-10 h-10 rounded-full bg-accent text-on-accent flex items-center justify-center text-sm font-bold shadow-lg ring-4 ring-white">D1</div>
+                <span className="text-xs text-muted mt-1 font-medium">Start</span>
               </div>
               {data.milestones.map(milestone => (
                 <Fragment key={milestone.day}>
-                  <div className="flex-1 h-1 bg-gray-200 mx-2"><div className="h-full rounded bg-gray-300" style={{ width: `${Math.min(100, (completedTasks / totalTasks) * 100)}%`, transition: 'width 1s ease' }} /></div>
+                  <div className="flex-1 h-1 bg-surface-3 dark:bg-surface-4 mx-2"><div className="h-full rounded bg-accent" style={{ width: `${Math.min(100, (completedTasks / totalTasks) * 100)}%`, transition: 'width 1s ease' }} /></div>
                   <div className="flex flex-col items-center">
-                    <div className="w-12 h-12 rounded-full bg-white border-4 border-gray-300 text-gray-400 flex items-center justify-center text-xs font-bold shadow">{milestone.day}d</div>
-                    <span className="text-xs text-gray-500 mt-1 font-medium text-center max-w-[80px]">{milestone.label}</span>
+                    <div className="w-12 h-12 rounded-full bg-surface-2 dark:bg-surface-3 border-4 border-surface-3 dark:border-surface-4 text-muted flex items-center justify-center text-xs font-bold shadow">{milestone.day}d</div>
+                    <span className="text-xs text-muted mt-1 font-medium text-center max-w-[80px]">{milestone.label}</span>
                   </div>
                 </Fragment>
               ))}
@@ -419,29 +428,29 @@ function FrameworkBody({ framework, extraSections }) {
           const justUnlocked = unlocked && idx > 0 && !progress[`seen-level-${week.week}`];
 
           return (
-            <div key={week.week} className={`mb-8 rounded-2xl border overflow-hidden transition-all ${unlocked ? 'bg-white border-gray-200 shadow-sm' : 'bg-gray-50 border-gray-200 opacity-60 dark:bg-slate-800/50 dark:border-slate-700 dark:opacity-90'}`}>
+            <div key={week.week} className={`mb-8 rounded-2xl border overflow-hidden transition-all ${unlocked ? 'bg-surface-1 dark:bg-surface-2 border-surface-3 dark:border-surface-4 shadow-sm' : 'bg-surface-2 dark:bg-surface-3 border-surface-3 dark:border-surface-4 opacity-60'}`}>
               {/* Level Header */}
-              <div className={`px-5 sm:px-6 py-5 flex flex-wrap items-center justify-between gap-x-4 gap-y-3 ${unlocked ? colors.bg : 'bg-gray-400 dark:bg-gray-700'}`}>
+              <div className={`px-5 sm:px-6 py-5 flex flex-wrap items-center justify-between gap-x-4 gap-y-3 ${unlocked ? 'bg-accent' : 'bg-surface-3 dark:bg-surface-4'}`}>
                 <div className="flex items-start gap-3 min-w-0 flex-1 basis-[240px]">
                   {unlocked ? (
-                    <Icon className="w-6 h-6 text-white shrink-0 mt-0.5" />
+                    <Icon className="w-6 h-6 text-on-accent shrink-0 mt-0.5" />
                   ) : (
-                    <Lock className="w-6 h-6 text-white/70 dark:text-slate-300 shrink-0 mt-0.5" />
+                    <Lock className="w-6 h-6 text-on-accent/70 shrink-0 mt-0.5" />
                   )}
                   <div className="min-w-0">
-                    <h2 className="text-lg sm:text-xl font-bold leading-snug text-white flex flex-wrap items-center gap-x-2 gap-y-1.5">
+                    <h2 className="text-lg sm:text-xl font-bold leading-snug text-on-accent flex flex-wrap items-center gap-x-2 gap-y-1.5">
                       Level {idx + 1}: {Meta.label}
-                      <span className="text-[11px] sm:text-xs font-medium text-white bg-white/25 ring-1 ring-white/30 px-2.5 py-0.5 rounded-full max-w-full whitespace-normal">{week.title}</span>
+                      <span className="text-[11px] sm:text-xs font-medium text-on-accent bg-on-accent/25 ring-1 ring-on-accent/30 px-2.5 py-0.5 rounded-full max-w-full whitespace-normal">{week.title}</span>
                     </h2>
-                    <p className="text-sm text-white/90 mt-0.5">{Meta.desc} — {week.description}</p>
+                    <p className="text-sm text-on-accent/90 mt-0.5">{Meta.desc} — {week.description}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 pr-16 shrink-0 ml-auto">
-                  <div className={`text-right px-3 py-1 rounded-full text-sm font-medium ${weekStats[week.week]?.pct >= 80 ? 'bg-white/30 text-white' : 'bg-white/10 text-white/70'}`}>
+                  <div className={`text-right px-3 py-1 rounded-full text-sm font-medium ${weekStats[week.week]?.pct >= 80 ? 'bg-on-accent/30 text-on-accent' : 'bg-on-accent/10 text-on-accent/70'}`}>
                     {weekStats[week.week]?.completed || 0}/{week.tasks.length} {weekStats[week.week]?.pct >= 80 ? '✓' : ''}
                   </div>
                   {levelHours[week.week] > 0 && (
-                    <div className="text-right px-3 py-1 rounded-full text-xs font-medium bg-white/10 text-white/80">
+                    <div className="text-right px-3 py-1 rounded-full text-xs font-medium bg-on-accent/10 text-on-accent/80">
                       <Clock className="w-3.5 h-3.5 inline mr-1 -mt-0.5" /> ~{levelHours[week.week]}h
                     </div>
                   )}
@@ -457,23 +466,23 @@ function FrameworkBody({ framework, extraSections }) {
               )}
 
               {unlocked && justUnlocked && (
-                <div className={`px-6 py-3 text-center text-sm font-medium ${colors.bgLight} ${colors.text}`}>
+                <div className="px-6 py-3 text-center text-sm font-medium bg-success text-success">
                   🎉 Level {idx + 1} unlocked! Start working through the controls below.
                 </div>
               )}
 
               {unlocked && (
-                <div className="divide-y divide-gray-100">
+                <div className="divide-y divide-surface-3 dark:divide-surface-4">
                   {week.tasks.map((task, i) => {
                     const key = `w${week.week}-${i}`;
                     const done = !!progress[key];
                     const isExpanded = expandedTask === key;
                     return (
-                      <div key={`${week.week}-${i}`} className={`transition ${done ? 'bg-gray-50/50' : ''}`}>
-                        <div className="flex items-start gap-4 px-6 py-4 cursor-pointer hover:bg-gray-50 transition" onClick={() => !done && setExpandedTask(isExpanded ? null : key)}>
+                      <div key={`${week.week}-${i}`} className={`transition ${done ? 'bg-success/10' : ''}`}>
+                        <div className="flex items-start gap-4 px-6 py-4 cursor-pointer hover:bg-surface-2 dark:hover:bg-surface-3 transition" onClick={() => !done && setExpandedTask(isExpanded ? null : key)}>
                           <input
                             type="checkbox"
-                            className={`w-5 h-5 mt-0.5 rounded border-gray-300 focus:ring-2 focus:ring-${colors.ring}-500 text-${colors.ring}-600 shrink-0`}
+                            className="w-5 h-5 mt-0.5 rounded border-surface-3 dark:border-surface-4 focus:ring-2 focus:ring-accent text-accent shrink-0"
                             checked={done}
                             onChange={(e) => { e.stopPropagation(); handleToggle(week.week, i); }}
                             onClick={(e) => e.stopPropagation()}
@@ -491,9 +500,9 @@ function FrameworkBody({ framework, extraSections }) {
                             </div>
                             {typeof task === 'object' && !done && (
                               <div className="mt-2 space-y-1.5">
-                                <TaskDetail label="Control" value={task.control} color={colors.text} />
-                                <TaskDetail label="How" value={task.how} color={colors.text} />
-                                <TaskDetail label="Check" value={task.check} color={colors.text} />
+                                <TaskDetail label="Control" value={task.control} />
+                                <TaskDetail label="How" value={task.how} />
+                                <TaskDetail label="Check" value={task.check} />
                                 {task.citation && (
                                   <CitationRow
                                     citation={{
@@ -597,7 +606,7 @@ function FrameworkBody({ framework, extraSections }) {
               </div>
               <div className="grid md:grid-cols-2 gap-5">
                 {gaps.map((item, i) => (
-                  <GapCard key={i} item={item} colors={colors} />
+                  <GapCard key={i} item={item} />
                 ))}
               </div>
               {isPrivacy && framework.privacyStartupNotes && (
@@ -620,18 +629,23 @@ function FrameworkBody({ framework, extraSections }) {
   );
 }
 
-function TaskDetail({ label, value, color }) {
+function TaskDetail({ label, value }) {
   const [open, setOpen] = useState(false);
+  const labelTokens = {
+    Control: { bg: 'bg-info', text: 'text-info' },
+    How: { bg: 'bg-warning', text: 'text-warning' },
+    Check: { bg: 'bg-success', text: 'text-success' }
+  }[label] || { bg: 'bg-chip', text: 'text-chip' };
   return (
     <div className="text-sm">
-      <button onClick={(e) => { e.stopPropagation(); setOpen(!open); }} className={`flex items-center gap-2 font-medium ${color} hover:underline`}>
-        <span className={`w-5 h-5 rounded-full text-white text-[10px] flex items-center justify-center font-bold ${label === 'Control' ? 'bg-blue-500' : label === 'How' ? 'bg-purple-500' : 'bg-green-500'}`}>
+      <button onClick={(e) => { e.stopPropagation(); setOpen(!open); }} className="flex items-center gap-2 font-medium hover:underline">
+        <span className={`w-5 h-5 rounded-full text-on-accent text-[10px] flex items-center justify-center font-bold ${labelTokens.bg}`}>
           {label[0]}
         </span>
         {label}
         <ChevronRight className={`w-3 h-3 transition-transform ${open ? 'rotate-90' : ''}`} />
       </button>
-      {open && <p className="text-gray-600 mt-1 ml-7 leading-relaxed">{value}</p>}
+      {open && <p className="text-muted mt-1 ml-7 leading-relaxed">{value}</p>}
     </div>
   );
 }
@@ -730,61 +744,61 @@ function CitationRow({ citation }) {
   );
 }
 
-function GapCard({ item, colors }) {
+function GapCard({ item }) {
   const [open, setOpen] = useState(false);
   const hasPushback = !!item.pushback;
   const dom = item.itgc || 'General / Cross-Cutting';
   const compensating = Array.isArray(item.compensating) ? item.compensating : [];
   const policy = item.policy || '';
   return (
-    <div className={`border rounded-xl ${colors.border} overflow-hidden transition-shadow hover:shadow-md`}>
+    <div className="border rounded-xl border-surface-3 dark:border-surface-4 overflow-hidden transition-shadow hover:shadow-md">
       <button
         onClick={() => setOpen(!open)}
-        className={`w-full flex items-start gap-3 p-4 text-left ${colors.bgLight}`}
+        className="w-full flex items-start gap-3 p-4 text-left bg-surface-2 dark:bg-surface-3"
       >
-        <AlertTriangle className={`w-5 h-5 mt-0.5 shrink-0 ${colors.text}`} />
+        <AlertTriangle className="w-5 h-5 mt-0.5 shrink-0 text-warning" />
         <div className="flex-1">
-          <span className={`inline-block text-[10px] font-semibold px-2 py-0.5 rounded-full border uppercase tracking-wide mb-1.5 ${itgcColor(dom)}`}>
+          <span className="inline-block text-[10px] font-semibold px-2 py-0.5 rounded-full border uppercase tracking-wide mb-1.5 bg-chip text-chip border-chip">
             ITGC · {dom}
           </span>
-          <h4 className="font-bold text-gray-900 flex items-center justify-between gap-2">
+          <h4 className="font-bold text-primary flex items-center justify-between gap-2">
             {item.gap}
-            <ChevronRight className={`w-4 h-4 shrink-0 text-gray-400 transition-transform ${open ? 'rotate-90' : ''}`} />
+            <ChevronRight className="w-4 h-4 shrink-0 text-muted transition-transform {open ? 'rotate-90' : ''}" />
           </h4>
           {!open && (
-            <p className="text-sm text-gray-700 mt-1 italic dark:text-slate-300">"{item.pushback || 'Read common pushback & how to respond'}"</p>
+            <p className="text-sm text-secondary mt-1 italic">"{item.pushback || 'Read common pushback & how to respond'}"</p>
           )}
         </div>
       </button>
       {open && (
-        <div className="p-4 space-y-3 bg-white">
+        <div className="p-4 space-y-3 bg-surface-1 dark:bg-surface-2">
           {hasPushback && (
-            <div className="rounded-lg bg-amber-50 border border-amber-100 p-3">
-              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-700 uppercase tracking-wide"><AlertTriangle className="w-3.5 h-3.5" /> What founders/staff say</span>
-              <p className="text-sm text-gray-700 italic mt-1">"{item.pushback}"</p>
+            <div className="rounded-lg bg-warning text-warning border-warning p-3">
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide"><AlertTriangle className="w-3.5 h-3.5" /> What founders/staff say</span>
+              <p className="text-sm text-secondary italic mt-1">"{item.pushback}"</p>
             </div>
           )}
-          <div className="rounded-lg bg-blue-50 border border-blue-100 p-3">
-            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-700 uppercase tracking-wide"><TrendingUp className="w-3.5 h-3.5" /> Why it matters</span>
-            <p className="text-sm text-gray-700 mt-1">{item.reality}</p>
+          <div className="rounded-lg bg-info text-info border-info p-3">
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide"><TrendingUp className="w-3.5 h-3.5" /> Why it matters</span>
+            <p className="text-sm text-secondary mt-1">{item.reality}</p>
           </div>
           {compensating.length > 0 && (
-            <div className="rounded-lg bg-indigo-50 border border-indigo-100 p-3">
-              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-700 uppercase tracking-wide"><CheckCircle className="w-3.5 h-3.5" /> Compensating controls already in place</span>
-              <ul className="mt-1 space-y-1 text-sm text-gray-700">
+            <div className="rounded-lg bg-accent/10 border-accent/20 p-3">
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide"><CheckCircle className="w-3.5 h-3.5 text-accent" /> Compensating controls already in place</span>
+              <ul className="mt-1 space-y-1 text-sm text-secondary">
                 {compensating.map((c, i) => (
-                  <li key={i} className="flex items-start gap-2"><span className="text-indigo-400 mt-0.5">•</span>{c}</li>
+                  <li key={i} className="flex items-start gap-2"><span className="text-accent mt-0.5">•</span>{c}</li>
                 ))}
               </ul>
             </div>
           )}
-          <div className="rounded-lg bg-violet-50 border border-violet-100 p-3">
-            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-violet-700 uppercase tracking-wide"><BookOpen className="w-3.5 h-3.5" /> Policy that ties to this framework</span>
-            <p className="text-sm text-gray-700 mt-1">{policy || 'Align controls to your Information Security Policy set.'}</p>
+          <div className="rounded-lg bg-chip text-chip border-chip p-3">
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide"><BookOpen className="w-3.5 h-3.5" /> Policy that ties to this framework</span>
+            <p className="text-sm text-secondary mt-1">{policy || 'Align controls to your Information Security Policy set.'}</p>
           </div>
-          <div className="rounded-lg bg-green-50 border border-green-100 p-3">
-            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-green-700 uppercase tracking-wide"><Lightbulb className="w-3.5 h-3.5" /> The lean way</span>
-            <p className="text-sm text-gray-700 mt-1">{item.leantip}</p>
+          <div className="rounded-lg bg-success text-success border-success p-3">
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide"><Lightbulb className="w-3.5 h-3.5" /> The lean way</span>
+            <p className="text-sm text-secondary mt-1">{item.leantip}</p>
           </div>
         </div>
       )}

@@ -1,0 +1,455 @@
+{
+  "ADDRESSABLE_SPECS": [
+    "164.308(a)(1)(ii)(B)",
+    "164.308(a)(1)(ii)(D)",
+    "164.308(a)(3)(ii)(A)",
+    "164.308(a)(3)(ii)(B)",
+    "164.308(a)(3)(ii)(D)",
+    "164.308(a)(4)(ii)(C)",
+    "164.308(a)(5)(ii)(C)",
+    "164.308(a)(8)(ii)(B)",
+    "164.310(a)(1)(ii)(A)",
+    "164.310(a)(1)(ii)(B)",
+    "164.310(a)(1)(ii)(C)",
+    "164.310(a)(2)(ii)(B)",
+    "164.310(b)",
+    "164.310(c)",
+    "164.310(d)(2)(ii)",
+    "164.310(d)(2)(iii)",
+    "164.310(d)(2)(iv)",
+    "164.312(a)(1)(ii)(A)",
+    "164.312(a)(1)(ii)(B)",
+    "164.312(a)(2)(ii)",
+    "164.312(a)(2)(iii)",
+    "164.312(a)(2)(iv)",
+    "164.312(b)(ii)",
+    "164.312(c)(2)",
+    "164.312(d)",
+    "164.312(e)(2)(ii)(A)",
+    "164.312(e)(2)(ii)(B)"
+  ],
+  "ALL_REGULATED": [
+    "ce",
+    "dual",
+    "ba",
+    "subcontractor"
+  ],
+  "BAA_ANSWERS": [
+    {
+      "id": "unknown",
+      "label": "Not checked"
+    },
+    {
+      "id": "signed",
+      "label": "Signed"
+    },
+    {
+      "id": "pending",
+      "label": "In progress"
+    },
+    {
+      "id": "none",
+      "label": "No — not applicable / not signed"
+    }
+  ],
+  "CE_ONLY": [
+    "ce",
+    "dual"
+  ],
+  "FLOW_ANSWERS": [
+    {
+      "id": "unknown",
+      "label": "Needs confirmation"
+    },
+    {
+      "id": "yes",
+      "label": "Yes"
+    },
+    {
+      "id": "no",
+      "label": "No"
+    }
+  ],
+  "FLOW_STORAGE_KEY": "hipaa-phi-flows-v1",
+  "HHS_SOURCES": {
+    "security": {
+      "label": "HHS Security Rule",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/security/index.html"
+    },
+    "securityRegs": {
+      "label": "Security Rule — 45 CFR §164.302–318",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/security/laws-regulations/index.html"
+    },
+    "riskAnalysis": {
+      "label": "HHS Security Risk Assessment guidance",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/security/guidance/risk-analysis-guidance.html"
+    },
+    "privacy": {
+      "label": "HHS Privacy Rule",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/privacy/index.html"
+    },
+    "privacyRegs": {
+      "label": "Privacy Rule — 45 CFR §164.500–534",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/privacy/laws-regulations/index.html"
+    },
+    "npp": {
+      "label": "Notice of Privacy Practices — HHS guidance",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/notices/index.html"
+    },
+    "individualsRights": {
+      "label": "Individual rights — HHS guidance",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/rights/index.html"
+    },
+    "minimumNecessary": {
+      "label": "Minimum necessary — HHS guidance",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/minimum-necessary-requirement/index.html"
+    },
+    "deidentification": {
+      "label": "De-identification guidance — HHS",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/privacy/special-topics/de-identification/index.html"
+    },
+    "ba": {
+      "label": "Business associates — HHS guidance",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/business-associates/index.html"
+    },
+    "baContracts": {
+      "label": "Business associate contracts — HHS guidance",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/business-associates/index.html"
+    },
+    "breach": {
+      "label": "Breach Notification Rule — HHS",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/breach-notification/index.html"
+    },
+    "breachPortal": {
+      "label": "OCR Breach Portal",
+      "url": "https://portal.hhs.gov/breach-portal/"
+    },
+    "ocr": {
+      "label": "OCR — compliance & enforcement",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/compliance-enforcement/index.html"
+    },
+    "coveredEntity": {
+      "label": "Covered entities — HHS",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/covered-entities/index.html"
+    },
+    "hybridEntity": {
+      "label": "Hybrid entities — HHS guidance",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/covered-entities/hybrid-entities/index.html"
+    },
+    "training": {
+      "label": "Privacy Rule training — HHS guidance",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/training/index.html"
+    },
+    "policies": {
+      "label": "Policies and procedures — HHS guidance",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/security/guidance/policies-procedures.html"
+    },
+    "contingency": {
+      "label": "Contingency planning — HHS guidance",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/security/guidance/contingency-plan.html"
+    },
+    "workforce": {
+      "label": "Workforce security — HHS guidance",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/security/guidance/workforce-security.html"
+    },
+    "auditControls": {
+      "label": "Audit controls — HHS guidance",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/security/guidance/audit-controls.html"
+    },
+    "accessControl": {
+      "label": "Access control — HHS guidance",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/security/guidance/access-control.html"
+    },
+    "transmission": {
+      "label": "Transmission security — HHS guidance",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/security/guidance/transmission-security.html"
+    },
+    "media": {
+      "label": "Device and media controls — HHS guidance",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/security/guidance/device-media-controls.html"
+    },
+    "facilities": {
+      "label": "Facility access controls — HHS guidance",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/security/guidance/facility-access-controls.html"
+    },
+    "workstations": {
+      "label": "Workstation use & security — HHS guidance",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/security/guidance/workstation-use.html"
+    },
+    "evaluation": {
+      "label": "Evaluation — HHS guidance",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/security/guidance/evaluation.html"
+    },
+    "eCfr": {
+      "label": "45 CFR Part 164 — eCFR (current text)",
+      "url": "https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-C/part-164"
+    },
+    "definitions": {
+      "label": "45 CFR §160.103 Definitions — eCFR",
+      "url": "https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-C/part-160/subpart-A/section-160.103"
+    },
+    "penalties": {
+      "label": "42 U.S.C. §1320d-5 — civil monetary penalties",
+      "url": "https://www.law.cornell.edu/uscode/text/42/1320d-5"
+    }
+  },
+  "MANDATE_NOTES": {
+    "guidance": "Not a HIPAA requirement. This is HHS guidance, a third-party framework, or an internal practice. Nothing in HIPAA obliges you to adopt it.",
+    "addressable": "Addressable — not optional. §164.306(d) requires you to assess whether it is reasonable and appropriate in your circumstances; if you decide not to implement it, you must document the decision and the alternative safeguard you used instead.",
+    "required": "Required implementation specification.",
+    "mixed": "This range contains both required and addressable specifications — the citation below lists the individual specs so you can tell which is which."
+  },
+  "MIXED_RANGES": [
+    "164.306",
+    "164.308",
+    "164.310",
+    "164.312",
+    "164.314",
+    "164.316",
+    "164.302"
+  ],
+  "NON_REGULATORY": [
+    {
+      "match": {},
+      "label": "HHS OCR Audit Protocol — HHS guidance, not a regulation",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/compliance-enforcement/index.html"
+    },
+    {
+      "match": {},
+      "label": "HHS OCR — resolution agreements and CAPs",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/compliance-enforcement/index.html"
+    },
+    {
+      "match": {},
+      "label": "HHS OCR enforcement actions and breach portal",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/compliance-enforcement/index.html"
+    },
+    {
+      "match": {},
+      "label": "HITRUST CSF — third-party framework, not HIPAA",
+      "url": "https://hitrustalliance.net/hitrust-framework"
+    },
+    {
+      "match": {},
+      "label": "NIST CSF — voluntary framework, not HIPAA",
+      "url": "https://www.nist.gov/cyberframework"
+    },
+    {
+      "match": {},
+      "label": "Internal programme design — no HIPAA requirement",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/security/index.html"
+    }
+  ],
+  "PHI_FLOW_QUESTIONS": [
+    {
+      "id": "llm-prompt",
+      "group": "AI model calls",
+      "label": "Do you send PHI to a hosted LLM API (Claude, OpenAI, Gemini, Bedrock, Azure OpenAI)?",
+      "why": "Prompts to a hosted model are a disclosure of PHI to a third party. If the vendor is a BA, a BAA must be in place first.",
+      "cite": "45 CFR §164.502(b) minimum necessary; §164.308(b) BA contracts"
+    },
+    {
+      "id": "llm-training",
+      "group": "AI model calls",
+      "label": "Do you use your own prompts or PHI to fine-tune / train any model?",
+      "why": "Training runs retain data outside the request lifecycle and often sit outside the region a BAA covers.",
+      "cite": "45 CFR §164.502(b); §164.308(a)(1)(ii)(A) risk analysis"
+    },
+    {
+      "id": "ai-gateway",
+      "group": "AI model calls",
+      "label": "Do you route model calls through an AI gateway, proxy or internal model router?",
+      "why": "A gateway sees every prompt and response, which makes it a system in your ePHI inventory and a BA in its own right.",
+      "cite": "45 CFR §164.308(a)(1)(ii)(B) risk management; §164.502(e)(1)(ii) subcontractors"
+    },
+    {
+      "id": "vector-rag",
+      "group": "AI model calls",
+      "label": "Do you use a vector store or RAG index built over PHI (embeddings of notes, claims, transcripts)?",
+      "why": "Embeddings are derived from PHI and inherit its status. The index is usually forgotten in asset inventories.",
+      "cite": "45 CFR §164.308(a)(1)(ii)(A) risk analysis; §164.312(c)(1) integrity"
+    },
+    {
+      "id": "inference-subprocessor",
+      "group": "AI model calls",
+      "label": "Do your model or AI vendors use their own subprocessors to serve you?",
+      "why": "A BAA is only useful if it binds the vendors actually in the chain. HHS requires a BAA with each subprocessor that creates, receives, maintains or transmits PHI.",
+      "cite": "45 CFR §164.502(e)(1)(ii); §164.504(e)(2)(i)"
+    },
+    {
+      "id": "ai-output",
+      "group": "AI outputs",
+      "label": "Do model outputs get written back to a chart, ticket, record or other system of record?",
+      "why": "Output is a new disclosure of PHI. It also needs the same integrity controls as any other write.",
+      "cite": "45 CFR §164.312(c)(1) integrity; §164.502(b) minimum necessary"
+    },
+    {
+      "id": "ai-logging",
+      "group": "AI outputs",
+      "label": "Do you log prompts, completions or traces (in your own logs, or a vendor’s observability stack)?",
+      "why": "Debug logs routinely persist more PHI than the feature needs, and logs get shipped to third-party tools.",
+      "cite": "45 CFR §164.308(a)(1)(ii)(B) risk management; §164.312(b) audit controls"
+    },
+    {
+      "id": "eval-snapshots",
+      "group": "AI outputs",
+      "label": "Do you keep eval sets, few-shot examples, test fixtures or prompt snapshots that contain real PHI?",
+      "why": "These are almost always copied straight from production and are long-lived. They are rarely in scope for any BAA.",
+      "cite": "45 CFR §164.308(a)(1)(ii)(A) risk analysis; §164.514(b)(2) de-identification"
+    },
+    {
+      "id": "sms-email",
+      "group": "Messaging surfaces",
+      "label": "Do you send or receive PHI by SMS, MMS or consumer messaging apps?",
+      "why": "Consumer messaging is typically end-to-end encrypted with no BAA and no audit trail. It is a recognised breach path.",
+      "cite": "45 CFR §164.312(e)(1) transmission security; §164.402 breach definition"
+    },
+    {
+      "id": "chat-slack",
+      "group": "Messaging surfaces",
+      "label": "Do you receive PHI in Slack, Teams, or a shared support inbox?",
+      "why": "Workplace chat retention and search are usually outside your control and rarely covered by a BAA.",
+      "cite": "45 CFR §164.308(a)(1)(ii)(B) risk management; §164.312(b) audit controls"
+    },
+    {
+      "id": "support-tickets",
+      "group": "Messaging surfaces",
+      "label": "Do customers or patients submit PHI in support tickets or forms?",
+      "why": "Support tooling is a classic unrecognised BA, and free/consumer tiers are rarely BAA-eligible.",
+      "cite": "45 CFR §160.103 business associate; §164.504(e)(2)"
+    },
+    {
+      "id": "session-recordings",
+      "group": "Messaging surfaces",
+      "label": "Do you record calls, screen sessions, or transcribe conversations that may contain PHI?",
+      "why": "Recordings and transcripts are new copies of PHI held by a vendor you may not have assessed.",
+      "cite": "45 CFR §164.312(a)(2)(iv) encryption; §164.308(b) BA contracts"
+    }
+  ],
+  "ROLE_KEYS": [
+    "ce",
+    "ba",
+    "dual",
+    "subcontractor",
+    "none",
+    "uncertain"
+  ],
+  "ROLE_OPTIONS": [
+    {
+      "id": "ce",
+      "label": "Covered Entity (CE)",
+      "short": "CE",
+      "blurb": "You are a health plan, healthcare provider who bills electronically, or a healthcare clearinghouse.",
+      "cite": "45 CFR §160.103",
+      "citeUrl": "https://www.hhs.gov/hipaa/for-professionals/covered-entities/index.html",
+      "duties": [
+        "Issue a Notice of Privacy Practices (§164.520)",
+        "Give individuals access, amendment, accounting and restriction rights (§164.524–528)",
+        "Notify affected individuals, HHS and media of breaches (§164.404, §164.406, §164.408)",
+        "Sign BAAs with every business associate that touches PHI (§164.504(e))"
+      ]
+    },
+    {
+      "id": "ba",
+      "label": "Business Associate (BA)",
+      "short": "BA",
+      "blurb": "You create, receive, maintain or transmit PHI on behalf of a covered entity, under a BAA.",
+      "cite": "45 CFR §160.103",
+      "citeUrl": "https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/business-associates/index.html",
+      "duties": [
+        "Implement the applicable Security Rule safeguards (§164.308(b), §164.314(a))",
+        "Report breaches of unsecured PHI to the covered entity without unreasonable delay (§164.410(b))",
+        "Flow the same obligations down to subcontractors (§164.502(e)(1)(ii))",
+        "Give the covered entity access to records and support its compliance"
+      ],
+      "notYourDuty": [
+        "You do not publish your own Notice of Privacy Practices — the covered entity does.",
+        "You do not notify individuals, HHS or media of a breach; you report to the covered entity and it notifies."
+      ]
+    },
+    {
+      "id": "dual",
+      "label": "Both — Covered Entity and Business Associate",
+      "short": "CE + BA",
+      "blurb": "A hybrid entity: you run your own PHI obligations and also act as a BA for other covered entities.",
+      "cite": "45 CFR §164.105",
+      "citeUrl": "https://www.hhs.gov/hipaa/for-professionals/covered-entities/hybrid-entities/index.html",
+      "duties": [
+        "CE duties apply to your own covered functions; BA duties apply to services you perform for other covered entities",
+        "Keep the two sets of records and obligations separated so each obligation is met against the right data",
+        "The same system can hold both; track which is which"
+      ]
+    },
+    {
+      "id": "subcontractor",
+      "label": "Business Associate Subcontractor",
+      "short": "BA sub",
+      "blurb": "A vendor engaged by a business associate to perform a function involving PHI.",
+      "cite": "45 CFR §160.103",
+      "citeUrl": "https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/business-associates/index.html",
+      "duties": [
+        "You are a business associate, and a BAA is required directly between you and the business associate that engages you",
+        "Your flow-down obligations come from your contract with that BA, not only from its BAA with the covered entity",
+        "Report to the engaging business associate, who reports onward to the covered entity"
+      ]
+    },
+    {
+      "id": "none",
+      "label": "No regulated activity",
+      "short": "None",
+      "blurb": "You neither hold PHI on behalf of others, nor run a covered function, nor operate a BA relationship.",
+      "cite": "45 CFR §160.103",
+      "citeUrl": "https://www.hhs.gov/hipaa/for-professionals/covered-entities/index.html",
+      "duties": [
+        "HIPAA currently does not apply to you, and there is no HIPAA programme obligation to meet",
+        "Re-evaluate before you start handling PHI, or before a customer asks you to sign a BAA"
+      ]
+    },
+    {
+      "id": "uncertain",
+      "label": "Not sure — needs a human decision",
+      "short": "Unclear",
+      "blurb": "You have not determined your status, or the answer depends on facts you have not confirmed yet.",
+      "cite": "45 CFR §160.103",
+      "citeUrl": "https://www.hhs.gov/hipaa/for-professionals/covered-entities/index.html",
+      "duties": [
+        "HIPAA content stays available to read, but nothing below is treated as a settled obligation for you",
+        "Unresolved questions stay marked unresolved — they are not quietly closed",
+        "A named human has to record the determination before you rely on any of it"
+      ]
+    }
+  ],
+  "ROLE_STORAGE_KEY": "hipaa-role-scope-v1",
+  "SCOPE_ACTIVITIES": [
+    {
+      "id": "plan",
+      "label": "Health plan",
+      "hint": "Administering health benefits, claims, eligibility"
+    },
+    {
+      "id": "provider",
+      "label": "Healthcare provider",
+      "hint": "Delivering care and billing electronically"
+    },
+    {
+      "id": "clearinghouse",
+      "label": "Healthcare clearinghouse",
+      "hint": "Routing claims and transactions between entities"
+    },
+    {
+      "id": "ba-services",
+      "label": "You provide services to a covered entity",
+      "hint": "Under a BAA — hosting, support, billing, analytics"
+    },
+    {
+      "id": "phi-inbound",
+      "label": "You receive or hold PHI for your own operations",
+      "hint": "Case notes, messages, claims files, support tickets"
+    },
+    {
+      "id": "baa-requested",
+      "label": "A customer has asked you to sign a BAA",
+      "hint": "Often the clearest signal you are treated as a BA"
+    }
+  ]
+}

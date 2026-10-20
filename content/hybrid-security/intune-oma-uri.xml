@@ -1,0 +1,88 @@
+<SyncML>
+  <SyncBody>
+    <!--
+      Intune OMA-URI configuration profile — Hybrid Workforce Security (Windows).
+      Enforces: BitLocker (+ To Go removable media), Defender for Endpoint onboarding,
+      clipboard isolation / DLP, and device-compliance handshake with Conditional Access.
+      Map each row below 1:1 to an OMA-URI setting; all rows use the Microsoft CSPs
+      so they apply without a custom workload.
+    -->
+    <Replace>
+      <CmdID>1</CmdID>
+      <Item>
+        <Meta><Format xmlns="syncml:metinf">chr</Format></Meta>
+        <Target><LocURI>./Device/Vendor/MSFT/BitLocker/RequireDeviceEncryption</LocURI></Target>
+        <Data>1</Data>
+      </Item>
+    </Replace>
+    <Replace>
+      <CmdID>2</CmdID>
+      <Item>
+        <Meta><Format xmlns="syncml:metinf">chr</Format></Meta>
+        <Target><LocURI>./Device/Vendor/MSFT/BitLocker/SystemDrive/EncryptionMethod</LocURI></Target>
+        <Data>XTS_AES256</Data>
+      </Item>
+    </Replace>
+    <Replace>
+      <CmdID>3</CmdID>
+      <Item>
+        <Meta><Format xmlns="syncml:metinf">chr</Format></Meta>
+        <Target><LocURI>./Device/Vendor/MSFT/BitLocker/RemovableDrives/ExcludeFromEncryption</LocURI></Target>
+        <Data>0</Data>
+      </Item>
+    </Replace>
+    <Replace>
+      <CmdID>4</CmdID>
+      <Item>
+        <Meta><Format xmlns="syncml:metinf">chr</Format></Meta>
+        <Target><LocURI>./Device/Vendor/MSFT/BitLocker/RemovableDrives/EncryptionMethod</LocURI></Target>
+        <Data>AES256</Data>
+      </Item>
+    </Replace>
+    <Replace>
+      <CmdID>5</CmdID>
+      <Item>
+        <!-- Require full encryption before Windows can write to removable media -->
+        <Meta><Format xmlns="syncml:metinf">chr</Format></Meta>
+        <Target><LocURI>./Device/Vendor/MSFT/BitLocker/RemovableDrives/CryptoCompliancePolicy</LocURI></Target>
+        <Data>1</Data>
+      </Item>
+    </Replace>
+    <Replace>
+      <CmdID>6</CmdID>
+      <Item>
+        <!-- Defender for Endpoint onboarding — supplies the Sense service + EDR telemetry -->
+        <Meta><Format xmlns="syncml:metinf">chr</Format></Meta>
+        <Target><LocURI>./Device/Vendor/MSFT/Defender/Configuration/OnboardingInfo</LocURI></Target>
+        <Data>__MD_E_OFFBOARDING_POLICY__</Data>
+      </Item>
+    </Replace>
+    <Replace>
+      <CmdID>7</CmdID>
+      <Item>
+        <!-- Endpoint DLP / clipboard isolation: block paste to personal web apps -->
+        <Meta><Format xmlns="syncml:metinf">chr</Format></Meta>
+        <Target><LocURI>./Device/Vendor/MSFT/Defender/Configuration/ClipboardLimitDesktop</LocURI></Target>
+        <Data>1</Data>
+      </Item>
+    </Replace>
+    <Replace>
+      <CmdID>8</CmdID>
+      <Item>
+        <Meta><Format xmlns="syncml:metinf">chr</Format></Meta>
+        <Target><LocURI>./Device/Vendor/MSFT/Defender/Configuration/DisableCpuExtraction</LocURI></Target>
+        <Data>0</Data>
+      </Item>
+    </Replace>
+    <Replace>
+      <CmdID>9</CmdID>
+      <Item>
+        <!-- Compliance handshake: device must confirm health before Conditional Access unlocks -->
+        <Meta><Format xmlns="syncml:metinf">chr</Format></Meta>
+        <Target><LocURI>./Device/Vendor/MSFT/DeviceHealth/Configuration/HealthServices</LocURI></Target>
+        <Data>1</Data>
+      </Item>
+    </Replace>
+    <Final/>
+  </SyncBody>
+</SyncML>

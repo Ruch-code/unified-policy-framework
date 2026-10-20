@@ -1,0 +1,64 @@
+{
+  "//": "Microsoft Graph (beta) — Conditional Access policies for the Hybrid Workforce. Apply to named cloud apps; each policy ships in 'report-only' first, then enforce. Replace __TENANT_ID__ / __TRUSTED_IP_RANGES__ / __GROUP_IDS__.",
+  "policies": [
+    {
+      "displayName": "CA: Require compliant device for sensitive apps",
+      "state": "enabledForReportingButNotEnforced",
+      "conditions": {
+        "applications": { "includeApplications": ["Office365", "MicrosoftVault", "__SENSITIVE_APP_GUID__"] },
+        "users": { "includeUsers": ["all"], "excludeGroups": ["__BREAK_GLASS_GROUP__"] },
+        "platforms": {
+          "includePlatforms": ["windows", "iOS", "android", "macOS", "linux"],
+          "excludePlatforms": ["unknown"]
+        },
+        "clientAppTypes": ["browser", "mobileAppsAndDesktopClients"]
+      },
+      "grantControls": {
+        "operator": "AND",
+        "builtInControls": [
+          "compliantDevice",
+          "mfa",
+          "domainJoinedDevice"
+        ]
+      }
+    },
+    {
+      "displayName": "CA: Block unmanaged/BYOD access to sensitive apps outside Canada & US",
+      "state": "enabledForReportingButNotEnforced",
+      "conditions": {
+        "applications": { "includeApplications": ["__SENSITIVE_APP_GUID__"] },
+        "users": { "includeUsers": ["all"] },
+        "clientAppTypes": ["browser"],
+        "locations": {
+          "includeLocations": ["All"],
+          "excludeLocations": ["AllTrusted", "__GEO_FENCE_TRUSTED_REGION__"]
+        }
+      },
+      "grantControls": {
+        "operator": "AND",
+        "builtInControls": ["compliantDevice", "mfa", "block"]
+      }
+    },
+    {
+      "displayName": "CA: Risk-based session for on-the-go / untrusted geographies",
+      "state": "enabledForReportingButNotEnforced",
+      "conditions": {
+        "signInRiskLevels": ["high", "medium"],
+        "userRiskLevels": ["high", "medium"],
+        "clientAppTypes": ["all"]
+      },
+      "grantControls": {
+        "operator": "AND",
+        "builtInControls": ["mfa", "passwordChange"],
+        "authenticationStrength": {
+          "@odata.type": "#microsoft.graph.authenticationStrengthPolicy",
+          "id": "__PHISHING_RESISTANT_MFA_POLICY_ID__"
+        }
+      },
+      "sessionControls": {
+        "signInFrequency": { "value": 2, "type": "hours", "isEnabled": true },
+        "applicationEnforcedRestrictions": { "isEnabled": true }
+      }
+    }
+  ]
+}

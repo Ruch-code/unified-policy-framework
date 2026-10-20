@@ -1,0 +1,69 @@
+{
+  "//": "Hybrid Workforce Security — scenario definitions used by the module UI. Each scenario lists which of the 6 enforcement domains are active and which deliverables apply.",
+  "scenarios": [
+    {
+      "id": "A",
+      "title": "Café / airport road-warrior",
+      "persona": "FTE laptop user (Windows + iPhone), untrusted Wi-Fi, removable USB drive, occasional travel into restricted geos.",
+      "active_domains": [
+        "removable_media", "byod_mdm", "edr", "ztna", "dlp", "physical_context"
+      ],
+      "enforcement": [
+        "BitLocker (boot + removable) enforced via intune-oma-uri.xml",
+        "EDR onboarded; Defender telemetry streaming to SIEM",
+        "ZTNA/SASE gate active; CA blocks non-compliant device from SaaS",
+        "Clipboard isolation on; paste to personal web apps blocked",
+        "Sign-in risk policy forces phishing-resistant MFA on medium+ risk",
+        "Geofenced: web app access outside trusted region → report-only first"
+      ],
+      "primary_deliverables": ["intune-oma-uri.xml", "device-health-agent.ps1", "conditional-access.json", "soc-webhook.mjs"]
+    },
+    {
+      "id": "B",
+      "title": "BYOD contractor",
+      "persona": "External contractor, personal device, VDI/container access only — never sensitive local storage.",
+      "active_domains": [
+        "byod_mdm", "edr", "ztna", "dlp"
+      ],
+      "enforcement": [
+        "No local data: container/VDI mode via managed browser",
+        "MDM/MAM container profile + app-level policies (managed browser only)",
+        "Conditional Access marks personal devices 'compliant' only for sandboxed apps",
+        "Copy/paste intentionally blocked between work container and personal apps",
+        "Contract access expires at engagement end (JIT expiry on the device group)"
+      ],
+      "primary_deliverables": ["conditional-access.json", "jamf-filevault-profile.xml", "token-revoke.mjs"]
+    },
+    {
+      "id": "C",
+      "title": "Head-office worker",
+      "persona": "Fully managed corporate desktop, trusted office LAN/PAN, badge access.",
+      "active_domains": [
+        "removable_media", "byod_mdm", "edr", "physical_context"
+      ],
+      "enforcement": [
+        "Full disk encryption + locked screensaver (Jamf com.apple.screensaver / 10-min GPO)",
+        "EDR + SIEM correlation; USB control (write-block for unauthorised classes)",
+        "Physical-context control: office sessions inherit a lower-risk trust rating",
+        "Printer/share access tied to device ID + badge role"
+      ],
+      "primary_deliverables": ["jamf-filevault-profile.xml", "device-health-agent.ps1"]
+    },
+    {
+      "id": "D",
+      "title": "Lost or stolen device",
+      "persona": "Device reported lost/stolen mid-session — legal hold + revocation, zero-trust re-onboarding.",
+      "active_domains": [
+        "removable_media", "byod_mdm", "edr", "ztna", "physical_context"
+      ],
+      "enforcement": [
+        "Immediate quarantine in ZTNA; token-strip via token-revoke.mjs",
+        "Full-disk encryption means the drive is unreadable offline",
+        "Remote wipe queued (Intune/Jamf) once confirmed lost",
+        "Re-onboarding requires new machine identity + phishing-resistant MFA",
+        "Incident filed under IR P1 (24h review window) with CAPA"
+      ],
+      "primary_deliverables": ["soc-webhook.mjs", "token-revoke.mjs", "conditional-access.json", "device-health-agent.sh"]
+    }
+  ]
+}

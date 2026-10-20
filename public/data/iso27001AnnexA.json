@@ -1,0 +1,2981 @@
+{
+  "ANNEX_A_BY_ID": {
+    "A.5.1": {
+      "id": "A.5.1",
+      "theme": "A.5",
+      "title": "Policies for information security",
+      "purpose": "Information security policy is defined, approved by top management, published, acknowledged by staff, and reviewed at planned intervals.",
+      "clauses": [
+        "5.2",
+        "8.1"
+      ],
+      "risks": [
+        "governance",
+        "policy"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.2": {
+      "id": "A.5.2",
+      "theme": "A.5",
+      "title": "Information security roles and responsibilities",
+      "purpose": "Security roles, responsibilities and authorities are defined, assigned and communicated, including who owns the ISMS and who may make risk decisions.",
+      "clauses": [
+        "5.3"
+      ],
+      "risks": [
+        "governance",
+        "accountability"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.3": {
+      "id": "A.5.3",
+      "theme": "A.5",
+      "title": "Segregation of duties",
+      "purpose": "Conflicting duties and areas of responsibility are separated, with the risk accepted and compensating controls recorded where separation is not practical.",
+      "clauses": [
+        "5.3",
+        "8.1"
+      ],
+      "risks": [
+        "fraud",
+        "governance"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.4": {
+      "id": "A.5.4",
+      "theme": "A.5",
+      "title": "Management responsibilities",
+      "purpose": "Top management takes visible responsibility for information security, including directing and supporting the ISMS and integrating its requirements into business processes.",
+      "clauses": [
+        "5.1"
+      ],
+      "risks": [
+        "governance",
+        "accountability"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.5": {
+      "id": "A.5.5",
+      "theme": "A.5",
+      "title": "Contact with authorities",
+      "purpose": "The organisation has established and maintains contact with relevant authorities and can identify which to notify, when, and how.",
+      "clauses": [
+        "5.2",
+        "8.1"
+      ],
+      "risks": [
+        "regulatory",
+        "incident"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.6": {
+      "id": "A.5.6",
+      "theme": "A.5",
+      "title": "Contact with special interest groups",
+      "purpose": "Established contact with special interest groups is maintained, or the decision not to do so is justified and alternative intelligence sources are used.",
+      "clauses": [
+        "5.2"
+      ],
+      "risks": [
+        "threat-intel"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.7": {
+      "id": "A.5.7",
+      "theme": "A.5",
+      "title": "Threat intelligence",
+      "purpose": "Threat intelligence is collected and analysed to produce information relevant to the ISMS and used to inform risk assessment and control decisions.",
+      "clauses": [
+        "6.1.2",
+        "8.1"
+      ],
+      "risks": [
+        "threat-intel",
+        "risk-method"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.8": {
+      "id": "A.5.8",
+      "theme": "A.5",
+      "title": "Information security in project management",
+      "purpose": "Information security is addressed in project management, either as a project or embedded according to project sensitivity and complexity.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "process",
+        "governance"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.9": {
+      "id": "A.5.9",
+      "theme": "A.5",
+      "title": "Inventory of information and other associated assets",
+      "purpose": "An inventory of information and associated assets is developed, maintained, accurate, and identifies owners.",
+      "clauses": [
+        "4.3",
+        "6.1.2",
+        "8.1"
+      ],
+      "risks": [
+        "asset-inventory",
+        "scope"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.10": {
+      "id": "A.5.10",
+      "theme": "A.5",
+      "title": "Acceptable use of information and other associated assets",
+      "purpose": "Rules for acceptable use and handling of assets are defined, implemented and communicated, with procedures for exceptions.",
+      "clauses": [
+        "8.1",
+        "5.2"
+      ],
+      "risks": [
+        "policy",
+        "acceptable-use"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.11": {
+      "id": "A.5.11",
+      "theme": "A.5",
+      "title": "Return of assets",
+      "purpose": "Assets are returned or disposed of in an agreed and controlled way when duties change or end, with records maintained.",
+      "clauses": [
+        "6.1.3",
+        "8.1"
+      ],
+      "risks": [
+        "offboarding",
+        "asset-inventory"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.12": {
+      "id": "A.5.12",
+      "theme": "A.5",
+      "title": "Classification of information",
+      "purpose": "Information is classified according to the information security needs of the ISMS, based on confidentiality, integrity, availability and relevant interested-party requirements.",
+      "clauses": [
+        "5.2",
+        "8.1"
+      ],
+      "risks": [
+        "data-handling",
+        "scope"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.13": {
+      "id": "A.5.13",
+      "theme": "A.5",
+      "title": "Labelling of information",
+      "purpose": "An appropriate set of procedures for information labelling is developed and implemented in line with the classification scheme, or the omission is justified.",
+      "clauses": [
+        "5.2",
+        "8.1"
+      ],
+      "risks": [
+        "data-handling"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.14": {
+      "id": "A.5.14",
+      "theme": "A.5",
+      "title": "Information transfer",
+      "purpose": "Information transfer rules, procedures or agreements are in place for all transfer types within the ISMS, and for sharing, receiving and disposal.",
+      "clauses": [
+        "5.2",
+        "8.1"
+      ],
+      "risks": [
+        "data-transfer",
+        "supplier"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.15": {
+      "id": "A.5.15",
+      "theme": "A.5",
+      "title": "Access control",
+      "purpose": "Rules to control physical and logical access to information and other associated assets are established and implemented based on business and information security requirements.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "access",
+        "least-privilege"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.16": {
+      "id": "A.5.16",
+      "theme": "A.5",
+      "title": "Identity management",
+      "purpose": "The full life cycle of identities is managed, including provisioning, review, modification and removal of identities, and the allocation of authentication information.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "identity",
+        "access",
+        "offboarding"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.17": {
+      "id": "A.5.17",
+      "theme": "A.5",
+      "title": "Authentication information",
+      "purpose": "Allocation and management of authentication information is controlled, with adequate measures for its confidentiality, transport, retention and disposal.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "identity",
+        "credentials"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.18": {
+      "id": "A.5.18",
+      "theme": "A.5",
+      "title": "Access rights",
+      "purpose": "Access rights to information and other assets are provisioned, reviewed, adjusted and removed in line with the topic-specific policy and rules for access control.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "access",
+        "least-privilege"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.19": {
+      "id": "A.5.19",
+      "theme": "A.5",
+      "title": "Information security in supplier relationships",
+      "purpose": "Processes and procedures are defined and implemented to manage the information security risks associated with the use of supplier products or services.",
+      "clauses": [
+        "6.1.2",
+        "8.1"
+      ],
+      "risks": [
+        "supplier",
+        "third-party"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.20": {
+      "id": "A.5.20",
+      "theme": "A.5",
+      "title": "Addressing information security within supplier agreements",
+      "purpose": "Relevant information security requirements are established and agreed with each supplier based on the type of supplier relationship.",
+      "clauses": [
+        "6.1.3",
+        "8.1"
+      ],
+      "risks": [
+        "supplier",
+        "contractual"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.21": {
+      "id": "A.5.21",
+      "theme": "A.5",
+      "title": "Managing information security in the ICT supply chain",
+      "purpose": "Processes and procedures are defined and implemented to manage the information security risks associated with the ICT products and services supply chain.",
+      "clauses": [
+        "6.1.2",
+        "8.1"
+      ],
+      "risks": [
+        "supply-chain",
+        "third-party"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.22": {
+      "id": "A.5.22",
+      "theme": "A.5",
+      "title": "Monitoring, review and change management of supplier services",
+      "purpose": "The organisation regularly monitors, reviews, evaluates and manages change in supplier information security practices and service delivery.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "supplier",
+        "monitoring"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.23": {
+      "id": "A.5.23",
+      "theme": "A.5",
+      "title": "Information security for use of cloud services",
+      "purpose": "Processes for acquisition, use, management and exit from cloud services are established in line with the organisation’s information security requirements.",
+      "clauses": [
+        "6.1.2",
+        "8.1"
+      ],
+      "risks": [
+        "cloud",
+        "supplier",
+        "exit-strategy"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.24": {
+      "id": "A.5.24",
+      "theme": "A.5",
+      "title": "Information security incident management planning and preparation",
+      "purpose": "The organisation plans and prepares for managing information security incidents by defining, establishing and communicating processes, roles and responsibilities.",
+      "clauses": [
+        "8.1",
+        "10.2"
+      ],
+      "risks": [
+        "incident",
+        "process"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.25": {
+      "id": "A.5.25",
+      "theme": "A.5",
+      "title": "Assessment and decision on information security events",
+      "purpose": "The organisation assesses information security events and decides whether each is to be categorised as an information security incident.",
+      "clauses": [
+        "8.1",
+        "10.2"
+      ],
+      "risks": [
+        "incident"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.26": {
+      "id": "A.5.26",
+      "theme": "A.5",
+      "title": "Response to information security incidents",
+      "purpose": "Information security incidents are responded to in line with the documented procedures, with incident management processes, procedures and tasks defined and communicated.",
+      "clauses": [
+        "8.1",
+        "10.2"
+      ],
+      "risks": [
+        "incident",
+        "containment"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.27": {
+      "id": "A.5.27",
+      "theme": "A.5",
+      "title": "Learning from information security incidents",
+      "purpose": "Knowledge gained from information security incidents is used to strengthen and improve the ISMS controls.",
+      "clauses": [
+        "10.1",
+        "10.3"
+      ],
+      "risks": [
+        "incident",
+        "continual-improvement"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.28": {
+      "id": "A.5.28",
+      "theme": "A.5",
+      "title": "Collection of evidence",
+      "purpose": "The organisation establishes and implements procedures for the identification, collection, acquisition and preservation of evidence relating to information security events.",
+      "clauses": [
+        "8.1",
+        "10.2"
+      ],
+      "risks": [
+        "incident",
+        "evidence",
+        "legal"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.29": {
+      "id": "A.5.29",
+      "theme": "A.5",
+      "title": "Information security during disruption",
+      "purpose": "The organisation plans how to maintain information security at an appropriate level during disruption, using documented procedures and processes.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "continuity",
+        "incident"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.30": {
+      "id": "A.5.30",
+      "theme": "A.5",
+      "title": "ICT readiness for business continuity",
+      "purpose": "ICT readiness is planned, implemented, maintained and tested based on business continuity objectives and ICT continuity requirements.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "continuity",
+        "recovery"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.31": {
+      "id": "A.5.31",
+      "theme": "A.5",
+      "title": "Legal, statutory, regulatory and contractual requirements",
+      "purpose": "Legal, statutory, regulatory and contractual requirements and their security obligations are identified, documented and kept up to date.",
+      "clauses": [
+        "4.2",
+        "6.1.2",
+        "8.1"
+      ],
+      "risks": [
+        "regulatory",
+        "contractual",
+        "cross-framework"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.32": {
+      "id": "A.5.32",
+      "theme": "A.5",
+      "title": "Intellectual property rights",
+      "purpose": "Procedures are in place to protect intellectual property rights, with appropriate handling of licences, contracts and proprietary material.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "ip",
+        "contractual"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.33": {
+      "id": "A.5.33",
+      "theme": "A.5",
+      "title": "Protection of records",
+      "purpose": "Records are protected from loss, destruction, falsification, unauthorised access and unauthorised release, including retention periods and disposition.",
+      "clauses": [
+        "7.5.3",
+        "8.1"
+      ],
+      "risks": [
+        "records",
+        "evidence",
+        "retention"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.34": {
+      "id": "A.5.34",
+      "theme": "A.5",
+      "title": "Privacy and protection of PII",
+      "purpose": "The organisation meets requirements concerning the protection of personal identifiable information, maintained and implemented in line with relevant interested parties and applicable legislation.",
+      "clauses": [
+        "4.2",
+        "8.1"
+      ],
+      "risks": [
+        "privacy",
+        "cross-framework",
+        "regulatory"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.35": {
+      "id": "A.5.35",
+      "theme": "A.5",
+      "title": "Independent review of information security",
+      "purpose": "The organisation establishes a programme of independent review to verify conformity with its own information security policies and practices.",
+      "clauses": [
+        "9.2",
+        "10.3"
+      ],
+      "risks": [
+        "assurance",
+        "independent-review"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.36": {
+      "id": "A.5.36",
+      "theme": "A.5",
+      "title": "Compliance with policies, rules and standards for information security",
+      "purpose": "Compliance with the organisation’s own information security policy, rules and standards is regularly reviewed, and any non-compliance is addressed.",
+      "clauses": [
+        "5.2",
+        "9.1"
+      ],
+      "risks": [
+        "policy",
+        "assurance"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.5.37": {
+      "id": "A.5.37",
+      "theme": "A.5",
+      "title": "Documented operating procedures",
+      "purpose": "Operating procedures for information processing facilities are documented, made available to relevant staff, and reviewed at planned intervals.",
+      "clauses": [
+        "7.5",
+        "8.1"
+      ],
+      "risks": [
+        "process",
+        "documented-info"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.6.1": {
+      "id": "A.6.1",
+      "theme": "A.6",
+      "title": "Screening",
+      "purpose": "Background verification checks on all candidates become employees or contractors are carried out prior to joining and are proportional to business requirements and relevant legislation.",
+      "clauses": [
+        "4.1",
+        "8.1"
+      ],
+      "risks": [
+        "people",
+        "screening"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.6.2": {
+      "id": "A.6.2",
+      "theme": "A.6",
+      "title": "Terms and conditions of employment",
+      "purpose": "Employment and contractor agreements state responsibilities for information security and are signed before access to organisational assets is granted.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "people",
+        "contractual"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.6.3": {
+      "id": "A.6.3",
+      "theme": "A.6",
+      "title": "Information security awareness, education and training",
+      "purpose": "Personnel receive appropriate information security awareness, education and training relevant to their job function, with effectiveness periodically evaluated.",
+      "clauses": [
+        "7.2",
+        "7.3",
+        "8.1"
+      ],
+      "risks": [
+        "people",
+        "awareness"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.6.4": {
+      "id": "A.6.4",
+      "theme": "A.6",
+      "title": "Disciplinary process",
+      "purpose": "A documented disciplinary process is in place to address information security policy violations and is communicated to and applied consistently to personnel.",
+      "clauses": [
+        "7.3",
+        "8.1"
+      ],
+      "risks": [
+        "people",
+        "policy"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.6.5": {
+      "id": "A.6.5",
+      "theme": "A.6",
+      "title": "Responsibilities after termination or change of employment",
+      "purpose": "Information security responsibilities and duties that remain valid after termination or change of employment are defined, enforced and communicated.",
+      "clauses": [
+        "6.1.3",
+        "8.1"
+      ],
+      "risks": [
+        "offboarding",
+        "people"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.6.6": {
+      "id": "A.6.6",
+      "theme": "A.6",
+      "title": "Confidentiality or non-disclosure agreements",
+      "purpose": "Confidentiality or non-disclosure agreements reflecting the organisation’s needs for the protection of information are identified, documented, regularly reviewed and signed.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "people",
+        "contractual",
+        "ip"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.6.7": {
+      "id": "A.6.7",
+      "theme": "A.6",
+      "title": "Remote working",
+      "purpose": "Security measures are implemented when personnel work remotely to protect information accessed, processed or stored outside the organisation’s premises.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "people",
+        "remote",
+        "endpoint"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.6.8": {
+      "id": "A.6.8",
+      "theme": "A.6",
+      "title": "Information security event reporting",
+      "purpose": "A mechanism is provided for personnel to report observed or suspected information security events through appropriate channels in a timely manner.",
+      "clauses": [
+        "8.1",
+        "10.2"
+      ],
+      "risks": [
+        "people",
+        "incident"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.7.1": {
+      "id": "A.7.1",
+      "theme": "A.7",
+      "title": "Physical security perimeters",
+      "purpose": "Perimeters defining areas containing information and other associated assets are defined and used to control physical access.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "access"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.7.2": {
+      "id": "A.7.2",
+      "theme": "A.7",
+      "title": "Physical entry",
+      "purpose": "Secure areas are protected by appropriate entry controls and access points, with the specifics determined by risk classification and external or internal threats.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "access"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.7.3": {
+      "id": "A.7.3",
+      "theme": "A.7",
+      "title": "Securing offices, rooms and facilities",
+      "purpose": "Physical security for offices, rooms and facilities is designed and implemented to protect information and other associated assets.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "facilities"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.7.4": {
+      "id": "A.7.4",
+      "theme": "A.7",
+      "title": "Physical security monitoring",
+      "purpose": "Premises are continuously monitored for unauthorised physical access, using appropriate measures, or the decision not to monitor is justified.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "monitoring"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.7.5": {
+      "id": "A.7.5",
+      "theme": "A.7",
+      "title": "Protection against physical and environmental threats",
+      "purpose": "Protection against physical and environmental threats, such as natural disasters and other intentional or unintentional physical threats to infrastructure, is designed and implemented.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "environmental",
+        "continuity"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.7.6": {
+      "id": "A.7.6",
+      "theme": "A.7",
+      "title": "Working in secure areas",
+      "purpose": "Security measures for working in secure areas are designed and implemented, with areas clearly identified and access restricted.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "access"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.7.7": {
+      "id": "A.7.7",
+      "theme": "A.7",
+      "title": "Clear desk and clear screen",
+      "purpose": "Clear desk rules for papers and removable storage media and clear screen rules for information processing facilities are defined and appropriately enforced.",
+      "clauses": [
+        "5.2",
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "data-handling",
+        "awareness"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.7.8": {
+      "id": "A.7.8",
+      "theme": "A.7",
+      "title": "Equipment siting and protection",
+      "purpose": "Equipment is sited securely and protected, taking account of the physical and environmental threats identified in the risk assessment.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "environmental"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.7.9": {
+      "id": "A.7.9",
+      "theme": "A.7",
+      "title": "Security of assets off-premises",
+      "purpose": "Off-site assets are protected, including secure handling, storage, use and transport, and taking account of risks from unauthorised physical access.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "asset-inventory",
+        "data-handling"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.7.10": {
+      "id": "A.7.10",
+      "theme": "A.7",
+      "title": "Storage media",
+      "purpose": "Information stored on media is protected from loss, theft, destruction and unauthorised access or disclosure, with handling, transport and disposal requirements defined.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "media",
+        "data-handling"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.7.11": {
+      "id": "A.7.11",
+      "theme": "A.7",
+      "title": "Supporting utilities",
+      "purpose": "Information processing facilities are protected against power failures and other disruptions caused by failures in supporting utilities, with the need for redundancy, back-up and emergency power assessed.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "continuity",
+        "utilities"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.7.12": {
+      "id": "A.7.12",
+      "theme": "A.7",
+      "title": "Cabling security",
+      "purpose": "Cables carrying power, data or supporting information services are protected from interception, interference or damage, appropriate to the type of cable and environment.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "network"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.7.13": {
+      "id": "A.7.13",
+      "theme": "A.7",
+      "title": "Equipment maintenance",
+      "purpose": "Equipment is maintained correctly to ensure availability, integrity and confidentiality, with maintenance performed by authorised and competent people, and taking account of removing sensitive items before maintenance and validating equipment after.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "maintenance",
+        "asset-inventory"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.7.14": {
+      "id": "A.7.14",
+      "theme": "A.7",
+      "title": "Secure disposal or re-use of equipment",
+      "purpose": "Items of equipment containing storage media are verified to ensure that any sensitive data and licensed software has been removed or securely overwritten prior to disposal or re-use.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "media",
+        "disposal"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.1": {
+      "id": "A.8.1",
+      "theme": "A.8",
+      "title": "User endpoint devices",
+      "purpose": "Information stored on, processed by or accessible via user endpoint devices is protected, with device configuration, protection, handling and loss treatment defined.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "endpoint",
+        "asset-inventory"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.2": {
+      "id": "A.8.2",
+      "theme": "A.8",
+      "title": "Privileged access rights",
+      "purpose": "The allocation and use of privileged access rights is restricted and managed, with technical and organisational measures that apply to them identified and implemented.",
+      "clauses": [
+        "5.3",
+        "8.1"
+      ],
+      "risks": [
+        "access",
+        "least-privilege",
+        "privileged"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.3": {
+      "id": "A.8.3",
+      "theme": "A.8",
+      "title": "Information access restriction",
+      "purpose": "Access to information and other associated assets is restricted in line with the established topic-specific policy on access control.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "access",
+        "least-privilege"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.4": {
+      "id": "A.8.4",
+      "theme": "A.8",
+      "title": "Access to source code",
+      "purpose": "Read and write access to source code, development tools, software libraries and development environments is appropriately managed, and the design and implementation of source code and any development tools control or monitor the introduction of untrusted code.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "development",
+        "access",
+        "supply-chain"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.5": {
+      "id": "A.8.5",
+      "theme": "A.8",
+      "title": "Secure authentication",
+      "purpose": "Secure authentication technologies and procedures are implemented based on information access restrictions and the topic-specific policy on access control, including enhanced authentication for higher risk areas.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "authentication",
+        "identity",
+        "access"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.6": {
+      "id": "A.8.6",
+      "theme": "A.8",
+      "title": "Capacity management",
+      "purpose": "The use of resources is monitored and adjusted in line with current and expected capacity requirements, so available and future capacity is anticipated and managed.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "availability",
+        "operations"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.7": {
+      "id": "A.8.7",
+      "theme": "A.8",
+      "title": "Protection against malware",
+      "purpose": "Protection against malware is implemented and supported by appropriate user awareness, and the process is reviewed and adjusted to reflect new threats and vulnerabilities.",
+      "clauses": [
+        "7.3",
+        "8.1"
+      ],
+      "risks": [
+        "malware",
+        "awareness"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.8": {
+      "id": "A.8.8",
+      "theme": "A.8",
+      "title": "Management of technical vulnerabilities",
+      "purpose": "Information about technical vulnerabilities of information in use is obtained, the organisation’s exposure to such vulnerabilities is determined, and measures are taken.",
+      "clauses": [
+        "6.1.2",
+        "8.1"
+      ],
+      "risks": [
+        "vulnerability",
+        "patching",
+        "risk-method"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.9": {
+      "id": "A.8.9",
+      "theme": "A.8",
+      "title": "Configuration management",
+      "purpose": "Configurations, including security configurations, of hardware, software, services and networks are established, documented, implemented, monitored and reviewed.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "configuration",
+        "hardening",
+        "change"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.10": {
+      "id": "A.8.10",
+      "theme": "A.8",
+      "title": "Information deletion",
+      "purpose": "Information stored in information systems, devices or in any other storage media is deleted when no longer required, with secure deletion and disposal support where the topic-specific policy requires it.",
+      "clauses": [
+        "7.5.3",
+        "8.1"
+      ],
+      "risks": [
+        "retention",
+        "data-handling",
+        "media"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.11": {
+      "id": "A.8.11",
+      "theme": "A.8",
+      "title": "Data masking",
+      "purpose": "Data masking is used in line with the organisation’s topic-specific policy on access control and other related topic-specific policies, and business requirements, taking into account applicable legislation.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "data-handling",
+        "privacy",
+        "test-data"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.12": {
+      "id": "A.8.12",
+      "theme": "A.8",
+      "title": "Data leakage prevention",
+      "purpose": "Data leakage prevention measures are applied to systems, networks and any other devices that process, store or transmit sensitive information, to detect and prevent unauthorised or unintended transmission.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "data-leakage",
+        "egress",
+        "privacy"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.13": {
+      "id": "A.8.13",
+      "theme": "A.8",
+      "title": "Information backup",
+      "purpose": "Backup copies of information, software and systems are maintained and regularly tested in line with the agreed topic-specific policy on backup, to verify the required level of recovery is achieved.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "backup",
+        "recovery",
+        "availability"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.14": {
+      "id": "A.8.14",
+      "theme": "A.8",
+      "title": "Redundancy of information processing facilities",
+      "purpose": "Information processing facilities are implemented with redundancy sufficient to meet availability requirements, taking account of the topic-specific policy on availability and continuity.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "availability",
+        "continuity",
+        "redundancy"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.15": {
+      "id": "A.8.15",
+      "theme": "A.8",
+      "title": "Logging",
+      "purpose": "Logs that record activities, exceptions, faults and other relevant events are produced, stored, protected and analysed for the detection of possible or actual information security incidents.",
+      "clauses": [
+        "8.1",
+        "9.1"
+      ],
+      "risks": [
+        "logging",
+        "monitoring",
+        "incident"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.16": {
+      "id": "A.8.16",
+      "theme": "A.8",
+      "title": "Monitoring activities",
+      "purpose": "Networks, systems and applications are monitored for anomalous behaviour, and appropriate actions are taken to evaluate potential information security incidents.",
+      "clauses": [
+        "8.1",
+        "9.1"
+      ],
+      "risks": [
+        "monitoring",
+        "incident",
+        "detection"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.17": {
+      "id": "A.8.17",
+      "theme": "A.8",
+      "title": "Clock synchronization",
+      "purpose": "The clocks of information processing systems used by the organisation are synchronised to approved time sources, so that the time of related events can be accurately identified and ordered.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "logging",
+        "forensics"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.18": {
+      "id": "A.8.18",
+      "theme": "A.8",
+      "title": "Use of privileged utility programs",
+      "purpose": "The use of utility programs that can be capable of overriding system and application access controls is restricted and tightly controlled, with use formally authorised and monitored.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "privileged",
+        "access",
+        "monitoring"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.19": {
+      "id": "A.8.19",
+      "theme": "A.8",
+      "title": "Installation of software on operational systems",
+      "purpose": "Procedures and measures are implemented for securely managing software installation on operational systems, including authorisation, verification and controlled change of installed software.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "change",
+        "endpoint",
+        "software"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.20": {
+      "id": "A.8.20",
+      "theme": "A.8",
+      "title": "Networks security",
+      "purpose": "Networks and network devices are secured, configured and managed to protect information in systems and applications, including both public and private networks.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "network",
+        "configuration"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.21": {
+      "id": "A.8.21",
+      "theme": "A.8",
+      "title": "Security of network services",
+      "purpose": "Security mechanisms, service levels and service requirements of network services are identified, implemented and monitored, including the security requirements of third-party network services.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "network",
+        "supplier"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.22": {
+      "id": "A.8.22",
+      "theme": "A.8",
+      "title": "Segregation of networks",
+      "purpose": "Groups of information services, users and information systems are segregated in the organisation’s networks, to reduce the risk of widespread compromise and to assist in the protection of information.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "network",
+        "segregation",
+        "least-privilege"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.23": {
+      "id": "A.8.23",
+      "theme": "A.8",
+      "title": "Web filtering",
+      "purpose": "Access to external websites is managed to reduce exposure to malicious content, with access to such websites blocked where an assessment concludes it is necessary.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "web",
+        "malware",
+        "egress"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.24": {
+      "id": "A.8.24",
+      "theme": "A.8",
+      "title": "Use of cryptography",
+      "purpose": "Rules for the effective use of cryptography, including cryptographic key management, are defined and implemented, in line with the organisation’s needs and the risks associated with the use of cryptography.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "cryptography",
+        "keys",
+        "data-handling"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.25": {
+      "id": "A.8.25",
+      "theme": "A.8",
+      "title": "Secure development life cycle",
+      "purpose": "Rules for the secure development of software and systems are established and applied, and are integrated into the organisation’s established software development life cycle processes.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "development",
+        "process"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.26": {
+      "id": "A.8.26",
+      "theme": "A.8",
+      "title": "Application security requirements",
+      "purpose": "Information security requirements are identified, specified and approved when developing or acquiring applications, including the security requirements of any supplied third-party services.",
+      "clauses": [
+        "6.1.3",
+        "8.1"
+      ],
+      "risks": [
+        "development",
+        "requirements"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.27": {
+      "id": "A.8.27",
+      "theme": "A.8",
+      "title": "Secure system architecture and engineering principles",
+      "purpose": "Principles for engineering secure systems are identified, documented, maintained and applied to any information system development activities.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "development",
+        "architecture"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.28": {
+      "id": "A.8.28",
+      "theme": "A.8",
+      "title": "Secure coding",
+      "purpose": "Secure coding principles are applied to software development, and a suitable level of automated tooling and manual review supports their use.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "development",
+        "code-quality"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.29": {
+      "id": "A.8.29",
+      "theme": "A.8",
+      "title": "Security testing in development and acceptance",
+      "purpose": "Security testing processes are defined and implemented in the development life cycle, providing a systematic and repeatable approach to security testing and including coverage of security requirements.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "development",
+        "testing",
+        "vulnerability"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.30": {
+      "id": "A.8.30",
+      "theme": "A.8",
+      "title": "Outsourced development",
+      "purpose": "The organisation directs, monitors and reviews the activities related to outsourced system development, including the information security requirements and responsibilities of suppliers.",
+      "clauses": [
+        "6.1.2",
+        "8.1"
+      ],
+      "risks": [
+        "supplier",
+        "development",
+        "third-party"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.31": {
+      "id": "A.8.31",
+      "theme": "A.8",
+      "title": "Separation of development, test and production environments",
+      "purpose": "Development, testing and production environments are separated and secured, including controlled separation of user identity, components and data, and the ability to introduce changes into production is controlled.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "development",
+        "segregation",
+        "change"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.32": {
+      "id": "A.8.32",
+      "theme": "A.8",
+      "title": "Change management",
+      "purpose": "Changes to information processing facilities and information systems are subject to change management procedures, with changes properly planned, assessed, authorised, communicated, tested, implemented and recorded, and subject to records of all changes.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "change",
+        "process",
+        "audit-trail"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.33": {
+      "id": "A.8.33",
+      "theme": "A.8",
+      "title": "Test information",
+      "purpose": "Test information is appropriately selected, protected and managed, and where the use of production information is necessary it is protected to an appropriate level and only for well-defined and legitimate purposes.",
+      "clauses": [
+        "7.5.3",
+        "8.1"
+      ],
+      "risks": [
+        "test-data",
+        "data-handling",
+        "privacy"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    "A.8.34": {
+      "id": "A.8.34",
+      "theme": "A.8",
+      "title": "Protection of information systems during audit testing",
+      "purpose": "Audit tests and other assurance activities involving assessment of operational systems are planned and agreed with the system owner, and implemented only in the agreed time frames and using agreed safeguards to minimise disruption and impact.",
+      "clauses": [
+        "9.2"
+      ],
+      "risks": [
+        "audit",
+        "operations"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    }
+  },
+  "ANNEX_A_CONTROLS": [
+    {
+      "id": "A.5.1",
+      "theme": "A.5",
+      "title": "Policies for information security",
+      "purpose": "Information security policy is defined, approved by top management, published, acknowledged by staff, and reviewed at planned intervals.",
+      "clauses": [
+        "5.2",
+        "8.1"
+      ],
+      "risks": [
+        "governance",
+        "policy"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.2",
+      "theme": "A.5",
+      "title": "Information security roles and responsibilities",
+      "purpose": "Security roles, responsibilities and authorities are defined, assigned and communicated, including who owns the ISMS and who may make risk decisions.",
+      "clauses": [
+        "5.3"
+      ],
+      "risks": [
+        "governance",
+        "accountability"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.3",
+      "theme": "A.5",
+      "title": "Segregation of duties",
+      "purpose": "Conflicting duties and areas of responsibility are separated, with the risk accepted and compensating controls recorded where separation is not practical.",
+      "clauses": [
+        "5.3",
+        "8.1"
+      ],
+      "risks": [
+        "fraud",
+        "governance"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.4",
+      "theme": "A.5",
+      "title": "Management responsibilities",
+      "purpose": "Top management takes visible responsibility for information security, including directing and supporting the ISMS and integrating its requirements into business processes.",
+      "clauses": [
+        "5.1"
+      ],
+      "risks": [
+        "governance",
+        "accountability"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.5",
+      "theme": "A.5",
+      "title": "Contact with authorities",
+      "purpose": "The organisation has established and maintains contact with relevant authorities and can identify which to notify, when, and how.",
+      "clauses": [
+        "5.2",
+        "8.1"
+      ],
+      "risks": [
+        "regulatory",
+        "incident"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.6",
+      "theme": "A.5",
+      "title": "Contact with special interest groups",
+      "purpose": "Established contact with special interest groups is maintained, or the decision not to do so is justified and alternative intelligence sources are used.",
+      "clauses": [
+        "5.2"
+      ],
+      "risks": [
+        "threat-intel"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.7",
+      "theme": "A.5",
+      "title": "Threat intelligence",
+      "purpose": "Threat intelligence is collected and analysed to produce information relevant to the ISMS and used to inform risk assessment and control decisions.",
+      "clauses": [
+        "6.1.2",
+        "8.1"
+      ],
+      "risks": [
+        "threat-intel",
+        "risk-method"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.8",
+      "theme": "A.5",
+      "title": "Information security in project management",
+      "purpose": "Information security is addressed in project management, either as a project or embedded according to project sensitivity and complexity.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "process",
+        "governance"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.9",
+      "theme": "A.5",
+      "title": "Inventory of information and other associated assets",
+      "purpose": "An inventory of information and associated assets is developed, maintained, accurate, and identifies owners.",
+      "clauses": [
+        "4.3",
+        "6.1.2",
+        "8.1"
+      ],
+      "risks": [
+        "asset-inventory",
+        "scope"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.10",
+      "theme": "A.5",
+      "title": "Acceptable use of information and other associated assets",
+      "purpose": "Rules for acceptable use and handling of assets are defined, implemented and communicated, with procedures for exceptions.",
+      "clauses": [
+        "8.1",
+        "5.2"
+      ],
+      "risks": [
+        "policy",
+        "acceptable-use"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.11",
+      "theme": "A.5",
+      "title": "Return of assets",
+      "purpose": "Assets are returned or disposed of in an agreed and controlled way when duties change or end, with records maintained.",
+      "clauses": [
+        "6.1.3",
+        "8.1"
+      ],
+      "risks": [
+        "offboarding",
+        "asset-inventory"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.12",
+      "theme": "A.5",
+      "title": "Classification of information",
+      "purpose": "Information is classified according to the information security needs of the ISMS, based on confidentiality, integrity, availability and relevant interested-party requirements.",
+      "clauses": [
+        "5.2",
+        "8.1"
+      ],
+      "risks": [
+        "data-handling",
+        "scope"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.13",
+      "theme": "A.5",
+      "title": "Labelling of information",
+      "purpose": "An appropriate set of procedures for information labelling is developed and implemented in line with the classification scheme, or the omission is justified.",
+      "clauses": [
+        "5.2",
+        "8.1"
+      ],
+      "risks": [
+        "data-handling"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.14",
+      "theme": "A.5",
+      "title": "Information transfer",
+      "purpose": "Information transfer rules, procedures or agreements are in place for all transfer types within the ISMS, and for sharing, receiving and disposal.",
+      "clauses": [
+        "5.2",
+        "8.1"
+      ],
+      "risks": [
+        "data-transfer",
+        "supplier"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.15",
+      "theme": "A.5",
+      "title": "Access control",
+      "purpose": "Rules to control physical and logical access to information and other associated assets are established and implemented based on business and information security requirements.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "access",
+        "least-privilege"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.16",
+      "theme": "A.5",
+      "title": "Identity management",
+      "purpose": "The full life cycle of identities is managed, including provisioning, review, modification and removal of identities, and the allocation of authentication information.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "identity",
+        "access",
+        "offboarding"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.17",
+      "theme": "A.5",
+      "title": "Authentication information",
+      "purpose": "Allocation and management of authentication information is controlled, with adequate measures for its confidentiality, transport, retention and disposal.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "identity",
+        "credentials"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.18",
+      "theme": "A.5",
+      "title": "Access rights",
+      "purpose": "Access rights to information and other assets are provisioned, reviewed, adjusted and removed in line with the topic-specific policy and rules for access control.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "access",
+        "least-privilege"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.19",
+      "theme": "A.5",
+      "title": "Information security in supplier relationships",
+      "purpose": "Processes and procedures are defined and implemented to manage the information security risks associated with the use of supplier products or services.",
+      "clauses": [
+        "6.1.2",
+        "8.1"
+      ],
+      "risks": [
+        "supplier",
+        "third-party"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.20",
+      "theme": "A.5",
+      "title": "Addressing information security within supplier agreements",
+      "purpose": "Relevant information security requirements are established and agreed with each supplier based on the type of supplier relationship.",
+      "clauses": [
+        "6.1.3",
+        "8.1"
+      ],
+      "risks": [
+        "supplier",
+        "contractual"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.21",
+      "theme": "A.5",
+      "title": "Managing information security in the ICT supply chain",
+      "purpose": "Processes and procedures are defined and implemented to manage the information security risks associated with the ICT products and services supply chain.",
+      "clauses": [
+        "6.1.2",
+        "8.1"
+      ],
+      "risks": [
+        "supply-chain",
+        "third-party"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.22",
+      "theme": "A.5",
+      "title": "Monitoring, review and change management of supplier services",
+      "purpose": "The organisation regularly monitors, reviews, evaluates and manages change in supplier information security practices and service delivery.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "supplier",
+        "monitoring"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.23",
+      "theme": "A.5",
+      "title": "Information security for use of cloud services",
+      "purpose": "Processes for acquisition, use, management and exit from cloud services are established in line with the organisation’s information security requirements.",
+      "clauses": [
+        "6.1.2",
+        "8.1"
+      ],
+      "risks": [
+        "cloud",
+        "supplier",
+        "exit-strategy"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.24",
+      "theme": "A.5",
+      "title": "Information security incident management planning and preparation",
+      "purpose": "The organisation plans and prepares for managing information security incidents by defining, establishing and communicating processes, roles and responsibilities.",
+      "clauses": [
+        "8.1",
+        "10.2"
+      ],
+      "risks": [
+        "incident",
+        "process"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.25",
+      "theme": "A.5",
+      "title": "Assessment and decision on information security events",
+      "purpose": "The organisation assesses information security events and decides whether each is to be categorised as an information security incident.",
+      "clauses": [
+        "8.1",
+        "10.2"
+      ],
+      "risks": [
+        "incident"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.26",
+      "theme": "A.5",
+      "title": "Response to information security incidents",
+      "purpose": "Information security incidents are responded to in line with the documented procedures, with incident management processes, procedures and tasks defined and communicated.",
+      "clauses": [
+        "8.1",
+        "10.2"
+      ],
+      "risks": [
+        "incident",
+        "containment"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.27",
+      "theme": "A.5",
+      "title": "Learning from information security incidents",
+      "purpose": "Knowledge gained from information security incidents is used to strengthen and improve the ISMS controls.",
+      "clauses": [
+        "10.1",
+        "10.3"
+      ],
+      "risks": [
+        "incident",
+        "continual-improvement"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.28",
+      "theme": "A.5",
+      "title": "Collection of evidence",
+      "purpose": "The organisation establishes and implements procedures for the identification, collection, acquisition and preservation of evidence relating to information security events.",
+      "clauses": [
+        "8.1",
+        "10.2"
+      ],
+      "risks": [
+        "incident",
+        "evidence",
+        "legal"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.29",
+      "theme": "A.5",
+      "title": "Information security during disruption",
+      "purpose": "The organisation plans how to maintain information security at an appropriate level during disruption, using documented procedures and processes.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "continuity",
+        "incident"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.30",
+      "theme": "A.5",
+      "title": "ICT readiness for business continuity",
+      "purpose": "ICT readiness is planned, implemented, maintained and tested based on business continuity objectives and ICT continuity requirements.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "continuity",
+        "recovery"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.31",
+      "theme": "A.5",
+      "title": "Legal, statutory, regulatory and contractual requirements",
+      "purpose": "Legal, statutory, regulatory and contractual requirements and their security obligations are identified, documented and kept up to date.",
+      "clauses": [
+        "4.2",
+        "6.1.2",
+        "8.1"
+      ],
+      "risks": [
+        "regulatory",
+        "contractual",
+        "cross-framework"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.32",
+      "theme": "A.5",
+      "title": "Intellectual property rights",
+      "purpose": "Procedures are in place to protect intellectual property rights, with appropriate handling of licences, contracts and proprietary material.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "ip",
+        "contractual"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.33",
+      "theme": "A.5",
+      "title": "Protection of records",
+      "purpose": "Records are protected from loss, destruction, falsification, unauthorised access and unauthorised release, including retention periods and disposition.",
+      "clauses": [
+        "7.5.3",
+        "8.1"
+      ],
+      "risks": [
+        "records",
+        "evidence",
+        "retention"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.34",
+      "theme": "A.5",
+      "title": "Privacy and protection of PII",
+      "purpose": "The organisation meets requirements concerning the protection of personal identifiable information, maintained and implemented in line with relevant interested parties and applicable legislation.",
+      "clauses": [
+        "4.2",
+        "8.1"
+      ],
+      "risks": [
+        "privacy",
+        "cross-framework",
+        "regulatory"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.35",
+      "theme": "A.5",
+      "title": "Independent review of information security",
+      "purpose": "The organisation establishes a programme of independent review to verify conformity with its own information security policies and practices.",
+      "clauses": [
+        "9.2",
+        "10.3"
+      ],
+      "risks": [
+        "assurance",
+        "independent-review"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.36",
+      "theme": "A.5",
+      "title": "Compliance with policies, rules and standards for information security",
+      "purpose": "Compliance with the organisation’s own information security policy, rules and standards is regularly reviewed, and any non-compliance is addressed.",
+      "clauses": [
+        "5.2",
+        "9.1"
+      ],
+      "risks": [
+        "policy",
+        "assurance"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.5.37",
+      "theme": "A.5",
+      "title": "Documented operating procedures",
+      "purpose": "Operating procedures for information processing facilities are documented, made available to relevant staff, and reviewed at planned intervals.",
+      "clauses": [
+        "7.5",
+        "8.1"
+      ],
+      "risks": [
+        "process",
+        "documented-info"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.6.1",
+      "theme": "A.6",
+      "title": "Screening",
+      "purpose": "Background verification checks on all candidates become employees or contractors are carried out prior to joining and are proportional to business requirements and relevant legislation.",
+      "clauses": [
+        "4.1",
+        "8.1"
+      ],
+      "risks": [
+        "people",
+        "screening"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.6.2",
+      "theme": "A.6",
+      "title": "Terms and conditions of employment",
+      "purpose": "Employment and contractor agreements state responsibilities for information security and are signed before access to organisational assets is granted.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "people",
+        "contractual"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.6.3",
+      "theme": "A.6",
+      "title": "Information security awareness, education and training",
+      "purpose": "Personnel receive appropriate information security awareness, education and training relevant to their job function, with effectiveness periodically evaluated.",
+      "clauses": [
+        "7.2",
+        "7.3",
+        "8.1"
+      ],
+      "risks": [
+        "people",
+        "awareness"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.6.4",
+      "theme": "A.6",
+      "title": "Disciplinary process",
+      "purpose": "A documented disciplinary process is in place to address information security policy violations and is communicated to and applied consistently to personnel.",
+      "clauses": [
+        "7.3",
+        "8.1"
+      ],
+      "risks": [
+        "people",
+        "policy"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.6.5",
+      "theme": "A.6",
+      "title": "Responsibilities after termination or change of employment",
+      "purpose": "Information security responsibilities and duties that remain valid after termination or change of employment are defined, enforced and communicated.",
+      "clauses": [
+        "6.1.3",
+        "8.1"
+      ],
+      "risks": [
+        "offboarding",
+        "people"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.6.6",
+      "theme": "A.6",
+      "title": "Confidentiality or non-disclosure agreements",
+      "purpose": "Confidentiality or non-disclosure agreements reflecting the organisation’s needs for the protection of information are identified, documented, regularly reviewed and signed.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "people",
+        "contractual",
+        "ip"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.6.7",
+      "theme": "A.6",
+      "title": "Remote working",
+      "purpose": "Security measures are implemented when personnel work remotely to protect information accessed, processed or stored outside the organisation’s premises.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "people",
+        "remote",
+        "endpoint"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.6.8",
+      "theme": "A.6",
+      "title": "Information security event reporting",
+      "purpose": "A mechanism is provided for personnel to report observed or suspected information security events through appropriate channels in a timely manner.",
+      "clauses": [
+        "8.1",
+        "10.2"
+      ],
+      "risks": [
+        "people",
+        "incident"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.7.1",
+      "theme": "A.7",
+      "title": "Physical security perimeters",
+      "purpose": "Perimeters defining areas containing information and other associated assets are defined and used to control physical access.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "access"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.7.2",
+      "theme": "A.7",
+      "title": "Physical entry",
+      "purpose": "Secure areas are protected by appropriate entry controls and access points, with the specifics determined by risk classification and external or internal threats.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "access"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.7.3",
+      "theme": "A.7",
+      "title": "Securing offices, rooms and facilities",
+      "purpose": "Physical security for offices, rooms and facilities is designed and implemented to protect information and other associated assets.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "facilities"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.7.4",
+      "theme": "A.7",
+      "title": "Physical security monitoring",
+      "purpose": "Premises are continuously monitored for unauthorised physical access, using appropriate measures, or the decision not to monitor is justified.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "monitoring"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.7.5",
+      "theme": "A.7",
+      "title": "Protection against physical and environmental threats",
+      "purpose": "Protection against physical and environmental threats, such as natural disasters and other intentional or unintentional physical threats to infrastructure, is designed and implemented.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "environmental",
+        "continuity"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.7.6",
+      "theme": "A.7",
+      "title": "Working in secure areas",
+      "purpose": "Security measures for working in secure areas are designed and implemented, with areas clearly identified and access restricted.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "access"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.7.7",
+      "theme": "A.7",
+      "title": "Clear desk and clear screen",
+      "purpose": "Clear desk rules for papers and removable storage media and clear screen rules for information processing facilities are defined and appropriately enforced.",
+      "clauses": [
+        "5.2",
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "data-handling",
+        "awareness"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.7.8",
+      "theme": "A.7",
+      "title": "Equipment siting and protection",
+      "purpose": "Equipment is sited securely and protected, taking account of the physical and environmental threats identified in the risk assessment.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "environmental"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.7.9",
+      "theme": "A.7",
+      "title": "Security of assets off-premises",
+      "purpose": "Off-site assets are protected, including secure handling, storage, use and transport, and taking account of risks from unauthorised physical access.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "asset-inventory",
+        "data-handling"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.7.10",
+      "theme": "A.7",
+      "title": "Storage media",
+      "purpose": "Information stored on media is protected from loss, theft, destruction and unauthorised access or disclosure, with handling, transport and disposal requirements defined.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "media",
+        "data-handling"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.7.11",
+      "theme": "A.7",
+      "title": "Supporting utilities",
+      "purpose": "Information processing facilities are protected against power failures and other disruptions caused by failures in supporting utilities, with the need for redundancy, back-up and emergency power assessed.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "continuity",
+        "utilities"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.7.12",
+      "theme": "A.7",
+      "title": "Cabling security",
+      "purpose": "Cables carrying power, data or supporting information services are protected from interception, interference or damage, appropriate to the type of cable and environment.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "network"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.7.13",
+      "theme": "A.7",
+      "title": "Equipment maintenance",
+      "purpose": "Equipment is maintained correctly to ensure availability, integrity and confidentiality, with maintenance performed by authorised and competent people, and taking account of removing sensitive items before maintenance and validating equipment after.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "maintenance",
+        "asset-inventory"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.7.14",
+      "theme": "A.7",
+      "title": "Secure disposal or re-use of equipment",
+      "purpose": "Items of equipment containing storage media are verified to ensure that any sensitive data and licensed software has been removed or securely overwritten prior to disposal or re-use.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "physical",
+        "media",
+        "disposal"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.1",
+      "theme": "A.8",
+      "title": "User endpoint devices",
+      "purpose": "Information stored on, processed by or accessible via user endpoint devices is protected, with device configuration, protection, handling and loss treatment defined.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "endpoint",
+        "asset-inventory"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.2",
+      "theme": "A.8",
+      "title": "Privileged access rights",
+      "purpose": "The allocation and use of privileged access rights is restricted and managed, with technical and organisational measures that apply to them identified and implemented.",
+      "clauses": [
+        "5.3",
+        "8.1"
+      ],
+      "risks": [
+        "access",
+        "least-privilege",
+        "privileged"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.3",
+      "theme": "A.8",
+      "title": "Information access restriction",
+      "purpose": "Access to information and other associated assets is restricted in line with the established topic-specific policy on access control.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "access",
+        "least-privilege"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.4",
+      "theme": "A.8",
+      "title": "Access to source code",
+      "purpose": "Read and write access to source code, development tools, software libraries and development environments is appropriately managed, and the design and implementation of source code and any development tools control or monitor the introduction of untrusted code.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "development",
+        "access",
+        "supply-chain"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.5",
+      "theme": "A.8",
+      "title": "Secure authentication",
+      "purpose": "Secure authentication technologies and procedures are implemented based on information access restrictions and the topic-specific policy on access control, including enhanced authentication for higher risk areas.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "authentication",
+        "identity",
+        "access"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.6",
+      "theme": "A.8",
+      "title": "Capacity management",
+      "purpose": "The use of resources is monitored and adjusted in line with current and expected capacity requirements, so available and future capacity is anticipated and managed.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "availability",
+        "operations"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.7",
+      "theme": "A.8",
+      "title": "Protection against malware",
+      "purpose": "Protection against malware is implemented and supported by appropriate user awareness, and the process is reviewed and adjusted to reflect new threats and vulnerabilities.",
+      "clauses": [
+        "7.3",
+        "8.1"
+      ],
+      "risks": [
+        "malware",
+        "awareness"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.8",
+      "theme": "A.8",
+      "title": "Management of technical vulnerabilities",
+      "purpose": "Information about technical vulnerabilities of information in use is obtained, the organisation’s exposure to such vulnerabilities is determined, and measures are taken.",
+      "clauses": [
+        "6.1.2",
+        "8.1"
+      ],
+      "risks": [
+        "vulnerability",
+        "patching",
+        "risk-method"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.9",
+      "theme": "A.8",
+      "title": "Configuration management",
+      "purpose": "Configurations, including security configurations, of hardware, software, services and networks are established, documented, implemented, monitored and reviewed.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "configuration",
+        "hardening",
+        "change"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.10",
+      "theme": "A.8",
+      "title": "Information deletion",
+      "purpose": "Information stored in information systems, devices or in any other storage media is deleted when no longer required, with secure deletion and disposal support where the topic-specific policy requires it.",
+      "clauses": [
+        "7.5.3",
+        "8.1"
+      ],
+      "risks": [
+        "retention",
+        "data-handling",
+        "media"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.11",
+      "theme": "A.8",
+      "title": "Data masking",
+      "purpose": "Data masking is used in line with the organisation’s topic-specific policy on access control and other related topic-specific policies, and business requirements, taking into account applicable legislation.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "data-handling",
+        "privacy",
+        "test-data"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.12",
+      "theme": "A.8",
+      "title": "Data leakage prevention",
+      "purpose": "Data leakage prevention measures are applied to systems, networks and any other devices that process, store or transmit sensitive information, to detect and prevent unauthorised or unintended transmission.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "data-leakage",
+        "egress",
+        "privacy"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.13",
+      "theme": "A.8",
+      "title": "Information backup",
+      "purpose": "Backup copies of information, software and systems are maintained and regularly tested in line with the agreed topic-specific policy on backup, to verify the required level of recovery is achieved.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "backup",
+        "recovery",
+        "availability"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.14",
+      "theme": "A.8",
+      "title": "Redundancy of information processing facilities",
+      "purpose": "Information processing facilities are implemented with redundancy sufficient to meet availability requirements, taking account of the topic-specific policy on availability and continuity.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "availability",
+        "continuity",
+        "redundancy"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.15",
+      "theme": "A.8",
+      "title": "Logging",
+      "purpose": "Logs that record activities, exceptions, faults and other relevant events are produced, stored, protected and analysed for the detection of possible or actual information security incidents.",
+      "clauses": [
+        "8.1",
+        "9.1"
+      ],
+      "risks": [
+        "logging",
+        "monitoring",
+        "incident"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.16",
+      "theme": "A.8",
+      "title": "Monitoring activities",
+      "purpose": "Networks, systems and applications are monitored for anomalous behaviour, and appropriate actions are taken to evaluate potential information security incidents.",
+      "clauses": [
+        "8.1",
+        "9.1"
+      ],
+      "risks": [
+        "monitoring",
+        "incident",
+        "detection"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.17",
+      "theme": "A.8",
+      "title": "Clock synchronization",
+      "purpose": "The clocks of information processing systems used by the organisation are synchronised to approved time sources, so that the time of related events can be accurately identified and ordered.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "logging",
+        "forensics"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.18",
+      "theme": "A.8",
+      "title": "Use of privileged utility programs",
+      "purpose": "The use of utility programs that can be capable of overriding system and application access controls is restricted and tightly controlled, with use formally authorised and monitored.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "privileged",
+        "access",
+        "monitoring"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.19",
+      "theme": "A.8",
+      "title": "Installation of software on operational systems",
+      "purpose": "Procedures and measures are implemented for securely managing software installation on operational systems, including authorisation, verification and controlled change of installed software.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "change",
+        "endpoint",
+        "software"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.20",
+      "theme": "A.8",
+      "title": "Networks security",
+      "purpose": "Networks and network devices are secured, configured and managed to protect information in systems and applications, including both public and private networks.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "network",
+        "configuration"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.21",
+      "theme": "A.8",
+      "title": "Security of network services",
+      "purpose": "Security mechanisms, service levels and service requirements of network services are identified, implemented and monitored, including the security requirements of third-party network services.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "network",
+        "supplier"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.22",
+      "theme": "A.8",
+      "title": "Segregation of networks",
+      "purpose": "Groups of information services, users and information systems are segregated in the organisation’s networks, to reduce the risk of widespread compromise and to assist in the protection of information.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "network",
+        "segregation",
+        "least-privilege"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.23",
+      "theme": "A.8",
+      "title": "Web filtering",
+      "purpose": "Access to external websites is managed to reduce exposure to malicious content, with access to such websites blocked where an assessment concludes it is necessary.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "web",
+        "malware",
+        "egress"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.24",
+      "theme": "A.8",
+      "title": "Use of cryptography",
+      "purpose": "Rules for the effective use of cryptography, including cryptographic key management, are defined and implemented, in line with the organisation’s needs and the risks associated with the use of cryptography.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "cryptography",
+        "keys",
+        "data-handling"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.25",
+      "theme": "A.8",
+      "title": "Secure development life cycle",
+      "purpose": "Rules for the secure development of software and systems are established and applied, and are integrated into the organisation’s established software development life cycle processes.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "development",
+        "process"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.26",
+      "theme": "A.8",
+      "title": "Application security requirements",
+      "purpose": "Information security requirements are identified, specified and approved when developing or acquiring applications, including the security requirements of any supplied third-party services.",
+      "clauses": [
+        "6.1.3",
+        "8.1"
+      ],
+      "risks": [
+        "development",
+        "requirements"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.27",
+      "theme": "A.8",
+      "title": "Secure system architecture and engineering principles",
+      "purpose": "Principles for engineering secure systems are identified, documented, maintained and applied to any information system development activities.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "development",
+        "architecture"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.28",
+      "theme": "A.8",
+      "title": "Secure coding",
+      "purpose": "Secure coding principles are applied to software development, and a suitable level of automated tooling and manual review supports their use.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "development",
+        "code-quality"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.29",
+      "theme": "A.8",
+      "title": "Security testing in development and acceptance",
+      "purpose": "Security testing processes are defined and implemented in the development life cycle, providing a systematic and repeatable approach to security testing and including coverage of security requirements.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "development",
+        "testing",
+        "vulnerability"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.30",
+      "theme": "A.8",
+      "title": "Outsourced development",
+      "purpose": "The organisation directs, monitors and reviews the activities related to outsourced system development, including the information security requirements and responsibilities of suppliers.",
+      "clauses": [
+        "6.1.2",
+        "8.1"
+      ],
+      "risks": [
+        "supplier",
+        "development",
+        "third-party"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.31",
+      "theme": "A.8",
+      "title": "Separation of development, test and production environments",
+      "purpose": "Development, testing and production environments are separated and secured, including controlled separation of user identity, components and data, and the ability to introduce changes into production is controlled.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "development",
+        "segregation",
+        "change"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.32",
+      "theme": "A.8",
+      "title": "Change management",
+      "purpose": "Changes to information processing facilities and information systems are subject to change management procedures, with changes properly planned, assessed, authorised, communicated, tested, implemented and recorded, and subject to records of all changes.",
+      "clauses": [
+        "8.1"
+      ],
+      "risks": [
+        "change",
+        "process",
+        "audit-trail"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.33",
+      "theme": "A.8",
+      "title": "Test information",
+      "purpose": "Test information is appropriately selected, protected and managed, and where the use of production information is necessary it is protected to an appropriate level and only for well-defined and legitimate purposes.",
+      "clauses": [
+        "7.5.3",
+        "8.1"
+      ],
+      "risks": [
+        "test-data",
+        "data-handling",
+        "privacy"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    },
+    {
+      "id": "A.8.34",
+      "theme": "A.8",
+      "title": "Protection of information systems during audit testing",
+      "purpose": "Audit tests and other assurance activities involving assessment of operational systems are planned and agreed with the system owner, and implemented only in the agreed time frames and using agreed safeguards to minimise disruption and impact.",
+      "clauses": [
+        "9.2"
+      ],
+      "risks": [
+        "audit",
+        "operations"
+      ],
+      "nature": "reference-control",
+      "provenance": "original-paraphrase"
+    }
+  ],
+  "ANNEX_A_THEMES": [
+    {
+      "id": "A.5",
+      "key": "organizational",
+      "name": "Organizational",
+      "count": 37,
+      "blurb": "Governance, policy, risk, supply chain, incident management, legal and privacy obligations, and the documented procedures the rest of the ISMS depends on."
+    },
+    {
+      "id": "A.6",
+      "key": "people",
+      "name": "People",
+      "count": 8,
+      "blurb": "Screening, contractual terms, awareness, discipline, termination, confidentiality, remote working, and event reporting."
+    },
+    {
+      "id": "A.7",
+      "key": "physical",
+      "name": "Physical",
+      "count": 14,
+      "blurb": "Premises, entry, secure areas, environmental protection, equipment siting, media, utilities, cabling, maintenance and disposal."
+    },
+    {
+      "id": "A.8",
+      "key": "technological",
+      "name": "Technological",
+      "count": 34,
+      "blurb": "Endpoints, access, authentication, malware, vulnerabilities, configuration, backup, logging, networks, cryptography, development and change."
+    }
+  ],
+  "ANNEX_A_TOTAL": 93
+}

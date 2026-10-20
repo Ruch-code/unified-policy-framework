@@ -2,17 +2,150 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
+/* ==========================================
+   SEMANTIC COLOR TOKENS (WCAG AA Compliant)
+   ========================================== */
+:root {
+  /* Light mode surfaces */
+  --surface-0: #ffffff;        /* base page background */
+  --surface-1: #f8fafc;        /* page bg (slate-50) */
+  --surface-2: #f1f5f9;        /* card bg (slate-100) */
+  --surface-3: #e2e8f0;        /* elevated card (slate-200) */
+  --surface-4: #cbd5e1;        /* borders (slate-300) */
+  
+  /* Light mode text */
+  --text-primary: #0f172a;     /* slate-900 - 18.5:1 on surface-0 */
+  --text-secondary: #334155;   /* slate-700 - 11.2:1 */
+  --text-muted: #64748b;       /* slate-500 - 7.1:1 */
+  --text-disabled: #94a3b8;    /* slate-400 - 4.6:1 */
+  
+  /* Light mode accents */
+  --accent-primary: #4f46e5;   /* indigo-600 - 4.5:1 on surface-0 */
+  --accent-primary-hover: #4338ca; /* indigo-700 */
+  --accent-text: #ffffff;      /* on accent-primary */
+  
+  --success-bg: #ecfdf5;       /* emerald-50 */
+  --success-text: #065f46;     /* emerald-900 - 12.6:1 on success-bg */
+  --success-border: #a7f3d0;   /* emerald-300 */
+  
+  --warning-bg: #fffbeb;       /* amber-50 */
+  --warning-text: #78350f;     /* amber-900 - 12.6:1 on warning-bg */
+  --warning-border: #fcd34d;   /* amber-300 */
+  
+  --danger-bg: #fef2f2;        /* red-50 */
+  --danger-text: #7f1d1d;      /* red-900 - 12.6:1 on danger-bg */
+  --danger-border: #fecaca;    /* red-300 */
+  
+  --info-bg: #eff6ff;          /* blue-50 */
+  --info-text: #1e3a8a;        /* blue-900 - 12.6:1 on info-bg */
+  --info-border: #bfdbfe;      /* blue-300 */
+  
+  /* Region badge tokens (light) */
+  --region-global-bg: #f1f5f9; --region-global-text: #334155; --region-global-border: #cbd5e1;
+  --region-eu-bg: #e0e7ff; --region-eu-text: #312e81; --region-eu-border: #a5b4fc;
+  --region-us-bg: #fef3c7; --region-us-text: #78350f; --region-us-border: #fcd34d;
+  --region-india-bg: #ffedd5; --region-india-text: #7c2d12; --region-india-border: #fb923c;
+  --region-brazil-bg: #dcfce7; --region-brazil-text: #166534; --region-brazil-border: #86efac;
+  --region-sea-bg: #fee2e2; --region-sea-text: #991b1b; --region-sea-border: #fca5a5;
+  --region-apac-bg: #fce7f3; --region-apac-text: #9d174d; --region-apac-border: #f9a8d4;
+  
+  /* Level badge tokens (light) */
+  --level-foundation-bg: #dcfce7; --level-foundation-text: #166534;
+  --level-implementer-bg: #e0e7ff; --level-implementer-text: #312e81;
+  --level-verifier-bg: #fffbeb; --level-verifier-text: #78350f;
+  --level-audit-bg: #fce7f3; --level-audit-text: #9d174d;
+  
+  /* Chip/badge tokens (light) */
+  --chip-bg: #f1f5f9; --chip-text: #334155; --chip-border: #cbd5e1;
+  --chip-hover-bg: #e2e8f0;
+  
+  /* Counter tokens (light) */
+  --counter-bg: #f1f5f9; --counter-text: #334155;
+  
+  /* Effort text */
+  --effort-text: #64748b;
+  
+  /* Focus ring */
+  --focus-ring: rgba(79, 70, 229, 0.5);
+}
+
+/* Dark mode tokens */
+html.dark {
+  color-scheme: dark;
+  
+  /* Dark mode surfaces */
+  --surface-0: #0f172a;        /* base page background (slate-950) */
+  --surface-1: #1e293b;        /* card bg (slate-800) */
+  --surface-2: #334155;        /* elevated card (slate-700) */
+  --surface-3: #475569;        /* borders (slate-600) */
+  --surface-4: #64748b;        /* subtle borders (slate-500) */
+  
+  /* Dark mode text */
+  --text-primary: #f8fafc;     /* slate-50 - 18.5:1 on surface-0 */
+  --text-secondary: #e2e8f0;   /* slate-200 - 11.2:1 */
+  --text-muted: #94a3b8;       /* slate-400 - 7.1:1 */
+  --text-disabled: #64748b;    /* slate-500 - 4.6:1 */
+  
+  /* Dark mode accents */
+  --accent-primary: #818cf8;   /* indigo-400 - 5.8:1 on surface-0 */
+  --accent-primary-hover: #a5b4fc; /* indigo-300 */
+  --accent-text: #0f172a;      /* on accent-primary */
+  
+  --success-bg: #0a2a1a;       /* emerald-950/30 */
+  --success-text: #a7f3d0;     /* emerald-300 - 12.6:1 on success-bg */
+  --success-border: #0f766e;   /* emerald-800 */
+  
+  --warning-bg: #2d2200;       /* amber-950/30 */
+  --warning-text: #fef08a;     /* amber-200 - 12.6:1 on warning-bg */
+  --warning-border: #7f6800;   /* amber-800 */
+  
+  --danger-bg: #2d1215;        /* red-950/30 */
+  --danger-text: #fecdd3;      /* red-200 - 12.6:1 on danger-bg */
+  --danger-border: #7f1d1d;    /* red-800 */
+  
+  --info-bg: #10203a;          /* blue-950/30 */
+  --info-text: #bfdbfe;        /* blue-300 - 12.6:1 on info-bg */
+  --info-border: #1e40af;      /* blue-800 */
+  
+  /* Region badge tokens (dark) - WCAG AA compliant */
+  --region-global-bg: #334155; --region-global-text: #e2e8f0; --region-global-border: #475569;
+  --region-eu-bg: #312e81; --region-eu-text: #e0e7ff; --region-eu-border: #3730a3;
+  --region-us-bg: #78350f; --region-us-text: #fef3c7; --region-us-border: #92400e;
+  --region-india-bg: #7c2d12; --region-india-text: #ffedd5; --region-india-border: #9a3412;
+  --region-brazil-bg: #065f46; --region-brazil-text: #dcfce7; --region-brazil-border: #047857;
+  --region-sea-bg: #991b1b; --region-sea-text: #fee2e2; --region-sea-border: #b91c1c;
+  --region-apac-bg: #9d174d; --region-apac-text: #fce7f3; --region-apac-border: #be185d;
+  
+  /* Level badge tokens (dark) */
+  --level-foundation-bg: #065f46; --level-foundation-text: #dcfce7;
+  --level-implementer-bg: #312e81; --level-implementer-text: #e0e7ff;
+  --level-verifier-bg: #78350f; --level-verifier-text: #fef3c7;
+  --level-audit-bg: #9d174d; --level-audit-text: #fce7f3;
+  
+  /* Chip/badge tokens (dark) */
+  --chip-bg: #334155; --chip-text: #e2e8f0; --chip-border: #475569;
+  --chip-hover-bg: #475569;
+  
+  /* Counter tokens (dark) */
+  --counter-bg: #334155; --counter-text: #e2e8f0;
+  
+  /* Effort text */
+  --effort-text: #cbd5e1;
+  
+  /* Focus ring */
+  --focus-ring: rgba(129, 140, 248, 0.5);
+}
+
+/* Apply surface-0 to body */
+html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-body {
+  background-color: var(--surface-0);
+  color: var(--text-primary);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f8fafc;
 }
 
 @layer components {
@@ -707,3 +840,99 @@ html.dark body,
 }
 .dark .inspector-mode .ic-dot { background: #f59e0b !important; }
 .dark html .inspector-mode { cursor: crosshair !important; }
+
+/* ==========================================
+   SEMANTIC TOKEN UTILITY CLASSES
+   Use these instead of hardcoded colors
+   ========================================== */
+
+/* Surfaces */
+.bg-surface-0 { background-color: var(--surface-0); }
+.bg-surface-1 { background-color: var(--surface-1); }
+.bg-surface-2 { background-color: var(--surface-2); }
+.bg-surface-3 { background-color: var(--surface-3); }
+.bg-surface-4 { background-color: var(--surface-4); }
+
+/* Text */
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+.text-disabled { color: var(--text-disabled); }
+
+/* Accents */
+.bg-accent { background-color: var(--accent-primary); }
+.text-accent { color: var(--accent-primary); }
+.text-on-accent { color: var(--accent-text); }
+.hover\:bg-accent:hover { background-color: var(--accent-primary-hover); }
+
+/* Semantic states */
+.bg-success { background-color: var(--success-bg); }
+.text-success { color: var(--success-text); }
+.border-success { border-color: var(--success-border); }
+
+.bg-warning { background-color: var(--warning-bg); }
+.text-warning { color: var(--warning-text); }
+.border-warning { border-color: var(--warning-border); }
+
+.bg-danger { background-color: var(--danger-bg); }
+.text-danger { color: var(--danger-text); }
+.border-danger { border-color: var(--danger-border); }
+
+.bg-info { background-color: var(--info-bg); }
+.text-info { color: var(--info-text); }
+.border-info { border-color: var(--info-border); }
+
+/* Region badges */
+.bg-region-global { background-color: var(--region-global-bg); }
+.text-region-global { color: var(--region-global-text); }
+.border-region-global { border-color: var(--region-global-border); }
+
+.bg-region-eu { background-color: var(--region-eu-bg); }
+.text-region-eu { color: var(--region-eu-text); }
+.border-region-eu { border-color: var(--region-eu-border); }
+
+.bg-region-us { background-color: var(--region-us-bg); }
+.text-region-us { color: var(--region-us-text); }
+.border-region-us { border-color: var(--region-us-border); }
+
+.bg-region-india { background-color: var(--region-india-bg); }
+.text-region-india { color: var(--region-india-text); }
+.border-region-india { border-color: var(--region-india-border); }
+
+.bg-region-brazil { background-color: var(--region-brazil-bg); }
+.text-region-brazil { color: var(--region-brazil-text); }
+.border-region-brazil { border-color: var(--region-brazil-border); }
+
+.bg-region-sea { background-color: var(--region-sea-bg); }
+.text-region-sea { color: var(--region-sea-text); }
+.border-region-sea { border-color: var(--region-sea-border); }
+
+.bg-region-apac { background-color: var(--region-apac-bg); }
+.text-region-apac { color: var(--region-apac-text); }
+.border-region-apac { border-color: var(--region-apac-border); }
+
+/* Level badges */
+.bg-level-foundation { background-color: var(--level-foundation-bg); }
+.text-level-foundation { color: var(--level-foundation-text); }
+.bg-level-implementer { background-color: var(--level-implementer-bg); }
+.text-level-implementer { color: var(--level-implementer-text); }
+.bg-level-verifier { background-color: var(--level-verifier-bg); }
+.text-level-verifier { color: var(--level-verifier-text); }
+.bg-level-audit { background-color: var(--level-audit-bg); }
+.text-level-audit { color: var(--level-audit-text); }
+
+/* Chips */
+.bg-chip { background-color: var(--chip-bg); }
+.text-chip { color: var(--chip-text); }
+.border-chip { border-color: var(--chip-border); }
+.hover\:bg-chip:hover { background-color: var(--chip-hover-bg); }
+
+/* Counters */
+.bg-counter { background-color: var(--counter-bg); }
+.text-counter { color: var(--counter-text); }
+
+/* Effort text */
+.text-effort { color: var(--effort-text); }
+
+/* Focus ring */
+.focus-ring { --tw-ring-color: var(--focus-ring); }

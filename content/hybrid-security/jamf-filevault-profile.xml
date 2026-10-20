@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Jamf Pro configuration profile — Hybrid Workforce Security (macOS).
+  Payload: com.apple.MCX.FileVault2 (FileVault enforcement),
+  com.apple.WebKit / com.apple.security firewalled, and the EDR + DLP
+  vendor payload keys. Deploy to the "Hybrid-Enforcement" smart group;
+  replace __EDR_ALT__ with your EDR profile identifier.
+-->
+<plist version="1.0">
+<dict>
+  <key>PayloadDisplayName</key>
+  <string>Hybrid Workforce Security (macOS)</string>
+  <key>PayloadIdentifier</key>
+  <string>com.example.hybrid.workforce</string>
+  <key>PayloadType</key>
+  <string>Configuration</string>
+  <key>PayloadUUID</key>
+  <string>B4B5-482F-9A11-5D1E-HYBRID01</string>
+  <key>PayloadVersion</key>
+  <integer>1</integer>
+
+  <key>PayloadContent</key>
+  <array>
+    <!-- FileVault 2 full-disk encryption -->
+    <dict>
+      <key>PayloadType</key>
+      <string>com.apple.MCX.FileVault2</string>
+      <key>PayloadIdentifier</key>
+      <string>com.example.hybrid.filevault</string>
+      <key>PayloadUUID</key>
+      <string>FVBA-4F15-AC11-9DD1-HYBRID21</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+      <key>pfv-Enable</key>
+      <string>On</string>
+      <key>Defer</key>
+      <false/>
+      <key>UseRecoveryKey</key>
+      <true/>
+      <key>ShowRecoveryKey</key>
+      <false/>
+      <!-- 1 = institutional recovery key escrowed to Jamf -->
+      <key>RecoveryKeyType</key>
+      <string>1</string>
+      <key>CertificateUUID</key>
+      <string>__JAMF_CRYPTO_PERSONAL_KEY_UUID__</string>
+    </dict>
+
+    <!-- Application Firewall (outbound) + stealth on untrusted networks -->
+    <dict>
+      <key>PayloadType</key>
+      <string>com.apple.alf</string>
+      <key>PayloadIdentifier</key>
+      <string>com.example.hybrid.alf</string>
+      <key>PayloadUUID</key>
+      <string>ALFF-4F15-AC11-9DD1-HYBRID31</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+      <key>GlobalState</key>
+      <integer>1</integer>
+      <key>StealthMode</key>
+      <true/>
+      <key>AllowSignedEnabled</key>
+      <true/>
+    </dict>
+
+    <!-- ScreenSaver lock prompt (physical-context control for office desks) -->
+    <dict>
+      <key>PayloadType</key>
+      <string>com.apple.screensaver</string>
+      <key>PayloadIdentifier</key>
+      <string>com.example.hybrid.screensaver</string>
+      <key>PayloadUUID</key>
+      <string>SCSV-4F15-AC11-9DD1-HYBRID41</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+      <key>idleTime</key>
+      <integer>600</integer>
+      <key>askForPassword</key>
+      <integer>1</integer>
+      <key>askForPasswordDelay</key>
+      <integer>5</integer>
+    </dict>
+
+    <!-- EDR onboarding (CrowdStrike Falcon / SentinelOne / Defender -- supply your
+         custom schema key here; kept as a validated placeholder row) -->
+    <dict>
+      <key>PayloadType</key>
+      <string>com.crowdstrike.falcon</string>
+      <key>PayloadIdentifier</key>
+      <string>com.example.hybrid.edr</string>
+      <key>PayloadUUID</key>
+      <string>EDR1-4F15-AC11-9DD1-HYBRID51</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+    </dict>
+
+    <!-- DLP clipboard isolation (synthetic-content / paste-block), vendor key -->
+    <dict>
+      <key>PayloadType</key>
+      <string>com.example.hybrid.dlp</string>
+      <key>PayloadIdentifier</key>
+      <string>com.example.hybrid.dlp</string>
+      <key>PayloadUUID</key>
+      <string>DLP1-4F15-AC11-9DD1-HYBRID61</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+      <key>BlockPasteToWebApps</key>
+      <true/>
+      <key>BlockCopyFromWorkApps</key>
+      <false/>
+      <key>ManagedBrowserOnly</key>
+      <true/>
+    </dict>
+  </array>
+</dict>
+</plist>
