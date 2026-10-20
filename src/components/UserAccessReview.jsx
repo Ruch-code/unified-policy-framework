@@ -366,7 +366,7 @@ export default function UserAccessReview({ isDark = false }) {
                 </div>
                 <p className="text-sm text-navy-600 dark:text-text-dark-secondary mb-3"><span className="font-semibold">Scope:</span> {tier.desc}</p>
                 <p className={`text-sm font-semibold px-3 py-2 rounded-lg mb-3
-                  ${isDark ? 'bg-indigo-900/30 text-indigo-400 border border-indigo-800' : 'bg-indigo-50 text-indigo-700 border border-indigo-100'}`}>
+                  ${isDark ? 'bg-[#312e81]/40 text-[#c7d2fe] border border-[#4338ca]' : 'bg-indigo-50 text-indigo-700 border border-indigo-100'}`}>
                   <span className="font-semibold">Frequency:</span> {tier.frequency}
                 </p>
                 <p className="text-xs text-navy-500 dark:text-text-dark-muted"><span className="font-semibold text-navy-600 dark:text-text-dark-muted">Examples:</span> {tier.examples}</p>
