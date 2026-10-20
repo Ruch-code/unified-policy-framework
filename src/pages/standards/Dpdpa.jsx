@@ -201,7 +201,8 @@ const FRAMEWORK = {
     { day: 20, label: 'Breach Response & DPIA Ready', color: 'orange' },
     { day: 30, label: 'Full DPDP Compliance Program Active', color: 'red' }
   ],
-  referenceUrl: 'https://www.meity.gov.in/data-protection-framework'
+  referenceUrl: 'https://www.meity.gov.in/data-protection-framework',
+  referenceNote: "DPDP Rules were notified in November 2025 with phased implementation: Data Protection Board provisions apply immediately; consent manager provisions after ~12 months; most data fiduciary obligations after ~18 months. Sources: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/nov/doc20251117695301.pdf and https://www.meity.gov.in/ [VERIFY LINK]",
 };
 
 export default function Dpdpa() {

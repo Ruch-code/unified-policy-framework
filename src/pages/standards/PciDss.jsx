@@ -2,7 +2,7 @@ import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 
 const FRAMEWORK = {
   id: "pci-dss-v4",
-  name: "PCI-DSS v4.0",
+  name: "PCI DSS v4.0.1",
   color: "beige",
   region: "Global",
   flag: "🌐",
@@ -73,11 +73,25 @@ const FRAMEWORK = {
         "Reducing on-site PAN handling shrinks your SAQ burden"
       ],
       leantip: "Confirm your provider is PCI-DSS validated (list on PCI SSC), and complete your own SAQ/ROC correctly. Don't assume the provider covers you."
+    },
+    {
+      itgc: "Program / System Development",
+      gap: "Relying on PA-DSS for payment application validation",
+      pushback: "Our payment application is PA-DSS validated, so we're covered.",
+      reality: "PA-DSS was retired in October 2022 and replaced by the PCI Software Security Framework (Secure Software Standard and Secure SLC Standard). PA-DSS validation is no longer accepted for new implementations. Sources: https://www.pcisecuritystandards.org/standards/pa-dss/ and https://blog.pcisecuritystandards.org/farewell-to-pa-dss-a-tribute-to-a-foundational-standard",
+      policy: "Vendor / Third-Party Risk Management Policy, Secure Software Development Policy",
+      compensating: [
+        "Migrate to PCI Secure Software Standard for new payment applications",
+        "Existing PA-DSS validated applications have transition period",
+        "Validate software vendor's PCI SSF compliance status"
+      ],
+      leantip: "Check if your payment application vendor has transitioned to PCI Secure Software Framework. For new implementations, require PCI SSF validation, not PA-DSS."
     }
   ],
   weeks: 4,
   milestones: 3,
   referenceUrl: "https://www.pcisecuritystandards.org/document_library/",
+  referenceNote: "PCI DSS v4.0 was retired on 31 Dec 2024. v4.0.1 is the only active version. Future-dated requirements (51 total) became mandatory 31 Mar 2025. Sources: https://www.pcisecuritystandards.org/document_library/ and https://blog.pcisecuritystandards.org/just-published-pci-dss-v4-0-1",
   weeksData: [
     {
       week: 1,

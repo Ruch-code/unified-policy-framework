@@ -167,7 +167,8 @@ const FRAMEWORK = {
     { day: 14, label: 'Implementation Complete', color: 'blue' },
     { day: 21, label: 'Verification Complete', color: 'green' }
   ],
-  referenceUrl: 'https://www.nist.gov/cyberframework'
+  referenceUrl: 'https://www.nist.gov/cyberframework',
+  referenceNote: "NIST CSF 2.0 was released in February 2024 with six functions: Govern, Identify, Protect, Detect, Respond, Recover. NIST SP 800-53 Rev 5 is the control catalog. Sources: https://www.nist.gov/cyberframework and https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
 };
 
 export default function Nist() {

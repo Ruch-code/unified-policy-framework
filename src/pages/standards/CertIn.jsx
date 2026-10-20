@@ -168,7 +168,8 @@ const FRAMEWORK = {
       { day: 45, label: 'IR Drills & Verification Done', color: 'purple' },
       { day: 60, label: 'Audit & Multi-Cloud Ready', color: 'green' }
     ],
-    referenceUrl: 'https://www.cert-in.org.in/'
+    referenceUrl: 'https://www.cert-in.org.in/',
+  referenceNote: "CERT-In Directions (28 April 2022): report specified cyber incidents within 6 hours, keep ICT system logs for a rolling 180 days within Indian jurisdiction, sync clocks to NIC/NPL NTP servers. Source: https://www.cert-in.org.in/Directions70B.jsp [VERIFY LINK]",
 };
 
 export default function CertIn() {

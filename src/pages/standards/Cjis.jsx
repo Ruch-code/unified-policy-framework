@@ -9,6 +9,7 @@ const cjisFramework = {
   basePath: "/cjis",
   color: "navy",
   referenceUrl: "https://le.fbi.gov/cjis-division/cjis-security-policy-resource-center",
+  referenceNote: "CJIS Security Policy v6.x (v6.0 released December 2024, modernised and aligned to NIST SP 800-53 Rev 5). Check the source for the latest minor version and mark it [VERIFY] if unsure. Source: https://le.fbi.gov/cjis-division/cjis-security-policy-resource-center",
   startupGaps: [
     {
       gap: "Treating CJIS as optional or 'just for law enforcement'",

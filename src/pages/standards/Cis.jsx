@@ -2,13 +2,14 @@ import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 
 const FRAMEWORK = {
   id: "cis",
-  name: "CIS Controls v8",
+  name: "CIS Controls v8.1",
   region: "Global",
   color: "navy",
   flag: "🌐",
   flagAnimation: "float",
   basePath: "/cis",
-  referenceUrl: "https://www.cisecurity.org/controls",
+  referenceUrl: "https://www.cisecurity.org/controls/v8-1",
+  referenceNote: "CIS Controls v8.1 was released in June 2024, adding a 'Govern' security function and keeping 18 controls and 3 Implementation Groups. Source: https://www.cisecurity.org/controls/v8-1",
   weeks: 4,
   milestones: 3,
   hoursByLevel: [4, 8, 5, 3],

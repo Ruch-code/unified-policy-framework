@@ -212,7 +212,8 @@ const FRAMEWORK = {
     { day: 28, label: 'Multi-Cloud Controls & Ongoing Compliance Active', color: 'golden' },
     { day: 35, label: 'LODR Governance & Disclosure Framework Active', color: 'golden' }
   ],
-  referenceUrl: 'https://www.sebi.gov.in/'
+  referenceUrl: 'https://www.sebi.gov.in/',
+  referenceNote: "SEBI CSCRF, 'Cybersecurity and Cyber Resilience Framework for SEBI Regulated Entities': issued 20 August 2024, compliance phased by RE category, covers governance, identification, protection, detection, response and recovery, and includes third-party/vendor requirements. Source: https://www.sebi.gov.in/ [VERIFY LINK to the 20 Aug 2024 circular]",
 };
 
 export default function SecuritiesExchangeBoardIndia() {

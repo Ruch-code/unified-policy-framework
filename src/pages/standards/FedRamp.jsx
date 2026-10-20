@@ -8,7 +8,8 @@ const fedrampFramework = {
   flagAnimation: "pulse",
   basePath: "/fedramp",
   color: "navy",
-  referenceUrl: "https://fal.gov/",
+  referenceUrl: "https://www.fedramp.gov/",
+  referenceNote: "FedRAMP Rev5 baselines (Low, Moderate, High, LI-SaaS) are aligned to NIST SP 800-53 Rev 5. FedRAMP 20x is a modernisation initiative announced in 2025 to speed up authorisation with automation. Describe it as 'in progress'. Sources: https://www.fedramp.gov/ and https://www.fedramp.gov/20x",
   startupGaps: [
     {
       gap: "Jumping straight to an assessment without readiness / scoping",

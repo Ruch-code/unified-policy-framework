@@ -11,6 +11,7 @@ const FRAMEWORK = {
   weeks: 4,
   milestones: 3,
   referenceUrl: "https://cppa.ca.gov/regulations/",
+  referenceNote: "CCPA/CPRA administrative fines are per violation, with higher amounts for intentional violations or those involving minors. The CPPA adjusts amounts for inflation, so show 'subject to CPPA inflation adjustment' with the link, not a fixed $ figure. Source: https://cppa.ca.gov/",
   weeksData: [
     {
       week: 1,

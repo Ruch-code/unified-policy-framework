@@ -167,7 +167,8 @@ const FRAMEWORK = {
     { day: 14, label: 'Preventive, Detection & PAM Controls Deployed', color: 'navy' },
     { day: 28, label: 'Multi-Cloud Banking Controls & Ongoing Compliance Active', color: 'navy' }
   ],
-  referenceUrl: 'https://www.rbi.org.in/'
+  referenceUrl: 'https://www.rbi.org.in/',
+  referenceNote: "RBI Master Direction on Outsourcing of Information Technology Services (April 2023, effective October 2023). Master Direction on Information Technology Governance, Risk, Controls and Assurance Practices (November 2023, effective 1 April 2024). The Cyber Security Framework for Banks (2016) still exists and is shown alongside these. Source: https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx",
 };
 
 export default function ReserveBankOfIndia() {

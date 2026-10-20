@@ -12,6 +12,7 @@ const FRAMEWORK = {
   milestones: 3,
   referenceUrl:
     "https://www.ftc.gov/legal-library/browse/rules/childrens-online-privacy-protection-rule-coppa",
+  referenceNote: "FTC's amended COPPA Rule was published 22 Apr 2025, took effect 23 Jun 2025, and has a compliance deadline of 22 Apr 2026 for most provisions. Key changes: separate verifiable parental consent for disclosing children's data to third parties (e.g., targeted advertising); a written data retention policy; a written children's information security program; an expanded definition of personal information, including biometric identifiers. Sources: https://www.federalregister.gov/documents/2025/04/22/2025-05904/childrens-online-privacy-protection-rule and https://www.ftc.gov/legal-library/browse/rules/childrens-online-privacy-protection-rule-coppa",
   weeksData: [
     {
       week: 1,
@@ -760,6 +761,123 @@ const FRAMEWORK = {
               control: "COPPA compliance must be maintained through an ongoing program, not treated as a one-time project.",
               how: "Finalize the handoff to the ongoing compliance program: assign permanent ownership, establish recurring tasks and calendars, document operational procedures, transfer monitoring responsibilities, set up regular governance meetings, and define success criteria for the ongoing program.",
               check: "Ongoing COPPA compliance program handoff is completed with assigned ownership, procedures, and governance structure."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      week: 4,
+      title: "2025 COPPA Rule Amendments — New Requirements & Compliance Deadline",
+      days: "Days 22-28",
+      description:
+        "Master the FTC's amended COPPA Rule (published 22 Apr 2025, effective 23 Jun 2025, compliance deadline 22 Apr 2026). Key changes: separate VPC for third-party disclosure, written data retention policy, written children's information security program, expanded definition of personal information including biometric identifiers.",
+      daysData: [
+        {
+          day: 22,
+          title: "Separate verifiable parental consent for third-party disclosure",
+          tasks: [
+            {
+              title: "Implement separate VPC for third-party data disclosure",
+              control: "2025 COPPA Rule requires separate verifiable parental consent before disclosing children's personal information to third parties (e.g., for targeted advertising).",
+              how: "Modify VPC flow: (1) Obtain initial VPC for internal collection/use of children's data. (2) Before any disclosure to third parties (ad networks, analytics providers, AI/ML model trainers, social media platforms), obtain a separate, distinct VPC that clearly describes: the categories of third parties, the purpose of disclosure, and the categories of information disclosed. (3) Maintain records of both VPCs separately. (4) Update privacy policy to describe third-party disclosures and the separate consent mechanism. (5) For existing users: obtain the new third-party disclosure VPC before compliance deadline (22 Apr 2026).",
+              check: "Separate VPC flow implemented and tested; third-party disclosure categories documented; consent records stored separately from initial VPC; privacy policy updated with third-party disclosure descriptions."
+            },
+            {
+              title: "Audit and update third-party data sharing agreements",
+              control: "Third parties receiving children's data must comply with COPPA and the operator's confidentiality requirements.",
+              how: "Audit all third parties receiving children's data: (1) Map all data flows to third parties (ad networks, analytics, CDNs, AI/ML platforms, social media platforms). (2) For each, verify: COPPA compliance, data processing agreement with COPPA-specific terms, confidentiality obligations, data deletion obligations, no secondary use. (3) Update contracts with: COPPA compliance warranties, data minimization requirements, deletion obligations, audit rights, no re-disclosure without consent. (4) Remove any third parties that cannot meet COPPA requirements.",
+              check: "Third-party data flow map completed; contracts updated with COPPA-specific terms; non-compliant third parties removed or replaced; audit trail maintained."
+            }
+          ]
+        },
+        {
+          day: 23,
+          title: "Written data retention policy and children's information security program",
+          tasks: [
+            {
+              title: "Create a written data retention policy for children's data",
+              control: "2025 COPPA Rule requires operators to maintain a written data retention policy for children's personal information.",
+              how: "Create a formal retention policy document: (1) Define retention periods for each category of children's personal information (account data, activity logs, analytics data, chat logs, voice recordings, biometric data). (2) Specify retention triggers: account closure, purpose fulfilled, legal hold, regulatory requirement. (3) Define deletion methods: cryptographic erasure for encrypted data, secure overwrite for databases, physical destruction for backups. (4) Define retention review schedule: annual review, legal hold overrides, automated enforcement. (5) Document in a standalone policy document referenced in privacy policy.",
+              check: "Written retention policy document completed with retention periods per data category, deletion methods, review schedule, and legal hold process. Policy referenced in privacy policy."
+            },
+            {
+              title: "Create a written children's information security program",
+              control: "2025 COPPA Rule requires operators to maintain a written children's information security program.",
+              how: "Create a formal security program document: (1) Risk assessment methodology for children's data. (2) Safeguards: administrative (policies, training, vendor management), physical (access controls, facility security), technical (encryption, access controls, monitoring, vulnerability management). (3) Incident response plan specific to children's data breaches. (4) Employee training requirements for children's data handling. (4) Vendor management for service providers accessing children's data. (5) Annual program review and update process. (6) Document in a standalone security program document.",
+              check: "Written security program document completed with risk assessment methodology, administrative/physical/technical safeguards, incident response plan, training program, vendor management, and annual review process."
+            }
+          ]
+        },
+        {
+          day: 24,
+          title: "Expanded definition of personal information — biometric identifiers",
+          tasks: [
+            {
+              title: "Update data inventory for expanded personal information definition",
+              control: "2025 COPPA Rule expands 'personal information' to include biometric identifiers (fingerprints, facial recognition, voice prints, gait analysis, iris/retina scans, DNA).",
+              how: "Update data inventory: (1) Audit all systems for biometric data collection: facial recognition (photo filters, age estimation), voice prints (voice commands, voice chat), fingerprint (device auth), gait/behavioral biometrics, iris/retina (AR/VR), DNA (genetic testing apps). (2) Classify each biometric data type: collection method, purpose, storage location, retention period, access controls, sharing. (3) Apply COPPA requirements to biometric data: VPC before collection, retention limits, deletion procedures, access controls, no disclosure without separate VPC. (4) Update privacy policy to list biometric data categories collected. (5) Implement biometric-specific deletion: cryptographic erasure for biometric templates.",
+              check: "Biometric data inventory completed; COPPA controls applied to all biometric data types; privacy policy updated with biometric categories; biometric deletion procedures implemented."
+            },
+            {
+              title: "Update age-gating and consent mechanisms for expanded PI",
+              control: "Age-gating and consent mechanisms must account for the expanded definition of personal information.",
+              how: "Update age-gating: (1) Ensure age gate triggers before any biometric data collection (camera/microphone access for face/voice biometrics). (2) Update consent forms to specifically describe biometric data categories collected. (3) For features using biometrics (face filters, voice chat, AR/VR): implement just-in-time consent with clear biometric data description. (4) Implement granular consent: separate toggles for biometric vs non-biometric data collection. (5) Test age-gating and consent flows with UX testing for children and parents.",
+              check: "Age-gating triggers before biometric collection; consent forms describe biometric categories; granular consent toggles implemented; UX testing completed with target age groups."
+            }
+          ]
+        },
+        {
+          day: 25,
+          title: "Compliance deadline planning and implementation roadmap",
+          tasks: [
+            {
+              title: "Build 2025 COPPA Rule compliance roadmap to 22 Apr 2026 deadline",
+              control: "Compliance deadline is 22 Apr 2026 for most provisions. Plan phased implementation.",
+              how: "Create a phased implementation roadmap: Phase 1 (Months 1-3): Impact assessment, legal review, requirements mapping. Phase 2 (Months 4-6): VPC flow redesign, third-party audit, retention policy drafting. Phase 3 (Months 7-9): Security program documentation, biometric inventory, privacy policy updates. Phase 4 (Months 10-12): Technical implementation (VPC flow, consent mechanisms, age-gating). Phase 5 (Months 11-12): Testing, UX testing, internal audit, staff training. Phase 6 (Month 12): Final compliance validation, documentation, board sign-off. Assign owners, milestones, and budget per phase. Track in project management tool with monthly steering committee reviews.",
+              check: "Phased roadmap with 6 phases, owners, milestones, budget documented; monthly steering committee established; project tracking in PM tool; board review scheduled."
+            },
+            {
+              title: "Staff training and vendor notification for 2025 COPPA changes",
+              control: "All staff handling children's data and vendors receiving children's data must be trained on new requirements.",
+              how: "Develop and deliver training: (1) Internal training for product, engineering, marketing, legal, support teams covering: new VPC flow, retention policy, security program, biometric data handling. (2) Vendor notification: inform all third parties receiving children's data of new requirements, request updated contracts. (3) Track training completion: 100% of relevant staff trained by Month 10. (4) Vendor compliance: confirm all vendors acknowledge new terms by Month 11. (5) Document training materials, completion records, vendor acknowledgements.",
+              check: "Training program developed and delivered; 100% staff completion tracked; vendor notifications sent and acknowledgements received; records maintained."
+            }
+          ]
+        },
+        {
+          day: 26,
+          title: "Final compliance validation and documentation",
+          tasks: [
+            {
+              title: "Conduct pre-deadline compliance audit",
+              control: "Validate all 2025 COPPA Rule requirements are implemented before 22 Apr 2026 deadline.",
+              how: "Conduct comprehensive audit: (1) VPC flow: test separate VPC for third-party disclosure end-to-end. (2) Third-party contracts: verify all contracts updated with COPPA terms. (3) Retention policy: verify written policy exists, implemented, automated. (4) Security program: verify written program exists, implemented, staff trained. (5) Biometric data: inventory complete, controls applied, privacy policy updated. (6) Age-gating/consent: test all flows with biometric data triggers. (7) Privacy policy: review for all new disclosures. (8) Staff training: verify 100% completion. (9) Vendor compliance: verify all acknowledgements. Document findings, remediate gaps, obtain legal sign-off.",
+              check: "Pre-deadline audit completed with all 9 areas validated; gaps remediated; legal sign-off obtained; audit report archived."
+            },
+            {
+              title: "Final documentation package and board sign-off",
+              control: "Prepare complete compliance documentation for legal/board review before deadline.",
+              how: "Compile documentation package: (1) Executive summary of 2025 COPPA Rule changes and organisational impact. (2) Implementation roadmap with milestones and evidence of completion. (3) Audit report with all 9 areas validated. (4) Staff training records. (10) Vendor compliance acknowledgements. (5) Updated privacy policy, retention policy, security program documents. (6) Legal counsel opinion letter on compliance status. (7) Board presentation and sign-off. Archive all materials for regulatory inquiry.",
+              check: "Complete documentation package compiled; legal opinion obtained; board presentation delivered and signed off; all materials archived for regulatory inquiry."
+            }
+          ]
+        },
+        {
+          day: 27,
+          title: "Post-deadline ongoing compliance",
+          tasks: [
+            {
+              title: "Establish ongoing 2025 COPPA Rule compliance monitoring",
+              control: "Post-deadline, maintain continuous compliance with 2025 COPPA Rule requirements.",
+              how: "Establish ongoing monitoring: (1) Quarterly VPC flow audit: test separate VPC flow end-to-end. (2) Semi-annual third-party contract review. (3) Annual retention policy review and update. (4) Annual security program review and update. (5) Biometric data inventory refresh quarterly. (6) Quarterly age-gating/consent flow testing. (7) Annual privacy policy review. (8) Annual staff training refresh. (8) Vendor compliance annual attestation. (9) Quarterly compliance dashboard to leadership. Assign compliance owner, establish calendar, document procedures.",
+              check: "Ongoing monitoring calendar established with owners, frequencies, and procedures documented; quarterly dashboard operational; first quarterly review scheduled."
+            },
+            {
+              title: "Monitor FTC guidance and enforcement for 2025 COPPA Rule",
+              control: "FTC will issue guidance and enforcement actions on the amended rule. Stay current.",
+              how: "Establish monitoring: (1) Subscribe to FTC Business Blog, FTC Privacy & Security updates. (2) Monitor Federal Register for COPPA guidance documents. (3) Track FTC enforcement actions for COPPA violations. (4) Join IAPP/privacy professional communities for peer insights. (5) Quarterly review of new guidance/enforcement with legal counsel. (6) Update compliance programme based on new guidance. (7) Document all guidance/enforcement reviews in compliance log.",
+              check: "Monitoring sources configured; quarterly review process established; compliance log template created; first quarterly review scheduled."
             }
           ]
         }
