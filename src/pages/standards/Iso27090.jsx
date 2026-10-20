@@ -51,6 +51,7 @@ const FRAMEWORK = {
   flagAnimation: "float",
   basePath: "/iso/27090",
   referenceUrl: "https://www.iso.org/standard/27090",
+  referenceNote: "ISO/IEC 27090:2026 — Cybersecurity, Artificial intelligence (AI), Guidance for addressing security threats and compromises to AI systems. Covers AI data security, model security, input/output security, AI supply chain, AI operations & monitoring, AI governance, AI incident response. AIS-01 through AIS-20 controls mapped. Complements ISO 42001 and ISO 27001. Source: https://www.iso.org/standard/27090",
   assessment: AI_SECURITY_ASSESSMENT,
   milestones: [
     { day: 7, label: "AI Security Foundations" },

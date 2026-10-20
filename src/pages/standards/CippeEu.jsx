@@ -144,6 +144,8 @@ const FRAMEWORK = {
     { day: 21, label: 'ePrivacy, Enforcement & Emerging Regulations' },
     { day: 28, label: 'CIPP/E Exam Ready' },
   ],
+  referenceUrl: 'https://iapp.org/certify/cippe/',
+  referenceNote: 'CIPP/E is the IAPP\'s Certified Information Privacy Professional/Europe certification. It covers GDPR and European data protection law. It is NOT a framework and NOT about critical infrastructure. Source: https://iapp.org/certify/cippe/',
 };
 
 export default function CippeEuPage() {
