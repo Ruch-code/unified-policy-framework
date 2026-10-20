@@ -1,5 +1,6 @@
 import React from 'react';
 import { Network, Shield, Server, Database, Lock, CheckCircle, ArrowDown, Cloud, Info, Globe, Activity, KeyRound } from 'lucide-react';
+import ResponsiveTable from './ResponsiveTable';
 
 const TIERS = [
   {
@@ -212,30 +213,22 @@ export default function Soc2TechnicalSection() {
           <p className="text-sm text-gray-500 dark:text-text-dark-muted mb-5 max-w-2xl">
             Default-deny between segments. Document each rule as evidence for CC6.6 / ISO A.8.20–8.22 / NIST SC-7 / CIS 13.
           </p>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm min-w-[640px]">
-              <thead>
-                <tr className="border-b-2 border-emerald-200 dark:border-emerald-900/60">
-                  <th className="py-2.5 pr-3 text-left text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-slate-400">Segment</th>
-                  <th className="py-2.5 pr-3 text-left text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-slate-400">Purpose</th>
-                  <th className="py-2.5 pr-3 text-left text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Allowed</th>
-                  <th className="py-2.5 pr-3 text-left text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400">Denied</th>
-                  <th className="py-2.5 text-left text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-slate-400">Controls</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100 dark:divide-slate-800">
-                {SEGMENTS.map(row => (
-                  <tr key={row.segment} className="align-top">
-                    <td className="py-3 pr-3 font-semibold text-gray-800 dark:text-text-dark-primary whitespace-nowrap">{row.segment}</td>
-                    <td className="py-3 pr-3 text-gray-600 dark:text-text-dark-muted">{row.purpose}</td>
-                    <td className="py-3 pr-3 text-gray-700 dark:text-text-dark-secondary">{row.allowed}</td>
-                    <td className="py-3 pr-3 text-gray-700 dark:text-text-dark-secondary">{row.denied}</td>
-                    <td className="py-3 text-gray-600 dark:text-text-dark-muted">{row.controls}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <ResponsiveTable
+            data={SEGMENTS}
+            columns={[
+              { key: 'segment', header: 'Segment', sortable: true },
+              { key: 'purpose', header: 'Purpose', sortable: false },
+              { key: 'allowed', header: 'Allowed', sortable: false },
+              { key: 'denied', header: 'Denied', sortable: false },
+              { key: 'controls', header: 'Controls', sortable: false }
+            ]}
+            caption="Network segregation matrix: default-deny between segments with allowed/denied traffic and controls"
+            filename="network-segregation-matrix.csv"
+            exportLabel="Export Network Matrix"
+            isDark={isDark}
+            enableSort
+            defaultSortKey="segment"
+          />
         </div>
 
         {/* Cloud host compliance checklists */}

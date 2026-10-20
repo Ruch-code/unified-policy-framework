@@ -38,6 +38,7 @@ import Pipl from './pages/standards/Pipl.jsx';
 import Cis from './pages/standards/Cis.jsx';
 import Aigp from './pages/standards/Aigp.jsx';
 import AIGovernance from './pages/AIGovernance.jsx';
+import WhatsNew from './pages/WhatsNew.jsx';
 
 import Iso42001 from './pages/standards/Iso42001';
 import Iso27017 from './pages/standards/Iso27017';
@@ -117,6 +118,7 @@ function App() {
           <Route path="dora" element={<Protected><Dora /></Protected>} />
           <Route path="cmmc" element={<Protected><Nist800171Cmmc /></Protected>} />
           <Route path="uk-gdpr" element={<Protected><UkGdpr /></Protected>} />
+          <Route path="whats-new" element={<Protected><WhatsNew /></Protected>} />
           <Route path="*" element={<Protected><AssessRoute /></Protected>} />
         </Route>
       </Routes>

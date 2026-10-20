@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { UserCheck, Briefcase, GraduationCap, Server, Shield, AlertTriangle, CheckCircle, Lock, Key, Users, Building2, BadgeCheck, Fingerprint, ChevronDown } from 'lucide-react';
+import ResponsiveTable from './ResponsiveTable';
 
 const accessRequirements = {
   fullTime: {
@@ -401,41 +402,33 @@ export default function AccessRequirements({ isDark = false }) {
               Quick Reference Matrix
             </h3>
           </div>
-          <div className="overflow-x-auto">
-            <table className="w-full" role="table">
-              <thead className={`bg-dark-bg dark:bg-dark-bg border-b ${isDark ? 'border-surface-dark-300' : 'border-surface-300'}`}>
-                <tr>
-                  <th className="px-5 py-4 text-left text-xs font-bold text-navy-600 dark:text-text-dark-muted uppercase tracking-wider w-56">Requirement</th>
-                  <th className="px-5 py-4 text-left text-xs font-bold text-navy-600 dark:text-text-dark-muted uppercase tracking-wider">Full-Time Employees</th>
-                  <th className="px-5 py-4 text-left text-xs font-bold text-navy-600 dark:text-text-dark-muted uppercase tracking-wider">Contractors & Vendors</th>
-                  <th className="px-5 py-4 text-left text-xs font-bold text-navy-600 dark:text-text-dark-muted uppercase tracking-wider">Interns & Trainees</th>
-                  <th className="px-5 py-4 text-left text-xs font-bold text-navy-600 dark:text-text-dark-muted uppercase tracking-wider">Production Access</th>
-                </tr>
-              </thead>
-              <tbody className={`divide-y ${isDark ? 'divide-surface-dark-300' : 'divide-surface-300'}`}>
-                {[
-                  { req: 'Background check pre-access', fte: '✓ Full', contractor: '✓ Per MSA', intern: '✓ Basic', prod: '✓ + Annual re-check' },
-                  { req: 'Unique IdP identity', fte: '✓', contractor: '✓ (separate)', intern: '✓ (separate)', prod: '✓' },
-                  { req: 'MFA (phishing-resistant)', fte: '✓ Privileged', contractor: '✓ Privileged', intern: '✓ Standard', prod: '✓ Mandatory (FIDO2)' },
-                  { req: 'RBAC / Least privilege', fte: '✓', contractor: '✓ Project-scoped', intern: '✓ Sandbox only', prod: '✓ JIT + ZSP' },
-                  { req: 'Automated provisioning', fte: '✓ HR→IdP', contractor: '✓ VMS→IdP', intern: '✓ ATS→IdP', prod: '✓ PAM/PIM' },
-                  { req: 'Access review frequency', fte: 'Quarterly', contractor: 'Monthly', intern: 'Weekly (mentor)', prod: 'Per session + Monthly' },
-                  { req: 'Production write access', fte: 'CAB + JIT (8h)', contractor: 'Exception only (4h)', intern: '✗ Never', prod: 'JIT + Recording' },
-                  { req: 'Session recording', fte: 'Privileged only', contractor: 'All prod', intern: 'N/A', prod: '✓ Full (video+keys)' },
-                  { req: 'Offboarding SLA', fte: '< 4 hours', contractor: 'Immediate', intern: 'Program end', prod: 'Immediate + key rotation' },
-                  { req: 'Device compliance', fte: 'MDM/EDR', contractor: 'MDM/EDR or VDI', intern: 'Client VDI only', prod: 'PAW/Bastion only' },
-                ].map((row, i) => (
-                  <tr key={i} className={`transition-colors ${i % 2 === 0 ? (isDark ? 'bg-surface-dark-100' : 'bg-surface-100') : (isDark ? 'bg-dark-bg' : 'bg-surface-50')}`}>
-                    <td className="px-5 py-4 text-sm font-medium text-navy-900 dark:text-text-dark-primary">{row.req}</td>
-                    <td className="px-5 py-4 text-sm text-navy-700 dark:text-text-dark-secondary">{row.fte}</td>
-                    <td className="px-5 py-4 text-sm text-navy-700 dark:text-text-dark-secondary">{row.contractor}</td>
-                    <td className="px-5 py-4 text-sm text-navy-700 dark:text-text-dark-secondary">{row.intern}</td>
-                    <td className="px-5 py-4 text-sm text-red-700 dark:text-red-400 font-medium">{row.prod}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <ResponsiveTable
+            data={[
+              { req: 'Background check pre-access', fte: '✓ Full', contractor: '✓ Per MSA', intern: '✓ Basic', prod: '✓ + Annual re-check' },
+              { req: 'Unique IdP identity', fte: '✓', contractor: '✓ (separate)', intern: '✓ (separate)', prod: '✓' },
+              { req: 'MFA (phishing-resistant)', fte: '✓ Privileged', contractor: '✓ Privileged', intern: '✓ Standard', prod: '✓ Mandatory (FIDO2)' },
+              { req: 'RBAC / Least privilege', fte: '✓', contractor: '✓ Project-scoped', intern: '✓ Sandbox only', prod: '✓ JIT + ZSP' },
+              { req: 'Automated provisioning', fte: '✓ HR→IdP', contractor: '✓ VMS→IdP', intern: '✓ ATS→IdP', prod: '✓ PAM/PIM' },
+              { req: 'Access review frequency', fte: 'Quarterly', contractor: 'Monthly', intern: 'Weekly (mentor)', prod: 'Per session + Monthly' },
+              { req: 'Production write access', fte: 'CAB + JIT (8h)', contractor: 'Exception only (4h)', intern: '✗ Never', prod: 'JIT + Recording' },
+              { req: 'Session recording', fte: 'Privileged only', contractor: 'All prod', intern: 'N/A', prod: '✓ Full (video+keys)' },
+              { req: 'Offboarding SLA', fte: '< 4 hours', contractor: 'Immediate', intern: 'Program end', prod: 'Immediate + key rotation' },
+              { req: 'Device compliance', fte: 'MDM/EDR', contractor: 'MDM/EDR or VDI', intern: 'Client VDI only', prod: 'PAW/Bastion only' },
+            ]}
+            columns={[
+              { key: 'req', header: 'Requirement', sortable: true },
+              { key: 'fte', header: 'Full-Time Employees', sortable: false },
+              { key: 'contractor', header: 'Contractors & Vendors', sortable: false },
+              { key: 'intern', header: 'Interns & Trainees', sortable: false },
+              { key: 'prod', header: 'Production Access', sortable: false }
+            ]}
+            caption="Access requirements comparison across all user personas"
+            filename="access-requirements-matrix.csv"
+            exportLabel="Export Access Matrix"
+            isDark={isDark}
+            enableSort
+            defaultSortKey="req"
+          />
         </section>
       </div>
     </div>

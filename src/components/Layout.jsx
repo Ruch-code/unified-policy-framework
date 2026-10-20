@@ -1,6 +1,6 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
-import { Menu, X, Linkedin, User as UserIcon, ShieldCheck, LogOut, BookOpenCheck, Sun, Moon, Search, ChevronDown, Globe, Building2, Shield, Users, Briefcase, Key, ClipboardCheck } from 'lucide-react';
+import { Menu, X, Linkedin, User as UserIcon, ShieldCheck, LogOut, BookOpenCheck, Sun, Moon, Search, ChevronDown, Globe, Building2, Shield, Users, Briefcase, Key, ClipboardCheck, Sparkles } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import VisitorCounter from './VisitorCounter.jsx';
 import NavHoverIcon from './NavHoverIcon.jsx';
@@ -36,6 +36,7 @@ const STANDARDS = [
   { path: '/dora', label: 'DORA' },
   { path: '/uk-gdpr', label: 'UK GDPR' },
   { path: '/cmmc', label: 'CMMC 2.0' },
+  { path: '/whats-new', label: 'What\'s New' },
 ];
 
 // Uniform desktop header nav link treatment (harmonized Admin / GRC KB / Platform / Profile / Login)

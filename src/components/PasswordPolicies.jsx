@@ -1,5 +1,6 @@
 import React from 'react';
-import { CheckCircle, AlertTriangle, Shield, Key, Zap, Cpu, Globe, Users, Database, Lock, SearchCheck, ClipboardList, ExternalLink, MessageSquareText } from 'lucide-react';
+import { CheckCircle, AlertTriangle, Shield, Key, Zap, Cpu, Globe, Users, Database, Lock, SearchCheck, ClipboardList, ExternalLink, MessageSquareText, Download } from 'lucide-react';
+import ResponsiveTable from './ResponsiveTable';
 
 const passwordPolicyData = {
   entraId: {
@@ -536,25 +537,23 @@ export default function PasswordPolicies({ isDark = false }) {
           <h3 className="text-2xl font-bold text-navy-900 dark:text-text-dark-primary mb-6 flex items-center gap-3">
             <CheckCircle className="w-6 h-6 text-emerald-600 dark:text-emerald-400" /> Framework Requirements Quick Reference
           </h3>
-          <div className="overflow-x-auto">
-            <table className={`w-full rounded-2xl border overflow-hidden
-              ${isDark ? 'bg-surface-dark-100 border-surface-dark-300' : 'bg-surface-100 border-surface-300'}`}>
-              <thead className={`border-b ${isDark ? 'border-surface-dark-300' : 'border-surface-300'} ${isDark ? 'bg-surface-dark-200' : 'bg-surface-200'}`}>
-                <tr>
-                  <th className="px-4 py-3 text-left text-xs font-bold text-navy-600 dark:text-text-dark-muted uppercase tracking-wider">Framework</th>
-                  <th className="px-4 py-3 text-left text-xs font-bold text-navy-600 dark:text-text-dark-muted uppercase tracking-wider">Password / Auth Requirement</th>
-                </tr>
-              </thead>
-              <tbody className={`divide-y ${isDark ? 'divide-surface-dark-300' : 'divide-surface-300'}`}>
-                {Object.entries(passwordPolicyData.frameworks).map(([fw, req]) => (
-                  <tr key={fw} className={`hover:bg-surface-200 dark:hover:bg-surface-dark-200`}>
-                    <td className="px-4 py-3 font-semibold text-navy-900 dark:text-text-dark-primary text-sm">{fw.toUpperCase()}</td>
-                    <td className="px-4 py-3 text-navy-600 dark:text-text-dark-secondary text-sm">{req}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <ResponsiveTable
+            data={Object.entries(passwordPolicyData.frameworks).map(([fw, req]) => ({
+              id: fw,
+              framework: fw.toUpperCase(),
+              requirement: req
+            }))}
+            columns={[
+              { key: 'framework', header: 'Framework', sortable: true },
+              { key: 'requirement', header: 'Password / Auth Requirement', sortable: false }
+            ]}
+            caption="Framework password and authentication requirements quick reference"
+            filename="framework-password-requirements.csv"
+            exportLabel="Export Framework Requirements"
+            isDark={isDark}
+            enableSort
+            defaultSortKey="framework"
+          />
         </section>
       </div>
     </div>

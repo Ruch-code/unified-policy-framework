@@ -1,5 +1,6 @@
 import React from 'react';
 import { CheckCircle, AlertTriangle, Shield, Server, Database, Globe, Users, Key, Lock, Building2, Cpu, Smartphone, Layers, Network, HardDrive, Cloud } from 'lucide-react';
+import ResponsiveTable from './ResponsiveTable';
 
 const uarData = {
   scope: {
@@ -333,35 +334,24 @@ export default function UserAccessReview({ isDark = false }) {
             <Shield className="w-6 h-6 text-emerald-600 dark:text-emerald-400" /> Review Frequency by Framework
           </h3>
           <p className="text-navy-600 dark:text-text-dark-secondary mb-6 max-w-4xl">{uarData.frequency.description}</p>
-          <div className="overflow-x-auto mb-8">
-            <table className={`w-full rounded-2xl border overflow-hidden text-xs
-              ${isDark ? 'bg-surface-dark-100 border-surface-dark-300' : 'bg-surface-100 border-surface-300'}`}>
-              <thead className={`bg-surface-200 dark:bg-surface-dark-200 border-b ${isDark ? 'border-surface-dark-300' : 'border-surface-300'} sticky top-0`}>
-                <tr>
-                  <th className="px-3 py-2 text-left font-bold text-navy-600 dark:text-text-dark-muted">Framework</th>
-                  <th className="px-3 py-2 text-left font-bold text-navy-600 dark:text-text-dark-muted">Standard Users</th>
-                  <th className="px-3 py-2 text-left font-bold text-navy-600 dark:text-text-dark-muted">Privileged</th>
-                  <th className="px-3 py-2 text-left font-bold text-navy-600 dark:text-text-dark-muted">High-Risk</th>
-                  <th className="px-3 py-2 text-left font-bold text-navy-600 dark:text-text-dark-muted">Contractors</th>
-                  <th className="px-3 py-2 text-left font-bold text-navy-600 dark:text-text-dark-muted">Production</th>
-                  <th className="px-3 py-2 text-left font-bold text-navy-600 dark:text-text-dark-muted">Automated</th>
-                </tr>
-              </thead>
-              <tbody className={`divide-y ${isDark ? 'divide-surface-dark-300' : 'divide-surface-300'}`}>
-                {uarData.frequency.matrix.map((row, i) => (
-                  <tr key={i} className={`hover:bg-surface-200 dark:hover:bg-surface-dark-200`}>
-                    <td className="px-3 py-2 font-semibold text-navy-900 dark:text-text-dark-primary">{row.framework}</td>
-                    <td className="px-3 py-2 text-navy-600 dark:text-text-dark-secondary">{row.standard}</td>
-                    <td className="px-3 py-2 text-indigo-700 dark:text-indigo-400 font-medium">{row.privileged}</td>
-                    <td className="px-3 py-2 text-purple-700 dark:text-purple-400 font-medium">{row.highRisk}</td>
-                    <td className="px-3 py-2 text-amber-700 dark:text-amber-400 font-medium">{row.contractors}</td>
-                    <td className="px-3 py-2 text-red-700 dark:text-red-400 font-medium">{row.production}</td>
-                    <td className="px-3 py-2 text-emerald-700 dark:text-emerald-400">{row.automated}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <ResponsiveTable
+            data={uarData.frequency.matrix}
+            columns={[
+              { key: 'framework', header: 'Framework', sortable: true },
+              { key: 'standard', header: 'Standard Users', sortable: false },
+              { key: 'privileged', header: 'Privileged', sortable: false },
+              { key: 'highRisk', header: 'High-Risk', sortable: false },
+              { key: 'contractors', header: 'Contractors', sortable: false },
+              { key: 'production', header: 'Production', sortable: false },
+              { key: 'automated', header: 'Automated', sortable: false }
+            ]}
+            caption="User access review frequency requirements by framework and user type"
+            filename="uar-frequency-matrix.csv"
+            exportLabel="Export Frequency Matrix"
+            isDark={isDark}
+            enableSort
+            defaultSortKey="framework"
+          />
 
           {/* Risk Tiers */}
           <h4 className="text-xl font-bold text-navy-900 dark:text-text-dark-primary mb-4">Risk-Tiered Operational Guidance</h4>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Radar, FileClock, Siren, ShieldAlert, CheckCircle2, Activity, Database, Clock, FileSearch, GitBranch, Repeat, Search, ShieldCheck, Shield, Download } from 'lucide-react';
 import PriorityBadge from './ui/PriorityBadge.jsx';
 import CodeBlock from './ui/CodeBlock.jsx';
+import ResponsiveTable from './ResponsiveTable';
 
 const SEV_LABELS = { Critical: 'P0', High: 'P1', Medium: 'P2', Low: 'P3' };
 
@@ -277,26 +278,20 @@ export default function SecurityOperations({ isDark = false }) {
 
             {/* Patch SLA table */}
             <h4 className="text-lg font-bold text-navy-900 dark:text-text-dark-primary mb-3">Patch SLA by severity</h4>
-            <div className="grc-table-wrap">
-              <table className="w-full text-sm min-w-[560px]">
-                <thead>
-                  <tr className="border-b-2 border-emerald-200 dark:border-emerald-900/60">
-                    <th className="py-2.5 pr-3 text-left text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-slate-400">Severity</th>
-                    <th className="py-2.5 pr-3 text-left text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-slate-400">Remediation window</th>
-                    <th className="py-2.5 text-left text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-slate-400">Action</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100 dark:divide-slate-800">
-                  {PATCH_SLA.map(row => (
-                    <tr key={row.sev} className="align-top">
-                      <td className="py-3 pr-3 whitespace-nowrap"><PriorityBadge level={SEV_LABELS[row.sev] || row.sev} /></td>
-                      <td className="py-3 pr-3 font-semibold text-emerald-700 dark:text-emerald-300 whitespace-nowrap">{row.window}</td>
-                      <td className="py-3 text-gray-600 dark:text-text-dark-muted">{row.action}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <ResponsiveTable
+              data={PATCH_SLA}
+              columns={[
+                { key: 'sev', header: 'Severity', sortable: true, render: (v) => <PriorityBadge level={SEV_LABELS[v] || v} /> },
+                { key: 'window', header: 'Remediation window', sortable: true, align: 'center' },
+                { key: 'action', header: 'Action', sortable: false }
+              ]}
+              caption="Vulnerability remediation SLAs by severity level"
+              filename="patch-sla-by-severity.csv"
+              exportLabel="Export Patch SLAs"
+              isDark={isDark}
+              enableSort
+              defaultSortKey="sev"
+            />
           </div>
         </section>
 
@@ -347,28 +342,21 @@ export default function SecurityOperations({ isDark = false }) {
 
             {/* Retention matrix */}
             <h4 className="text-lg font-bold text-navy-900 dark:text-text-dark-primary mb-3">Hot vs cold retention tiers</h4>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm min-w-[640px]">
-                <thead>
-                  <tr className="border-b-2 border-indigo-200 dark:border-indigo-900/60">
-                    <th className="py-2.5 pr-3 text-left text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-slate-400">Tier</th>
-                    <th className="py-2.5 pr-3 text-left text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-slate-400">Window</th>
-                    <th className="py-2.5 pr-3 text-left text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-slate-400">Where</th>
-                    <th className="py-2.5 text-left text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-slate-400">Used for</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100 dark:divide-slate-800">
-                  {RETENTION.map(row => (
-                    <tr key={row.tier} className="align-top">
-                      <td className="py-3 pr-3 font-semibold text-gray-800 dark:text-text-dark-primary whitespace-nowrap">{row.tier}</td>
-                      <td className="py-3 pr-3 font-semibold text-indigo-700 dark:text-indigo-300 whitespace-nowrap">{row.window}</td>
-                      <td className="py-3 pr-3 text-gray-600 dark:text-text-dark-muted">{row.store}</td>
-                      <td className="py-3 text-gray-600 dark:text-text-dark-muted">{row.detects}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <ResponsiveTable
+              data={RETENTION}
+              columns={[
+                { key: 'tier', header: 'Tier', sortable: true },
+                { key: 'window', header: 'Window', sortable: true, align: 'center' },
+                { key: 'store', header: 'Where', sortable: false },
+                { key: 'detects', header: 'Used for', sortable: false }
+              ]}
+              caption="Log retention tiers: hot, warm, cold, and regulated/legal hold"
+              filename="log-retention-tiers.csv"
+              exportLabel="Export Retention Tiers"
+              isDark={isDark}
+              enableSort
+              defaultSortKey="tier"
+            />
             <p className="mt-3 text-xs text-gray-500 dark:text-text-dark-muted">
               Regulated minimums to honor: <strong>CERT-In</strong> to the contrary notwithstanding, logs carrying user/network metadata are
               typically held 180 days, PCI-DSS 1 year, and other regulated data up to 6 years in immutable storage.

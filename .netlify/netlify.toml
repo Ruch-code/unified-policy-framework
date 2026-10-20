@@ -1,0 +1,74 @@
+functionsDirectory = "/Users/ruchikandpal/Documents/Default Project/frontend/netlify/functions"
+functionsDirectoryOrigin = "config-v1"
+redirectsOrigin = "config"
+plugins = []
+
+[build]
+publish = "/Users/ruchikandpal/Documents/Default Project/frontend/dist"
+publishOrigin = "config"
+commandOrigin = "config"
+command = "npm run build"
+functions = "/Users/ruchikandpal/Documents/Default Project/frontend/netlify/functions"
+
+[build.environment]
+NODE_VERSION = "20"
+SECRETS_SCAN_OMIT_KEYS = "ADMIN_EMAIL,ADMIN_PASSWORD,MONGODB_URI,JWT_SECRET,DEFAULT_USER_PASSWORD,GEMINI_API_KEY"
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
+
+[functions]
+
+[functions."*"]
+node_bundler = "esbuild"
+
+[[headers]]
+for = "/*"
+
+[headers.values]
+Content-Security-Policy = "default-src 'self' 'unsafe-inline' 'unsafe-eval' https: http: data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https: http:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self' https: http: wss:; frame-src 'self' https:;"
+
+[[redirects]]
+from = "/api/*"
+to = "/index.html"
+status = 404.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/api/*"
+to = "/index.html"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
