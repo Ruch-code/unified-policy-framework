@@ -284,24 +284,26 @@ export default function VendorRiskManagement({ isDark = false }) {
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-3 mb-12" role="tablist" aria-label="Vendor risk modules">
-          {tabs.map((tab, i) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              role="tab"
-              aria-selected={activeTab === tab}
-              aria-controls={`panel-${tab.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")}`}
-              id={`vtab-${tab.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")}`}
-              className={`px-6 py-3 rounded-xl font-medium transition-all duration-300
-                ${activeTab === tab
-                  ? 'bg-indigo-600 text-white shadow-lg'
-                  : `bg-surface-100 dark:bg-surface-dark-100 text-navy-700 dark:text-text-dark-secondary hover:bg-surface-200 dark:hover:bg-surface-dark-200 border border-surface-300 dark:border-surface-dark-300`
-                }`}
-            >
-              {tab}
-            </button>
-          ))}
+        <div className="overflow-x-auto -mx-4 pb-4 mb-12" role="tablist" aria-label="Vendor risk modules">
+          <div className="flex flex-wrap justify-center gap-3 px-4 min-w-max">
+            {tabs.map((tab, i) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                role="tab"
+                aria-selected={activeTab === tab}
+                aria-controls={`panel-${tab.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")}`}
+                id={`vtab-${tab.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")}`}
+                className={`px-6 py-3 rounded-xl font-medium transition-all duration-300
+                  ${activeTab === tab
+                    ? 'bg-indigo-600 text-white shadow-lg'
+                    : `bg-surface-100 dark:bg-surface-dark-100 text-navy-700 dark:text-text-dark-secondary hover:bg-surface-200 dark:hover:bg-surface-dark-200 border border-surface-300 dark:border-surface-dark-300`
+                  }`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Tab Panels */}

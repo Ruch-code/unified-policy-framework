@@ -93,29 +93,31 @@ export default function InterviewPrep({ isDark = false }) {
         </div>
 
         {/* Role Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10" role="tablist" aria-label="Interview roles">
-          {roles.map((r) => {
-            const colors = roleColors[r.id] || roleColors['grc-analyst'];
-            const isActive = activeRole === r.id;
-            return (
-              <button
-                key={r.id}
-                onClick={() => { setActiveRole(r.id); setExpandedQ(null); setExpandedTip(null); }}
-                role="tab"
-                aria-selected={isActive}
-                aria-controls={`panel-${r.id}`}
-                id={`tab-${r.id}`}
-                className={`px-5 py-2.5 rounded-xl font-medium transition-all duration-200 border-2
-                  ${isActive
-                    ? `${ACTIVE_BADGE[r.id] || 'bg-indigo-600'} text-white shadow-lg border-transparent`
-                    : `bg-surface-100 dark:bg-surface-dark-100 text-navy-700 dark:text-text-dark-secondary hover:bg-surface-200 dark:hover:bg-surface-dark-200 border-surface-300 dark:border-surface-dark-300`}
-                `}
-                style={{ borderColor: isActive ? 'transparent' : colors.primary }}
-              >
-                {r.title}
-              </button>
-            );
-          })}
+        <div className="overflow-x-auto -mx-4 pb-4 mb-10" role="tablist" aria-label="Interview roles">
+          <div className="flex flex-wrap justify-center gap-2 px-4 min-w-max">
+            {roles.map((r) => {
+              const colors = roleColors[r.id] || roleColors['grc-analyst'];
+              const isActive = activeRole === r.id;
+              return (
+                <button
+                  key={r.id}
+                  onClick={() => { setActiveRole(r.id); setExpandedQ(null); setExpandedTip(null); }}
+                  role="tab"
+                  aria-selected={isActive}
+                  aria-controls={`panel-${r.id}`}
+                  id={`tab-${r.id}`}
+                  className={`px-5 py-2.5 rounded-xl font-medium transition-all duration-200 border-2
+                    ${isActive
+                      ? `${ACTIVE_BADGE[r.id] || 'bg-indigo-600'} text-white shadow-lg border-transparent`
+                      : `bg-surface-100 dark:bg-surface-dark-100 text-navy-700 dark:text-text-dark-secondary hover:bg-surface-200 dark:hover:bg-surface-dark-200 border-surface-300 dark:border-surface-dark-300`}
+                  `}
+                  style={{ borderColor: isActive ? 'transparent' : colors.primary }}
+                >
+                  {r.title}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Questions */}

@@ -301,29 +301,31 @@ function FrameworkBody({ framework, extraSections }) {
             <Link to="/" className="text-sm text-gray-500 hover:text-gray-700 mb-2 inline-block transition-colors">
               ← Back to Home
             </Link>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2 flex items-center gap-3 flex-wrap">
-              {framework.flag && (
-                <span className={`text-3xl inline-block ${framework.flagAnimation === 'bounce' ? 'flag-bounce' : framework.flagAnimation === 'pulse' ? 'flag-pulse' : 'flag-float'}`} aria-label={framework.name}>
-                  {framework.flag}
-                </span>
-              )}
-              {framework.name}
+<div className="flex flex-col sm:flex-row sm:items-center gap-2 flex-wrap mb-2">
+              <h1 className="text-3xl font-bold text-primary flex items-center gap-3 flex-wrap">
+                {framework.flag && (
+                  <span className={`text-3xl inline-block ${framework.flagAnimation === 'bounce' ? 'flag-bounce' : framework.flagAnimation === 'pulse' ? 'flag-pulse' : 'flag-float'}`} aria-label={framework.name}>
+                    {framework.flag}
+                  </span>
+                )}
+                {framework.name}
+              </h1>
               {framework.region && (
-                <span className={`text-xs font-semibold px-3 py-1 rounded-full inline-flex items-center ${
-                  framework.region === 'Global' ? 'bg-gray-200 text-gray-700' :
-                  framework.region === 'United States' ? 'bg-blue-100 text-blue-700' :
-                  framework.region === 'European Union' ? 'bg-gradient-to-r from-blue-100 to-yellow-100 text-blue-700' :
-                  framework.region === 'India' ? 'bg-gradient-to-r from-orange-100 to-green-100 text-orange-700' :
-                  framework.region === 'Brazil' ? 'bg-gradient-to-r from-green-100 to-yellow-100 text-green-700' :
-                  framework.region === 'Singapore' ? 'bg-red-100 text-red-700' :
-                  framework.region === 'China' ? 'bg-red-100 text-red-700' :
-                  framework.region === 'Asia-Pacific' ? 'bg-red-100 text-red-700' :
-                  'bg-gray-200 text-gray-700'
+                <span className={`text-xs font-semibold px-3 py-1 rounded-full inline-flex items-center shrink-0 
+                  ${framework.region === 'Global' ? 'bg-region-global text-region-global border-region-global' :
+                   framework.region === 'United States' ? 'bg-region-us text-region-us border-region-us' :
+                   framework.region === 'European Union' ? 'bg-region-eu text-region-eu border-region-eu' :
+                   framework.region === 'India' ? 'bg-region-india text-region-india border-region-india' :
+                   framework.region === 'Brazil' ? 'bg-region-brazil text-region-brazil border-region-brazil' :
+                   framework.region === 'Singapore' ? 'bg-region-sea text-region-sea border-region-sea' :
+                   framework.region === 'China' ? 'bg-region-apac text-region-apac border-region-apac' :
+                   framework.region === 'Asia-Pacific' ? 'bg-region-apac text-region-apac border-region-apac' :
+                   'bg-region-global text-region-global border-region-global'
                 }`}>
                   {framework.region}
                 </span>
               )}
-            </h1>
+            </div>
             <p className="text-gray-600 text-lg max-w-2xl">
               Compliance playbook — complete each level to unlock the next. Learn the controls, how to implement them, and how to verify.
             </p>
