@@ -430,6 +430,20 @@ const moduleEntries = [
     mode: 'route',
     anchorId: null,
   },
+  {
+    id: 'secrets-scanning',
+    category: 'Policy & Control Modules',
+    label: 'Secrets Scanning',
+    desc: 'In-depth guidance on secrets scanning: detection, control points, remediation runbook, governance, framework mapping (SOC 2, ISO 27001, NIST, PCI, HIPAA, GDPR, DPDP), maturity model, audit evidence, and interactive self-assessment and triage tools.',
+    keywords: [
+      'secrets scanning', 'secret detection', 'credential leak', 'api key', 'access key', 'private key',
+      'gitleaks', 'trufflehog', 'detect-secrets', 'push protection', 'pre-commit', 'remediation',
+      'rotation', 'secrets manager', 'oidc', 'workload identity', 'entropy', 'liveness check',
+    ],
+    path: '/knowledge?topic=secrets-scanning',
+    mode: 'route',
+    anchorId: null,
+  },
 ];
 
 // ---------- persona entries ----------

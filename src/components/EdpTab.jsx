@@ -173,7 +173,7 @@ function EdpTab() {
                 <li>• Conditional Access enforcement</li>
                 <li>• Patch SLAs</li>
                 <li>• Vendor risk register</li>
-                <li>• Secrets scanning</li>
+                <li>• <a href="/knowledge?topic=secrets-scanning" className="text-blue-600 hover:underline dark:text-blue-400">Secrets scanning</a></li>
                 <li>• Quarterly access reviews</li>
               </ul>
             </div>

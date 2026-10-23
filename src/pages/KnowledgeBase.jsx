@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import {
   BookOpenCheck, SearchCheck, FileSignature, Radar, MessageSquareText,
   CheckCircle, Copy, Check, ScrollText, ShieldAlert, Clock, CalendarDays, FileText, Timer,
-  Shield, Smartphone, HardDrive, Cloud, Globe, Network, Users, Layers, Zap, Cpu,
+  Shield, Smartphone, HardDrive, Cloud, Globe, Network, Users, Layers, Zap, Cpu, Key,
 } from 'lucide-react';
 import {
   FRAMEWORK_KB, UNIFIED_POLICY_MAP, DISCREPANCY_MATRIX,
@@ -15,6 +15,7 @@ import {
 } from '../data/edp.ts';
 import GrcAssistant from '../components/GrcAssistant.jsx';
 import EdpTab from '../components/EdpTab.jsx';
+import SecretsScanningTab from '../components/SecretsScanningTab.jsx';
 
 const order = ['soc2', 'iso27001', 'iso42001', 'pci', 'hipaa', 'nist', 'gdpr', 'cis', 'hitrust', 'dpdpa', 'fedramp', 'cjis'];
 const EDP_TABS = [
@@ -38,6 +39,7 @@ const TABS = [
   { id: 'radar', label: 'Discrepancy Radar', icon: Radar },
   { id: 'assistant', label: 'GRC Assistant', icon: MessageSquareText },
   { id: 'edp', label: 'Endpoint & Data Protection', icon: Smartphone },
+  { id: 'secrets', label: 'Secrets Scanning', icon: Key },
 ];
 
 function useCopy() {
@@ -67,6 +69,8 @@ export default function KnowledgeBase() {
     const t = params.get('topic');
     if (t === 'endpoint-data-protection') {
       setTab('edp');
+    } else if (t === 'secrets-scanning') {
+      setTab('secrets');
     } else if (p && FRAMEWORK_KB[p]) {
       setFw(p);
     }
@@ -261,6 +265,7 @@ export default function KnowledgeBase() {
       </div>
     ),
     edp: <EdpTab />,
+    secrets: <SecretsScanningTab />,
   };
 
   return (
