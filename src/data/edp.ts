@@ -733,8 +733,7 @@ export const dlpControls = [
     pitfall: 'Push protection not enabled (only alerting); custom patterns not covering internal token formats.',
     mappings: { iso27001: ['A.8.12', 'A.8.24'], soc2: ['CC6.7', 'CC7.2'], hipaa: ['164.312(d)'], gdpr: ['Art. 32'] }
   }
-};
-}
+]
 
 // BYOD Controls (15 controls)
 export const byodControls = [
@@ -916,7 +915,7 @@ export const byodControls = [
     pitfall: 'CA policy excludes BYOD users; MAM compliance not checked in CA condition.',
     mappings: { iso27001: ['A.8.2', 'A.8.3'], soc2: ['CC6.1', 'CC6.7'], hipaa: ['164.312(a)(1)'], gdpr: ['Art. 32'] }
   }
-};
+]
 
 // BYOD Models (4 models)
 export const byodModels = [
@@ -1143,4 +1142,3 @@ export const frameworkMapping = [
   roadmaps,
   pushbacks,
   frameworkMapping
-};
