@@ -444,6 +444,20 @@ const moduleEntries = [
     mode: 'route',
     anchorId: null,
   },
+  {
+    id: 'ai-vendor-assurance',
+    category: 'Policy & Control Modules',
+    label: 'AI Vendor Assurance',
+    desc: 'Review customer DPAs, map AI agent data flows, answer security questionnaires accurately, verify AI controls with customers and auditors, and determine which emerging AI regulations apply.',
+    keywords: [
+      'ai vendor assurance', 'dpa review', 'data flow mapping', 'security questionnaire', 'ai controls',
+      'regulatory applicability', 'controller processor', 'sub-processor', 'prompt injection',
+      'tenant separation', 'sandbox isolation', 'training use', 'model provider',
+    ],
+    path: '/knowledge?topic=ai-vendor-assurance',
+    mode: 'route',
+    anchorId: null,
+  },
 ];
 
 // ---------- persona entries ----------
