@@ -1,6 +1,7 @@
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 import StatementOfApplicability from "../../components/StatementOfApplicability.jsx";
 import ScopeWalkthrough from "../../components/ScopeWalkthrough.jsx";
+import ScopingGuide from "../../components/ScopingGuide";
 
 const FRAMEWORK = {
   id: "iso-27001-la",
@@ -182,6 +183,7 @@ export default function Iso27001La() {
   return (
     <>
       <LearningFrameworkPage framework={FRAMEWORK} />
+      <ScopingGuide />
       <ScopeWalkthrough />
       <StatementOfApplicability />
     </>

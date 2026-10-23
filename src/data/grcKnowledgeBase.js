@@ -1127,7 +1127,7 @@ export const UNIFIED_POLICY_MAP = [
         'HIPAA': '164.312(a) — access control on all ePHI workstations',
         'PCI-DSS': '8.1/9.9 — physical + logical security on CDE endpoints',
         'FedRAMP': 'CM-8 (asset inventory), CM-11 (media protection), SC-7 (boundary protection)',
-        'ISO 27001': 'A.8.1 (user endpoints), A.8.2 (privileged access), A.13.2 (network controls)',
+        'ISO 27001': 'A.8.1 (user endpoints), A.8.2 (privileged access), A.5.14 (information transfer), A.8.20 (network security), A.8.21 (security of network services)',
         'NIST CSF': 'PR.AC-1, PR.AC-3, PR.DS-1, PR.IP-1, DE.CM-8',
         'CIS v8': 'Safeguard 1 (inventory), 4 (secure config), 10 (malware defenses), 12 (boundary defense)',
         'SOC 2': 'CC6.1 (logical access), CC6.6 (MFA), CC7.2 (monitoring)',

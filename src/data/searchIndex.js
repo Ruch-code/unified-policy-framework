@@ -415,6 +415,21 @@ const moduleEntries = [
     mode: 'route',
     anchorId: null,
   },
+  {
+    id: 'endpoint-data-protection',
+    category: 'Policy & Control Modules',
+    label: 'Endpoint & Data Protection: DLP, MDM and BYOD',
+    desc: 'In-depth guidance on DLP, MDM and BYOD for small, medium and large enterprises. Covers Google Workspace and Microsoft 365 tooling side by side, BYOD models, framework mappings (ISO 27001 A.8.12, SOC 2 CC6.7, HIPAA, PCI, GDPR, NIST, CIS), implementation roadmaps, audit evidence and exportable checklists.',
+    keywords: [
+      'dlp', 'data loss prevention', 'data leakage prevention', 'mdm', 'mobile device management', 'byod', 'bring your own device',
+      'intune', 'google endpoint management', 'context-aware access', 'purview', 'defender for endpoint', 'app protection',
+      'android work profile', 'ios user enrollment', 'windows autopilot', 'apple business manager',
+      'a.8.12', 'cc6.7', 'hipaa', 'pci', 'gdpr', 'nist', 'cis', 'roadmap', 'checklist', 'export',
+    ],
+    path: '/knowledge?topic=endpoint-data-protection',
+    mode: 'route',
+    anchorId: null,
+  },
 ];
 
 // ---------- persona entries ----------

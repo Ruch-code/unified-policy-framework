@@ -2,14 +2,34 @@ import { useState, useEffect } from 'react';
 import {
   BookOpenCheck, SearchCheck, FileSignature, Radar, MessageSquareText,
   CheckCircle, Copy, Check, ScrollText, ShieldAlert, Clock, CalendarDays, FileText, Timer,
+  Shield, Smartphone, HardDrive, Cloud, Globe, Network, Users, Layers, Zap, Cpu,
 } from 'lucide-react';
 import {
   FRAMEWORK_KB, UNIFIED_POLICY_MAP, DISCREPANCY_MATRIX,
   VENDOR_CLAUSE_BASE, VENDOR_CLAUSE_CONDITIONAL, GRC_RESPONSE_PLAYBOOK,
 } from '../data/grcKnowledgeBase.js';
+import {
+  mdmControls, dlpControls, byodControls, byodModels, ecosystemComparison,
+  thirdPartyTools, roadmaps, pushbacks, frameworkMapping, sizeProfiles,
+  LICENSING_NOTE,
+} from '../data/edp.ts';
 import GrcAssistant from '../components/GrcAssistant.jsx';
 
-const order = ['soc2', 'iso27001', 'iso42001', 'pci', 'hipaa', 'nist', 'gdpr', 'cis', 'hitrust', 'dpdpa', 'fedramp', 'cjis'];
+const order = ['soc2', 'iso27001', 'iso42001', 'pci', 'hipaa', 'nist', 'gdpr', 'cis', 'hitrust', 'dpdpa', 'fedramp', 'cjis', 'endpoint-data-protection'];
+const EDP_TABS = [
+  { id: 'overview', label: 'Overview', icon: BookOpenCheck },
+  { id: 'sizes', label: 'Size Profiles', icon: Layers },
+  { id: 'mdm', label: 'MDM', icon: Smartphone },
+  { id: 'dlp', label: 'DLP', icon: HardDrive },
+  { id: 'byod', label: 'BYOD', icon: Users },
+  { id: 'ecosystems', label: 'Google vs Microsoft', icon: Globe },
+  { id: 'mixed', label: 'Mixed & Third-Party', icon: Network },
+  { id: 'mapping', label: 'Framework Mapping', icon: Shield },
+  { id: 'roadmap', label: 'Roadmap', icon: CalendarDays },
+  { id: 'evidence', label: 'Audit Evidence', icon: FileText },
+  { id: 'pushback', label: 'Pushback', icon: ShieldAlert },
+  { id: 'checklist', label: 'Checklist & Downloads', icon: Timer },
+];
 const TABS = [
   { id: 'policies', label: 'Policies → Controls', icon: BookOpenCheck },
   { id: 'audit', label: 'Audit & Rebuttals', icon: ShieldAlert },
@@ -32,12 +52,23 @@ export default function KnowledgeBase() {
   const [fw, setFw] = useState('soc2');
   const [tab, setTab] = useState('policies');
   const [sel, setSel] = useState({ soc2: true, iso27001: true, pci: true, hipaa: true, gdpr: true, dpdpa: true });
+  const [edpTab, setEdpTab] = useState('overview');
   const { copied, copy } = useCopy();
-  const fwObj = FRAMEWORK_KB[fw];
+
+  // Check if we're viewing the EDP topic
+  const isEdpTopic = fw === 'endpoint-data-protection';
+  const fwObj = isEdpTopic ? null : FRAMEWORK_KB[fw];
 
   useEffect(() => {
-    const p = new URLSearchParams(window.location.search).get('fw');
-    if (p && FRAMEWORK_KB[p]) setFw(p);
+    const params = new URLSearchParams(window.location.search);
+    const p = params.get('fw');
+    const t = params.get('topic');
+    if (t === 'endpoint-data-protection') {
+      setFw('endpoint-data-protection');
+      setTab('overview');
+    } else if (p && FRAMEWORK_KB[p]) {
+      setFw(p);
+    }
   }, []);
 
   const selectedClauses = Object.entries(VENDOR_CLAUSE_CONDITIONAL)
