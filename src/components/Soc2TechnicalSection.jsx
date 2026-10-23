@@ -225,7 +225,6 @@ export default function Soc2TechnicalSection() {
             caption="Network segregation matrix: default-deny between segments with allowed/denied traffic and controls"
             filename="network-segregation-matrix.csv"
             exportLabel="Export Network Matrix"
-            isDark={isDark}
             enableSort
             defaultSortKey="segment"
           />

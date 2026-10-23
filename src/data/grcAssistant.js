@@ -25,17 +25,17 @@ const INTENTS = [
 ];
 
 const FW_MATCH = [
-  { slug: 'soc2', re: /\bsoc[ _\-]?2\b|trust services|tsc/i },
-  { slug: 'iso27001', re: /\biso[ _\-]?27001\b|isms|\bism\b/i },
-  { slug: 'iso42001', re: /\biso[ _\-]?42001\b|ai management system|\baims\b|ai governance\b|bias assessment|foundation model|model card/i },
-  { slug: 'pci', re: /\bpci[ _\-]?dss?\b|cardholder|payment card|\bpan\b|pci-dss/i },
+  { slug: 'soc2', re: /\bsoc[ _-]?2\b|trust services|tsc/i },
+  { slug: 'iso27001', re: /\biso[ _-]?27001\b|isms|\bism\b/i },
+  { slug: 'iso42001', re: /\biso[ _-]?42001\b|ai management system|\baims\b|ai governance\b|bias assessment|foundation model|model card/i },
+  { slug: 'pci', re: /\bpci[ _-]?dss?\b|cardholder|payment card|\bpan\b|pci-dss/i },
   { slug: 'hipaa', re: /\bhipaa\b|\bphi\b|health insurance|hipaa\b/i },
   { slug: 'nist', re: /\bnist\b|\bcsf\b|800-171|800-53/i },
   { slug: 'gdpr', re: /\bgdpr\b|eu privacy|art 28|\bsccs?\b|gdpr/i },
   { slug: 'cis', re: /\bcis\b|safeguard|implementation group/i },
   { slug: 'hitrust', re: /\bhitrust\b|\be1\b|\bi1\b|\br2\b/i },
   { slug: 'dpdpa', re: /\bdpdpa\b|digital personal data|cert-in|\bindia\b|data protection board/i },
-  { slug: 'iso27701', re: /\biso[ _\-]?27701\b|privacy information management|\bpims\b/i },
+  { slug: 'iso27701', re: /\biso[ _-]?27701\b|privacy information management|\bpims\b/i },
   { slug: 'coppa', re: /\bcoppa\b|childrens? data|verifiable parental consent/i },
   { slug: 'lgpd', re: /\blgpd\b|lei geral|brazil data|brazil privacy/i },
   { slug: 'pdpa', re: /\bpdpa\b|singapore data|singapore privacy|pdpc\b/i },

@@ -4,7 +4,7 @@ import {
   HardDrive, Network, BookOpen, ExternalLink, CalendarDays, ShieldAlert,
   Clock, Timer, CheckCircle, Copy, Check, ChevronDown, ChevronRight,
   AlertTriangle, List, BarChart3, Target, Layers, Building2, Scale,
-  ClipboardCheck, Workflow, Database, Eye,
+  ClipboardCheck, Workflow, Database, Eye, ShieldCheck,
 } from 'lucide-react';
 import {
   DPA_CHECKLIST, DATA_FLOW_ROWS, ASSURANCE_ROWS, FRAMEWORK_MAPPINGS,

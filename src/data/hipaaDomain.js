@@ -395,7 +395,7 @@ const ROMAN = ['i', 'ii', 'iii', 'iv', 'v', 'vi', 'vii', 'viii', 'ix', 'x'];
 
 // Matches 45 CFR references, keeping a trailing range suffix intact for display.
 // "§164.302–318" -> "164.302–318", "§164.308(a)(1)(ii)(A)–(D)" -> as written.
-const RANGE_TAIL = String.raw`(\s*[–\-]\s*(?:§\s*)?(?:\d+|\([^()]*\)))?`;
+const RANGE_TAIL = String.raw`(\s*[–-]\s*(?:§\s*)?(?:\d+|\([^()]*\)))?`;
 const CFR_RE = new RegExp(String.raw`§\s*(\d{3}\.\d+(?:\([^()]*\))*)` + RANGE_TAIL, 'g');
 // Fallback for controls that cite a section without the § symbol.
 const BARE_RE = new RegExp(String.raw`(\d{3}\.\d+(?:\([^()]*\))*)` + RANGE_TAIL);
@@ -435,7 +435,7 @@ export function extractSections(control) {
 // number rather than a sub-paragraph sequence, e.g. "164.302–318".
 function expandSpecRange(section) {
   const s = String(section);
-  let m = s.match(/^(.*?)\(([ivx]+)\)\s*[–\-]\s*\(([ivx]+)\)$/i);
+  let m = s.match(/^(.*?)\(([ivx]+)\)\s*[–-]\s*\(([ivx]+)\)$/i);
   if (m) {
     const start = ROMAN.indexOf(m[2].toLowerCase());
     const end = ROMAN.indexOf(m[3].toLowerCase());
@@ -445,7 +445,7 @@ function expandSpecRange(section) {
     for (let i = start; i <= end; i++) out.push(`${stem}(${ROMAN[i]})`);
     return out;
   }
-  m = s.match(/^(.*?)\(([A-Z])\)\s*[–\-]\s*\(([A-Z])\)$/);
+  m = s.match(/^(.*?)\(([A-Z])\)\s*[–-]\s*\(([A-Z])\)$/);
   if (m) {
     const start = m[2].charCodeAt(0) - 65;
     const end = m[3].charCodeAt(0) - 65;
@@ -463,8 +463,8 @@ export function expandSpecs(section) {
   const s = String(section).replace(/^§/, '').replace(/\s+/g, '');
   const range = expandSpecRange(s);
   if (range) return range;
-  if (/[–\-]/.test(s)) {
-    const [left, right] = s.split(/[–\-]/);
+  if (/[–-]/.test(s)) {
+    const [left, right] = s.split(/[–-]/);
     const l = left.trim();
     const r = right.trim();
     // A trailing bare number names the same part at a different section level,
@@ -657,7 +657,7 @@ const ROLE_NOTES = {
 
 function anySectionStarts(sections, prefixes) {
   return sections.some(s => {
-    const parts = String(s).split(/[–\-]/).map(p => p.trim());
+    const parts = String(s).split(/[–-]/).map(p => p.trim());
     return parts.some(p => prefixes.some(pre => p.startsWith(pre)));
   });
 }

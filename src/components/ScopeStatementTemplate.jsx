@@ -1,4 +1,4 @@
-import { Copy, FileText, Shield, CheckCircle, Calendar, CalendarDays, Lock, UserCheck, Building2, Users, Briefcase, GraduationCap, ArrowRight, ChevronRight } from 'lucide-react';
+import { Copy, FileText, Shield, CheckCircle, Calendar, CalendarDays, Lock, UserCheck, Building2, Users, Briefcase, GraduationCap, ArrowRight, ChevronRight, AlertTriangle } from 'lucide-react';
 
 function ScopeStatementTemplate({ isDark = false }) {
   return (

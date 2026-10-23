@@ -34,7 +34,7 @@ const norm = (s = '') =>
 function tokenize(...inputs) {
   const set = new Set();
   for (const val of inputs) {
-    for (const t of String(val || '').split(/[^a-z0-9+#.()\-]+/i)) {
+    for (const t of String(val || '').split(/[^a-z0-9+#.()-]+/i)) {
       const w = norm(t);
       if (w.length > 1) set.add(w);
     }
@@ -217,7 +217,7 @@ function frameworkEntries() {
         fw.region,
         fw.tagline,
         fw.basePath,
-        ...(fw.startupGaps || []).flatMap(g => [g.itgc, g.gap, g.policy] || []),
+        ...(fw.startupGaps || []).flatMap(g => [g.itgc, g.gap, g.policy]),
         ...weeks.flatMap(w => [w.title, w.description]),
         ...allTasks.flatMap(t => [
           String(t?.title || t || ''),

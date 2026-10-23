@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "test": "node --test \"tests/**/*.test.mjs\"",
     "test:iso": "node --test tests/iso27001.test.mjs",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src/"
   },
   "dependencies": {
     "@netlify/blobs": "^11.1.0",
@@ -38,6 +39,7 @@
     "@babel/plugin-transform-react-jsx": "^8.0.1",
     "@babel/preset-env": "^8.0.6",
     "@babel/preset-react": "^8.0.1",
+    "@eslint/js": "^10.0.1",
     "@vitejs/plugin-react": "^4.7.0",
     "@vitejs/plugin-react-swc": "^4.3.3",
     "autoprefixer": "^10.4.16",
@@ -47,6 +49,9 @@
     "babel-plugin-module-resolver": "^5.0.3",
     "css-loader": "^7.1.5",
     "enhanced-resolve": "^5.25.1",
+    "eslint": "^10.13.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
     "html-webpack-plugin": "^5.6.8",
     "postcss": "^8.5.28",
     "postcss-loader": "^8.2.1",
