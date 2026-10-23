@@ -294,7 +294,7 @@ export function generatePolicyTestSteps(policyName: string): string[] {
   ];
 }
 
-export function generateToolDeprovisionSteps(toolName: string, toolUrl: string): string[] {
+export function generateToolDeprovisionSteps(toolName: string, _toolUrl: string): string[] {
   return [
     `Integrate ${toolName} with your IdP (Okta, Entra ID) via SCIM or SAML for automated provisioning/deprovisioning.`,
     `Configure offboarding workflow to disable/remove ${toolName} account within 4 hours of HR termination notice.`,

@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "node --test \"tests/**/*.test.mjs\"",
-    "test:iso": "node --test tests/iso27001.test.mjs"
+    "test:iso": "node --test tests/iso27001.test.mjs",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@netlify/blobs": "^11.1.0",
@@ -53,6 +54,7 @@
     "style-loader": "^4.0.0",
     "tailwindcss": "^3.4.0",
     "terser-webpack-plugin": "^5.6.1",
+    "typescript": "^7.0.2",
     "vite": "^5.0.10",
     "webpack": "^5.111.1",
     "webpack-cli": "^7.2.3",
