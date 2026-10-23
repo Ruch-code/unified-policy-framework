@@ -8,6 +8,7 @@ import {
   FRAMEWORK_KB, UNIFIED_POLICY_MAP, DISCREPANCY_MATRIX,
   VENDOR_CLAUSE_BASE, VENDOR_CLAUSE_CONDITIONAL, GRC_RESPONSE_PLAYBOOK,
 } from '../data/grcKnowledgeBase.js';
+import EdpTab from '../components/EdpTab.jsx';
 import {
   mdmControls, dlpControls, byodControls, byodModels, ecosystemComparison,
   thirdPartyTools, roadmaps, pushbacks, frameworkMapping, sizeProfiles,
@@ -259,6 +260,7 @@ export default function KnowledgeBase() {
         <GrcAssistant />
       </div>
     ),
+    edp: <EdpTab />,
   };
 
   return (
