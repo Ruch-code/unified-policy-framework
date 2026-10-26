@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { X, Mail, Rocket, ShieldCheck, MessagesSquare } from 'lucide-react';
 import { AUTHOR } from '../data/author.js';
+import AssemblingAvatar from './AssemblingAvatar.jsx';
 
 export default function AuthorAboutPopup({ open, onClose }) {
   const [tab, setTab] = useState('about');
+  const [replay, setReplay] = useState(0);
 
   if (!open) return null;
 
@@ -21,10 +23,12 @@ export default function AuthorAboutPopup({ open, onClose }) {
         </div>
 
         {/* Avatar */}
-        <div className="flex justify-center -mt-14 mb-3">
-          <div className="w-28 h-28 rounded-2xl bg-white p-1.5 shadow-lg rotate-3 hover:rotate-0 transition-transform duration-300">
+        <div className="flex justify-center -mt-16 mb-3">
+          <div className="w-[140px] h-[140px] rounded-2xl bg-white p-1.5 shadow-lg">
             {AUTHOR.photo ? (
-              <img src={AUTHOR.photo} alt={AUTHOR.name} className="w-full h-full object-cover rounded-xl" />
+              <button type="button" onClick={() => setReplay(r => r + 1)} title="Replay" aria-label={`${AUTHOR.name} portrait, click to replay animation`} className="block rounded-xl">
+                <AssemblingAvatar src={AUTHOR.photo} alt={AUTHOR.name} size={128} replayKey={replay} />
+              </button>
             ) : (
               <div className="w-full h-full rounded-xl bg-gradient-to-br from-[#7c3aed] to-[#6366f1] flex items-center justify-center text-white text-4xl font-bold">
                 {AUTHOR.name.split(' ').map(n => n[0]).join('')}
