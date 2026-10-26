@@ -582,7 +582,7 @@ function FrameworkBody({ framework, extraSections }) {
           return (
             <div className={`bg-white rounded-2xl border ${colors.border} p-6 mb-8`}>
               <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
-                <span className="w-8 h-8 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center"><TrendingUp className="w-4 h-4" /></span>
+                <span className="w-8 h-8 rounded-lg bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300 flex items-center justify-center"><TrendingUp className="w-4 h-4" /></span>
                 Common Gaps & Startup Pushback (ITGC)
               </h2>
               <p className="text-gray-500 text-sm mb-4 max-w-2xl">
@@ -745,7 +745,7 @@ function GapCard({ item, colors }) {
           <span className={`inline-block text-[10px] font-semibold px-2 py-0.5 rounded-full border uppercase tracking-wide mb-1.5 ${itgcColor(dom)}`}>
             ITGC · {dom}
           </span>
-          <h4 className="font-bold text-gray-900 flex items-center justify-between gap-2">
+          <h4 className="font-bold text-gray-900 dark:text-white flex items-center justify-between gap-2">
             {item.gap}
             <ChevronRight className={`w-4 h-4 shrink-0 text-gray-400 transition-transform ${open ? 'rotate-90' : ''}`} />
           </h4>
@@ -755,34 +755,34 @@ function GapCard({ item, colors }) {
         </div>
       </button>
       {open && (
-        <div className="p-4 space-y-3 bg-white">
+        <div className="p-4 space-y-3 bg-white dark:bg-slate-900">
           {hasPushback && (
-            <div className="rounded-lg bg-amber-50 border border-amber-100 p-3">
-              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-700 uppercase tracking-wide"><AlertTriangle className="w-3.5 h-3.5" /> What founders/staff say</span>
-              <p className="text-sm text-gray-700 italic mt-1">"{item.pushback}"</p>
+            <div className="rounded-lg bg-amber-50 border border-amber-100 dark:bg-amber-900/30 dark:border-amber-800 p-3">
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-700 dark:text-amber-300 uppercase tracking-wide"><AlertTriangle className="w-3.5 h-3.5" /> What founders/staff say</span>
+              <p className="text-sm text-gray-700 italic mt-1 dark:text-slate-200">"{item.pushback}"</p>
             </div>
           )}
-          <div className="rounded-lg bg-blue-50 border border-blue-100 p-3">
-            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-700 uppercase tracking-wide"><TrendingUp className="w-3.5 h-3.5" /> Why it matters</span>
-            <p className="text-sm text-gray-700 mt-1">{item.reality}</p>
+          <div className="rounded-lg bg-blue-50 border border-blue-100 dark:bg-blue-900/30 dark:border-blue-800 p-3">
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-700 dark:text-blue-300 uppercase tracking-wide"><TrendingUp className="w-3.5 h-3.5" /> Why it matters</span>
+            <p className="text-sm text-gray-700 mt-1 dark:text-slate-200">{item.reality}</p>
           </div>
           {compensating.length > 0 && (
-            <div className="rounded-lg bg-indigo-50 border border-indigo-100 p-3">
-              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-700 uppercase tracking-wide"><CheckCircle className="w-3.5 h-3.5" /> Compensating controls already in place</span>
-              <ul className="mt-1 space-y-1 text-sm text-gray-700">
+            <div className="rounded-lg bg-indigo-50 border border-indigo-100 dark:bg-indigo-900/30 dark:border-indigo-800 p-3">
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-700 dark:text-indigo-300 uppercase tracking-wide"><CheckCircle className="w-3.5 h-3.5" /> Compensating controls already in place</span>
+              <ul className="mt-1 space-y-1 text-sm text-gray-700 dark:text-slate-200">
                 {compensating.map((c, i) => (
-                  <li key={i} className="flex items-start gap-2"><span className="text-indigo-400 mt-0.5">•</span>{c}</li>
+                  <li key={i} className="flex items-start gap-2"><span className="text-indigo-400 dark:text-indigo-300 mt-0.5">•</span>{c}</li>
                 ))}
               </ul>
             </div>
           )}
-          <div className="rounded-lg bg-violet-50 border border-violet-100 p-3">
-            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-violet-700 uppercase tracking-wide"><BookOpen className="w-3.5 h-3.5" /> Policy that ties to this framework</span>
-            <p className="text-sm text-gray-700 mt-1">{policy || 'Align controls to your Information Security Policy set.'}</p>
+          <div className="rounded-lg bg-violet-50 border border-violet-100 dark:bg-violet-900/30 dark:border-violet-800 p-3">
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-violet-700 dark:text-violet-300 uppercase tracking-wide"><BookOpen className="w-3.5 h-3.5" /> Policy that ties to this framework</span>
+            <p className="text-sm text-gray-700 mt-1 dark:text-slate-200">{policy || 'Align controls to your Information Security Policy set.'}</p>
           </div>
-          <div className="rounded-lg bg-green-50 border border-green-100 p-3">
-            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-green-700 uppercase tracking-wide"><Lightbulb className="w-3.5 h-3.5" /> The lean way</span>
-            <p className="text-sm text-gray-700 mt-1">{item.leantip}</p>
+          <div className="rounded-lg bg-green-50 border border-green-100 dark:bg-green-900/30 dark:border-green-800 p-3">
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-green-700 dark:text-green-300 uppercase tracking-wide"><Lightbulb className="w-3.5 h-3.5" /> The lean way</span>
+            <p className="text-sm text-gray-700 mt-1 dark:text-slate-200">{item.leantip}</p>
           </div>
         </div>
       )}
