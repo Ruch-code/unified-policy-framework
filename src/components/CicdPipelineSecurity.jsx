@@ -41,11 +41,12 @@ const STAGES = [
     checks: [
       { what: 'Automated unit and integration tests', detail: 'Required to pass before merge; skipped tests are visible and explained.' },
       { what: 'DAST (dynamic testing)', detail: 'Scans a running staging build for issues static tools miss, such as auth and header problems.' },
+      { what: 'IAST (interactive testing)', detail: 'An agent inside the running app watches real code paths while tests or DAST run, pinpointing the vulnerable line with few false positives.' },
       { what: 'Staging that mirrors production', detail: 'Separate environment and credentials; no production personal data unless masked.' },
       { what: 'Release QA sign-off', detail: 'For larger releases, a recorded manual or exploratory test before deploy.' },
     ],
     test: ['ToD: show testing requirements in the change management procedure.', 'OE: sample changes and show test runs; auditors often ask about skipped or disabled tests.', 'ToD: show staging and production are separated (accounts, networks, data).'],
-    tools: ['Test runners in GitHub Actions, GitLab CI, Jenkins, CircleCI, Azure Pipelines', 'DAST: OWASP ZAP, Burp Suite Enterprise', 'Data masking tools for test data'],
+    tools: ['Test runners in GitHub Actions, GitLab CI, Jenkins, CircleCI, Azure Pipelines', 'DAST: OWASP ZAP, Burp Suite Enterprise, Invicti', 'IAST: Contrast Assess, Seeker, Datadog IAST', 'Data masking tools for test data'],
     map: 'SOC 2 CC8.1 | ISO 27001 A.8.29, A.8.31, A.8.33 | PCI DSS 6.2.4, 6.5.3',
   },
   {
@@ -102,6 +103,36 @@ const STAGES = [
   },
 ];
 
+const AST_TYPES = [
+  {
+    name: 'SAST', full: 'Static Application Security Testing', how: 'Reads source code or bytecode without running it (white box).',
+    when: 'In the IDE and on every pull request, before merge.',
+    finds: 'Injection flaws, unsafe functions, hard-coded secrets, insecure crypto, taint from input to dangerous sinks.',
+    misses: 'Runtime and configuration issues, authentication and session flaws, problems that depend on deployed environment.',
+    noise: 'Higher false positives; needs tuning and triage.',
+    evidence: 'Required status check on the repo; sampled PRs with scan results and triage of findings.',
+    tools: 'CodeQL, Semgrep, SonarQube, Checkmarx, Fortify',
+  },
+  {
+    name: 'DAST', full: 'Dynamic Application Security Testing', how: 'Attacks the running application from outside, like an attacker (black box).',
+    when: 'Against staging after deploy, and on a schedule against production-like environments.',
+    finds: 'Authentication and session issues, missing security headers, misconfiguration, exposed endpoints, injection reachable over HTTP.',
+    misses: 'Exact code location, unreached code paths, logic only reachable with specific data or roles unless configured.',
+    noise: 'Lower false positives, but slower and needs a deployed environment and test accounts.',
+    evidence: 'Scan reports with dates and target, pipeline job or schedule, remediation tracking against SLA.',
+    tools: 'OWASP ZAP, Burp Suite Enterprise, Invicti, StackHawk',
+  },
+  {
+    name: 'IAST', full: 'Interactive Application Security Testing', how: 'An agent instruments the running app and observes data flow from the inside while tests run (grey box).',
+    when: 'During automated functional tests or QA in staging, alongside DAST.',
+    finds: 'Confirmed vulnerabilities with the exact line of code and request that triggered them; vulnerable libraries actually loaded.',
+    misses: 'Code not exercised by tests; coverage depends on test quality. Language and framework support varies.',
+    noise: 'Low false positives, since it sees real execution.',
+    evidence: 'Agent deployed in test environments, findings report per release, link to test coverage.',
+    tools: 'Contrast Assess, Synopsys Seeker, Datadog IAST',
+  },
+];
+
 const AI_POINTS = [
   { t: 'AI-written code is still a change', d: 'Code suggested by an assistant or written by an agent goes through the same pull request, scans, tests and approvals as human code. Auditors will not accept "the AI wrote it" as a reason for a lighter path.' },
   { t: 'A human must approve, and cannot be replaced by the AI', d: 'An AI reviewer can help, but a named human approval is still required. If an agent opens the pull request, the person who triggered it should not be the only approver; treat them as the author.' },
@@ -146,6 +177,37 @@ export default function CicdPipelineSecurity() {
             </div>
           ))}
         </div>
+      </div>
+
+      <div className="bg-white rounded-2xl border border-emerald-200 dark:border-emerald-800 p-5">
+        <h4 className="font-bold text-gray-900 dark:text-white mb-1">Application security testing: SAST vs DAST vs IAST</h4>
+        <p className="text-sm text-gray-600 dark:text-slate-300 mb-4 max-w-3xl">They are complementary, not alternatives. SAST catches issues earliest in code, DAST tests what an attacker can actually reach, and IAST confirms real, exploitable issues with the exact line of code. SCA (dependency scanning) covers third-party libraries, which none of the three fully replace.</p>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm min-w-[760px] border-collapse">
+            <thead>
+              <tr className="text-left text-[11px] uppercase tracking-wide text-gray-500 dark:text-slate-400">
+                <th className="p-2 border-b border-gray-200 dark:border-slate-700 w-40"></th>
+                {AST_TYPES.map(t => (
+                  <th key={t.name} className="p-2 border-b border-gray-200 dark:border-slate-700">
+                    <span className="block text-sm font-bold normal-case tracking-normal text-gray-900 dark:text-white">{t.name}</span>
+                    <span className="block normal-case tracking-normal font-medium">{t.full}</span>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {[['How it works', 'how'], ['Where in the pipeline', 'when'], ['Finds well', 'finds'], ['Misses', 'misses'], ['False positives', 'noise'], ['Audit evidence', 'evidence'], ['Example tools', 'tools']].map(([label, key]) => (
+                <tr key={key} className="align-top">
+                  <th scope="row" className="p-2 border-b border-gray-100 dark:border-slate-800 text-left text-xs font-semibold text-gray-700 dark:text-slate-200">{label}</th>
+                  {AST_TYPES.map(t => (
+                    <td key={t.name} className="p-2 border-b border-gray-100 dark:border-slate-800 text-gray-700 dark:text-slate-200">{t[key]}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-gray-500 dark:text-slate-400 mt-3">Related: RASP (runtime application self-protection) uses similar instrumentation to IAST but blocks attacks in production rather than finding them in testing.</p>
       </div>
 
       <div className="space-y-3">
