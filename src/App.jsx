@@ -44,6 +44,8 @@ import WhatsNew from './pages/WhatsNew.jsx';
 import Iso42001 from './pages/standards/Iso42001';
 import Iso27017 from './pages/standards/Iso27017';
 import Iso27090 from './pages/standards/Iso27090';
+import FedRamp from './pages/standards/FedRamp.jsx';
+import Iso22317 from './pages/standards/Iso22317.jsx';
 import Iso27018 from './pages/standards/Iso27018';
 import Iso22301 from './pages/standards/Iso22301';
 import Nis2 from './pages/standards/Nis2';
@@ -116,6 +118,9 @@ function App() {
 <Route path="aigp" element={<Protected><Aigp /></Protected>} />
           <Route path="ai-governance" element={<Protected><AIGovernance /></Protected>} />
           <Route path="iso/42001" element={<Protected><Iso42001 /></Protected>} />
+          <Route path="fedramp" element={<Protected><FedRamp /></Protected>} />
+          <Route path="iso-22317" element={<Protected><Iso22317 /></Protected>} />
+          <Route path="cjis" element={<Navigate to="/knowledge?fw=cjis" replace />} />
           <Route path="iso/27090" element={<Protected><Iso27090 /></Protected>} />
           <Route path="iso/27017" element={<Protected><Iso27017 /></Protected>} />
           <Route path="iso/27018" element={<Protected><Iso27018 /></Protected>} />

@@ -119,4 +119,7 @@ const fedrampFramework = {
 };
 
 export { fedrampFramework as FRAMEWORK };
-export default fedrampFramework;
+
+export default function FedRampPage() {
+  return <LearningFrameworkPage framework={fedrampFramework} />;
+}
