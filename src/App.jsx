@@ -43,6 +43,7 @@ import WhatsNew from './pages/WhatsNew.jsx';
 
 import Iso42001 from './pages/standards/Iso42001';
 import Iso27017 from './pages/standards/Iso27017';
+import Iso27090 from './pages/standards/Iso27090';
 import Iso27018 from './pages/standards/Iso27018';
 import Iso22301 from './pages/standards/Iso22301';
 import Nis2 from './pages/standards/Nis2';
@@ -115,6 +116,7 @@ function App() {
 <Route path="aigp" element={<Protected><Aigp /></Protected>} />
           <Route path="ai-governance" element={<Protected><AIGovernance /></Protected>} />
           <Route path="iso/42001" element={<Protected><Iso42001 /></Protected>} />
+          <Route path="iso/27090" element={<Protected><Iso27090 /></Protected>} />
           <Route path="iso/27017" element={<Protected><Iso27017 /></Protected>} />
           <Route path="iso/27018" element={<Protected><Iso27018 /></Protected>} />
           <Route path="iso/22301" element={<Protected><Iso22301 /></Protected>} />

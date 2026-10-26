@@ -214,16 +214,16 @@ export default function Login() {
           )}
 
           <div className={`${tab === 'signin' || tab === 'admin' ? 'mt-6 pt-4 border-t border-gray-100' : 'mt-6'} relative`}>
-            <div
-              onMouseEnter={() => setShowAbout(true)}
-              onMouseLeave={() => setShowAbout(false)}
+            <button
+              type="button"
               className="inline-flex items-center gap-2 group cursor-pointer"
               onClick={() => setShowAbout(true)}
+              aria-haspopup="dialog"
             >
               <span className="inline-flex items-center gap-2 text-[#7c3aed] text-sm font-semibold group-hover:underline transition">
                 <UserRound className="w-4 h-4" /> About the author
               </span>
-            </div>
+            </button>
           </div>
         </div>
       </div>

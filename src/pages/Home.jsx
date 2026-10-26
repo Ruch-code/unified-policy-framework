@@ -157,6 +157,7 @@ const REGIONS = [
       { path: '/iso/27001/li', name: 'ISO 27001 LI', desc: 'ISMS implementation' },
       { path: '/iso-22317', name: 'ISO 22317', desc: 'Business Impact Analysis (2021)' },
       { path: '/iso/42001', name: 'ISO 42001', desc: 'AI Management System' },
+      { path: '/iso/27090', name: 'ISO 27090', desc: 'Security threats to AI systems (2026)' },
       { path: '/iso/27017', name: 'ISO 27017', desc: 'Cloud security controls' },
       { path: '/iso/27018', name: 'ISO 27018', desc: 'Cloud PII protection' },
       { path: '/iso/22301', name: 'ISO 22301', desc: 'Business continuity management' },

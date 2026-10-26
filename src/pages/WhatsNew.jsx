@@ -6,6 +6,16 @@ import { FRAMEWORKS } from '../data/registry';
 
 const CHANGELOG = [
   {
+    version: '2.9.0',
+    date: '2026-10-26',
+    label: 'ISO/IEC 27090 Release',
+    changes: [
+      { type: 'Feature', title: 'ISO/IEC 27090:2026 AI Security Page', desc: 'New /iso/27090 page for the October 2026 standard on security threats and compromises to AI systems: the nine Clause 6 threat types, a 4-week implementation path, startup gaps, and how it fits with ISO 27001 and ISO 42001.' },
+      { type: 'Feature', title: 'ISO 27001 Reference Workspace', desc: 'Clauses 4 to 10, all 93 Annex A controls and the Statement of Applicability workspace now appear on the ISO 27001 LI page. /iso/27001 now opens that page.' },
+      { type: 'Fix', title: 'Dark Mode Colours', desc: 'Fixed dark mode colours in the ISO 27001 workspace, framework week cards and the Common Gaps panels.' },
+    ],
+  },
+  {
     version: '2.8.0',
     date: '2026-10-20',
     label: 'Phase 8 Release',
@@ -48,7 +58,7 @@ const CHANGELOG = [
     date: '2026-09-20',
     label: 'Phase 5 Release',
     changes: [
-      { type: 'Fix', title: 'Content Corrections Across 11 Frameworks', desc: 'Fixed CIPP/EU (GDPR Art. 28, ePrivacy), PCI DSS v4.0.1 (phishing-resistant MFA, targeted risk analysis), COPPA (verifiable parental consent, Safe Harbor), CCPA/CPRA (sensitive personal info, 45-day response), DPDPA (significant data fiduciary, children consent), NIST CSF 2.0 (Govern function, implementation tiers), CIS v8.1 (IG updates, SAF), FedRAMP (Low/Mod/High, ATO, ConMon), CJIS (5.6 auth, 5.7 PIV/FIDO2), ISO 27701 (PIMS controls, privacy roles), ISO 27090 (zero trust principles).' },
+      { type: 'Fix', title: 'Content Corrections Across 11 Frameworks', desc: 'Fixed CIPP/EU (GDPR Art. 28, ePrivacy), PCI DSS v4.0.1 (phishing-resistant MFA, targeted risk analysis), COPPA (verifiable parental consent, Safe Harbor), CCPA/CPRA (sensitive personal info, 45-day response), DPDPA (significant data fiduciary, children consent), NIST CSF 2.0 (Govern function, implementation tiers), CIS v8.1 (IG updates, SAF), FedRAMP (Low/Mod/High, ATO, ConMon), CJIS (5.6 auth, 5.7 PIV/FIDO2), ISO 27701 (PIMS controls, privacy roles).' },
     ]
   },
   {

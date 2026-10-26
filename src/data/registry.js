@@ -27,6 +27,7 @@ import { FRAMEWORK as Aigp } from '../pages/standards/Aigp.jsx';
 
 import { FRAMEWORK as Iso42001 } from '../pages/standards/Iso42001';
 import { FRAMEWORK as Iso27017 } from '../pages/standards/Iso27017';
+import { FRAMEWORK as Iso27090 } from '../pages/standards/Iso27090';
 import { FRAMEWORK as Iso27018 } from '../pages/standards/Iso27018';
 import { FRAMEWORK as Iso22301 } from '../pages/standards/Iso22301';
 import { FRAMEWORK as Nis2 } from '../pages/standards/Nis2';
@@ -63,6 +64,7 @@ export const FRAMEWORKS = {
   [Aigp.id]: Aigp,
   [Iso42001.id]: Iso42001,
   [Iso27017.id]: Iso27017,
+  [Iso27090.id]: Iso27090,
   [Iso27018.id]: Iso27018,
   [Iso22301.id]: Iso22301,
   [Nis2.id]: Nis2,
