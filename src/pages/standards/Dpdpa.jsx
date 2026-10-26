@@ -1,4 +1,5 @@
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
+import DpdpRoles from "../../components/DpdpRoles.jsx";
 
 const FRAMEWORK = {
   id: 'dpdpa',
@@ -201,7 +202,8 @@ const FRAMEWORK = {
     { day: 20, label: 'Breach Response & DPIA Ready', color: 'orange' },
     { day: 30, label: 'Full DPDP Compliance Program Active', color: 'red' }
   ],
-  referenceUrl: 'https://www.meity.gov.in/data-protection-framework'
+  referenceUrl: 'https://www.meity.gov.in/data-protection-framework',
+  extraSections: [<DpdpRoles key="dpdp-roles" />]
 };
 
 export default function Dpdpa() {
