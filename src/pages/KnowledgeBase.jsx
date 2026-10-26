@@ -17,6 +17,7 @@ import GrcAssistant from '../components/GrcAssistant.jsx';
 import EdpTab from '../components/EdpTab.jsx';
 import SecretsScanningTab from '../components/SecretsScanningTab.jsx';
 import AiVendorAssuranceTab from '../components/AiVendorAssuranceTab.jsx';
+import AuditObservations from '../components/AuditObservations.jsx';
 
 const order = ['soc2', 'iso27001', 'iso42001', 'pci', 'hipaa', 'nist', 'gdpr', 'cis', 'hitrust', 'dpdpa', 'fedramp', 'cjis'];
 const EDP_TABS = [
@@ -75,6 +76,8 @@ export default function KnowledgeBase() {
       setTab('secrets');
     } else if (t === 'ai-vendor-assurance') {
       setTab('ai-assurance');
+    } else if (t === 'audit-observations') {
+      setTab('audit');
     } else if (p && FRAMEWORK_KB[p]) {
       setFw(p);
     }
@@ -171,6 +174,7 @@ export default function KnowledgeBase() {
     ),
     audit: (
       <div className="space-y-4">
+        <AuditObservations />
         <h4 className="font-bold text-gray-800 text-sm">Audit battle cards - observation → why it's raised → your rebuttal</h4>
         {fwObj.policyTimeline && (
 <div className="bg-white border border-gray-200 rounded-2xl p-4 dark:bg-[#1e293b] dark:border-[#334155]">
