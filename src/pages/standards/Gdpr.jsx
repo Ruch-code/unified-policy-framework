@@ -1,4 +1,5 @@
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
+import GdprAccountability from "../../components/GdprAccountability.jsx";
 
 const FRAMEWORK = {
   id: 'gdpr',
@@ -200,7 +201,8 @@ const FRAMEWORK = {
     { day: 45, label: 'DSAR Portal & Consent Operational', color: 'purple' },
     { day: 60, label: 'DPIA Program & Breach Response Ready', color: 'green' }
   ],
-  referenceUrl: 'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0679'
+  referenceUrl: 'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0679',
+  extraSections: [<GdprAccountability key="gdpr-accountability" />]
 };
 
 export default function Gdpr() {
