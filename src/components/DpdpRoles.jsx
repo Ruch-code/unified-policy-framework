@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Users, UserRound, Building2, Server, Star, Handshake, Landmark, KeyRound, Package, Briefcase, Info } from 'lucide-react';
+import { Users, UserRound, Building2, Server, Star, UserCheck, Landmark, KeyRound, Package, Briefcase, Info } from 'lucide-react';
 
 /*
  * India DPDP Act 2023 roles explained with one running example (a food delivery app),
@@ -32,7 +32,7 @@ const ROLES = [
     note: 'The Act puts most duties on the Fiduciary, so the contract is how security, deletion and breach reporting duties reach the processor. Write them in clearly.',
   },
   {
-    id: 'consent', Icon: Handshake, name: 'Consent Manager', ref: 'Section 2(g), Section 6(7) to (9)',
+    id: 'consent', Icon: UserCheck, name: 'Consent Manager', ref: 'Section 2(g), Section 6(7) to (9)',
     def: 'A person registered with the Data Protection Board that gives Data Principals a single platform to give, manage, review and withdraw consent.',
     example: 'Priya uses a Consent Manager app to see every company she has allowed to use her data and withdraws the delivery app\'s marketing consent in one tap.',
     note: 'Consent Managers must be registered and act on behalf of the Data Principal, not the Fiduciary.',
