@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import interviewData from '../data/interview-roles.json';
 
 export default function InterviewPrep({ isDark = false }) {
   const [roles, setRoles] = useState([]);
@@ -7,18 +8,11 @@ export default function InterviewPrep({ isDark = false }) {
   const [expandedQ, setExpandedQ] = useState(null);
   const [expandedTip, setExpandedTip] = useState(null);
 
+  // Data is bundled with the app. The old fetch('interview-roles.json') used a relative URL that
+  // resolved to index.html on Netlify, so the section never loaded.
   useEffect(() => {
-    const API_URL = ['interview-roles', 'json'].join('.');
-    fetch(API_URL)
-      .then(res => res.json())
-      .then(data => {
-        setRoles(data.roles);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error('Failed to load interview data:', err);
-        setLoading(false);
-      });
+    setRoles(interviewData.roles || []);
+    setLoading(false);
   }, []);
 
   if (loading) {
@@ -48,6 +42,7 @@ export default function InterviewPrep({ isDark = false }) {
     'privacy-engineer': { primary: '#7c3aed', light: '#f5f3ff', dark: '#5b21b6', text: '#7c3aed', textDark: '#d8b4fe' },
     'security-engineer': { primary: '#ef4444', light: '#fef2f2', dark: '#991b1b', text: '#ef4444', textDark: '#fca5a5' },
     'ciso': { primary: '#f59e0b', light: '#fffbeb', dark: '#78350f', text: '#f59e0b', textDark: '#fcd34d' },
+    'behavioral': { primary: '#0d9488', light: '#f0fdfa', dark: '#134e4a', text: '#0d9488', textDark: '#5eead4' },
     'compliance-manager': { primary: '#10b981', light: '#ecfdf5', dark: '#064e3b', text: '#10b981', textDark: '#6ee7b7' },
     'dpo': { primary: '#3b82f6', light: '#eff6ff', dark: '#1e3a8a', text: '#3b82f6', textDark: '#bfdbfe' },
     'vendor-risk': { primary: '#0ea5e9', light: '#f0f9ff', dark: '#0c4a6e', text: '#0ea5e9', textDark: '#7dd3fc' },
