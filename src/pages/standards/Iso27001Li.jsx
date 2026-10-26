@@ -1,4 +1,5 @@
 import LearningFrameworkPage from "../../components/LearningFrameworkPage";
+import Iso27001Sections from "../../components/Iso27001Sections.jsx";
 
 const FRAMEWORK = {
   id: "iso27001-li",
@@ -187,7 +188,12 @@ const FRAMEWORK = {
 };
 
 export default function Iso27001LiPage() {
-  return <LearningFrameworkPage framework={FRAMEWORK} />;
+  return (
+    <>
+      <LearningFrameworkPage framework={FRAMEWORK} />
+      <Iso27001Sections basePath="/iso/27001/li" />
+    </>
+  );
 }
 
 export { FRAMEWORK };

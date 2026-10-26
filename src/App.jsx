@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Layout from './components/Layout.jsx';
 import Home from './pages/Home.jsx';
 import AssessmentPage from './components/AssessmentPage.jsx';
@@ -87,6 +87,8 @@ function App() {
           <Route path="ai-assurance" element={<RequireAuth><AiVendorAssurance /></RequireAuth>} />
           <Route path="profile" element={<RequireAuth><Profile /></RequireAuth>} />
 
+          <Route path="iso/27001" element={<Navigate to="/iso/27001/li" replace />} />
+          <Route path="iso-27001" element={<Navigate to="/iso/27001/li" replace />} />
           <Route path="iso/27001/la" element={<Protected><Iso27001La /></Protected>} />
           <Route path="iso/27001/li" element={<Protected><Iso27001Li /></Protected>} />
           <Route path="iso-31000" element={<Protected><Iso31000 /></Protected>} />
