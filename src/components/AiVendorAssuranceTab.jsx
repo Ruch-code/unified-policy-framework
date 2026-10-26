@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AiVendorBreachScenario from './AiVendorBreachScenario.jsx';
 import {
   Shield, Lock, Key, Globe, Cloud, Users, FileText, Search, Zap, Cpu,
   HardDrive, Network, BookOpen, ExternalLink, CalendarDays, ShieldAlert,
@@ -364,6 +365,9 @@ function AiVendorAssuranceTab() {
             </div>
           </div>
         </div>
+      </div>
+      <div className="mt-6">
+        <AiVendorBreachScenario />
       </div>
     </div>
   );
