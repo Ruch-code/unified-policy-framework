@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { GitBranch, Hammer, FlaskConical, Package, Rocket, Activity, Settings2, Bot, ChevronDown, ClipboardCheck, Wrench, Target } from 'lucide-react';
+import { VULNS, VULN_LINKS } from '../data/vulnGlossary.js';
+import { GitBranch, Hammer, FlaskConical, Package, Rocket, Activity, Settings2, Bot, ChevronDown, ClipboardCheck, Wrench, Target, Bug, ArrowUp, ArrowDownRight } from 'lucide-react';
 
 /*
  * End-to-end CI/CD pipeline security: what each check is, how auditors test it,
@@ -166,8 +167,99 @@ const AUDIT_EVIDENCE = [
   'List of agent or bot accounts, their permissions, and a sample of their pull requests with human approval',
 ];
 
+function jumpTo(id) {
+  const el = typeof document !== 'undefined' ? document.getElementById(id) : null;
+  if (!el) return;
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  el.classList.add('ring-2', 'ring-emerald-500');
+  setTimeout(() => el.classList.remove('ring-2', 'ring-emerald-500'), 1800);
+}
+
+const FOUND_CLS = {
+  SAST: 'bg-indigo-50 text-indigo-800 border-indigo-200 dark:bg-indigo-900/30 dark:text-indigo-300 dark:border-indigo-800',
+  DAST: 'bg-amber-50 text-amber-800 border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800',
+  IAST: 'bg-emerald-50 text-emerald-800 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-800',
+  SCA: 'bg-sky-50 text-sky-800 border-sky-200 dark:bg-sky-900/30 dark:text-sky-300 dark:border-sky-800',
+};
+
+function VulnerabilityGuide({ openIds, toggle }) {
+  return (
+    <div className="bg-white rounded-2xl border border-rose-200 dark:border-rose-800 p-5" id="vulnerability-guide">
+      <div className="flex flex-wrap items-start justify-between gap-2 mb-1">
+        <h4 className="font-bold text-gray-900 dark:text-white flex items-center gap-2">
+          <span className="w-8 h-8 rounded-lg bg-rose-100 text-rose-700 dark:bg-rose-900/40 dark:text-rose-300 flex items-center justify-center"><Bug className="w-4 h-4" /></span>
+          Vulnerability Guide: what each one is, with practical examples
+        </h4>
+        <button type="button" onClick={() => jumpTo('ast-comparison')} className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 dark:text-emerald-300 hover:underline">
+          <ArrowUp className="w-3.5 h-3.5" /> Back to SAST vs DAST vs IAST
+        </button>
+      </div>
+      <p className="text-sm text-gray-600 dark:text-slate-300 mb-4 max-w-3xl">
+        Each entry explains the weakness in plain words, shows how it happens in real code, what an attacker could do, how to prevent it, and which testing method catches it. Examples are simplified for learning.
+      </p>
+      <div className="flex flex-wrap gap-1.5 mb-4" aria-label="Jump to vulnerability">
+        {VULNS.map(v => (
+          <button key={v.id} type="button" onClick={() => { if (!openIds.includes(v.id)) toggle(v.id); setTimeout(() => jumpTo(`vuln-${v.id}`), 50); }}
+            className="px-2.5 py-1 rounded-full text-xs font-semibold border bg-white text-gray-700 border-gray-200 hover:border-rose-300 dark:bg-slate-800 dark:text-slate-200 dark:border-slate-600 dark:hover:border-rose-500">
+            {v.name}
+          </button>
+        ))}
+      </div>
+      <div className="space-y-2">
+        {VULNS.map(v => {
+          const isOpen = openIds.includes(v.id);
+          return (
+            <div key={v.id} id={`vuln-${v.id}`} className="scroll-mt-24 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 overflow-hidden transition-shadow">
+              <button type="button" onClick={() => toggle(v.id)} aria-expanded={isOpen} className="w-full flex items-start gap-3 p-4 text-left">
+                <span className="flex-1">
+                  <span className="block font-bold text-sm text-gray-900 dark:text-white">{v.name}</span>
+                  <span className="block text-xs text-gray-600 dark:text-slate-300 mt-0.5">{v.what}</span>
+                  <span className="flex flex-wrap gap-1.5 mt-2">
+                    <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-200">OWASP {v.owasp}</span>
+                    <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-200">{v.cwe}</span>
+                    {v.found.map(f => <span key={f} className={`text-[10px] font-bold px-1.5 py-0.5 rounded border ${FOUND_CLS[f]}`}>Found by {f}</span>)}
+                  </span>
+                </span>
+                <ChevronDown className={`w-4 h-4 mt-1 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+              </button>
+              {isOpen && (
+                <div className="px-4 pb-4 grid md:grid-cols-2 gap-3 text-sm">
+                  <div className="rounded-lg p-3 bg-slate-50 border border-slate-200 dark:bg-slate-800/60 dark:border-slate-700">
+                    <p className="text-[11px] font-bold uppercase tracking-wide text-slate-600 dark:text-slate-300 mb-1">How it happens</p>
+                    <p className="text-gray-700 dark:text-slate-200">{v.how}</p>
+                  </div>
+                  <div className="rounded-lg p-3 bg-amber-50 border border-amber-200 dark:bg-amber-900/30 dark:border-amber-800">
+                    <p className="text-[11px] font-bold uppercase tracking-wide text-amber-800 dark:text-amber-300 mb-1">Practical example</p>
+                    <p className="text-gray-700 dark:text-slate-200">{v.example}</p>
+                  </div>
+                  <div className="rounded-lg p-3 bg-rose-50 border border-rose-200 dark:bg-rose-900/30 dark:border-rose-800">
+                    <p className="text-[11px] font-bold uppercase tracking-wide text-rose-800 dark:text-rose-300 mb-1">What an attacker could do</p>
+                    <p className="text-gray-700 dark:text-slate-200">{v.impact}</p>
+                  </div>
+                  <div className="rounded-lg p-3 bg-emerald-50 border border-emerald-200 dark:bg-emerald-900/30 dark:border-emerald-800">
+                    <p className="text-[11px] font-bold uppercase tracking-wide text-emerald-800 dark:text-emerald-300 mb-1">How to prevent it</p>
+                    <ul className="space-y-1 text-gray-700 dark:text-slate-200">{v.prevent.map(x => <li key={x} className="flex gap-2"><span>-</span>{x}</li>)}</ul>
+                  </div>
+                  <div className="md:col-span-2">
+                    <button type="button" onClick={() => jumpTo('ast-comparison')} className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 dark:text-emerald-300 hover:underline">
+                      <ArrowUp className="w-3.5 h-3.5" /> See how {v.found.join(', ')} compare
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 export default function CicdPipelineSecurity() {
   const [open, setOpen] = useState('source');
+  const [openVulns, setOpenVulns] = useState([]);
+  const toggleVuln = id => setOpenVulns(v => (v.includes(id) ? v.filter(x => x !== id) : [...v, id]));
+  const openAndJump = id => { setOpenVulns(v => (v.includes(id) ? v : [...v, id])); setTimeout(() => jumpTo(`vuln-${id}`), 50); };
   return (
     <div className="space-y-5">
       <div className="bg-white border border-indigo-200 dark:border-indigo-800 rounded-2xl p-5">
@@ -191,7 +283,7 @@ export default function CicdPipelineSecurity() {
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl border border-emerald-200 dark:border-emerald-800 p-5">
+      <div className="bg-white rounded-2xl border border-emerald-200 dark:border-emerald-800 p-5 scroll-mt-24 transition-shadow" id="ast-comparison">
         <h4 className="font-bold text-gray-900 dark:text-white mb-1">Application security testing: SAST vs DAST vs IAST</h4>
         <p className="text-sm text-gray-600 dark:text-slate-300 mb-4 max-w-3xl">They are complementary, not alternatives. SAST catches issues earliest in code, DAST tests what an attacker can actually reach, and IAST confirms real, exploitable issues with the exact line of code. SCA (dependency scanning) covers third-party libraries, which none of the three fully replace.</p>
         <div className="overflow-x-auto">
@@ -214,7 +306,21 @@ export default function CicdPipelineSecurity() {
                   {AST_TYPES.map(t => (
                     <td key={t.name} className={`p-2 border-b border-gray-100 dark:border-slate-800 text-gray-700 dark:text-slate-200 ${key === 'meaning' ? 'font-medium' : ''} ${key === 'example' ? 'bg-slate-50 dark:bg-slate-800/60 italic' : ''}`}>
                       {Array.isArray(t[key]) ? (
-                        <ul className="space-y-1">{t[key].map(v => <li key={v} className="flex gap-1.5"><span className="text-emerald-600 dark:text-emerald-300">-</span>{v}</li>)}</ul>
+                        <ul className="space-y-1">{t[key].map(v => {
+                          const ids = [].concat(VULN_LINKS[v] || []);
+                          return (
+                            <li key={v} className="flex gap-1.5">
+                              <span className="text-emerald-600 dark:text-emerald-300">-</span>
+                              {ids.length ? (
+                                <button type="button" onClick={() => ids.forEach((id, i) => (i === 0 ? openAndJump(id) : setOpenVulns(o => (o.includes(id) ? o : [...o, id]))))}
+                                  className="text-left text-emerald-800 dark:text-emerald-300 underline decoration-dotted underline-offset-2 hover:decoration-solid inline-flex items-start gap-0.5"
+                                  title="Open in the Vulnerability Guide">
+                                  {v}<ArrowDownRight className="w-3 h-3 mt-1 shrink-0" />
+                                </button>
+                              ) : v}
+                            </li>
+                          );
+                        })}</ul>
                       ) : t[key]}
                     </td>
                   ))}
@@ -223,8 +329,11 @@ export default function CicdPipelineSecurity() {
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-gray-500 dark:text-slate-400 mt-3">Related: RASP (runtime application self-protection) uses similar instrumentation to IAST but blocks attacks in production rather than finding them in testing.</p>
+        <p className="text-xs text-gray-600 dark:text-slate-300 mt-3">Click any vulnerability above to open its full explanation and example in the <button type="button" onClick={() => jumpTo('vulnerability-guide')} className="font-semibold text-rose-700 dark:text-rose-300 underline">Vulnerability Guide</button>.</p>
+        <p className="text-xs text-gray-500 dark:text-slate-400 mt-1">Related: RASP (runtime application self-protection) uses similar instrumentation to IAST but blocks attacks in production rather than finding them in testing.</p>
       </div>
+
+      <VulnerabilityGuide openIds={openVulns} toggle={toggleVuln} />
 
       <div className="space-y-3">
         {STAGES.map(s => {
