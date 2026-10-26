@@ -1,4 +1,4 @@
-// Local RAG retrieval — indexes the playbook/control corpus and returns the top
+// Local RAG retrieval - indexes the playbook/control corpus and returns the top
 // control mappings for a query so they can be injected into the system prompt
 // before the LLM (or the rule-based engine) generates an answer.
 import {
@@ -20,14 +20,14 @@ function buildCorpus() {
   for (const [id, fw] of Object.entries(FRAMEWORK_KB)) {
     const policyText = (fw.policies || []).map(p => {
       const cs = (p.controls || []).map(c => (typeof c === 'object' ? c.text : c)).join('; ');
-      return `${p.area}: ${cs}${p.note ? ` — ${p.note}` : ''}`;
+      return `${p.area}: ${cs}${p.note ? ` - ${p.note}` : ''}`;
     }).join(' ');
     const obsText = (fw.observations || []).map(o => `${o.finding} ${o.why}`).join(' ');
     const rebText = (fw.rebuttals || []).map(r => `${r.finding} ${r.pushback}`).join(' ');
     const clauseText = (fw.clauses || []).map(c => `${c.title} ${c.text}`).join(' ');
     docs.push({
       source: 'playbook',
-      label: `${fw.name} — controls, findings & rebuttals`,
+      label: `${fw.name} - controls, findings & rebuttals`,
       text: `${fw.name} ${policyText} ${obsText} ${rebText} ${clauseText}`,
       tags: [id],
     });
@@ -36,7 +36,7 @@ function buildCorpus() {
   UNIFIED_POLICY_MAP.forEach(a => {
     docs.push({
       source: 'policy-map',
-      label: `Unified policy map — ${a.area}`,
+      label: `Unified policy map - ${a.area}`,
       text: `${a.area} ${Object.entries(a.map).map(([k, v]) => `${k}: ${v}`).join(' ')} ${a.discrepancy}`,
       tags: ['policy', 'control-map'],
     });
@@ -45,7 +45,7 @@ function buildCorpus() {
   DISCREPANCY_MATRIX.forEach(r => {
     docs.push({
       source: 'discrepancy',
-      label: `Framework conflict — ${r.topic}`,
+      label: `Framework conflict - ${r.topic}`,
       text: `${r.topic} ${r.conflict} ${r.reconcile}`,
       tags: ['conflict', 'discrepancy'],
     });
@@ -54,7 +54,7 @@ function buildCorpus() {
   VENDOR_CLAUSE_BASE.forEach(c => {
     docs.push({
       source: 'contract',
-      label: `Contract clause — ${c.title}`,
+      label: `Contract clause - ${c.title}`,
       text: `${c.title} ${c.text}`,
       tags: ['contract', 'vendor'],
     });
@@ -62,7 +62,7 @@ function buildCorpus() {
   Object.entries(VENDOR_CLAUSE_CONDITIONAL).forEach(([k, c]) => {
     docs.push({
       source: 'contract',
-      label: `Framework flow-down clause — ${c.label}`,
+      label: `Framework flow-down clause - ${c.label}`,
       text: `${c.label} ${c.clause}`,
       tags: ['contract', k],
     });
@@ -121,10 +121,10 @@ export function retrieve(query, k = 5) {
  */
 export function buildSystemPrompt(query, chunks, turns = []) {
   const contextBlock = chunks.length
-    ? `RETRIEVED CONTROL MAPPINGS (ranked by relevance — ground your answer in these):\n${chunks
+    ? `RETRIEVED CONTROL MAPPINGS (ranked by relevance - ground your answer in these):\n${chunks
         .map((c, i) => `[${i + 1}] (${c.source} | ${c.label})\n${c.snippet}`)
         .join('\n\n')}`
-    : 'RETRIEVED CONTROL MAPPINGS: none matched — answer from general GRC knowledge.';
+    : 'RETRIEVED CONTROL MAPPINGS: none matched - answer from general GRC knowledge.';
 
   const historyBlock = turns.length
     ? `RECENT CONVERSATION (last ${turns.length} turns, for continuity only):\n${turns
@@ -136,8 +136,8 @@ export function buildSystemPrompt(query, chunks, turns = []) {
 
 Answer the user's question precisely and ONLY with a valid JSON object matching this exact schema (no markdown fences, no prose outside the JSON):
 {
-  "summary": "string — 1-2 sentence direct answer",
-  "steps": [ { "number": 1, "title": "string", "description": "string — why/how" } ],
+  "summary": "string - 1-2 sentence direct answer",
+  "steps": [ { "number": 1, "title": "string", "description": "string - why/how" } ],
   "discrepancies": [ "string" ],
   "quick_actions": [ "string" ]
 }

@@ -31,7 +31,7 @@ const FRAMEWORK = {
       itgc: "Consent Management",
       gap: "No separate consent mechanism for sensitive personal information and cross-border transfers",
       pushback: "We already have user consent through our terms of service.",
-      reality: "PIPL Art. 23 requires SEPARATE consent for cross-border transfers. Art. 29 requires separate consent for sensitive personal information processing. Art. 14 requires consent to be given voluntarily, with full knowledge, and for specific purposes. Bundled consent in terms of service doesn't meet PIPL standards — each requires distinct, granular consent.",
+      reality: "PIPL Art. 23 requires SEPARATE consent for cross-border transfers. Art. 29 requires separate consent for sensitive personal information processing. Art. 14 requires consent to be given voluntarily, with full knowledge, and for specific purposes. Bundled consent in terms of service doesn't meet PIPL standards - each requires distinct, granular consent.",
       policy: "Separate Consent Policy, Sensitive Data Processing Consent Framework",
       compensating: [
         "Implement purpose-specific consent capture at each data collection point",
@@ -44,7 +44,7 @@ const FRAMEWORK = {
       itgc: "Cross-Border Transfer",
       gap: "No Security Assessment, Certification, or Standard Contract for cross-border data transfers",
       pushback: "Our cloud provider handles the data; we don't need to worry about transfers.",
-      reality: "PIPL Art. 38-40 require ONE of three mechanisms for cross-border transfers: (1) CAC Security Assessment (mandatory for critical information infrastructure operators or 1M+ individuals), (2) Personal Information Protection Certification, or (3) Standard Contract with the overseas recipient filed with the CAC. Simply using a cloud provider doesn't exempt you — the transfer mechanism must be in place before data leaves China.",
+      reality: "PIPL Art. 38-40 require ONE of three mechanisms for cross-border transfers: (1) CAC Security Assessment (mandatory for critical information infrastructure operators or 1M+ individuals), (2) Personal Information Protection Certification, or (3) Standard Contract with the overseas recipient filed with the CAC. Simply using a cloud provider doesn't exempt you - the transfer mechanism must be in place before data leaves China.",
       policy: "Cross-Border Transfer Mechanism Policy, CAC Security Assessment Procedure",
       compensating: [
         "Conduct an initial cross-border transfer audit to identify all data flows leaving China",
@@ -64,7 +64,7 @@ const FRAMEWORK = {
         "Assign an incident commander and backup for the notification process",
         "Pre-stage individual notification templates for affected users"
       ],
-      leantip: "Fill in the CAC notification template NOW — include: incident cause, data types affected, harm assessment, remedial measures, and individual protection steps. Having it ready halves your response time during a real incident."
+      leantip: "Fill in the CAC notification template NOW - include: incident cause, data types affected, harm assessment, remedial measures, and individual protection steps. Having it ready halves your response time during a real incident."
     },
     {
       itgc: "Data Localization",
@@ -81,11 +81,11 @@ const FRAMEWORK = {
     }
   ],
   privacyStartupNotes:
-    "PIPL note: China's PIPL is one of the world's strictest data protection laws with extraterritorial reach. The 'separate consent' (单独同意) requirement for sensitive data and cross-border transfers is stricter than GDPR consent. The CAC Security Assessment or Standard Contract filing is mandatory for cross-border transfers — you cannot simply sign SCCs as with GDPR. PIPL also includes algorithmic recommendation regulations (Art. 24) and automated decision-making provisions that may apply to AI/ML products. Enforcement has been aggressive, with significant fines imposed on major tech companies.",
+    "PIPL note: China's PIPL is one of the world's strictest data protection laws with extraterritorial reach. The 'separate consent' (单独同意) requirement for sensitive data and cross-border transfers is stricter than GDPR consent. The CAC Security Assessment or Standard Contract filing is mandatory for cross-border transfers - you cannot simply sign SCCs as with GDPR. PIPL also includes algorithmic recommendation regulations (Art. 24) and automated decision-making provisions that may apply to AI/ML products. Enforcement has been aggressive, with significant fines imposed on major tech companies.",
   weeksData: [
     {
       week: 1,
-      title: "L1 Foundation — PIPL Principles, Roles & Data Mapping",
+      title: "L1 Foundation - PIPL Principles, Roles & Data Mapping",
       description:
         "Map PIPL scope to your environment, understand personal information handlers and PIPO roles, identify lawful bases under Art. 13, and build the foundation for CAC compliance.",
       days: [
@@ -125,7 +125,7 @@ const FRAMEWORK = {
                 "Classify personal information including sensitive personal information (Art. 28)",
               control:
                 "PIPL Art. 28 (Sensitive Personal Information), Art. 6 (Data Minimization), Art. 29 (Special Consent)",
-              how: "Deploy automated data classification across all environments. For AWS: enable Amazon Macie with custom data identifiers for Chinese Resident Identity Card patterns (18-digit numbers with area code + DOB + sequence + checksum). For Azure: configure Microsoft Purview with sensitive information types for Chinese identification numbers. For GCP: deploy Cloud DLP API with custom detectors for Chinese PII. For Alibaba: configure Data Security Center. Build a classification taxonomy: ordinary personal information, sensitive personal information (Art. 28 — biometrics, religious beliefs, specific identity, medical health, financial accounts, location tracking, and personal information of minors under 14). Tag all data stores with classification labels.",
+              how: "Deploy automated data classification across all environments. For AWS: enable Amazon Macie with custom data identifiers for Chinese Resident Identity Card patterns (18-digit numbers with area code + DOB + sequence + checksum). For Azure: configure Microsoft Purview with sensitive information types for Chinese identification numbers. For GCP: deploy Cloud DLP API with custom detectors for Chinese PII. For Alibaba: configure Data Security Center. Build a classification taxonomy: ordinary personal information, sensitive personal information (Art. 28 - biometrics, religious beliefs, specific identity, medical health, financial accounts, location tracking, and personal information of minors under 14). Tag all data stores with classification labels.",
               check:
                 "Automated classification running for Chinese PII patterns across all four clouds, Art. 28 sensitive personal information categories documented, and data catalog populated with locations and owners",
             },
@@ -149,7 +149,7 @@ const FRAMEWORK = {
                 "Implement separate consent (单独同意) mechanisms for sensitive data and cross-border transfers",
               control:
                 "PIPL Art. 14 (Consent Requirements), Art. 29 (Sensitive Data Separate Consent), Art. 39 (Cross-Border Separate Consent)",
-              how: "Build separate consent mechanisms meeting PIPL Art. 14, 29, and 39 requirements. PIPL requires 'separate consent' (单独同意) — distinct from bundled consent — for: sensitive personal information processing (Art. 29), cross-border transfers (Art. 39), public disclosure of personal information (Art. 25), and processing of publicly available information beyond original scope (Art. 13). Implement: purpose-level consent capture with separate consent flows for each trigger, consent versioning with timestamps, proof-of-consent records (user_id, purpose, consent_state, timestamp, version, source), and withdrawal mechanism that propagates within 15 days (Art. 15). Store consent records in DynamoDB or CosmosDB with append-only logging.",
+              how: "Build separate consent mechanisms meeting PIPL Art. 14, 29, and 39 requirements. PIPL requires 'separate consent' (单独同意) - distinct from bundled consent - for: sensitive personal information processing (Art. 29), cross-border transfers (Art. 39), public disclosure of personal information (Art. 25), and processing of publicly available information beyond original scope (Art. 13). Implement: purpose-level consent capture with separate consent flows for each trigger, consent versioning with timestamps, proof-of-consent records (user_id, purpose, consent_state, timestamp, version, source), and withdrawal mechanism that propagates within 15 days (Art. 15). Store consent records in DynamoDB or CosmosDB with append-only logging.",
               check:
                 "Separate consent mechanisms implemented for sensitive data (Art. 29) and cross-border transfers (Art. 39), consent withdrawal within 15 days, and proof-of-consent records stored",
             },
@@ -191,7 +191,7 @@ const FRAMEWORK = {
                 "Assess cross-border transfer mechanisms under Art. 38-40 and file Standard Contracts",
               control:
                 "PIPL Art. 38 (Transfer Mechanisms), Art. 39 (Separate Consent), Art. 40 (Localization)",
-              how: "Conduct a comprehensive cross-border transfer assessment. Determine which Art. 38 mechanism applies: (1) CAC Security Assessment — mandatory for CIIOs and organizations processing 1M+ individuals' data or cumulative 100K+ individuals' data or 10K+ individuals' sensitive data; (2) Personal Information Protection Certification; or (3) Standard Contract filed with the CAC. For most startups, the Standard Contract (Art. 38(3)) is the practical path. Draft and execute Standard Contracts with each overseas recipient, including: processing purpose, data categories, retention period, security measures, and Art. 39 rights enforcement. File the Standard Contract with the CAC within 10 working days of signing. Conduct the Transfer Impact Assessment required by Art. 38(1).",
+              how: "Conduct a comprehensive cross-border transfer assessment. Determine which Art. 38 mechanism applies: (1) CAC Security Assessment - mandatory for CIIOs and organizations processing 1M+ individuals' data or cumulative 100K+ individuals' data or 10K+ individuals' sensitive data; (2) Personal Information Protection Certification; or (3) Standard Contract filed with the CAC. For most startups, the Standard Contract (Art. 38(3)) is the practical path. Draft and execute Standard Contracts with each overseas recipient, including: processing purpose, data categories, retention period, security measures, and Art. 39 rights enforcement. File the Standard Contract with the CAC within 10 working days of signing. Conduct the Transfer Impact Assessment required by Art. 38(1).",
               check:
                 "Cross-border transfer mechanism determined (Security Assessment, Certification, or Standard Contract), Standard Contracts executed and filed with CAC, and Transfer Impact Assessment completed",
             },
@@ -200,7 +200,7 @@ const FRAMEWORK = {
                 "Implement data localization controls for Chinese cloud regions",
               control:
                 "PIPL Art. 40 (Data Localization), CAC Security Assessment Regulations",
-              how: "Implement data localization architecture for Chinese residents' personal information. For primary storage: use Chinese cloud regions (Alibaba Cloud China — Hangzhou, Shanghai, Beijing, Shenzhen; AWS China — Ningxia/Beijing via Sinnet/NWCD; Azure China — Beijing/Shanghai via 21Vianet). Configure network architecture to ensure primary data processing occurs within China. For cross-border transfers: implement controls at the China-region boundary (VPC peering restrictions, API gateway controls, data export workflows). Document the data residency architecture showing where Chinese residents' data is stored, processed, and any cross-border flows. Implement monitoring for data transfer attempts outside approved boundaries.",
+              how: "Implement data localization architecture for Chinese residents' personal information. For primary storage: use Chinese cloud regions (Alibaba Cloud China - Hangzhou, Shanghai, Beijing, Shenzhen; AWS China - Ningxia/Beijing via Sinnet/NWCD; Azure China - Beijing/Shanghai via 21Vianet). Configure network architecture to ensure primary data processing occurs within China. For cross-border transfers: implement controls at the China-region boundary (VPC peering restrictions, API gateway controls, data export workflows). Document the data residency architecture showing where Chinese residents' data is stored, processed, and any cross-border flows. Implement monitoring for data transfer attempts outside approved boundaries.",
               check:
                 "Data localization architecture implemented with primary storage in Chinese cloud regions, cross-border transfer controls at China-region boundary, and architecture documented showing all data flows",
             },
@@ -228,7 +228,7 @@ const FRAMEWORK = {
     },
     {
       week: 2,
-      title: "L2 Implementer — Technical Controls & Cloud Security per PIPL",
+      title: "L2 Implementer - Technical Controls & Cloud Security per PIPL",
       description:
         "Implement cloud-native technical controls for PIPL compliance: encryption, access management, separate consent enforcement, cross-border transfer controls, and breach detection across AWS, Azure, GCP, and Alibaba.",
       days: [
@@ -375,7 +375,7 @@ const FRAMEWORK = {
               title:
                 "Implement enhanced protections for minors' personal information (Art. 31)",
               control:
-                "PIPL Art. 31 (Minors' Data — Under 14), Art. 28 (Sensitive Data — Minors)",
+                "PIPL Art. 31 (Minors' Data - Under 14), Art. 28 (Sensitive Data - Minors)",
               how: "Implement enhanced protections for personal information of minors under 14 as required by PIPL Art. 31. Implement: age-verification mechanisms at registration, parental consent capture flow for users identified as under 14, restricted data processing limited to what is necessary for the minor's benefit, enhanced security controls (encryption, access restrictions, audit logging), and dedicated retention policies with shorter periods. Store minors' personal information separately from adult data where practicable. Implement parental rights to access, correct, and delete their children's personal information. Document the Art. 31 compliance architecture and parental consent workflow.",
               check:
                 "Age verification implemented, parental consent flow for under-14 users operational, enhanced security controls for minors' data, and Art. 31 compliance architecture documented",
@@ -404,7 +404,7 @@ const FRAMEWORK = {
     },
     {
       week: 3,
-      title: "L3 Verifier — Testing PIPL Controls & Evidence Collection",
+      title: "L3 Verifier - Testing PIPL Controls & Evidence Collection",
       description:
         "Execute comprehensive testing of PIPL controls: separate consent validation, DSAR response testing, cross-border transfer audit, breach notification drill, encryption verification, and compliance assessment.",
       days: [
@@ -538,7 +538,7 @@ const FRAMEWORK = {
     },
     {
       week: 4,
-      title: "L4 Certified — Multi-Cloud PIPL Compliance & Continuous Monitoring",
+      title: "L4 Certified - Multi-Cloud PIPL Compliance & Continuous Monitoring",
       description:
         "Master PIPL controls across AWS, Azure, GCP, and Alibaba Cloud, implement continuous compliance monitoring, address common CAC findings, and establish ongoing PIPL compliance.",
       days: [
@@ -578,7 +578,7 @@ const FRAMEWORK = {
                 "Establish ongoing PIPL training and awareness program",
               control:
                 "PIPL Art. 51 (Security Measures), Art. 52 (PIPO Responsibilities)",
-              how: "Establish PIPL training program with role-specific modules. (1) PIPL fundamentals for all employees — principles, individual rights, breach reporting. (2) Developer training — secure coding, data minimization, algorithmic fairness. (3) Operations training — access control, localization, incident response. (4) Business training — consent management, cross-border transfers, vendor management. Implement: onboarding, quarterly refreshers, annual comprehensive review. Track completion and scores. Document for Art. 54 compliance audit evidence.",
+              how: "Establish PIPL training program with role-specific modules. (1) PIPL fundamentals for all employees - principles, individual rights, breach reporting. (2) Developer training - secure coding, data minimization, algorithmic fairness. (3) Operations training - access control, localization, incident response. (4) Business training - consent management, cross-border transfers, vendor management. Implement: onboarding, quarterly refreshers, annual comprehensive review. Track completion and scores. Document for Art. 54 compliance audit evidence.",
               check:
                 "PIPL training program documented with role-specific modules, delivery scheduled, completion tracking operational, and records maintained for compliance audit",
             },

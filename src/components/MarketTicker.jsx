@@ -10,7 +10,7 @@ const ACCENT = {
 };
 
 function fmt(v) {
-  if (v == null) return '—';
+  if (v == null) return '-';
   return v.toLocaleString('en-IN', { maximumFractionDigits: 2 });
 }
 
@@ -79,7 +79,7 @@ export default function MarketTicker({ refreshMs = 60000, compact = false }) {
                   className={`inline-flex items-center gap-0.5 text-[11px] font-semibold tabular-nums ${up ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-600 dark:text-red-400'}`}
                 >
                   {up ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
-                  {r.changePercent == null ? '—' : `${r.changePercent >= 0 ? '+' : ''}${r.changePercent.toFixed(2)}%`}
+                  {r.changePercent == null ? '-' : `${r.changePercent >= 0 ? '+' : ''}${r.changePercent.toFixed(2)}%`}
                 </span>
               </div>
             );
@@ -128,8 +128,8 @@ export default function MarketTicker({ refreshMs = 60000, compact = false }) {
                 className={`mt-0.5 inline-flex items-center gap-1 text-xs font-semibold tabular-nums ${up ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-600 dark:text-red-400'}`}
               >
                 {up ? <TrendingUp className="w-3.5 h-3.5" /> : <TrendingDown className="w-3.5 h-3.5" />}
-                {r.change != null ? `${r.change >= 0 ? '+' : ''}${r.change.toFixed(2)}` : '—'}
-                <span className="opacity-80">({r.changePercent == null ? '—' : `${r.changePercent >= 0 ? '+' : ''}${r.changePercent.toFixed(2)}%`})</span>
+                {r.change != null ? `${r.change >= 0 ? '+' : ''}${r.change.toFixed(2)}` : '-'}
+                <span className="opacity-80">({r.changePercent == null ? '-' : `${r.changePercent >= 0 ? '+' : ''}${r.changePercent.toFixed(2)}%`})</span>
               </div>
               <div className="mt-0.5 h-1 w-full rounded-full bg-gray-100 dark:bg-slate-700 overflow-hidden">
                 <div className="h-full rounded-full" style={{ width: '35%', background: C, opacity: 0.8 }} />

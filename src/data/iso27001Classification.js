@@ -14,7 +14,7 @@
  *   unverified      - no precise authoritative basis found; needs review
  *
  * A single item may be BOTH an Annex A reference control and a recommended
- * practice — that is the common and honest case. `primary` is the category shown
+ * practice - that is the common and honest case. `primary` is the category shown
  * as the badge; `also` carries the secondary framing.
  */
 
@@ -23,7 +23,7 @@ import { ANNEX_A_BY_ID } from './iso27001AnnexA.js';
 const ANNEX = (...ids) => ids.filter(i => ANNEX_A_BY_ID[i]).map(i => ANNEX_A_BY_ID[i].title);
 
 /**
- * GEN-* assessment items. IDs are stable and must not change — saved progress
+ * GEN-* assessment items. IDs are stable and must not change - saved progress
  * is keyed on them.
  *
  * `contaminants` lists the non-ISO material currently embedded in the item that
@@ -66,7 +66,7 @@ export const GEN_ISO_CLASSIFICATION = {
     annexA: ['A.6.5', 'A.5.11', 'A.5.16'],
     clause: ['8.1'],
     basis: 'Supports A.6.5 (responsibilities after termination or change of employment), A.5.11 (return of assets) and A.5.16 (identity management). It supports the Clause 8.1 requirement to implement and control ISMS processes.',
-    note: 'The standard requires the outcome — duties and responsibilities that remain valid, and controlled removal of access. It prescribes no ticketing tool or workflow.',
+    note: 'The standard requires the outcome - duties and responsibilities that remain valid, and controlled removal of access. It prescribes no ticketing tool or workflow.',
     practiceCaveat: 'Automation is recommended, not required.',
     contaminants: [],
   },
@@ -108,7 +108,7 @@ export const GEN_ISO_CLASSIFICATION = {
     annexA: ['A.5.37', 'A.5.1'],
     clause: ['7.5.2', '8.1'],
     basis: 'Documented operating procedures are required: A.5.37 and the Clause 7.5.2 requirement to create and update documented information, plus Clause 8.1 for operational control.',
-    note: 'This one genuinely IS an ISO requirement — the obligation to have documented procedures. The page count and formality are organisation-defined.',
+    note: 'This one genuinely IS an ISO requirement - the obligation to have documented procedures. The page count and formality are organisation-defined.',
     practiceCaveat: 'A "one-page" policy is an implementation choice, not an ISO constraint.',
     contaminants: [],
   },
@@ -171,8 +171,8 @@ export const GEN_ISO_CLASSIFICATION = {
     note: 'This is a genuine ISO reference-control area. The register is a recommended practice; the security requirements in supplier agreements are what the standard actually requires.',
     practiceCaveat: 'The named tools (Whistic, Vanta) are examples.',
     contaminants: [
-      'BAA / HIPAA business associate agreement tracking — HIPAA, not ISO',
-      'DPA — GDPR/UK GDPR and similar, not ISO',
+      'BAA / HIPAA business associate agreement tracking - HIPAA, not ISO',
+      'DPA - GDPR/UK GDPR and similar, not ISO',
     ],
   },
   'GEN-15': {
@@ -181,7 +181,7 @@ export const GEN_ISO_CLASSIFICATION = {
     annexA: ['A.8.25', 'A.8.26', 'A.8.27', 'A.8.28', 'A.8.29'],
     clause: ['8.1'],
     basis: 'A substantial ISO reference-control cluster: A.8.25 secure development life cycle, A.8.26 application security requirements, A.8.27 secure architecture principles, A.8.28 secure coding, A.8.29 security testing in development and acceptance.',
-    note: 'A.8.28 notes that a suitable level of automated tooling and manual review supports secure coding — so tooling is expected, but no specific SAST product or threshold is required.',
+    note: 'A.8.28 notes that a suitable level of automated tooling and manual review supports secure coding - so tooling is expected, but no specific SAST product or threshold is required.',
     practiceCaveat: 'The named tools (CodeQL, SonarQube, gitleaks, OWASP Threat Dragon) are examples, not ISO-endorsed.',
     contaminants: [],
   },
@@ -191,11 +191,11 @@ export const GEN_ISO_CLASSIFICATION = {
     annexA: ['A.5.9', 'A.5.12', 'A.5.34'],
     clause: [],
     basis: 'Supports A.5.9 (inventory), A.5.12 (classification) and A.5.34 (privacy and protection of PII).',
-    note: 'A.5.34 is a real reference control and does require meeting requirements concerning protection of PII — but the applicable requirements come from the relevant legislation and interested parties, not from ISO.',
+    note: 'A.5.34 is a real reference control and does require meeting requirements concerning protection of PII - but the applicable requirements come from the relevant legislation and interested parties, not from ISO.',
     practiceCaveat: '',
     contaminants: [
-      'HIPAA PHI handling and de-identification — HIPAA, not ISO',
-      'PCI cardholder data scope — PCI DSS, not ISO',
+      'HIPAA PHI handling and de-identification - HIPAA, not ISO',
+      'PCI cardholder data scope - PCI DSS, not ISO',
     ],
   },
   'GEN-17': {
@@ -206,7 +206,7 @@ export const GEN_ISO_CLASSIFICATION = {
     basis: 'A.8.10 requires information to be deleted when no longer required, and A.5.33 requires records protection including retention and disposition. Clause 7.5.3 requires documented information to be retained and disposed of appropriately.',
     note: 'The obligation to delete and to define retention is a real reference-control expectation. The specific schedule, the deletion method and any legal-hold interaction are organisation-defined.',
     practiceCaveat: 'The named cloud lifecycle features are examples.',
-    contaminants: ['GDPR erasure / right-to-be-forgotten framing — GDPR, not ISO'],
+    contaminants: ['GDPR erasure / right-to-be-forgotten framing - GDPR, not ISO'],
   },
   'GEN-18': {
     primary: 'otherFramework',
@@ -214,12 +214,12 @@ export const GEN_ISO_CLASSIFICATION = {
     annexA: ['A.5.34', 'A.5.31'],
     clause: [],
     basis: 'Only the privacy-obligations aspect is adjacent to ISO, via A.5.34 (privacy and protection of PII) and A.5.31 (legal, statutory, regulatory and contractual requirements).',
-    note: 'As written, this item is a GDPR/CCPA compliance workflow, NOT an ISO control. ISO requires you to identify applicable legal requirements (A.5.31) and meet privacy requirements for PII (A.5.34) — it does not require a consent banner, a cookie tool or a DSAR inbox.',
+    note: 'As written, this item is a GDPR/CCPA compliance workflow, NOT an ISO control. ISO requires you to identify applicable legal requirements (A.5.31) and meet privacy requirements for PII (A.5.34) - it does not require a consent banner, a cookie tool or a DSAR inbox.',
     practiceCaveat: '',
     contaminants: [
-      'Privacy policy publication and consent — GDPR/UK GDPR/ePrivacy, not ISO',
-      'Cookie/consent management platform (Cookiebot) — ePrivacy/GDPR, not ISO',
-      'Data-subject access/erasure request workflow (DSAR) — GDPR/CCPA, not ISO',
+      'Privacy policy publication and consent - GDPR/UK GDPR/ePrivacy, not ISO',
+      'Cookie/consent management platform (Cookiebot) - ePrivacy/GDPR, not ISO',
+      'Data-subject access/erasure request workflow (DSAR) - GDPR/CCPA, not ISO',
     ],
   },
   'GEN-19': {
@@ -228,7 +228,7 @@ export const GEN_ISO_CLASSIFICATION = {
     annexA: ['A.8.16', 'A.5.24', 'A.5.25'],
     clause: ['9.1'],
     basis: 'Supports A.8.16 (monitoring activities) and the incident management references A.5.24 (planning and preparation) and A.5.25 (assessment and decision on events).',
-    note: 'On-call paging and detection tooling are organisation-defined. ISO requires that anomalies be monitored and that potential incidents be evaluated — it does not require a paging service.',
+    note: 'On-call paging and detection tooling are organisation-defined. ISO requires that anomalies be monitored and that potential incidents be evaluated - it does not require a paging service.',
     practiceCaveat: 'The named paging/monitoring products are examples.',
     contaminants: [],
   },
@@ -238,11 +238,11 @@ export const GEN_ISO_CLASSIFICATION = {
     annexA: ['A.5.24', 'A.5.25', 'A.5.26', 'A.5.28', 'A.5.5'],
     clause: ['10.2'],
     basis: 'Incident response runbooks and evidence preservation support A.5.24 to A.5.26, A.5.28 (collection of evidence) and A.5.5 (contact with authorities).',
-    note: 'The runbook structure is a genuine reference-control area. The NOTIFICATION DEADLINES ARE NOT ISO REQUIREMENTS — ISO requires that you identify which authorities to contact and when, based on your own legal obligations.',
+    note: 'The runbook structure is a genuine reference-control area. The NOTIFICATION DEADLINES ARE NOT ISO REQUIREMENTS - ISO requires that you identify which authorities to contact and when, based on your own legal obligations.',
     practiceCaveat: '',
     contaminants: [
-      '72-hour GDPR breach notification — GDPR Art. 33, not ISO',
-      '6-hour CERT-In reporting — Indian CERT-In directions, not ISO',
+      '72-hour GDPR breach notification - GDPR Art. 33, not ISO',
+      '6-hour CERT-In reporting - Indian CERT-In directions, not ISO',
     ],
   },
   'GEN-21': {
@@ -251,7 +251,7 @@ export const GEN_ISO_CLASSIFICATION = {
     annexA: ['A.5.29', 'A.5.30', 'A.8.13', 'A.8.14'],
     clause: ['8.1'],
     basis: 'A.5.29 (information security during disruption), A.5.30 (ICT readiness for business continuity), A.8.13 (backup) and A.8.14 (redundancy) all support continuity of the ISMS.',
-    note: 'A BCP/DR plan and testing of that plan are genuine reference-control expectations. RTO/RPO values and the test cadence are organisation-defined — ISO states no interval.',
+    note: 'A BCP/DR plan and testing of that plan are genuine reference-control expectations. RTO/RPO values and the test cadence are organisation-defined - ISO states no interval.',
     practiceCaveat: '"One failover test per year" is an example cadence, not an ISO requirement.',
     contaminants: [],
   },

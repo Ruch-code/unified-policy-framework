@@ -17,7 +17,7 @@ const FRAMEWORK = {
     {
       itgc: "Data Governance",
       gap: "No Data Protection Officer (DPO) appointed as required by PDPA Sec. 11(3)",
-      pushback: "We're too small to need a formal DPO — our CTO handles privacy.",
+      pushback: "We're too small to need a formal DPO - our CTO handles privacy.",
       reality: "PDPA Sec. 11(3) mandates every organization to appoint at least one DPO responsible for ensuring PDPA compliance. The DPO's name must be accessible publicly (or to PDPC on request). Not having one is a statutory violation even for startups.",
       policy: "Data Protection Officer Appointment Policy, Privacy Governance Charter",
       compensating: [
@@ -25,11 +25,11 @@ const FRAMEWORK = {
         "If no internal resource, engage an external DPO service provider",
         "Document the DPO's responsibilities in a formal appointment letter"
       ],
-      leantip: "Name your most privacy-aware person as DPO and publish their contact on your website. PDPC doesn't require a full-time role — a named individual with clear responsibilities satisfies the requirement."
+      leantip: "Name your most privacy-aware person as DPO and publish their contact on your website. PDPC doesn't require a full-time role - a named individual with clear responsibilities satisfies the requirement."
     },
     {
       itgc: "Consent Management",
-      gap: "No purpose-specific consent collection — blanket consent for all processing",
+      gap: "No purpose-specific consent collection - blanket consent for all processing",
       pushback: "We ask users to agree to our terms; that covers everything.",
       reality: "PDPA Sec. 13-17 require consent to be specific to the purpose, not blanket. You must notify users of purposes before or at collection, and consent must be reasonably inferred or express. Blanket consent doesn't meet PDPA standards and exposes you to PDPC enforcement.",
       policy: "Consent Management Policy, Purpose-Specific Privacy Notice",
@@ -43,20 +43,20 @@ const FRAMEWORK = {
     {
       itgc: "Data Breach Response",
       gap: "No mandatory data breach notification process for notifiable breaches",
-      pushback: "We'll notify people if something bad happens — we don't need a formal process.",
-      reality: "PDPA Sec. 26D mandates notification to PDPC within 3 calendar days for notifiable breaches (significant harm + significant scale). Sec. 26E requires notifying affected individuals. Pre-building the process is essential — you won't have 3 days to figure it out during a crisis.",
+      pushback: "We'll notify people if something bad happens - we don't need a formal process.",
+      reality: "PDPA Sec. 26D mandates notification to PDPC within 3 calendar days for notifiable breaches (significant harm + significant scale). Sec. 26E requires notifying affected individuals. Pre-building the process is essential - you won't have 3 days to figure it out during a crisis.",
       policy: "Data Breach Response Plan, PDPC Notification Procedure",
       compensating: [
         "Draft a one-page PDPC notification template with required fields pre-filled",
         "Assign an incident commander and backup for the 72-hour notification window",
         "Pre-stage a communication draft for affected individuals"
       ],
-      leantip: "Fill in the PDPC notification form NOW — before you need it. Include: nature of breach, affected individuals count, data types compromised, remedial measures taken. Having it ready halves your response time."
+      leantip: "Fill in the PDPC notification form NOW - before you need it. Include: nature of breach, affected individuals count, data types compromised, remedial measures taken. Having it ready halves your response time."
     },
     {
       itgc: "DNC Registry Compliance",
       gap: "No Do Not Call (DNC) Registry screening for marketing messages",
-      pushback: "We only email people who signed up — DNC is for phone calls.",
+      pushback: "We only email people who signed up - DNC is for phone calls.",
       reality: "PDPA Sec. 43-44 and the DNC provisions apply to marketing messages via telephone, fax, and email. The DNC Registry has three registers: voice, fax, and message (email). You must check the relevant register before sending marketing messages. Exemptions exist for existing customers (Section 42(1)(c)) but you must still honor opt-out requests.",
       policy: "DNC Registry Compliance Policy, Marketing Communications Policy",
       compensating: [
@@ -85,7 +85,7 @@ const FRAMEWORK = {
   weeksData: [
     {
       week: 1,
-      title: "L1 Foundation — PDPA Principles, DPO & Data Mapping",
+      title: "L1 Foundation - PDPA Principles, DPO & Data Mapping",
       description:
         "Map PDPA scope to your environment, understand the 11 Obligations under Part IV, appoint a DPO, and build the foundation for PDPC compliance.",
       days: [
@@ -124,7 +124,7 @@ const FRAMEWORK = {
               title:
                 "Classify personal data using automated scanners across all cloud environments",
               control:
-                "PDPA Sec. 24 (Protection), Sec. 2 (Definitions — Personal Data)",
+                "PDPA Sec. 24 (Protection), Sec. 2 (Definitions - Personal Data)",
               how: "Deploy automated data classification to discover and tag personal data across all environments. For AWS: enable Amazon Macie with custom data identifiers for Singapore NRIC patterns (S/N/F/G number format), FIN, and work permit numbers. For Azure: configure Microsoft Purview scanning with sensitive information types. For GCP: deploy Cloud DLP API inspection jobs for Singapore identification patterns. For Alibaba: configure Data Security Center for data classification. Build a classification taxonomy: ordinary personal data, sensitive personal data (PDPA doesn't have a formal 'special category' like GDPR but health, financial, and children's data warrant enhanced protection), and publicly available data. Tag all discovered data stores with classification labels.",
               check:
                 "Automated classification running across all four clouds with Singapore PII patterns, classification taxonomy documented, and data catalog populated with PII locations and owners",
@@ -149,7 +149,7 @@ const FRAMEWORK = {
                 "Implement purpose-specific consent collection meeting Sec. 13-14 requirements",
               control:
                 "PDPA Sec. 13 (Consent Obligation), Sec. 14 (Notification of Purpose), Sec. 15 (Deemed Consent)",
-              how: "Build consent management meeting PDPA Sec. 13-15 requirements. For express consent (Sec. 13): implement purpose-specific consent capture at each data collection point — separate consent for marketing, analytics, profiling, and third-party sharing. For deemed consent (Sec. 15): document where deemed consent applies (voluntary provision of data for a purpose reasonably apparent, or contractual necessity) and ensure notification requirements are met. For notification (Sec. 14): before or at the time of collection, notify data subjects of the purpose(s) using clear, plain language. Implement consent record storage (user_id, purpose, consent_state, timestamp, version, source) in DynamoDB or CosmosDB. Build consent withdrawal mechanism processing within 30 days.",
+              how: "Build consent management meeting PDPA Sec. 13-15 requirements. For express consent (Sec. 13): implement purpose-specific consent capture at each data collection point - separate consent for marketing, analytics, profiling, and third-party sharing. For deemed consent (Sec. 15): document where deemed consent applies (voluntary provision of data for a purpose reasonably apparent, or contractual necessity) and ensure notification requirements are met. For notification (Sec. 14): before or at the time of collection, notify data subjects of the purpose(s) using clear, plain language. Implement consent record storage (user_id, purpose, consent_state, timestamp, version, source) in DynamoDB or CosmosDB. Build consent withdrawal mechanism processing within 30 days.",
               check:
                 "Purpose-specific consent collection implemented at all data collection points, deemed consent scenarios documented, Sec. 14 notifications published, and consent withdrawal mechanism processing within 30 days",
             },
@@ -191,7 +191,7 @@ const FRAMEWORK = {
                 "Build a notifiable data breach notification process under Sec. 26A-26E",
               control:
                 "PDPA Sec. 26A (Mandatory Breach Notification), Sec. 26B (Significant Harm), Sec. 26C (Significant Scale), Sec. 26D (PDPC Notification), Sec. 26E (Individual Notification)",
-              how: "Build a data breach notification process compliant with PDPA Sec. 26A-26E. A breach is notifiable if it: (I) results in, or is likely to result in, significant harm to affected individuals (Sec. 26B — e.g., NRIC, financial data, passwords), OR (II) is of a significant scale (Sec. 26C — 500+ individuals). Notification to PDPC must occur within 3 calendar days of assessment (Sec. 26D). Notification to affected individuals must occur as soon as practicable (Sec. 26E). Draft the PDPC notification form with required fields: nature of breach, types of data affected, number of individuals, remedial measures taken, and DPO contact. Implement the response process: detection, assessment (notifiability determination within 3 days), containment, PDPC notification, individual notification, and post-incident review.",
+              how: "Build a data breach notification process compliant with PDPA Sec. 26A-26E. A breach is notifiable if it: (I) results in, or is likely to result in, significant harm to affected individuals (Sec. 26B - e.g., NRIC, financial data, passwords), OR (II) is of a significant scale (Sec. 26C - 500+ individuals). Notification to PDPC must occur within 3 calendar days of assessment (Sec. 26D). Notification to affected individuals must occur as soon as practicable (Sec. 26E). Draft the PDPC notification form with required fields: nature of breach, types of data affected, number of individuals, remedial measures taken, and DPO contact. Implement the response process: detection, assessment (notifiability determination within 3 days), containment, PDPC notification, individual notification, and post-incident review.",
               check:
                 "Breach notification process documented with notifiability assessment criteria (Sec. 26B-C), PDPC notification template with required fields, 3-calendar-day SLA, and test notification executed",
             },
@@ -228,7 +228,7 @@ const FRAMEWORK = {
     },
     {
       week: 2,
-      title: "L2 Implementer — Technical Controls & Cloud Security per PDPA",
+      title: "L2 Implementer - Technical Controls & Cloud Security per PDPA",
       description:
         "Implement cloud-native technical controls for PDPA compliance: encryption, access management, breach detection, DNC automation, and data protection across AWS, Azure, GCP, and Alibaba.",
       days: [
@@ -325,7 +325,7 @@ const FRAMEWORK = {
                 "Implement automated breach assessment and notifiability determination",
               control:
                 "PDPA Sec. 26A (Assessment), Sec. 26B (Significant Harm), Sec. 26C (Significant Scale)",
-              how: "Build automated breach assessment tools to determine notifiability within 3 calendar days. Implement a breach assessment checklist: (1) Is personal data affected? (2) How many individuals affected? (3) What types of data? (4) Does it meet significant harm criteria (Sec. 26B — NRIC, financial, passwords, health data)? (5) Does it meet significant scale criteria (Sec. 26C — 500+ individuals)? (6) Can the breach be contained without notification? Automate the assessment: integrate SIEM alerts with a ticketing system (Jira, ServiceNow) that triggers the assessment workflow. Pre-populate the PDPC notification form template with fields from the incident. Configure escalation if assessment cannot be completed within 2 calendar days.",
+              how: "Build automated breach assessment tools to determine notifiability within 3 calendar days. Implement a breach assessment checklist: (1) Is personal data affected? (2) How many individuals affected? (3) What types of data? (4) Does it meet significant harm criteria (Sec. 26B - NRIC, financial, passwords, health data)? (5) Does it meet significant scale criteria (Sec. 26C - 500+ individuals)? (6) Can the breach be contained without notification? Automate the assessment: integrate SIEM alerts with a ticketing system (Jira, ServiceNow) that triggers the assessment workflow. Pre-populate the PDPC notification form template with fields from the incident. Configure escalation if assessment cannot be completed within 2 calendar days.",
               check:
                 "Automated breach assessment workflow deployed with notifiability determination criteria, PDPC notification form pre-populated, 3-calendar-day assessment SLA enforced, and escalation configured",
             },
@@ -343,7 +343,7 @@ const FRAMEWORK = {
                 "Deploy continuous consent compliance monitoring and enforcement",
               control:
                 "PDPA Sec. 13 (Consent), Sec. 16 (Withdrawal of Consent), Sec. 17 (Deemed Consent by Conduct)",
-              how: "Implement continuous consent compliance monitoring. Verify: consent records exist for all active users, consent timestamps are accurate and tamper-proof, consent granularity matches documented purposes, and withdrawal requests propagate within 30 days. For consent withdrawal: verify marketing tools suppress the user, analytics tools exclude tracking, and third-party sharing ceases. Implement monitoring: automated checks for processing without valid consent, alerting on consent withdrawal SLA approaching deadline, and consent record completeness reporting. Configure consent state enforcement in application middleware — check consent before processing personal data for any purpose. Store consent records in append-only log for audit evidence.",
+              how: "Implement continuous consent compliance monitoring. Verify: consent records exist for all active users, consent timestamps are accurate and tamper-proof, consent granularity matches documented purposes, and withdrawal requests propagate within 30 days. For consent withdrawal: verify marketing tools suppress the user, analytics tools exclude tracking, and third-party sharing ceases. Implement monitoring: automated checks for processing without valid consent, alerting on consent withdrawal SLA approaching deadline, and consent record completeness reporting. Configure consent state enforcement in application middleware - check consent before processing personal data for any purpose. Store consent records in append-only log for audit evidence.",
               check:
                 "Consent compliance monitoring operational with automated checks, withdrawal propagation within 30 days verified, consent enforcement in application middleware, and audit trail maintained",
             },
@@ -405,7 +405,7 @@ const FRAMEWORK = {
     },
     {
       week: 3,
-      title: "L3 Verifier — Testing PDPA Controls & Evidence Collection",
+      title: "L3 Verifier - Testing PDPA Controls & Evidence Collection",
       description:
         "Execute comprehensive testing of PDPA controls: breach notification drill, DSAR response validation, DNC compliance test, encryption audit, access review, and cross-border transfer verification.",
       days: [
@@ -539,7 +539,7 @@ const FRAMEWORK = {
     },
     {
       week: 4,
-      title: "L4 Certified — Multi-Cloud PDPA Compliance & Continuous Monitoring",
+      title: "L4 Certified - Multi-Cloud PDPA Compliance & Continuous Monitoring",
       description:
         "Master PDPA controls across AWS, Azure, GCP, and Alibaba Cloud, implement continuous compliance monitoring, address common PDPC findings, and establish ongoing PDPA compliance.",
       days: [
@@ -579,7 +579,7 @@ const FRAMEWORK = {
                 "Establish ongoing PDPA training and awareness program",
               control:
                 "PDPA Sec. 12 (Accountability), PDPC Advisory Guidelines",
-              how: "Establish PDPA training program with role-specific modules. (1) PDPA fundamentals for all employees — principles, data subject rights, breach reporting. (2) Developer training — secure coding, data minimization, encryption. (3) Operations training — access control, logging, incident response. (4) Business training — consent management, DNC compliance, cross-border transfers. Implement: onboarding training, quarterly refreshers, annual comprehensive review, and ad-hoc training for PDPC regulatory changes. Track completion rates and scores. Document the training program for PDPC accountability evidence.",
+              how: "Establish PDPA training program with role-specific modules. (1) PDPA fundamentals for all employees - principles, data subject rights, breach reporting. (2) Developer training - secure coding, data minimization, encryption. (3) Operations training - access control, logging, incident response. (4) Business training - consent management, DNC compliance, cross-border transfers. Implement: onboarding training, quarterly refreshers, annual comprehensive review, and ad-hoc training for PDPC regulatory changes. Track completion rates and scores. Document the training program for PDPC accountability evidence.",
               check:
                 "PDPA training program documented with role-specific modules, training delivery scheduled, completion tracking operational, and training records maintained for accountability evidence",
             },
@@ -587,7 +587,7 @@ const FRAMEWORK = {
         },
         {
           day: 60,
-          title: "AWS PDPA Controls — Macie, Config, GuardDuty & Security Hub",
+          title: "AWS PDPA Controls - Macie, Config, GuardDuty & Security Hub",
           tasks: [
             {
               title:

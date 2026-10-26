@@ -203,8 +203,8 @@ function frameworkEntries() {
         return [];
       });
       const weekFocus =
-        weeks.find(w => w.title)?.title?.split('—')[1]?.trim() ||
-        weeks[0]?.title?.split('—')[1]?.trim() ||
+        weeks.find(w => w.title)?.title?.split(' - ')[1]?.trim() ||
+        weeks[0]?.title?.split(' - ')[1]?.trim() ||
         '';
       const weekCount = weeks.length || fw.weeks || 4;
       const tags = [
@@ -250,7 +250,7 @@ const moduleEntries = [
     id: 'password-policies',
     category: 'Policy & Control Modules',
     label: 'Password Policies & Authentication Strategies',
-    desc: 'Entra ID (Azure AD) password policies, custom banned lists, passwordless FIDO2/passkeys, SSO & MFA alternatives (Okta, Ping, Auth0, AWS, Google, Keycloak, PAM) — framework-mapped best practices.',
+    desc: 'Entra ID (Azure AD) password policies, custom banned lists, passwordless FIDO2/passkeys, SSO & MFA alternatives (Okta, Ping, Auth0, AWS, Google, Keycloak, PAM) - framework-mapped best practices.',
     keywords: [
       'password', 'passwords', 'passwordless', 'mfa', 'sso', 'entra', 'azure ad', 'aad',
       'banned password list', 'smart lockout', 'complexity', 'fido2', 'passkeys', 'yubikey',
@@ -266,7 +266,7 @@ const moduleEntries = [
     id: 'ai-privacy',
     category: 'Policy & Control Modules',
     label: 'AI Privacy Risk Matrix',
-    desc: '11 critical privacy risks across Model Training, RAG Systems, AI Agents, and Industry Use Cases — mapped to GDPR, AI Act, HIPAA, CCPA with actionable controls.',
+    desc: '11 critical privacy risks across Model Training, RAG Systems, AI Agents, and Industry Use Cases - mapped to GDPR, AI Act, HIPAA, CCPA with actionable controls.',
     keywords: [
       'ai', 'llm', 'model training', 'memorization', 'differential privacy', 'dpia', 'rag',
       'vector database', 'retrieval', 'tenant isolation', 'row-level security', 'ai agents',
@@ -309,7 +309,7 @@ const moduleEntries = [
     id: 'access-governance',
     category: 'Policy & Control Modules',
     label: 'Persona & Access Governance',
-    desc: 'FTE, Contractor, Intern, Production access: background checks, provisioning, governance, offboarding, JIT, session recording — mapped to SOC 2, ISO 27001, PCI, HIPAA, NIST, CIS, FedRAMP, GDPR, DPDPA, CJIS.',
+    desc: 'FTE, Contractor, Intern, Production access: background checks, provisioning, governance, offboarding, JIT, session recording - mapped to SOC 2, ISO 27001, PCI, HIPAA, NIST, CIS, FedRAMP, GDPR, DPDPA, CJIS.',
     keywords: [
       'access', 'identity', 'iam', 'rbac', 'least privilege', 'provisioning', 'scim', 'jit',
       'background check', 'background verification', 'onboarding', 'offboarding', 'revocation',
@@ -323,7 +323,7 @@ const moduleEntries = [
   {
     id: 'user-access-review',
     category: 'Policy & Control Modules',
-    label: 'User Access Review — Coverage, Users & Frequency',
+    label: 'User Access Review - Coverage, Users & Frequency',
     desc: 'Systems/apps in scope, user types (human + machine identities), and review frequency per framework with risk-tiered operational guidance.',
     keywords: [
       'uar', 'user access review', 'access review', 'recertification', 'attestation', 'coverage',
@@ -339,7 +339,7 @@ const moduleEntries = [
   {
     id: 'iso-42001',
     category: 'Policy & Control Modules',
-    label: 'ISO 42001 — AI Management Systems',
+    label: 'ISO 42001 - AI Management Systems',
     desc: 'Dedicated AI governance framework: AI risk management, AI policies, AI system monitoring (opens the external AI Governance app).',
     keywords: ['iso 42001', '42001', 'ai governance', 'ai management system', 'aism', 'ai risk', 'ai policy'],
     path: 'https://inspiring-ganache-fdd3be.netlify.app/',
@@ -349,7 +349,7 @@ const moduleEntries = [
   {
     id: 'iso-42001-kb',
     category: 'Policy & Control Modules',
-    label: 'ISO 42001 — AI Management Systems (Knowledge Base)',
+    label: 'ISO 42001 - AI Management Systems (Knowledge Base)',
     desc: 'AIMS breakdown in the GRC Knowledge Base: AI policy, AI risk assessment, Annex B bias/robustness/incident controls, audit rebuttals, vendor AI clauses and the readiness timeline.',
     keywords: ['iso 42001 kb', '42001 annex b', 'ai management system controls', 'ai risk register', 'bias assessment', 'ai incident reporting', 'ai transparency', 'aism', 'ai audit', 'ai policy', 'human oversight', 'foundation model'],
     path: '/knowledge?fw=iso42001',
@@ -359,8 +359,8 @@ const moduleEntries = [
   {
     id: 'secops-vuln',
     category: 'Policy & Control Modules',
-    label: 'Security Operations — Vulnerability Management & Patch SLAs',
-    desc: 'Closed-loop vulnerability program per cloud provider with severity SLAs: Critical ≤48h, High ≤96h, Medium ≤30 days, Low ≤90 days — plus supply-chain scanning.',
+    label: 'Security Operations - Vulnerability Management & Patch SLAs',
+    desc: 'Closed-loop vulnerability program per cloud provider with severity SLAs: Critical ≤48h, High ≤96h, Medium ≤30 days, Low ≤90 days - plus supply-chain scanning.',
     keywords: [
       'vuln', 'vulnerability', 'vulnerability management', 'patch', 'patching', 'p0', 'p1', 'cve',
       'sla', 'remediation window', 'critical 48h', 'high 96h', 'medium 30 days', 'low 90 days',
@@ -374,7 +374,7 @@ const moduleEntries = [
   {
     id: 'secops-logging',
     category: 'Policy & Control Modules',
-    label: 'Security Operations — Logging, Monitoring & SIEM Retention',
+    label: 'Security Operations - Logging, Monitoring & SIEM Retention',
     desc: 'Every security-relevant source piped into one SIEM with tiered storage: audit, firewall, endpoint, cloud trails; 180-day hot/queryable baseline, 1-year warm, 7-year cold archive.',
     keywords: [
       'logging', 'monitoring', 'siem', 'log retention', 'splunk', 'cloudtrail', 'audit log',
@@ -388,7 +388,7 @@ const moduleEntries = [
   {
     id: 'secops-ir',
     category: 'Policy & Control Modules',
-    label: 'Security Operations — Incident Response P0–P3 Triage, Containment & RCA',
+    label: 'Security Operations - Incident Response P0–P3 Triage, Containment & RCA',
     desc: 'Severity-based incident playbook: P0 minutes-level containment, 5-Whys root-cause analysis, corrective & preventive actions, breach notification duties.',
     keywords: [
       'incident response', 'ir', 'p0', 'p1', 'p2', 'p3', 'triage', 'sev0', 'sev1',
@@ -402,7 +402,7 @@ const moduleEntries = [
   {
     id: 'ai-governance',
     category: 'Policy & Control Modules',
-    label: 'AI Governance & Emerging Tech — ISO 42001, EU AI Act, NIST AI RMF',
+    label: 'AI Governance & Emerging Tech - ISO 42001, EU AI Act, NIST AI RMF',
     desc: 'One governance module across three frameworks: AI inventory + risk-tier classification, EU AI Act phased obligations, NIST AI RMF Govern–Map–Measure–Manage rhythm, ISO 42001 AIMS, model cards, GPAI and AI-agent coverage.',
     keywords: [
       'ai governance', 'ai inventory', 'eu ai act', 'iso 42001', 'nist ai rmf', 'rmf',
@@ -465,7 +465,7 @@ const personaEntries = [
   {
     id: 'persona-fte',
     category: 'Persona Requirements',
-    label: 'Persona Requirements — Full-Time Employees (FTEs)',
+    label: 'Persona Requirements - Full-Time Employees (FTEs)',
     desc: 'Background verification before access (7-year history, I-9/right-to-work), HR-driven SCIM provisioning, quarterly access reviews, 4-hour offboarding SLA.',
     keywords: [
       'fte', 'ftes', 'full-time', 'employee', 'employees', 'background check', 'hire',
@@ -479,7 +479,7 @@ const personaEntries = [
   {
     id: 'persona-contractor',
     category: 'Persona Requirements',
-    label: 'Persona Requirements — Contractors & Vendors',
+    label: 'Persona Requirements - Contractors & Vendors',
     desc: 'Pre-engagement security screening, time-boxed & least-privilege access, sub-contractor flow-down, and JIT-controlled production access.',
     keywords: [
       'contractor', 'contractors', 'vendor', 'vendors', 'consultant', 'third-party',
@@ -493,7 +493,7 @@ const personaEntries = [
   {
     id: 'persona-intern',
     category: 'Persona Requirements',
-    label: 'Persona Requirements — Interns & Trainees',
+    label: 'Persona Requirements - Interns & Trainees',
     desc: 'Supervised access only, NO production or privileged access, tighter provisioning and shorter review cycles.',
     keywords: [
       'intern', 'interns', 'trainee', 'trainees', 'student', 'internship', 'supervised',
@@ -506,7 +506,7 @@ const personaEntries = [
   {
     id: 'persona-production',
     category: 'Persona Requirements',
-    label: 'Persona Requirements — Production Access Personnel',
+    label: 'Persona Requirements - Production Access Personnel',
     desc: 'CAB approval, 8-hour JIT windows, PAW, session recording (SSM/Azure Bastion/Teleport), secrets injection (Vault), break-glass with logging.',
     keywords: [
       'production', 'prod', 'jit', 'break-glass', 'cab', 'change approval', 'session recording',
@@ -775,7 +775,7 @@ function assessmentEntries() {
     return {
       id: `assessment-${a.id}`,
       category: 'Policy & Control Modules',
-      label: `${a.id} — ${a.control}`,
+      label: `${a.id} - ${a.control}`,
       desc: `${a.category} · ${a.itgc}${a.tool ? ` · Tools: ${a.tool}` : ''}${a.scenario ? ` · ${a.scenario}` : ''}`,
       keywords,
       bodyText: keywords.join(' '),
@@ -1000,7 +1000,7 @@ export function searchCompliance(rawQuery, { limit = 12 } = {}) {
       else if (item.nbody.includes(q)) total += 22;
     }
 
-    // Proximity bonus — matched terms clustered together in the body.
+    // Proximity bonus - matched terms clustered together in the body.
     const positions = matchedPositions.slice().sort((a, b) => a.index - b.index);
     if (positions.length >= 2) {
       const span = positions[positions.length - 1].index + positions[positions.length - 1].len - positions[0].index;

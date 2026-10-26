@@ -9,24 +9,24 @@ const SCOPE_TREE = [
     id: 'facility',
     icon: Building2,
     title: '1. Own facility vs remote / shared',
-    question: 'Does the organization control its own office or facility — lease in its own name, managed entry, its own keys/badges?',
+    question: 'Does the organization control its own office or facility - lease in its own name, managed entry, its own keys/badges?',
     hint: 'Decides A.7.1–7.4 (perimeter/entry/offices/monitoring), and feeds A.7.5–7.7.',
     branches: [
       {
         dir: 'yes',
-        label: 'Yes — company controls the space',
+        label: 'Yes - company controls the space',
         outcome: 'A.7.1–7.4 stay IN scope. Audit entry control, visitor handling, and monitoring as live controls, not exclusions.',
         checks: [
           'Badge / phone-entry system (logs available?)',
           'Visitor sign-in + escort policy (A.7.1)',
-          'Office & room protection — who can walk in? (A.7.2, A.7.3)',
+          'Office & room protection - who can walk in? (A.7.2, A.7.3)',
           'CCTV or monitoring where warranted (A.7.4)',
           'Clear-desk / clear-screen enforcement (A.7.7)',
         ],
         next: [
           {
             id: 'facility-y1',
-            question: 'Is sensitive hardware hosted on-site — NAS, servers, backup appliances, hardware lab?',
+            question: 'Is sensitive hardware hosted on-site - NAS, servers, backup appliances, hardware lab?',
             branches: [
               {
                 dir: 'yes',
@@ -46,8 +46,8 @@ const SCOPE_TREE = [
       },
       {
         dir: 'no',
-        label: 'No — fully remote / co-working / landlord-controlled',
-        outcome: 'A.7.1–7.4 and A.7.6 excluded — but you MUST name the compensating party (co-working landlord badging, CCTV operator). A bare “N/A” is not a defensible exclusion.',
+        label: 'No - fully remote / co-working / landlord-controlled',
+        outcome: 'A.7.1–7.4 and A.7.6 excluded - but you MUST name the compensating party (co-working landlord badging, CCTV operator). A bare “N/A” is not a defensible exclusion.',
         checks: [
           'Lease / co-working agreement states landlord-provided security',
           'CCTV operator + footage-retention named',
@@ -56,7 +56,7 @@ const SCOPE_TREE = [
         next: [
           {
             id: 'facility-n1',
-            question: 'Is there ANY on-site equipment — office router, under-desk NAS, printed confidential documents?',
+            question: 'Is there ANY on-site equipment - office router, under-desk NAS, printed confidential documents?',
             branches: [
               {
                 dir: 'yes',
@@ -86,7 +86,7 @@ const SCOPE_TREE = [
       {
         dir: 'yes',
         label: 'Cloud-hosted (majority of clients)',
-        outcome: 'Defaults stand. A.7.8 / A.7.11 / A.7.12 excluded with provider SLA / multi-AZ citation. A.5.23 selected — check the cloud usage governance input.',
+        outcome: 'Defaults stand. A.7.8 / A.7.11 / A.7.12 excluded with provider SLA / multi-AZ citation. A.5.23 selected - check the cloud usage governance input.',
         checks: ['Provider SLA + ISO 27001/22301 attestations cited', 'Multi-region / multi-AZ design confirmed', 'A.5.23 column-F inputs updated'],
         next: [],
       },
@@ -103,7 +103,7 @@ const SCOPE_TREE = [
         next: [
           {
             id: 'hosting-n1',
-            question: 'Does the organization also run on-prem networking at the office — router, switch, network closet?',
+            question: 'Does the organization also run on-prem networking at the office - router, switch, network closet?',
             branches: [
               {
                 dir: 'yes',
@@ -127,23 +127,23 @@ const SCOPE_TREE = [
     id: 'development',
     icon: Code2,
     title: '3. Does the organization develop software?',
-    question: 'Does the organization write, maintain, or customize software at all — in-house team, outsourced shops, or nothing?',
+    question: 'Does the organization write, maintain, or customize software at all - in-house team, outsourced shops, or nothing?',
     hint: 'Gates the whole Secure Development cluster A.8.25–8.30 and A.8.24 (crypto in dev/test).',
     branches: [
       {
         dir: 'yes',
-        label: 'Yes — development happens',
+        label: 'Yes - development happens',
         outcome: 'A.8.25–8.30 selected (SDLC, security testing, secure coding). Walk the pipeline, not just the policy.',
         checks: [
           'CI/CD security gates: SAST, dependency scanning, secrets scan',
           'Code review + branch protection',
           'Environment separation: prod vs staging vs dev',
-          'Test data — anonymized, never real PII/PHI/PCI',
+          'Test data - anonymized, never real PII/PHI/PCI',
         ],
         next: [
           {
             id: 'dev-y1',
-            question: 'Who writes the code — in-house, outsourced dev shops/freelancers, or mixed?',
+            question: 'Who writes the code - in-house, outsourced dev shops/freelancers, or mixed?',
             branches: [
               {
                 dir: 'yes',
@@ -154,7 +154,7 @@ const SCOPE_TREE = [
               {
                 dir: 'no',
                 label: 'In-house only',
-                outcome: 'A.8.30 stays selected with “no external development” in column F — do NOT silently exclude it; a first contractor flips it back into the tight config.',
+                outcome: 'A.8.30 stays selected with “no external development” in column F - do NOT silently exclude it; a first contractor flips it back into the tight config.',
                 checks: ['“No external development” stated in the SoA'],
               },
             ],
@@ -163,7 +163,7 @@ const SCOPE_TREE = [
       },
       {
         dir: 'no',
-        label: 'No — no development of any kind',
+        label: 'No - no development of any kind',
         outcome: 'A.8.25–8.30 excludable with written rationale (“the organization does not develop software”). A.8.24 partial exclusion is also defensible.',
         checks: [
           'Rationale written, not a bare N/A',
@@ -179,11 +179,11 @@ const SCOPE_TREE = [
     icon: Users,
     title: '4. Do third parties touch systems or data?',
     question: 'Do contractors, vendors, or SaaS providers access your systems, host your data, or process information on your behalf?',
-    hint: 'Gates supplier security A.5.19–5.23. Nearly every startup answers YES (IDP, hosting, email, payroll, analytics) — treat a NO with suspicion.',
+    hint: 'Gates supplier security A.5.19–5.23. Nearly every startup answers YES (IDP, hosting, email, payroll, analytics) - treat a NO with suspicion.',
     branches: [
       {
         dir: 'yes',
-        label: 'Yes — suppliers in scope',
+        label: 'Yes - suppliers in scope',
         outcome: 'A.5.19–5.23 selected. The question is maturity: inventory + agreements + review cadence.',
         checks: [
           'One-page vendor inventory with data-types touched',
@@ -214,8 +214,8 @@ const SCOPE_TREE = [
       },
       {
         dir: 'no',
-        label: 'No — no third parties (rare)',
-        outcome: 'A.5.19–5.23 excludable with rationale, but challenge this aggressively — SSO providers, email hosts, and hosting all count as suppliers.',
+        label: 'No - no third parties (rare)',
+        outcome: 'A.5.19–5.23 excludable with rationale, but challenge this aggressively - SSO providers, email hosts, and hosting all count as suppliers.',
         checks: ['Confirm zero SaaS / zero processors (unlikely)', 'Exclusion drafted and owner-signed'],
         next: [],
       },
@@ -225,12 +225,12 @@ const SCOPE_TREE = [
     id: 'sensitive-data',
     icon: ShieldCheck,
     title: '5. Do you process regulated or special-category data?',
-    question: 'Does the organization process regulated or sensitive data — health (PHI), financial, cardholder (PCI), children’s data, or EU personal data?',
+    question: 'Does the organization process regulated or sensitive data - health (PHI), financial, cardholder (PCI), children’s data, or EU personal data?',
     hint: 'Gates A.5.34–5.36 (privacy controls) and adds legal/framework interplay beyond ISO 27001 alone.',
     branches: [
       {
         dir: 'yes',
-        label: 'Yes — regulated data in scope',
+        label: 'Yes - regulated data in scope',
         outcome: 'A.5.34, A.5.35, A.5.36 selected. Add the jurisdiction-specific controls on top: GDPR DPIA/DPO posture, PCI-DSS if cards, HIPAA/BAA if PHI, residency obligations.',
         checks: [
           'Data protection / privacy policy exists',
@@ -242,7 +242,7 @@ const SCOPE_TREE = [
       },
       {
         dir: 'no',
-        label: 'No — baseline data only',
+        label: 'No - baseline data only',
         outcome: 'Privacy controls scoped to a baseline. Confirm no residency, notification, or special-category obligations before finalizing exclusions.',
         checks: ['Confirm no card data / health data / EU data processed', 'Baseline privacy controls still selected'],
         next: [],
@@ -351,10 +351,10 @@ export default function ScopeWalkthrough() {
           <div className="mb-6">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-text-dark-primary flex items-center gap-3">
               <span className="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center"><Route className="w-6 h-6" /></span>
-              ISO 27001 — Scoping Walkthrough (Decision Tree)
+              ISO 27001 - Scoping Walkthrough (Decision Tree)
             </h2>
             <p className="text-gray-600 dark:text-text-dark-secondary mt-3 max-w-3xl leading-relaxed">
-              The Scoping walkthrough is where the SoA is actually shaped. Ask these questions in order during the client walkthrough —
+              The Scoping walkthrough is where the SoA is actually shaped. Ask these questions in order during the client walkthrough -
               each branch directs which Annex A controls stay <em>in scope</em>, which become <em>exclusions with written rationale</em>,
               and which flip back in when the answer changes. <strong>Walk every branch to its leaf before finalizing column F.</strong>
             </p>
@@ -387,7 +387,7 @@ export default function ScopeWalkthrough() {
               <Info className="w-4 h-4 text-indigo-500 shrink-0 mt-0.5" />
               <p className="text-xs text-gray-700 dark:text-text-dark-secondary leading-relaxed">
                 <strong className="text-gray-900 dark:text-text-dark-primary">What to expect:</strong> ~45 min, five questions.
-                Each answer turns straight into SoA outcomes — in scope, excluded with rationale, or flipped when the answer changes.
+                Each answer turns straight into SoA outcomes - in scope, excluded with rationale, or flipped when the answer changes.
                 You leave with column F drafted, a decision summary, and evidence owners named.
               </p>
             </div>
@@ -399,7 +399,7 @@ export default function ScopeWalkthrough() {
                 tag="Before the call"
                 icon={Pointer}
                 checks={[
-                  'Book the real decision-maker — founder, CISO, or ops lead with the authority to answer.',
+                  'Book the real decision-maker - founder, CISO, or ops lead with the authority to answer.',
                   "Pull the client's knowledge base answers and pre-answer what you can.",
                   'Open the SoA (columns C–F) beside this tree; add placeholder rows for the domains you expect to go in or out.',
                 ]}
@@ -411,11 +411,11 @@ export default function ScopeWalkthrough() {
                 tag="Live walkthrough"
                 icon={Route}
                 checks={[
-                  'Ask Q1–Q5 in order; drive every branch to its leaf — "maybe" and "it depends" are not answers.',
+                  'Ask Q1–Q5 in order; drive every branch to its leaf - "maybe" and "it depends" are not answers.',
                   'Record each answer, the branch it takes, and the evidence + owner for every branch.',
                   'Capture exclusions as written rationale + named compensating control, never bare "N/A".',
                   "Verify hosting & vendor answers against the client's knowledge base, then confirm orally.",
-                  'Flag and re-walk any branch the client changes — new office, server, dev, or processor.',
+                  'Flag and re-walk any branch the client changes - new office, server, dev, or processor.',
                 ]}
               />
               <FlowArrow />
@@ -427,7 +427,7 @@ export default function ScopeWalkthrough() {
                 checks={[
                   'Write column F from the recorded branches; mark each row in scope or excluded.',
                   'Send the client the decisions, exclusions, and assigned evidence owners.',
-                  'List open evidence gaps — who fetches what, by when; book a short follow-up for anything unresolved.',
+                  'List open evidence gaps - who fetches what, by when; book a short follow-up for anything unresolved.',
                 ]}
               />
             </ol>
@@ -479,7 +479,7 @@ export default function ScopeWalkthrough() {
               <FileSearch className="w-4 h-4 text-indigo-500 shrink-0 mt-0.5" />
               <span>
                 <strong>How to use this in the walkthrough:</strong> record each answer and the branch it takes. Whatever direction the
-                branch goes, you still must capture evidence in the SoA — an exclusion is only as good as the written reason and the named
+                branch goes, you still must capture evidence in the SoA - an exclusion is only as good as the written reason and the named
                 compensating control. Re-run the tree whenever the client adds an office, a server, a dev, or a data processor. When in
                 doubt about hosting or vendors, check the client’s Streetsmart page, then confirm with the client before finalizing.
               </span>

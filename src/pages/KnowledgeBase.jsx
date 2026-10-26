@@ -108,7 +108,7 @@ export default function KnowledgeBase() {
         {fwObj.timeline && (
           <div className="bg-white border border-gray-200 rounded-2xl p-4 dark:bg-[#1e293b] dark:border-[#334155]">
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <h4 className="flex items-center gap-2 font-bold text-gray-900 text-sm dark:text-[#f8fafc]"><CalendarDays className="w-4 h-4 text-indigo-600" /> Readiness timeline — from preparation to re-issuance</h4>
+              <h4 className="flex items-center gap-2 font-bold text-gray-900 text-sm dark:text-[#f8fafc]"><CalendarDays className="w-4 h-4 text-indigo-600" /> Readiness timeline - from preparation to re-issuance</h4>
               <span className="text-[11px] font-bold uppercase tracking-wide text-indigo-700 bg-indigo-50 border border-indigo-100 rounded-full px-2.5 py-0.5 dark:bg-[#312e81]/40 dark:border-[#4338ca] dark:text-[#c7d2fe]">{fwObj.timeline.kind}</span>
             </div>
             <p className="text-xs text-gray-600 mt-1.5 dark:text-[#cbd5e1]">Total readiness: <span className="font-semibold text-gray-800 dark:text-[#f8fafc]">{fwObj.timeline.total}</span></p>
@@ -128,7 +128,7 @@ export default function KnowledgeBase() {
             </div>
           </div>
         )}
-        <h4 className="font-bold text-gray-800 text-sm mt-2">{fwObj.name} — policies & controls</h4>
+        <h4 className="font-bold text-gray-800 text-sm mt-2">{fwObj.name} - policies & controls</h4>
         {fwObj.policies.map(p => (
           <div key={p.area} className="bg-white border border-gray-200 rounded-2xl p-4 dark:bg-[#1e293b] dark:border-[#334155]">
             <h5 className="font-bold text-gray-900 text-sm dark:text-[#f8fafc]">{p.area}</h5>
@@ -171,10 +171,10 @@ export default function KnowledgeBase() {
     ),
     audit: (
       <div className="space-y-4">
-        <h4 className="font-bold text-gray-800 text-sm">Audit battle cards — observation → why it's raised → your rebuttal</h4>
+        <h4 className="font-bold text-gray-800 text-sm">Audit battle cards - observation → why it's raised → your rebuttal</h4>
         {fwObj.policyTimeline && (
 <div className="bg-white border border-gray-200 rounded-2xl p-4 dark:bg-[#1e293b] dark:border-[#334155]">
-            <h5 className="flex items-center gap-2 font-bold text-gray-900 text-sm"><Clock className="w-4 h-4 text-indigo-600" /> Policy change timeline — when policies move, and how to evidence them</h5>
+            <h5 className="flex items-center gap-2 font-bold text-gray-900 text-sm"><Clock className="w-4 h-4 text-indigo-600" /> Policy change timeline - when policies move, and how to evidence them</h5>
             <ul className="mt-2 space-y-2 text-sm text-gray-700">
               <li className="flex gap-2"><span className="font-semibold text-indigo-700 shrink-0">During drafting:</span><span>{fwObj.policyTimeline.drafting}</span></li>
               <li className="flex gap-2"><span className="font-semibold text-amber-700 dark:text-amber-300 shrink-0">Before audit:</span><span>{fwObj.policyTimeline.beforeAudit}</span></li>
@@ -259,7 +259,7 @@ export default function KnowledgeBase() {
           </div>
         ))}
         <div className="bg-indigo-50 border border-indigo-100 rounded-2xl p-4 text-sm text-indigo-900 dark:bg-indigo-900/30 dark:border-indigo-800 dark:text-indigo-200">
-          Golden rule: implement the strictest overlapping control, then document the marginal differences in a retention schedule / risk-treatment register — auditors accept documented reconciliation far more often than they admit.
+          Golden rule: implement the strictest overlapping control, then document the marginal differences in a retention schedule / risk-treatment register - auditors accept documented reconciliation far more often than they admit.
         </div>
       </div>
     ),
@@ -279,7 +279,7 @@ export default function KnowledgeBase() {
         <h1 className="text-3xl font-extrabold text-gray-900">GRC Knowledge Base</h1>
         <p className="text-gray-600 mt-2 max-w-3xl">
           Map policies to frameworks to controls, see common audit observations and how to push back, generate vendor
-          contract clauses, reconcile cross-framework conflicts — and ask the assistant any question.
+          contract clauses, reconcile cross-framework conflicts - and ask the assistant any question.
         </p>
       </div>
 
@@ -318,7 +318,7 @@ export default function KnowledgeBase() {
       {/* Framework description context under Audit/Assistant */}
       {(tab === 'audit' || tab === 'assistant') && fwObj && (
         <div className="mb-4 text-xs text-gray-500">
-          Viewing <span className="font-semibold" style={{ color: fwObj.color }}>{fwObj.name}</span> — {fwObj.desc}
+          Viewing <span className="font-semibold" style={{ color: fwObj.color }}>{fwObj.name}</span> - {fwObj.desc}
         </div>
       )}
 

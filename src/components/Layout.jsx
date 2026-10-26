@@ -317,7 +317,7 @@ export default function Layout() {
       >
         <div className="p-4">
           <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-            Centralized framework mapping, risk matrices, vendor governance, interview prep, and access controls — organized in discoverable modules.
+            Centralized framework mapping, risk matrices, vendor governance, interview prep, and access controls - organized in discoverable modules.
           </p>
         </div>
         <div className="border-t border-slate-200 dark:border-slate-700/80">
@@ -333,7 +333,7 @@ export default function Layout() {
             <BookOpenCheck className="w-5 h-5 text-indigo-600 dark:text-indigo-400 flex-shrink-0" />
             <div className="flex-1 min-w-0 text-left">
               <span className="font-medium text-sm truncate text-slate-900 dark:text-white">Knowledge Base</span>
-              <p className="text-xs text-slate-500 dark:text-slate-400 truncate">GRC KB — frameworks, controls, mappings</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400 truncate">GRC KB - frameworks, controls, mappings</p>
             </div>
             <ChevronDown className="w-4 h-4 text-slate-400 dark:text-slate-500 flex-shrink-0" />
           </Link>
@@ -349,7 +349,7 @@ export default function Layout() {
             <Building2 className="w-5 h-5 text-indigo-600 dark:text-indigo-400 flex-shrink-0" />
             <div className="flex-1 min-w-0 text-left">
               <span className="font-medium text-sm truncate text-slate-900 dark:text-white">Platform Overview</span>
-              <p className="text-xs text-slate-500 dark:text-slate-400 truncate">Home — unified compliance dashboard</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400 truncate">Home - unified compliance dashboard</p>
             </div>
             <ChevronDown className="w-4 h-4 text-slate-400 dark:text-slate-500 flex-shrink-0" />
           </Link>

@@ -5,7 +5,7 @@
   "description": "Validate BIA outputs through realistic scenario walkthroughs. Each scenario tests RTO/RPO assumptions, communication flows, decision authority, and recovery procedures against the BIA outputs. Includes questions to ask during tabletop exercises.",
   "tasks": [
     {
-      "title": "Scenario 1: Ransomware Infection — Finance Laptop",
+      "title": "Scenario 1: Ransomware Infection - Finance Laptop",
       "control": "ISO 22317 Clause 6.4/6.5: Tests RTO/RPO for Finance processes, data integrity verification, and recovery from backup/cloud copies. Validates incident notification timeframes (4-hour delay here).",
       "how": "Run tabletop: Finance laptop encrypted via phishing. Customer PII + bank routing data on laptop. Cloud copies exist. IT notified 4 hours post-infection via text. Walk through:\n1. Detection & notification: Who received the text? Was escalation policy followed? 4-hour gap acceptable per RTO?\n2. Containment: Network isolation, account disable, forensic image.\n3. Impact assessment: PII exposure scope, bank data risk, cloud copy integrity verification.\n4. Recovery: Restore from cloud share, integrity checks, device rebuild/replace.\n5. Notification: Regulatory (GDPR 72hr, state breach laws), customer communication, law enforcement.\n6. Post-incident: Root cause, phishing training, backup validation, notification SLA review.",
       "check": "RTO for Finance process met? Cloud copy integrity validated within RPO? Notification SLAs met (GDPR 72hr, state laws)? Root cause documented and phishing controls improved?",
@@ -25,7 +25,7 @@
     {
       "title": "Scenario 2: DDoS Attack on Primary Infrastructure",
       "control": "ISO 22317 Clause 6.4/6.5: Tests Availability RTO for internal business applications, WAF/rate-limiting effectiveness, and failover mechanisms. 12-hour outage tests MTPD.",
-      "how": "Run tabletop: Coordinated multi-region DDoS overwhelms WAF/rate limits. Core apps (client mgmt, order processing, reporting, comms) down 12 hours. Walk through:\n1. Detection: Monitoring alerts trigger — automated vs manual detection time.\n2. Mitigation: Cloud DDoS protection tools, manual filtering rules, failover activation.\n3. Impact: 12-hour unavailability of client mgmt, order processing, reporting, comms. Manual workarounds implemented.\n4. Communication: Internal teams, clients, partners. Status page updates.\n5. Recovery: Traffic normalization, WAF tuning, DR team post-event review.\n6. Post-incident: Long-term DDoS defense improvements, incident response automation.",
+      "how": "Run tabletop: Coordinated multi-region DDoS overwhelms WAF/rate limits. Core apps (client mgmt, order processing, reporting, comms) down 12 hours. Walk through:\n1. Detection: Monitoring alerts trigger - automated vs manual detection time.\n2. Mitigation: Cloud DDoS protection tools, manual filtering rules, failover activation.\n3. Impact: 12-hour unavailability of client mgmt, order processing, reporting, comms. Manual workarounds implemented.\n4. Communication: Internal teams, clients, partners. Status page updates.\n5. Recovery: Traffic normalization, WAF tuning, DR team post-event review.\n6. Post-incident: Long-term DDoS defense improvements, incident response automation.",
       "check": "Application RTOs met? 12-hour outage within MTPD for each app? Failover mechanisms activated correctly? Communication SLAs met?",
       "questions": [
         "What are the RTO/MTPD for each affected app (client mgmt, order processing, reporting, comms) per BIA?",
@@ -41,7 +41,7 @@
       ]
     },
     {
-      "title": "Scenario 3: Natural Disaster — Tampa Facility Power Outage (5 Days)",
+      "title": "Scenario 3: Natural Disaster - Tampa Facility Power Outage (5 Days)",
       "control": "ISO 22317 Clause 6.4/6.5: Tests facility-level RTO/MTPD, remote work capability, physical resource dependencies, and supply chain/logistics continuity. 5-day outage tests MTPD for on-prem operations.",
       "how": "Run tabletop: Tampa hub (product delivery, logistics, customer support) loses power for 5 days. On-prem servers, inventory systems, comms down. Staff remote within 24hr. Walk through:\n1. Facility impact: On-prem inventory/docs, internal servers, comms down.\n2. Transition: Staff remote within 24hr. Cloud comms/coordination dependency.\n3. Operations: Logistics/delivery disrupted. Load redistribution to alt facilities. Virtual coordination.\n4. Customer impact: Shipment delays, support delays. Contingency actions activated.\n5. Recovery: Facility reoccupation after 5 days. Long-term resilience assessment.",
       "check": "Facility RTO met? Remote work capability sufficient for critical processes? Alt facility load redistribution executed? Customer SLA breaches documented?",
@@ -59,9 +59,9 @@
       ]
     },
     {
-      "title": "Scenario 4: AWS Fail-Over — Primary Region Outage + Stale Snapshot",
+      "title": "Scenario 4: AWS Fail-Over - Primary Region Outage + Stale Snapshot",
       "control": "ISO 22317 Clause 6.4/6.5: Tests cloud RTO/RPO, failover execution, backup/replication configuration, and data loss tolerance decision. 3-hour stale snapshot tests RPO.",
-      "how": "Run tabletop: Primary AWS region outage at 2:13 AM. Monolithic datastore offline. Failover to passive region — but last replicated snapshot is 3 hours old (misconfigured backup sync). Walk through:\n1. Detection: Monitoring alerts, 30-min investigation before failover decision.\n2. Failover execution: Active-passive failover initiated. Snapshot 3hrs old discovered.\n3. Decision point: Restore from 3hr-old snapshot (data loss) vs wait for primary region recovery.\n4. Impact: Appointments, payments, client mgmt down. Same-day transfers paused. Revenue loss.\n5. Communication: Customer service overwhelmed, stakeholders demand timeline, partners escalate.\n6. Recovery: Snapshot restore vs primary region recovery. Data integrity validation.\n7. Post-incident: Backup sync fix, DR drill schedule, monolithic datastore architecture review.",
+      "how": "Run tabletop: Primary AWS region outage at 2:13 AM. Monolithic datastore offline. Failover to passive region - but last replicated snapshot is 3 hours old (misconfigured backup sync). Walk through:\n1. Detection: Monitoring alerts, 30-min investigation before failover decision.\n2. Failover execution: Active-passive failover initiated. Snapshot 3hrs old discovered.\n3. Decision point: Restore from 3hr-old snapshot (data loss) vs wait for primary region recovery.\n4. Impact: Appointments, payments, client mgmt down. Same-day transfers paused. Revenue loss.\n5. Communication: Customer service overwhelmed, stakeholders demand timeline, partners escalate.\n6. Recovery: Snapshot restore vs primary region recovery. Data integrity validation.\n7. Post-incident: Backup sync fix, DR drill schedule, monolithic datastore architecture review.",
       "check": "RTO for appointment/payment/client mgmt met? RPO (3hr data loss) acceptable per BIA? Decision authority clear? Communication SLAs met?",
       "questions": [
         "What are the RTO/RPO for appointment scheduling, payment processing, and client management per BIA?",

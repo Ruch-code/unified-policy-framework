@@ -35,7 +35,7 @@ export default function NewsletterPopup({ open, onClose }) {
   };
 
   const shareLinkedIn = () => {
-    const text = 'Check out the Unified Compliance newsletter — practical guides on certifications, security and privacy.';
+    const text = 'Check out the Unified Compliance newsletter - practical guides on certifications, security and privacy.';
     const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.origin)}&text=${encodeURIComponent(text)}`;
     window.open(url, '_blank', 'noopener,noreferrer');
   };
@@ -56,7 +56,7 @@ export default function NewsletterPopup({ open, onClose }) {
             Get compliance insights, straight to your inbox
           </h2>
           <p className="mt-2 text-sm text-gray-600">
-            Practical, no-jargon guides on certifications, security &amp; privacy — plus the frameworks that actually matter for your business.
+            Practical, no-jargon guides on certifications, security &amp; privacy - plus the frameworks that actually matter for your business.
           </p>
 
           {status === 'done' ? (

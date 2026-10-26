@@ -59,7 +59,7 @@ export default function CertAdvisor() {
       <div className="flex items-center gap-3 mb-2">
         <span className="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 flex items-center justify-center"><Star className="w-4 h-4" /></span>
         <div>
-          <h2 className="text-xl font-bold text-gray-900">Which certifications should you pursue — and in what order?</h2>
+          <h2 className="text-xl font-bold text-gray-900">Which certifications should you pursue - and in what order?</h2>
           <p className="text-gray-500 text-sm max-w-2xl">Answer 4 quick questions about your company profile to get a prioritised roadmap of the certifications that matter most.</p>
         </div>
       </div>
@@ -158,7 +158,7 @@ export default function CertAdvisor() {
                   </Link>
                 ))}
               </div>
-              <p className="mt-2 text-[11px] text-indigo-900/70 dark:text-indigo-300">Updating live as you answer — highlighted ones stack onto a single control baseline.</p>
+              <p className="mt-2 text-[11px] text-indigo-900/70 dark:text-indigo-300">Updating live as you answer - highlighted ones stack onto a single control baseline.</p>
             </div>
           )}
         </div>
@@ -168,7 +168,7 @@ export default function CertAdvisor() {
       {step === 4 && result && (
         <div className="mt-6">
           <p className="text-sm text-gray-600 mb-4">
-            Based on your profile, here is your full upskill roadmap — ordered by impact. All relevant frameworks are shown (some are legally required, others are foundational hygiene):
+            Based on your profile, here is your full upskill roadmap - ordered by impact. All relevant frameworks are shown (some are legally required, others are foundational hygiene):
           </p>
 
           {/* Website-based business insights */}
@@ -184,7 +184,7 @@ export default function CertAdvisor() {
                 {bizInsight.found.map((f, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm text-indigo-900 dark:text-indigo-300">
                     <Star className="w-3.5 h-3.5 text-indigo-500 mt-0.5 shrink-0" />
-                    <span><strong>{f.cap}</strong> — {f.note}</span>
+                    <span><strong>{f.cap}</strong> - {f.note}</span>
                   </li>
                 ))}
               </ul>
@@ -207,7 +207,7 @@ export default function CertAdvisor() {
               <h4 className="text-sm font-bold text-gray-900 mb-1 flex items-center gap-2">
                 <BookOpenCheck className="w-4 h-4 text-indigo-600" /> Open the playbooks that match this profile
               </h4>
-              <p className="text-xs text-gray-600 mb-3">Dive straight into the full implementation runbooks — no sign-up walls, each one is your step-by-step build guide.</p>
+              <p className="text-xs text-gray-600 mb-3">Dive straight into the full implementation runbooks - no sign-up walls, each one is your step-by-step build guide.</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {livePlaybooks.slice(0, 8).map(p => (
                   <Link key={p.id} to={p.path}
@@ -279,7 +279,7 @@ export default function CertAdvisor() {
 
           <div className="mt-6 p-4 rounded-xl bg-gray-50 border border-gray-100">
             <h4 className="text-sm font-bold text-gray-800 mb-1">💡 Multi-framework insight</h4>
-            <p className="text-xs text-gray-600">Most frameworks share <strong>60–80% of the same underlying controls</strong>. Build one strong baseline (SOC 2 or ISO 27001) first — adding a second framework is mostly a gap-fill exercise, not a ground-up build. That overlap is why pursuing frameworks in priority order is dramatically more efficient.</p>
+            <p className="text-xs text-gray-600">Most frameworks share <strong>60–80% of the same underlying controls</strong>. Build one strong baseline (SOC 2 or ISO 27001) first - adding a second framework is mostly a gap-fill exercise, not a ground-up build. That overlap is why pursuing frameworks in priority order is dramatically more efficient.</p>
           </div>
 
           <button onClick={restart} className="mt-4 px-4 py-2 rounded-lg bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 text-sm font-semibold hover:bg-indigo-200 transition">

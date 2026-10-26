@@ -18,13 +18,13 @@ const FRAMEWORK = {
         tasks: [
           {
             title: 'Map CERT-In directive applicability',
-            control: 'CERT-In Directions under IT Act 2000 (Sec 70B) issued April 2022, June 2025 — applies to all service providers, intermediaries, data centres, body corporates, government entities',
+            control: 'CERT-In Directions under IT Act 2000 (Sec 70B) issued April 2022, June 2025 - applies to all service providers, intermediaries, data centres, body corporates, government entities',
             how: 'Identify if your entity is a service provider/intermediary/data centre. List all services in scope and assign an owner for CERT-In compliance.',
             check: 'Documented list of in-scope services with a named CERT-In compliance owner and board-level acknowledgment.'
           },
           {
             title: 'Understand mandatory incident categories',
-            control: 'CERT-In defines 20+ incident categories including ransomware, phishing, DDoS, data breach, targeted scanning, malicious code — all must be reported',
+            control: 'CERT-In defines 20+ incident categories including ransomware, phishing, DDoS, data breach, targeted scanning, malicious code - all must be reported',
             how: 'Create an incident categorization matrix mapping each CERT-In incident type to your internal incident classification and existing ITSM ticket categories.',
             check: 'Incident categorization matrix published; confirmed each reported class maps to a real escalation path.'
           },
@@ -57,7 +57,7 @@ const FRAMEWORK = {
           {
             title: 'Deploy SOC/SIEM for real-time detection',
             control: 'CERT-In expects entities to have capabilities to detect and respond to incidents in real-time',
-            how: 'Stand up a SIEM (e.g., cloud-native — AWS Security Hub, Azure Sentinel, GCP Chronicle, or self-hosted). Onboard all 180-day log sources and build dashboards per incident category.',
+            how: 'Stand up a SIEM (e.g., cloud-native - AWS Security Hub, Azure Sentinel, GCP Chronicle, or self-hosted). Onboard all 180-day log sources and build dashboards per incident category.',
             check: 'SIEM ingesting production logs; detection rules aligned to CERT-In incident categories demonstrated with test alerts.'
           },
           {
@@ -75,7 +75,7 @@ const FRAMEWORK = {
           {
             title: 'Patch and vulnerability management alignment',
             control: 'Timely patching reduces CERT-In reportable incidents; directive emphasizes proactive cyber security measures',
-            how: 'Adopt a vulnerability management program (CVE feeds, cloud scanning — AWS Inspector, Azure Defender, GCP SCC, Alibaba Security Center). Define patch SLAs per criticality/environment.',
+            how: 'Adopt a vulnerability management program (CVE feeds, cloud scanning - AWS Inspector, Azure Defender, GCP SCC, Alibaba Security Center). Define patch SLAs per criticality/environment.',
             check: 'Vulnerability scan cadence, patch SLAs, and exception process documented; latest scan report reviewed.'
           },
           {
@@ -118,7 +118,7 @@ const FRAMEWORK = {
           },
           {
             title: 'Test breach notification workflow',
-            control: 'Data incidents may be reportable to CERT-In AND DPDP Board (72-hour) — ensure workflows coexist',
+            control: 'Data incidents may be reportable to CERT-In AND DPDP Board (72-hour) - ensure workflows coexist',
             how: 'Build a single incident workflow that fans out to CERT-In (6-hr), DPDP Board (if applicable), and customers/regulators; test the combined flow.',
             check: 'Unified breach notification runbook tested end-to-end.'
           }

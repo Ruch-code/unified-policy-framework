@@ -27,10 +27,10 @@ const accessRequirements = {
         name: 'Identity & Access Provisioning',
         icon: BadgeCheck,
         requirements: [
-          'Unique user identity in IdP (Entra ID, Okta, Ping, Google) — no shared/generic accounts',
-          'Role-based access control (RBAC) — access granted via groups/roles, not direct assignment',
+          'Unique user identity in IdP (Entra ID, Okta, Ping, Google) - no shared/generic accounts',
+          'Role-based access control (RBAC) - access granted via groups/roles, not direct assignment',
           'Least privilege: default deny; explicit allow per job function',
-          'Privileged Access Management (PAM) for admin/root/db/cloud keys — vaulted, session-recorded, JIT',
+          'Privileged Access Management (PAM) for admin/root/db/cloud keys - vaulted, session-recorded, JIT',
           'MFA enforced for ALL access (phishing-resistant FIDO2/WebAuthn for privileged; push+number matching for standard)',
           'Conditional Access: device compliance (MDM/Intune), location, risk score, IP reputation',
           'Automated provisioning via HR→IdP sync (Workday, BambooHR, Rippling → SCIM)',
@@ -42,8 +42,8 @@ const accessRequirements = {
         name: 'Ongoing Access Governance',
         icon: Shield,
         requirements: [
-          'Quarterly access reviews (automated via IdP) — manager attestation + privilege report',
-          'Semi-annual privileged access review (separate from standard) — CISO/IT Director sign-off',
+          'Quarterly access reviews (automated via IdP) - manager attestation + privilege report',
+          'Semi-annual privileged access review (separate from standard) - CISO/IT Director sign-off',
           'Immediate revocation on role change/termination (HR→IdP auto-deprovision < 4 hours)',
           'Annual re-certification for high-risk roles (production, financial, legal, HR)',
           'Dormant account detection (>45 days inactive) → disable → delete after 90 days',
@@ -59,10 +59,10 @@ const accessRequirements = {
           'Explicit approval: Change Advisory Board (CAB) or Production Access Board (manager + security + compliance)',
           'Time-bound access: maximum 8-hour windows (JIT via PAM/Entra PIM/AWS IAM Identity Center)',
           'MFA + device compliance + approved bastion/privileged access workstation (PAW) mandatory',
-          'Full session recording (keystroke, video) — retained 1 year minimum',
-          'No direct SSH/RDP — use SSM Session Manager, Azure Bastion, PAM proxy, or Teleport',
+          'Full session recording (keystroke, video) - retained 1 year minimum',
+          'No direct SSH/RDP - use SSM Session Manager, Azure Bastion, PAM proxy, or Teleport',
           'Read-only by default; write access requires separate change ticket + approval',
-          'Secrets injected at runtime (Vault, AWS Secrets Manager, Azure Key Vault, CyberArk) — no hardcoded credentials',
+          'Secrets injected at runtime (Vault, AWS Secrets Manager, Azure Key Vault, CyberArk) - no hardcoded credentials',
           'Post-access review: automated log audit within 24h; anomaly → immediate investigation',
         ],
         frameworks: ['SOC 2 CC6.1, CC7.2', 'ISO A.8.2, A.8.3', 'PCI 7.2, 8.3, 10', 'NIST PR.AC-3', 'CIS 4.5, 6.4', 'FedRAMP AC-3, AC-17', 'HIPAA 164.312(a)'],
@@ -97,7 +97,7 @@ const accessRequirements = {
           'NDA + Confidentiality agreement before any access',
           'Security awareness training acknowledgment (client-provided or contractor-provided evidence)',
           'Device compliance: contractor device must meet client MDM/EDR/encryption standards OR use client-provisioned VDI/DAAS',
-          'Cyber insurance certificate (typically $1M+ cyber liability) — required for vendors with data access',
+          'Cyber insurance certificate (typically $1M+ cyber liability) - required for vendors with data access',
         ],
         frameworks: ['SOC 2 CC9.1', 'ISO A.5.19', 'PCI 12.8', 'HIPAA 164.504 (BAA)', 'GDPR Art 28', 'NIST ID.SC', 'FedRAMP SA-9'],
       },
@@ -105,7 +105,7 @@ const accessRequirements = {
         name: 'Access Provisioning',
         icon: Key,
         requirements: [
-          'Separate identity in IdP (contractor@domain.com) — no access to employee-only groups',
+          'Separate identity in IdP (contractor@domain.com) - no access to employee-only groups',
           'Time-bound access: auto-expiry at contract end date (max 1 year, renewable with re-review)',
           'Project-scoped RBAC: access only to systems/data required for SOW deliverables',
           'No production write access without explicit CAB approval + PAM session recording',
@@ -119,7 +119,7 @@ const accessRequirements = {
         name: 'Ongoing Governance',
         icon: Shield,
         requirements: [
-          'Monthly access review (automated) — contractor manager + client sponsor attestation',
+          'Monthly access review (automated) - contractor manager + client sponsor attestation',
           'Quarterly re-verification: background check current, insurance current, device compliant',
           'Immediate revocation on contract end/termination (HRIS/vendor management system trigger)',
           'Incident reporting: contractor must report security incidents within 1 hour (per contract SLA)',
@@ -134,7 +134,7 @@ const accessRequirements = {
         requirements: [
           'Exception-only: requires CISO + Legal + Compliance sign-off',
           'Maximum 4-hour JIT windows via PAM; session recorded; read-only default',
-          'Dedicated contractor bastion/VDI — no direct network access to production',
+          'Dedicated contractor bastion/VDI - no direct network access to production',
           'All commands logged; automated anomaly detection (impossible commands, bulk data access)',
           'Post-session: automated log review + contractor manager attestation within 4 hours',
         ],
@@ -153,9 +153,9 @@ const accessRequirements = {
         requirements: [
           'Signed internship agreement with IP assignment, confidentiality, and mentorship structure',
           'Background check: identity, education verification, criminal (basic), right-to-work/student visa',
-          'University/bootcamp partnership agreement (if applicable) — defines scope, supervision, data access',
+          'University/bootcamp partnership agreement (if applicable) - defines scope, supervision, data access',
           'Security awareness training (abridged) + Acceptable Use Policy acknowledgment',
-          'Device: client-provisioned laptop/VDI only — no BYOD for interns',
+          'Device: client-provisioned laptop/VDI only - no BYOD for interns',
         ],
         frameworks: ['SOC 2 CC6.1', 'ISO A.7.1.1', 'NIST PR.AA-5', 'CIS 5.1'],
       },
@@ -163,13 +163,13 @@ const accessRequirements = {
         name: 'Access Provisioning',
         icon: Key,
         requirements: [
-          'Separate identity (intern@domain.com) — distinct from FTE/contractor groups',
+          'Separate identity (intern@domain.com) - distinct from FTE/contractor groups',
           'Default: NO production access, NO privileged access, NO customer data access',
           'Access limited to: training environment, sandbox, documentation wiki, learning platforms',
           'Mentor-sponsored access: every access grant requires mentor approval + expiration date',
           'MFA mandatory (Authenticator app minimum; FIDO2 if available)',
           'Time-bound: auto-expiry at program end date (max 6 months, non-renewable without re-review)',
-          'No VPN — use ZTNA/VDI with strict egress controls',
+          'No VPN - use ZTNA/VDI with strict egress controls',
         ],
         frameworks: ['SOC 2 CC6.1', 'ISO A.8.1', 'NIST PR.AA', 'CIS 5.1, 6.4'],
       },
@@ -179,7 +179,7 @@ const accessRequirements = {
         requirements: [
           'Daily mentor check-in (async or sync); weekly mentor access review',
           'All intern activity logged and reviewed weekly by mentor + security',
-          'Zero tolerance for policy violations — immediate access revocation + program review',
+          'Zero tolerance for policy violations - immediate access revocation + program review',
           'No access to secrets, keys, certificates, or credential stores',
           'Code commits: signed, reviewed by mentor, scanned (SAST/SCA) before merge',
         ],
@@ -189,7 +189,7 @@ const accessRequirements = {
         name: 'Production Access (Interns)',
         icon: Server,
         requirements: [
-          'NEVER — interns do not receive production access under any circumstance',
+          'NEVER - interns do not receive production access under any circumstance',
           'If business-critical exception: CISO + Legal + University Dean sign-off; 2-hour max; full recording; mentor co-pilot',
         ],
         frameworks: ['SOC 2 CC6.1', 'ISO A.8.1', 'PCI 7.1', 'HIPAA 164.308(a)(3)'],
@@ -211,7 +211,7 @@ const accessRequirements = {
     title: 'Production Access Personnel',
     icon: Server,
     color: 'red',
-    note: 'Applies to ANY persona (FTE, contractor, vendor) granted production access — additive to their base requirements.',
+    note: 'Applies to ANY persona (FTE, contractor, vendor) granted production access - additive to their base requirements.',
     categories: [
       {
         name: 'Approval & Authorization',
@@ -219,9 +219,9 @@ const accessRequirements = {
         requirements: [
           'Production Access Request Form: requestor, business justification, systems, duration, risk assessment',
           'Approvers: Direct Manager + Security Lead + Compliance (for regulated data) + Data Owner',
-          'Ticket reference required (change request, incident, deployment) — no standing access',
+          'Ticket reference required (change request, incident, deployment) - no standing access',
           'Maximum duration: 8 hours (standard), 4 hours (contractor), 2 hours (emergency break-glass)',
-          'Auto-expiry enforced by PAM/PIM — no manual revocation reliance',
+          'Auto-expiry enforced by PAM/PIM - no manual revocation reliance',
         ],
         frameworks: ['SOC 2 CC6.1', 'ISO A.8.2, A.9.2', 'PCI 7.2, 8.3', 'NIST PR.AC-3, PR.IP-3', 'FedRAMP AC-3', 'HIPAA 164.308(a)(4)'],
       },
@@ -229,9 +229,9 @@ const accessRequirements = {
         name: 'Technical Enforcement',
         icon: Lock,
         requirements: [
-          'Zero Standing Privileges (ZSP) — all access is just-in-time, just-enough',
-          'PAM / PIM / Entra PIM / AWS IAM Identity Center / Teleport / Boundary — session broker mandatory',
-          'Bastion / PAW / VDI only — no direct SSH/RDP/DB client from user workstation',
+          'Zero Standing Privileges (ZSP) - all access is just-in-time, just-enough',
+          'PAM / PIM / Entra PIM / AWS IAM Identity Center / Teleport / Boundary - session broker mandatory',
+          'Bastion / PAW / VDI only - no direct SSH/RDP/DB client from user workstation',
           'Hardware-bound MFA (FIDO2 key) + device compliance (MDM/Intune/EDR healthy) + approved IP range',
           'Session recording: video + keystrokes + command audit trail (retained 1 year min; 6 years regulated)',
           'Secrets injection at runtime (HashiCorp Vault, AWS Secrets Manager, Azure Key Vault, CyberArk)',
@@ -256,9 +256,9 @@ const accessRequirements = {
         name: 'Emergency / Break-Glass',
         icon: Key,
         requirements: [
-          'Pre-approved break-glass accounts (max 2 per critical system) — credentials in sealed envelope / vault',
+          'Pre-approved break-glass accounts (max 2 per critical system) - credentials in sealed envelope / vault',
           'Activation: CISO + On-Call Manager dual approval (Slack/Teams + phone confirmation)',
-          'Auto-alerts: Security, Compliance, CISO, Audit — immediate on activation',
+          'Auto-alerts: Security, Compliance, CISO, Audit - immediate on activation',
           'Time-boxed: maximum 4 hours; auto-revoke; full session recording',
           'Post-incident: root cause analysis within 48h; break-glass review at next CAB',
           'Break-glass usage = automatic audit finding if not justified',
@@ -279,7 +279,7 @@ const frameworkBadge = (isDark) => isDark ? frameworkBadgeDark : frameworkBadgeL
 const enforcementTerm = (isDark) => `inline px-1.5 py-0.5 rounded text-xs font-semibold ${isDark ? 'bg-indigo-900/40 text-indigo-300' : 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700'}`;
 
 export default function AccessRequirements({ isDark = false }) {
-  // Persona accordion state — collapsed by default, toggled per persona.
+  // Persona accordion state - collapsed by default, toggled per persona.
   const [openPersonas, setOpenPersonas] = useState({});
   const togglePersona = (key) => {
     setOpenPersonas((prev) => ({ ...prev, [key]: !prev[key] }));
@@ -301,7 +301,7 @@ export default function AccessRequirements({ isDark = false }) {
             Persona Access Governance
           </h2>
           <p className="text-lg text-navy-600 dark:text-text-dark-secondary max-w-3xl mx-auto">
-            Role-based access requirements for FTEs, contractors, interns, and production personnel — mapped to SOC 2, ISO 27001, PCI-DSS, HIPAA, NIST, CIS, FedRAMP, GDPR, DPDPA, CJIS.
+            Role-based access requirements for FTEs, contractors, interns, and production personnel - mapped to SOC 2, ISO 27001, PCI-DSS, HIPAA, NIST, CIS, FedRAMP, GDPR, DPDPA, CJIS.
           </p>
         </div>
 
@@ -314,7 +314,7 @@ export default function AccessRequirements({ isDark = false }) {
               ${isDark 
                 ? 'bg-surface-dark-100 border-surface-dark-300' 
                 : 'bg-surface-100 border-surface-300'}`}>
-              {/* Persona Header — toggles the accordion */}
+              {/* Persona Header - toggles the accordion */}
               <button
                 type="button"
                 onClick={() => togglePersona(key)}
@@ -341,7 +341,7 @@ export default function AccessRequirements({ isDark = false }) {
                 </span>
               </button>
 
-              {/* Collapsible Category Content — smooth grid-rows animation */}
+              {/* Collapsible Category Content - smooth grid-rows animation */}
               <div
                 id={`${key}-content`}
                 className={`grid transition-all duration-300 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
@@ -362,12 +362,12 @@ export default function AccessRequirements({ isDark = false }) {
                             <li key={ri} className="flex gap-3">
                               <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5 text-emerald-500" aria-hidden="true" />
                               <span className={`text-base leading-relaxed ${isDark ? 'text-text-dark-secondary' : 'text-navy-700'}`}>
-                                {req.split(' — ').map((part, idx) => (
+                                {req.split(' - ').map((part, idx) => (
                                   <React.Fragment key={idx}>
                                     {idx === 0 ? (
                                       <span className="font-medium text-navy-900 dark:text-text-dark-primary">{part}</span>
                                     ) : (
-                                      <span className="text-navy-600 dark:text-text-dark-secondary">{' — ' + part}</span>
+                                      <span className="text-navy-600 dark:text-text-dark-secondary">{' - ' + part}</span>
                                     )}
                                   </React.Fragment>
                                 ))}

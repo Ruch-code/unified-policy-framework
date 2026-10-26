@@ -67,8 +67,8 @@ export const HITRUST_COMMON_FINDINGS = [
     evidenceDeficiency: 'Missing scan history, remediation dates, or a vulnerability register showing risk decisions for unpatched items.',
     prevent: 'Define a patching SLA, run scheduled internal + external scans, track open vs closed in a register, and archive scan reports and remediation tickets as evidence.',
     evidencePack: [
-      'Population: the scan/query/report output that generated the full patch population — vulnerability export (Qualys, InsightVM, Defender for Servers, Amazon Inspector, Trivy) or patch-compliance report (AWS SSM Patch Manager, Intune, SCCM) — including the timestamp, the scope filter (hostname list, OS, environment), and the step-by-step the report was produced so the sample can be tied back to the complete population.',
-      'Sample implementation tickets: 2–5 completed patch/change tickets (Jira, ServiceNow, Lansweeper) per patch covering the affected asset(s), the patch/CVE + KB reference, install start/end time, approver/testers, and the result (success, reboot required, exception) — matched to entries in the population.',
+      'Population: the scan/query/report output that generated the full patch population - vulnerability export (Qualys, InsightVM, Defender for Servers, Amazon Inspector, Trivy) or patch-compliance report (AWS SSM Patch Manager, Intune, SCCM) - including the timestamp, the scope filter (hostname list, OS, environment), and the step-by-step the report was produced so the sample can be tied back to the complete population.',
+      'Sample implementation tickets: 2–5 completed patch/change tickets (Jira, ServiceNow, Lansweeper) per patch covering the affected asset(s), the patch/CVE + KB reference, install start/end time, approver/testers, and the result (success, reboot required, exception) - matched to entries in the population.',
       'Configuration screenshot: the patch policy or automation config (AWS SSM Patch Baseline, Intune update ring, WSUS/SCCM, Ansible/RFC runbook) showing maintenance windows, approval rules, and remediation deadlines (e.g. critical ≤24h, high ≤7d, routine monthly) plus any auto-remediation toggle.',
     ],
   },
@@ -80,9 +80,9 @@ export const HITRUST_COMMON_FINDINGS = [
     frequency: 'Recurring after every completed vulnerability scan',
     rootCause: 'Scans surface high/critical findings but no remediation ticket is created per finding (or tickets exist with no owner, SLA target, or closure), so the scan result is never tracked to closure and risk acceptance is unsigned.',
     evidenceDeficiency: 'No open/closed remediation tickets linked to the affected asset + CVE; no SLA-conformance report; high/critical items linger with no assignee or due date; re-scan showing closure absent.',
-    prevent: 'Automatically create a remediation ticket for every high/critical finding from each completed scan — ticket carries CVE, affected assets, severity, SLA target (critical ≤24h, high ≤7d), assignee and status — track open→closed, verify by re-scan, and retain the register.',
+    prevent: 'Automatically create a remediation ticket for every high/critical finding from each completed scan - ticket carries CVE, affected assets, severity, SLA target (critical ≤24h, high ≤7d), assignee and status - track open→closed, verify by re-scan, and retain the register.',
     evidencePack: [
-      'Remediation ticket details: the ticket(s) per high/critical finding — ticket ID, CVE + KB, affected asset(s), severity, SLA target date, assignee, status (open/in-progress/closed), resolution notes, and the verification/closure date.',
+      'Remediation ticket details: the ticket(s) per high/critical finding - ticket ID, CVE + KB, affected asset(s), severity, SLA target date, assignee, status (open/in-progress/closed), resolution notes, and the verification/closure date.',
       'Scan → ticket mapping: an export from the vulnerability or ITSM tool showing every high/critical finding from the completed scan with its linked remediation ticket and current status (e.g. Qualys → Jira/ServiceNow, Defender for Servers → Sentinel workbooks, Amazon Inspector → ServiceNow), so the population and tickets line up.',
       'Re-scan verification: the post-remediation scan (or retest) showing the high/critical findings closed, plus any accepted-risk items with a signed risk acceptance instead of a stalled ticket.',
     ],
@@ -99,7 +99,7 @@ export const HITRUST_COMMON_FINDINGS = [
   },
   {
     domain: 'operations',
-    title: 'Backups not tested — recovery never validated',
+    title: 'Backups not tested - recovery never validated',
     severity: 'Medium',
     maturity: 'Measured gap (3→4)',
     frequency: 'Recurring business-continuity-adjacent flaw',
@@ -179,7 +179,7 @@ export const HITRUST_COMMON_FINDINGS = [
   },
   {
     domain: 'supplier',
-    title: 'Supplier / vendor (BAA) management incomplete — PHI vendors unassessed',
+    title: 'Supplier / vendor (BAA) management incomplete - PHI vendors unassessed',
     severity: 'High',
     maturity: 'Implemented gap (3)',
     frequency: 'Top-5 finding',

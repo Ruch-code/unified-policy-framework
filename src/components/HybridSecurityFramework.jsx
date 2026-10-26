@@ -19,18 +19,18 @@ const scenariosJsonRaw = '{}';
 const readmeMd = '# Hybrid Security Framework';
 
 const DOMAINS = [
-  { icon: HardDrive, title: '1 · Removable media encryption', tone: 'bg-sky-600', desc: 'USB/external media is never writable unencrypted — BitLocker To Go / AES-256 CSP, with the crypto-compliance flag blocking raw writes.' },
+  { icon: HardDrive, title: '1 · Removable media encryption', tone: 'bg-sky-600', desc: 'USB/external media is never writable unencrypted - BitLocker To Go / AES-256 CSP, with the crypto-compliance flag blocking raw writes.' },
   { icon: Smartphone, title: '2 · BYOD / MDM-MAM', tone: 'bg-violet-600', desc: 'Corporate devices get full enrollment + EDR; BYOD gets a managed container or VDI with restricted copy/paste and no local sensitive data.' },
-  { icon: Cpu, title: '3 · EDR & telemetry', tone: 'bg-emerald-600', desc: 'Every endpoint streams detections to the SIEM and reports raw health JSON every 15 minutes — the same schema on Windows, macOS, and Linux.' },
-  { icon: Network, title: '4 · ZTNA / SASE', tone: 'bg-indigo-600', desc: 'Access is per-app, per-identity, evaluated at the gate — a non-compliant or off-network device simply cannot reach the sensitive apps.' },
-  { icon: MapPin, title: '5 · Physical context', tone: 'bg-amber-600', desc: 'Office vs café vs airport changes the trust rating of the same user/session — risk-based Conditional Access is context-aware.' },
+  { icon: Cpu, title: '3 · EDR & telemetry', tone: 'bg-emerald-600', desc: 'Every endpoint streams detections to the SIEM and reports raw health JSON every 15 minutes - the same schema on Windows, macOS, and Linux.' },
+  { icon: Network, title: '4 · ZTNA / SASE', tone: 'bg-indigo-600', desc: 'Access is per-app, per-identity, evaluated at the gate - a non-compliant or off-network device simply cannot reach the sensitive apps.' },
+  { icon: MapPin, title: '5 · Physical context', tone: 'bg-amber-600', desc: 'Office vs café vs airport changes the trust rating of the same user/session - risk-based Conditional Access is context-aware.' },
   { icon: LockKeyhole, title: '6 · DLP / clipboard isolation', tone: 'bg-rose-600', desc: 'Work data can multi-paste to a personal web app; clipboard isolation blocks the copy/paste bridge to shadow IT.' },
 ];
 
 const DELIVERABLES = [
-  { id: 'powerShell', label: 'Windows agent', icon: Terminal, title: 'device-health-agent.ps1', lang: 'powershell', code: agentPs1, desc: 'Endpoint health agent (PowerShell): BitLocker, TPM, EDR service + definitions, MDM enrollment, patch baseline, network posture, DLP flag — emits one compliance JSON and POSTs it to the SOC webhook. Deploy as a SYSTEM scheduled task every 15 minutes.' },
+  { id: 'powerShell', label: 'Windows agent', icon: Terminal, title: 'device-health-agent.ps1', lang: 'powershell', code: agentPs1, desc: 'Endpoint health agent (PowerShell): BitLocker, TPM, EDR service + definitions, MDM enrollment, patch baseline, network posture, DLP flag - emits one compliance JSON and POSTs it to the SOC webhook. Deploy as a SYSTEM scheduled task every 15 minutes.' },
   { id: 'bash', label: 'macOS · Linux agent', icon: Terminal, title: 'device-health-agent.sh', lang: 'bash', code: agentSh, desc: 'The same schema on Unix: FileVault / LUKS at rest, EDR (launchd/systemd), SIP, MDM marker (Jamf/Kandji/Mosyle/Fleet), managed-preferences DLP check. Root-run via LaunchAgent or systemd timer.' },
-  { id: 'intune', label: 'Intune OMA-URI', icon: FileJson, title: 'intune-oma-uri.xml', lang: 'xml', code: intuneXml, desc: 'Windows enforcement profile: BitLocker + removable-media crypto (OMA-URI CSP), Defender for Endpoint onboarding, clipboard isolation, device-health handshake — all via documented Microsoft CSPs, no custom workload.' },
+  { id: 'intune', label: 'Intune OMA-URI', icon: FileJson, title: 'intune-oma-uri.xml', lang: 'xml', code: intuneXml, desc: 'Windows enforcement profile: BitLocker + removable-media crypto (OMA-URI CSP), Defender for Endpoint onboarding, clipboard isolation, device-health handshake - all via documented Microsoft CSPs, no custom workload.' },
   { id: 'jamf', label: 'Jamf / macOS profile', icon: FileJson, title: 'jamf-filevault-profile.xml', lang: 'xml', code: jamfXml, desc: 'macOS configuration profile: FileVault 2 with institutional recovery key escrow, application firewall, screensaver lock, EDR payload key, and the DLP clipboard-isolation payload.' },
   { id: 'ca', label: 'Conditional Access', icon: ShieldCheck, title: 'conditional-access.json', lang: 'json', code: condAccessJson, desc: 'Microsoft Graph (beta) policies: require compliant + MFA + domain-joined for sensitive apps, block unmanaged/BYOD outside trusted geographies, risk-based session control. Ship report-only before enforcing.' },
   { id: 'iac', label: 'Control-plane IaC', icon: Server, title: 'iac-terraform.tf', lang: 'hcl', code: iacTf, desc: 'Terraform for the security subscription: SIEM storage (WORM civil hold), serverless SOC webhook receiver with RBAC, and the Conditional Access contract. Secrets via tfvars / Key Vault.' },
@@ -82,7 +82,7 @@ export default function HybridSecurityFramework({ isDark = false }) {
             Hybrid Workforce Security &amp; Enforcement
           </h2>
           <p className="text-lg text-navy-600 dark:text-text-dark-secondary max-w-3xl mt-2">
-            A compliance-and-enforcement framework for Remote, In-Office and On-the-Go workers — six enforcement
+            A compliance-and-enforcement framework for Remote, In-Office and On-the-Go workers - six enforcement
             domains, four worker scenarios, and copy-paste deployables (MDM profiles, Conditional Access, IaC,
             endpoint agents, SOC quarantine/token-strip) that map to the Security Operations baseline.
           </p>
@@ -133,7 +133,7 @@ export default function HybridSecurityFramework({ isDark = false }) {
 
         {/* Deliverables */}
         <section className="rounded-2xl border border-surface-300 dark:border-surface-dark-300 bg-white dark:bg-slate-900/60 p-6 md:p-8">
-          <h3 className="grc-section-title mb-1 text-lg">Deployables — copy, paste, enforce</h3>
+          <h3 className="grc-section-title mb-1 text-lg">Deployables - copy, paste, enforce</h3>
           <p className="text-sm text-navy-600 dark:text-text-dark-secondary mb-5 max-w-3xl">
             Every artifact below is a real file bundled with this module. Download, edit the placeholders, and ship
             it through the relevant MDM / IaC pipeline.

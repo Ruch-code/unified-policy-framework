@@ -26,28 +26,28 @@ const SHORT_LABELS = {
   'Administrator': 'Admin',
   'Unified Compliance & GRC Platform': 'GRC Platform',
   // Longest labels actually present in the search index
-  'Security Operations — Incident Response P0–P3 Triage, Containment & RCA':
+  'Security Operations - Incident Response P0–P3 Triage, Containment & RCA':
     'Incident Response Triage & RCA',
-  'Security Operations — Vulnerability Management & Patch SLAs':
+  'Security Operations - Vulnerability Management & Patch SLAs':
     'Vulnerability Mgmt & Patch SLAs',
-  'Security Operations — Logging, Monitoring & SIEM Retention':
+  'Security Operations - Logging, Monitoring & SIEM Retention':
     'Logging, Monitoring & SIEM',
-  'AI Governance & Emerging Tech — ISO 42001, EU AI Act, NIST AI RMF':
+  'AI Governance & Emerging Tech - ISO 42001, EU AI Act, NIST AI RMF':
     'AI Governance & Emerging Tech',
-  'ISO 42001 — AI Management Systems (Knowledge Base)':
-    'ISO 42001 — AI Mgmt Systems',
-  'ISO 42001 — AI Management Systems': 'ISO 42001 — AI Mgmt Systems',
-  'User Access Review — Coverage, Users & Frequency': 'User Access Review',
+  'ISO 42001 - AI Management Systems (Knowledge Base)':
+    'ISO 42001 - AI Mgmt Systems',
+  'ISO 42001 - AI Management Systems': 'ISO 42001 - AI Mgmt Systems',
+  'User Access Review - Coverage, Users & Frequency': 'User Access Review',
   'Password Policies & Authentication Strategies': 'Password & Authentication',
-  'ISO/IEC 27001:2022 Lead Auditor Playbook': 'ISO 27001 — Lead Auditor',
-  'ISO/IEC 27001:2022 ISMS Implementation': 'ISO 27001 — ISMS Implementation',
+  'ISO/IEC 27001:2022 Lead Auditor Playbook': 'ISO 27001 - Lead Auditor',
+  'ISO/IEC 27001:2022 ISMS Implementation': 'ISO 27001 - ISMS Implementation',
 };
 
 /** Categories whose name is already rendered as the group heading. */
 const REDUNDANT_PREFIXES = [
-  'Persona Requirements — ',
-  'Control Domains & Mappings — ',
-  'Policy & Control Modules — ',
+  'Persona Requirements - ',
+  'Control Domains & Mappings - ',
+  'Policy & Control Modules - ',
 ];
 
 function shortenLabel(label = '') {
@@ -244,7 +244,7 @@ export default function SearchBar({ isDark = false }) {
   // The header is a flex row whose right-hand auth cluster competes for space, so
   // the search column can collapse to ~190px. A dropdown at that width clips
   // labels to a few characters. The min-w keeps the panel at a readable size
-  // without pushing the header around — absolute positioning means it can
+  // without pushing the header around - absolute positioning means it can
   // overhang the input, which is what a wide result list wants.
   //
   // The 26rem step is deliberately gated to lg+. The panel is anchored to the
@@ -352,7 +352,7 @@ export default function SearchBar({ isDark = false }) {
             ))}
           </div>
           <p className={`mt-4 text-xs ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>
-            Search frameworks, policies, personas, cloud providers, and control domains — e.g. “azure”, “contractors”, “background checks”.
+            Search frameworks, policies, personas, cloud providers, and control domains - e.g. “azure”, “contractors”, “background checks”.
           </p>
         </div>
       );

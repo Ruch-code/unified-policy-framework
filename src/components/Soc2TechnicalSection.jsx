@@ -13,7 +13,7 @@ const TIERS = [
   },
   {
     icon: Shield,
-    title: 'DMZ — Edge / Load Balancer',
+    title: 'DMZ - Edge / Load Balancer',
     tone: 'border-indigo-300 dark:border-indigo-700',
     text: 'text-indigo-900 dark:text-indigo-200',
     sub: 'text-gray-500 dark:text-slate-400',
@@ -25,7 +25,7 @@ const TIERS = [
     tone: 'border-blue-300 dark:border-blue-700',
     text: 'text-blue-900 dark:text-blue-200',
     sub: 'text-gray-500 dark:text-slate-400',
-    items: ['Stateless, autoscaling instance groups', 'No secrets on disk — inject at runtime (Vault / SSM / Key Vault)', 'Privileged ports exposed only to the app tier'],
+    items: ['Stateless, autoscaling instance groups', 'No secrets on disk - inject at runtime (Vault / SSM / Key Vault)', 'Privileged ports exposed only to the app tier'],
   },
   {
     icon: Activity,
@@ -41,7 +41,7 @@ const TIERS = [
     tone: 'border-emerald-300 dark:border-emerald-700',
     text: 'text-emerald-900 dark:text-emerald-200',
     sub: 'text-gray-500 dark:text-slate-400',
-    items: ['Fully managed data stores on private subnets', 'Encryption at rest (CMK) + at least LTS snapshots', 'Private endpoints / VPC peering only — no public DB endpoints'],
+    items: ['Fully managed data stores on private subnets', 'Encryption at rest (CMK) + at least LTS snapshots', 'Private endpoints / VPC peering only - no public DB endpoints'],
   },
 ];
 
@@ -104,10 +104,10 @@ const PROVIDERS = [
     tone: 'from-sky-500 to-blue-600',
     checks: [
       'Azure Marketplace CIS VMs or custom hardened images; VM Image Builder for golden images',
-      'Microsoft Defender for Servers (Plan 2) — vulnerability + just-in-time VM access',
+      'Microsoft Defender for Servers (Plan 2) - vulnerability + just-in-time VM access',
       'Azure Automanage / Guest Configuration (Azure Policy) enforces patching + OS baseline state',
       'SSE with customer-managed keys + Azure Disk Encryption (BitLocker/DM-Crypt) for OS+data disks',
-      'Managed identity (Entra ID) on every VM — no password/PMK in configuration',
+      'Managed identity (Entra ID) on every VM - no password/PMK in configuration',
       'NSGs + Application Security Groups per tier; Azure Firewall for egress filtering',
       'Azure Arc-enabled servers surface cloud-only posture checks on guest OS to central policy',
     ],
@@ -119,7 +119,7 @@ const PROVIDERS = [
     checks: [
       'CIS Google Compute hardened OS images + Organization Policy (guest attributes, OS Login)',
       'OS Config Manager enforces guest policies, patch compliance, and inventory across fleets',
-      'Security Command Center (Premium) — findings for VMs, Config drift, and workload exposure',
+      'Security Command Center (Premium) - findings for VMs, Config drift, and workload exposure',
       'Persistent Disk + Compute Engine encryption by default; CMEK keys with rotation',
       'OS Login instead of SSH keys; short-lived identities (GCE instance metadata)',
       'IAP (Identity-Aware Proxy) bastion-free admin access; VPC firewall rules log to Cloud Logging',
@@ -150,11 +150,11 @@ export default function Soc2TechnicalSection() {
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-text-dark-primary flex items-center gap-3">
             <span className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center"><Network className="w-6 h-6" /></span>
-            SOC 2 Technical Controls — Architecture, Network Segregation & Cloud Host Hardening
+            SOC 2 Technical Controls - Architecture, Network Segregation & Cloud Host Hardening
           </h2>
           <p className="text-gray-600 dark:text-text-dark-secondary mt-3 max-w-3xl leading-relaxed">
             The physical and logical controls behind <strong>CC6.6</strong> (boundary protection), <strong>CC6.7</strong> (data-at-rest /
-            in-transit protection), and <strong>CC7.x</strong> (system operations) — turned into a reference architecture, a
+            in-transit protection), and <strong>CC7.x</strong> (system operations) - turned into a reference architecture, a
             network-segregation matrix, and per-provider host-hardening checklists you can evidence for the audit.
           </p>
         </div>
@@ -163,11 +163,11 @@ export default function Soc2TechnicalSection() {
         <div className="grc-card p-5 md:p-6 mb-8">
           <h3 className="text-xl font-bold text-gray-900 dark:text-text-dark-primary mb-1 flex items-center gap-2">
             <Network className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-            Reference Architecture — Segmented Tiers
+            Reference Architecture - Segmented Tiers
           </h3>
           <p className="text-sm text-gray-500 dark:text-text-dark-muted mb-5 max-w-2xl">
             Each tier sits in its own security group / NSG / VPC firewall zone. Traffic flows top to bottom and is allow-listed between adjacent
-            tiers only. Never trust a private subnet boundary alone — it is always paired with IAM, encryption, and monitoring.
+            tiers only. Never trust a private subnet boundary alone - it is always paired with IAM, encryption, and monitoring.
           </p>
 
           <div className="flex flex-col items-stretch gap-1">
@@ -208,7 +208,7 @@ export default function Soc2TechnicalSection() {
         <div className="grc-card p-5 md:p-6 mb-8">
           <h3 className="text-xl font-bold text-gray-900 dark:text-text-dark-primary mb-1 flex items-center gap-2">
             <Lock className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-            Network Segregation — Allowed / Denied Traffic Matrix
+            Network Segregation - Allowed / Denied Traffic Matrix
           </h3>
           <p className="text-sm text-gray-500 dark:text-text-dark-muted mb-5 max-w-2xl">
             Default-deny between segments. Document each rule as evidence for CC6.6 / ISO A.8.20–8.22 / NIST SC-7 / CIS 13.
@@ -237,15 +237,15 @@ export default function Soc2TechnicalSection() {
             Cloud Host Compliance Checklists
           </h3>
           <p className="text-sm text-gray-500 dark:text-text-dark-muted mb-5 max-w-2xl">
-            Run the same five checks on every host — hardened image, vulnerability agent, patching evidence, encryption, and least-privilege
-            identity — using each cloud's native tooling. Export scan/patch history monthly as your Type II evidence trail.
+            Run the same five checks on every host - hardened image, vulnerability agent, patching evidence, encryption, and least-privilege
+            identity - using each cloud's native tooling. Export scan/patch history monthly as your Type II evidence trail.
           </p>
           <div className="grid md:grid-cols-2 gap-5">
             {PROVIDERS.map(provider => (
               <div key={provider.name} className="rounded-xl border border-gray-200 dark:border-slate-700/60 bg-white dark:bg-slate-900/60 overflow-hidden">
                 <div className={`px-4 py-3 bg-gradient-to-r ${provider.tone} flex items-center gap-2`}>
                   <provider.icon className="w-4 h-4 text-white" />
-                  <h4 className="font-bold text-white text-sm">{provider.name} — host hardening</h4>
+                  <h4 className="font-bold text-white text-sm">{provider.name} - host hardening</h4>
                 </div>
                 <ul className="p-4 space-y-2.5">
                   {provider.checks.map(check => (

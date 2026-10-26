@@ -32,7 +32,7 @@ const FRAMEWORK = {
         {
           title: "Analyze Organizational Context for AI",
           control: "ISO/IEC 42001 Clauses 4.1 and 4.2 - Context of the Organization for AI",
-          how: "Conduct structured analysis of internal/external issues affecting AI governance (regulatory landscape, AI technology evolution, ethical considerations, supply chain dependencies). Map all AI stakeholders—customers, regulators, employees, affected communities, AI suppliers—and document their AI-related requirements. Use PESTLE analysis extended for AI-specific factors (ethical AI, bias, transparency, explainability).",
+          how: "Conduct structured analysis of internal/external issues affecting AI governance (regulatory landscape, AI technology evolution, ethical considerations, supply chain dependencies). Map all AI stakeholders-customers, regulators, employees, affected communities, AI suppliers-and document their AI-related requirements. Use PESTLE analysis extended for AI-specific factors (ethical AI, bias, transparency, explainability).",
           check: "A documented register of AI-specific internal/external issues exists, an AI stakeholders register with their AI-related requirements is complete, and both are reviewed quarterly."
         },
         {

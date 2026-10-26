@@ -13,13 +13,13 @@ const FRAMEWORK = {
       gap: "Relying on implicit/vague consent instead of a valid notice + consent request",
       pushback: "People sign up and tick a box; that's consent.",
       reality: "DPDPA (Sec 5, 6) requires a clear notice BEFORE processing and consent that's separate, informed, and freely given. Pre-ticked boxes or bundled consent fail.",
-      leantip: "Implement a plain-language notice, a granular consent checkbox, and a way to withdraw. Log consent (who, what, when) as evidence — use a consent-management tool."
+      leantip: "Implement a plain-language notice, a granular consent checkbox, and a way to withdraw. Log consent (who, what, when) as evidence - use a consent-management tool."
     },
     {
       gap: "Collecting more data than needed with no purpose limitation",
       pushback: "We may need this data later, so we collect it now.",
       reality: "DPDPA enforces purpose limitation and data minimization (Sec 4). Over-collecting is a compliance failure and a breach liability.",
-      leantip: "Review each field you collect — if you can't state its purpose, don't collect it. Add a data inventory and prune unused fields."
+      leantip: "Review each field you collect - if you can't state its purpose, don't collect it. Add a data inventory and prune unused fields."
     },
     {
       gap: "Storing data abroad / no clarity on cross-border transfers",
@@ -40,7 +40,7 @@ const FRAMEWORK = {
       leantip: "Stand up a support workflow for data-principal requests with ownership and SLAs. Keep request logs as evidence of the mechanism existing."
     }
   ],
-  privacyStartupNotes: "DPDPA-specific note: India's DPDP Act expects notice + consent, purpose limitation, and breach notification to the DPDP Board. It does NOT statutorily mandate a GDPR-style ROPA, but keep an internal record of processing activities as best practice. DPIA is appropriate for high-risk processing even where not literally prescribed — run one to show diligence.",
+  privacyStartupNotes: "DPDPA-specific note: India's DPDP Act expects notice + consent, purpose limitation, and breach notification to the DPDP Board. It does NOT statutorily mandate a GDPR-style ROPA, but keep an internal record of processing activities as best practice. DPIA is appropriate for high-risk processing even where not literally prescribed - run one to show diligence.",
   weeks: [
     {
       week: 1,
@@ -128,7 +128,7 @@ const FRAMEWORK = {
           title: 'Implement reasonable security safeguards (encryption, access control, logging)',
           control: 'Deploy technical and organizational security measures commensurate with the nature of data and risk (Section 8(1)). Include encryption at rest and in transit, role-based access control, and comprehensive audit logging.',
           how: 'Encryption at rest: AWS KMS with customer-managed keys (CMK) for S3/RDS, Azure Key Vault for storage accounts and SQL Database, GCP Cloud KMS for Cloud Storage/BigQuery, Alibaba KMS for OSS. Encryption in transit: enforce TLS 1.2+ via ALB/NLB security policies and API Gateway settings. Access control: implement least-privilege IAM policies using AWS IAM, Azure AD PIM (just-in-time), GCP IAM Conditions. Logging: enable AWS CloudTrail + VPC Flow Logs, Azure Monitor + NSG Flow Logs, GCP Cloud Audit Logs. Centralize logs in a SIEM (e.g., Sentinel, Splunk, or ELK).',
-          check: 'All production data stores have encryption at rest with CMKs. TLS 1.2+ enforced on all endpoints. IAM policies reviewed quarterly — no standing admin access. SIEM dashboards show access logs from all three clouds. Penetration test confirms no unencrypted data exposure.'
+          check: 'All production data stores have encryption at rest with CMKs. TLS 1.2+ enforced on all endpoints. IAM policies reviewed quarterly - no standing admin access. SIEM dashboards show access logs from all three clouds. Penetration test confirms no unencrypted data exposure.'
         },
         {
           title: 'Design and test data breach detection and assessment process',
@@ -147,12 +147,12 @@ const FRAMEWORK = {
           control: 'Perform DPIAs for processing that is likely to result in a high risk to data principals\' rights (mandatory for Significant Data Fiduciaries under Section 10; best practice for all). Document risk assessment, mitigation measures, and DPO sign-off.',
           how: 'DPIA is NOT a ROPA (see note below). Build a DPIA template covering: (1) description of processing and purposes, (2) necessity and proportionality assessment, (3) risk assessment to data principals (likelihood × severity matrix), (4) mitigation measures (technical + organizational), (5) DPO consultation outcome, (6) residual risk acceptance. Run DPIAs before deploying new features involving profiling, large-scale processing, or children\'s data. Store DPIA records in a versioned SharePoint/Confluence space. Use a scoring matrix: Likelihood (Rare/Possible/Likely/Almost Certain) × Severity (Negligible/Moderate/Major/Critical) = Risk Level.',
           check: 'DPIA template exists and follows the structure above. At least one completed DPIA for an existing high-risk processing activity. DPIA records show DPO sign-off and residual risk acceptance. New feature deployments involving profiling cannot proceed without a completed DPIA.',
-          note: 'IMPORTANT: DPDPA does NOT mandate ROPA (Record of Processing Activities) like GDPR Article 30. However, maintaining an internal processing activities register is strongly recommended as a best practice — it supports DPIA completion, audit readiness, and data mapping. Treat ROPA as an internal governance tool, not a statutory obligation under DPDPA.'
+          note: 'IMPORTANT: DPDPA does NOT mandate ROPA (Record of Processing Activities) like GDPR Article 30. However, maintaining an internal processing activities register is strongly recommended as a best practice - it supports DPIA completion, audit readiness, and data mapping. Treat ROPA as an internal governance tool, not a statutory obligation under DPDPA.'
         },
         {
           title: 'Implement data protection by design and by default',
           control: 'Embed data protection principles into system design from the outset (Section 8(1)). Default settings must be the most privacy-protective. Minimize data collection to what is necessary for the stated purpose.',
-          how: 'Implement privacy engineering patterns: (1) pseudonymization using AWS Nitro Enclaves or Azure Confidential Computing for sensitive processing, (2) data minimization — audit forms and APIs to remove unnecessary fields, (3) purpose limitation — tag every API endpoint and data store with its permitted purpose; enforce via middleware, (4) default privacy settings — new accounts default to maximum privacy, (5) retention automation — AWS Lambda + S3 Lifecycle Policies, Azure Blob Lifecycle Management, GCP Cloud Storage Lifecycle to auto-delete expired data. Environment segregation: production data never used in staging/development; use synthetic data generators (Faker, Synthea) for non-prod.',
+          how: 'Implement privacy engineering patterns: (1) pseudonymization using AWS Nitro Enclaves or Azure Confidential Computing for sensitive processing, (2) data minimization - audit forms and APIs to remove unnecessary fields, (3) purpose limitation - tag every API endpoint and data store with its permitted purpose; enforce via middleware, (4) default privacy settings - new accounts default to maximum privacy, (5) retention automation - AWS Lambda + S3 Lifecycle Policies, Azure Blob Lifecycle Management, GCP Cloud Storage Lifecycle to auto-delete expired data. Environment segregation: production data never used in staging/development; use synthetic data generators (Faker, Synthea) for non-prod.',
           check: 'Privacy-by-design checklist is part of the engineering PR review process. Default settings for new accounts are privacy-maximizing. Production PII is absent from staging/development environments (verified via Macie/Purview scan). Retention automation is active and deleting expired data as scheduled.'
         }
       ]
@@ -166,7 +166,7 @@ const FRAMEWORK = {
         {
           title: 'Evaluate Significant Data Fiduciary (SDF) status and obligations',
           control: 'Determine whether the organization qualifies as a Significant Data Fiduciary (Section 10) based on volume and sensitivity of data processed, risk to rights, and impact on sovereignty. If SDF: appoint a DPO resident in India, conduct annual DPIA, and undergo independent audit.',
-          how: 'Assess SDF criteria: (1) volume of data principals > threshold (to be notified by government), (2) processing involves sensitive personal data at scale, (3) risk to data principal rights is high, (4) impact on sovereignty or integrity. If SDF: (a) appoint a DPO — create a formal appointment letter, publish DPO contact on website, DPO must be resident in India, (b) schedule annual DPIA reviews, (c) engage an independent auditor (EM panel from ICAI or equivalent) for annual data protection audit. Maintain an SDF compliance register.',
+          how: 'Assess SDF criteria: (1) volume of data principals > threshold (to be notified by government), (2) processing involves sensitive personal data at scale, (3) risk to data principal rights is high, (4) impact on sovereignty or integrity. If SDF: (a) appoint a DPO - create a formal appointment letter, publish DPO contact on website, DPO must be resident in India, (b) schedule annual DPIA reviews, (c) engage an independent auditor (EM panel from ICAI or equivalent) for annual data protection audit. Maintain an SDF compliance register.',
           check: 'SDF assessment document exists with reasoning. If SDF: DPO appointment letter and website publication confirmed. Annual DPIA calendar is set. Independent auditor is engaged or identified. If not SDF, assessment shows why and is reviewed annually.'
         },
         {
@@ -184,8 +184,8 @@ const FRAMEWORK = {
         {
           title: 'Set up environment segregation (production/staging/development)',
           control: 'Enforce strict segregation between production, staging, and development environments to prevent unauthorized access to live personal data and reduce breach surface area.',
-          how: 'Implement separate cloud accounts/subscriptions per environment: AWS Organizations with separate accounts (Prod, Stage, Dev) per business unit, Azure Management Groups with separate subscriptions, GCP Folders with separate projects per environment. Network isolation: separate VPCs/VNets with no peering between prod and non-prod. Access control: production access requires MFA + just-in-time elevation (Azure PIM, AWS IAM Identity Center). Data: production data never copied to non-prod — use synthetic data tools (AWS Glue DataBrew, Faker libraries, Synthea for healthcare). CI/CD pipelines: deploy only from staging to prod via approved release windows.',
-          check: 'Separate cloud accounts/subscriptions exist per environment. Network isolation confirmed — no VPC peering between prod and non-prod. No production PII in staging/development (Macie/Purview scan confirms). JIT access for production is enforced and audited. Synthetic data is used in all non-prod environments.'
+          how: 'Implement separate cloud accounts/subscriptions per environment: AWS Organizations with separate accounts (Prod, Stage, Dev) per business unit, Azure Management Groups with separate subscriptions, GCP Folders with separate projects per environment. Network isolation: separate VPCs/VNets with no peering between prod and non-prod. Access control: production access requires MFA + just-in-time elevation (Azure PIM, AWS IAM Identity Center). Data: production data never copied to non-prod - use synthetic data tools (AWS Glue DataBrew, Faker libraries, Synthea for healthcare). CI/CD pipelines: deploy only from staging to prod via approved release windows.',
+          check: 'Separate cloud accounts/subscriptions exist per environment. Network isolation confirmed - no VPC peering between prod and non-prod. No production PII in staging/development (Macie/Purview scan confirms). JIT access for production is enforced and audited. Synthetic data is used in all non-prod environments.'
         },
         {
           title: 'Establish ongoing compliance monitoring, audit, and training program',

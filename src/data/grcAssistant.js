@@ -122,9 +122,9 @@ function buildRecommendation(intents, fws, q) {
     return {
       heading: 'What I recommend you do next',
       steps: [
-        { title: 'Send the baseline clause set first', why: 'Baseline clauses (compliance obligations, evidence, audit rights, incident response, retention, flow-down) apply to every vendor regardless of framework — they establish the floor.', evidence: "Draft the clause set from VENDOR_CLAUSE_BASE; send with the security questionnaire." },
+        { title: 'Send the baseline clause set first', why: 'Baseline clauses (compliance obligations, evidence, audit rights, incident response, retention, flow-down) apply to every vendor regardless of framework - they establish the floor.', evidence: "Draft the clause set from VENDOR_CLAUSE_BASE; send with the security questionnaire." },
         { title: 'Layer framework-specific addenda', why: `Each framework your vendor touches adds a required clause (${fwNames.join(', ')}). The contract must name them and the most stringent notification SLA.`, evidence: 'VENDOR_CLAUSE_CONDITIONAL for each framework; the tightest regulatory window.' },
-        { title: 'Require evidence on a cadence, not a sticker', why: 'Certifications lapse — contract maintenance + evidence delivery, not just the certificate attachment.', evidence: 'Annual reports, exception addenda, subservice SOC 2 reports.' },
+        { title: 'Require evidence on a cadence, not a sticker', why: 'Certifications lapse - contract maintenance + evidence delivery, not just the certificate attachment.', evidence: 'Annual reports, exception addenda, subservice SOC 2 reports.' },
       ],
       nextSteps: ['Ask for the most recent SOC 2 / ISO report', 'Confirm sub-processor list and DPA chain', 'Agree the most stringent breach-notification SLA'],
     };
@@ -134,9 +134,9 @@ function buildRecommendation(intents, fws, q) {
     return {
       heading: 'What I recommend you do next',
       steps: [
-        { title: 'Build a single asset inventory', why: 'Every control evaluation starts from an accurate asset inventory — cloud services, on-prem servers, physical servers, databases, and purchased assets. Tag each asset with its environment and control objective.', evidence: 'Asset inventory (cloud + on-prem + purchased), CM-8 artifacts.' },
+        { title: 'Build a single asset inventory', why: 'Every control evaluation starts from an accurate asset inventory - cloud services, on-prem servers, physical servers, databases, and purchased assets. Tag each asset with its environment and control objective.', evidence: 'Asset inventory (cloud + on-prem + purchased), CM-8 artifacts.' },
         { title: 'Generate and maintain a machine SBOM', why: 'FedRAMP (CM-11) and federal procurement now require a software bill of materials for every deliverable. An SBOM makes the software supply chain visible to the auditor.', evidence: 'SBOM generation tool output (CycloneDX/SPDX), CI pipeline integration.' },
-        { title: 'Decide carve-out vs carve-in per vendor', why: 'The carve-out/carve-in choice determines who provides evidence to the auditor. Document it explicitly — auditors ask for this decision, not a default.', evidence: 'Vendor carve-out/carve-in decision log; CUECs for carve-out; vendor evidence for carve-in.' },
+        { title: 'Decide carve-out vs carve-in per vendor', why: 'The carve-out/carve-in choice determines who provides evidence to the auditor. Document it explicitly - auditors ask for this decision, not a default.', evidence: 'Vendor carve-out/carve-in decision log; CUECs for carve-out; vendor evidence for carve-in.' },
         { title: 'Segment BYOD from sensitive data', why: 'BYOD devices cannot be fully controlled like corporate endpoints. Restrict BYOD to a managed container/VDI or block access to sensitive data (CJI, PII, PHI).', evidence: 'MDM/EDR policy, container/VDI config, BYOD access rules.' },
         { title: 'Define the shared-responsibility matrix', why: 'Cloud inherits CSP controls; on-prem/physical servers and on-prem databases are fully customer-owned. The matrix shows what each party evidences.', evidence: 'Shared-responsibility matrix per asset class.' },
       ],
@@ -149,7 +149,7 @@ function buildRecommendation(intents, fws, q) {
       heading: 'What I recommend you do next',
       steps: [
         { title: 'Implement the strictest overlapping control', why: 'Auditors accept documented reconciliation far more often than they admit. One control satisfying the strictest requirement closes multiple frameworks.', evidence: 'Pick the strictest clock (PCI 12mo online, HIPAA 6yr) and apply it everywhere.' },
-        { title: 'Document the marginal differences in a retention/risk matrix', why: 'The conflict is rarely in the control itself — it is in the retention/notification clock. A signed schedule is your defence.', evidence: 'Retention schedule, risk-treatment register, legal sign-off.' },
+        { title: 'Document the marginal differences in a retention/risk matrix', why: 'The conflict is rarely in the control itself - it is in the retention/notification clock. A signed schedule is your defence.', evidence: 'Retention schedule, risk-treatment register, legal sign-off.' },
         { title: 'Show the reconciliation to the auditor proactively', why: 'Presenting the matrix before they raise it reframes you as rigorous, not non-compliant.', evidence: 'One-page reconciliation matrix per conflict topic.' },
       ],
       nextSteps: ['List the conflicting clocks across your frameworks', 'Draft a one-page reconciliation matrix', 'Present it in your next readiness review'],
@@ -161,7 +161,7 @@ function buildRecommendation(intents, fws, q) {
       heading: 'What I recommend you do next',
       steps: [
         { title: 'Pin the finding to the exact control text', why: 'A vague finding often dissolves when pinned to the precise criterion (TSC, Annex A, PCI req, CFR citation). Ask for the citation in writing.', evidence: 'Auditor report excerpt, the cited control text.' },
-        { title: 'Distinguish design vs operating effectiveness', why: 'If the control exists and meets its intent but evidence is thin, argue operating-effectiveness — not a gap.', evidence: 'Control description + operating evidence (logs, reviews, tests).' },
+        { title: 'Distinguish design vs operating effectiveness', why: 'If the control exists and meets its intent but evidence is thin, argue operating-effectiveness - not a gap.', evidence: 'Control description + operating evidence (logs, reviews, tests).' },
         { title: 'Propose compensating or equivalent controls', why: 'Where the exact control isn\u2019t feasible, documented compensating controls (PCI CSF, ISO equivalent) are defensible.', evidence: 'Compensating control declaration signed by the owner.' },
       ],
       nextSteps: ['Get the exact control citation', 'Assemble the operating evidence pack', 'Prepare the compensating-control argument'],
@@ -172,7 +172,7 @@ function buildRecommendation(intents, fws, q) {
     return {
       heading: 'What I recommend you do next',
       steps: [
-        { title: 'Challenge the scope before challenging the finding', why: 'If the item sits outside the attestation boundary (carved-out subservice, CUEC), the finding should be withdrawn — this is the cheapest win.', evidence: 'Signed system description, control mapping matrix.' },
+        { title: 'Challenge the scope before challenging the finding', why: 'If the item sits outside the attestation boundary (carved-out subservice, CUEC), the finding should be withdrawn - this is the cheapest win.', evidence: 'Signed system description, control mapping matrix.' },
         { title: 'Prove completeness, not volume', why: 'A full review queue with sign-offs beats a sampled one. Show nothing slipped through.', evidence: 'IAM review tickets, exception logs, owner lists.' },
         { title: 'Acknowledge residual risk explicitly', why: 'Risk-based frameworks (ISO/NIST/HIPAA-addressable) reward a documented risk decision with an owner and date over silent non-compliance.', evidence: 'Risk register entry + accepted residual risk signature.' },
       ],
@@ -184,9 +184,9 @@ function buildRecommendation(intents, fws, q) {
     return {
       heading: 'What I recommend you do next',
       steps: [
-        { title: 'Start from the unified policy map', why: 'One area (e.g. Access Management) maps to controls across every framework — map once, satisfy many.', evidence: 'UNIFIED_POLICY_MAP by area.' },
+        { title: 'Start from the unified policy map', why: 'One area (e.g. Access Management) maps to controls across every framework - map once, satisfy many.', evidence: 'UNIFIED_POLICY_MAP by area.' },
         { title: 'Drill into your highest-risk framework first', why: 'Pick the framework with the broadest scope or strictest enforcement and build outward.', evidence: 'Framework scope, enforcement history.' },
-        { title: 'Document the honest tension', why: 'Each mapping has a discrepancy — auditors respect a documented reconciliation more than a clean but false claim.', evidence: 'Discrepancy note per area + retention matrix.' },
+        { title: 'Document the honest tension', why: 'Each mapping has a discrepancy - auditors respect a documented reconciliation more than a clean but false claim.', evidence: 'Discrepancy note per area + retention matrix.' },
       ],
       nextSteps: ['Pick your top 3 policy areas', 'Map them across your frameworks', 'Write the discrepancy note for each'],
     };
@@ -198,7 +198,7 @@ function buildRecommendation(intents, fws, q) {
       heading: 'What I recommend you do next',
       steps: [
         { title: 'Close the top findings first', why: `The ${fwNames.join(' & ')} observations that recur in audits are evidence-gaps (reviews, scope, subservices). Fix those before anything else.`, evidence: `${fwNames.map(f => FRAMEWORK_KB[f]?.observations?.[0]?.finding).filter(Boolean).join('; ')}` },
-        { title: 'Assemble the evidence pack', why: 'Maturity is evidence of operating effectiveness across the period — sign-offs, dates, completeness — not the control description alone.', evidence: 'Review tickets, exception logs, system-generated owner lists.' },
+        { title: 'Assemble the evidence pack', why: 'Maturity is evidence of operating effectiveness across the period - sign-offs, dates, completeness - not the control description alone.', evidence: 'Review tickets, exception logs, system-generated owner lists.' },
         { title: 'Prepare the pushback playbook', why: 'For each likely finding, have the scope-boundary, citation, compensating-control, and risk-decision arguments ready.', evidence: 'GRC_RESPONSE_PLAYBOOK + framework rebuttals.' },
       ],
       nextSteps: ['List your top 3 likely findings', 'Pull the operating evidence', 'Rehearse the scope-boundary argument'],
@@ -210,7 +210,7 @@ function buildRecommendation(intents, fws, q) {
     heading: 'What I recommend you do next',
     steps: quickWins.slice(0, 3).map((title, i) => ({
       title,
-      why: 'These are the controls that satisfy the strictest overlapping requirement across most frameworks — one action closes several obligations.',
+      why: 'These are the controls that satisfy the strictest overlapping requirement across most frameworks - one action closes several obligations.',
       evidence: 'Framework gap analysis, current control inventory.',
     })),
     nextSteps: quickWins.slice(0, 3),
@@ -228,10 +228,10 @@ export function askGrcAssistant(query) {
 
   // 1) Contract / vendor clauses
   if (primary === 'contract' || q.includes('vendor') && !fws.length) {
-    summary = 'Here is what to explicitly include when your client deals with a vendor that must comply with these frameworks — plus the evidence to require.';
+    summary = 'Here is what to explicitly include when your client deals with a vendor that must comply with these frameworks - plus the evidence to require.';
     sections.push({
       heading: 'Baseline clauses for every vendor agreement',
-      why: 'These clauses apply regardless of framework — they establish the contractual floor and are non-negotiable in mature vendor programmes.',
+      why: 'These clauses apply regardless of framework - they establish the contractual floor and are non-negotiable in mature vendor programmes.',
       bullets: VENDOR_CLAUSE_BASE.map(c => `• ${c.title}: ${c.text}`),
     });
     const conds = (fws.length ? fws : ['soc2', 'iso27001', 'pci', 'hipaa', 'gdpr', 'dpdpa'])
@@ -246,35 +246,35 @@ export function askGrcAssistant(query) {
       heading: 'Why it matters',
       why: 'Certifications lapse; audit rights without independence protections are rarely exercised; notification timelines conflict.',
       bullets: [
-        '• Certifications lapse — contract maintenance + evidence, not the sticker.',
+        '• Certifications lapse - contract maintenance + evidence, not the sticker.',
         '• Audit rights without independence protections are rarely exercised; pair them with "rely on report" language.',
-        '• Notification timelines conflict (CERT-In 6h vs GDPR 72h vs HIPAA 60d) — tie the vendor to the most stringent.',
+        '• Notification timelines conflict (CERT-In 6h vs GDPR 72h vs HIPAA 60d) - tie the vendor to the most stringent.',
         '• Flow everything down to subcontractors with the vendor remaining liable.',
       ],
     });
   }
 
-   // 0.5) Control environment — SBOM, asset inventory, carve-out/in, BYOD, endpoint security
+   // 0.5) Control environment - SBOM, asset inventory, carve-out/in, BYOD, endpoint security
    if (primary === 'environment' || intents.some(i => i.id === 'environment')) {
      summary = 'Evaluating the control environment: SBOM, asset inventory, carve-out/carve-in, control objectives, BYOD, endpoint security, and on-prem vs cloud.';
      sections.push(
-       { heading: 'Asset inventory & SBOM', why: 'Every control evaluation starts from an accurate asset inventory — cloud services, on-prem servers, physical servers, databases, and purchased assets. FedRAMP (CM-8/CM-11) and federal procurement require a machine-generated SBOM.', bullets: ['• Maintain one asset inventory across all environments (cloud, on-prem/physical servers, on-prem databases, purchased assets).', '• Generate a machine-readable SBOM (CycloneDX/SPDX) for every software deliverable; keep it updated in CI.', '• Tag each asset with its environment and control objective (confidentiality/integrity/availability).'] },
-       { heading: 'Carve-out vs carve-in vendor assessment', why: 'The carve-out/carve-in choice determines who provides evidence to the auditor — it must be decided explicitly, not assumed.', bullets: ['• Carve-out: the subservice is excluded; the client must assess complementary user entity controls (CUECs).', '• Carve-in: the vendor is in scope; the vendor must provide evidence (SOC 2, FedRAMP ATO, CJIS compliance).', '• Document the decision and the evidence each party provides.'] },
+       { heading: 'Asset inventory & SBOM', why: 'Every control evaluation starts from an accurate asset inventory - cloud services, on-prem servers, physical servers, databases, and purchased assets. FedRAMP (CM-8/CM-11) and federal procurement require a machine-generated SBOM.', bullets: ['• Maintain one asset inventory across all environments (cloud, on-prem/physical servers, on-prem databases, purchased assets).', '• Generate a machine-readable SBOM (CycloneDX/SPDX) for every software deliverable; keep it updated in CI.', '• Tag each asset with its environment and control objective (confidentiality/integrity/availability).'] },
+       { heading: 'Carve-out vs carve-in vendor assessment', why: 'The carve-out/carve-in choice determines who provides evidence to the auditor - it must be decided explicitly, not assumed.', bullets: ['• Carve-out: the subservice is excluded; the client must assess complementary user entity controls (CUECs).', '• Carve-in: the vendor is in scope; the vendor must provide evidence (SOC 2, FedRAMP ATO, CJIS compliance).', '• Document the decision and the evidence each party provides.'] },
        { heading: 'BYOD & endpoint security', why: 'Corporate endpoints get full EDR/MDM/disk encryption; BYOD devices cannot be controlled the same way and must be segregated.', bullets: ['• Corporate assets (purchased, on-prem servers, physical servers): full EDR/MDM/disk encryption.', '• BYOD: restrict to a managed container/VDI, or block access to sensitive data (CJI, PII, PHI).', '• Define endpoint security control objectives per device class and evidence accordingly.'] },
-       { heading: 'On-prem / physical vs cloud shared responsibility', why: 'Cloud inherits CSP baseline controls; on-prem servers, physical servers, and on-prem databases are fully customer-owned.', bullets: ['• Cloud: CSP-inherited + customer-configured controls.', '• On-prem/physical servers & databases: 100% customer (physical access, environmental, encryption, segmentation).', '• Purchased assets: vendor-supported — clarify support scope in the contract.', '• Publish a shared-responsibility matrix per asset class.'] },
+       { heading: 'On-prem / physical vs cloud shared responsibility', why: 'Cloud inherits CSP baseline controls; on-prem servers, physical servers, and on-prem databases are fully customer-owned.', bullets: ['• Cloud: CSP-inherited + customer-configured controls.', '• On-prem/physical servers & databases: 100% customer (physical access, environmental, encryption, segmentation).', '• Purchased assets: vendor-supported - clarify support scope in the contract.', '• Publish a shared-responsibility matrix per asset class.'] },
      );
    }
 
    // 2) Audit observations + 3) pushback
   if (primary === 'audit') {
     const list = (fws.length ? fws : order).map(id => FRAMEWORK_KB[id]).filter(Boolean);
-    summary = 'Common audit observations by framework — and what really drives them:';
+    summary = 'Common audit observations by framework - and what really drives them:';
     list.forEach(fw => {
       if (fw.observations.length) {
         sections.push({
-          heading: `${fw.name} — typical findings`,
-          why: 'These findings recur because they are evidence-gaps, not control-gaps — the controls usually exist but lack operating proof.',
-          bullets: fw.observations.map(o => `• ${o.finding} — ${o.why}`),
+          heading: `${fw.name} - typical findings`,
+          why: 'These findings recur because they are evidence-gaps, not control-gaps - the controls usually exist but lack operating proof.',
+          bullets: fw.observations.map(o => `• ${o.finding} - ${o.why}`),
         });
       }
     });
@@ -290,16 +290,16 @@ export function askGrcAssistant(query) {
     });
   } else if (primary === 'pushback') {
     const list = (fws.length ? fws : order).map(id => FRAMEWORK_KB[id]).filter(Boolean);
-    summary = 'GRC rebuttal playbook — how to professionally challenge an audit finding without eroding trust:';
+    summary = 'GRC rebuttal playbook - how to professionally challenge an audit finding without eroding trust:';
     sections.push({
       heading: 'General response technique',
-      why: 'The goal is not to argue — it is to show the auditor the control exists, meets its intent, and is evidenced.',
+      why: 'The goal is not to argue - it is to show the auditor the control exists, meets its intent, and is evidenced.',
       bullets: GRC_RESPONSE_PLAYBOOK.map(c => `• ${c.title}: ${c.body}`),
     });
     list.forEach(fw => {
       if (fw.rebuttals.length) {
         sections.push({
-          heading: `${fw.name} — framework-specific pushback`,
+          heading: `${fw.name} - framework-specific pushback`,
           why: 'Framework-specific pushbacks work because they cite the exact boundary or criterion the auditor must respect.',
           bullets: fw.rebuttals.map(r => `• ${r.finding}: ${r.pushback} (Evidence: ${r.evidence})`),
         });
@@ -318,7 +318,7 @@ export function askGrcAssistant(query) {
     summary = 'Cross-framework discrepancies your auditors, vendors and contracts must reconcile:';
     sections.push({
       heading: 'Discrepancy radar',
-      why: 'The conflicts are rarely about the control itself — they are about retention clocks, notification windows, and scope boundaries.',
+      why: 'The conflicts are rarely about the control itself - they are about retention clocks, notification windows, and scope boundaries.',
       bullets: (rel.length ? rel : DISCREPANCY_MATRIX).map(r => `• ${r.topic}: ${r.conflict}\n   → Reconcile: ${r.reconcile}`),
     });
     sections.push({
@@ -339,17 +339,17 @@ export function askGrcAssistant(query) {
     summary = 'What policies tie to what frameworks and what controls (and where they\u2019re honest with you about the tension):';
     sections.push({
       heading: 'Unified policy → framework → control map',
-      why: 'One policy area often maps to controls across many frameworks — map once, satisfy many.',
+      why: 'One policy area often maps to controls across many frameworks - map once, satisfy many.',
       bullets: areas.map(a => {
         const mapStr = Object.entries(a.map).map(([k, v]) => `${k}: ${v}`).join(' | ');
-        return `• ${a.area} — ${mapStr}\n   ⚠ ${a.discrepancy}`;
+        return `• ${a.area} - ${mapStr}\n   ⚠ ${a.discrepancy}`;
       }),
     });
     if (!fws.length) {
       sections.push({
         heading: 'Drill into a framework to see its full policy list',
         why: 'Each framework has its own policy structure; start with the one carrying the broadest scope or strictest enforcement.',
-        bullets: order.map(id => `• ${FRAMEWORK_KB[id]?.name} — ask "policies for ${FRAMEWORK_KB[id]?.name}"`),
+        bullets: order.map(id => `• ${FRAMEWORK_KB[id]?.name} - ask "policies for ${FRAMEWORK_KB[id]?.name}"`),
       });
     }
   }
@@ -359,10 +359,10 @@ export function askGrcAssistant(query) {
     const fw = fwObjs[0];
     summary = `Deep dive into ${fw.name}. Here is the essentials:`;
     if (fw.policies.length) {
-      sections.push({ heading: `${fw.name} — key policies → controls`, why: 'Controls are the concrete requirements the auditor will test.', bullets: fw.policies.map(p => `• ${p.area}: ${p.controls.map(c => typeof c === 'object' ? c.text + (c.freq ? ' (frequency: ' + c.freq + ')' : '') : c).join('; ')} ${p.note ? '— ' + p.note : ''}`) });
+      sections.push({ heading: `${fw.name} - key policies → controls`, why: 'Controls are the concrete requirements the auditor will test.', bullets: fw.policies.map(p => `• ${p.area}: ${p.controls.map(c => typeof c === 'object' ? c.text + (c.freq ? ' (frequency: ' + c.freq + ')' : '') : c).join('; ')} ${p.note ? '- ' + p.note : ''}`) });
     }
     if (fw.observations.length) {
-      sections.push({ heading: 'Common audit observations', why: 'Findings usually trace back to missing evidence.', bullets: fw.observations.map(o => `• ${o.finding} — ${o.why}`) });
+      sections.push({ heading: 'Common audit observations', why: 'Findings usually trace back to missing evidence.', bullets: fw.observations.map(o => `• ${o.finding} - ${o.why}`) });
     }
     if (fw.rebuttals.length) {
       sections.push({ heading: 'Suggested GRC pushback', why: 'Framework-specific rebuttals cite the exact boundary or criterion.', bullets: fw.rebuttals.map(r => `• ${r.finding}: ${r.pushback}`) });
@@ -372,9 +372,9 @@ export function askGrcAssistant(query) {
     }
   }
 
-  // Fallback — still advise wisely.
+  // Fallback - still advise wisely.
   if (!sections.length) {
-    summary = 'I could not pinpoint that yet, but here is how to use the knowledge base — and a start that will actually help:';
+    summary = 'I could not pinpoint that yet, but here is how to use the knowledge base - and a start that will actually help:';
     sections.push({
       heading: 'Try phrasing your question around one of these areas',
       why: 'The assistant understands policy/control mapping, audit findings, GRC pushback, vendor contract clauses, and cross-framework conflicts.',

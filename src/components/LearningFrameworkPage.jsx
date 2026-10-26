@@ -62,7 +62,7 @@ const GENERIC_GAPS = [
   {
     itgc: 'Access Management',
     gap: 'No documented controls or evidence yet',
-    pushback: '"We\'re too early to have formal evidence — we just ship features."',
+    pushback: '"We\'re too early to have formal evidence - we just ship features."',
     reality: 'Auditors/frameworks need proof of at least the core controls (access, encryption, logging, change management). Without it, a certification or customer security review stalls.',
     policy: 'Information Security Policy, Access Control Policy, Evidence & Records Retention Policy',
     compensating: [
@@ -70,7 +70,7 @@ const GENERIC_GAPS = [
       'CI/CD pipeline logs show code changes',
       'Cloud configuration gives an evidence trail',
     ],
-    leantip: 'Start a lightweight evidence/asset register. Document what you DO have (IDP source of truth, CI/CD, cloud config) and map it to the framework — you likely have more than you think.',
+    leantip: 'Start a lightweight evidence/asset register. Document what you DO have (IDP source of truth, CI/CD, cloud config) and map it to the framework - you likely have more than you think.',
   },
   {
     itgc: 'Access Management',
@@ -89,7 +89,7 @@ const GENERIC_GAPS = [
     itgc: 'Access Management',
     gap: 'Shadow IT and unmanaged cloud accounts',
     pushback: '"Devs spin up their own AWS/Azure/GCP accounts for speed."',
-    reality: 'Unknown assets are the #1 startup audit gap — you can\'t protect what you haven\'t inventoried, and scope creep explodes later.',
+    reality: 'Unknown assets are the #1 startup audit gap - you can\'t protect what you haven\'t inventoried, and scope creep explodes later.',
     policy: 'Asset Management Policy, Cloud Usage / Procurement Policy, Access Control Policy',
     compensating: [
       'Organization-level landing zone with guardrails',
@@ -101,7 +101,7 @@ const GENERIC_GAPS = [
   {
     itgc: 'Change Management',
     gap: 'Production, staging, development not segregated',
-    pushback: '"We test in production sometimes — it\'s just faster."',
+    pushback: '"We test in production sometimes - it\'s just faster."',
     reality: 'Shared dev/prod environments mean a dev change can silently touch real customer data or PCI/PHI scope. Frameworks expect separation.',
     policy: 'Environment / SDLC Policy, Change Management Policy, Data Classification Policy',
     compensating: [
@@ -115,7 +115,7 @@ const GENERIC_GAPS = [
     itgc: 'IT Operations',
     gap: 'No formal risk assessment or scanning cadence',
     pushback: '"We\'ll do it closer to the audit."',
-    reality: 'Frameworks require evidence that risks were identified, prioritized, and tracked over time — retroactive assessments look like window-dressing.',
+    reality: 'Frameworks require evidence that risks were identified, prioritized, and tracked over time - retroactive assessments look like window-dressing.',
     policy: 'Risk Assessment Policy, Vulnerability Management Policy, Monitoring & Logging Policy',
     compensating: [
       'Automated external scanning on a schedule',
@@ -148,7 +148,7 @@ const GENERIC_GAPS = [
       'Short-lived credentials instead of static cloud keys',
       'Privileged access management for admins',
     ],
-    leantip: 'Enforce MFA organization-wide via the IDP (Okta/Entra ID). Kill static cloud keys (use short-lived credentials) — it\'s free and reduces breach surface massively.',
+    leantip: 'Enforce MFA organization-wide via the IDP (Okta/Entra ID). Kill static cloud keys (use short-lived credentials) - it\'s free and reduces breach surface massively.',
   },
   {
     itgc: 'Business Continuity & Incident',
@@ -323,7 +323,7 @@ function FrameworkBody({ framework, extraSections }) {
               )}
             </h1>
             <p className="text-gray-600 text-lg max-w-2xl">
-              Compliance playbook — complete each level to unlock the next. Learn the controls, how to implement them, and how to verify.
+              Compliance playbook - complete each level to unlock the next. Learn the controls, how to implement them, and how to verify.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
@@ -431,7 +431,7 @@ function FrameworkBody({ framework, extraSections }) {
                       Level {idx + 1}: {Meta.label}
                       <span className="text-[11px] sm:text-xs font-medium text-white bg-white/25 ring-1 ring-white/30 px-2.5 py-0.5 rounded-full max-w-full whitespace-normal">{week.title}</span>
                     </h2>
-                    <p className="text-sm text-white/90 mt-0.5">{Meta.desc} — {week.description}</p>
+                    <p className="text-sm text-white/90 mt-0.5">{Meta.desc} - {week.description}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 pr-16 shrink-0 ml-auto">
@@ -542,7 +542,7 @@ function FrameworkBody({ framework, extraSections }) {
               {/* Level Complete Banner */}
               {unlocked && weekStats[week.week]?.pct >= 100 && (
                 <div className={`px-6 py-4 text-center text-sm font-medium bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 border-t border-green-200 dark:border-green-800`}>
-                  ✓ Level {idx + 1} complete! {idx < data.weeks.length - 1 ? `Level ${idx + 2} is now unlocked.` : 'All levels complete. You are audit-ready — this is not a certification, and nobody has validated your organization.'}
+                  ✓ Level {idx + 1} complete! {idx < data.weeks.length - 1 ? `Level ${idx + 2} is now unlocked.` : 'All levels complete. You are audit-ready - this is not a certification, and nobody has validated your organization.'}
                 </div>
               )}
             </div>
@@ -562,7 +562,7 @@ function FrameworkBody({ framework, extraSections }) {
                 <BookOpen className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900 dark:text-text-dark-primary">ISO/IEC 42001:2023 — AI Governance</h3>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-text-dark-primary">ISO/IEC 42001:2023 - AI Governance</h3>
                 <p className="text-gray-600 dark:text-text-dark-secondary text-sm">Extend your compliance expertise to AI governance with the world's first AI management system standard</p>
               </div>
             </div>
@@ -586,7 +586,7 @@ function FrameworkBody({ framework, extraSections }) {
                 Common Gaps & Startup Pushback (ITGC)
               </h2>
               <p className="text-gray-500 text-sm mb-4 max-w-2xl">
-                Common startup gaps mapped to <strong>IT General Control</strong> domains — what's typically missing, the pushback, the <strong>compensating controls</strong> already in place, and the <strong>policy</strong> that ties each control to this framework.
+                Common startup gaps mapped to <strong>IT General Control</strong> domains - what's typically missing, the pushback, the <strong>compensating controls</strong> already in place, and the <strong>policy</strong> that ties each control to this framework.
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
                 {Object.keys(ITGC_COLORS).map(d => (
@@ -686,14 +686,14 @@ function CitationRow({ citation }) {
       {status === 'mixed' && (
         <p className="text-[11px] text-violet-800 dark:text-violet-200 mt-2 flex items-start gap-1.5">
           <AlertTriangle className="w-3.5 h-3.5 shrink-0 mt-px" />
-          <span>This range mixes required and addressable specifications. Check the individual spec before treating it as required — e.g. §164.312(a)(1)(ii)(A) and (B) are addressable, while §164.312(b) and (c)(1) are required.</span>
+          <span>This range mixes required and addressable specifications. Check the individual spec before treating it as required - e.g. §164.312(a)(1)(ii)(A) and (B) are addressable, while §164.312(b) and (c)(1) are required.</span>
         </p>
       )}
 
       {status === 'guidance' && (
         <p className="text-[11px] text-slate-600 dark:text-slate-300 mt-2 flex items-start gap-1.5">
           <Info className="w-3.5 h-3.5 shrink-0 mt-px" />
-          <span>No CFR section is cited because this is not a HIPAA requirement. It is HHS guidance, a third-party framework, or internal practice — useful, but you are not obliged to do it.</span>
+          <span>No CFR section is cited because this is not a HIPAA requirement. It is HHS guidance, a third-party framework, or internal practice - useful, but you are not obliged to do it.</span>
         </p>
       )}
 

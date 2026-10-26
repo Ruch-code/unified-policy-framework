@@ -7,7 +7,7 @@ function ResponsiveTable({
   columns = [],
   caption = '',
   filename = 'export.csv',
-  exportLabel = 'Export CSV',
+  exportLabel = 'Export Excel',
   isDark = false,
   className = '',
   enableSort = true,
@@ -149,7 +149,7 @@ function ResponsiveTable({
               bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600
               text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700
               focus:outline-none focus:ring-2 focus:ring-indigo-500/40"
-            aria-label={`Export ${exportLabel} as CSV`}
+            aria-label={`${exportLabel} (.xlsx)`}
           >
             <Download className="w-4 h-4" aria-hidden="true" />
             {exportLabel}
@@ -182,7 +182,7 @@ function ResponsiveTable({
                     <dd className={`flex-1 min-w-0 text-slate-700 dark:text-slate-200 ${col.align === 'right' ? 'text-right' : ''}`}>
                       {typeof col.render === 'function' 
                         ? col.render(row[col.key], row) 
-                        : row[col.key] ?? '—'}
+                        : row[col.key] ?? '-'}
                     </dd>
                   </div>
                 ))}
@@ -213,7 +213,7 @@ function ResponsiveTable({
             bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600
             text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700
             focus:outline-none focus:ring-2 focus:ring-indigo-500/40"
-          aria-label={`Export ${exportLabel} as CSV`}
+          aria-label={`${exportLabel} (.xlsx)`}
         >
           <Download className="w-4 h-4" aria-hidden="true" />
           {exportLabel}
@@ -276,7 +276,7 @@ function ResponsiveTable({
                   >
                     {typeof col.render === 'function' 
                       ? col.render(row[col.key], row) 
-                      : row[col.key] ?? '—'}
+                      : row[col.key] ?? '-'}
                   </td>
                 ))}
               </tr>

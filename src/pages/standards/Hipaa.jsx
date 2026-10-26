@@ -13,8 +13,8 @@ const FRAMEWORK = {
     {
       gap: "Sharing PHI with a vendor before you know whether a BAA is required",
       pushback: "It's just an analytics tool / email tool, do we really need a BAA?",
-      reality: "A BAA is required when the vendor is a business associate — meaning it creates, receives, maintains or transmits PHI on your behalf (45 CFR §160.103, §164.504(e)). A tool that never handles PHI is not a business associate just because it handles personal data, and a BAA is not a general data-processing contract. The test is factual: what does the vendor actually do with the data?",
-      leantip: "For each vendor, write down whether it handles PHI on your behalf. If yes, no BAA means no PHI. If no, the ordinary privacy and security terms apply instead. Note that a BAA only helps if it binds the vendor's own subprocessors — ask for the subprocessor list."
+      reality: "A BAA is required when the vendor is a business associate - meaning it creates, receives, maintains or transmits PHI on your behalf (45 CFR §160.103, §164.504(e)). A tool that never handles PHI is not a business associate just because it handles personal data, and a BAA is not a general data-processing contract. The test is factual: what does the vendor actually do with the data?",
+      leantip: "For each vendor, write down whether it handles PHI on your behalf. If yes, no BAA means no PHI. If no, the ordinary privacy and security terms apply instead. Note that a BAA only helps if it binds the vendor's own subprocessors - ask for the subprocessor list."
     },
     {
       gap: "Mistaking BAA for 'the vendor handles compliance for me'",
@@ -26,7 +26,7 @@ const FRAMEWORK = {
       gap: "No HIPAA Security Rule risk analysis on the books",
       pushback: "We did a pen test; that's basically the same.",
       reality: "§164.308(a)(1)(ii)(A) requires an accurate and thorough assessment of potential risks and vulnerabilities to ePHI. A penetration test is one input to that, not a substitute for it. HHS expects the risk analysis to cover all ePHI, not just the system that was tested.",
-      leantip: "Run a structured risk analysis across all ePHI — assets, threats, likelihood, impact — and document the result. The rule requires periodic re-evaluation as circumstances change; it does not prescribe a fixed interval, so set and justify your own cadence."
+      leantip: "Run a structured risk analysis across all ePHI - assets, threats, likelihood, impact - and document the result. The rule requires periodic re-evaluation as circumstances change; it does not prescribe a fixed interval, so set and justify your own cadence."
     },
     {
       gap: "Sending ePHI unencrypted (email, spreadsheets)",
@@ -41,14 +41,14 @@ const FRAMEWORK = {
       leantip: "Run HIPAA training and keep the records. The rule requires reminders at least annually and retraining when responsibilities change or material happens; new workforce members need it within a reasonable time after joining. Restrict access to least privilege through your identity provider and enable the audit logging you will need as evidence."
     }
   ],
-  privacyStartupNotes: "Scope note: HIPAA has no ROPA or DPIA equivalent. The nearest Privacy Rule analogue is the Security Rule risk analysis, and the Privacy Rule's use-and-disclosure limits. The NPP is a covered-entity obligation — if you are a business associate you support the covered entity's notice rather than publishing your own. Guidance and enforcement: HHS OCR (hhs.gov/hipaa) and the current 45 CFR Part 164 text on eCFR.",
+  privacyStartupNotes: "Scope note: HIPAA has no ROPA or DPIA equivalent. The nearest Privacy Rule analogue is the Security Rule risk analysis, and the Privacy Rule's use-and-disclosure limits. The NPP is a covered-entity obligation - if you are a business associate you support the covered entity's notice rather than publishing your own. Guidance and enforcement: HHS OCR (hhs.gov/hipaa) and the current 45 CFR Part 164 text on eCFR.",
   weeks: 4,
   milestones: 3,
   referenceUrl: "https://www.hhs.gov/hipaa/index.html",
   modules: [
     {
       week: 1,
-      title: "HIPAA Foundations — Rules, PHI, and Entities",
+      title: "HIPAA Foundations - Rules, PHI, and Entities",
       days: [
         {
           day: "Monday",
@@ -107,7 +107,7 @@ const FRAMEWORK = {
             {
               title: "Understand required vs addressable specifications",
               control: "§164.306(d)",
-              how: "Study how the Security Rule distinguishes between required and addressable implementation specifications. Document your organization's approach to each addressable spec — whether it is implemented, if not why, and what alternative measures are in place. Build a decision framework for addressable specification adoption.",
+              how: "Study how the Security Rule distinguishes between required and addressable implementation specifications. Document your organization's approach to each addressable spec - whether it is implemented, if not why, and what alternative measures are in place. Build a decision framework for addressable specification adoption.",
               check: "Write a decision memorandum for five addressable specifications explaining the implementation rationale or documented justification for alternative measures."
             },
             {
@@ -119,7 +119,7 @@ const FRAMEWORK = {
             {
               title: "Map Security Rule requirements to your technology stack",
               control: "§164.312(a)(1) Access Control",
-              how: "Review your organization's technology infrastructure — operating systems, databases, network devices, cloud platforms, and security tools. For each, identify which Security Rule technical safeguards are currently implemented, which are partially implemented, and which are missing.",
+              how: "Review your organization's technology infrastructure - operating systems, databases, network devices, cloud platforms, and security tools. For each, identify which Security Rule technical safeguards are currently implemented, which are partially implemented, and which are missing.",
               check: "Produce a technology-to-Security-Rule mapping document showing at least ten technology components and their compliance status with relevant technical safeguards."
             }
           ]
@@ -239,7 +239,7 @@ const FRAMEWORK = {
     },
     {
       week: 2,
-      title: "HIPAA Implementer — Safeguards and Technical Controls",
+      title: "HIPAA Implementer - Safeguards and Technical Controls",
       days: [
         {
           day: "Monday",
@@ -317,7 +317,7 @@ const FRAMEWORK = {
         },
         {
           day: "Wednesday",
-          label: "Technical Safeguards — Access Control and Audit",
+          label: "Technical Safeguards - Access Control and Audit",
           description: "Implement technical safeguards including access controls, audit controls, integrity, and transmission security for ePHI systems.",
           tasks: [
             {
@@ -430,7 +430,7 @@ const FRAMEWORK = {
     },
     {
       week: 3,
-      title: "HIPAA Verifier — Risk Analysis, BAAs, and Compliance Assessment",
+      title: "HIPAA Verifier - Risk Analysis, BAAs, and Compliance Assessment",
       days: [
         {
           day: "Monday",
@@ -668,13 +668,13 @@ const FRAMEWORK = {
             {
               title: "Study the HIPAA penalty tier structure in detail",
               control: "42 U.S.C. §1320d-5(b)",
-              how: "Analyze all four penalty tiers: (1) Tier 1 — Did Not Know ($100–$50K per violation, $1.5M annual cap), (2) Tier 2 — Reasonable Cause ($1K–$50K per violation, $1.5M annual cap), (3) Tier 3 — Willful Neglect — Corrected ($10K–$50K per violation, $1.5M annual cap), (4) Tier 4 — Willful Neglect — Not Corrected ($50K per violation, $1.5M annual cap). Understand how violations are counted per calendar year and per provision.",
+              how: "Analyze all four penalty tiers: (1) Tier 1 - Did Not Know ($100–$50K per violation, $1.5M annual cap), (2) Tier 2 - Reasonable Cause ($1K–$50K per violation, $1.5M annual cap), (3) Tier 3 - Willful Neglect - Corrected ($10K–$50K per violation, $1.5M annual cap), (4) Tier 4 - Willful Neglect - Not Corrected ($50K per violation, $1.5M annual cap). Understand how violations are counted per calendar year and per provision.",
               check: "Create a penalty reference matrix with all four tiers, per-violation ranges, annual caps, and examples of conduct that falls into each tier."
             },
             {
               title: "Analyze willful neglect determinations and factors",
               control: "42 U.S.C. §1320d-5(b)(1)–(4)",
-              how: "Study how OCR determines willful neglect — conscious and intentional failure to comply or reckless disregard of HIPAA obligations. Review case law and OCR guidance on what constitutes reasonable cause vs willful neglect. Analyze factors including: implementation of compliance program, response to known issues, risk assessment history, and prior violation history.",
+              how: "Study how OCR determines willful neglect - conscious and intentional failure to comply or reckless disregard of HIPAA obligations. Review case law and OCR guidance on what constitutes reasonable cause vs willful neglect. Analyze factors including: implementation of compliance program, response to known issues, risk assessment history, and prior violation history.",
               check: "Write an analysis of at least three real enforcement cases examining the factors that determined willful neglect vs reasonable cause classification."
             },
             {

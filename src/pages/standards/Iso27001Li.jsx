@@ -28,7 +28,7 @@ const FRAMEWORK = {
         {
           title: "Analyze Organizational Context and Interested Parties",
           control: "Clauses 4.1 and 4.2 - Context of the Organization",
-          how: "Conduct a structured analysis of internal and external issues affecting information security (regulatory landscape, market conditions, organizational culture, contractual obligations). Map all interested parties—customers, regulators, employees, suppliers, shareholders—and document their information security requirements. Use PESTLE and SWOT analyses for systematic context assessment.",
+          how: "Conduct a structured analysis of internal and external issues affecting information security (regulatory landscape, market conditions, organizational culture, contractual obligations). Map all interested parties-customers, regulators, employees, suppliers, shareholders-and document their information security requirements. Use PESTLE and SWOT analyses for systematic context assessment.",
           check: "A documented register of internal/external issues exists, an interested parties register with their requirements is complete, and both are reviewed quarterly."
         },
         {

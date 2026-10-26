@@ -19,12 +19,12 @@ const fedrampFramework = {
     {
       gap: "Confusing FedRAMP authorization with a one-time certification",
       pushback: "We got the ATO, we're done.",
-      reality: "FedRAMP requires Continuous Monitoring (ConMon) — ongoing assessment, POA&M tracking, and annual reassessment. An Authorization to Operate (ATO) has a defined period and must be renewed.",
+      reality: "FedRAMP requires Continuous Monitoring (ConMon) - ongoing assessment, POA&M tracking, and annual reassessment. An Authorization to Operate (ATO) has a defined period and must be renewed.",
       leantip: "Build the ConMon program from day one: continuous control monitoring, recurring self-assessments, and a living POA&M. Treat the ATO as a milestone, not the finish line."
     },
     {
       gap: "Incomplete SSP / SAP artifacts",
-      pushback: "The template is long — we'll fill it later.",
+      pushback: "The template is long - we'll fill it later.",
       reality: "The SSP is the foundational document (system description, control baselines, inherited controls, common controls) that the assessor uses to scope the SAP and SAR. Incomplete SSPs derail assessments.",
       leantip: "Draft the SSP early with the system boundary, data types, connections, and selected baseline. Use a FedRAMP-compliant SSP template; reuse it for every assessment cycle."
     },
@@ -35,13 +35,13 @@ const fedrampFramework = {
       leantip: "Map the shared-responsibility matrix explicitly: inherited controls (CSP) vs. customer-configured controls vs. common controls (shared). Document the residual responsibility for each."
     }
   ],
-  privacyStartupNotes: "FedRAMP: Anyone worldwide can build controls and prepare the SSP/SAP/POA&M documentation — there is no citizenship requirement for the security work. The 3PAO assessor and the Authorizing Official (AO) must be US-citizen / US-government roles, and FedRAMP is a US-government program. CJIS note: CJI access is restricted to US citizens with current fingerprint-based background checks and agency affiliation; cleared personnel cannot be substituted by a FedRAMP ATO. Privacy note: if the system processes PII/PHI, FedRAMP's privacy controls complement — but do not replace — a ROPA, DPIA, or BAA.",
+  privacyStartupNotes: "FedRAMP: Anyone worldwide can build controls and prepare the SSP/SAP/POA&M documentation - there is no citizenship requirement for the security work. The 3PAO assessor and the Authorizing Official (AO) must be US-citizen / US-government roles, and FedRAMP is a US-government program. CJIS note: CJI access is restricted to US citizens with current fingerprint-based background checks and agency affiliation; cleared personnel cannot be substituted by a FedRAMP ATO. Privacy note: if the system processes PII/PHI, FedRAMP's privacy controls complement - but do not replace - a ROPA, DPIA, or BAA.",
   weeks: 4,
   milestones: 3,
   weeksData: [
     {
       week: 1,
-      title: "Foundation — FedRAMP Landscape & NIST 800-53 Baselines",
+      title: "Foundation - FedRAMP Landscape & NIST 800-53 Baselines",
       description: "Understand FedRAMP's purpose, the Low/Moderate/High baselines, how NIST SP 800-53 maps to controls, and the RMF process.",
       tasks: [
         {
@@ -60,7 +60,7 @@ const fedrampFramework = {
     },
     {
       week: 2,
-      title: "Documentation — System Security Plan & RMF Package",
+      title: "Documentation - System Security Plan & RMF Package",
       description: "Draft the System Security Plan (SSP), Security Assessment Plan (SAP), and complete the Risk Management Framework package.",
       tasks: [
         {
@@ -73,7 +73,7 @@ const fedrampFramework = {
           title: "Build the Risk Management Framework (RMF) package",
           control: "NIST SP 800-37 Rev 2 RMF steps (Categorize → Select → Implement → Assess → Authorize → Monitor)",
           how: "Complete the RMF package: (1) Security Categorization (FIPS 199), (2) Security Requirements Selection (800-53 baseline), (3) Security Assessment Plan (SAP), (4) Security Controls Assessment, (5) Information System Authorization (ISAW/ATO package). Maintain the Plan of Action & Milestones (POA&M) for any gaps.",
-          check: "RMF package complete — SAP, SSP, POA&M drafted; control assessments identified."
+          check: "RMF package complete - SAP, SSP, POA&M drafted; control assessments identified."
         }
       ]
     },

@@ -25,11 +25,11 @@ function AnswerView({ answer }) {
         <p className="font-semibold text-slate-900 dark:text-white leading-relaxed">{answer.summary}</p>
       )}
 
-      {/* Structured steps — Wise Advisor */}
+      {/* Structured steps - Wise Advisor */}
       {steps.length > 0 && (
         <div className="rounded-xl bg-indigo-50 border border-indigo-200 p-4 dark:bg-[#1e1b4b] dark:border-[#3730a3] dark:hover:bg-[#312e81]">
           <h5 className="text-xs font-bold uppercase tracking-wide text-indigo-800 dark:text-[#c4b5fd] mb-2 flex items-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5" /> Wise Advisor — what to do next
+            <Sparkles className="w-3.5 h-3.5" /> Wise Advisor - what to do next
           </h5>
           <ol className="space-y-2.5">
             {steps.map(s => (
@@ -143,7 +143,7 @@ export default function GrcAssistant({ compact = false }) {
     setQuery('');
     setThinking(true);
     try {
-      // Local RAG retrieval — top control mappings from the playbook index.
+      // Local RAG retrieval - top control mappings from the playbook index.
       const context = retrieve(value, 5);
       // Last 5 turns, for conversational continuity (kept out of the answer body).
       const turns = history.slice(-5).map(m =>
@@ -154,7 +154,7 @@ export default function GrcAssistant({ compact = false }) {
       const answer = await replyStructured(value, { context, history: turns, useRemote: true });
       setHistory(h => [...h, { role: 'assistant', answer }]);
     } catch {
-      setHistory(h => [...h, { role: 'assistant', answer: { summary: 'Something went wrong — please try again.', steps: [], discrepancies: [], quick_actions: [] } }]);
+      setHistory(h => [...h, { role: 'assistant', answer: { summary: 'Something went wrong - please try again.', steps: [], discrepancies: [], quick_actions: [] } }]);
     }
     setThinking(false);
     setTimeout(() => scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' }), 50);
@@ -164,7 +164,7 @@ export default function GrcAssistant({ compact = false }) {
 
   return (
     <div className="flex flex-col h-full min-h-0">
-      {/* Scrolling chat area — single scroll context, header/input pinned outside */}
+      {/* Scrolling chat area - single scroll context, header/input pinned outside */}
       <div ref={scrollRef} role="log" aria-live="polite" className="flex-1 min-h-0 overflow-y-auto pr-1 space-y-3" style={{ minHeight: compact ? 0 : 420 }}>
         <div className="text-center py-6">
           <span className="inline-flex items-center gap-2 text-[#7c3aed] bg-indigo-50 px-3 py-1.5 rounded-full font-semibold text-sm dark:bg-[#1e1b4b] dark:border-[#3730a3] dark:hover:bg-[#312e81] dark:text-[#c4b5fd] border dark:border-[#3730a3]">
@@ -195,7 +195,7 @@ export default function GrcAssistant({ compact = false }) {
           </div>
         )}
 
-        {/* Follow-up suggestions — single source, only after an answer */}
+        {/* Follow-up suggestions - single source, only after an answer */}
         {suggestions.length > 0 && !thinking && (
           <div className="pt-2">
             <p className="text-[11px] font-bold text-slate-600 dark:text-[#94a3b8] uppercase tracking-wide mb-1.5">Try asking</p>
@@ -211,7 +211,7 @@ export default function GrcAssistant({ compact = false }) {
         )}
       </div>
 
-      {/* Starter chips — shown only before the first exchange (no duplication with suggestions) */}
+      {/* Starter chips - shown only before the first exchange (no duplication with suggestions) */}
       {history.length === 0 && (
         <div className="mt-3 pt-3 border-t border-slate-200 dark:border-[#334155] shrink-0">
           <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1">
@@ -227,7 +227,7 @@ export default function GrcAssistant({ compact = false }) {
         </div>
       )}
 
-      {/* Input — pinned, never participates in the scroll area */}
+      {/* Input - pinned, never participates in the scroll area */}
       <form onSubmit={e => { e.preventDefault(); ask(); }} className="mt-3 flex items-center gap-2 shrink-0">
         <input
           value={query}

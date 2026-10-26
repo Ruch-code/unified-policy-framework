@@ -55,7 +55,7 @@ body {
     box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.22), 0 8px 10px -6px rgba(0, 0, 0, 0.35) !important;
   }
 
-  /* Synchronized child text color — reacts to parent hover */
+  /* Synchronized child text color - reacts to parent hover */
   .grc-card-title {
     @apply text-navy-900 dark:text-text-dark-primary transition-colors duration-200;
   }
@@ -73,7 +73,7 @@ body {
     @apply text-slate-600;
   }
   .dark .grc-card:hover .grc-card-desc {
-    color: #cbd5e1 !important; /* slate-300 — 10.5:1 on slate-800 */
+    color: #cbd5e1 !important; /* slate-300 - 10.5:1 on slate-800 */
   }
 
   .grc-card-icon {
@@ -90,7 +90,7 @@ body {
     color: #a5b4fc !important; /* indigo-300 */
   }
 
-  /* Pill / badge system — dark slate pills with light text (no light halos) */
+  /* Pill / badge system - dark slate pills with light text (no light halos) */
   .grc-pill {
     @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-700 border border-slate-200;
   }
@@ -163,7 +163,7 @@ body {
     @apply bg-slate-950 text-slate-100 text-[13px] leading-relaxed overflow-x-auto;
   }
 
-  /* Responsive table wrapper — prevents horizontal page breakage on mobile */
+  /* Responsive table wrapper - prevents horizontal page breakage on mobile */
   .grc-table-wrap {
     @apply overflow-x-auto rounded-xl border border-surface-300 dark:border-surface-dark-300;
   }

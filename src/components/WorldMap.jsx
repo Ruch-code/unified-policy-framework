@@ -49,7 +49,7 @@ export default function WorldMap({ height = 560, dark = false }) {
         const a2 = numToAlpha2[String(f.id)] || '';
         const region = getRegionForCountry(a2);
         const sub = getSubForCountry(a2);
-        const meta = COUNTRY_META[a2] || { flag: '🌐', timezone: '—' };
+        const meta = COUNTRY_META[a2] || { flag: '🌐', timezone: '-' };
         return {
           properties: {
             ...f.properties,

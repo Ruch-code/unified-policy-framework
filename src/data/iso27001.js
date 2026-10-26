@@ -17,7 +17,7 @@ import { ANNEX_A_CONTROLS } from './iso27001AnnexA.js';
 export const ISO_SOURCES = {
   standard: {
     id: 'iso27001',
-    title: 'ISO/IEC 27001:2022 — Information security, cybersecurity and privacy protection — Information security management systems — Requirements',
+    title: 'ISO/IEC 27001:2022 - Information security, cybersecurity and privacy protection - Information security management systems - Requirements',
     url: 'https://www.iso.org/standard/27001',
     version: 'ISO/IEC 27001:2022 (3rd edition, 2022-10)',
     lastReviewed: '2026-09-26',
@@ -25,7 +25,7 @@ export const ISO_SOURCES = {
   },
   amendment: {
     id: 'amd1',
-    title: 'ISO/IEC 27001:2022/Amd 1:2024 — Climate action changes',
+    title: 'ISO/IEC 27001:2022/Amd 1:2024 - Climate action changes',
     url: 'https://www.iso.org/standard/88435.html',
     version: 'ISO/IEC 27001:2022/Amd 1:2024',
     lastReviewed: '2026-09-26',
@@ -33,7 +33,7 @@ export const ISO_SOURCES = {
   },
   guidance: {
     id: 'iso27002',
-    title: 'ISO/IEC 27002:2022 — Information security controls',
+    title: 'ISO/IEC 27002:2022 - Information security controls',
     url: 'https://www.iso.org/standard/75652.html',
     version: 'ISO/IEC 27002:2022 (3rd edition)',
     lastReviewed: '2026-09-26',
@@ -41,7 +41,7 @@ export const ISO_SOURCES = {
   },
   certification: {
     id: 'iso-cert',
-    title: 'ISO — Certification',
+    title: 'ISO - Certification',
     url: 'https://www.iso.org/certification.html',
     version: 'ISO/IEC 17021-1 audit practice',
     lastReviewed: '2026-09-26',
@@ -57,7 +57,7 @@ export const ISO_SOURCES = {
   },
   soaGuidance: {
     id: 'jtc1sc27-soa',
-    title: 'ISO/IEC JTC 1/SC 27 WG1 — Auditing Practices Note: Statement of Applicability',
+    title: 'ISO/IEC JTC 1/SC 27 WG1 - Auditing Practices Note: Statement of Applicability',
     url: 'https://committee.iso.org/files/live/sites/jtc1sc27/files/resources/ISO-IECJTC1-SC27-WG1_N3298_Auditing%20Practices%20Note%20-%20SoA.pdf',
     version: 'ISO/IEC JTC 1/SC 27 WG1 N3298',
     lastReviewed: '2026-09-26',
@@ -79,7 +79,7 @@ export const ISO_CATEGORIES = {
     label: 'Annex A reference control',
     short: 'Annex A',
     tone: 'indigo',
-    desc: 'A reference control in Annex A. Not automatically required — necessity is determined by the organisation through risk assessment and recorded in the SoA.',
+    desc: 'A reference control in Annex A. Not automatically required - necessity is determined by the organisation through risk assessment and recorded in the SoA.',
   },
   practice: {
     id: 'practice',
@@ -97,7 +97,7 @@ export const ISO_CATEGORIES = {
   },
   unverified: {
     id: 'unverified',
-    label: 'Unverified — needs review',
+    label: 'Unverified - needs review',
     short: 'Review',
     tone: 'slate',
     desc: 'Could not be tied to a precise, authoritative basis. Requires review against the licensed standard before reliance.',
@@ -142,7 +142,7 @@ export const ISO_CLAUSES = [
     requirement: 'Requirement',
     summary: 'The core of the ISMS: work out the risks, decide how to treat them, and record the result in the Statement of Applicability.',
     subclauses: [
-      { id: '6.1.1', title: 'Actions to address risks and opportunities — General', summary: 'Determine risks and opportunities, plan actions to address them, and integrate those actions into the ISMS and business processes.' },
+      { id: '6.1.1', title: 'Actions to address risks and opportunities - General', summary: 'Determine risks and opportunities, plan actions to address them, and integrate those actions into the ISMS and business processes.' },
       { id: '6.1.2', title: 'Information security risk assessment', summary: 'Define a repeatable risk assessment methodology, apply it consistently, identify information security risks, analyse them, and evaluate whether they need treatment.', verify: true },
       { id: '6.1.3', title: 'Information security risk treatment', summary: 'Plan risk treatment, determine controls, compare the planned controls against Annex A to verify none relevant are omitted, produce the SoA, and obtain risk owner approval of the treatment plan and residual risk.' },
       { id: '6.1.4', title: 'Information security risk acceptance', summary: 'Ensure risks are formally accepted by the risk owner, with documented justification for the decision to accept residual risk and any necessary further treatment.' },
@@ -221,19 +221,19 @@ export const CLIMATE_AMENDMENT = {
   source: ISO_SOURCES.amendment,
   appliesTo: ['4.1', '4.2'],
   clause41: {
-    cite: 'ISO/IEC 27001:2022/Amd 1:2024 — Clause 4.1',
+    cite: 'ISO/IEC 27001:2022/Amd 1:2024 - Clause 4.1',
     requirement: 'The organisation shall determine whether climate change is a relevant issue.',
     guidance: [
       'Record a reasoned determination. The amendment requires a decision; it does not pre-ordain an answer.',
       'Relevant is contextual. A company whose operations, supply chain, data centres or legal exposure are materially affected by climate change will often find it relevant. A company with very few dependencies may not.',
-      'Capture the reasoning, the date, the assessor, and the evidence used — an auditor will want the reasoning, not just the answer.',
+      'Capture the reasoning, the date, the assessor, and the evidence used - an auditor will want the reasoning, not just the answer.',
       'The determination is not a one-off. Revisit it when organisational context changes or when management review considers external issues.',
       'Being explicit that you considered it and found it not relevant is a legitimate, defensible outcome. Silence is not.',
     ],
     for: 'Recommended approach to recording the determination, not standard text.',
   },
   clause42: {
-    cite: 'ISO/IEC 27001:2022/Amd 1:2024 — Clause 4.2',
+    cite: 'ISO/IEC 27001:2022/Amd 1:2024 - Clause 4.2',
     requirement: 'The amendment notes that relevant interested parties may have requirements related to climate change.',
     guidance: [
       'When identifying interested parties and their requirements, consider whether any of them have climate-related requirements.',

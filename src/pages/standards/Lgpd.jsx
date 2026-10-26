@@ -25,7 +25,7 @@ const FRAMEWORK = {
         "Tag each vendor in a register with their role (controller, operator, joint controller)",
         "Start with a one-page role matrix covering your top 5 data processors"
       ],
-      leantip: "Create a vendor register with two columns — 'Controller' and 'Operator' — and tag each vendor. Ensure every DPA includes LGPD Art. 39 operator obligations (processing only on controller instructions, confidentiality, security measures)."
+      leantip: "Create a vendor register with two columns - 'Controller' and 'Operator' - and tag each vendor. Ensure every DPA includes LGPD Art. 39 operator obligations (processing only on controller instructions, confidentiality, security measures)."
     },
     {
       itgc: "Data Subject Rights",
@@ -44,14 +44,14 @@ const FRAMEWORK = {
       itgc: "Lawful Basis",
       gap: "Processing personal data without mapping to one of the ten Art. 7 lawful bases",
       pushback: "We have consent from our users, so we're covered.",
-      reality: "Consent under LGPD must be free, informed, unambiguous, and for a specific purpose — and it can be withdrawn at any time. Many startups rely solely on consent when another basis (legitimate interest, contract performance) is more appropriate and durable.",
+      reality: "Consent under LGPD must be free, informed, unambiguous, and for a specific purpose - and it can be withdrawn at any time. Many startups rely solely on consent when another basis (legitimate interest, contract performance) is more appropriate and durable.",
       policy: "Lawful Basis Assessment Policy, Consent Management Policy",
       compensating: [
         "Map each processing activity to its lawful basis in a simple registry",
         "Use legitimate interest for internal analytics where consent would be impractical",
         "Implement a consent withdrawal mechanism that propagates within 24 hours"
       ],
-      leantip: "Don't default to consent for everything. Map your top 10 processing activities to lawful bases — you'll find that contract performance and legitimate interest cover most operational needs, leaving consent for marketing only."
+      leantip: "Don't default to consent for everything. Map your top 10 processing activities to lawful bases - you'll find that contract performance and legitimate interest cover most operational needs, leaving consent for marketing only."
     },
     {
       itgc: "Incident Response",
@@ -64,7 +64,7 @@ const FRAMEWORK = {
         "Assign an incident commander and backup for the notification process",
         "Pre-stage a communication draft for data subjects in case of serious harm"
       ],
-      leantip: "Fill in the ANPD notification template NOW — before you need it. Include: nature of data, data subjects affected, security measures taken, risks, and mitigation measures. Having it ready halves your response time."
+      leantip: "Fill in the ANPD notification template NOW - before you need it. Include: nature of data, data subjects affected, security measures taken, risks, and mitigation measures. Having it ready halves your response time."
     },
     {
       itgc: "Cross-Border Transfer",
@@ -81,11 +81,11 @@ const FRAMEWORK = {
     }
   ],
   privacyStartupNotes:
-    "LGPD note: Brazil's ANPD is still maturing its enforcement posture, but the law is fully in force. Startups processing Brazilian residents' data must appoint an Encarregado (DPO), maintain a RIPD (Record of Processing Activities — LGPD's ROPA equivalent), and notify the ANPD of serious incidents within approximately 2 business days. Unlike GDPR, LGPD includes provisions for anonymized data and has a specific children's data regime (Art. 14) requiring parental consent for children under 12.",
+    "LGPD note: Brazil's ANPD is still maturing its enforcement posture, but the law is fully in force. Startups processing Brazilian residents' data must appoint an Encarregado (DPO), maintain a RIPD (Record of Processing Activities - LGPD's ROPA equivalent), and notify the ANPD of serious incidents within approximately 2 business days. Unlike GDPR, LGPD includes provisions for anonymized data and has a specific children's data regime (Art. 14) requiring parental consent for children under 12.",
   weeksData: [
     {
       week: 1,
-      title: "L1 Foundation — LGPD Principles, Roles & Data Mapping",
+      title: "L1 Foundation - LGPD Principles, Roles & Data Mapping",
       description:
         "Map LGPD scope to your environment, understand controller vs. operator roles, identify the ten lawful bases under Art. 7, and build the foundation for ANPD compliance.",
       days: [
@@ -106,14 +106,14 @@ const FRAMEWORK = {
               title:
                 "Define controller (controlador) vs. operator (operador) roles for all vendor relationships",
               control:
-                "LGPD Art. 5 (Definitions — Controller, Operator, Processor), Art. 39 (Operator Obligations)",
+                "LGPD Art. 5 (Definitions - Controller, Operator, Processor), Art. 39 (Operator Obligations)",
               how: "Create a vendor register classifying each third-party data processor as controller, operator, or joint controller under LGPD. For cloud providers (AWS, Azure, GCP, Alibaba): typically operators processing on your behalf. For SaaS tools (CRM, analytics, email): may be joint controllers if they determine purposes. Draft DPAs that explicitly reference LGPD Art. 39 obligations for operators: process only on documented instructions, confidentiality obligations, security measures, sub-processor management, and assistance with data subject rights. Store DPAs in a centralized repository.",
               check:
                 "Vendor register classifying all processors as controller/operator/joint controller, DPAs referencing Art. 39 obligations executed for all operators, and register stored in centralized repository",
             },
             {
               title:
-                "Build the RIPD (Registro de Informações de Proteção de Dados) — LGPD's ROPA equivalent",
+                "Build the RIPD (Registro de Informações de Proteção de Dados) - LGPD's ROPA equivalent",
               control:
                 "LGPD Art. 37 (Records of Processing Activities), Art. 26 (ANPD Powers)",
               how: "Create the RIPD as LGPD's equivalent to GDPR's ROPA. For each processing activity, document: purpose of processing, data categories, data subject categories, retention period, legal basis (Art. 7), cross-border transfers, technical and organizational security measures, and the identity of the controller/operator. Use AWS DynamoDB, Azure SQL, or GCP Cloud SQL to store the RIPD as a queryable database. Include fields for: activity_id, purpose, data_categories, legal_basis, retention_days, cross_border_destinations, security_measures, controller_id, operator_id. Automate RIPD updates by linking to CI/CD deployment processes.",
@@ -124,8 +124,8 @@ const FRAMEWORK = {
               title:
                 "Classify personal data using automated scanners across all cloud environments",
               control:
-                "LGPD Art. 5 (Personal Data Definition), Art. 6 (Principles — Necessity), Art. 46 (Security)",
-              how: "Deploy automated data classification to discover and tag personal data across all environments. For AWS: enable Amazon Macie with custom data identifiers for Brazilian CPF, CNPJ, and RG patterns. For Azure: configure Microsoft Purview scanning with sensitive information types for Brazilian identification numbers. For GCP: deploy Cloud DLP API inspection jobs for Brazilian PII patterns. For Alibaba: configure Data Security Center for data classification. Build a classification taxonomy: ordinary personal data, sensitive personal data (Art. 11 — racial/ethnic data, health data, genetic data, biometric data, sexual orientation, religious/political beliefs), and children's data (Art. 14 — under 12 requires parental consent).",
+                "LGPD Art. 5 (Personal Data Definition), Art. 6 (Principles - Necessity), Art. 46 (Security)",
+              how: "Deploy automated data classification to discover and tag personal data across all environments. For AWS: enable Amazon Macie with custom data identifiers for Brazilian CPF, CNPJ, and RG patterns. For Azure: configure Microsoft Purview scanning with sensitive information types for Brazilian identification numbers. For GCP: deploy Cloud DLP API inspection jobs for Brazilian PII patterns. For Alibaba: configure Data Security Center for data classification. Build a classification taxonomy: ordinary personal data, sensitive personal data (Art. 11 - racial/ethnic data, health data, genetic data, biometric data, sexual orientation, religious/political beliefs), and children's data (Art. 14 - under 12 requires parental consent).",
               check:
                 "Automated classification scans running across all four clouds with Brazilian PII patterns (CPF, CNPJ, RG), classification taxonomy documented with Art. 11 sensitive data categories, and data catalog populated with locations and owners",
             },
@@ -237,7 +237,7 @@ const FRAMEWORK = {
     },
     {
       week: 2,
-      title: "L2 Implementer — Technical Controls & Cloud Security per LGPD",
+      title: "L2 Implementer - Technical Controls & Cloud Security per LGPD",
       description:
         "Implement cloud-native technical controls for LGPD compliance: encryption, access management, monitoring, data discovery, consent enforcement, and breach response across AWS, Azure, GCP, and Alibaba.",
       days: [
@@ -413,7 +413,7 @@ const FRAMEWORK = {
     },
     {
       week: 3,
-      title: "L3 Verifier — Testing LGPD Controls & Evidence Collection",
+      title: "L3 Verifier - Testing LGPD Controls & Evidence Collection",
       description:
         "Execute comprehensive testing of LGPD controls: DSAR response validation, consent audit, encryption verification, incident response drills, cross-border transfer testing, and DPIA review across all environments.",
       days: [
@@ -547,7 +547,7 @@ const FRAMEWORK = {
     },
     {
       week: 4,
-      title: "L4 Certified — Multi-Cloud LGPD Compliance & Continuous Monitoring",
+      title: "L4 Certified - Multi-Cloud LGPD Compliance & Continuous Monitoring",
       description:
         "Master LGPD controls across AWS, Azure, GCP, and Alibaba Cloud, implement continuous compliance monitoring, address common ANPD findings, and establish ongoing LGPD compliance for multi-cloud startup environments.",
       days: [
@@ -587,7 +587,7 @@ const FRAMEWORK = {
                 "Establish ongoing training and awareness program for LGPD compliance",
               control:
                 "LGPD Art. 50 (Codes of Good Practice), Art. 46 (Security Measures)",
-              how: "Establish an ongoing LGPD training and awareness program. Create training modules: (1) LGPD fundamentals for all employees — principles, data subject rights, incident reporting; (2) role-specific training for developers — secure coding, data minimization, encryption; (3) role-specific training for ops — access control, logging, incident response; (4) role-specific training for business — lawful basis selection, consent management, DPIA triggers. Implement training delivery: onboarding training for new hires, quarterly refresher courses, annual comprehensive review, and ad-hoc training for regulatory changes. Track completion rates and quiz scores. Document the training program in the LGPD compliance evidence package for ANPD review.",
+              how: "Establish an ongoing LGPD training and awareness program. Create training modules: (1) LGPD fundamentals for all employees - principles, data subject rights, incident reporting; (2) role-specific training for developers - secure coding, data minimization, encryption; (3) role-specific training for ops - access control, logging, incident response; (4) role-specific training for business - lawful basis selection, consent management, DPIA triggers. Implement training delivery: onboarding training for new hires, quarterly refresher courses, annual comprehensive review, and ad-hoc training for regulatory changes. Track completion rates and quiz scores. Document the training program in the LGPD compliance evidence package for ANPD review.",
               check:
                 "LGPD training program documented with role-specific modules, training delivery scheduled (onboarding, quarterly, annual), completion tracking operational, and quiz scores recorded for compliance evidence",
             },
@@ -595,7 +595,7 @@ const FRAMEWORK = {
         },
         {
           day: 60,
-          title: "AWS LGPD Controls — Macie, Config, GuardDuty & Security Hub",
+          title: "AWS LGPD Controls - Macie, Config, GuardDuty & Security Hub",
           tasks: [
             {
               title:
@@ -637,7 +637,7 @@ const FRAMEWORK = {
         },
         {
           day: 65,
-          title: "Azure & GCP LGPD Controls — Defender, Sentinel, SCC & DLP",
+          title: "Azure & GCP LGPD Controls - Defender, Sentinel, SCC & DLP",
           tasks: [
             {
               title:
@@ -668,7 +668,7 @@ const FRAMEWORK = {
             },
             {
               title:
-                "Implement Alibaba Cloud LGPD controls — Security Center, Config & RAM",
+                "Implement Alibaba Cloud LGPD controls - Security Center, Config & RAM",
               control:
                 "LGPD Art. 46 (Security Measures), Art. 47 (Security Standards)",
               how: "Configure Alibaba Cloud controls for LGPD compliance. Enable Security Center across all ECS instances for vulnerability scanning, baseline checks, and threat detection. Enable Cloud Config for resource compliance monitoring with rules for: storage encryption (OSS, RDS), network security (security groups, VPCs), access control (RAM policies), and logging (ActionTrail). Configure RAM: least-privilege policies for each role, MFA for all RAM users, password policies (16+ characters, 90-day rotation), and quarterly access reviews. Enable ActionTrail for all regions with log delivery to OSS with versioning. Configure KMS with customer master keys for personal data stores, automatic rotation, and access policies restricting usage to specific RAM roles. Document the Alibaba LGPD compliance configuration.",
@@ -713,7 +713,7 @@ const FRAMEWORK = {
                 "Build LGPD compliance evidence package for potential ANPD inquiry",
               control:
                 "LGPD Art. 26 (ANPD Supervision), Art. 37 (Records of Processing)",
-              how: "Assemble a comprehensive LGPD compliance evidence package ready for ANPD inquiry. Include: (1) RIPD — complete registry of all processing activities, (2) Privacy Notice — current version with version history, (3) Consent records — sample showing compliance with Art. 8, (4) DSAR log — showing response times and completeness, (5) DPIA/RIPD assessments — for all high-risk processing, (6) Security measures documentation — encryption, access controls, audit logging, (7) Incident response records — including any ANPD notifications, (8) Cross-border transfer register — with SCCs and Transfer Impact Assessments, (9) Vendor DPAs — with Art. 39 operator obligations, (10) Encarregado appointment — with contact details and responsibilities, (11) Training records — completion rates and quiz scores, (12) Vulnerability management — scan results and remediation records. Store in a secure, version-controlled repository accessible to legal and compliance teams.",
+              how: "Assemble a comprehensive LGPD compliance evidence package ready for ANPD inquiry. Include: (1) RIPD - complete registry of all processing activities, (2) Privacy Notice - current version with version history, (3) Consent records - sample showing compliance with Art. 8, (4) DSAR log - showing response times and completeness, (5) DPIA/RIPD assessments - for all high-risk processing, (6) Security measures documentation - encryption, access controls, audit logging, (7) Incident response records - including any ANPD notifications, (8) Cross-border transfer register - with SCCs and Transfer Impact Assessments, (9) Vendor DPAs - with Art. 39 operator obligations, (10) Encarregado appointment - with contact details and responsibilities, (11) Training records - completion rates and quiz scores, (12) Vulnerability management - scan results and remediation records. Store in a secure, version-controlled repository accessible to legal and compliance teams.",
               check:
                 "LGPD compliance evidence package assembled with all 12 categories documented, stored in secure version-controlled repository, and retrieval process documented for ANPD inquiry",
             },

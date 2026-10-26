@@ -1,5 +1,5 @@
 /**
- * ISO/IEC 27001:2022 Annex A reference catalog — all 93 reference controls.
+ * ISO/IEC 27001:2022 Annex A reference catalog - all 93 reference controls.
  *
  * PROVENANCE AND RIGHTS
  * ---------------------
@@ -15,7 +15,7 @@
  * are ones where the identifier, wording or clause linkage is more likely to need
  * a check against the licensed standard.
  *
- * IMPORTANT — these are REFERENCE controls, not requirements.
+ * IMPORTANT - these are REFERENCE controls, not requirements.
  * Annex A controls are not all mandatory. The organisation determines which are
  * necessary through risk assessment (Clause 6.1.2), compares its selection against
  * Annex A to confirm nothing relevant has been omitted (Clause 6.1.3 d), and

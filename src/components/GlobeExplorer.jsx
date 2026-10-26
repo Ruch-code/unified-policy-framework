@@ -53,7 +53,7 @@ export default function GlobeExplorer({ isDark = false }) {
 
       <p className="grc-card-desc text-sm px-6 md:px-8 mt-2 max-w-2xl">
         {isDesktop
-          ? 'Drag to rotate the world, scroll to zoom. Latitudes, longitudes and time zones update live. Hover a country or tap a waving flag to see the privacy & security laws that apply there — then open its playbook.'
+          ? 'Drag to rotate the world, scroll to zoom. Latitudes, longitudes and time zones update live. Hover a country or tap a waving flag to see the privacy & security laws that apply there - then open its playbook.'
           : 'Pick a region to see the privacy & security laws that apply there, then open its playbook.'}
       </p>
 
@@ -61,7 +61,7 @@ export default function GlobeExplorer({ isDark = false }) {
         {collapsed ? (
           <div className="flex items-center gap-3 rounded-xl border border-dashed border-surface-300 dark:border-surface-dark-300 px-4 py-6 text-sm text-gray-500 dark:text-text-dark-muted">
             <Globe2 className="w-5 h-5 text-indigo-500 shrink-0" />
-            {REGULATIONS.length} regional playbooks available across {REGION_GROUPS.length} regions — collapse restored.
+            {REGULATIONS.length} regional playbooks available across {REGION_GROUPS.length} regions - collapse restored.
           </div>
         ) : isDesktop ? (
           <WorldMap height={500} dark={isDark} />

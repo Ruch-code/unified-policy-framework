@@ -5,10 +5,10 @@ import {
 
 const TSC_MATRIX = [
   {
-    category: 'Security — Common Criteria (CC1–CC9)',
+    category: 'Security - Common Criteria (CC1–CC9)',
     icon: ShieldCheck,
     intro:
-      'The common criteria define whether controls exist and operate to achieve the entity\'s security objectives. CC1–CC5 are the 17 COSO (2013) internal-control principles; CC6–CC9 are the supplemental control-activity criteria AICPA added on top. Every SOC 2 report — whichever categories you pursue — must be built on these criteria, so every CC series is always in scope.',
+      'The common criteria define whether controls exist and operate to achieve the entity\'s security objectives. CC1–CC5 are the 17 COSO (2013) internal-control principles; CC6–CC9 are the supplemental control-activity criteria AICPA added on top. Every SOC 2 report - whichever categories you pursue - must be built on these criteria, so every CC series is always in scope.',
     color: 'indigo',
     scope: 'core',
     series: [
@@ -23,7 +23,7 @@ const TSC_MATRIX = [
         ],
         checks: [
           'Verify formal (even lightweight) security governance: a named owner, policy approval path, and an escalation line to the board / investors with oversight.',
-          'Confirm the founding team models integrity — ethics expectations and a no-blame security-reporting culture in writing.',
+          'Confirm the founding team models integrity - ethics expectations and a no-blame security-reporting culture in writing.',
           'Check that security duties and accountability are assigned to named people (RACI / role chart), not implied.',
         ],
         questions: [
@@ -44,7 +44,7 @@ const TSC_MATRIX = [
           'Verify external communication expectations are documented (support SLAs, breach-notification contacts, customer audit rights).',
         ],
         questions: [
-          'Ask a new hire to find the information-security policy — how long does it take?',
+          'Ask a new hire to find the information-security policy - how long does it take?',
           'When the policy set changes, how is that communicated to the team?',
         ],
       },
@@ -59,7 +59,7 @@ const TSC_MATRIX = [
         checks: [
           'Confirm a risk assessment exists (threat + vulnerability analysis) covering the systems and data in scope, with owners and scores.',
           'Check that security objectives map to concrete commitments (e.g., protect customer data → access control, encryption, monitoring).',
-          'Verify the assessment is refreshed on significant change — new cloud region, new product line, new sub-processor, new regulation.',
+          'Verify the assessment is refreshed on significant change - new cloud region, new product line, new sub-processor, new regulation.',
           'Confirm fraud / insider-abuse risk was at least considered in the risk analysis.',
         ],
         questions: [
@@ -74,7 +74,7 @@ const TSC_MATRIX = [
           { ref: 'CC4.2', title: 'Timely evaluation and communication of deficiencies' },
         ],
         checks: [
-          'Confirm controls are monitored over time (recurring checks, automated alerts, quarterly control reviews) — not just designed once.',
+          'Confirm controls are monitored over time (recurring checks, automated alerts, quarterly control reviews) - not just designed once.',
           'Check for a defined process to log, escalate, and fix control failures (deficiency register with owners and deadlines).',
           'Verify monitoring results feed back into control design and the risk register.',
         ],
@@ -91,7 +91,7 @@ const TSC_MATRIX = [
           { ref: 'CC5.3', title: 'Deploys controls through policies and procedures' },
         ],
         checks: [
-          'Confirm each significant risk has documented control activities — policy → procedure → tool.',
+          'Confirm each significant risk has documented control activities - policy → procedure → tool.',
           'Check that technology controls (access, change, operations) are deliberately designed rather than accidental.',
           'Verify policies are enforced by procedures people actually follow, not documents on a shelf.',
         ],
@@ -105,7 +105,7 @@ const TSC_MATRIX = [
         criteria: [
           { ref: 'CC6.1', title: 'Logical access security software, infrastructure, and architectures' },
           { ref: 'CC6.2', title: 'Users identified and authenticated before access' },
-          { ref: 'CC6.3', title: 'User access authorized — least privilege, roles, segregation' },
+          { ref: 'CC6.3', title: 'User access authorized - least privilege, roles, segregation' },
           { ref: 'CC6.4', title: 'Physical access restricted to facilities and protected assets' },
           { ref: 'CC6.5', title: 'Access to offline backups restricted and cut off when assets retire' },
           { ref: 'CC6.6', title: 'Encryption and protective measures at rest, in transit, during processing' },
@@ -131,7 +131,7 @@ const TSC_MATRIX = [
           { ref: 'CC7.1', title: 'System components monitored for anomalies, vulnerabilities, and breaches' },
           { ref: 'CC7.2', title: 'Security incidents detected, investigated, and responded to' },
           { ref: 'CC7.3', title: 'Security events evaluated for impact on commitments' },
-          { ref: 'CC7.4', title: 'Incident response — contain, remediate, communicate to stakeholders' },
+          { ref: 'CC7.4', title: 'Incident response - contain, remediate, communicate to stakeholders' },
           { ref: 'CC7.5', title: 'Recovery and continuity activities identified and implemented' },
         ],
         checks: [
@@ -141,7 +141,7 @@ const TSC_MATRIX = [
           'Confirm recovery / continuity activities exist and are rehearsed (restore test or failover drill).',
         ],
         questions: [
-          'Walk me through a suspected breach tonight — who gets paged, what is preserved, who decides on notification?',
+          'Walk me through a suspected breach tonight - who gets paged, what is preserved, who decides on notification?',
           'Which security-relevant event could happen today without setting off any alert?',
         ],
       },
@@ -157,7 +157,7 @@ const TSC_MATRIX = [
         ],
         questions: [
           'Can a developer push to production with no approval and no record?',
-          'Show me a recent emergency change — was it reviewed after the fact, and by whom?',
+          'Show me a recent emergency change - was it reviewed after the fact, and by whom?',
         ],
       },
       {
@@ -167,7 +167,7 @@ const TSC_MATRIX = [
           { ref: 'CC9.2', title: 'Assesses and manages risks from vendors, business partners, and third parties' },
         ],
         checks: [
-          'Confirm risks are mitigated with tangible activities (not just accepted) — controls mapped back to the register.',
+          'Confirm risks are mitigated with tangible activities (not just accepted) - controls mapped back to the register.',
           'Check vendor and third-party categories are identified (SaaS, cloud, sub-processors, contractors) with DPAs / BAA and risk-based assessment.',
           'Verify third-party risk views are refreshed when the vendor portfolio changes.',
         ],
@@ -210,7 +210,7 @@ const TSC_MATRIX = [
     category: 'Processing Integrity (PI1–PI9)',
     icon: Database,
     intro:
-      'Evaluates whether processing is complete, accurate, timely, and authorized end-to-end: input, processing, transmission, output, and storage. In scope only when the report includes Processing Integrity — typical for SaaS, payments, reconciliation, and data-transform products.',
+      'Evaluates whether processing is complete, accurate, timely, and authorized end-to-end: input, processing, transmission, output, and storage. In scope only when the report includes Processing Integrity - typical for SaaS, payments, reconciliation, and data-transform products.',
     color: 'cyan',
     scope: 'optional',
     series: [
@@ -264,7 +264,7 @@ const TSC_MATRIX = [
           'Check output distribution is authorized and logged.',
         ],
         questions: [
-          'What happened the last time an output went out inaccurate — how was it caught?',
+          'What happened the last time an output went out inaccurate - how was it caught?',
         ],
       },
       {
@@ -290,7 +290,7 @@ const TSC_MATRIX = [
           'Check the system is available to authorized users per those commitments.',
         ],
         questions: [
-          'Where do you commit to processing integrity for customers — contract, status page, docs?',
+          'Where do you commit to processing integrity for customers - contract, status page, docs?',
         ],
       },
       {
@@ -329,7 +329,7 @@ const TSC_MATRIX = [
           'Check there is evidence deviations were actually corrected, not just acknowledged.',
         ],
         questions: [
-          'Show me a processing deviation that was truly fixed — what was the root cause?',
+          'Show me a processing deviation that was truly fixed - what was the root cause?',
         ],
       },
     ],
@@ -338,7 +338,7 @@ const TSC_MATRIX = [
     category: 'Confidentiality (C1)',
     icon: Lock,
     intro:
-      'Evaluates whether confidential information is identified, maintained, restricted, and securely disposed throughout its lifecycle. Requires CC + C1. In scope only when the report includes Confidentiality — common when the company processes non-public data under NDA (pricing, source code, roadmap, trade secrets).',
+      'Evaluates whether confidential information is identified, maintained, restricted, and securely disposed throughout its lifecycle. Requires CC + C1. In scope only when the report includes Confidentiality - common when the company processes non-public data under NDA (pricing, source code, roadmap, trade secrets).',
     color: 'amber',
     scope: 'optional',
     series: [
@@ -364,7 +364,7 @@ const TSC_MATRIX = [
     category: 'Privacy (P1–P8)',
     icon: EyeOff,
     intro:
-      'Evaluates how personal information is collected, used, retained, disclosed, and disposed — notice, choice and consent, access, and breach notification. Aligns with GDPR / DPDPA-style obligations. Requires CC + the P supplemental criteria; in scope only when the report includes Privacy (AICPA expects it whenever the entity processes personal information).',
+      'Evaluates how personal information is collected, used, retained, disclosed, and disposed - notice, choice and consent, access, and breach notification. Aligns with GDPR / DPDPA-style obligations. Requires CC + the P supplemental criteria; in scope only when the report includes Privacy (AICPA expects it whenever the entity processes personal information).',
     color: 'purple',
     scope: 'optional',
     series: [
@@ -453,7 +453,7 @@ const TSC_MATRIX = [
         ],
         questions: [
           'Which sub-processors hold personal data, and do all of them commit to breach notification?',
-          'Can you show the last disclosure you recorded — authorized or not?',
+          'Can you show the last disclosure you recorded - authorized or not?',
         ],
       },
       {
@@ -475,7 +475,7 @@ const TSC_MATRIX = [
           'Check privacy compliance is monitored (recurring reviews, findings → corrective action) and deficiencies are fixed in a timely manner.',
         ],
         questions: [
-          'Show me the last privacy complaint and how it was resolved — how long did it take?',
+          'Show me the last privacy complaint and how it was resolved - how long did it take?',
         ],
       },
     ],
@@ -517,11 +517,11 @@ export default function TscControlMatrix() {
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-text-dark-primary flex items-center gap-3">
             <span className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center"><ScrollText className="w-6 h-6" /></span>
-            AICPA Trust Services Criteria (TSC) — Control Matrix, by Category
+            AICPA Trust Services Criteria (TSC) - Control Matrix, by Category
           </h2>
           <p className="text-gray-600 dark:text-text-dark-secondary mt-3 max-w-3xl leading-relaxed">
-            The Trust Services Criteria are how AICPA defines the control set for a SOC 2 report. Five categories exist —
-            <strong> Security</strong>, <strong>Availability</strong>, <strong>Processing Integrity</strong>, <strong>Confidentiality</strong>, and <strong>Privacy</strong> —
+            The Trust Services Criteria are how AICPA defines the control set for a SOC 2 report. Five categories exist -
+            <strong> Security</strong>, <strong>Availability</strong>, <strong>Processing Integrity</strong>, <strong>Confidentiality</strong>, and <strong>Privacy</strong> -
             and every control in the report maps to a criterion number (<span className="text-indigo-600 dark:text-indigo-300 font-semibold">CC6.1</span>,{' '}
             <span className="text-emerald-600 dark:text-emerald-300 font-semibold">A1.2</span>, <span className="text-purple-600 dark:text-purple-300 font-semibold">P5.1</span>, …).
             This matrix groups every criterion series under its category, with the controls to verify and the questions to ask.
@@ -549,7 +549,7 @@ export default function TscControlMatrix() {
           <Info className="w-5 h-5 text-emerald-600 dark:text-emerald-400 grc-card-icon shrink-0 mt-0.5" />
           <p className="text-sm text-gray-600 dark:text-text-dark-secondary leading-relaxed">
             <strong className="text-gray-800 dark:text-text-dark-primary">How the categories stack:</strong> the Security category is the
-            Common Criteria (CC1–CC9) and is <strong>always in scope</strong> — there is no SOC 2 report without it. Each additional category you
+            Common Criteria (CC1–CC9) and is <strong>always in scope</strong> - there is no SOC 2 report without it. Each additional category you
             report on adds its own supplemental series on top of the Common Criteria: Availability adds <strong>A1</strong>, Processing Integrity adds{' '}
             <strong>PI1–PI9</strong>, Confidentiality adds <strong>C1</strong>, and Privacy adds <strong>P1–P8</strong>. An auditor tests the common criteria
             against the principal system objectives, then each supplemental series against its own category commitments.
@@ -600,7 +600,7 @@ export default function TscControlMatrix() {
                           </ul>
                         </div>
                         <div>
-                          <p className={`font-bold uppercase tracking-wide text-[10px] mb-1 ${c.title}`}>Step-by-step — what we need to check</p>
+                          <p className={`font-bold uppercase tracking-wide text-[10px] mb-1 ${c.title}`}>Step-by-step - what we need to check</p>
                           <ol className="space-y-1">
                             {s.checks.map((chk, i) => (
                               <li key={i} className="flex items-start gap-1.5 text-gray-600 dark:text-text-dark-secondary">

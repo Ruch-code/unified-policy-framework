@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { toPlainDeep } from '../utils/xlsxExport.js';
 import { Radar, FileClock, Siren, ShieldAlert, CheckCircle2, Activity, Database, Clock, FileSearch, GitBranch, Repeat, Search, ShieldCheck, Shield, Download } from 'lucide-react';
 import PriorityBadge from './ui/PriorityBadge.jsx';
 import CodeBlock from './ui/CodeBlock.jsx';
@@ -7,7 +8,7 @@ import ResponsiveTable from './ResponsiveTable';
 const SEV_LABELS = { Critical: 'P0', High: 'P1', Medium: 'P2', Low: 'P3' };
 
 const VULN_WORKFLOW = [
-  { step: '1', title: 'Continuous discovery', desc: 'Inventory every asset (cloud + endpoints). Unmanaged assets are attack footholds — scan for shadow IT.' },
+  { step: '1', title: 'Continuous discovery', desc: 'Inventory every asset (cloud + endpoints). Unmanaged assets are attack footholds - scan for shadow IT.' },
   { step: '2', title: 'Scan & assess', desc: 'Agent + agentless scanning on a schedule; registry/container scanning in CI; Dependabot for dependencies.' },
   { step: '3', title: 'Prioritize', desc: 'CVSSv3 + EPSS exploit probability + exploitable-in-your-stack + reachability from the internet.' },
   { step: '4', title: 'Remediate to SLA', desc: 'Patch, or apply compensating controls (firewall rule, WAF, mitigation) within the severity SLA.' },
@@ -25,7 +26,7 @@ const VULN_PROVIDERS = [
   {
     name: 'AWS',
     plan: [
-      'Amazon Inspector (deep + network reachability) scans EC2/ECS — daily network, weekly agent-driven assessment',
+      'Amazon Inspector (deep + network reachability) scans EC2/ECS - daily network, weekly agent-driven assessment',
       'Systems Manager Patch Manager + patch baselines with maintenance windows across accounts',
       'AWS Config rules + GuardDuty flag drift and born-secure posture gaps',
       'Amazon ECR scanning in CI so container images ship clean',
@@ -35,7 +36,7 @@ const VULN_PROVIDERS = [
   {
     name: 'Azure',
     plan: [
-      'Microsoft Defender for Servers (Plan 2) — integrated vulnerability assessment + just-in-time VM access',
+      'Microsoft Defender for Servers (Plan 2) - integrated vulnerability assessment + just-in-time VM access',
       'Update Management / Update Center with Azure Policy Guest Configuration enforcing patch state',
       'Defender for Containers + ACR scanning on every pushed image',
       'Automanage applies the baseline so drift is corrected automatically',
@@ -73,7 +74,7 @@ const LOG_SOURCES = [
 ];
 
 const RETENTION = [
-  { tier: 'Hot', window: 'Live — ≤ 7 days', store: 'SIEM / log search (OpenSearch, Log Analytics, Cloud Logging)', detects: 'Real-time alerting, dashboards, correlation rules' },
+  { tier: 'Hot', window: 'Live - ≤ 7 days', store: 'SIEM / log search (OpenSearch, Log Analytics, Cloud Logging)', detects: 'Real-time alerting, dashboards, correlation rules' },
   { tier: 'Warm', window: '7 – 30 days', store: 'Searchable log store with longer life', detects: 'Retrospective queries, forensics triage' },
   { tier: 'Cold / archive', window: '90 days – 1 year', store: 'Object storage lifecycle tier (S3-IA, Blob archive, Coldline)', detects: 'Policy/regulatory review, threat-hunting rests' },
   { tier: 'Regulated / legal hold', window: '1 – 6 years', store: 'Immutable / object-lock bucket (WORM), append-only', detects: 'Cert-In (180-day mandatory), PCI 1 year, regulated 6 years' },
@@ -81,7 +82,7 @@ const RETENTION = [
 
 const DETECTION = [
   { icon: Activity, title: 'Signature & rules', desc: 'Known-bad patterns: IOCs, IDS/IPS signatures, WAF rule sets, EDR behavioral detections.' },
-  { icon: Radar, title: 'Baseline & anomaly', desc: 'Profile normal behavior per host/user; alert on deviations — impossible travel, unusual egress volume.' },
+  { icon: Radar, title: 'Baseline & anomaly', desc: 'Profile normal behavior per host/user; alert on deviations - impossible travel, unusual egress volume.' },
   { icon: Search, title: 'SIEM correlation', desc: 'Join cloud, network, and identity events across sources to find multi-step attacks.' },
   { icon: Shield, title: 'EDR / XDR & UEBA', desc: 'Endpoint + network + identity analytics to detect the kill chain earlier at the host level.' },
 ];
@@ -97,7 +98,7 @@ const IR_FLOW = [
   { step: 'Detect & acknowledge', desc: 'Monitoring→alert→on-call ack. SLA clock starts at acknowledgement.' },
   { step: 'Classify & assign', desc: 'Severity from the matrix, incident commander + lead responder named, comms channels open.' },
   { step: 'Preserve evidence', desc: 'Freeze and image affected systems, protect logs, snapshot memory/volumes, keep a timeline.' },
-  { step: 'Contain', desc: 'Isolate host, revoke/generate creds, cut egress, disable accounts, DNS-sink C2, block IPs — never destroy evidence.' },
+  { step: 'Contain', desc: 'Isolate host, revoke/generate creds, cut egress, disable accounts, DNS-sink C2, block IPs - never destroy evidence.' },
   { step: 'Eradicate', desc: 'Remove persistence, patch root cause, rotate all potentially exposed secrets, re-image where needed.' },
   { step: 'Recover', desc: 'Restore from clean backup, verify integrity, monitor for recurrence, communicate status externally per SLA.' },
   { step: 'Post-incident review', desc: 'RCA (5-Whys) → CAPA with owners; update runbooks/controls; tabletop the loop back at ' + 'detection' + '.' },
@@ -132,7 +133,7 @@ function IrTriageGenerator() {
       requires_capa: sev === 'P0' || sev === 'P1',
     },
   };
-  const json = JSON.stringify(ticket, null, 2);
+  const json = JSON.stringify(toPlainDeep(ticket), null, 2);
 
   const download = () => {
     const blob = new Blob([json], { type: 'application/json' });
@@ -149,9 +150,9 @@ function IrTriageGenerator() {
   return (
     <div className="mt-6 rounded-xl border border-surface-200 dark:border-surface-dark-200 bg-white dark:bg-slate-900/60 p-5">
       <h4 className="font-bold text-navy-900 dark:text-text-dark-primary mb-1 flex items-center gap-2">
-        <Siren className="w-4 h-4 text-red-600 dark:text-red-400" /> IR ticket generator — triage JSON, copy &amp; paste into your SIEM webhook
+        <Siren className="w-4 h-4 text-red-600 dark:text-red-400" /> IR ticket generator - triage JSON, copy &amp; paste into your SIEM webhook
       </h4>
-      <p className="text-xs text-gray-600 dark:text-text-dark-secondary mb-4">Pick a severity and fill the summary — the ticket schema wires your SLA targets and response plan automatically.</p>
+      <p className="text-xs text-gray-600 dark:text-text-dark-secondary mb-4">Pick a severity and fill the summary - the ticket schema wires your SLA targets and response plan automatically.</p>
 
       <div className="flex flex-wrap gap-2 mb-4">
         {IR_SEVERITIES.map(s => (
@@ -203,7 +204,7 @@ function IrTriageGenerator() {
         <CodeBlock code={json} title="incident-ticket.json" lang="json" />
       </div>
       <p className="mt-2 text-[11px] text-gray-500 dark:text-text-dark-muted">
-        SLA targets derive from your severity matrix above — keep this schema stable so the SOC webhook validator accepts it.
+        SLA targets derive from your severity matrix above - keep this schema stable so the SOC webhook validator accepts it.
       </p>
     </div>
   );
@@ -220,10 +221,10 @@ export default function SecurityOperations({ isDark = false }) {
             <ShieldAlert className="w-3.5 h-3.5" /> Security Operations
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-navy-900 dark:text-text-dark-primary tracking-tight">
-            Vulnerability, Logging & Incident Response — Operations Playbook
+            Vulnerability, Logging & Incident Response - Operations Playbook
           </h2>
           <p className="text-lg text-navy-600 dark:text-text-dark-secondary max-w-3xl mt-2">
-            How this platform keeps AWS, Azure, GCP, and GitHub workloads patched, watched, and responded to — with
+            How this platform keeps AWS, Azure, GCP, and GitHub workloads patched, watched, and responded to - with
             provider-specific runbooks, retention SLAs, and P0–P3 incident targets.
           </p>
         </div>
@@ -236,7 +237,7 @@ export default function SecurityOperations({ isDark = false }) {
               Vulnerability Management
             </h3>
             <p className="text-navy-600 dark:text-text-dark-secondary mb-6 max-w-3xl">
-              A repeatable closed loop — discover, scan, prioritize, remediate, verify — enforced per cloud provider and for the
+              A repeatable closed loop - discover, scan, prioritize, remediate, verify - enforced per cloud provider and for the
               application's own supply chain.
             </p>
 
@@ -369,7 +370,7 @@ export default function SecurityOperations({ isDark = false }) {
           ${isDark ? 'bg-surface-dark-100 border-surface-dark-300' : 'bg-surface-100 border-surface-300'}`}>
           <div className="p-6 md:p-8">
             <h3 className="grc-section-title mb-2"><span className="w-9 h-9 rounded-xl bg-red-600 text-white flex items-center justify-center"><Siren className="w-5 h-5" /></span>
-              Incident Response — Classification, Triage, Containment & RCA
+              Incident Response - Classification, Triage, Containment & RCA
             </h3>
             <p className="text-navy-600 dark:text-text-dark-secondary mb-6 max-w-3xl">
               Classify by blast radius, act on the SLA clock, contain before you investigate, and close the loop with a 5-Whys root-cause
@@ -411,7 +412,7 @@ export default function SecurityOperations({ isDark = false }) {
             {/* RCA / 5-Whys / CAPA */}
             <div className="rounded-xl border border-surface-200 dark:border-surface-dark-200 bg-white dark:bg-slate-900/60 p-5">
               <h4 className="font-bold text-navy-900 dark:text-text-dark-primary mb-3 flex items-center gap-2">
-                <FileSearch className="w-4 h-4 text-red-600 dark:text-red-400" /> RCA — 5-Whys → Corrective & Preventive Action (CAPA)
+                <FileSearch className="w-4 h-4 text-red-600 dark:text-red-400" /> RCA - 5-Whys → Corrective & Preventive Action (CAPA)
               </h4>
               <div className="grid md:grid-cols-3 gap-5">
                 <div>
@@ -424,7 +425,7 @@ export default function SecurityOperations({ isDark = false }) {
                 <div>
                   <h5 className="text-sm font-semibold text-gray-800 dark:text-white flex items-center gap-1.5 mb-2"><GitBranch className="w-4 h-4 text-indigo-500" /> 5-Whys</h5>
                   <p className="text-xs text-gray-600 dark:text-text-dark-secondary leading-relaxed">
-                    Ask "why" five times from the observed failure to the process/design root cause — not who did it, but what allowed it.
+                    Ask "why" five times from the observed failure to the process/design root cause - not who did it, but what allowed it.
                     Stop when the answer is a control gap someone can fix.
                   </p>
                 </div>
@@ -438,7 +439,7 @@ export default function SecurityOperations({ isDark = false }) {
               </div>
               <div className="mt-4 p-3 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/40 text-xs text-gray-700 dark:text-text-dark-secondary">
                 <strong className="text-red-700 dark:text-red-300">No-blame rule:</strong> RCA findings describe process and control failures, never
-                individuals. Every P0/P1 incident gets a completed CAPA before it is closed — closure without CAPA is an automatic finding.
+                individuals. Every P0/P1 incident gets a completed CAPA before it is closed - closure without CAPA is an automatic finding.
               </div>
             </div>
 

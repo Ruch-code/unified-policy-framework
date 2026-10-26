@@ -42,29 +42,29 @@ const PILLARS = [
 ];
 
 const TIMELINE = [
-  { by: '2 Aug 2025', what: 'Prohibited AI practices apply (Art. 5) — social scoring, manipulative techniques, real-time remote biometric ID by law enforcement (exceptions).' },
+  { by: '2 Aug 2025', what: 'Prohibited AI practices apply (Art. 5) - social scoring, manipulative techniques, real-time remote biometric ID by law enforcement (exceptions).' },
   { by: '2 Aug 2026', what: 'Most GPAI obligations + governance duties (Arts. 51–56); high-risk transparency (Art. 50). Penalties for prohibited practices available.' },
   { by: '2 Aug 2027', what: 'High-risk systems (Annex III) conformity, CE marking, EU database registration.' },
   { by: '2 Aug 2030', what: 'High-risk Annex I products governed by product legislation.' },
 ];
 
 const EMERGING = [
-  { icon: Cpu, title: 'Proprietary vs open-weight GPAI', desc: 'Systemic-risk models (10^25 FLOPs, threshold set via delegated act) owe tougher duties — transparency reports, red teaming, systemic-risk mitigation.' },
-  { icon: Workflow, title: 'AI agents & delegation chains', desc: 'Agent-to-agent and agent-to-service delegation creates unmonitored third-party decision spillover — map every hop, extend the vendor-risk questionnaire to tool-use grants, and gate autonomous actions by blast radius.' },
+  { icon: Cpu, title: 'Proprietary vs open-weight GPAI', desc: 'Systemic-risk models (10^25 FLOPs, threshold set via delegated act) owe tougher duties - transparency reports, red teaming, systemic-risk mitigation.' },
+  { icon: Workflow, title: 'AI agents & delegation chains', desc: 'Agent-to-agent and agent-to-service delegation creates unmonitored third-party decision spillover - map every hop, extend the vendor-risk questionnaire to tool-use grants, and gate autonomous actions by blast radius.' },
   { icon: Sparkles, title: 'Generated content provenance', desc: 'Watermarking (Art. 50(2)) and C2PA-style provenance for synthetic media; label synthetic content in user-facing flows to satisfy transparency duties.' },
-  { icon: FileText, title: 'Model cards & technical documentation', desc: 'Art. 53 model documentation and Annex IV technical documentation become the audit-ready skeleton — reuse them as your internal model registry standard.' },
+  { icon: FileText, title: 'Model cards & technical documentation', desc: 'Art. 53 model documentation and Annex IV technical documentation become the audit-ready skeleton - reuse them as your internal model registry standard.' },
 ];
 
 const CONTROL_MAP = [
-  { system: 'Customer chatbot (RAG on support docs)', eu: 'Limited-risk — Art. 50 transparency (label as AI)', nist: 'Govern: policy + inventory; Map: conversational trust', iso: 'A.5.2 AI risk source; A.6.2 documentation; A.9 incident-handling' },
-  { system: 'Resume screening / candidate scoring', eu: 'High-risk (Annex III) — conformity, Art. 14 oversight, Art. 22/79 DPAs', nist: 'Measure: bias + valid & reliable', iso: 'A.5.3 AI impact assessment; A.8 privacy; A.10 human oversight' },
-  { system: 'Fraud / content-moderation classifier', eu: 'High-risk if used for deciding access — conformity + registration', nist: 'Manage: treat, monitor, document', iso: 'A.5.4 data for AI; A.6.4 change management' },
+  { system: 'Customer chatbot (RAG on support docs)', eu: 'Limited-risk - Art. 50 transparency (label as AI)', nist: 'Govern: policy + inventory; Map: conversational trust', iso: 'A.5.2 AI risk source; A.6.2 documentation; A.9 incident-handling' },
+  { system: 'Resume screening / candidate scoring', eu: 'High-risk (Annex III) - conformity, Art. 14 oversight, Art. 22/79 DPAs', nist: 'Measure: bias + valid & reliable', iso: 'A.5.3 AI impact assessment; A.8 privacy; A.10 human oversight' },
+  { system: 'Fraud / content-moderation classifier', eu: 'High-risk if used for deciding access - conformity + registration', nist: 'Manage: treat, monitor, document', iso: 'A.5.4 data for AI; A.6.4 change management' },
   { system: 'LLM code assistant (human reviews output)', eu: 'Minimal-risk overlay + Art. 50 label if interacting', nist: 'Govern + Measure reuse; incident loop', iso: 'A.7 model-by-model lifecycle' },
 ];
 
 const EMERGING_RHYTHM = [
   { step: '1', title: 'Intake & classify', desc: 'Every new model/AI feature registers in the AI inventory and gets classified (EU risk tier, NIST functions, ISO AIMS scope) before it can touch production traffic.' },
-  { step: '2', title: 'Assess & measure', desc: 'Run the AI impact assessment (ISO 42001 A.5.3) and the NIST Measure pass — bias, robustness, security, drift baseline — with the results stored beside the model card.' },
+  { step: '2', title: 'Assess & measure', desc: 'Run the AI impact assessment (ISO 42001 A.5.3) and the NIST Measure pass - bias, robustness, security, drift baseline - with the results stored beside the model card.' },
   { step: '3', title: 'Operate & monitor', desc: 'Post-market monitoring (Art. 72): drift, hallucination rate, misuse. Serious-AI-incident reporting (Art. 73) on the clock, mirroring your P0/P1 IR SLAs.' },
   { step: '4', title: 'Review & improve', desc: 'Quarterly AI governance review: incidents, audit findings, regulatory-change watch, model additions/retirements. Close the loop into Clause 10 corrective action.' },
 ];
@@ -79,11 +79,11 @@ export default function AIGovernance({ isDark = false }) {
             <BrainCircuit className="w-3.5 h-3.5" /> AI Governance & Emerging Tech
           </span>
           <h1 className="text-3xl md:text-4xl font-extrabold text-navy-900 dark:text-text-dark-primary mb-3">
-            One module, three frameworks — ISO 42001, EU AI Act, NIST AI RMF
+            One module, three frameworks - ISO 42001, EU AI Act, NIST AI RMF
           </h1>
           <p className="text-lg text-navy-600 dark:text-text-dark-secondary max-w-3xl">
             Regulators now grade AI governance the way auditors grade security controls. This module gives you the
-            single operating rhythm that satisfies all three tracks at once — so a model release is governed, not just deployed.
+            single operating rhythm that satisfies all three tracks at once - so a model release is governed, not just deployed.
           </p>
         </div>
 
@@ -118,7 +118,7 @@ export default function AIGovernance({ isDark = false }) {
 
         {/* Compliance timeline */}
         <section className="rounded-2xl border border-surface-300 dark:border-surface-dark-300 bg-white dark:bg-slate-900/60 p-6 md:p-8 mb-10">
-          <h2 className="grc-section-title mb-2"><Scale className="w-6 h-6 text-blue-600 dark:text-blue-300" /> EU AI Act — phased obligations clock</h2>
+          <h2 className="grc-section-title mb-2"><Scale className="w-6 h-6 text-blue-600 dark:text-blue-300" /> EU AI Act - phased obligations clock</h2>
           <p className="text-sm text-gray-600 dark:text-text-dark-secondary mb-6 max-w-3xl">
             The grace periods are the real deadline driver behind every other task in this module. Alignment with ISO 42001 + NIST AI RMF
             today means each phase below is already evidenced.
@@ -137,7 +137,7 @@ export default function AIGovernance({ isDark = false }) {
         <section className="rounded-2xl border border-surface-300 dark:border-surface-dark-300 bg-white dark:bg-slate-900/60 p-6 md:p-8 mb-10">
           <h2 className="grc-section-title mb-2"><ShieldCheck className="w-6 h-6 text-emerald-600 dark:text-emerald-300" /> Classify a system across all three frameworks</h2>
           <p className="text-sm text-gray-600 dark:text-text-dark-secondary mb-5 max-w-3xl">
-            The same AI system classifies differently per track — this is the table to keep next to your AI inventory.
+            The same AI system classifies differently per track - this is the table to keep next to your AI inventory.
           </p>
           <div className="grc-table-wrap">
             <table className="w-full text-sm">
@@ -187,7 +187,7 @@ export default function AIGovernance({ isDark = false }) {
         <section className="rounded-2xl border border-surface-300 dark:border-surface-dark-300 bg-white dark:bg-slate-900/60 p-6 md:p-8">
           <h2 className="grc-section-title mb-2"><Workflow className="w-6 h-6 text-indigo-600" /> The model-release operating rhythm</h2>
           <p className="text-sm text-gray-600 dark:text-text-dark-secondary mb-6 max-w-3xl">
-            A model release is governed the same way a code release is — except the "deploy" gate includes an AI risk judgment.
+            A model release is governed the same way a code release is - except the "deploy" gate includes an AI risk judgment.
           </p>
           <div className="grid md:grid-cols-4 gap-4 mb-6">
             {EMERGING_RHYTHM.map(r => (
@@ -205,7 +205,7 @@ export default function AIGovernance({ isDark = false }) {
             <AlertTriangle className="w-5 h-5 text-amber-700 dark:text-amber-300 shrink-0 mt-0.5" />
             <p className="text-sm text-gray-800 dark:text-text-dark-secondary">
               <strong className="text-amber-800 dark:text-amber-300">Start here:</strong> if you only do one thing this quarter, stand up the AI inventory and
-              classify every system against the <strong>EU AI Act risk tiers</strong>. Everything else — NIST functions, ISO 42001 annex controls, model cards — hangs off that list.
+              classify every system against the <strong>EU AI Act risk tiers</strong>. Everything else - NIST functions, ISO 42001 annex controls, model cards - hangs off that list.
             </p>
           </div>
 

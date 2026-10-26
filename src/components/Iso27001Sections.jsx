@@ -24,8 +24,8 @@ const TABS = [
  * ISO/IEC 27001:2022 reference workspace mounted into the LI page.
  *
  * Storage note: this uses its own key (`iso27001-soa-v1`) and never touches
- * `compliance-learning-iso27001-li`, so existing learning progress — including
- * task keys such as `w1-0` — is preserved.
+ * `compliance-learning-iso27001-li`, so existing learning progress - including
+ * task keys such as `w1-0` - is preserved.
  */
 export default function Iso27001Sections({ basePath = '/iso/27001/li' }) {
   const [tab, setTab] = useState('overview');
@@ -47,7 +47,7 @@ export default function Iso27001Sections({ basePath = '/iso/27001/li' }) {
     try {
       localStorage.setItem(SOA_STORAGE_KEY, JSON.stringify(soa));
     } catch {
-      /* storage unavailable — the workspace still works for this session */
+      /* storage unavailable - the workspace still works for this session */
     }
   }, [soa, loaded]);
 
@@ -183,7 +183,7 @@ function Overview({ stats, soa, basePath }) {
           {decided === 0
             ? 'Nothing decided yet, which is the correct starting point. Each of the '
             : `${decided} of ${stats.annexTotal} reference controls decided. `}
-          controls you exclude needs a written justification — that record is the audit evidence.
+          controls you exclude needs a written justification - that record is the audit evidence.
         </p>
         {soa.history.length > 0 && (
           <p className="mt-2 text-xs text-slate-500">

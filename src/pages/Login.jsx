@@ -82,7 +82,7 @@ export default function Login() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || 'Signup failed');
-      setReqMessage(data.message || 'Account created — awaiting approval.');
+      setReqMessage(data.message || 'Account created - awaiting approval.');
     } catch (err) {
       setReqError(err.message);
     } finally {

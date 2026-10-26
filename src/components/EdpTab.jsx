@@ -19,7 +19,7 @@ function EdpTab() {
       <div className="bg-white border border-gray-200 rounded-2xl p-6 dark:bg-[#1e293b] dark:border-[#334155]">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Endpoint & Data Protection (EDP)</h2>
         <p className="text-gray-600 dark:text-gray-300 mb-6">
-          Endpoint & Data Protection covers DLP (Data Loss Prevention), MDM (Mobile Device Management), and BYOD (Bring Your Own Device) — critical for securing AI systems and data in hybrid environments.
+          Endpoint & Data Protection covers DLP (Data Loss Prevention), MDM (Mobile Device Management), and BYOD (Bring Your Own Device) - critical for securing AI systems and data in hybrid environments.
         </p>
         
         <div className="grid md:grid-cols-3 gap-6 mb-8">
@@ -65,7 +65,7 @@ function EdpTab() {
         </div>
 
         <div className="bg-gray-50 rounded-xl p-6 mb-8 dark:bg-gray-800">
-          <h3 className="font-bold text-gray-900 dark:text-white mb-4">Google Workspace vs Microsoft 365 — Side by Side</h3>
+          <h3 className="font-bold text-gray-900 dark:text-white mb-4">Google Workspace vs Microsoft 365 - Side by Side</h3>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead className="bg-gray-100 border-b border-gray-200 dark:bg-gray-700 dark:border-gray-600">

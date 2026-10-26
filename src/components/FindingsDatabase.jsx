@@ -31,7 +31,7 @@ export default function FindingsDatabase({ color }) {
           <h2 className="text-xl font-bold text-gray-900">Common Findings Database</h2>
           <p className="text-gray-500 text-sm max-w-2xl">
             The <strong>top {HITRUST_COMMON_FINDINGS.length} most common HITRUST assessment findings</strong> across{' '}
-            {FINDINGS_DOMAINS.length} domains — with root-cause analysis, recurring evidence deficiencies, and prevention strategies to help you reach certification.
+            {FINDINGS_DOMAINS.length} domains - with root-cause analysis, recurring evidence deficiencies, and prevention strategies to help you reach certification.
           </p>
         </div>
       </div>
@@ -90,7 +90,7 @@ export default function FindingsDatabase({ color }) {
       </div>
 
       {domainFilter === 'all' && severityFilter === 'all' && (
-        <p className="mt-3 text-[11px] text-gray-400 flex items-center gap-1"><Search className="w-3 h-3" /> {HITRUST_COMMON_FINDINGS.length} findings loaded — expand one to see root cause, evidence gaps, and prevention.</p>
+        <p className="mt-3 text-[11px] text-gray-400 flex items-center gap-1"><Search className="w-3 h-3" /> {HITRUST_COMMON_FINDINGS.length} findings loaded - expand one to see root cause, evidence gaps, and prevention.</p>
       )}
 
       {/* Findings list */}
@@ -141,7 +141,7 @@ export default function FindingsDatabase({ color }) {
                   </div>
                   {f.evidencePack && (
                     <div className="md:col-span-3 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-100 dark:border-indigo-800 p-3">
-                      <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-700 uppercase tracking-wide"><ListChecks className="w-3.5 h-3.5" /> ITGC evidence pack — what auditors test for</span>
+                      <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-700 uppercase tracking-wide"><ListChecks className="w-3.5 h-3.5" /> ITGC evidence pack - what auditors test for</span>
                       <ul className="mt-1.5 space-y-1.5">
                         {f.evidencePack.map((e, j) => (
                           <li key={j} className="text-sm text-gray-700 flex gap-1.5">

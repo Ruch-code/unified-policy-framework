@@ -24,7 +24,7 @@ const FRAMEWORK = {
           },
           {
             title: 'Mandatory Incident Reporting (6-Hour Timeline)',
-            control: 'CERT-In requires reporting of specified cyber incidents within 6 hours of becoming aware of the incident — one of the shortest mandatory timelines globally.',
+            control: 'CERT-In requires reporting of specified cyber incidents within 6 hours of becoming aware of the incident - one of the shortest mandatory timelines globally.',
             how: 'Implement a 24x7 incident reporting hotline and email channel dedicated to CERT-In notification. Create pre-approved incident report templates covering all mandatory fields: nature of incident, systems affected, estimated impact, containment actions taken, and point of contact. Establish an escalation matrix that triggers CERT-In reporting within 6 hours. Conduct tabletop exercises to validate the 6-hour reporting window with realistic scenarios. Designate a CERT-In liaison officer and backup.',
             check: 'Time a mock incident from detection to CERT-In report submission and verify the 6-hour window is achievable. Confirm incident report templates cover all fields mandated by CERT-In. Verify the CERT-In liaison officer is reachable 24x7.'
           },
@@ -42,7 +42,7 @@ const FRAMEWORK = {
           },
           {
             title: 'Critical Information Infrastructure (CII) Sectors',
-            control: 'The IT Act 2000 Section 70 designates critical sectors — power, banking, telecom, transport, defence, government, healthcare, strategic — as Critical Information Infrastructure requiring enhanced protection.',
+            control: 'The IT Act 2000 Section 70 designates critical sectors - power, banking, telecom, transport, defence, government, healthcare, strategic - as Critical Information Infrastructure requiring enhanced protection.',
             how: 'Identify whether your organisation operates within or interfaces with any of the 8 designated CII sectors: power, banking and financial services, telecom, transport, defence, government services, healthcare, and strategic/equivalent sectors. If CII-designated, develop a CII protection plan including enhanced monitoring, redundant systems, and priority incident response. Establish sector-specific coordination with nodal agencies (e.g., CERT-Fin for banking, CERT-T for telecom). Implement NCIIPC (National Critical Information Infrastructure Protection Centre) guidelines for CII operators.',
             check: 'Confirm whether your organisation or critical assets fall under CII designation. If CII, verify a CII protection plan is approved by the nodal agency. Check that enhanced monitoring and redundancy measures are operational for CII assets.'
           }
@@ -106,7 +106,7 @@ const FRAMEWORK = {
           },
           {
             title: 'VPN/Proxy Log Compliance Testing',
-            control: 'CERT-In specifically requires VPN and proxy log retention — compliance testing validates these logs meet legal admissibility and forensic standards.',
+            control: 'CERT-In specifically requires VPN and proxy log retention - compliance testing validates these logs meet legal admissibility and forensic standards.',
             how: 'Conduct comprehensive VPN log compliance audit: verify connection logs, user authentication, source/destination IP pairs, timestamps, and data volumes. Test proxy logs for URL访问 capture, domain filtering logs, and content inspection records. Validate log completeness by comparing VPN/proxy connection counts with network flow data. Test forensic reconstruction of user activity from VPN/proxy logs for a 30-day sample. Verify logs are stored within Indian jurisdiction and meet 180-day retention. Test log search and retrieval performance for incident response needs.',
             check: 'Verify VPN/proxy logs match network flow data within 5% variance. Confirm forensic reconstruction is possible from logs for sampled time periods. Validate 180-day retention and Indian storage for all VPN/proxy logs. Test log search performance for incident response queries.'
           },
@@ -118,7 +118,7 @@ const FRAMEWORK = {
           },
           {
             title: 'Third-Party/Vendor Security Assessment',
-            control: 'CERT-In compliance extends to third-party vendors handling ICT systems or data — vendor risk assessment ensures supply chain security.',
+            control: 'CERT-In compliance extends to third-party vendors handling ICT systems or data - vendor risk assessment ensures supply chain security.',
             how: 'Develop vendor risk assessment framework aligned with CERT-In requirements. Classify vendors by criticality tier: Tier 1 (CII/system access), Tier 2 (data processing), Tier 3 (general services). Conduct security assessments for all Tier 1 and Tier 2 vendors including: security certifications, penetration test results, incident response capabilities, log retention practices. Verify vendor compliance with CERT-In 180-day log retention within Indian jurisdiction. Include CERT-In compliance clauses in vendor contracts: reporting obligations, audit rights, breach notification. Implement continuous vendor risk monitoring with quarterly reassessments for critical vendors.',
             check: 'Verify vendor risk assessment framework is documented and approved. Confirm all Tier 1 vendors have current security certifications (ISO 27001 or equivalent). Validate CERT-In compliance clauses are included in all Tier 1 and Tier 2 vendor contracts. Check that quarterly vendor reassessments are scheduled and documented.'
           }
@@ -132,7 +132,7 @@ const FRAMEWORK = {
         tasks: [
           {
             title: 'CERT-In Compliance Audit Preparation',
-            control: 'CERT-In and MeitY may conduct compliance audits — preparation ensures readiness and minimises penalty exposure.',
+            control: 'CERT-In and MeitY may conduct compliance audits - preparation ensures readiness and minimises penalty exposure.',
             how: 'Compile all compliance documentation: incident response plans, log retention policies, vendor assessments, access control records, IR drill reports. Conduct internal compliance audit using CERT-In checklist: incident reporting readiness, 180-day log retention, encrypted traffic logging, MFA deployment. Validate all mandatory controls against the CERT-In directive matrix. Prepare evidence packages for each compliance requirement: screenshots, configurations, audit logs, drill reports. Brief executive leadership on audit readiness and potential findings. Establish remediation timelines for any identified gaps.',
             check: 'Verify all CERT-In directive requirements are documented with evidence. Confirm internal audit has been completed with findings and remediation status. Validate evidence packages are current and accessible. Check that executive leadership has been briefed on compliance posture.'
           },
@@ -144,7 +144,7 @@ const FRAMEWORK = {
           },
           {
             title: 'Sector-Specific Requirements (Banking, Telecom, Healthcare)',
-            control: 'Sector regulators impose additional cybersecurity requirements: RBI for banking, TRAI/DOT for telecom, CDSCO for healthcare — these layer on top of CERT-In directives.',
+            control: 'Sector regulators impose additional cybersecurity requirements: RBI for banking, TRAI/DOT for telecom, CDSCO for healthcare - these layer on top of CERT-In directives.',
             how: 'Banking: Implement RBI Cybersecurity Framework, RBI Direction on Cyber Security (April 2022), IT Governance guidelines, and CERT-Fin coordination. Telecom: Comply with DoT Telecom Security Directive, TRAI QoS requirements, and lawful interception capabilities. Healthcare: Implement CDSCO data protection requirements, ABDM (Ayushman Bharat Digital Mission) security standards, and MeitY health data guidelines. Map sector-specific requirements to a unified compliance matrix overlaying CERT-In base requirements. Conduct sector-specific tabletop exercises and compliance audits. Establish sector regulator liaison relationships and reporting channels.',
             check: 'Confirm sector-specific compliance matrix is documented for all applicable regulators. Verify sector-specific incident reporting channels are established and tested. Validate that sector tabletop exercises have been conducted. Check that regulatory liaison contacts are documented and current.'
           },

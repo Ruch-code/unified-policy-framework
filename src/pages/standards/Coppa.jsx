@@ -15,7 +15,7 @@ const FRAMEWORK = {
   weeksData: [
     {
       week: 1,
-      title: "Foundation — COPPA Scope & Core Concepts",
+      title: "Foundation - COPPA Scope & Core Concepts",
       description:
         "Understand the foundational elements of COPPA including its scope, the definition of children under 13, operator responsibilities, and the types of personal information the rule protects.",
       days: [
@@ -24,7 +24,7 @@ const FRAMEWORK = {
           title: "COPPA Scope and Jurisdiction",
           tasks: [
             {
-              title: "Identify COPPA scope — who it covers",
+              title: "Identify COPPA scope - who it covers",
               control: "FTC applies COPPA to operators of websites, apps, and online services directed to children under 13 or with actual knowledge of child users.",
               how: "Review the FTC COPPA rule text at 16 CFR Part 312. Map your product portfolio and flag any service that targets or knowingly serves users under 13. Document operator vs non-operator roles.",
               check: "A written inventory of all online services with COPPA applicability assessment exists."
@@ -43,7 +43,7 @@ const FRAMEWORK = {
             },
             {
               title: "Define personal information under COPPA",
-              control: "COPPA's definition of personal information is broader than general privacy law — it includes names, photos, videos, audio recordings, geolocation, and persistent identifiers.",
+              control: "COPPA's definition of personal information is broader than general privacy law - it includes names, photos, videos, audio recordings, geolocation, and persistent identifiers.",
               how: "Catalog all data fields collected by your service. Classify each field against COPPA's definition of personal information in 16 CFR 312.2. Pay special attention to persistent identifiers, device fingerprints, and behavioral tracking cookies.",
               check: "A complete data classification register mapping all collected fields to COPPA personal information categories exists."
             },
@@ -203,7 +203,7 @@ const FRAMEWORK = {
     },
     {
       week: 2,
-      title: "Implementer — VPC & Age-Gating Implementation",
+      title: "Implementer - VPC & Age-Gating Implementation",
       description:
         "Implement the technical mechanisms for verifiable parental consent, age-gating, consent management, and COPPA-compliant privacy policies in your product.",
       days: [
@@ -249,13 +249,13 @@ const FRAMEWORK = {
           tasks: [
             {
               title: "Design age-gating entry flow",
-              control: "Age-gating is the first line of defense — it must prevent children under 13 from accessing non-COPPA-compliant features without VPC.",
+              control: "Age-gating is the first line of defense - it must prevent children under 13 from accessing non-COPPA-compliant features without VPC.",
               how: "Design an age-gating screen presented at account creation or first login. Collect birthdate or age declaration. Route users under 13 to the COPPA-compliant experience. Route users 13+ to the standard experience. Consider neutral age prompts per FTC guidance.",
               check: "An age-gating entry flow with proper routing logic is designed and documented with user experience specifications."
             },
             {
               title: "Implement age verification技术 mechanisms",
-              control: "Simple age declaration may be insufficient — FTC expects reasonable measures to verify age, though not necessarily government ID verification.",
+              control: "Simple age declaration may be insufficient - FTC expects reasonable measures to verify age, though not necessarily government ID verification.",
               how: "Evaluate age verification technologies: knowledge-based questions, third-party age estimation services, device-level parental controls integration, and cross-referencing against account metadata. Implement the selected approach with appropriate accuracy thresholds.",
               check: "An age verification mechanism with documented accuracy assumptions and limitations is implemented."
             },
@@ -333,7 +333,7 @@ const FRAMEWORK = {
             },
             {
               title: "Create separate child and parent privacy notices",
-              control: "Operators should provide age-appropriate privacy notices — a detailed notice for parents and a simplified notice for children.",
+              control: "Operators should provide age-appropriate privacy notices - a detailed notice for parents and a simplified notice for children.",
               how: "Draft a child-friendly privacy notice in simple language explaining data collection and rights. Draft a comprehensive parent privacy notice with full legal disclosures. Review both notices for clarity and completeness. Translate into required languages.",
               check: "Separate child and parent privacy notices are drafted, reviewed, and translated."
             },
@@ -345,7 +345,7 @@ const FRAMEWORK = {
             },
             {
               title: "Conduct privacy policy user testing",
-              control: "Privacy policies must be clear and understandable to the intended audience — testing ensures the policy communicates effectively.",
+              control: "Privacy policies must be clear and understandable to the intended audience - testing ensures the policy communicates effectively.",
               how: "Conduct user testing with parents to verify the privacy policy is understandable. Test key comprehension areas: data collected, purpose of collection, parental rights, and how to contact the operator. Revise policy based on feedback.",
               check: "User testing of the privacy policy is conducted with documented feedback and revisions."
             }
@@ -391,7 +391,7 @@ const FRAMEWORK = {
     },
     {
       week: 3,
-      title: "Verifier — Audit, Testing & Third-Party Compliance",
+      title: "Verifier - Audit, Testing & Third-Party Compliance",
       description:
         "Verify COPPA compliance through systematic auditing of age verification, consent records, data practices, third-party vendor compliance, and special data handling procedures.",
       days: [
@@ -407,7 +407,7 @@ const FRAMEWORK = {
             },
             {
               title: "Validate age verification accuracy",
-              control: "Age verification accuracy directly impacts COPPA compliance — inaccurate verification exposes children to non-compliant experiences.",
+              control: "Age verification accuracy directly impacts COPPA compliance - inaccurate verification exposes children to non-compliant experiences.",
               how: "Sample test the age verification flow across multiple user paths. Verify that users under 13 are correctly routed to the COPPA experience 100% of the time. Test with edge cases: minors using parent devices, shared accounts, and age transitions.",
               check: "Age verification accuracy testing shows 100% correct routing for users under 13 in all tested scenarios."
             },
@@ -425,7 +425,7 @@ const FRAMEWORK = {
             },
             {
               title: "Test age transition handling",
-              control: "When a child turns 13, operators must handle the transition appropriately — offering to migrate to the standard experience while respecting existing consent.",
+              control: "When a child turns 13, operators must handle the transition appropriately - offering to migrate to the standard experience while respecting existing consent.",
               how: "Test the age transition flow: verify the system detects when a child reaches 13, verify appropriate transition notification is sent, test the opt-in flow for standard features, and verify data migration processes. Confirm no data is lost during transition.",
               check: "Age transition handling is tested and confirmed to work correctly with proper notifications and data preservation."
             }
@@ -497,7 +497,7 @@ const FRAMEWORK = {
             },
             {
               title: "Conduct data flow minimization review",
-              control: "Data flows must be minimized — data should not be duplicated, transferred unnecessarily, or retained in multiple systems.",
+              control: "Data flows must be minimized - data should not be duplicated, transferred unnecessarily, or retained in multiple systems.",
               how: "Map all data flows for children's personal information. Identify unnecessary data transfers between systems. Verify data is not duplicated across storage systems without justification. Review and optimize data pipeline architectures to eliminate redundant collection points.",
               check: "A data flow minimization review identifies and eliminates unnecessary data transfers and duplications."
             }
@@ -579,7 +579,7 @@ const FRAMEWORK = {
     },
     {
       week: 4,
-      title: "Certified — Multi-Cloud Controls, Enforcement & Ongoing Compliance",
+      title: "Certified - Multi-Cloud Controls, Enforcement & Ongoing Compliance",
       description:
         "Implement multi-cloud DLP controls for children's data, study FTC enforcement cases, execute remediation, and establish ongoing COPPA compliance monitoring programs.",
       days: [

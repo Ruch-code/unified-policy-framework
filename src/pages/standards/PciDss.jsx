@@ -20,7 +20,7 @@ const FRAMEWORK = {
         "Log masking hides PANs even where they'd appear",
         "Short retention windows minimize exposed data"
       ],
-      leantip: "Tokenize via a 3rd party provider, strip PANs from logs/databases, and enable masking. If you don't need the PAN, don't store it — reduce scope to near-zero."
+      leantip: "Tokenize via a 3rd party provider, strip PANs from logs/databases, and enable masking. If you don't need the PAN, don't store it - reduce scope to near-zero."
     },
     {
       itgc: "Access Management",

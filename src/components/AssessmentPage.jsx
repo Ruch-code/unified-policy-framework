@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { downloadXlsx } from '../utils/xlsxExport.js';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, CheckCircle2, Circle, Server, FileText, Wrench, Clock, Download, ExternalLink, AlertTriangle, Info, Shield } from 'lucide-react';
 import { GENERIC_ASSESSMENT, PRIVACY_ASSESSMENT_EXTRA, HIPAA_ASSESSMENT, NON_HIPAA_PRIVACY_ITEMS } from '../data/assessments.js';
@@ -147,10 +148,10 @@ export default function AssessmentPage({ framework }) {
         if (iso.contaminants.length) parts.push(`Not ISO: ${iso.contaminants.join('; ')}`);
       }
       parts.push(`Tool: ${it.tool}`);
-      return parts.join(' — ');
+      return parts.join(' - ');
     });
     const header = [
-      `${framework.name} — Environment Assessment`,
+      `${framework.name} - Environment Assessment`,
       new Date().toDateString(),
       '',
     ];
@@ -162,7 +163,7 @@ export default function AssessmentPage({ framework }) {
       header.push('');
     }
     if (isIso) {
-      header.push('ISO/IEC 27001:2022 labelling — read before relying on this list.');
+      header.push('ISO/IEC 27001:2022 labelling - read before relying on this list.');
       header.push('Clauses 4-10 are requirements. The 93 Annex A controls are reference controls');
       header.push('you select from based on risk; you are not required to implement all of them.');
       header.push('Items labelled "Other" come from different laws and frameworks and are NOT ISO requirements.');
@@ -173,13 +174,26 @@ export default function AssessmentPage({ framework }) {
   };
 
   const download = () => {
-    const blob = new Blob([exportText()], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${framework.id}-assessment.txt`;
-    a.click();
-    URL.revokeObjectURL(url);
+    // Formatted Excel: title and notes on top, frozen bold header, one row per item.
+    const lines = exportText().split('\n');
+    const firstItem = lines.findIndex(l => /^\[[X ]\]/.test(l));
+    const notes = (firstItem > 0 ? lines.slice(1, firstItem) : lines.slice(1)).filter(Boolean);
+    const headers = ['Done', 'Category', 'Control', 'Tool', 'Effort (hrs)'];
+    if (isIso) headers.push('ISO classification', 'Clause', 'Annex A refs', 'Not ISO');
+    if (isHipaa) headers.push('CFR sections', 'Status', 'Source');
+    const rows = items.map(it => {
+      const row = [done[it.id] ? 'Yes' : 'No', it.category, it.control, it.tool, it.hours || it.estHours || ''];
+      if (isIso) {
+        const iso = isoClassification(it);
+        row.push(iso ? ISO_CATEGORIES[iso.primary].label : '', iso ? iso.clause.join(', ') : '', iso ? iso.annexA.join(', ') : '', iso ? iso.contaminants.join('; ') : '');
+      }
+      if (isHipaa) {
+        const c = it.citation;
+        row.push(c ? c.sections.join('; ') : '', c ? (MANDATE_LABELS[c.status] || c.status) : '', c && c.source ? c.source.url : '');
+      }
+      return row;
+    });
+    downloadXlsx([{ name: 'Assessment', title: `${framework.name}: Environment Assessment`, notes: [new Date().toDateString(), ...notes], headers, rows }], `${framework.id}-assessment`);
   };
 
   const filterBtn = (label) => (
@@ -224,7 +238,7 @@ export default function AssessmentPage({ framework }) {
         <h1 className="text-3xl font-bold text-gray-900">{framework.name}</h1>
       </div>
       <p className="text-gray-500 text-sm mb-6 max-w-3xl">
-        Client environment assessment — tick off the controls already in place to see what's covered vs. what's missing,
+        Client environment assessment - tick off the controls already in place to see what's covered vs. what's missing,
         with recommended tools per scenario. Controls are split into <strong>IT</strong> (technical), <strong>Non-IT</strong> (governance/policy) and <strong>Hybrid</strong>.
       </p>
 
@@ -267,17 +281,17 @@ export default function AssessmentPage({ framework }) {
             <div className="flex items-start gap-2">
               <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-300 shrink-0 mt-0.5" />
               <div className="text-xs text-amber-800 dark:text-amber-300 leading-relaxed">
-                <p className="font-semibold mb-1">This list was recalculated — your progress was kept.</p>
+                <p className="font-semibold mb-1">This list was recalculated - your progress was kept.</p>
                 <p>
                   {NON_HIPAA_PRIVACY_ITEMS.length} items that were previously listed here are removed:{' '}
-                  <span className="font-mono">{NON_HIPAA_PRIVACY_ITEMS.map(i => i.id).join(', ')}</span>. They cover ROPA, DPIA, lawful basis, SCCs and data-subject requests —{' '}
+                  <span className="font-mono">{NON_HIPAA_PRIVACY_ITEMS.map(i => i.id).join(', ')}</span>. They cover ROPA, DPIA, lawful basis, SCCs and data-subject requests -{' '}
                   <strong>GDPR and UK concepts, not HIPAA requirements</strong>. Counting them as HIPAA controls overstated the obligation. They still live on the privacy frameworks where they belong.
                 </p>
                 <p className="mt-1">
                   All {GENERIC_ASSESSMENT.length} <span className="font-mono">GEN-*</span> items are retained with their IDs unchanged, so every tick you already hold still counts.{' '}
                   {HIPAA_LAYER_ITEMS.length} cited HIPAA items were added on top as the regulatory layer. The{' '}
                   <span className="font-mono">GEN-*</span> items are your environment baseline; the{' '}
-                  <span className="font-mono">HIPAA-*</span> items carry the citations. Where the two overlap — encryption, access control, audit logging, backups — both stay, because the baseline item asks whether the control exists and the HIPAA item asks whether the regulation requires it.
+                  <span className="font-mono">HIPAA-*</span> items carry the citations. Where the two overlap - encryption, access control, audit logging, backups - both stay, because the baseline item asks whether the control exists and the HIPAA item asks whether the regulation requires it.
                 </p>
               </div>
             </div>

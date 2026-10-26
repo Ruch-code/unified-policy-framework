@@ -20,7 +20,7 @@ const VENDOR_RISK_SECTORS = {
   'Financial Services': {
     icon: Building,
     color: '#4f46e5',
-    description: 'Banks, fintechs, payment processors, and insurers — strict regulatory oversight (Basel III, Dodd-Frank, SOX) demands vendor classification, continuous monitoring, and contractual flow-down of security obligations.',
+    description: 'Banks, fintechs, payment processors, and insurers - strict regulatory oversight (Basel III, Dodd-Frank, SOX) demands vendor classification, continuous monitoring, and contractual flow-down of security obligations.',
     risks: ['Data breaches', 'Regulatory fines', 'Operational resilience', 'Concentration risk'],
     controls: ['Vendor tiering', 'SOC 2 Type II req', 'Right to audit', 'BCP testing', '4th party mapping'],
     regions: ['Global', 'Americas', 'EMEA', 'APAC'],
@@ -29,7 +29,7 @@ const VENDOR_RISK_SECTORS = {
   Healthcare: {
     icon: Shield,
     color: '#059669',
-    description: 'Hospitals, health tech, pharma, and payers — HIPAA, HITECH, and 21st Century Cures Act require BAA enforcement, minimum necessary access, and breach notification within 60 days.',
+    description: 'Hospitals, health tech, pharma, and payers - HIPAA, HITECH, and 21st Century Cures Act require BAA enforcement, minimum necessary access, and breach notification within 60 days.',
     risks: ['PHI exposure', 'Ransomware', 'Regulatory penalties', 'Patient safety'],
     controls: ['BAA mandatory', 'Minimum necessary', 'Breach notification 60d', 'Subcontractor flow-down'],
     subProcessorReq: ['BAA flow-down required', 'Subcontractor approval', 'Audit rights extend'],
@@ -39,7 +39,7 @@ const VENDOR_RISK_SECTORS = {
   'Technology & SaaS': {
     icon: Globe,
     color: '#7c3aed',
-    description: 'Cloud providers, SaaS platforms, AI/ML services, and dev tools — GDPR Art. 28, CCPA, and modern DPAs require DPA/SCC, sub-processor registries, and AI data usage restrictions.',
+    description: 'Cloud providers, SaaS platforms, AI/ML services, and dev tools - GDPR Art. 28, CCPA, and modern DPAs require DPA/SCC, sub-processor registries, and AI data usage restrictions.',
     risks: ['Data residency', 'AI training on customer data', 'Sub-processor sprawl', 'Encryption gaps'],
     controls: ['DPA/SCC mandatory', 'Subprocessor registry', 'AI data usage restrictions', 'Continuous monitoring'],
     subProcessorReq: ['Public subprocessor list', 'Objection rights', 'Equivalent protections', 'Annual disclosure'],
@@ -49,7 +49,7 @@ const VENDOR_RISK_SECTORS = {
   'Critical Infrastructure': {
     icon: AlertTriangle,
     color: '#dc2626',
-    description: 'Energy, transport, water, telecom — NERC CIP, TSA Pipeline, and IEC 62443 mandate vendor cyber hygiene, supply chain visibility, and incident reporting SLAs.',
+    description: 'Energy, transport, water, telecom - NERC CIP, TSA Pipeline, and IEC 62443 mandate vendor cyber hygiene, supply chain visibility, and incident reporting SLAs.',
     risks: ['OT/IT convergence', 'Nation-state threats', 'Supply chain disruption', 'Legacy systems'],
     controls: ['Vendor cyber hygiene standards', 'Supply chain visibility', 'Incident reporting SLAs', 'Patch management'],
     regions: ['Americas', 'EMEA', 'APAC'],
@@ -58,7 +58,7 @@ const VENDOR_RISK_SECTORS = {
   'Retail & E-Commerce': {
     icon: Briefcase,
     color: '#f59e0b',
-    description: 'Retailers, marketplaces, payment gateways — PCI DSS v4.0, PCI MPE, and tokenization requirements drive vendor validation for cardholder data environments.',
+    description: 'Retailers, marketplaces, payment gateways - PCI DSS v4.0, PCI MPE, and tokenization requirements drive vendor validation for cardholder data environments.',
     risks: ['Card data theft', 'Magecart attacks', 'PCI non-compliance', 'Tokenization gaps'],
     controls: ['PCI DSS validation', 'Tokenization', 'Consent management', 'Data retention policies'],
     regions: ['Global'],
@@ -67,7 +67,7 @@ const VENDOR_RISK_SECTORS = {
   Manufacturing: {
     icon: Layers,
     color: '#8b5cf6',
-    description: 'Industrial, automotive, aerospace, defense — NIST 800-171, CMMC, and ITAR require supply chain risk management, counterfeit detection, and export-controlled data protection.',
+    description: 'Industrial, automotive, aerospace, defense - NIST 800-171, CMMC, and ITAR require supply chain risk management, counterfeit detection, and export-controlled data protection.',
     risks: ['IP theft', 'Supply chain disruption', 'Counterfeit parts', 'Nth-tier visibility'],
     controls: ['CMMC assessment', 'ITAR compliance', 'Nth-tier mapping', 'Counterfeit detection'],
     regions: ['Americas', 'EMEA', 'APAC'],
@@ -76,7 +76,7 @@ const VENDOR_RISK_SECTORS = {
   Government: {
     icon: ShieldCheck,
     color: '#1d4ed8',
-    description: 'Federal, state, local agencies and contractors — FedRAMP, FISMA, NIST 800-53, and CJIS require continuous monitoring, continuous authorization, and supply chain risk management (SCRM).',
+    description: 'Federal, state, local agencies and contractors - FedRAMP, FISMA, NIST 800-53, and CJIS require continuous monitoring, continuous authorization, and supply chain risk management (SCRM).',
     risks: ['FedRAMP non-compliance', 'Supply chain attacks', 'Data sovereignty', 'Personnel vetting'],
     controls: ['FedRAMP authorization', 'Continuous monitoring', 'SCRM program', 'CJIS compliance'],
     regions: ['Americas'],
@@ -128,7 +128,7 @@ const REGIONAL_LAWS = {
 
 const SUB_PROCESSOR_RISKS = {
   '4th/5th Party Blindness': {
-    description: '60% of breaches originate from sub-processors you don\'t track — no visibility = no liability protection.',
+    description: '60% of breaches originate from sub-processors you don\'t track - no visibility = no liability protection.',
     impact: 'Critical',
     controls: ['Tier 1 vendor sub-processor registry', 'Automated discovery', 'Contractual flow-down'],
   },
@@ -143,7 +143,7 @@ const SUB_PROCESSOR_RISKS = {
     controls: ['Multi-cloud strategy', 'Exit planning', 'Portability testing'],
   },
   'Regulatory Non-Compliance': {
-    description: 'DORA Art. 28, NIS2 Art. 21, GDPR Art. 28 require sub-processor governance — fines up to 2% revenue.',
+    description: 'DORA Art. 28, NIS2 Art. 21, GDPR Art. 28 require sub-processor governance - fines up to 2% revenue.',
     impact: 'High',
     controls: ['Regulatory mapping', 'Sub-processor compliance tracking', 'Automated alerts'],
   },

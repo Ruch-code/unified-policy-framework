@@ -23,11 +23,11 @@ const FRAMEWORK = {
         "Most SaaS scope Security + Availability, giving a pragmatic starting point",
         "Mapping tooling can back-fill controls once scope is locked",
       ],
-      leantip: "Decide TSC scope WHEN choosing the auditor — Security + Availability covers most SaaS. Add Confidentiality if you hold customers' secrets. Confirm each control maps to a chosen TSC."
+      leantip: "Decide TSC scope WHEN choosing the auditor - Security + Availability covers most SaaS. Add Confidentiality if you hold customers' secrets. Confirm each control maps to a chosen TSC."
     },
     {
       itgc: "IT Operations",
-      gap: "Type II evidence gap — controls exist but weren't operated over time",
+      gap: "Type II evidence gap - controls exist but weren't operated over time",
       pushback: "We did everything at the end, so just back-date it.",
       reality: "Type II needs controls operating over the audit period (typically 6-12 months) with evidence dated throughout. Backdated evidence is a red flag and can sink the report.",
       policy: "Evidence & Records Retention Policy, Monitoring & Logging Policy",
@@ -36,7 +36,7 @@ const FRAMEWORK = {
         "Vulnerability-scan history and CI/CD logs form a credible chain",
         "Monthly dashboard snapshots create dated evidence"
       ],
-      leantip: "Turn on continuous evidence capture early: cloud audit logs, access-review records, vulnerability-scan history, ticket timestamps. Screenshot dashboards monthly — cheap and legit."
+      leantip: "Turn on continuous evidence capture early: cloud audit logs, access-review records, vulnerability-scan history, ticket timestamps. Screenshot dashboards monthly - cheap and legit."
     },
     {
       itgc: "Change Management",
@@ -53,7 +53,7 @@ const FRAMEWORK = {
     },
     {
       itgc: "Access Management",
-      gap: "Single point of control — one person holds all the cloud keys & knowledge",
+      gap: "Single point of control - one person holds all the cloud keys & knowledge",
       pushback: "It's just faster if one engineer does everything.",
       reality: "SOC 2 expects separation of duties. One person with all keys + no peer review = high risk finding and a real operational liability.",
       policy: "Access Control Policy, Segregation of Duties Policy, Privileged Access Management Policy",
@@ -75,7 +75,7 @@ const FRAMEWORK = {
         "Health checks and alerts provide monitoring evidence",
         "A single DR tabletop test yields baseline evidence"
       ],
-      leantip: "Document a target availability %, add monitoring/health checks, and do a lightweight DR tabletop or failover test once — keep the report as evidence."
+      leantip: "Document a target availability %, add monitoring/health checks, and do a lightweight DR tabletop or failover test once - keep the report as evidence."
     }
   ],
   weeks: 4,
@@ -96,16 +96,16 @@ const FRAMEWORK = {
               title:
                 "Write the System Description document per TSC requirements",
               control:
-                "TSC Common Criteria — System Description",
+                "TSC Common Criteria - System Description",
               how:
-                "Write the System Description document (required for SOC 2 Type II reports) covering: system overview (purpose, scope, boundaries, and infrastructure), trust services criteria applicability (Security, Availability, Processing Integrity, Confidentiality, Privacy), principal service commitments and system requirements, system components (infrastructure, software, people, procedures, data), system boundaries and interfaces, complementary user entity controls (CUECs), complementary subservice organization controls (CSOCs), and relevant aspects of the control environment. Use the AICPA SOC 2 System Description template. Include: organization background, services provided, system components (hardware, software, network, people, data), system boundaries (what is in scope vs. out of scope), and flow diagrams for data and process flows. This document is foundational — it defines what the auditor tests against.",
+                "Write the System Description document (required for SOC 2 Type II reports) covering: system overview (purpose, scope, boundaries, and infrastructure), trust services criteria applicability (Security, Availability, Processing Integrity, Confidentiality, Privacy), principal service commitments and system requirements, system components (infrastructure, software, people, procedures, data), system boundaries and interfaces, complementary user entity controls (CUECs), complementary subservice organization controls (CSOCs), and relevant aspects of the control environment. Use the AICPA SOC 2 System Description template. Include: organization background, services provided, system components (hardware, software, network, people, data), system boundaries (what is in scope vs. out of scope), and flow diagrams for data and process flows. This document is foundational - it defines what the auditor tests against.",
               check:
                 "System Description document completed with organization background, services, system components, boundaries, trust criteria applicability, CUECs, CSOCs, and data/process flow diagrams, using AICPA SOC 2 template"
             },            {
               title:
-                "AICPA SOC 2 System Description Template — Complete Reference (Bullet Points)",
+                "AICPA SOC 2 System Description Template - Complete Reference (Bullet Points)",
               control:
-                "TSC Common Criteria — System Description Template",
+                "TSC Common Criteria - System Description Template",
               how:
                 soc2Template.how,
               check:
@@ -115,7 +115,7 @@ const FRAMEWORK = {
               title:
                 "Download AICPA SOC 2 System Description Template (Markdown)",
               control:
-                "TSC Common Criteria — System Description Template Download",
+                "TSC Common Criteria - System Description Template Download",
               how:
                 "Click the link below to download the complete AICPA SOC 2 System Description Template in Markdown format. Save as .md file and open in any markdown editor (VS Code, Obsidian, Notion, etc.) or convert to PDF/Word using pandoc.",
               check:

@@ -1,7 +1,7 @@
 // Certification Advisor decision engine.
 // Given a company profile, ranks the full set of relevant certifications/frameworks
 // in the order they should be pursued ("upskill roadmap"). Considers every
-// combination of industry, data, geography and stage — a framework is never
+// combination of industry, data, geography and stage - a framework is never
 // silently dropped; it is always present with an appropriate priority.
 
 export const PROFILE_QUESTIONS = [
@@ -44,7 +44,7 @@ export const PROFILE_QUESTIONS = [
     label: 'What stage are you at?',
     options: [
       { value: 'early', label: 'Early seed / pre-revenue' },
-      { value: 'growth', label: 'Growth — closing enterprise deals' },
+      { value: 'growth', label: 'Growth - closing enterprise deals' },
       { value: 'established', label: 'Established / regulated & scaling' },
     ],
   },
@@ -91,7 +91,7 @@ export const CERT_CATALOG = {
     timeline: '1–3 months to baseline',
     cost: '$5K–$25K',
     costINR: '₹4L–₹20L',
-    why: 'The pragmatic, vendor-neutral security controls checklist. The fastest high-impact baseline for any technical team — a strong foundation before formal certification.',
+    why: 'The pragmatic, vendor-neutral security controls checklist. The fastest high-impact baseline for any technical team - a strong foundation before formal certification.',
     note: 'Pairs with NIST and maps directly into SOC 2 / ISO controls. Best first step for early-stage teams.',
     evaluate: ({ stage, industry }) => {
       let s = 5;
@@ -121,7 +121,7 @@ export const CERT_CATALOG = {
     timeline: 'L4 3–6 mo · L1 6–12 mo, validated annually',
     cost: '$500–$5K (L4) … $20K–$100K (L1)',
     costINR: '₹40K–₹4L (L4) … ₹16L–₹80L (L1)',
-    why: 'Not optional — if you store, process, or transmit cardholder data, your acquirer and card brands require it. Non-compliance risks fines and loss of processing privileges.',
+    why: 'Not optional - if you store, process, or transmit cardholder data, your acquirer and card brands require it. Non-compliance risks fines and loss of processing privileges.',
     note: 'Requirement level depends on transaction volume.',
     evaluate: ({ data }) => (data.includes('card') ? 10 : 1),
   },
@@ -131,7 +131,7 @@ export const CERT_CATALOG = {
     timeline: 'Ongoing; 2–4 mo to baseline if controls exist',
     cost: '$10K–$50K initial, $5K–$25K ongoing',
     costINR: '₹8L–₹40L initial, ₹4L–₹20L ongoing',
-    why: 'A legal obligation for every Covered Entity and Business Associate that touches PHI. There is no “HIPAA certified” — you demonstrate compliance via policies, risk analysis, safeguards, and BAAs.',
+    why: 'A legal obligation for every Covered Entity and Business Associate that touches PHI. There is no “HIPAA certified” - you demonstrate compliance via policies, risk analysis, safeguards, and BAAs.',
     note: 'Buyers/healthcare customers push you for it even when you are just a BAA-signing vendor.',
     evaluate: ({ data, industry }) => (data.includes('phi') || industry === 'healthtech' ? 9 : 1),
   },
@@ -141,7 +141,7 @@ export const CERT_CATALOG = {
     timeline: '6–9 months (r2), e1 faster',
     cost: '$40K–$100K+ (all-in)',
     costINR: '₹30L–₹80L+ (all-in)',
-    why: 'Certifiable, harmonised framework (HIPAA + NIST + ISO + PCI + state laws in one). The “gold standard” healthcare cert — large payers/hospitals often require r2 over a plain SOC 2. Use e1 to start.',
+    why: 'Certifiable, harmonised framework (HIPAA + NIST + ISO + PCI + state laws in one). The “gold standard” healthcare cert - large payers/hospitals often require r2 over a plain SOC 2. Use e1 to start.',
     note: 'If health-tech and SOC 2 alone is not unlocking payer/providers, add HITRUST. e1 → i1 → r2 scale-pathing.',
     evaluate: ({ data, industry }) => (data.includes('phi') || industry === 'healthtech' ? 8 : 0),
   },
@@ -162,9 +162,9 @@ export const CERT_CATALOG = {
 };
 
 export const PRIORITY_META = [
-  { level: 1, label: 'Priority 1 — Start here', desc: 'Highest impact: unblocks the most revenue or is legally mandated.' },
-  { level: 2, label: 'Priority 2 — Add as you scale', desc: 'Second market or regulatory requirement; builds on control overlap.' },
-  { level: 3, label: 'Priority 3 — Foundational hygiene', desc: 'Strengthens the baseline even when not externally demanded.' },
+  { level: 1, label: 'Priority 1 - Start here', desc: 'Highest impact: unblocks the most revenue or is legally mandated.' },
+  { level: 2, label: 'Priority 2 - Add as you scale', desc: 'Second market or regulatory requirement; builds on control overlap.' },
+  { level: 3, label: 'Priority 3 - Foundational hygiene', desc: 'Strengthens the baseline even when not externally demanded.' },
 ];
 
 // Rank the full set of frameworks for a given profile.
@@ -175,12 +175,12 @@ export function recommendCertifications(profile) {
 
   // Signal detection: (keywords, confidence% + hint)
   const SIG = [
-    { kw: ['hipaa', 'health', 'clinic', 'medical', 'hospital', 'care', 'pharma', 'bio'], cap: 'HIPAA', delta: (h) => (h.hasPHI ? 0 : +2), note: 'Health data is present — HIPAA/PHI controls matter.' },
-    { kw: ['pay', 'payment', 'card', 'checkout', 'purchase', 'store', 'shop', 'commerce', 'marketplace', 'sell'], cap: 'PCI-DSS', delta: () => +2, note: 'Card/purchase activity detected — PCI-DSS is relevant.' },
-    { kw: ['bank', 'fintech', 'lend', 'invest', 'loan', 'finance', 'money', 'payments'], cap: 'ISO 27001', delta: () => +1, note: 'Financial services — strong security baseline expected.' },
-    { kw: ['adult', 'dating', 'gambling', 'social', 'children', 'kids', 'school', 'education', 'student', 'kids'], cap: 'GDPR', delta: () => +2, note: 'Sensitive audience — prioritize privacy (GDPR/regional).' },
-    { kw: ['gov', 'government', 'public', 'municipal', 'defense', 'military'], cap: 'NIST CSF', delta: () => +2, note: 'Public-sector/regulated — NIST CSF is the trusted baseline.' },
-    { kw: ['cloud', 'saas', 'software', 'platform', 'api', 'dev', 'data', 'b2b', 'enterprise'], cap: 'CIS Controls + SOC 2', delta: () => +1, note: 'Tech/cloud operation — CIS + SOC 2 give a strong foundation.' },
+    { kw: ['hipaa', 'health', 'clinic', 'medical', 'hospital', 'care', 'pharma', 'bio'], cap: 'HIPAA', delta: (h) => (h.hasPHI ? 0 : +2), note: 'Health data is present - HIPAA/PHI controls matter.' },
+    { kw: ['pay', 'payment', 'card', 'checkout', 'purchase', 'store', 'shop', 'commerce', 'marketplace', 'sell'], cap: 'PCI-DSS', delta: () => +2, note: 'Card/purchase activity detected - PCI-DSS is relevant.' },
+    { kw: ['bank', 'fintech', 'lend', 'invest', 'loan', 'finance', 'money', 'payments'], cap: 'ISO 27001', delta: () => +1, note: 'Financial services - strong security baseline expected.' },
+    { kw: ['adult', 'dating', 'gambling', 'social', 'children', 'kids', 'school', 'education', 'student', 'kids'], cap: 'GDPR', delta: () => +2, note: 'Sensitive audience - prioritize privacy (GDPR/regional).' },
+    { kw: ['gov', 'government', 'public', 'municipal', 'defense', 'military'], cap: 'NIST CSF', delta: () => +2, note: 'Public-sector/regulated - NIST CSF is the trusted baseline.' },
+    { kw: ['cloud', 'saas', 'software', 'platform', 'api', 'dev', 'data', 'b2b', 'enterprise'], cap: 'CIS Controls + SOC 2', delta: () => +1, note: 'Tech/cloud operation - CIS + SOC 2 give a strong foundation.' },
   ];
 
   let businessInsight = null;

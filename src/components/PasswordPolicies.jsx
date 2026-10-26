@@ -17,7 +17,7 @@ const passwordPolicyData = {
           'Ban list: Global Microsoft banned passwords (updated continuously)',
           'Smart lockout: Threshold 10 failed attempts, lockout duration escalates',
         ],
-        useCase: 'All tenants — baseline for any Azure/Microsoft 365 environment',
+        useCase: 'All tenants - baseline for any Azure/Microsoft 365 environment',
       },
       custom: {
         name: 'Custom Banned Password List (P1/P2)',
@@ -68,7 +68,7 @@ const passwordPolicyData = {
         'Breached credential detection (Have I Been Pwned integration)',
         'Progressive profiling + step-up authentication',
         'Passwordless: Okta FastPass (device-bound), WebAuthn/FIDO2, Email magic links, SMS',
-        'Universal Directory — single source of truth across HR, AD, LDAP, apps',
+        'Universal Directory - single source of truth across HR, AD, LDAP, apps',
       ],
       bestFor: 'Multi-cloud, heterogeneous app stacks, advanced lifecycle management',
       pricing: 'Per user/month; MFA/Adaptive included in most tiers',
@@ -81,7 +81,7 @@ const passwordPolicyData = {
       features: [
         'Policy trees with branching logic (risk, device, location, user attributes)',
         'Passwordless: FIDO2, PingID mobile, QR code, email magic links',
-        'DaVinci orchestration — no-code auth flows across apps',
+        'DaVinci orchestration - no-code auth flows across apps',
         'Fine-grained authorization (ZTA) with policy decisions at runtime',
         'Excellent for banking/finance (FedRAMP, SOC 2, ISO certified)',
       ],
@@ -97,7 +97,7 @@ const passwordPolicyData = {
         'Tenant-level password policies (dictionary, breached credentials, complexity)',
         'Actions (code-based extensibility) for custom login/registration flows',
         'Passwordless: Email magic links, SMS OTP, WebAuthn, Passkeys (FIDO2)',
-        'Organizations (B2B) — per-org login, SSO, MFA, branding',
+        'Organizations (B2B) - per-org login, SSO, MFA, branding',
         'Attack protection: brute force, breached credentials, bot detection',
       ],
       bestFor: 'Customer-facing apps, B2B SaaS, developer-centric teams',
@@ -110,7 +110,7 @@ const passwordPolicyData = {
       color: 'amber',
       features: [
         'Delegated authentication to external IdP (Entra ID, Okta, Ping, AD FS, Google)',
-        'No native password policy — relies on source IdP',
+        'No native password policy - relies on source IdP',
         'Permission sets with session duration, MFA context, tag-based access',
         'Cross-account AWS access with short-lived credentials (STS)',
         'Integrates with AWS Organizations, CloudTrail, Config',
@@ -154,7 +154,7 @@ const passwordPolicyData = {
       icon: Users,
       color: 'indigo',
       features: [
-        'Vaulted credentials — no human knows privileged passwords',
+        'Vaulted credentials - no human knows privileged passwords',
         'Session recording, keystroke logging, just-in-time elevation',
         'Password rotation automation (daily/on-check-in/on-demand)',
         'MFA for vault access, break-glass procedures',
@@ -222,10 +222,10 @@ const passwordPolicyData = {
 
 const auditTechnique = {
   title: 'Policy vs. Intune Password Discrepancy',
-  scenario: 'The Access Control Policy states a minimum password length of 8 characters, but the Intune device configuration for macOS and Windows shows a minimum of 4. The audit question — "which minimum actually governed during the observation period?" — has to be answered with evidence instead of assumptions.',
+  scenario: 'The Access Control Policy states a minimum password length of 8 characters, but the Intune device configuration for macOS and Windows shows a minimum of 4. The audit question - "which minimum actually governed during the observation period?" - has to be answered with evidence instead of assumptions.',
   source: {
     cloudOnly: 'Account passwords are governed by Entra\'s built-in policy, so the minimum is the fixed 8. The identity-layer minimum was genuinely 8 for the entire period; the lower Intune device minimum only governs local device (sign-in) passwords, not the account.',
-    synced: 'The account password is actually set and enforced by the on-premises Default Domain Policy (Group Policy), and Entra only syncs the result. The real minimum-length rule lives in on-prem AD (Default Domain Policy → Computer Configuration → Windows Settings → Security Settings → Account Policies → Password Policy) — that tells you which minimum actually governed during the audit window.',
+    synced: 'The account password is actually set and enforced by the on-premises Default Domain Policy (Group Policy), and Entra only syncs the result. The real minimum-length rule lives in on-prem AD (Default Domain Policy → Computer Configuration → Windows Settings → Security Settings → Account Policies → Password Policy) - that tells you which minimum actually governed during the audit window.',
   },
   evidence: [
     {
@@ -236,13 +236,13 @@ const auditTechnique = {
       nav: 'entra.microsoft.com → Protection → Authentication methods → Password protection',
       items: [
         'Screenshot the lockout threshold, lockout duration, and banned-password list, with the system clock visible.',
-        'Cloud-only accounts: Entra\'s minimum length is fixed at 8 and is not shown as a setting — evidence that with Microsoft\'s doc instead.',
+        'Cloud-only accounts: Entra\'s minimum length is fixed at 8 and is not shown as a setting - evidence that with Microsoft\'s doc instead.',
       ],
       link: 'https://learn.microsoft.com/en-us/entra/identity/authentication/concept-sspr-policy',
     },
     {
       step: '2',
-      title: 'Intune device password — this is where the “4” likely is',
+      title: 'Intune device password - this is where the “4” likely is',
       icon: Lock,
       tint: 'purple',
       nav: 'intune.microsoft.com → Devices → Configuration profiles (also check Compliance policies)',
@@ -266,26 +266,26 @@ const auditTechnique = {
   ],
   responses: [
     {
-      title: '1 — Accept the risk',
+      title: '1 - Accept the risk',
       scope: 'When the finding stands (effective minimum was 4 during the period)',
       icon: AlertTriangle,
       tint: 'amber',
       items: [
         'Log a documented risk assessment covering what the 4-char exposure actually touches, and who accepts it.',
         'List the compensating controls already in force (MFA, smart lockout, banned-password list, Conditional Access).',
-        'Define a timeboxed remediation — align the Intune profiles to 8 — with a committed target date.',
+        'Define a timeboxed remediation - align the Intune profiles to 8 - with a committed target date.',
         'Capture formal sign-off from the control owner / leadership in the risk register.',
         'Remeasure and re-screenshot the Intune profiles at the next quarterly review as closure evidence.',
       ],
     },
     {
-      title: '2 — Push back on the finding',
+      title: '2 - Push back on the finding',
       scope: 'When the governing minimum actually met the policy',
       icon: Shield,
       tint: 'emerald',
       items: [
         'Run Step 0 first: cloud-only vs synced decides which minimum really governed.',
-        'Cloud-only: the identity-layer minimum was fixed at 8 all period; the 4 lives only in the local device layer — cite Microsoft\'s SSPR / password-policy doc.',
+        'Cloud-only: the identity-layer minimum was fixed at 8 all period; the 4 lives only in the local device layer - cite Microsoft\'s SSPR / password-policy doc.',
         'Synced: reference the on-prem Default Domain Policy evidence to show the enforcing rule actually met 8.',
         'Drive the Intune device profiles to 8 anyway to close the residual device-layer gap.',
         'Ask the auditor to re-scope the observation to the governing policy layer (account vs local device).',
@@ -297,8 +297,8 @@ const auditTechnique = {
     answer: [
       'Enforcing a minimum length of 8 on Windows devices in Intune does NOT force users to reset existing device passwords. The setting applies when a password is newly set or next changed, so current devices keep working with zero forced disruption.',
       'Roll out in waves to remove even that risk: start with a pilot ring (e.g., IT + 5% of devices), watch Intune compliance and sign-in logs for 1–2 weeks, then broad-deploy. Any genuine exceptions go through the standard exception tracker, not the configuration.',
-      'Scope check: this is the device sign-in password only — Windows Hello PIN, BitLocker PIN, and Wi-Fi passphrases are separate settings and are untouched by the change.',
-      'If the team insists on 4 anyway, do not leave it silently: route it through the Accept-the-risk path — documented rationale, compensating controls (MFA, smart lockout, banned-password list, Conditional Access), owner sign-off, and a re-evaluation date. Otherwise the same observation returns at the next audit.',
+      'Scope check: this is the device sign-in password only - Windows Hello PIN, BitLocker PIN, and Wi-Fi passphrases are separate settings and are untouched by the change.',
+      'If the team insists on 4 anyway, do not leave it silently: route it through the Accept-the-risk path - documented rationale, compensating controls (MFA, smart lockout, banned-password list, Conditional Access), owner sign-off, and a re-evaluation date. Otherwise the same observation returns at the next audit.',
     ],
   },
 };
@@ -322,7 +322,7 @@ export default function PasswordPolicies({ isDark = false }) {
             Password Policies & Authentication Strategies
           </h2>
           <p className="text-lg text-navy-600 dark:text-text-dark-secondary max-w-3xl mx-auto">
-            Comprehensive guide to Entra ID (Azure AD) password policies, SSO/MFA alternatives, and best-practice recommendations per use case — mapped to compliance frameworks.
+            Comprehensive guide to Entra ID (Azure AD) password policies, SSO/MFA alternatives, and best-practice recommendations per use case - mapped to compliance frameworks.
           </p>
         </div>
 
@@ -371,11 +371,11 @@ export default function PasswordPolicies({ isDark = false }) {
         {/* Audit Technique: Policy vs Intune Password Discrepancy */}
         <section className="mb-16">
           <h3 className="text-2xl font-bold text-navy-900 dark:text-text-dark-primary mb-6 flex items-center gap-3">
-            <ClipboardList className="w-6 h-6 text-amber-600 dark:text-amber-400" /> Audit Technique — Password Config Discrepancy
+            <ClipboardList className="w-6 h-6 text-amber-600 dark:text-amber-400" /> Audit Technique - Password Config Discrepancy
           </h3>
 
           <p className="text-sm text-navy-600 dark:text-text-dark-secondary mb-5 max-w-3xl">
-            Tool / technique for when the documented policy (minimum 8) doesn't match the device configuration in Intune for macOS and Windows (minimum 4) — decide what really governed, evidence it, then either accept the risk or push back.
+            Tool / technique for when the documented policy (minimum 8) doesn't match the device configuration in Intune for macOS and Windows (minimum 4) - decide what really governed, evidence it, then either accept the risk or push back.
           </p>
 
           <div className="mb-6 rounded-2xl p-5 bg-amber-50 dark:bg-amber-900/30 border border-amber-100 dark:border-amber-800">
@@ -386,7 +386,7 @@ export default function PasswordPolicies({ isDark = false }) {
 
           <div className="grc-card p-6 mb-6">
             <h4 className="grc-card-title font-bold text-lg mb-4 flex items-center gap-2">
-              <Shield className="w-5 h-5 text-indigo-600 dark:text-indigo-400 grc-card-icon" /> Step 0 — What actually governs the account password?
+              <Shield className="w-5 h-5 text-indigo-600 dark:text-indigo-400 grc-card-icon" /> Step 0 - What actually governs the account password?
             </h4>
             <div className="grid md:grid-cols-2 gap-4 text-sm">
               <div className={`rounded-xl border p-4 ${TINT.indigo.box}`}>
@@ -402,7 +402,7 @@ export default function PasswordPolicies({ isDark = false }) {
 
           <div className="mb-6">
             <h4 className="font-bold text-navy-900 dark:text-text-dark-primary text-lg mb-4 flex items-center gap-2">
-              <SearchCheck className="w-5 h-5 text-indigo-600 dark:text-indigo-400" /> Evidence to collect — with the system clock visible
+              <SearchCheck className="w-5 h-5 text-indigo-600 dark:text-indigo-400" /> Evidence to collect - with the system clock visible
             </h4>
             <div className="grid md:grid-cols-3 gap-4">
               {auditTechnique.evidence.map(ev => {
@@ -421,7 +421,7 @@ export default function PasswordPolicies({ isDark = false }) {
                       {ev.link && (
                         <li className="mt-1.5">
                           <a href={ev.link} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-1 font-semibold underline ${t.title}`}>
-                            <ExternalLink className="w-3 h-3" /> Microsoft doc — SSPR / password policy
+                            <ExternalLink className="w-3 h-3" /> Microsoft doc - SSPR / password policy
                           </a>
                         </li>
                       )}
@@ -434,7 +434,7 @@ export default function PasswordPolicies({ isDark = false }) {
 
           <div className="grc-card p-6">
             <h4 className="grc-card-title font-bold text-lg mb-4 flex items-center gap-2">
-              <Lock className="w-5 h-5 text-indigo-600 dark:text-indigo-400 grc-card-icon" /> When the observation stands (minimum was 4, policy says 8) — two paths
+              <Lock className="w-5 h-5 text-indigo-600 dark:text-indigo-400 grc-card-icon" /> When the observation stands (minimum was 4, policy says 8) - two paths
             </h4>
             <div className="grid md:grid-cols-2 gap-4 text-sm">
               {auditTechnique.responses.map(r => {
@@ -456,7 +456,7 @@ export default function PasswordPolicies({ isDark = false }) {
 
           <div className="grc-card p-6 mt-6">
             <h4 className="grc-card-title font-bold text-lg mb-4 flex items-center gap-2">
-              <MessageSquareText className="w-5 h-5 text-indigo-600 dark:text-indigo-400 grc-card-icon" /> Device-team pushback — “Can we keep Windows at 4?”
+              <MessageSquareText className="w-5 h-5 text-indigo-600 dark:text-indigo-400 grc-card-icon" /> Device-team pushback - “Can we keep Windows at 4?”
             </h4>
             <div className="mb-4 rounded-xl border p-4 bg-slate-50 dark:bg-surface-dark-200 border-slate-200 dark:border-surface-dark-300">
               <p className="text-sm text-slate-700 dark:text-text-dark-secondary italic">

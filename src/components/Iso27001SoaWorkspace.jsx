@@ -70,7 +70,7 @@ export default function Iso27001SoaWorkspace({ soaState, onPatchControl, onAddCu
     <div className="space-y-6">
       <header className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white p-4">
         <h3 className="text-sm font-semibold text-slate-900 dark:text-white">
-          Statement of Applicability — ISO/IEC 27001:2022 Clause 6.1.3 d
+          Statement of Applicability - ISO/IEC 27001:2022 Clause 6.1.3 d
         </h3>
         <p className="mt-1 text-sm text-slate-700">
           After choosing risk-treatment controls, compare the selection against Annex A to verify
@@ -79,7 +79,7 @@ export default function Iso27001SoaWorkspace({ soaState, onPatchControl, onAddCu
         </p>
         <p className="mt-2 text-xs text-slate-500">
           Progress reflects the controls{' '}
-          <em>you</em> have determined necessary — there is no 93-control completion score, because
+          <em>you</em> have determined necessary - there is no 93-control completion score, because
           excluding a control with justification is a correct outcome, not a gap.
         </p>
       </header>
@@ -272,7 +272,7 @@ export default function Iso27001SoaWorkspace({ soaState, onPatchControl, onAddCu
                   Version {h.version} · {h.stats.necessary} necessary · {h.stats.notNecessary} excluded
                   {h.approvedBy ? ` · approved by ${h.approvedBy}` : ''}
                 </p>
-                <p className="mt-0.5 text-slate-600">{h.note || 'No note'} — {new Date(h.at).toLocaleString()}</p>
+                <p className="mt-0.5 text-slate-600">{h.note || 'No note'} - {new Date(h.at).toLocaleString()}</p>
               </li>
             ))}
           </ol>
@@ -311,7 +311,7 @@ function ScopePanel({ soaState, onPatchScope }) {
   const scope = soaState.scope || {};
   return (
     <section className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white p-4">
-      <h4 className="text-sm font-semibold text-slate-900 dark:text-white">ISMS scope — Clause 4.3</h4>
+      <h4 className="text-sm font-semibold text-slate-900 dark:text-white">ISMS scope - Clause 4.3</h4>
       <p className="mt-0.5 text-xs text-slate-600">
         The scope statement bounds the whole ISMS, including the SoA below. Define it first.
       </p>
@@ -373,7 +373,7 @@ function SoaRow({ control, record, open, onToggle, onPatch }) {
       {open && (
         <div className="space-y-4 border-t border-slate-200 dark:border-slate-700 px-4 py-4">
           <p className="text-sm text-slate-700">{control.purpose}</p>
-          <p className="text-xs text-slate-500">Supports clause {control.clauses.join(', ')}. Reference control — inclusion is a risk-based decision.</p>
+          <p className="text-xs text-slate-500">Supports clause {control.clauses.join(', ')}. Reference control - inclusion is a risk-based decision.</p>
 
           <fieldset>
             <legend className="text-xs font-medium text-slate-700">Decision (Clause 6.1.3 d)</legend>

@@ -37,13 +37,13 @@ export const ROLE_OPTIONS = [
       'Give the covered entity access to records and support its compliance',
     ],
     notYourDuty: [
-      'You do not publish your own Notice of Privacy Practices — the covered entity does.',
+      'You do not publish your own Notice of Privacy Practices - the covered entity does.',
       'You do not notify individuals, HHS or media of a breach; you report to the covered entity and it notifies.',
     ],
   },
   {
     id: 'dual',
-    label: 'Both — Covered Entity and Business Associate',
+    label: 'Both - Covered Entity and Business Associate',
     short: 'CE + BA',
     blurb: 'A hybrid entity: you run your own PHI obligations and also act as a BA for other covered entities.',
     cite: '45 CFR §164.105',
@@ -81,14 +81,14 @@ export const ROLE_OPTIONS = [
   },
   {
     id: 'uncertain',
-    label: 'Not sure — needs a human decision',
+    label: 'Not sure - needs a human decision',
     short: 'Unclear',
     blurb: 'You have not determined your status, or the answer depends on facts you have not confirmed yet.',
     cite: '45 CFR §160.103',
     citeUrl: 'https://www.hhs.gov/hipaa/for-professionals/covered-entities/index.html',
     duties: [
       'HIPAA content stays available to read, but nothing below is treated as a settled obligation for you',
-      'Unresolved questions stay marked unresolved — they are not quietly closed',
+      'Unresolved questions stay marked unresolved - they are not quietly closed',
       'A named human has to record the determination before you rely on any of it',
     ],
   },
@@ -98,7 +98,7 @@ export const SCOPE_ACTIVITIES = [
   { id: 'plan', label: 'Health plan', hint: 'Administering health benefits, claims, eligibility' },
   { id: 'provider', label: 'Healthcare provider', hint: 'Delivering care and billing electronically' },
   { id: 'clearinghouse', label: 'Healthcare clearinghouse', hint: 'Routing claims and transactions between entities' },
-  { id: 'ba-services', label: 'You provide services to a covered entity', hint: 'Under a BAA — hosting, support, billing, analytics' },
+  { id: 'ba-services', label: 'You provide services to a covered entity', hint: 'Under a BAA - hosting, support, billing, analytics' },
   { id: 'phi-inbound', label: 'You receive or hold PHI for your own operations', hint: 'Case notes, messages, claims files, support tickets' },
   { id: 'baa-requested', label: 'A customer has asked you to sign a BAA', hint: 'Often the clearest signal you are treated as a BA' },
 ];
@@ -202,7 +202,7 @@ export const BAA_ANSWERS = [
   { id: 'unknown', label: 'Not checked' },
   { id: 'signed', label: 'Signed' },
   { id: 'pending', label: 'In progress' },
-  { id: 'none', label: 'No — not applicable / not signed' },
+  { id: 'none', label: 'No - not applicable / not signed' },
 ];
 
 // ---------------------------------------------------------------------------
@@ -215,7 +215,7 @@ export const HHS_SOURCES = {
     url: 'https://www.hhs.gov/hipaa/for-professionals/security/index.html',
   },
   securityRegs: {
-    label: 'Security Rule — 45 CFR §164.302–318',
+    label: 'Security Rule - 45 CFR §164.302–318',
     url: 'https://www.hhs.gov/hipaa/for-professionals/security/laws-regulations/index.html',
   },
   riskAnalysis: {
@@ -227,35 +227,35 @@ export const HHS_SOURCES = {
     url: 'https://www.hhs.gov/hipaa/for-professionals/privacy/index.html',
   },
   privacyRegs: {
-    label: 'Privacy Rule — 45 CFR §164.500–534',
+    label: 'Privacy Rule - 45 CFR §164.500–534',
     url: 'https://www.hhs.gov/hipaa/for-professionals/privacy/laws-regulations/index.html',
   },
   npp: {
-    label: 'Notice of Privacy Practices — HHS guidance',
+    label: 'Notice of Privacy Practices - HHS guidance',
     url: 'https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/notices/index.html',
   },
   individualsRights: {
-    label: 'Individual rights — HHS guidance',
+    label: 'Individual rights - HHS guidance',
     url: 'https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/rights/index.html',
   },
   minimumNecessary: {
-    label: 'Minimum necessary — HHS guidance',
+    label: 'Minimum necessary - HHS guidance',
     url: 'https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/minimum-necessary-requirement/index.html',
   },
   deidentification: {
-    label: 'De-identification guidance — HHS',
+    label: 'De-identification guidance - HHS',
     url: 'https://www.hhs.gov/hipaa/for-professionals/privacy/special-topics/de-identification/index.html',
   },
   ba: {
-    label: 'Business associates — HHS guidance',
+    label: 'Business associates - HHS guidance',
     url: 'https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/business-associates/index.html',
   },
   baContracts: {
-    label: 'Business associate contracts — HHS guidance',
+    label: 'Business associate contracts - HHS guidance',
     url: 'https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/business-associates/index.html',
   },
   breach: {
-    label: 'Breach Notification Rule — HHS',
+    label: 'Breach Notification Rule - HHS',
     url: 'https://www.hhs.gov/hipaa/for-professionals/breach-notification/index.html',
   },
   breachPortal: {
@@ -263,71 +263,71 @@ export const HHS_SOURCES = {
     url: 'https://portal.hhs.gov/breach-portal/',
   },
   ocr: {
-    label: 'OCR — compliance & enforcement',
+    label: 'OCR - compliance & enforcement',
     url: 'https://www.hhs.gov/hipaa/for-professionals/compliance-enforcement/index.html',
   },
   coveredEntity: {
-    label: 'Covered entities — HHS',
+    label: 'Covered entities - HHS',
     url: 'https://www.hhs.gov/hipaa/for-professionals/covered-entities/index.html',
   },
   hybridEntity: {
-    label: 'Hybrid entities — HHS guidance',
+    label: 'Hybrid entities - HHS guidance',
     url: 'https://www.hhs.gov/hipaa/for-professionals/covered-entities/hybrid-entities/index.html',
   },
   training: {
-    label: 'Privacy Rule training — HHS guidance',
+    label: 'Privacy Rule training - HHS guidance',
     url: 'https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/training/index.html',
   },
   policies: {
-    label: 'Policies and procedures — HHS guidance',
+    label: 'Policies and procedures - HHS guidance',
     url: 'https://www.hhs.gov/hipaa/for-professionals/security/guidance/policies-procedures.html',
   },
   contingency: {
-    label: 'Contingency planning — HHS guidance',
+    label: 'Contingency planning - HHS guidance',
     url: 'https://www.hhs.gov/hipaa/for-professionals/security/guidance/contingency-plan.html',
   },
   workforce: {
-    label: 'Workforce security — HHS guidance',
+    label: 'Workforce security - HHS guidance',
     url: 'https://www.hhs.gov/hipaa/for-professionals/security/guidance/workforce-security.html',
   },
   auditControls: {
-    label: 'Audit controls — HHS guidance',
+    label: 'Audit controls - HHS guidance',
     url: 'https://www.hhs.gov/hipaa/for-professionals/security/guidance/audit-controls.html',
   },
   accessControl: {
-    label: 'Access control — HHS guidance',
+    label: 'Access control - HHS guidance',
     url: 'https://www.hhs.gov/hipaa/for-professionals/security/guidance/access-control.html',
   },
   transmission: {
-    label: 'Transmission security — HHS guidance',
+    label: 'Transmission security - HHS guidance',
     url: 'https://www.hhs.gov/hipaa/for-professionals/security/guidance/transmission-security.html',
   },
   media: {
-    label: 'Device and media controls — HHS guidance',
+    label: 'Device and media controls - HHS guidance',
     url: 'https://www.hhs.gov/hipaa/for-professionals/security/guidance/device-media-controls.html',
   },
   facilities: {
-    label: 'Facility access controls — HHS guidance',
+    label: 'Facility access controls - HHS guidance',
     url: 'https://www.hhs.gov/hipaa/for-professionals/security/guidance/facility-access-controls.html',
   },
   workstations: {
-    label: 'Workstation use & security — HHS guidance',
+    label: 'Workstation use & security - HHS guidance',
     url: 'https://www.hhs.gov/hipaa/for-professionals/security/guidance/workstation-use.html',
   },
   evaluation: {
-    label: 'Evaluation — HHS guidance',
+    label: 'Evaluation - HHS guidance',
     url: 'https://www.hhs.gov/hipaa/for-professionals/security/guidance/evaluation.html',
   },
   eCfr: {
-    label: '45 CFR Part 164 — eCFR (current text)',
+    label: '45 CFR Part 164 - eCFR (current text)',
     url: 'https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-C/part-164',
   },
   definitions: {
-    label: '45 CFR §160.103 Definitions — eCFR',
+    label: '45 CFR §160.103 Definitions - eCFR',
     url: 'https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-C/part-160/subpart-A/section-160.103',
   },
   penalties: {
-    label: '42 U.S.C. §1320d-5 — civil monetary penalties',
+    label: '42 U.S.C. §1320d-5 - civil monetary penalties',
     url: 'https://www.law.cornell.edu/uscode/text/42/1320d-5',
   },
 };
@@ -380,11 +380,11 @@ export const MANDATE_NOTES = {
   guidance:
     'Not a HIPAA requirement. This is HHS guidance, a third-party framework, or an internal practice. Nothing in HIPAA obliges you to adopt it.',
   addressable:
-    'Addressable — not optional. §164.306(d) requires you to assess whether it is reasonable and appropriate in your circumstances; if you decide not to implement it, you must document the decision and the alternative safeguard you used instead.',
+    'Addressable - not optional. §164.306(d) requires you to assess whether it is reasonable and appropriate in your circumstances; if you decide not to implement it, you must document the decision and the alternative safeguard you used instead.',
   required:
     'Required implementation specification.',
   mixed:
-    'This range contains both required and addressable specifications — the citation below lists the individual specs so you can tell which is which.',
+    'This range contains both required and addressable specifications - the citation below lists the individual specs so you can tell which is which.',
 };
 
 function normaliseSection(s) {
@@ -512,18 +512,18 @@ export function mandateFor(control) {
 }
 
 // Tasks that carry no CFR citation because they are not regulatory
-// requirements — HHS audit guidance, third-party frameworks, or internal
+// requirements - HHS audit guidance, third-party frameworks, or internal
 // planning practice. They are labelled as such rather than presented as
 // HIPAA obligations.
 export const NON_REGULATORY = [
   {
     match: /ocr audit protocol/i,
-    label: 'HHS OCR Audit Protocol — HHS guidance, not a regulation',
+    label: 'HHS OCR Audit Protocol - HHS guidance, not a regulation',
     url: 'https://www.hhs.gov/hipaa/for-professionals/compliance-enforcement/index.html',
   },
   {
     match: /corrective action plan/i,
-    label: 'HHS OCR — resolution agreements and CAPs',
+    label: 'HHS OCR - resolution agreements and CAPs',
     url: 'https://www.hhs.gov/hipaa/for-professionals/compliance-enforcement/index.html',
   },
   {
@@ -533,17 +533,17 @@ export const NON_REGULATORY = [
   },
   {
     match: /hitrust/i,
-    label: 'HITRUST CSF — third-party framework, not HIPAA',
+    label: 'HITRUST CSF - third-party framework, not HIPAA',
     url: 'https://hitrustalliance.net/hitrust-framework',
   },
   {
     match: /nist/i,
-    label: 'NIST CSF — voluntary framework, not HIPAA',
+    label: 'NIST CSF - voluntary framework, not HIPAA',
     url: 'https://www.nist.gov/cyberframework',
   },
   {
     match: /strategic compliance|maturity model/i,
-    label: 'Internal programme design — no HIPAA requirement',
+    label: 'Internal programme design - no HIPAA requirement',
     url: 'https://www.hhs.gov/hipaa/for-professionals/security/index.html',
   },
 ];
@@ -646,12 +646,12 @@ export const CE_ONLY = ['ce', 'dual'];
 export const ROLE_KEYS = ['ce', 'ba', 'dual', 'subcontractor', 'none', 'uncertain'];
 
 const ROLE_NOTES = {
-  npp: 'A Notice of Privacy Practices is a covered-entity obligation. If you are a business associate you do not publish one — but you must support the covered entity’s notice and its effective-date changes under §164.504(e)(3)(ii)(A).',
-  individualRights: 'The right to answer the request belongs to the covered entity. As a business associate you are required to support the request, not to respond to the patient directly — §164.504(e)(3)(ii)(C)–(G).',
-  externalNotification: 'Notifying individuals, HHS and the media is a covered-entity duty. A business associate reports the breach to the covered entity without unreasonable delay instead — §164.410(b).',
+  npp: 'A Notice of Privacy Practices is a covered-entity obligation. If you are a business associate you do not publish one - but you must support the covered entity’s notice and its effective-date changes under §164.504(e)(3)(ii)(A).',
+  individualRights: 'The right to answer the request belongs to the covered entity. As a business associate you are required to support the request, not to respond to the patient directly - §164.504(e)(3)(ii)(C)–(G).',
+  externalNotification: 'Notifying individuals, HHS and the media is a covered-entity duty. A business associate reports the breach to the covered entity without unreasonable delay instead - §164.410(b).',
   baReport: 'As a business associate your duty runs upward: report the breach to the covered entity without unreasonable delay, and let the covered entity notify individuals and HHS. §164.410(b).',
-  securityRule: 'Business associates must implement the applicable Security Rule safeguards, not just the covered entity — §164.308(b) and §164.314(a).',
-  baContract: 'Both sides of a BAA have obligations: the covered entity signs it, and the business associate must comply with the terms and flow them down to subcontractors — §164.504(e)(1)(ii).',
+  securityRule: 'Business associates must implement the applicable Security Rule safeguards, not just the covered entity - §164.308(b) and §164.314(a).',
+  baContract: 'Both sides of a BAA have obligations: the covered entity signs it, and the business associate must comply with the terms and flow them down to subcontractors - §164.504(e)(1)(ii).',
   hybrid: 'In a hybrid entity you have two sets of obligations against the same systems. Track which is which, or obligations get applied to the wrong data.',
 };
 
@@ -686,8 +686,8 @@ export function classifyRoles(title, control) {
   if (anySectionStarts(sections, ['164.410'])) {
     return { roles: ALL_REGULATED, note: ROLE_NOTES.baReport, kind: 'breach-report-to-ce' };
   }
-  // The rest of the Breach Notification Rule — definitions, the four-factor
-  // assessment, exceptions — applies to every regulated party.
+  // The rest of the Breach Notification Rule - definitions, the four-factor
+  // assessment, exceptions - applies to every regulated party.
   if (anySectionStarts(sections, ['164.4'])) {
     return { roles: ALL_REGULATED, note: null, kind: 'breach-general' };
   }
@@ -704,7 +704,7 @@ export function classifyRoles(title, control) {
     return { roles: ALL_REGULATED, note: null, kind: 'definitions' };
   }
   if (/(1320d|42\s*u\.?s\.?c)/.test(sig.replace(/§/g, ''))) {
-    return { roles: ALL_REGULATED, note: 'Civil monetary penalties apply to covered entities and business associates alike — 42 U.S.C. §1320d-5.', kind: 'enforcement' };
+    return { roles: ALL_REGULATED, note: 'Civil monetary penalties apply to covered entities and business associates alike - 42 U.S.C. §1320d-5.', kind: 'enforcement' };
   }
   if (anySectionStarts(sections, ['164.5'])) {
     return { roles: ALL_REGULATED, note: null, kind: 'privacy-rule' };
@@ -717,7 +717,7 @@ export function classifyRoles(title, control) {
 export function startupGapRoleNote(gapText) {
   const t = String(gapText || '').toLowerCase();
   if (/baa/.test(t)) {
-    return 'A BAA is required when the vendor is a business associate — that is, when it creates, receives, maintains or transmits PHI on your behalf. A tool that never touches PHI is not a business associate just because it handles personal data, and a BAA is not a general privacy contract.';
+    return 'A BAA is required when the vendor is a business associate - that is, when it creates, receives, maintains or transmits PHI on your behalf. A tool that never touches PHI is not a business associate just because it handles personal data, and a BAA is not a general privacy contract.';
   }
   return null;
 }
@@ -728,5 +728,5 @@ export function roleLabel(roleId) {
 }
 export function roleShort(roleId) {
   const r = ROLE_OPTIONS.find(r => r.id === roleId);
-  return r ? r.short : '—';
+  return r ? r.short : '-';
 }

@@ -154,7 +154,7 @@ export const scenarios: Scenario[] = [
   { id: 'self-hosted', label: 'Self-hosted or colocation infrastructure', description: 'Own data centres, colocation, or on-prem servers.', applicableDomains: ['mdm', 'dlp', 'byod'], soaImpact: 'A.7.5, A.7.8, A.7.11, A.7.12 in scope; A.7.1-7.4 in scope; UPS, climate, cabling required' },
   { id: 'hybrid', label: 'Hybrid cloud and on-prem', description: 'Mix of cloud and on-prem infrastructure.', applicableDomains: ['mdm', 'dlp', 'byod'], soaImpact: 'All physical controls (A.7.x) in scope; shared responsibility mapping required (A.5.23)' },
   { id: 'outsourced-dev', label: 'Outsourced or offshore development', description: 'External agencies or freelancers write code.', applicableDomains: ['mdm', 'dlp', 'byod'], soaImpact: 'A.8.30 in scope with contract security clauses, right-to-audit, CI gates, access revocation' },
-  { id: 'no-dev', label: 'No software development / no data hosting', description: 'Pure SaaS buyer, consulting, legal — no code or data hosting.', applicableDomains: ['mdm', 'dlp', 'byod'], soaImpact: 'A.8.25-8.29 cluster excluded with written reasons; A.8.24 partial exclusion; supplier controls A.5.19-5.23 retained' },
+  { id: 'no-dev', label: 'No software development / no data hosting', description: 'Pure SaaS buyer, consulting, legal - no code or data hosting.', applicableDomains: ['mdm', 'dlp', 'byod'], soaImpact: 'A.8.25-8.29 cluster excluded with written reasons; A.8.24 partial exclusion; supplier controls A.5.19-5.23 retained' },
   { id: 'regulated', label: 'Regulated data (PHI/HIPAA, PCI, children, EU/UK personal, India DPDP)', description: 'Processing regulated or special-category data.', applicableDomains: ['mdm', 'dlp', 'byod'], soaImpact: 'A.5.31-5.36 strengthened; add jurisdiction controls (HIPAA BAA, PCI DSS, GDPR DPIA/DPO, DPDP obligations)' },
   { id: 'ai-ml', label: 'AI/ML products or LLM use on customer data', description: 'AI/ML models trained on or processing customer data.', applicableDomains: ['mdm', 'dlp', 'byod'], soaImpact: 'Data provenance, model/vendor in supplier register; note ISO 42001 interplay' },
   { id: 'multi-entity', label: 'Multi-entity / subsidiaries / parent group shared services', description: 'Parent group with shared IT, HR, finance services.', applicableDomains: ['mdm', 'dlp', 'byod'], soaImpact: 'Group policy adoption record per entity; intra-group agreements as interfaces (A.5.19-5.23)' },
@@ -168,23 +168,23 @@ export const scenarios: Scenario[] = [
 
 // Glossary
 export const glossary: GlossaryEntry[] = [
-  { term: 'MDM', definition: 'Mobile Device Management — software to enroll, configure, and secure mobile devices and laptops.' },
-  { term: 'MAM', definition: 'Mobile Application Management — manages specific apps and their data without full device enrollment.' },
-  { term: 'BYOD', definition: 'Bring Your Own Device — employees use personal devices for work.' },
-  { term: 'COPE', definition: 'Corporate-Owned, Personally Enabled — company buys device, allows personal use in container.' },
-  { term: 'MDM/UEM', definition: 'Unified Endpoint Management — MDM extended to laptops, desktops, IoT.' },
-  { term: 'DLP', definition: 'Data Loss Prevention — technology to detect and prevent sensitive data exfiltration.' },
-  { term: 'CASB', definition: 'Cloud Access Security Broker — mediates access to cloud apps, enforces DLP, detects shadow IT.' },
-  { term: 'SCIM', definition: 'System for Cross-domain Identity Management — standard for automated user provisioning/deprovisioning.' },
-  { term: 'OMA-URI', definition: 'Open Mobile Alliance Uniform Resource Identifier — Microsoft CSP configuration path for Intune.' },
-  { term: 'CSP', definition: 'Configuration Service Provider — Windows configuration interface used by Intune OMA-URI.' },
-  { term: 'JIT', definition: 'Just-In-Time — temporary privilege elevation with approval and logging.' },
-  { term: 'PIM', definition: 'Privileged Identity Management — Azure AD feature for time-bound admin roles.' },
-  { term: 'ZTNA', definition: 'Zero Trust Network Access — per-request verification replacing VPN.' },
-  { term: 'SASE', definition: 'Secure Access Service Edge — cloud-delivered network security (ZTNA, SWG, CASB, FWaaS).' },
-  { term: 'DPIA', definition: 'Data Protection Impact Assessment — GDPR Art. 35 assessment for high-risk processing.' },
-  { term: 'ROPA', definition: 'Record of Processing Activities — GDPR Art. 30 register of all processing operations.' },
-  { term: 'DPIA', definition: 'Data Protection Impact Assessment — GDPR Art. 35 assessment for high-risk processing.' }
+  { term: 'MDM', definition: 'Mobile Device Management - software to enroll, configure, and secure mobile devices and laptops.' },
+  { term: 'MAM', definition: 'Mobile Application Management - manages specific apps and their data without full device enrollment.' },
+  { term: 'BYOD', definition: 'Bring Your Own Device - employees use personal devices for work.' },
+  { term: 'COPE', definition: 'Corporate-Owned, Personally Enabled - company buys device, allows personal use in container.' },
+  { term: 'MDM/UEM', definition: 'Unified Endpoint Management - MDM extended to laptops, desktops, IoT.' },
+  { term: 'DLP', definition: 'Data Loss Prevention - technology to detect and prevent sensitive data exfiltration.' },
+  { term: 'CASB', definition: 'Cloud Access Security Broker - mediates access to cloud apps, enforces DLP, detects shadow IT.' },
+  { term: 'SCIM', definition: 'System for Cross-domain Identity Management - standard for automated user provisioning/deprovisioning.' },
+  { term: 'OMA-URI', definition: 'Open Mobile Alliance Uniform Resource Identifier - Microsoft CSP configuration path for Intune.' },
+  { term: 'CSP', definition: 'Configuration Service Provider - Windows configuration interface used by Intune OMA-URI.' },
+  { term: 'JIT', definition: 'Just-In-Time - temporary privilege elevation with approval and logging.' },
+  { term: 'PIM', definition: 'Privileged Identity Management - Azure AD feature for time-bound admin roles.' },
+  { term: 'ZTNA', definition: 'Zero Trust Network Access - per-request verification replacing VPN.' },
+  { term: 'SASE', definition: 'Secure Access Service Edge - cloud-delivered network security (ZTNA, SWG, CASB, FWaaS).' },
+  { term: 'DPIA', definition: 'Data Protection Impact Assessment - GDPR Art. 35 assessment for high-risk processing.' },
+  { term: 'ROPA', definition: 'Record of Processing Activities - GDPR Art. 30 register of all processing operations.' },
+  { term: 'DPIA', definition: 'Data Protection Impact Assessment - GDPR Art. 35 assessment for high-risk processing.' }
 ];
 
 // MDM Controls (15 controls)
@@ -993,7 +993,7 @@ export const thirdPartyTools = [
 export const roadmaps = [
   {
     id: 'roadmap-small',
-    label: 'Small (1-50) — 30/60/90 Day Plan',
+    label: 'Small (1-50) - 30/60/90 Day Plan',
     timeframe: '90 days',
     applicableSizes: ['small'],
     tasks: [
@@ -1004,7 +1004,7 @@ export const roadmaps = [
   },
   {
     id: 'roadmap-medium',
-    label: 'Medium (51-500) — Two-Quarter Plan',
+    label: 'Medium (51-500) - Two-Quarter Plan',
     timeframe: '6 months (2 quarters)',
     applicableSizes: ['medium'],
     tasks: [
@@ -1014,7 +1014,7 @@ export const roadmaps = [
   },
   {
     id: 'roadmap-large',
-    label: 'Large (500+) — 12-Month Plan',
+    label: 'Large (500+) - 12-Month Plan',
     timeframe: '12 months',
     applicableSizes: ['large'],
     tasks: [

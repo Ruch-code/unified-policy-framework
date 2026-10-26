@@ -12,8 +12,8 @@ const USE_CASES = [
     scenario:
       'A SaaS startup ships an AI screener that ranks CVs and recommends whether recruiters advance candidates. It consumes résumé text plus demographic-adjacent signals (education institution, employment gaps) and filters shortlists before a human recruiter ever looks at a candidate.',
     risks: [
-      'EU AI Act: employment and recruitment is a high-risk category (Annex III) — a conformity assessment, risk & quality-management system, technical documentation, and evidence of human oversight are required before placing the system into EU service.',
-      'GDPR Art. 22: if the screener effectively decides who advances, it is "solely automated" decision-making that significantly affects candidates — prohibited unless an exemption applies, and even then suitable safeguards (meaningful human review, right to contest, right to express a view) are mandatory.',
+      'EU AI Act: employment and recruitment is a high-risk category (Annex III) - a conformity assessment, risk & quality-management system, technical documentation, and evidence of human oversight are required before placing the system into EU service.',
+      'GDPR Art. 22: if the screener effectively decides who advances, it is "solely automated" decision-making that significantly affects candidates - prohibited unless an exemption applies, and even then suitable safeguards (meaningful human review, right to contest, right to express a view) are mandatory.',
       'US rules: NYC Local Law 144 mandates an independent bias audit of automated employment decision tools; the Illinois AI-Video Interview Act requires disclosure and consent; the Colorado AI Act (in force from 2026) covers consequential employment decisions with deployer duties.',
       'Adverse-impact risk: proxies such as employment gaps or university tier can systematically disadvantage protected groups, opening exposure to EEO and anti-discrimination claims.',
     ],
@@ -38,13 +38,13 @@ const USE_CASES = [
     scenario:
       'A fintech uses a machine-learning credit model with non-traditional data (spending patterns, device signals, social connections) to approve or decline loan requests in near real time across the EU, US, and India.',
     risks: [
-      'GDPR Art. 22 and EDPB guidance: credit scoring that meaningfully affects an individual is very likely "solely automated" — it requires meaningful human review, an explanation of the logic involved, and an account of the envisaged consequences.',
+      'GDPR Art. 22 and EDPB guidance: credit scoring that meaningfully affects an individual is very likely "solely automated" - it requires meaningful human review, an explanation of the logic involved, and an account of the envisaged consequences.',
       'ECOA / Regulation B (US): every adverse action must trigger a specific reasons notice; discretionary scoring models need adverse-action reason codes and, in practice, limited reconstitution of the model.',
-      'EU AI Act: creditworthiness assessment is a high-risk category (Annex III) — conformity assessment, Art. 14 human oversight, and Art. 72 post-market monitoring apply.',
+      'EU AI Act: creditworthiness assessment is a high-risk category (Annex III) - conformity assessment, Art. 14 human oversight, and Art. 72 post-market monitoring apply.',
       'Model risk: training on biased historical lending patterns perpetuates redlining and disparate-impact outcomes; regulators each side of the Atlantic expect model-governance discipline (SR 11-07 style in the US).',
     ],
     response: [
-      'Maintain a model-risk management plan covering development, independent validation, deployment, and monitoring — with validation completed before production.',
+      'Maintain a model-risk management plan covering development, independent validation, deployment, and monitoring - with validation completed before production.',
       'Run disparate-impact testing (demographic parity and equalized odds on approval rates across protected groups) and remove proxy features before launch.',
       'Implement meaningful human review with authority to reverse declines, and log every human override as evidence.',
       'Build adverse-action reason codes that map to the actual model drivers for Reg B disclosures and the GDPR Art. 22 explanation mechanism.',
@@ -62,12 +62,12 @@ const USE_CASES = [
     icon: MessageSquareText,
     color: 'amber',
     scenario:
-      'A SaaS company ships a generative-AI assistant — an LLM grounded on its documentation with agentic tool use — that answers support questions, drafts responses, and executes simple account actions for customers and employees.',
+      'A SaaS company ships a generative-AI assistant - an LLM grounded on its documentation with agentic tool use - that answers support questions, drafts responses, and executes simple account actions for customers and employees.',
     risks: [
       'EU AI Act Art. 50 transparency: users must be told they are interacting with AI, and synthetic content that could deceive must be marked as such.',
       'Hallucination risk: invented answers about policies, pricing, or account data create consumer-protection liability (FTC deceptive-practices and equivalent EU unfair-commercial-practices rules), even when a human reviews later.',
       'Prompt-injection and data exposure: the agent can be manipulated into triggering tools or surfacing PII from the knowledge base.',
-      'Deepfake/voice risk escalates if the assistant can call customers or generate persona audio — impersonation and consent issues multiply both regulatory and brand risk.',
+      'Deepfake/voice risk escalates if the assistant can call customers or generate persona audio - impersonation and consent issues multiply both regulatory and brand risk.',
       'Privacy: personal data fed into the model for grounding creates a new processing activity that requires DPIA review, notice, and purpose checks.',
     ],
     response: [
@@ -89,11 +89,11 @@ const USE_CASES = [
     icon: BrainCircuit,
     color: 'cyan',
     scenario:
-      'Engineering buys frontier models and AI APIs — foundation models, embeddings, code assistants — from several vendors with no procurement review. Each vendor receives prompts and training data, and model behavior can change upstream without notice.',
+      'Engineering buys frontier models and AI APIs - foundation models, embeddings, code assistants - from several vendors with no procurement review. Each vendor receives prompts and training data, and model behavior can change upstream without notice.',
     risks: [
       'EU AI Act GPAI obligations (Arts. 51-56): general-purpose AI providers must document their models and publish a training-data summary; deployers still carry deployer-side duties, so the GPAI provider documentation feeds your own conformity reasoning.',
-      'No DPA for prompt data: prompts frequently contain PII, pricing, and source code — a GDPR Art. 28 DPA with sub-processor list, purpose limits, and deletion clauses is mandatory, as are CCPA service-provider terms.',
-      'Intellectual-property risk: outputs may reproduce copyrighted or proprietary training content, and AI-generated code can embed license-incompatible fragments — model/code SBOM becomes a genuine safety issue.',
+      'No DPA for prompt data: prompts frequently contain PII, pricing, and source code - a GDPR Art. 28 DPA with sub-processor list, purpose limits, and deletion clauses is mandatory, as are CCPA service-provider terms.',
+      'Intellectual-property risk: outputs may reproduce copyrighted or proprietary training content, and AI-generated code can embed license-incompatible fragments - model/code SBOM becomes a genuine safety issue.',
       'Upstream drift: a vendor can swap a model with no notice, silently changing behavior that your validation previously approved.',
       'Indirect conformity: building a high-risk product on a GPAI whose documentation lapses can break your own conformity assessment.',
     ],
@@ -118,8 +118,8 @@ const USE_CASES = [
     scenario:
       'A payments company replaces rules-based AML screening with an ML classifier that flags suspicious transactions and controls alert volumes feeding the compliance investigation queue.',
     risks: [
-      'Model risk per SR 11-07: AML models at banks and payment institutions are subject to formal model-risk management — development, independent validation, and execution governance are regulatory expectations.',
-      'Bias and disparate impact: alert-tuning choices can over-flag legitimate low-income or minority customers (false positives) while under-performance misses true positives — dual harm plus discrimination and financial-crime exposure.',
+      'Model risk per SR 11-07: AML models at banks and payment institutions are subject to formal model-risk management - development, independent validation, and execution governance are regulatory expectations.',
+      'Bias and disparate impact: alert-tuning choices can over-flag legitimate low-income or minority customers (false positives) while under-performance misses true positives - dual harm plus discrimination and financial-crime exposure.',
       'Assistive models still shape outcomes: the model normally feeds human investigations, but the effective decision rests on how it guides the queue, so explainability and auditability are mandatory.',
       'EU AI Act: AI for evaluating or assessing risk in insurance and financial-crime screening (and biometrics) falls into high-risk categories in Annex III.',
       'Logging: evidence of why an alert fired must persist for regulators over the retention windows that apply.',
@@ -134,7 +134,7 @@ const USE_CASES = [
     verify: [
       'Validation report, threshold-configuration history, disposition taxonomy, and audit-trail retention are inspectable.',
       'What was the last false-positive-rate drift, which cohort drove it, and who owns the retraining trigger?',
-      'Is the human-override rate measured, and do overrides feed the model — is there a closed learning loop with a named accountable owner?',
+      'Is the human-override rate measured, and do overrides feed the model - is there a closed learning loop with a named accountable owner?',
     ],
   },
 ];
@@ -157,11 +157,11 @@ export default function AigpUseCases() {
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-text-dark-primary flex items-center gap-3">
             <span className="w-10 h-10 rounded-xl bg-violet-600 text-white flex items-center justify-center"><BrainCircuit className="w-6 h-6" /></span>
-            IAPP AIGP in Practice — End-to-End Use Cases
+            IAPP AIGP in Practice - End-to-End Use Cases
           </h2>
           <p className="text-gray-600 dark:text-text-dark-secondary mt-3 max-w-3xl leading-relaxed">
             The AIGP (Artificial Intelligence Governance Professional) credential is IAPP's AI governance certification, accredited by
-            ANAB and organized around six body-of-knowledge domains — <strong>AI fundamentals</strong>, <strong>legal/regulatory &amp;
+            ANAB and organized around six body-of-knowledge domains - <strong>AI fundamentals</strong>, <strong>legal/regulatory &amp;
             compliance</strong>, <strong>AI risk management &amp; governance</strong>, <strong>societal implications</strong>,{' '}
             <strong>communication &amp; collaboration</strong>, and <strong>embedding governance</strong>. Each use case below walks a
             real-world deployment end to end: the <span className="text-indigo-600 dark:text-indigo-300 font-semibold">risk exposure</span>,
@@ -222,7 +222,7 @@ export default function AigpUseCases() {
                     </div>
                     <div className="rounded-xl bg-emerald-50 border border-emerald-100 p-4 dark:bg-emerald-950/20 dark:border-emerald-900/40">
                       <p className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-emerald-700 dark:text-emerald-300 mb-2">
-                        Governance response — what an AIGP actually does
+                        Governance response - what an AIGP actually does
                       </p>
                       <ol className="space-y-1.5">
                         {uc.response.map((r, ri) => (

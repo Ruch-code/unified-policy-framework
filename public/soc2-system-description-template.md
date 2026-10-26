@@ -1,6 +1,6 @@
-# AICPA SOC 2 System Description Template — Complete Reference (Bullet Points)
+# AICPA SOC 2 System Description Template - Complete Reference (Bullet Points)
 
-> **Use this bullet-point template** — copy into your document editor, fill in each section, attach diagrams as appendices. Follows the AICPA SOC 2 Guide structure exactly.
+> **Use this bullet-point template** - copy into your document editor, fill in each section, attach diagrams as appendices. Follows the AICPA SOC 2 Guide structure exactly.
 
 ---
 
@@ -27,11 +27,11 @@
 - Boundaries (what's IN scope):
 - What's OUT of scope (and why):
 - Trust Services Criteria applicability:
-  - ☐ Security (Common Criteria — REQUIRED)
-  - ☐ Availability
-  - ☐ Processing Integrity
-  - ☐ Confidentiality
-  - ☐ Privacy
+  - [ ] Security (Common Criteria - REQUIRED)
+  - [ ] Availability
+  - [ ] Processing Integrity
+  - [ ] Confidentiality
+  - [ ] Privacy
 
 ### 1.4 Principal Service Commitments & System Requirements
 - Contractual commitments to customers (SLAs, uptime, response times):
@@ -169,9 +169,9 @@
 
 ---
 
-## ✅ Instructions for Completion
+## [x] Instructions for Completion
 1. Copy this template to your document editor
-2. Complete ALL sections — auditors will verify each
+2. Complete ALL sections - auditors will verify each
 3. Attach diagrams as Appendix items (not inline)
 4. Have Security Lead and CTO review before auditor delivery
 5. Update annually or after material system changes

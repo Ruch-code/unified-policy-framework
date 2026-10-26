@@ -36,7 +36,7 @@ const FRAMEWORK = {
           },
           {
             title: 'Risk Identification Techniques',
-            control: 'Risk identification uses a range of techniques to discover risks from multiple sources — process analysis, brainstorming, checklists, SWOT, scenario analysis, and structured techniques — none of which are mandated by ISO 31000 but all are compatible with its process.',
+            control: 'Risk identification uses a range of techniques to discover risks from multiple sources - process analysis, brainstorming, checklists, SWOT, scenario analysis, and structured techniques - none of which are mandated by ISO 31000 but all are compatible with its process.',
             how: 'Learn the common risk identification techniques: brainstorming and workshops, structured interviews, checklists and questionnaires, process mapping and flowcharts, SWOT/PESTLE analysis, scenario analysis and what-if, bow-tie analysis, fault tree and event tree, Delphi technique, and organisational learning/incident review. Select techniques suited to the organisation\'s context, complexity, and available data. Combine techniques for comprehensiveness (e.g., process mapping plus workshops). Establish a structured risk identification schedule covering strategic, operational, financial, compliance, and project risks. Document identified risks in a consistent format including source, cause, event, and consequence.',
             check: 'Confirm a documented risk identification procedure selects and justifies appropriate techniques. Verify SWOT/PESTLE, process mapping, and scenario techniques are applied in recent assessments. Check that risk identification covers strategic, operational, financial, compliance, and project domains. Validate that identified risks are recorded in a consistent structured format.'
           },
@@ -74,7 +74,7 @@ const FRAMEWORK = {
           },
           {
             title: 'Risk Owner Assignment',
-            control: 'ISO 31000:2018 requires clear accountability — each risk must have a designated risk owner accountable for managing that risk and its treatment.',
+            control: 'ISO 31000:2018 requires clear accountability - each risk must have a designated risk owner accountable for managing that risk and its treatment.',
             how: 'Assign a risk owner for every registered risk: an individual accountable for ensuring the risk is managed, treatment implemented, and risk level monitored. Match owner authority with accountability (the owner must have the authority to act on the risk). Define owner responsibilities: maintaining the risk entry, implementing/championing treatment actions, reporting on risk status, and escalating when residual risk exceeds tolerance. Document ownership formally and communicate it. Ensure no risk is left without an owner. Review ownership assignments when personnel or risk profiles change.',
             check: 'Verify every risk in the register has a designated named owner. Confirm owners have authority matching their accountability. Check that owner responsibilities are documented and accepted. Validate that ownership is reviewed when roles or risks change.'
           },
@@ -112,7 +112,7 @@ const FRAMEWORK = {
           },
           {
             title: 'Internal Audit of Risk Process',
-            control: 'Internal audit verifies the risk management process operates as designed, is effective, and conforms to ISO 31000:2018 expectations — independent assurance over the risk framework.',
+            control: 'Internal audit verifies the risk management process operates as designed, is effective, and conforms to ISO 31000:2018 expectations - independent assurance over the risk framework.',
             how: 'Define the audit scope: framework design conformance (principles, policy, integration), process execution (identification, analysis, evaluation, treatment), governance (ownership, reporting, escalation), and control effectiveness. Develop audit criteria mapped to ISO 31000:2018 clauses 4-6. Execute audit activities: document review, interviews with risk owners and management, sampling of risk assessments, and testing of controls. Assess whether the framework is actually used in decision-making, not merely documented. Report findings with severity ratings and remediation recommendations. Track audit findings to closure through management action plans. Coordinate with external auditors to avoid duplication.',
             check: 'Verify an internal audit of the risk process has been conducted with criteria mapped to ISO 31000. Confirm audit tested framework design, process execution, governance, and controls. Check that findings are rated and remediation is tracked to closure. Validate that audit confirms risk is used in actual decision-making.'
           },
@@ -132,7 +132,7 @@ const FRAMEWORK = {
         tasks: [
           {
             title: 'Common Risk Management Failures',
-            control: 'Recognising the most common risk management failures — checklist-only compliance, disconnected risk registers, ownership gaps, and framework formalism without decision impact — enables corrective action.',
+            control: 'Recognising the most common risk management failures - checklist-only compliance, disconnected risk registers, ownership gaps, and framework formalism without decision impact - enables corrective action.',
             how: 'Study the common failure modes: treating risk management as a compliance checklist rather than a decision tool; risk registers disconnected from actual operations and decisions; undocumented or unrealistic likelihood/consequence scoring; risks without effective owners; treatment plans that are never executed; risk reviews that are superficial; silos between enterprise, operational, and project risk; ignoring human and cultural factors; lack of top management engagement; and failure to reassess after change. Diagnose which failure modes exist in your organisation. Design corrective actions for each identified failure: embed risk in governance, link risk to objectives, operationalise reviews, enforce ownership. Continuously assess against these failure modes as part of framework evaluation.',
             check: 'Verify a diagnosis of common failure modes against your risk process is documented. Confirm corrective actions are defined for each identified failure. Check that top management engagement with risk is evidenced. Validate that risk management demonstrably influences decisions, not just documents.'
           },
@@ -144,13 +144,13 @@ const FRAMEWORK = {
           },
           {
             title: 'Sector-Specific Risk Frameworks',
-            control: 'Sector frameworks — financial (Basel/ISO 27001), healthcare (NIST/HIPAA), and technology (ISO 27005/NIST CSF) — layer specific risk requirements on top of the generic ISO 31000 process.',
+            control: 'Sector frameworks - financial (Basel/ISO 27001), healthcare (NIST/HIPAA), and technology (ISO 27005/NIST CSF) - layer specific risk requirements on top of the generic ISO 31000 process.',
             how: 'Financial sector: map to Basel III operational risk (AMA/standardised approach), COSO ERM integration, regulatory capital for operational risk, and financial crime/AML risk. Healthcare sector: map to HIPAA Security Rule risk analysis, NIST SP 800-30 for health data, clinical risk management (ISO 14971 for medical devices), and patient safety risk. Technology sector: map to ISO 27005 for infosec, NIST CSF for cyber risk, and software/system risk (ISO/IEC 27001, secure development). Compare the sector requirement matrix against your ISO 31000 process and identify additional criteria and controls needed. Reconcile generic ISO 31000 outputs with sector-specific reporting and regulatory requirements. Build a single integrated process that satisfies both the generic standard and sector obligations.',
             check: 'Verify sector-specific requirements (financial, healthcare, or tech as applicable) are mapped to the ISO 31000 process. Confirm sector-reporting and regulatory obligations are integrated into the risk process. Check that additional sector criteria and controls are documented. Validate reconciliation between generic and sector-specific risk outputs.'
           },
           {
             title: 'Risk Culture Development',
-            control: 'ISO 31000:2018 recognises human and cultural factors as a core principle — building a positive risk culture embeds risk awareness and ownership across all levels of the organisation.',
+            control: 'ISO 31000:2018 recognises human and cultural factors as a core principle - building a positive risk culture embeds risk awareness and ownership across all levels of the organisation.',
             how: 'Define the desired risk culture: openness to discussing risk, willing escalation without blame, ownership at all levels, balanced risk-taking, and alignment of individual decisions with organisational risk appetite. Develop culture-building activities: training and awareness programs, leadership modelling of risk behaviour, risk communication and dialogue at all levels, recognition of good risk practices, and psychological safety for escalation. Assess current culture through surveys, interviews, and observation of decision behaviours. Design interventions to close cultural gaps. Promote "risk is everyone\u2019s responsibility" while maintaining structured ownership. Measure culture improvement over time through repeat assessments and behavioural indicators.',
             check: 'Verify a risk culture assessment (survey/interview) has been conducted. Confirm training and awareness programs embed risk principles across levels. Check that leadership visibly models risk-aware decision-making. Validate that culture improvement is measured through repeat assessment indicators.'
           },

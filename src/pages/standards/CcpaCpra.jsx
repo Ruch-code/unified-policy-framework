@@ -14,7 +14,7 @@ const FRAMEWORK = {
   weeksData: [
     {
       week: 1,
-      title: "Foundation — CCPA/CPRA Landscape & Consumer Rights",
+      title: "Foundation - CCPA/CPRA Landscape & Consumer Rights",
       description:
         "Build a solid understanding of CCPA and CPRA distinctions, scope thresholds, personal information definitions, and the full spectrum of consumer rights under California privacy law.",
       days: [
@@ -40,14 +40,14 @@ const FRAMEWORK = {
               title: "Personal Information (PI) and Sensitive Personal Information (SPI) Definitions",
               control:
                 "CCPA defines personal information broadly; CPRA added the sensitive personal information subcategory.",
-              how: "Study the statutory definition of personal information under Civ. Code §1798.140(v) — any information that identifies, relates to, describes, is reasonably capable of being associated with, or could reasonably be linked to a particular consumer or household. Review the 11 categories of SPI under Civ. Code §1798.140(ae) including SSN, financial data, precise geolocation, racial/ethnic origin, biometric data, health data, sex life/sexual orientation, and contents of communications.",
+              how: "Study the statutory definition of personal information under Civ. Code §1798.140(v) - any information that identifies, relates to, describes, is reasonably capable of being associated with, or could reasonably be linked to a particular consumer or household. Review the 11 categories of SPI under Civ. Code §1798.140(ae) including SSN, financial data, precise geolocation, racial/ethnic origin, biometric data, health data, sex life/sexual orientation, and contents of communications.",
               check: "Can you classify a set of data elements into PI vs non-PI, and identify which PI elements qualify as SPI?",
             },
             {
               title: "Consumer Rights Overview",
               control:
                 "CPRA grants California consumers six primary rights over their personal information.",
-              how: "Map each right: (1) Right to Know — what PI is collected and how it is used, (2) Right to Delete — request deletion of PI, (3) Right to Correct — request correction of inaccurate PI, (4) Right to Opt-Out of Sale/Sharing — stop sale or sharing of PI, (5) Right to Limit Use of SPI — restrict use and disclosure of SPI, and (6) Right to Non-Discrimination — no retaliation for exercising rights. Document the request timelines (45 days, extendable by 45 days).",
+              how: "Map each right: (1) Right to Know - what PI is collected and how it is used, (2) Right to Delete - request deletion of PI, (3) Right to Correct - request correction of inaccurate PI, (4) Right to Opt-Out of Sale/Sharing - stop sale or sharing of PI, (5) Right to Limit Use of SPI - restrict use and disclosure of SPI, and (6) Right to Non-Discrimination - no retaliation for exercising rights. Document the request timelines (45 days, extendable by 45 days).",
               check: "Can you describe each consumer right, its scope, the applicable response timeline, and any exceptions that apply?",
             },
             {
@@ -64,21 +64,21 @@ const FRAMEWORK = {
           title: "Consumer Rights Requests (CRR) Deep Dive",
           tasks: [
             {
-              title: "Right to Know — Categories and Specific Pieces",
+              title: "Right to Know - Categories and Specific Pieces",
               control:
                 "Consumers may request disclosure of categories of PI collected and specific pieces of PI held.",
               how: "Document the two sub-types of Right to Know requests: (1) categories of PI collected, sources, business purposes, and third parties with whom PI is shared, and (2) specific pieces of PI collected about the consumer. Map your data collection to these disclosure requirements. Establish verification procedures for each request type (generally, reasonable security requirement for category requests; higher verification for specific PI).",
               check: "Can you produce a complete categories-of-PI disclosure and demonstrate the verification process for a specific-PI request?",
             },
             {
-              title: "Right to Delete — Scope and Exceptions",
+              title: "Right to Delete - Scope and Exceptions",
               control:
                 "Deletion requests must be honored unless a statutory exception applies.",
               how: "Identify all deletion exceptions under Civ. Code §1798.105(d): completing the transaction, security purposes, debugging, exercising free speech, public interest research, internal uses reasonably aligned with expectations, and internal uses compatible with the context of collection. Document how your organization applies each exception and notifies the consumer when an exception is invoked.",
               check: "Can you demonstrate your deletion workflow including exception evaluation, downstream service provider notification, and consumer communication?",
             },
             {
-              title: "Right to Correct — Process and Accuracy",
+              title: "Right to Correct - Process and Accuracy",
               control:
                 "CPRA introduces the right to request correction of inaccurate personal information.",
               how: "Develop a correction request workflow. Determine how corrections propagate to service providers and contractors who received the inaccurate data. Establish whether your organization uses a post-correction attestation process. Note that the organization may consider the totality of circumstances when determining whether an inaccuracy exists.",
@@ -126,7 +126,7 @@ const FRAMEWORK = {
               check: "Can you classify your third-party relationships as service provider or contractor and demonstrate that the corresponding contracts contain all required CCPA/CPRA provisions?",
             },
             {
-              title: "Records of Processing Activities (ROPA) — CCPA/CPRA",
+              title: "Records of Processing Activities (ROPA) - CCPA/CPRA",
               control:
                 "CPRA requires businesses to maintain Records of Processing Activities.",
               how: "Document what must be recorded: categories of PI collected and disclosed, purposes of processing, categories of consumers, categories of third parties, retention periods, and (for businesses with $25M+ revenue) data practices of the previous 12 months. Map your processing activities from data intake through storage, sharing, and deletion. Integrate with your existing data inventory.",
@@ -153,10 +153,10 @@ const FRAMEWORK = {
               check: "Can you produce a complete SPI inventory with processing justifications, security measures, and evidence that SPI is not used beyond permitted purposes?",
             },
             {
-              title: "Minors — Opt-In Consent Requirements",
+              title: "Minors - Opt-In Consent Requirements",
               control:
                 "CCPA/CPRA requires opt-in consent for consumers aged 16-17 and parental consent for children under 16.",
-              how: "Review the age-based consent tiers: (1) children under 13 — affirmative opt-in from parent/guardian required before sale/sharing, (2) consumers aged 13-15 — affirmative opt-in from the consumer required before sale/sharing. Implement age verification mechanisms where sale/sharing occurs. Ensure consent mechanisms are clear, conspicuous, and not bundled with other terms. Document consent collection and management processes.",
+              how: "Review the age-based consent tiers: (1) children under 13 - affirmative opt-in from parent/guardian required before sale/sharing, (2) consumers aged 13-15 - affirmative opt-in from the consumer required before sale/sharing. Implement age verification mechanisms where sale/sharing occurs. Ensure consent mechanisms are clear, conspicuous, and not bundled with other terms. Document consent collection and management processes.",
               check: "Can you demonstrate that your organization has appropriate age-gating and consent mechanisms for all sale/sharing of PI of minors?",
             },
             {
@@ -167,7 +167,7 @@ const FRAMEWORK = {
               check: "Can you identify all financial incentive programs and demonstrate they meet CCPA/CPRA's notice, consent, and value-relation requirements?",
             },
             {
-              title: "Do Not Sell or Share — Global Privacy Control (GPC)",
+              title: "Do Not Sell or Share - Global Privacy Control (GPC)",
               control:
                 "CPRA requires businesses to honor opt-out preference signals including GPC.",
               how: "Implement technical mechanisms to detect and honor GPC signals and similar browser-level privacy preferences. Document how your systems treat GPC as a valid opt-out request without requiring additional consumer action. Ensure GPC recognition works across all platforms (web, mobile, third-party integrations). Test GPC signal propagation through your advertising and analytics technology stack.",
@@ -227,7 +227,7 @@ const FRAMEWORK = {
     },
     {
       week: 2,
-      title: "Implementer — Operationalizing CCPA/CPRA Compliance",
+      title: "Implementer - Operationalizing CCPA/CPRA Compliance",
       description:
         "Build the operational processes, technical mechanisms, and organizational workflows needed to implement CCPA/CPRA compliance in practice.",
       days: [
@@ -246,7 +246,7 @@ const FRAMEWORK = {
               title: "CRR Identity Verification Procedures",
               control:
                 "Businesses must verify the identity of the consumer making the request before processing it.",
-              how: "Implement a tiered verification approach: (1) for requests to know categories — reasonably verify using two factors, (2) for requests to know specific PI — reasonably verify using at least three factors, (3) for deletion and correction requests — reasonably verify using two factors matching the PI on record. Select verification factors: matching PI already collected, confirming identity through a pre-established authenticated account, or using signed declarations for high-risk requests.",
+              how: "Implement a tiered verification approach: (1) for requests to know categories - reasonably verify using two factors, (2) for requests to know specific PI - reasonably verify using at least three factors, (3) for deletion and correction requests - reasonably verify using two factors matching the PI on record. Select verification factors: matching PI already collected, confirming identity through a pre-established authenticated account, or using signed declarations for high-risk requests.",
               check: "Can you demonstrate the verification procedures for each request type and provide evidence that they meet the 'reasonable security' standard?",
             },
             {
@@ -260,7 +260,7 @@ const FRAMEWORK = {
               title: "Authorized Agent and Household Request Handling",
               control:
                 "CCPA/CPRA permits authorized agents to submit requests on behalf of consumers, and allows household-level requests.",
-              how: "Implement processes for: (1) authorized agent requests — require either a signed written authorization from the consumer or evidence of power of attorney, verify the agent's authority before processing, (2) household requests — determine the scope of household-level requests, handle situations where multiple household members may have conflicting preferences. Document the additional verification steps for agent and household requests.",
+              how: "Implement processes for: (1) authorized agent requests - require either a signed written authorization from the consumer or evidence of power of attorney, verify the agent's authority before processing, (2) household requests - determine the scope of household-level requests, handle situations where multiple household members may have conflicting preferences. Document the additional verification steps for agent and household requests.",
               check: "Can you process both authorized agent and household requests with appropriate verification and authorization checks?",
             },
             {
@@ -366,7 +366,7 @@ const FRAMEWORK = {
               check: "Can you produce a ROPA that is current, comprehensive, and accurately reflects your actual data processing activities?",
             },
             {
-              title: "Data Mapping — End-to-End PI Flow Documentation",
+              title: "Data Mapping - End-to-End PI Flow Documentation",
               control:
                 "Accurate data mapping is essential for fulfilling consumer rights and demonstrating compliance.",
               how: "Create data maps for each PI category showing: (1) point of collection, (2) storage location(s), (3) internal systems that process the data, (4) service providers and contractors who receive the data, (5) cross-border transfers, (6) retention and deletion pathways. Use automated data flow discovery tools where available. Validate data maps against actual system configurations.",
@@ -424,7 +424,7 @@ const FRAMEWORK = {
               title: "Security Controls Testing for PI/SPI",
               control:
                 "Security controls must be validated through testing, not just documented.",
-              how: "Test all PI/SPI security controls: (1) access control testing — verify users can only access PI/SPI authorized for their role, (2) encryption verification — confirm data at rest and in transit is encrypted, (3) logging verification — confirm all PI/SPI access is logged, (4) network segmentation testing — verify SPI processing environments are isolated, (5) incident response testing — simulate a data breach and test notification procedures.",
+              how: "Test all PI/SPI security controls: (1) access control testing - verify users can only access PI/SPI authorized for their role, (2) encryption verification - confirm data at rest and in transit is encrypted, (3) logging verification - confirm all PI/SPI access is logged, (4) network segmentation testing - verify SPI processing environments are isolated, (5) incident response testing - simulate a data breach and test notification procedures.",
               check: "Can you produce test results for each security control category demonstrating that controls function as designed?",
             },
             {
@@ -440,7 +440,7 @@ const FRAMEWORK = {
     },
     {
       week: 3,
-      title: "Verifier — Testing & Validation of CCPA/CPRA Controls",
+      title: "Verifier - Testing & Validation of CCPA/CPRA Controls",
       description:
         "Verify the effectiveness of implemented controls through testing, auditing, and assessment methodologies specific to CCPA/CPRA compliance.",
       days: [
@@ -452,14 +452,14 @@ const FRAMEWORK = {
               title: "Consumer Rights Request Verification Testing",
               control:
                 "Each CRR type must be tested for completeness, accuracy, and regulatory compliance.",
-              how: "Design a test plan covering: (1) request intake — verify all required channels work, capture correct data, and generate tracking IDs, (2) verification — test each verification method against the appropriate PI tier, (3) processing — confirm requests are routed correctly, (4) response — validate response content includes all required elements, (5) timelines — verify responses are sent within 45 days. Run tests with realistic scenarios including edge cases.",
+              how: "Design a test plan covering: (1) request intake - verify all required channels work, capture correct data, and generate tracking IDs, (2) verification - test each verification method against the appropriate PI tier, (3) processing - confirm requests are routed correctly, (4) response - validate response content includes all required elements, (5) timelines - verify responses are sent within 45 days. Run tests with realistic scenarios including edge cases.",
               check: "Can you produce test results for each CRR type demonstrating compliance with all CCPA/CPRA requirements?",
             },
             {
               title: "Response Content Accuracy Review",
               control:
                 "CRR responses must contain specific information as required by CCPA/CPRA.",
-              how: "Review sample responses for each right type: (1) Right to Know — verify categories disclosure matches actual data practices, (2) Right to Delete — confirm deletion scope is correct and exceptions are properly invoked, (3) Right to Correct — verify correction is applied and propagated, (4) Opt-out — confirm opt-out status is set and downstream propagated. Compare response content against the data inventory for accuracy.",
+              how: "Review sample responses for each right type: (1) Right to Know - verify categories disclosure matches actual data practices, (2) Right to Delete - confirm deletion scope is correct and exceptions are properly invoked, (3) Right to Correct - verify correction is applied and propagated, (4) Opt-out - confirm opt-out status is set and downstream propagated. Compare response content against the data inventory for accuracy.",
               check: "Can you verify that CRR responses accurately reflect the organization's actual data practices and comply with content requirements?",
             },
             {
@@ -534,7 +534,7 @@ const FRAMEWORK = {
               title: "Full Opt-Out Stack Testing",
               control:
                 "All opt-out mechanisms must be tested for functionality and completeness.",
-              how: "Execute a comprehensive opt-out test suite: (1) 'Do Not Sell or Share' link — verify presence, visibility, and link destination, (2) opt-out form — test submission and acknowledgment, (3) GPC signal — test detection and processing across browsers, (4) opt-out propagation — verify downstream entities are notified, (5) suppression list — verify consumer is added and not re-contacted, (6) reversal — test opt-in process for consumers who want to opt back in.",
+              how: "Execute a comprehensive opt-out test suite: (1) 'Do Not Sell or Share' link - verify presence, visibility, and link destination, (2) opt-out form - test submission and acknowledgment, (3) GPC signal - test detection and processing across browsers, (4) opt-out propagation - verify downstream entities are notified, (5) suppression list - verify consumer is added and not re-contacted, (6) reversal - test opt-in process for consumers who want to opt back in.",
               check: "Can you produce test results demonstrating that all opt-out mechanisms function correctly and completely?",
             },
             {
@@ -600,7 +600,7 @@ const FRAMEWORK = {
               check: "Can you produce risk assessment documentation that meets CPRA requirements and demonstrate a governance process for ongoing risk management?",
             },
             {
-              title: "Combined Assessment Approach — Privacy and Security Risk Integration",
+              title: "Combined Assessment Approach - Privacy and Security Risk Integration",
               control:
                 "CPRA risk assessments should integrate privacy and cybersecurity risks holistically.",
               how: "Develop an integrated assessment framework that combines: (1) privacy risk assessment (data protection impact assessment equivalent), (2) cybersecurity risk assessment, (3) business impact analysis, (4) threat modeling for PI/SPI processing systems. Map risks to controls and mitigations. Establish a combined risk register with clear ownership and remediation timelines.",
@@ -623,7 +623,7 @@ const FRAMEWORK = {
               title: "Deficiency Identification and Prioritization",
               control:
                 "Any compliance gaps must be identified, prioritized, and remediated.",
-              how: "Compile all findings from Week 3 testing activities. Categorize deficiencies by severity: (1) critical — consumer rights not functioning, no opt-out mechanism, (2) high — inaccurate notices, incomplete ROPA, missing contracts, (3) medium — process gaps, documentation deficiencies, (4) low — minor inaccuracies, process improvements. Prioritize remediation based on risk and regulatory exposure. Create a remediation plan with timelines and owners.",
+              how: "Compile all findings from Week 3 testing activities. Categorize deficiencies by severity: (1) critical - consumer rights not functioning, no opt-out mechanism, (2) high - inaccurate notices, incomplete ROPA, missing contracts, (3) medium - process gaps, documentation deficiencies, (4) low - minor inaccuracies, process improvements. Prioritize remediation based on risk and regulatory exposure. Create a remediation plan with timelines and owners.",
               check: "Can you produce a prioritized deficiency report and a remediation plan with clear ownership and timelines?",
             },
             {
@@ -653,7 +653,7 @@ const FRAMEWORK = {
     },
     {
       week: 4,
-      title: "Certified — Advanced Compliance & Multi-Jurisdictional Mastery",
+      title: "Certified - Advanced Compliance & Multi-Jurisdictional Mastery",
       description:
         "Master advanced CCPA/CPRA topics including multi-cloud data residency, enforcement case analysis, integrated compliance frameworks, and ongoing program management.",
       days: [
@@ -665,7 +665,7 @@ const FRAMEWORK = {
               title: "AWS Data Residency and CCPA/CPRA Controls",
               control:
                 "PI processed on AWS must comply with CCPA/CPRA regardless of the AWS region used.",
-              how: "Configure AWS for CCPA/CPRA compliance: (1) enable data residency controls — restrict PI processing to designated AWS regions, (2) configure IAM policies for PI/SPI access control, (3) enable CloudTrail for audit logging, (4) use AWS Config for compliance monitoring, (5) implement encryption with customer-managed KMS keys for PI/SPI, (6) configure S3 bucket policies to prevent unauthorized access, (7) enable Macie for sensitive data discovery. Document data residency configurations and verify they match your privacy notice disclosures.",
+              how: "Configure AWS for CCPA/CPRA compliance: (1) enable data residency controls - restrict PI processing to designated AWS regions, (2) configure IAM policies for PI/SPI access control, (3) enable CloudTrail for audit logging, (4) use AWS Config for compliance monitoring, (5) implement encryption with customer-managed KMS keys for PI/SPI, (6) configure S3 bucket policies to prevent unauthorized access, (7) enable Macie for sensitive data discovery. Document data residency configurations and verify they match your privacy notice disclosures.",
               check: "Can you demonstrate AWS configurations that enforce data residency, access control, encryption, and logging for California consumers' PI?",
             },
             {
@@ -795,7 +795,7 @@ const FRAMEWORK = {
               title: "Compliance Metrics and KPIs",
               control:
                 "Ongoing compliance requires measurable metrics and key performance indicators.",
-              how: "Design a compliance metrics dashboard: (1) CRR metrics — volume, average response time, on-time completion rate, verification pass rate, (2) opt-out metrics — opt-out volume, GPC signal volume, downstream propagation success rate, (3) data inventory metrics — completeness percentage, freshness, change detection rate, (4) privacy notice metrics — version currency, collection point coverage, (5) security metrics — access control compliance, encryption coverage, incident response time. Establish targets and escalation thresholds.",
+              how: "Design a compliance metrics dashboard: (1) CRR metrics - volume, average response time, on-time completion rate, verification pass rate, (2) opt-out metrics - opt-out volume, GPC signal volume, downstream propagation success rate, (3) data inventory metrics - completeness percentage, freshness, change detection rate, (4) privacy notice metrics - version currency, collection point coverage, (5) security metrics - access control compliance, encryption coverage, incident response time. Establish targets and escalation thresholds.",
               check: "Can you produce a compliance dashboard with metrics across CRR, opt-out, data inventory, privacy notices, and security, with clear targets?",
             },
             {
@@ -809,7 +809,7 @@ const FRAMEWORK = {
               title: "Training and Awareness Program",
               control:
                 "Effective CCPA/CPRA compliance requires organization-wide awareness and competency.",
-              how: "Design a comprehensive training program: (1) role-based training — different modules for different teams (customer service for CRR handling, marketing for opt-out and sharing, IT for technical controls, executives for governance), (2) general awareness training for all employees, (3) new hire onboarding training, (4) annual refresher training, (5) specialized training for high-risk areas (SPI handling, children's data), (6) training effectiveness assessment through testing.",
+              how: "Design a comprehensive training program: (1) role-based training - different modules for different teams (customer service for CRR handling, marketing for opt-out and sharing, IT for technical controls, executives for governance), (2) general awareness training for all employees, (3) new hire onboarding training, (4) annual refresher training, (5) specialized training for high-risk areas (SPI handling, children's data), (6) training effectiveness assessment through testing.",
               check: "Can you produce a training program with role-based modules, awareness components, and effectiveness assessments that covers all CCPA/CPRA topics?",
             },
             {
@@ -836,14 +836,14 @@ const FRAMEWORK = {
               title: "Live Compliance Scenario Exercises",
               control:
                 "Practical application demonstrates true competency beyond theoretical knowledge.",
-              how: "Complete at least three practical scenarios: (1) a consumer submits a complex multi-rights request with an authorized agent — process it end-to-end, (2) the CPPA initiates an inquiry requesting your data inventory, ROPA, and opt-out mechanism documentation — assemble and provide the response, (3) a security breach involving California consumers' PI — execute the incident response playbook including notifications. Document your approach and outcomes.",
+              how: "Complete at least three practical scenarios: (1) a consumer submits a complex multi-rights request with an authorized agent - process it end-to-end, (2) the CPPA initiates an inquiry requesting your data inventory, ROPA, and opt-out mechanism documentation - assemble and provide the response, (3) a security breach involving California consumers' PI - execute the incident response playbook including notifications. Document your approach and outcomes.",
               check: "Can you successfully complete practical scenarios demonstrating end-to-end CCPA/CPRA compliance competency?",
             },
             {
               title: "Compliance Program Documentation Review",
               control:
                 "All compliance program documentation must be current, complete, and audit-ready.",
-              how: "Conduct a final documentation review: (1) privacy notices — current and accurate, (2) data inventory and ROPA — complete and current, (3) consumer rights policies and procedures — documented and current, (4) opt-out policies and procedures — documented and tested, (5) third-party contracts — compliant and current, (6) security policies — documented and enforced, (7) risk assessments — completed and current, (8) training records — documented, (9) incident response plan — documented and tested, (10) governance structure — documented with clear roles.",
+              how: "Conduct a final documentation review: (1) privacy notices - current and accurate, (2) data inventory and ROPA - complete and current, (3) consumer rights policies and procedures - documented and current, (4) opt-out policies and procedures - documented and tested, (5) third-party contracts - compliant and current, (6) security policies - documented and enforced, (7) risk assessments - completed and current, (8) training records - documented, (9) incident response plan - documented and tested, (10) governance structure - documented with clear roles.",
               check: "Can you produce an audit-ready compliance program documentation package with all required elements current and complete?",
             },
             {

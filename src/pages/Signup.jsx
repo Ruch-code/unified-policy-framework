@@ -20,7 +20,7 @@ export default function Signup() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || 'Signup failed');
-      setMessage(data.message || 'Account created — awaiting approval.');
+      setMessage(data.message || 'Account created - awaiting approval.');
     } catch (err) {
       setError(err.message);
     } finally {

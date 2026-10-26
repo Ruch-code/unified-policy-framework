@@ -36,7 +36,7 @@ export default function ClauseGuide() {
 
       <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-emerald-200 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-900/20 p-3">
         <div className="min-w-0">
-          <p className="text-sm font-medium text-emerald-900 dark:text-emerald-300">Climate amendment — Clauses 4.1 and 4.2</p>
+          <p className="text-sm font-medium text-emerald-900 dark:text-emerald-300">Climate amendment - Clauses 4.1 and 4.2</p>
           <p className="mt-0.5 text-xs text-emerald-800 dark:text-emerald-300">
             ISO/IEC 27001:2022/Amd 1:2024 requires a documented climate-change determination.
           </p>

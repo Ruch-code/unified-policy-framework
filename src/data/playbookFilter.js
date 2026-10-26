@@ -23,7 +23,7 @@ export const PLAYBOOK_CATALOG = [
   { id: 'pdpa', name: 'PDPA (Singapore)', path: '/pdpa', tags: ['asia', 'pii'] },
   { id: 'pipl', name: 'PIPL (China)', path: '/pipl', tags: ['asia', 'pii'] },
   { id: 'fedramp', name: 'FedRAMP', path: '/fedramp', tags: ['us', 'saas', 'enterprise', 'gov'] },
-  { id: 'aigp', name: 'IAPP AIGP — AI Governance', path: '/aigp', tags: ['ai', 'saas', 'global'] },
+  { id: 'aigp', name: 'IAPP AIGP - AI Governance', path: '/aigp', tags: ['ai', 'saas', 'global'] },
 ];
 
 const GEO_RULES = {

@@ -51,7 +51,7 @@ const FRAMEWORK = {
       week: 2,
       title: 'Implementing Preventive, Containment & Detection Controls',
       days: 'Days 8-14',
-      description: 'Implementing RBI framework pillars — preventive controls, containment mechanisms, detection capabilities, automated monitoring, log management, privileged access, and encryption',
+      description: 'Implementing RBI framework pillars - preventive controls, containment mechanisms, detection capabilities, automated monitoring, log management, privileged access, and encryption',
       tasks: [
         {
           title: 'Deploy Preventive Controls Across Multi-Cloud Banking Infrastructure',
@@ -69,19 +69,19 @@ const FRAMEWORK = {
           title: 'Implement Centralized Log Management with RBI-Compliant Retention',
           control: 'RBI Log Management: Centralized, tamper-proof log storage with minimum 180-day retention for critical systems',
           how: 'Configure centralized log management aggregating logs from AWS CloudWatch + S3, Azure Log Analytics + Blob Storage, and GCP Cloud Logging + GCS. Implement tamper-proof storage using S3 Object Lock (compliance mode), Azure Immutable Storage, and GCP CMEK-locked buckets. Enforce minimum 180-day online retention and 5-year archival per RBI requirements. Deploy log integrity monitoring using hash verification and cross-region log replication.',
-          check: 'Verify centralized log storage is receiving logs from all cloud environments. Confirm tamper-proof mechanisms are active — attempt log modification and verify it is rejected. Validate retention policies enforce 180-day minimum for critical banking systems. Test log integrity by verifying hash chains are intact.'
+          check: 'Verify centralized log storage is receiving logs from all cloud environments. Confirm tamper-proof mechanisms are active - attempt log modification and verify it is rejected. Validate retention policies enforce 180-day minimum for critical banking systems. Test log integrity by verifying hash chains are intact.'
         },
         {
           title: 'Enforce Privileged Access Management for Critical Banking Systems',
           control: 'RBI Privileged Access: Strict controls on privileged access to critical systems including just-in-time elevation and session recording',
           how: 'Implement PAM (CyberArk/Broadcom) integrated with AWS IAM Identity Center, Azure PIM, and GCP IAM for privileged access to banking systems. Enforce just-in-time access with time-bound elevation and automatic de-provisioning. Record all privileged sessions to critical systems (CBS, SWIFT, payment gateways). Implement break-glass procedures for emergency access with mandatory two-person authorization and post-incident review.',
-          check: 'Verify PAM solution is deployed and covers all critical banking system access. Confirm just-in-time elevation is enforced — no standing admin access exists. Validate privileged session recordings are captured and retained. Test break-glass procedure with a simulated emergency and verify dual-authorization is enforced.'
+          check: 'Verify PAM solution is deployed and covers all critical banking system access. Confirm just-in-time elevation is enforced - no standing admin access exists. Validate privileged session recordings are captured and retained. Test break-glass procedure with a simulated emergency and verify dual-authorization is enforced.'
         },
         {
           title: 'Implement Data Encryption at Rest and in Transit for Banking Data',
           control: 'RBI Encryption: End-to-end encryption for sensitive banking data using RBI-approved algorithms and key management',
           how: 'Implement encryption for all banking data at rest using AWS KMS with AES-256, Azure Key Vault with HSM-backed keys, and GCP Cloud KMS with customer-managed encryption keys (CMEK). Enforce TLS 1.2+ for all data in transit between banking services across cloud environments. Implement encryption for SWIFT messaging channels. Deploy AWS CloudHSM or Azure Dedicated HSM for cryptographic key management of payment encryption keys. Ensure no weak cipher suites are permitted in any banking API endpoint.',
-          check: 'Verify encryption at rest is enabled for all databases and storage containing banking data. Confirm TLS 1.2+ is enforced on all endpoints — scan with SSL labs or equivalent. Validate HSM-backed key management is operational for payment encryption. Test that no unencrypted banking data flows between cloud environments.'
+          check: 'Verify encryption at rest is enabled for all databases and storage containing banking data. Confirm TLS 1.2+ is enforced on all endpoints - scan with SSL labs or equivalent. Validate HSM-backed key management is operational for payment encryption. Test that no unencrypted banking data flows between cloud environments.'
         }
       ]
     },

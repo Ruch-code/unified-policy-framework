@@ -40,7 +40,7 @@ export default function NewsletterEditor() {
       <div className="mb-6">
         <h1 className="text-2xl font-extrabold text-gray-900">Newsletter</h1>
         <p className="text-sm text-gray-600 mt-1">
-          Write a newsletter and publish it — it's emailed to every subscriber and you can share it on LinkedIn.
+          Write a newsletter and publish it - it's emailed to every subscriber and you can share it on LinkedIn.
         </p>
       </div>
 

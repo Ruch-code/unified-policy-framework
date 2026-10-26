@@ -20,12 +20,12 @@ const CHANGELOG = [
     date: '2026-10-20',
     label: 'Phase 8 Release',
     changes: [
-      { type: 'Feature', title: 'CSV Export for All Data Tables', desc: 'Every framework table now has an Export CSV button — downloads all columns (not just visible) for audit evidence. Works on Password Policies, Security Operations, User Access Review, Access Requirements, SOC 2, Admin Panel.' },
+      { type: 'Feature', title: 'CSV Export for All Data Tables', desc: 'Every framework table now has an Export CSV button - downloads all columns (not just visible) for audit evidence. Works on Password Policies, Security Operations, User Access Review, Access Requirements, SOC 2, Admin Panel.' },
       { type: 'Feature', title: 'Responsive Tables with Mobile Card View', desc: 'All tables automatically collapse to accessible card stacks on mobile (< 640px). Key-value pairs with full keyboard navigation and screen reader support.' },
       { type: 'Feature', title: 'Global Keyboard Accessibility', desc: 'Full keyboard navigation across tables (Arrow keys, Home/End, Enter to sort, Escape to clear focus). Visible focus rings, skip links, and ARIA live regions for screen readers.' },
       { type: 'Feature', title: 'What\'s New / Changelog Page', desc: 'New /whats-new route with versioned changelog, filter by category (Feature, Fix, Breaking, Security, Docs), RSS/JSON feeds, and deep links to related frameworks.' },
       { type: 'Feature', title: 'Reusable <ResponsiveTable> Component', desc: 'Single component handles desktop table + mobile cards + CSV export + keyboard nav + sorting. Applied to 6+ tables across the platform.' },
-      { type: 'Feature', title: 'Phase 7: 8 New Framework Pages', desc: 'Added ISO 42001 (AI Mgmt), ISO 27017 (Cloud Security), ISO 27018 (Cloud PII), ISO 22301 (BCM), HITRUST CSF v11, NIS2, DORA, CMMC 2.0, UK GDPR — all with 4-week learning tracks.' },
+      { type: 'Feature', title: 'Phase 7: 8 New Framework Pages', desc: 'Added ISO 42001 (AI Mgmt), ISO 27017 (Cloud Security), ISO 27018 (Cloud PII), ISO 22301 (BCM), HITRUST CSF v11, NIS2, DORA, CMMC 2.0, UK GDPR - all with 4-week learning tracks.' },
     ]
   },
   {
@@ -90,7 +90,7 @@ const CHANGELOG = [
     date: '2026-08-10',
     label: 'Phase 1 Release',
     changes: [
-      { type: 'Fix', title: 'Theme Tokens & Contrast', desc: 'Semantic color tokens, region badges, level badges, chips, counters, effort text — WCAG 2.1 AA compliant.' },
+      { type: 'Fix', title: 'Theme Tokens & Contrast', desc: 'Semantic color tokens, region badges, level badges, chips, counters, effort text - WCAG 2.1 AA compliant.' },
     ]
   },
   {
@@ -195,7 +195,7 @@ export default function WhatsNewPage() {
                 What\'s New
               </h1>
               <p className="text-gray-600 dark:text-text-dark-secondary mt-1">
-                Platform changelog — versioned releases, categorized changes, and deep links to frameworks.
+                Platform changelog - versioned releases, categorized changes, and deep links to frameworks.
               </p>
             </div>
           </div>
@@ -239,10 +239,10 @@ export default function WhatsNewPage() {
                 className="inline-flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-medium transition-colors
                   bg-indigo-600 text-white hover:bg-indigo-700
                   focus:outline-none focus:ring-2 focus:ring-indigo-500/40"
-                aria-label="Export full changelog as CSV"
+                aria-label="Export full changelog as Excel"
               >
                 <Download className="w-4 h-4" />
-                Export CSV
+                Export Excel
               </button>
             </div>
           </div>

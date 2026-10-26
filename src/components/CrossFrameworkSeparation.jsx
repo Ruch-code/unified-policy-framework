@@ -18,7 +18,7 @@ export default function CrossFrameworkSeparation({ items = [], onSelect }) {
           Not ISO/IEC 27001 requirements
         </h3>
         <p className="mt-1 text-sm text-amber-900 dark:text-amber-300">
-          The work below is worth doing, and it appears here because it is genuinely useful — but it
+          The work below is worth doing, and it appears here because it is genuinely useful - but it
           comes from other laws and frameworks. ISO/IEC 27001:2022 does not impose these deadlines,
           notices or artefacts. Treating them as ISO requirements misrepresents the standard.
         </p>
@@ -57,7 +57,7 @@ export default function CrossFrameworkSeparation({ items = [], onSelect }) {
 
               {cls.annexA.length > 0 && (
                 <p className="mt-2 text-xs text-indigo-700 dark:text-indigo-300">
-                  ISO connection: {cls.annexA.join(', ')} — reference controls, decided through the SoA.
+                  ISO connection: {cls.annexA.join(', ')} - reference controls, decided through the SoA.
                 </p>
               )}
 

@@ -60,10 +60,10 @@ export default function AuthorAboutPopup({ open, onClose }) {
           {tab === 'why' && (
             <div className="space-y-3">
               <p>
-                Compliance doesn't have to be a maze. I kept seeing teams get overwhelmed choosing between ISO, SOC 2, GDPR, HIPAA, and a dozen others — with no clear answer on <strong>what to pursue or in what order</strong>.
+                Compliance doesn't have to be a maze. I kept seeing teams get overwhelmed choosing between ISO, SOC 2, GDPR, HIPAA, and a dozen others - with no clear answer on <strong>what to pursue or in what order</strong>.
               </p>
               <p>
-                So I built a framework that maps the overlaps, ranks priorities by your actual profile, and gives a practical roadmap — not a wall of jargon.
+                So I built a framework that maps the overlaps, ranks priorities by your actual profile, and gives a practical roadmap - not a wall of jargon.
               </p>
               <div className="bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-100 dark:border-indigo-800 rounded-xl p-3 text-indigo-900 dark:text-indigo-300">
                 <span className="inline-flex items-center gap-1.5 font-semibold"><MessagesSquare className="w-4 h-4" /> My goal:</span> make security &amp; privacy achievable for every team, whatever their size.

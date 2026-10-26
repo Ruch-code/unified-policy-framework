@@ -73,52 +73,52 @@ export const REGULATIONS = [
     id: 'gdpr', name: 'GDPR', region: 'EMEA', subCategory: 'European Union',
     countries: ['DE', 'FR', 'IT', 'ES', 'NL', 'SE', 'PL', 'IE', 'AT', 'FI', 'PT'],
     flag: '🇪🇺', timezone: 'CET', lat: 50.1, lng: 9.4, color: '#6366f1', path: '/gdpr',
-    blurb: 'EU data protection regulation — enforces ROPA, DPIA, DSARs, and 72h breach notification.',
+    blurb: 'EU data protection regulation - enforces ROPA, DPIA, DSARs, and 72h breach notification.',
   },
   {
     id: 'ccpa', name: 'CCPA / CPRA', region: 'Americas', subCategory: 'North America',
     countries: ['US'], flag: '🇺🇸', timezone: 'PT (California)', lat: 36.7, lng: -119.4, color: '#f59e0b', path: '/ccpa',
-    blurb: 'California consumer privacy — Do Not Sell/Share, consumer rights, service provider agreements.',
+    blurb: 'California consumer privacy - Do Not Sell/Share, consumer rights, service provider agreements.',
   },
   {
     id: 'hipaa', name: 'HIPAA', region: 'Americas', subCategory: 'North America',
     countries: ['US'], flag: '🇺🇸', timezone: 'ET', lat: 38.9, lng: -98.0, color: '#14532d', path: '/hipaa',
-    blurb: 'US healthcare — PHI safeguards, BAAs, Security & Privacy Rule, breach notification.',
+    blurb: 'US healthcare - PHI safeguards, BAAs, Security & Privacy Rule, breach notification.',
   },
   {
     id: 'coppa', name: 'COPPA', region: 'Americas', subCategory: 'North America',
     countries: ['US'], flag: '🇺🇸', timezone: 'ET', lat: 38.5, lng: -77.0, color: '#0ea5e9', path: '/coppa',
-    blurb: 'US children\'s online privacy — verifiable parental consent for under-13 data.',
+    blurb: 'US children\'s online privacy - verifiable parental consent for under-13 data.',
   },
   {
     id: 'nist', name: 'NIST CSF 2.0', region: 'Americas', subCategory: 'North America',
     countries: ['US'], flag: '🇺🇸', timezone: 'ET', lat: 39.0, lng: -105.0, color: '#334155', path: '/nist',
-    blurb: 'US cybersecurity framework — Govern, Identify, Protect, Detect, Respond, Recover.',
+    blurb: 'US cybersecurity framework - Govern, Identify, Protect, Detect, Respond, Recover.',
   },
   {
     id: 'lgpd', name: 'LGPD', region: 'Americas', subCategory: 'South America',
     countries: ['BR'], flag: '🇧🇷', timezone: 'BRT', lat: -14.2, lng: -51.9, color: '#16a34a', path: '/lgpd',
-    blurb: 'Brazil\'s Lei Geral de Proteção de Dados — controller/operator duties, ANPD enforcement, DPO role.',
+    blurb: 'Brazil\'s Lei Geral de Proteção de Dados - controller/operator duties, ANPD enforcement, DPO role.',
   },
   {
     id: 'dpdpa', name: 'DPDP Act', region: 'Asia', subCategory: 'South Asia',
     countries: ['IN'], flag: '🇮🇳', timezone: 'IST', lat: 23.0, lng: 79.0, color: '#ea580c', path: '/dpdpa',
-    blurb: 'India\'s DPDP Act 2023 — consent architecture, Data Principal & Data Fiduciary duties, breach to DPDP Board.',
+    blurb: 'India\'s DPDP Act 2023 - consent architecture, Data Principal & Data Fiduciary duties, breach to DPDP Board.',
   },
   {
     id: 'pdpa', name: 'PDPA', region: 'Asia', subCategory: 'South East Asia',
     countries: ['SG'], flag: '🇸🇬', timezone: 'SGT', lat: 1.35, lng: 103.8, color: '#dc2626', path: '/pdpa',
-    blurb: 'Singapore Personal Data Protection Act — consent, DNC registry, accountability, data protection officers.',
+    blurb: 'Singapore Personal Data Protection Act - consent, DNC registry, accountability, data protection officers.',
   },
   {
     id: 'pipl', name: 'PIPL', region: 'Asia', subCategory: 'East Asia',
     countries: ['CN'], flag: '🇨🇳', timezone: 'CST', lat: 35.8, lng: 104.0, color: '#be123c', path: '/pipl',
-    blurb: 'China Personal Information Protection Law — separate consent, cross-border transfer assessment, personal info handlers.',
+    blurb: 'China Personal Information Protection Law - separate consent, cross-border transfer assessment, personal info handlers.',
   },
   {
     id: 'cis', name: 'CIS Controls', region: 'EMEA', subCategory: 'United Kingdom',
     countries: ['GB'], flag: '🌐', timezone: 'GMT', lat: 54.0, lng: -2.0, color: '#64748b', path: '/cis',
-    blurb: 'Center for Internet Security — 18 safeguards, Implementation Groups IG1/IG2/IG3, CIS Benchmarks.',
+    blurb: 'Center for Internet Security - 18 safeguards, Implementation Groups IG1/IG2/IG3, CIS Benchmarks.',
   },
 ];
 

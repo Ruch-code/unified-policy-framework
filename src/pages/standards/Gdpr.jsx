@@ -25,7 +25,7 @@ const FRAMEWORK = {
       gap: "Ignoring DPIA for high-risk processing",
       pushback: "A DPIA sounds like a bureaucratic template.",
       reality: "DPIA (Art. 35) is REQUIRED for profiling, large-scale processing, special categories, or public monitoring. Skipping it when required is a direct violation.",
-      leantip: "Use SaaS DPIA templates (e.g., CNIL/ICO). Run one for you highest-risk processing recognizing triggers — 80% of the drafting is a structured commentary you already know."
+      leantip: "Use SaaS DPIA templates (e.g., CNIL/ICO). Run one for you highest-risk processing recognizing triggers - 80% of the drafting is a structured commentary you already know."
     },
     {
       gap: "No DSAR workflow, so rights requests go unanswered",
@@ -40,11 +40,11 @@ const FRAMEWORK = {
       leantip: "Set a retention policy per data type and a technical job to delete/prune old data. Turn off unnecessary tracking for EU traffic (cookie banners won't fix backend logging)."
     }
   ],
-  privacyStartupNotes: "GDPR-specific startup note: even pre-revenue startups count as data controllers once they process EU residents' personal data. You don't need to be 'big' to be liable — set up ROPA, consent, and DSAR basics from day one. A DPIA is mandatory for high-risk processing (profiling, children, special categories, large scale, public monitoring).",
+  privacyStartupNotes: "GDPR-specific startup note: even pre-revenue startups count as data controllers once they process EU residents' personal data. You don't need to be 'big' to be liable - set up ROPA, consent, and DSAR basics from day one. A DPIA is mandatory for high-risk processing (profiling, children, special categories, large scale, public monitoring).",
   weeks: [
     {
       week: 1,
-      title: 'Foundation — Scope, Principles & Data Mapping',
+      title: 'Foundation - Scope, Principles & Data Mapping',
       days: 'Days 1-7',
       description: 'Understand GDPR scope, map all personal data, and establish lawful basis for processing',
       tasks: [
@@ -63,7 +63,7 @@ const FRAMEWORK = {
         {
           title: 'Classify personal data: ordinary, special category (Art. 9), and children\'s data (Art. 8)',
           control: 'Art. 9 (Special Categories), Art. 8 (Children\'s Services), Art. 5(1)(c) (Data Minimisation)',
-          how: 'Apply automated classification using AWS Macie, Azure Purview/Microsoft Purview, GCP DLP API, and Alibaba Data Security Center to scan S3, Blob Storage, GCS, and OSS buckets for PII patterns (names, emails, SSNs, health records). For each data element, classify as: ordinary personal data, special category (Art. 9), or children\'s data (Art. 8 — under 16 in most EU states). In staging environments, run the same scanners to detect accidental production data. In dev, enforce that synthetic data generators (e.g., Faker libraries) are the only permitted source of PII.',
+          how: 'Apply automated classification using AWS Macie, Azure Purview/Microsoft Purview, GCP DLP API, and Alibaba Data Security Center to scan S3, Blob Storage, GCS, and OSS buckets for PII patterns (names, emails, SSNs, health records). For each data element, classify as: ordinary personal data, special category (Art. 9), or children\'s data (Art. 8 - under 16 in most EU states). In staging environments, run the same scanners to detect accidental production data. In dev, enforce that synthetic data generators (e.g., Faker libraries) are the only permitted source of PII.',
           check: 'Run classification scans across all four clouds and confirm every bucket/table with PII has a data-classification tag. Verify staging contains no unmasked special-category data. Verify dev environments use only synthetic data with documented generators.'
         },
         {
@@ -76,13 +76,13 @@ const FRAMEWORK = {
           title: 'Establish data residency controls and cross-border transfer assessment',
           control: 'Art. 44-49 (International Transfers), Art. 45 (Adequacy), Art. 46 (SCCs)',
           how: 'Configure AWS S3 bucket policies to restrict storage to eu-west-1/eu-central-1 regions. Use Azure Policy to deny resource creation outside EU regions (e.g., northeurope, westeurope). Enable GCP Organization Policy constraints to restrict resource locations to EU zones. Configure Alibaba to use Frankfurt (eu-central-1) or UK (eu-west-1) regions. Document any transfers outside EU (e.g., support teams in US), assess adequacy decisions, and prepare Standard Contractual Clauses (SCCs). For staging/dev, enforce same-region constraints but allow separate non-production regions if needed.',
-          check: 'Attempt to create a resource in a non-EU region from each cloud console — confirm it is blocked by policy. Verify SCCs or adequacy decisions are documented for any identified transfers. Confirm data residency tags exist on all storage resources.'
+          check: 'Attempt to create a resource in a non-EU region from each cloud console - confirm it is blocked by policy. Verify SCCs or adequacy decisions are documented for any identified transfers. Confirm data residency tags exist on all storage resources.'
         }
       ]
     },
     {
       week: 2,
-      title: 'Implementer — Data Subject Rights & ROPA',
+      title: 'Implementer - Data Subject Rights & ROPA',
       days: 'Days 8-14',
       description: 'Implement DSAR workflows, ROPA with all required Art. 30 fields, and consent management',
       tasks: [
@@ -114,13 +114,13 @@ const FRAMEWORK = {
           title: 'Implement environment segregation for staging and development with data protection controls',
           control: 'Art. 25 (Data Protection by Design), Art. 32 (Security of Processing)',
           how: 'Enforce network-level segregation using AWS VPC per environment (separate CIDR ranges, no peering unless necessary), Azure VNet isolation with NSG rules, GCP VPC Service Controls per project, and Alibaba VPC with separate route tables. For data: production uses real (encrypted) data, staging uses pseudonymized production data (use AWS Glue or Azure Data Factory for pseudonymization pipelines), dev uses only synthetic data generated via libraries like Faker. Implement separate IAM roles per environment: prod requires MFA + break-glass, staging requires MFA, dev uses basic auth with session expiration. Use AWS SCPs, Azure Policy, and GCP Org Policies to prevent cross-environment data access.',
-          check: 'Attempt to access production data from a staging/dev IAM role — confirm it is denied. Verify no production PII is accessible from dev accounts. Confirm staging data is pseudonymized (not masked/shuffled). Verify network ACLs prevent cross-environment traffic.'
+          check: 'Attempt to access production data from a staging/dev IAM role - confirm it is denied. Verify no production PII is accessible from dev accounts. Confirm staging data is pseudonymized (not masked/shuffled). Verify network ACLs prevent cross-environment traffic.'
         }
       ]
     },
     {
       week: 3,
-      title: 'Verifier — DPIA, Security Measures & Breach Response',
+      title: 'Verifier - DPIA, Security Measures & Breach Response',
       days: 'Days 15-28',
       description: 'Conduct DPIAs, implement Art. 32 technical measures, and establish breach notification workflows',
       tasks: [
@@ -140,12 +140,12 @@ const FRAMEWORK = {
           title: 'Implement DLP controls and data masking for non-production environments',
           control: 'Art. 32 (Security), Art. 25 (By Design and Default), Art. 5(1)(c) (Minimisation)',
           how: 'Deploy DLP policies: AWS Macie for S3 (auto-classify and alert on PII), Azure Purview DLP policies for SharePoint/Exchange/OneDrive, GCP DLP API for BigQuery and Cloud Storage, Alibaba Data Security Center for OSS and RDS. Create DLP scanning rules that flag: credit card numbers, national IDs, health records, biometric templates. Implement automated masking for staging: use AWS Glue jobs to replace real names with "User_XXXX", emails with "test@masked.example", SSNs with "000-00-XXXX". For GCP, use Cloud DLP API de-identification transforms. For dev, block uploads of files containing PII patterns via S3 bucket policies or Alibaba OSS ACLs. Set up alerts for DLP violations in all environments.',
-          check: 'Trigger a DLP scan on each cloud storage service and confirm PII is flagged. Verify staging data is masked (no real names/SSNs visible). Attempt to upload a file with real PII to a dev bucket — confirm it is blocked. Verify DLP alerts are received by the security team.'
+          check: 'Trigger a DLP scan on each cloud storage service and confirm PII is flagged. Verify staging data is masked (no real names/SSNs visible). Attempt to upload a file with real PII to a dev bucket - confirm it is blocked. Verify DLP alerts are received by the security team.'
         },
         {
           title: 'Establish breach detection, assessment, and 72-hour notification workflow (Art. 33/34)',
           control: 'Art. 33 (Notification to SA), Art. 34 (Communication to Data Subjects), Art. 33(1) (72-Hour Rule)',
-          how: 'Deploy centralized breach detection: AWS GuardDuty + Security Hub, Azure Sentinel, GCP Chronicle, Alibaba Security Center. Create a SIEM correlation rule set that detects: unauthorized data access, unusual data egress, DLP policy violations, anomalous API calls. Build an incident-response workflow (AWS Step Functions or PagerDuty integration): (1) T+0h: detection and initial triage, (2) T+4h: scope assessment — which data subjects, categories, volume, (3) T+24h: risk evaluation — likelihood of harm, (4) T+48h: prepare notification, (5) T+72h: submit notification to lead supervisory authority with required content per Art. 33(3)(a-d). If high risk to individuals, notify data subjects per Art. 34. Maintain a breach register documenting all incidents regardless of notification threshold.',
+          how: 'Deploy centralized breach detection: AWS GuardDuty + Security Hub, Azure Sentinel, GCP Chronicle, Alibaba Security Center. Create a SIEM correlation rule set that detects: unauthorized data access, unusual data egress, DLP policy violations, anomalous API calls. Build an incident-response workflow (AWS Step Functions or PagerDuty integration): (1) T+0h: detection and initial triage, (2) T+4h: scope assessment - which data subjects, categories, volume, (3) T+24h: risk evaluation - likelihood of harm, (4) T+48h: prepare notification, (5) T+72h: submit notification to lead supervisory authority with required content per Art. 33(3)(a-d). If high risk to individuals, notify data subjects per Art. 34. Maintain a breach register documenting all incidents regardless of notification threshold.',
           check: 'Simulate a breach scenario (e.g., unauthorized S3 bucket access) and verify detection within 15 minutes. Walk through the 72-hour workflow and confirm all Art. 33(3) fields can be populated. Verify the breach register captures all simulated incidents. Confirm notification templates exist for both SA and data subjects.'
         },
         {
@@ -158,14 +158,14 @@ const FRAMEWORK = {
     },
     {
       week: 4,
-      title: 'Certified — Accountability, Transfers & Ongoing Compliance',
+      title: 'Certified - Accountability, Transfers & Ongoing Compliance',
       days: 'Days 29-42',
       description: 'Demonstrate accountability, manage international transfers, and establish continuous compliance',
       tasks: [
         {
           title: 'Implement international transfer mechanisms: adequacy, SCCs, BCRs, and derogations (Art. 44-49)',
           control: 'Art. 44 (General Principle), Art. 46 (SCCs/BCRs), Art. 49 (Derogations)',
-          how: 'Map all data flows crossing EU borders. For each transfer: (1) Check adequacy decision list (currently: Andorra, Argentina, Canada commercial, Faroe Islands, Guernsey, Israel, Isle of Man, Japan, Jersey, New Zealand, Republic of Korea, Switzerland, UK, Uruguay, US under DPF). (2) If no adequacy, implement Standard Contractual Clauses (SCCs) — use the June 2021 European Commission version. (3) For intra-group transfers, consider Binding Corporate Rules (BCRs). (4) For occasional transfers, assess derogations (Art. 49): explicit consent, contract performance, public interest, vital interests, or legitimate interests with safeguards. Configure AWS Transit Gateway or Azure ExpressRoute for encrypted cross-region traffic. Implement VPN/IPSec tunnels between regions. For staging/dev: document mock transfer scenarios for testing.',
+          how: 'Map all data flows crossing EU borders. For each transfer: (1) Check adequacy decision list (currently: Andorra, Argentina, Canada commercial, Faroe Islands, Guernsey, Israel, Isle of Man, Japan, Jersey, New Zealand, Republic of Korea, Switzerland, UK, Uruguay, US under DPF). (2) If no adequacy, implement Standard Contractual Clauses (SCCs) - use the June 2021 European Commission version. (3) For intra-group transfers, consider Binding Corporate Rules (BCRs). (4) For occasional transfers, assess derogations (Art. 49): explicit consent, contract performance, public interest, vital interests, or legitimate interests with safeguards. Configure AWS Transit Gateway or Azure ExpressRoute for encrypted cross-region traffic. Implement VPN/IPSec tunnels between regions. For staging/dev: document mock transfer scenarios for testing.',
           check: 'Verify every cross-border transfer has an identified legal mechanism (adequacy, SCCs, BCRs, or documented derogation). Confirm SCCs are the June 2021 version. Verify network traffic between EU and non-EU regions is encrypted. Confirm the Transfer Impact Assessment (TIA) document exists for US-bound transfers.'
         },
         {

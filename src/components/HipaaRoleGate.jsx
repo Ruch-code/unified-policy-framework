@@ -60,8 +60,8 @@ const VENDOR_RELATIONSHIPS = [
 ];
 
 const TOUCHES_PHI = [
-  { id: 'yes', label: 'Yes — creates, receives, maintains or transmits PHI' },
-  { id: 'no', label: 'No — no PHI expected' },
+  { id: 'yes', label: 'Yes - creates, receives, maintains or transmits PHI' },
+  { id: 'no', label: 'No - no PHI expected' },
   { id: 'unknown', label: 'Needs confirmation' },
 ];
 
@@ -97,7 +97,7 @@ function SectionTitle({ icon: Icon, children, sub }) {
 }
 
 // ---------------------------------------------------------------------------
-// Stage 1 — role and scope
+// Stage 1 - role and scope
 // ---------------------------------------------------------------------------
 
 function RoleStep({ draft, setDraft }) {
@@ -190,7 +190,7 @@ function RoleStep({ draft, setDraft }) {
 
       <div className="grid sm:grid-cols-2 gap-6">
         <div>
-          <SectionTitle sub="What you actually do today. Be accurate — this drives applicability, not marketing.">
+          <SectionTitle sub="What you actually do today. Be accurate - this drives applicability, not marketing.">
             Current operations
           </SectionTitle>
           <div className="space-y-2">
@@ -286,7 +286,7 @@ function RoleStep({ draft, setDraft }) {
 }
 
 // ---------------------------------------------------------------------------
-// Stage 2 — AI / communications PHI flows
+// Stage 2 - AI / communications PHI flows
 // ---------------------------------------------------------------------------
 
 function FlowsStep({ flows, setFlows, roleId }) {
@@ -329,7 +329,7 @@ function FlowsStep({ flows, setFlows, roleId }) {
 
   const baaDef = roleId === 'ce' || roleId === 'dual'
     ? 'If they touch PHI on your behalf, you need a BAA before you share. The BAA has to bind their own subprocessors too.'
-    : 'If they touch PHI for you, the BAA is between you and the covered entity chain above you — confirm which contract actually binds this vendor.';
+    : 'If they touch PHI for you, the BAA is between you and the covered entity chain above you - confirm which contract actually binds this vendor.';
 
   return (
     <div className="space-y-6">
@@ -343,7 +343,7 @@ function FlowsStep({ flows, setFlows, roleId }) {
                 {unresolvedVendors > 0 && `, and ${unresolvedVendors} vendor${unresolvedVendors === 1 ? '' : 's'} are unresolved`}
               </p>
               <p className="text-xs text-amber-800 dark:text-amber-200 mt-1">
-                These default to unresolved on purpose. An unanswered question is not a &ldquo;no&rdquo; — treat it as an open item in your risk analysis until a human closes it.
+                These default to unresolved on purpose. An unanswered question is not a &ldquo;no&rdquo; - treat it as an open item in your risk analysis until a human closes it.
               </p>
             </div>
           </div>
@@ -414,7 +414,7 @@ function FlowsStep({ flows, setFlows, roleId }) {
 
         {(flows.vendors || []).length === 0 ? (
           <p className="text-sm text-gray-500 dark:text-slate-300 p-4 rounded-xl border border-dashed border-gray-300 dark:border-slate-600">
-            No vendors recorded. Add every tool that can create, receive, maintain or transmit PHI — including the ones you have not classified yet.
+            No vendors recorded. Add every tool that can create, receive, maintain or transmit PHI - including the ones you have not classified yet.
           </p>
         ) : (
           <div className="space-y-3">
@@ -566,7 +566,7 @@ export function HipaaRoleChip() {
       <Shield className="w-4 h-4 text-slate-700 dark:text-slate-200 shrink-0" />
       <span className="text-sm text-gray-700 dark:text-slate-200">
         Scoped as <strong>{ctx.roleLabel}</strong>
-        {ctx.confirmed ? '' : ' — provisional, not human-confirmed'}
+        {ctx.confirmed ? '' : ' - provisional, not human-confirmed'}
       </span>
       {ctx.confirmed ? (
         <Chip tone="green"><CheckCircle2 className="w-3 h-3" /> Confirmed by {ctx.scope.reviewer.name || 'reviewer'}</Chip>
@@ -607,7 +607,7 @@ export function HipaaScopeIntake({ onDone }) {
         <div className="min-w-0">
           <h2 className="text-lg font-bold text-gray-900 dark:text-white">Set your HIPAA scope</h2>
           <p className="text-sm text-gray-600 dark:text-slate-300">
-            Most HIPAA obligations only bind you if you hold a specific role. Tell us yours and we will mark what applies — nothing is removed, and your progress is untouched.
+            Most HIPAA obligations only bind you if you hold a specific role. Tell us yours and we will mark what applies - nothing is removed, and your progress is untouched.
           </p>
         </div>
         {roleId && (
@@ -685,7 +685,7 @@ export function HipaaScopeIntake({ onDone }) {
             onClick={() => setOpen(false)}
             className="text-xs font-semibold text-gray-500 dark:text-slate-300 hover:text-gray-700 dark:hover:text-slate-100"
           >
-            Skip for now — {unresolved} questions stay unresolved
+            Skip for now - {unresolved} questions stay unresolved
           </button>
         )}
 

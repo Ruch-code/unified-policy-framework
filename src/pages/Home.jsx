@@ -72,7 +72,7 @@ const TABS = [
     id: 'regional',
     label: 'Regional Frameworks',
     icon: Globe,
-    description: 'By Region Framework Cards & Control Reuse Map — ISO 27001, GDPR, DPDPA, FedRAMP, CJIS, and 20+ regulations across 8 global regions',
+    description: 'By Region Framework Cards & Control Reuse Map - ISO 27001, GDPR, DPDPA, FedRAMP, CJIS, and 20+ regulations across 8 global regions',
     whatCanGoWrong: [
       'Regulatory Fines: GDPR fines up to €20M/4% revenue; CCPA $7,500/violation; DPDPA ₹250 crore',
       'Market Access Loss: Non-compliance blocks market entry (EU, India, US federal contracts)',
@@ -85,13 +85,13 @@ const TABS = [
     id: 'ai-privacy',
     label: 'AI Privacy Risk Matrix',
     icon: Shield,
-    description: '12 critical privacy risks across Model Training, RAG Systems, AI Agents, and Industry Use Cases — mapped to GDPR, AI Act, HIPAA, CCPA with actionable controls',
+    description: '12 critical privacy risks across Model Training, RAG Systems, AI Agents, and Industry Use Cases - mapped to GDPR, AI Act, HIPAA, CCPA with actionable controls',
     whatCanGoWrong: [
-      'Model Memorization: LLMs regurgitate PII from training data — GDPR Art. 5(1)(c) violation, class-action lawsuits',
-      'RAG Leakage: Vector DBs expose PII via retrieval without access controls — HIPAA/CCPA violations',
-      'Agent Autonomy: AI agents process PII without human oversight — GDPR Art. 22 automated decision violation',
-      'Supply Chain Risk: Third-party model APIs train on your data — no DPA, cross-border transfer violations',
-      'Regulatory Bans: AI Act prohibits high-risk AI without conformity assessment — market ban in EU',
+      'Model Memorization: LLMs regurgitate PII from training data - GDPR Art. 5(1)(c) violation, class-action lawsuits',
+      'RAG Leakage: Vector DBs expose PII via retrieval without access controls - HIPAA/CCPA violations',
+      'Agent Autonomy: AI agents process PII without human oversight - GDPR Art. 22 automated decision violation',
+      'Supply Chain Risk: Third-party model APIs train on your data - no DPA, cross-border transfer violations',
+      'Regulatory Bans: AI Act prohibits high-risk AI without conformity assessment - market ban in EU',
     ],
   },
   {
@@ -100,10 +100,10 @@ const TABS = [
     icon: Users,
     description: 'Complete vendor risk lifecycle across 6 sectors, 12 regional jurisdictions, sub-processor governance, nth-party visibility, and 4-tier review frequency automation',
     whatCanGoWrong: [
-      '4th/5th Party Blindness: 60% of breaches originate from sub-processors you don\'t track — no visibility = no liability protection',
+      '4th/5th Party Blindness: 60% of breaches originate from sub-processors you don\'t track - no visibility = no liability protection',
       'Contractual Gaps: Missing flow-down clauses = no audit rights, no liability flow-down, no breach notification SLAs',
       'Concentration Risk: Single cloud provider for critical services = single point of failure (SolarWinds, Kaseya)',
-      'Regulatory Non-Compliance: DORA Art. 28, NIS2 Art. 21, GDPR Art. 28 require sub-processor governance — fines up to 2% revenue',
+      'Regulatory Non-Compliance: DORA Art. 28, NIS2 Art. 21, GDPR Art. 28 require sub-processor governance - fines up to 2% revenue',
       'Incident Cascade: Vendor breach without notification SLA = 72-hour GDPR window missed, mandatory notification fails',
     ],
   },
@@ -130,17 +130,17 @@ const TABS = [
       'MFA Gaps: Not enforcing phishing-resistant MFA (FIDO2/WebAuthn) for privileged/admin access',
       'Weak Banned Lists: Missing organization-specific terms in Entra ID custom banned password list',
       'No Passwordless: Still relying on passwords + TOTP instead of passkeys/FIDO2 for critical systems',
-      'Inconsistent Policies: Different password rules across Entra ID, Okta, AD, SaaS apps — no unified baseline',
+      'Inconsistent Policies: Different password rules across Entra ID, Okta, AD, SaaS apps - no unified baseline',
     ],
   },
   {
     id: 'access-governance',
     label: 'Persona & Access Governance',
     icon: ClipboardCheck,
-    description: 'FTE, Contractors, Interns, Production Access — pre-hire checks, provisioning, governance, offboarding, JIT controls, and User Access Review coverage/frequency mapped to SOC 2, ISO 27001, PCI, HIPAA, NIST, CIS, FedRAMP, GDPR, DPDPA, CJIS.',
+    description: 'FTE, Contractors, Interns, Production Access - pre-hire checks, provisioning, governance, offboarding, JIT controls, and User Access Review coverage/frequency mapped to SOC 2, ISO 27001, PCI, HIPAA, NIST, CIS, FedRAMP, GDPR, DPDPA, CJIS.',
     whatCanGoWrong: [
       'Background Check Gaps: Post-hire checks for FTEs/contractors violate SOC 2 CC6.1, ISO A.7.1.1, PCI 12.7',
-      'Access Review Drift: Policy states quarterly but actual cadence annual — no sign-off, no exception tracking',
+      'Access Review Drift: Policy states quarterly but actual cadence annual - no sign-off, no exception tracking',
       'Intern Over-Provisioning: Interns with production access or privileged credentials',
       'Contractor Offboarding: Delayed revocation, orphaned accounts, no sub-contractor flow-down',
       'UAR Blind Spots: Missing non-human identities (service accounts, CI/CD runners, API keys) from reviews',
@@ -328,7 +328,7 @@ function TabPanel({ isDark, activeTab }) {
           <div className="flex-1">
             <h2 className="text-lg font-extrabold text-navy-900 dark:text-text-dark-primary">AI Governance & Emerging Tech</h2>
             <p className="text-sm text-navy-600 dark:text-text-dark-secondary mt-0.5 max-w-2xl">
-              One module across ISO 42001, the EU AI Act, and NIST AI RMF — AI inventory, risk-tier classification, model-release rhythm, and agentic-AI coverage.
+              One module across ISO 42001, the EU AI Act, and NIST AI RMF - AI inventory, risk-tier classification, model-release rhythm, and agentic-AI coverage.
             </p>
           </div>
           <Link to="/ai-governance" className="inline-flex items-center gap-2 shrink-0 px-4 py-2.5 rounded-lg bg-violet-600 text-white text-sm font-bold hover:bg-violet-700 transition-colors">
@@ -379,7 +379,7 @@ function TabPanel({ isDark, activeTab }) {
       {activeTab === 'ai-privacy' && (
         <LockedSection
           title="AI Privacy Risk Matrix"
-          description="Explore 12 critical privacy risks across Model Training, RAG Systems, AI Agents, and Industry Use Cases — mapped to GDPR, AI Act, HIPAA, and CCPA with actionable controls."
+          description="Explore 12 critical privacy risks across Model Training, RAG Systems, AI Agents, and Industry Use Cases - mapped to GDPR, AI Act, HIPAA, and CCPA with actionable controls."
           icon={Shield}
           showLoginPrompt={false}
         >
@@ -424,15 +424,15 @@ function TabPanel({ isDark, activeTab }) {
         <>
           <LockedSection
             title="Mandatory Access Requirements by Persona"
-            description="What's required for contractors, interns, full-time employees, and anyone with production access — pre-hire checks, provisioning, governance, offboarding, and production JIT controls mapped to SOC 2, ISO 27001, PCI, HIPAA, NIST, CIS, FedRAMP, GDPR, DPDPA, CJIS."
+            description="What's required for contractors, interns, full-time employees, and anyone with production access - pre-hire checks, provisioning, governance, offboarding, and production JIT controls mapped to SOC 2, ISO 27001, PCI, HIPAA, NIST, CIS, FedRAMP, GDPR, DPDPA, CJIS."
             icon={ShieldCheck}
             showLoginPrompt={false}
           >
             <AccessRequirements isDark={isDark} />
           </LockedSection>
           <LockedSection
-            title="User Access Review — Coverage, Users & Frequency"
-            description="What systems/applications must be reviewed, which user types (human + machine identities), and review frequency mandated by each framework — with risk-tiered operational guidance and automation strategies."
+            title="User Access Review - Coverage, Users & Frequency"
+            description="What systems/applications must be reviewed, which user types (human + machine identities), and review frequency mandated by each framework - with risk-tiered operational guidance and automation strategies."
             icon={ClipboardCheck}
             showLoginPrompt={false}
           >
@@ -447,14 +447,14 @@ function TabPanel({ isDark, activeTab }) {
           <h3 className="text-2xl font-bold text-navy-900 dark:text-text-dark-primary mb-2">How to unify into one policy set</h3>
           <p className="text-gray-700 dark:text-text-dark-secondary mb-4 max-w-3xl">
             Rather than maintaining separate policies per standard, map overlapping controls into a single baseline.
-            Most frameworks share common controls — access management, encryption, incident response, logging,
-            risk assessment, and vendor management — expressed differently.
+            Most frameworks share common controls - access management, encryption, incident response, logging,
+            risk assessment, and vendor management - expressed differently.
           </p>
           <div className="grid md:grid-cols-3 gap-4">
             {[
               { t: 'Map overlaps', d: 'Identify controls shared across frameworks (e.g., encryption appears in ISO 27001, HIPAA, PCI-DSS, SOC 2, GDPR).' },
               { t: 'Build one baseline', d: 'Create a single policy + technical control baseline satisfying the strictest overlapping requirement.' },
-              { t: 'Map back', d: 'Document which standard each baseline control satisfies — so one control evidences many frameworks.' },
+              { t: 'Map back', d: 'Document which standard each baseline control satisfies - so one control evidences many frameworks.' },
             ].map(step => (
               <div key={step.t} className="bg-white/70 dark:bg-surface-dark-100/70 rounded-xl p-5 border border-surface-200 dark:border-surface-dark-200">
                 <h4 className="font-bold text-navy-900 dark:text-text-dark-primary mb-1">{step.t}</h4>
@@ -535,7 +535,7 @@ export default function Home() {
             Unified Compliance & GRC Platform
           </h1>
           <p className="text-gray-600 dark:text-text-dark-secondary max-w-3xl">
-            Centralized framework mapping, risk matrices, vendor governance, interview prep, and access controls — organized in discoverable modules.
+            Centralized framework mapping, risk matrices, vendor governance, interview prep, and access controls - organized in discoverable modules.
           </p>
         </div>
 

@@ -180,7 +180,7 @@ export default function AnnexACatalog({ soaState, onDecide, compact = false }) {
       {results.length === 0 && (
         <p className="rounded-lg border border-dashed border-slate-300 dark:border-slate-700 p-6 text-center text-sm text-slate-600">
           No control matches “{query}”. Annex A has {ANNEX_A_CONTROLS.length} controls across{' '}
-          {ANNEX_A_THEMES.length} themes — try a broader term or clear the theme filter.
+          {ANNEX_A_THEMES.length} themes - try a broader term or clear the theme filter.
         </p>
       )}
     </section>
@@ -209,7 +209,7 @@ function QuickDecide({ controlId, record, onDecide }) {
       {record?.decision && !open ? (
         <div className="flex flex-wrap items-center justify-between gap-2">
           <p className="text-xs text-slate-700">
-            {record.decision === 'necessary' ? 'Marked necessary' : 'Marked excluded'} —{' '}
+            {record.decision === 'necessary' ? 'Marked necessary' : 'Marked excluded'} -{' '}
             {record.rationale ? `“${record.rationale}”` : 'no justification recorded'}
           </p>
           <button type="button" onClick={() => setOpen(true)} className="text-xs font-medium text-indigo-700 dark:text-indigo-300 underline hover:text-indigo-900 dark:hover:text-indigo-300">
