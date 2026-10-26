@@ -68,8 +68,8 @@ export default function Iso27001SoaWorkspace({ soaState, onPatchControl, onAddCu
 
   return (
     <div className="space-y-6">
-      <header className="rounded-xl border border-slate-200 bg-white p-4">
-        <h3 className="text-sm font-semibold text-slate-900">
+      <header className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white p-4">
+        <h3 className="text-sm font-semibold text-slate-900 dark:text-white">
           Statement of Applicability — ISO/IEC 27001:2022 Clause 6.1.3 d
         </h3>
         <p className="mt-1 text-sm text-slate-700">
@@ -94,16 +94,16 @@ export default function Iso27001SoaWorkspace({ soaState, onPatchControl, onAddCu
       </dl>
 
       {(weak.length > 0 || incomplete.length > 0) && (
-        <div role="alert" className="space-y-2 rounded-xl border border-amber-300 bg-amber-50 p-4">
-          <p className="text-sm font-semibold text-amber-900">Defensibility gaps</p>
+        <div role="alert" className="space-y-2 rounded-xl border border-amber-300 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/20 p-4">
+          <p className="text-sm font-semibold text-amber-900 dark:text-amber-300">Defensibility gaps</p>
           {weak.length > 0 && (
-            <p className="text-xs text-amber-900">
+            <p className="text-xs text-amber-900 dark:text-amber-300">
               {weak.length} exclusion{weak.length === 1 ? '' : 's'} lack a meaningful justification:{' '}
               {weak.slice(0, 6).join(', ')}{weak.length > 6 ? '…' : ''}. An auditor will challenge these.
             </p>
           )}
           {incomplete.length > 0 && (
-            <p className="text-xs text-amber-900">
+            <p className="text-xs text-amber-900 dark:text-amber-300">
               {incomplete.length} necessary control{incomplete.length === 1 ? '' : 's'} missing an owner or
               evidence reference: {incomplete.slice(0, 6).map(i => i.id).join(', ')}
               {incomplete.length > 6 ? '…' : ''}.
@@ -127,7 +127,7 @@ export default function Iso27001SoaWorkspace({ soaState, onPatchControl, onAddCu
               onClick={() => setFilter(f.k)}
               aria-pressed={filter === f.k}
               className={`rounded-lg px-3 py-1.5 text-xs font-medium ${
-                filter === f.k ? 'bg-slate-900 text-white' : 'border border-slate-300 bg-white text-slate-700 hover:bg-slate-50'
+                filter === f.k ? 'bg-slate-900 dark:bg-indigo-600 text-white' : 'border border-slate-300 dark:border-slate-700 bg-white text-slate-700 hover:bg-slate-50'
               }`}
             >
               {f.l}
@@ -140,7 +140,7 @@ export default function Iso27001SoaWorkspace({ soaState, onPatchControl, onAddCu
             id="soa-theme"
             value={theme}
             onChange={e => setTheme(e.target.value)}
-            className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs"
+            className="rounded-lg border border-slate-300 dark:border-slate-700 px-3 py-1.5 text-xs"
           >
             <option value="all">All themes</option>
             {ANNEX_A_THEMES.map(t => <option key={t.id} value={t.id}>{t.id} {t.name}</option>)}
@@ -162,17 +162,17 @@ export default function Iso27001SoaWorkspace({ soaState, onPatchControl, onAddCu
       </ul>
 
       {rows.length === 0 && (
-        <p className="rounded-lg border border-dashed border-slate-300 p-6 text-center text-sm text-slate-600">
+        <p className="rounded-lg border border-dashed border-slate-300 dark:border-slate-700 p-6 text-center text-sm text-slate-600">
           No controls match this filter. {filter === 'incomplete'
             ? 'Every necessary control has an owner and an evidence reference.'
             : 'Try a different decision filter or theme.'}
         </p>
       )}
 
-      <section className="rounded-xl border border-slate-200 bg-white p-4">
+      <section className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white p-4">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div>
-            <h4 className="text-sm font-semibold text-slate-900">Custom controls</h4>
+            <h4 className="text-sm font-semibold text-slate-900 dark:text-white">Custom controls</h4>
             <p className="mt-0.5 text-xs text-slate-600">
               Controls you determined necessary that are not in Annex A. Clause 6.1.3 expects
               omissions from Annex A to be recorded.
@@ -182,7 +182,7 @@ export default function Iso27001SoaWorkspace({ soaState, onPatchControl, onAddCu
             type="button"
             onClick={() => setCustomOpen(v => !v)}
             aria-expanded={customOpen}
-            className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50"
+            className="rounded-lg border border-slate-300 dark:border-slate-700 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50"
           >
             {customOpen ? 'Cancel' : 'Add custom control'}
           </button>
@@ -191,10 +191,10 @@ export default function Iso27001SoaWorkspace({ soaState, onPatchControl, onAddCu
         {soaState.customControls.length > 0 && (
           <ul className="mt-3 space-y-2">
             {soaState.customControls.map(cc => (
-              <li key={cc.id} className="rounded-lg border border-slate-200 bg-slate-50 p-3">
+              <li key={cc.id} className="rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 p-3">
                 <div className="flex flex-wrap items-start justify-between gap-2">
                   <div className="min-w-0">
-                    <p className="text-sm font-medium text-slate-900">
+                    <p className="text-sm font-medium text-slate-900 dark:text-white">
                       <span className="font-mono text-xs text-slate-500">{cc.id}</span> {cc.title}
                     </p>
                     <p className="mt-0.5 text-xs text-slate-600">{cc.purpose}</p>
@@ -206,7 +206,7 @@ export default function Iso27001SoaWorkspace({ soaState, onPatchControl, onAddCu
                       id={`cc-status-${cc.id}`}
                       value={cc.status}
                       onChange={e => onPatchControl(`__custom__:${cc.id}`, { status: e.target.value })}
-                      className="rounded border border-slate-300 px-2 py-1 text-xs"
+                      className="rounded border border-slate-300 dark:border-slate-700 px-2 py-1 text-xs"
                     >
                       {Object.entries(STATUS_LABELS)
                         .filter(([k]) => k !== IMPLEMENTATION_STATUS.notApplicable)
@@ -215,7 +215,7 @@ export default function Iso27001SoaWorkspace({ soaState, onPatchControl, onAddCu
                     <button
                       type="button"
                       onClick={() => onRemoveCustom(cc.id)}
-                      className="rounded border border-red-200 px-2 py-1 text-xs text-red-700 hover:bg-red-50"
+                      className="rounded border border-red-200 dark:border-red-800 px-2 py-1 text-xs text-red-700 dark:text-red-300 hover:bg-red-50 dark:hover:bg-red-900/20"
                     >
                       Remove
                     </button>
@@ -227,48 +227,48 @@ export default function Iso27001SoaWorkspace({ soaState, onPatchControl, onAddCu
         )}
 
         {customOpen && (
-          <form onSubmit={submitCustom} className="mt-3 space-y-3 rounded-lg border border-slate-300 bg-slate-50 p-3">
+          <form onSubmit={submitCustom} className="mt-3 space-y-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 p-3">
             <div>
               <label htmlFor="cc-title" className="block text-xs font-medium text-slate-700">Title</label>
-              <input id="cc-title" value={draft.title} onChange={e => setDraft(d => ({ ...d, title: e.target.value }))} className="mt-1 w-full rounded border border-slate-300 px-3 py-1.5 text-sm" required />
+              <input id="cc-title" value={draft.title} onChange={e => setDraft(d => ({ ...d, title: e.target.value }))} className="mt-1 w-full rounded border border-slate-300 dark:border-slate-700 px-3 py-1.5 text-sm" required />
             </div>
             <div>
               <label htmlFor="cc-purpose" className="block text-xs font-medium text-slate-700">What it does</label>
-              <textarea id="cc-purpose" rows={2} value={draft.purpose} onChange={e => setDraft(d => ({ ...d, purpose: e.target.value }))} className="mt-1 w-full rounded border border-slate-300 px-3 py-1.5 text-sm" required />
+              <textarea id="cc-purpose" rows={2} value={draft.purpose} onChange={e => setDraft(d => ({ ...d, purpose: e.target.value }))} className="mt-1 w-full rounded border border-slate-300 dark:border-slate-700 px-3 py-1.5 text-sm" required />
             </div>
             <div>
               <label htmlFor="cc-rationale" className="block text-xs font-medium text-slate-700">Why it is necessary (required)</label>
-              <textarea id="cc-rationale" rows={2} value={draft.rationale} onChange={e => setDraft(d => ({ ...d, rationale: e.target.value }))} className="mt-1 w-full rounded border border-slate-300 px-3 py-1.5 text-sm" required />
+              <textarea id="cc-rationale" rows={2} value={draft.rationale} onChange={e => setDraft(d => ({ ...d, rationale: e.target.value }))} className="mt-1 w-full rounded border border-slate-300 dark:border-slate-700 px-3 py-1.5 text-sm" required />
             </div>
             <div>
               <label htmlFor="cc-owner" className="block text-xs font-medium text-slate-700">Owner</label>
-              <input id="cc-owner" value={draft.owner} onChange={e => setDraft(d => ({ ...d, owner: e.target.value }))} className="mt-1 w-full rounded border border-slate-300 px-3 py-1.5 text-sm" />
+              <input id="cc-owner" value={draft.owner} onChange={e => setDraft(d => ({ ...d, owner: e.target.value }))} className="mt-1 w-full rounded border border-slate-300 dark:border-slate-700 px-3 py-1.5 text-sm" />
             </div>
-            {customErr && <p role="alert" className="text-xs font-medium text-red-700">{customErr}</p>}
-            <button type="submit" className="rounded-lg bg-slate-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-slate-800">
+            {customErr && <p role="alert" className="text-xs font-medium text-red-700 dark:text-red-300">{customErr}</p>}
+            <button type="submit" className="rounded-lg bg-slate-900 dark:bg-indigo-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-slate-800 dark:hover:bg-indigo-500">
               Save custom control
             </button>
           </form>
         )}
       </section>
 
-      <section className="rounded-xl border border-slate-200 bg-white p-4">
-        <h4 className="text-sm font-semibold text-slate-900">Version history</h4>
+      <section className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white p-4">
+        <h4 className="text-sm font-semibold text-slate-900 dark:text-white">Version history</h4>
         <p className="mt-0.5 text-xs text-slate-600">
           Commit a version when the SoA is reviewed and approved. Clause 9.3 expects this evidence
           to show the SoA is kept current.
         </p>
 
         {soaState.history.length === 0 ? (
-          <p className="mt-3 rounded-lg border border-dashed border-slate-300 p-4 text-center text-sm text-slate-600">
+          <p className="mt-3 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 p-4 text-center text-sm text-slate-600">
             No versions committed yet. Your decisions are saved as you work; commit a version to
             record a reviewed snapshot.
           </p>
         ) : (
           <ol className="mt-3 space-y-2">
             {[...soaState.history].reverse().map(h => (
-              <li key={h.version} className="rounded-lg border border-slate-200 bg-slate-50 p-3 text-xs">
-                <p className="font-medium text-slate-900">
+              <li key={h.version} className="rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 p-3 text-xs">
+                <p className="font-medium text-slate-900 dark:text-white">
                   Version {h.version} · {h.stats.necessary} necessary · {h.stats.notNecessary} excluded
                   {h.approvedBy ? ` · approved by ${h.approvedBy}` : ''}
                 </p>
@@ -281,17 +281,17 @@ export default function Iso27001SoaWorkspace({ soaState, onPatchControl, onAddCu
         <div className="mt-3 flex flex-wrap items-end gap-2">
           <div className="min-w-[12rem] flex-1">
             <label htmlFor="soa-note" className="block text-xs font-medium text-slate-700">Review note</label>
-            <input id="soa-note" value={note} onChange={e => setNote(e.target.value)} placeholder="e.g. Annual ISMS review, approved by board" className="mt-1 w-full rounded border border-slate-300 px-3 py-1.5 text-sm" />
+            <input id="soa-note" value={note} onChange={e => setNote(e.target.value)} placeholder="e.g. Annual ISMS review, approved by board" className="mt-1 w-full rounded border border-slate-300 dark:border-slate-700 px-3 py-1.5 text-sm" />
           </div>
           <div>
             <label htmlFor="soa-approver" className="block text-xs font-medium text-slate-700">Approved by</label>
-            <input id="soa-approver" value={approver} onChange={e => setApprover(e.target.value)} className="mt-1 rounded border border-slate-300 px-3 py-1.5 text-sm" />
+            <input id="soa-approver" value={approver} onChange={e => setApprover(e.target.value)} className="mt-1 rounded border border-slate-300 dark:border-slate-700 px-3 py-1.5 text-sm" />
           </div>
           <button
             type="button"
             onClick={() => { onCommit({ note, approvedBy: approver }); setNote(''); setApprover(''); }}
             disabled={soaState.history.length === 0 && (stats.necessary + stats.notNecessary === 0)}
-            className="rounded-lg bg-slate-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-40"
+            className="rounded-lg bg-slate-900 dark:bg-indigo-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-slate-800 dark:hover:bg-indigo-500 disabled:cursor-not-allowed disabled:opacity-40"
           >
             Commit version
           </button>
@@ -310,8 +310,8 @@ export default function Iso27001SoaWorkspace({ soaState, onPatchControl, onAddCu
 function ScopePanel({ soaState, onPatchScope }) {
   const scope = soaState.scope || {};
   return (
-    <section className="rounded-xl border border-slate-200 bg-white p-4">
-      <h4 className="text-sm font-semibold text-slate-900">ISMS scope — Clause 4.3</h4>
+    <section className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white p-4">
+      <h4 className="text-sm font-semibold text-slate-900 dark:text-white">ISMS scope — Clause 4.3</h4>
       <p className="mt-0.5 text-xs text-slate-600">
         The scope statement bounds the whole ISMS, including the SoA below. Define it first.
       </p>
@@ -324,17 +324,17 @@ function ScopePanel({ soaState, onPatchScope }) {
             value={scope.statement || ''}
             onChange={e => onPatchScope({ statement: e.target.value })}
             placeholder="Organisational units, locations, systems, information and processes in scope…"
-            className="mt-1 w-full rounded border border-slate-300 px-3 py-1.5 text-sm"
+            className="mt-1 w-full rounded border border-slate-300 dark:border-slate-700 px-3 py-1.5 text-sm"
           />
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
           <div>
             <label htmlFor="scope-owner" className="block text-xs font-medium text-slate-700">Scope owner</label>
-            <input id="scope-owner" value={scope.owner || ''} onChange={e => onPatchScope({ owner: e.target.value })} className="mt-1 w-full rounded border border-slate-300 px-3 py-1.5 text-sm" />
+            <input id="scope-owner" value={scope.owner || ''} onChange={e => onPatchScope({ owner: e.target.value })} className="mt-1 w-full rounded border border-slate-300 dark:border-slate-700 px-3 py-1.5 text-sm" />
           </div>
           <div>
             <label htmlFor="scope-review" className="block text-xs font-medium text-slate-700">Next scope review</label>
-            <input id="scope-review" type="date" value={scope.reviewDate || ''} onChange={e => onPatchScope({ reviewDate: e.target.value })} className="mt-1 w-full rounded border border-slate-300 px-3 py-1.5 text-sm" />
+            <input id="scope-review" type="date" value={scope.reviewDate || ''} onChange={e => onPatchScope({ reviewDate: e.target.value })} className="mt-1 w-full rounded border border-slate-300 dark:border-slate-700 px-3 py-1.5 text-sm" />
           </div>
         </div>
       </div>
@@ -343,9 +343,9 @@ function ScopePanel({ soaState, onPatchScope }) {
 }
 
 function Stat({ label, value, sub, tone = 'slate' }) {
-  const tones = { slate: 'text-slate-900', emerald: 'text-emerald-700', indigo: 'text-indigo-700' };
+  const tones = { slate: 'text-slate-900 dark:text-white', emerald: 'text-emerald-700 dark:text-emerald-300', indigo: 'text-indigo-700 dark:text-indigo-300' };
   return (
-    <div className="rounded-lg border border-slate-200 bg-white p-3">
+    <div className="rounded-lg border border-slate-200 dark:border-slate-700 bg-white p-3">
       <dt className="text-xs text-slate-600">{label}</dt>
       <dd className={`mt-1 text-2xl font-semibold tabular-nums ${tones[tone]}`}>{value}</dd>
       <dd className="text-[0.7rem] text-slate-500">{sub}</dd>
@@ -360,28 +360,28 @@ function SoaRow({ control, record, open, onToggle, onPatch }) {
   const isExcluded = decision === DECISION.notNecessary;
 
   return (
-    <li className="rounded-lg border border-slate-200 bg-white">
+    <li className="rounded-lg border border-slate-200 dark:border-slate-700 bg-white">
       <button type="button" onClick={onToggle} aria-expanded={open} className="flex w-full items-start gap-3 px-4 py-3 text-left hover:bg-slate-50">
-        <span className="mt-0.5 shrink-0 rounded bg-indigo-100 px-1.5 py-0.5 font-mono text-xs font-semibold text-indigo-800">{control.id}</span>
+        <span className="mt-0.5 shrink-0 rounded bg-indigo-100 dark:bg-indigo-900/40 px-1.5 py-0.5 font-mono text-xs font-semibold text-indigo-800 dark:text-indigo-300">{control.id}</span>
         <span className="min-w-0 flex-1">
-          <span className="block text-sm font-medium text-slate-900">{control.title}</span>
+          <span className="block text-sm font-medium text-slate-900 dark:text-white">{control.title}</span>
           {record?.rationale && <span className="mt-0.5 block truncate text-xs text-slate-500">{record.rationale}</span>}
         </span>
         <DecisionPill decision={decision} status={record?.status} />
       </button>
 
       {open && (
-        <div className="space-y-4 border-t border-slate-200 px-4 py-4">
+        <div className="space-y-4 border-t border-slate-200 dark:border-slate-700 px-4 py-4">
           <p className="text-sm text-slate-700">{control.purpose}</p>
           <p className="text-xs text-slate-500">Supports clause {control.clauses.join(', ')}. Reference control — inclusion is a risk-based decision.</p>
 
           <fieldset>
             <legend className="text-xs font-medium text-slate-700">Decision (Clause 6.1.3 d)</legend>
             <div className="mt-1.5 flex flex-wrap gap-2">
-              <button type="button" onClick={() => onPatch({ decision: DECISION.necessary })} aria-pressed={decision === DECISION.necessary} className={`rounded-lg border px-3 py-1.5 text-xs font-medium ${decision === DECISION.necessary ? 'border-emerald-500 bg-emerald-100 text-emerald-900' : 'border-slate-300 bg-white text-slate-700 hover:bg-slate-50'}`}>
+              <button type="button" onClick={() => onPatch({ decision: DECISION.necessary })} aria-pressed={decision === DECISION.necessary} className={`rounded-lg border px-3 py-1.5 text-xs font-medium ${decision === DECISION.necessary ? 'border-emerald-500 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-900 dark:text-emerald-300' : 'border-slate-300 dark:border-slate-700 bg-white text-slate-700 hover:bg-slate-50'}`}>
                 Necessary
               </button>
-              <button type="button" onClick={() => onPatch({ decision: DECISION.notNecessary })} aria-pressed={isExcluded} className={`rounded-lg border px-3 py-1.5 text-xs font-medium ${isExcluded ? 'border-slate-500 bg-slate-200 text-slate-900' : 'border-slate-300 bg-white text-slate-700 hover:bg-slate-50'}`}>
+              <button type="button" onClick={() => onPatch({ decision: DECISION.notNecessary })} aria-pressed={isExcluded} className={`rounded-lg border px-3 py-1.5 text-xs font-medium ${isExcluded ? 'border-slate-500 bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white' : 'border-slate-300 dark:border-slate-700 bg-white text-slate-700 hover:bg-slate-50'}`}>
                 Not necessary
               </button>
             </div>
@@ -398,11 +398,11 @@ function SoaRow({ control, record, open, onToggle, onPatch }) {
               onChange={e => setRationale(e.target.value)}
               onBlur={() => onPatch({ rationale })}
               placeholder={isExcluded ? 'Why does this reference control not apply to your ISMS scope?' : 'Which identified risk does this control treat?'}
-              className="mt-1 w-full rounded border border-slate-300 px-3 py-2 text-sm"
+              className="mt-1 w-full rounded border border-slate-300 dark:border-slate-700 px-3 py-2 text-sm"
               aria-describedby={`soa-rat-err-${control.id}`}
             />
             {errors.length > 0 && (
-              <p id={`soa-rat-err-${control.id}`} className="mt-1 text-xs font-medium text-red-700">
+              <p id={`soa-rat-err-${control.id}`} className="mt-1 text-xs font-medium text-red-700 dark:text-red-300">
                 {errors[0]}
               </p>
             )}
@@ -412,25 +412,25 @@ function SoaRow({ control, record, open, onToggle, onPatch }) {
             <div className="grid gap-3 sm:grid-cols-2">
               <div>
                 <label htmlFor={`soa-status-${control.id}`} className="block text-xs font-medium text-slate-700">Implementation status</label>
-                <select id={`soa-status-${control.id}`} value={record?.status || IMPLEMENTATION_STATUS.notStarted} onChange={e => onPatch({ status: e.target.value })} className="mt-1 w-full rounded border border-slate-300 px-3 py-1.5 text-sm">
+                <select id={`soa-status-${control.id}`} value={record?.status || IMPLEMENTATION_STATUS.notStarted} onChange={e => onPatch({ status: e.target.value })} className="mt-1 w-full rounded border border-slate-300 dark:border-slate-700 px-3 py-1.5 text-sm">
                   {Object.entries(STATUS_LABELS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
                 </select>
               </div>
               <div>
                 <label htmlFor={`soa-owner-${control.id}`} className="block text-xs font-medium text-slate-700">Control owner</label>
-                <input id={`soa-owner-${control.id}`} value={record?.owner || ''} onChange={e => onPatch({ owner: e.target.value })} className="mt-1 w-full rounded border border-slate-300 px-3 py-1.5 text-sm" />
+                <input id={`soa-owner-${control.id}`} value={record?.owner || ''} onChange={e => onPatch({ owner: e.target.value })} className="mt-1 w-full rounded border border-slate-300 dark:border-slate-700 px-3 py-1.5 text-sm" />
               </div>
               <div className="sm:col-span-2">
                 <label htmlFor={`soa-ev-${control.id}`} className="block text-xs font-medium text-slate-700">Evidence reference</label>
-                <input id={`soa-ev-${control.id}`} value={record?.evidence || ''} onChange={e => onPatch({ evidence: e.target.value })} placeholder="Document, ticket, or system where proof lives" className="mt-1 w-full rounded border border-slate-300 px-3 py-1.5 text-sm" />
+                <input id={`soa-ev-${control.id}`} value={record?.evidence || ''} onChange={e => onPatch({ evidence: e.target.value })} placeholder="Document, ticket, or system where proof lives" className="mt-1 w-full rounded border border-slate-300 dark:border-slate-700 px-3 py-1.5 text-sm" />
               </div>
               <div>
                 <label htmlFor={`soa-risk-${control.id}`} className="block text-xs font-medium text-slate-700">Related risk(s)</label>
-                <input id={`soa-risk-${control.id}`} value={record?.relatedRisks || ''} onChange={e => onPatch({ relatedRisks: e.target.value })} className="mt-1 w-full rounded border border-slate-300 px-3 py-1.5 text-sm" />
+                <input id={`soa-risk-${control.id}`} value={record?.relatedRisks || ''} onChange={e => onPatch({ relatedRisks: e.target.value })} className="mt-1 w-full rounded border border-slate-300 dark:border-slate-700 px-3 py-1.5 text-sm" />
               </div>
               <div>
                 <label htmlFor={`soa-rev-${control.id}`} className="block text-xs font-medium text-slate-700">Reviewer / review date</label>
-                <input id={`soa-rev-${control.id}`} type="date" value={record?.reviewDate || ''} onChange={e => onPatch({ reviewer: record?.reviewer || '', reviewDate: e.target.value })} className="mt-1 w-full rounded border border-slate-300 px-3 py-1.5 text-sm" />
+                <input id={`soa-rev-${control.id}`} type="date" value={record?.reviewDate || ''} onChange={e => onPatch({ reviewer: record?.reviewer || '', reviewDate: e.target.value })} className="mt-1 w-full rounded border border-slate-300 dark:border-slate-700 px-3 py-1.5 text-sm" />
               </div>
             </div>
           )}
@@ -442,14 +442,14 @@ function SoaRow({ control, record, open, onToggle, onPatch }) {
 
 function DecisionPill({ decision, status }) {
   if (decision === DECISION.undecided) {
-    return <span className="shrink-0 rounded bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-800">Undecided</span>;
+    return <span className="shrink-0 rounded bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 text-xs font-medium text-amber-800 dark:text-amber-300">Undecided</span>;
   }
   if (decision === DECISION.notNecessary) {
-    return <span className="shrink-0 rounded bg-slate-200 px-2 py-0.5 text-xs font-medium text-slate-700">Excluded</span>;
+    return <span className="shrink-0 rounded bg-slate-200 dark:bg-slate-700 px-2 py-0.5 text-xs font-medium text-slate-700">Excluded</span>;
   }
   return (
     <span className="flex shrink-0 flex-col items-end gap-0.5">
-      <span className="rounded bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-800">Necessary</span>
+      <span className="rounded bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 text-xs font-medium text-emerald-800 dark:text-emerald-300">Necessary</span>
       {status && status !== IMPLEMENTATION_STATUS.notStarted && (
         <span className="text-[0.65rem] text-slate-500">{STATUS_LABELS[status]}</span>
       )}

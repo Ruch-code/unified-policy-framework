@@ -86,16 +86,16 @@ export default function Iso27001Sections({ basePath = '/iso/27001/li' }) {
 
   return (
     <div className="mb-8 space-y-4" id="iso27001-reference">
-      <div className="rounded-2xl border border-slate-200 bg-white p-6">
+      <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white p-6">
         <div className="mb-4">
-          <h2 className="text-xl font-bold text-slate-900">ISO/IEC 27001:2022 Reference Workspace</h2>
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white">ISO/IEC 27001:2022 Reference Workspace</h2>
           <p className="mt-1 text-sm text-slate-600">
             The clauses that are requirements, the {ANNEX_A_CONTROLS.length} reference controls you
             choose from, and the Statement of Applicability where you record those decisions.
           </p>
         </div>
 
-        <div role="tablist" aria-label="ISO/IEC 27001:2022 sections" className="flex flex-wrap gap-1.5 border-b border-slate-200 pb-3">
+        <div role="tablist" aria-label="ISO/IEC 27001:2022 sections" className="flex flex-wrap gap-1.5 border-b border-slate-200 dark:border-slate-700 pb-3">
           {TABS.map(t => (
             <button
               key={t.id}
@@ -105,7 +105,7 @@ export default function Iso27001Sections({ basePath = '/iso/27001/li' }) {
               aria-controls={`iso-panel-${t.id}`}
               onClick={() => setTab(t.id)}
               className={`rounded-lg px-3.5 py-2 text-sm font-medium ${
-                tab === t.id ? 'bg-slate-900 text-white' : 'text-slate-600 hover:bg-slate-100'
+                tab === t.id ? 'bg-slate-900 dark:bg-indigo-600 text-white' : 'text-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800'
               }`}
             >
               {t.label}
@@ -139,22 +139,22 @@ function Overview({ stats, soa, basePath }) {
 
   return (
     <div className="space-y-6">
-      <section className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-        <h3 className="text-sm font-semibold text-slate-900">What is and is not a requirement</h3>
+      <section className="rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 p-4">
+        <h3 className="text-sm font-semibold text-slate-900 dark:text-white">What is and is not a requirement</h3>
         <dl className="mt-3 space-y-2 text-sm">
           <div className="flex flex-wrap items-baseline gap-x-2">
-            <dt className="rounded bg-rose-100 px-2 py-0.5 text-xs font-semibold text-rose-800">Clauses 4–10</dt>
+            <dt className="rounded bg-rose-100 dark:bg-rose-900/40 px-2 py-0.5 text-xs font-semibold text-rose-800 dark:text-rose-300">Clauses 4–10</dt>
             <dd className="text-slate-700">Requirements. Conformity is judged against these.</dd>
           </div>
           <div className="flex flex-wrap items-baseline gap-x-2">
-            <dt className="rounded bg-indigo-100 px-2 py-0.5 text-xs font-semibold text-indigo-800">Annex A</dt>
+            <dt className="rounded bg-indigo-100 dark:bg-indigo-900/40 px-2 py-0.5 text-xs font-semibold text-indigo-800 dark:text-indigo-300">Annex A</dt>
             <dd className="text-slate-700">
               {ANNEX_A_CONTROLS.length} <strong>reference controls</strong>. You select from these
               based on risk; you are not required to implement all of them.
             </dd>
           </div>
           <div className="flex flex-wrap items-baseline gap-x-2">
-            <dt className="rounded bg-amber-100 px-2 py-0.5 text-xs font-semibold text-amber-800">Certification</dt>
+            <dt className="rounded bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 text-xs font-semibold text-amber-800 dark:text-amber-300">Certification</dt>
             <dd className="text-slate-700">
               ISO does not certify organisations. An independent certification body does, and it
               defines its own audit process. Certification covers your ISMS scope, and is not a
@@ -164,8 +164,8 @@ function Overview({ stats, soa, basePath }) {
         </dl>
       </section>
 
-      <section className="rounded-xl border border-slate-200 bg-white p-4">
-        <h3 className="text-sm font-semibold text-slate-900">Your Statement of Applicability so far</h3>
+      <section className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white p-4">
+        <h3 className="text-sm font-semibold text-slate-900 dark:text-white">Your Statement of Applicability so far</h3>
         <dl className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
           {[
             { l: 'Decisions recorded', v: `${decided}/${stats.annexTotal}` },
@@ -173,9 +173,9 @@ function Overview({ stats, soa, basePath }) {
             { l: 'Excluded with reason', v: stats.notNecessary },
             { l: 'Undecided', v: stats.undecided },
           ].map(s => (
-            <div key={s.l} className="rounded-lg border border-slate-200 p-3">
+            <div key={s.l} className="rounded-lg border border-slate-200 dark:border-slate-700 p-3">
               <dt className="text-xs text-slate-600">{s.l}</dt>
-              <dd className="mt-1 text-xl font-semibold tabular-nums text-slate-900">{s.v}</dd>
+              <dd className="mt-1 text-xl font-semibold tabular-nums text-slate-900 dark:text-white">{s.v}</dd>
             </div>
           ))}
         </dl>
@@ -195,28 +195,28 @@ function Overview({ stats, soa, basePath }) {
         )}
         <Link
           to={`${basePath}/assess`}
-          className="mt-3 inline-block rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800"
+          className="mt-3 inline-block rounded-lg bg-slate-900 dark:bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 dark:hover:bg-indigo-500"
         >
           Open the capability assessment
         </Link>
       </section>
 
-      <section className="rounded-xl border border-emerald-200 bg-emerald-50/60 p-4">
-        <h3 className="text-sm font-semibold text-emerald-900">Climate amendment</h3>
-        <p className="mt-1 text-sm text-emerald-900">
+      <section className="rounded-xl border border-emerald-200 dark:border-emerald-800 bg-emerald-50/60 dark:bg-emerald-900/20 p-4">
+        <h3 className="text-sm font-semibold text-emerald-900 dark:text-emerald-300">Climate amendment</h3>
+        <p className="mt-1 text-sm text-emerald-900 dark:text-emerald-300">
           {CLIMATE_AMENDMENT.clause41.requirement}{' '}
-          <span className="text-emerald-800">
+          <span className="text-emerald-800 dark:text-emerald-300">
             The amendment applies to Clauses 4.1 and 4.2 only, and it requires a documented
             determination rather than a particular answer.
           </span>
         </p>
-        <a href={amendment.url} target="_blank" rel="noopener noreferrer" className="mt-2 inline-block text-xs font-medium text-emerald-900 underline hover:text-emerald-700">
+        <a href={amendment.url} target="_blank" rel="noopener noreferrer" className="mt-2 inline-block text-xs font-medium text-emerald-900 dark:text-emerald-300 underline hover:text-emerald-700 dark:hover:text-emerald-300">
           {amendment.title}
         </a>
       </section>
 
       <section>
-        <h3 className="text-sm font-semibold text-slate-900">Sources</h3>
+        <h3 className="text-sm font-semibold text-slate-900 dark:text-white">Sources</h3>
         <p className="mt-1 text-xs text-slate-600">
           Summaries in this workspace are original plain-language paraphrases. No standard text is
           reproduced. Check them against your licensed copy before relying on them.
@@ -229,8 +229,8 @@ function Overview({ stats, soa, basePath }) {
             { s: certification, role: 'How certification actually works' },
             { s: soaGuidance, role: 'Non-normative audit guidance on the Statement of Applicability' },
           ].map(({ s, role }) => (
-            <li key={s.id} className="rounded-lg border border-slate-200 bg-white p-3">
-              <a href={s.url} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-indigo-700 underline hover:text-indigo-900">
+            <li key={s.id} className="rounded-lg border border-slate-200 dark:border-slate-700 bg-white p-3">
+              <a href={s.url} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-indigo-700 dark:text-indigo-300 underline hover:text-indigo-900 dark:hover:text-indigo-300">
                 {s.title}
               </a>
               <p className="mt-0.5 text-xs text-slate-600">{role}</p>

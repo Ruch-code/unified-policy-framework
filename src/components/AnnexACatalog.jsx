@@ -45,19 +45,19 @@ export default function AnnexACatalog({ soaState, onDecide, compact = false }) {
 
   return (
     <section aria-labelledby="annexa-catalog-heading" className="space-y-4">
-      <div className="rounded-xl border border-indigo-200 bg-indigo-50/60 p-4">
-        <h3 id="annexa-catalog-heading" className="text-sm font-semibold text-indigo-900">
+      <div className="rounded-xl border border-indigo-200 dark:border-indigo-800 bg-indigo-50/60 dark:bg-indigo-900/20 p-4">
+        <h3 id="annexa-catalog-heading" className="text-sm font-semibold text-indigo-900 dark:text-indigo-300">
           Reference controls, not a compliance checklist
         </h3>
-        <p className="mt-1 text-sm text-indigo-800">
+        <p className="mt-1 text-sm text-indigo-800 dark:text-indigo-300">
           Annex A lists {ANNEX_A_CONTROLS.length} reference controls. ISO/IEC 27001:2022 does{' '}
           <strong>not</strong> require an organisation to implement every one. You determine which are
           necessary from your own risk assessment (Clause 6.1.2), then record each decision with a
           written justification in the Statement of Applicability (Clause 6.1.3 d).
         </p>
-        <p className="mt-2 text-xs text-indigo-700">
+        <p className="mt-2 text-xs text-indigo-700 dark:text-indigo-300">
           Summaries below are original plain-language paraphrases, not standard text.{' '}
-          <a href={ISO_SOURCES.standard.url} target="_blank" rel="noopener noreferrer" className="underline hover:text-indigo-900">
+          <a href={ISO_SOURCES.standard.url} target="_blank" rel="noopener noreferrer" className="underline hover:text-indigo-900 dark:hover:text-indigo-300">
             Verify against the licensed standard
           </a>{' '}
           ({ISO_SOURCES.standard.version}).
@@ -66,11 +66,11 @@ export default function AnnexACatalog({ soaState, onDecide, compact = false }) {
 
       <dl className="grid grid-cols-3 gap-3">
         {[
-          { label: 'Necessary (your decision)', value: decided.necessary, tone: 'text-emerald-700' },
+          { label: 'Necessary (your decision)', value: decided.necessary, tone: 'text-emerald-700 dark:text-emerald-300' },
           { label: 'Excluded with justification', value: decided.notNecessary, tone: 'text-slate-600' },
-          { label: 'Not yet decided', value: decided.undecided, tone: 'text-amber-700' },
+          { label: 'Not yet decided', value: decided.undecided, tone: 'text-amber-700 dark:text-amber-300' },
         ].map(s => (
-          <div key={s.label} className="rounded-lg border border-slate-200 bg-white p-3">
+          <div key={s.label} className="rounded-lg border border-slate-200 dark:border-slate-700 bg-white p-3">
             <dt className="text-xs text-slate-600">{s.label}</dt>
             <dd className={`mt-1 text-2xl font-semibold tabular-nums ${s.tone}`}>{s.value}</dd>
           </div>
@@ -88,7 +88,7 @@ export default function AnnexACatalog({ soaState, onDecide, compact = false }) {
             value={query}
             onChange={e => setQuery(e.target.value)}
             placeholder="e.g. encryption, access, logging, A.8.5"
-            className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
+            className="mt-1 w-full rounded-lg border border-slate-300 dark:border-slate-700 px-3 py-2 text-sm"
           />
         </div>
         <div>
@@ -99,7 +99,7 @@ export default function AnnexACatalog({ soaState, onDecide, compact = false }) {
             id="annexa-theme"
             value={theme}
             onChange={e => setTheme(e.target.value)}
-            className="mt-1 rounded-lg border border-slate-300 px-3 py-2 text-sm"
+            className="mt-1 rounded-lg border border-slate-300 dark:border-slate-700 px-3 py-2 text-sm"
           >
             <option value="all">All themes ({ANNEX_A_CONTROLS.length})</option>
             {ANNEX_A_THEMES.map(t => (
@@ -112,7 +112,7 @@ export default function AnnexACatalog({ soaState, onDecide, compact = false }) {
             type="checkbox"
             checked={showNecessaryOnly}
             onChange={e => setShowNecessaryOnly(e.target.checked)}
-            className="h-4 w-4 rounded border-slate-300"
+            className="h-4 w-4 rounded border-slate-300 dark:border-slate-700"
           />
           Only necessary
         </label>
@@ -128,18 +128,18 @@ export default function AnnexACatalog({ soaState, onDecide, compact = false }) {
           const decision = rec?.decision;
           const expanded = open === c.id;
           return (
-            <li key={c.id} className="rounded-lg border border-slate-200 bg-white">
+            <li key={c.id} className="rounded-lg border border-slate-200 dark:border-slate-700 bg-white">
               <button
                 type="button"
                 onClick={() => setOpen(expanded ? null : c.id)}
                 aria-expanded={expanded}
                 className="flex w-full items-start gap-3 px-4 py-3 text-left hover:bg-slate-50"
               >
-                <span className="mt-0.5 shrink-0 rounded bg-indigo-100 px-1.5 py-0.5 font-mono text-xs font-semibold text-indigo-800">
+                <span className="mt-0.5 shrink-0 rounded bg-indigo-100 dark:bg-indigo-900/40 px-1.5 py-0.5 font-mono text-xs font-semibold text-indigo-800 dark:text-indigo-300">
                   {c.id}
                 </span>
                 <span className="min-w-0 flex-1">
-                  <span className="block text-sm font-medium text-slate-900">{c.title}</span>
+                  <span className="block text-sm font-medium text-slate-900 dark:text-white">{c.title}</span>
                   {!compact && (
                     <span className="mt-0.5 block text-xs text-slate-500">
                       {c.purpose.split('.')[0]}.
@@ -150,7 +150,7 @@ export default function AnnexACatalog({ soaState, onDecide, compact = false }) {
               </button>
 
               {expanded && (
-                <div className="space-y-4 border-t border-slate-200 px-4 py-4">
+                <div className="space-y-4 border-t border-slate-200 dark:border-slate-700 px-4 py-4">
                   <p className="text-sm text-slate-700">{c.purpose}</p>
                   <p className="text-xs text-slate-500">
                     Original paraphrase, not standard text. See{' '}
@@ -160,7 +160,7 @@ export default function AnnexACatalog({ soaState, onDecide, compact = false }) {
                     for the guidance behind this control.
                   </p>
                   <div className="flex flex-wrap gap-2 text-xs">
-                    <span className="rounded bg-slate-100 px-2 py-1 text-slate-700">
+                    <span className="rounded bg-slate-100 dark:bg-slate-800 px-2 py-1 text-slate-700">
                       Supports clause {c.clauses.join(', ')}
                     </span>
                     {c.risks.slice(0, 4).map(r => (
@@ -178,7 +178,7 @@ export default function AnnexACatalog({ soaState, onDecide, compact = false }) {
       </ul>
 
       {results.length === 0 && (
-        <p className="rounded-lg border border-dashed border-slate-300 p-6 text-center text-sm text-slate-600">
+        <p className="rounded-lg border border-dashed border-slate-300 dark:border-slate-700 p-6 text-center text-sm text-slate-600">
           No control matches “{query}”. Annex A has {ANNEX_A_CONTROLS.length} controls across{' '}
           {ANNEX_A_THEMES.length} themes — try a broader term or clear the theme filter.
         </p>
@@ -189,12 +189,12 @@ export default function AnnexACatalog({ soaState, onDecide, compact = false }) {
 
 function DecisionBadge({ decision }) {
   if (decision === 'necessary') {
-    return <span className="shrink-0 rounded bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-800">Necessary</span>;
+    return <span className="shrink-0 rounded bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 text-xs font-medium text-emerald-800 dark:text-emerald-300">Necessary</span>;
   }
   if (decision === 'notNecessary') {
-    return <span className="shrink-0 rounded bg-slate-200 px-2 py-0.5 text-xs font-medium text-slate-700">Excluded</span>;
+    return <span className="shrink-0 rounded bg-slate-200 dark:bg-slate-700 px-2 py-0.5 text-xs font-medium text-slate-700">Excluded</span>;
   }
-  return <span className="shrink-0 rounded bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-800">Undecided</span>;
+  return <span className="shrink-0 rounded bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 text-xs font-medium text-amber-800 dark:text-amber-300">Undecided</span>;
 }
 
 function QuickDecide({ controlId, record, onDecide }) {
@@ -205,14 +205,14 @@ function QuickDecide({ controlId, record, onDecide }) {
   const rationaleMissing = record?.decision === 'notNecessary' && rationale.trim().length < 12;
 
   return (
-    <div className="rounded-lg border border-slate-300 bg-slate-50 p-3">
+    <div className="rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 p-3">
       {record?.decision && !open ? (
         <div className="flex flex-wrap items-center justify-between gap-2">
           <p className="text-xs text-slate-700">
             {record.decision === 'necessary' ? 'Marked necessary' : 'Marked excluded'} —{' '}
             {record.rationale ? `“${record.rationale}”` : 'no justification recorded'}
           </p>
-          <button type="button" onClick={() => setOpen(true)} className="text-xs font-medium text-indigo-700 underline hover:text-indigo-900">
+          <button type="button" onClick={() => setOpen(true)} className="text-xs font-medium text-indigo-700 dark:text-indigo-300 underline hover:text-indigo-900 dark:hover:text-indigo-300">
             Edit decision
           </button>
         </div>
@@ -223,14 +223,14 @@ function QuickDecide({ controlId, record, onDecide }) {
             <button
               type="button"
               onClick={() => { onDecide(controlId, { decision: 'necessary' }); setOpen(true); }}
-              className="rounded-lg border border-emerald-300 bg-emerald-50 px-3 py-1.5 text-xs font-medium text-emerald-800 hover:bg-emerald-100"
+              className="rounded-lg border border-emerald-300 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-900/20 px-3 py-1.5 text-xs font-medium text-emerald-800 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/40"
             >
               Necessary
             </button>
             <button
               type="button"
               onClick={() => { onDecide(controlId, { decision: 'notNecessary' }); setOpen(true); }}
-              className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-100"
+              className="rounded-lg border border-slate-300 dark:border-slate-700 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800"
             >
               Not necessary
             </button>
@@ -245,14 +245,14 @@ function QuickDecide({ controlId, record, onDecide }) {
               value={rationale}
               onChange={e => { setRationale(e.target.value); setTouched(true); }}
               onBlur={() => onDecide(controlId, { rationale })}
-              className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
+              className="mt-1 w-full rounded-lg border border-slate-300 dark:border-slate-700 px-3 py-2 text-sm"
               placeholder={record?.decision === 'notNecessary'
                 ? 'Explain why this reference control does not apply to your ISMS scope.'
                 : 'Explain how this control addresses a risk from your assessment.'}
               aria-invalid={touched && rationaleMissing}
             />
             {touched && rationaleMissing && (
-              <p role="alert" className="mt-1 text-xs font-medium text-red-700">
+              <p role="alert" className="mt-1 text-xs font-medium text-red-700 dark:text-red-300">
                 An exclusion cannot be saved without a written justification.
               </p>
             )}

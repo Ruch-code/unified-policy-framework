@@ -17,13 +17,13 @@ function isHipaaFramework(framework) {
 const STORAGE_PREFIX = 'compliance-learning-';
 
 const COLOR_MAP = {
-  navy: { bg: 'bg-slate-800', bgLight: 'bg-slate-50', text: 'text-slate-800', border: 'border-slate-200', badge: 'bg-slate-800', ring: 'slate', hex: '#1e293b' },
-  purple: { bg: 'bg-violet-600', bgLight: 'bg-violet-50', text: 'text-violet-700', border: 'border-violet-200', badge: 'bg-violet-600', ring: 'violet', hex: '#7c3aed' },
-  green: { bg: 'bg-emerald-600', bgLight: 'bg-emerald-50', text: 'text-emerald-700', border: 'border-emerald-200', badge: 'bg-emerald-600', ring: 'emerald', hex: '#059669' },
-  beige: { bg: 'bg-amber-700', bgLight: 'bg-amber-50', text: 'text-amber-800', border: 'border-amber-200', badge: 'bg-amber-700', ring: 'amber', hex: '#b45309' },
-  golden: { bg: 'bg-yellow-600', bgLight: 'bg-yellow-50', text: 'text-yellow-700', border: 'border-yellow-200', badge: 'bg-yellow-600', ring: 'yellow', hex: '#ca8a04' },
-  blue: { bg: 'bg-slate-800', bgLight: 'bg-slate-50', text: 'text-slate-800', border: 'border-slate-200', badge: 'bg-slate-800', ring: 'slate', hex: '#1e293b' },
-  orange: { bg: 'bg-amber-700', bgLight: 'bg-amber-50', text: 'text-amber-800', border: 'border-amber-200', badge: 'bg-amber-700', ring: 'amber', hex: '#b45309' }
+  navy: { bg: 'bg-slate-800', bgLight: 'bg-slate-50 dark:bg-slate-800/60', text: 'text-slate-800 dark:text-slate-100', border: 'border-slate-200 dark:border-slate-700', badge: 'bg-slate-800', ring: 'slate', hex: '#1e293b' },
+  purple: { bg: 'bg-violet-600', bgLight: 'bg-violet-50 dark:bg-violet-900/30', text: 'text-violet-700 dark:text-violet-300', border: 'border-violet-200 dark:border-violet-800', badge: 'bg-violet-600', ring: 'violet', hex: '#7c3aed' },
+  green: { bg: 'bg-emerald-600', bgLight: 'bg-emerald-50 dark:bg-emerald-900/30', text: 'text-emerald-700 dark:text-emerald-300', border: 'border-emerald-200 dark:border-emerald-800', badge: 'bg-emerald-600', ring: 'emerald', hex: '#059669' },
+  beige: { bg: 'bg-amber-700', bgLight: 'bg-amber-50 dark:bg-amber-900/30', text: 'text-amber-800 dark:text-amber-300', border: 'border-amber-200 dark:border-amber-800', badge: 'bg-amber-700', ring: 'amber', hex: '#b45309' },
+  golden: { bg: 'bg-yellow-600', bgLight: 'bg-yellow-50 dark:bg-yellow-900/30', text: 'text-yellow-700 dark:text-yellow-300', border: 'border-yellow-200 dark:border-yellow-800', badge: 'bg-yellow-600', ring: 'yellow', hex: '#ca8a04' },
+  blue: { bg: 'bg-slate-800', bgLight: 'bg-slate-50 dark:bg-slate-800/60', text: 'text-slate-800 dark:text-slate-100', border: 'border-slate-200 dark:border-slate-700', badge: 'bg-slate-800', ring: 'slate', hex: '#1e293b' },
+  orange: { bg: 'bg-amber-700', bgLight: 'bg-amber-50 dark:bg-amber-900/30', text: 'text-amber-800 dark:text-amber-300', border: 'border-amber-200 dark:border-amber-800', badge: 'bg-amber-700', ring: 'amber', hex: '#b45309' }
 };
 
 const LEVEL_META = [
