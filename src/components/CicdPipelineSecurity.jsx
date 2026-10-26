@@ -105,7 +105,11 @@ const STAGES = [
 
 const AST_TYPES = [
   {
-    name: 'SAST', full: 'Static Application Security Testing', how: 'Reads source code or bytecode without running it (white box).',
+    name: 'SAST', full: 'Static Application Security Testing',
+    meaning: "Like a spell checker for security: it reads your code and flags dangerous patterns before the code ever runs.",
+    example: "A developer writes a query by joining text: \"SELECT * FROM users WHERE id = \" + userInput. On the pull request, SAST flags line 42 as SQL injection and suggests a parameterised query. The fix happens before merge.",
+    vulns: ["SQL injection from string-built queries", "Cross-site scripting (XSS) from unescaped output in templates", "Command injection and path traversal", "Hard-coded passwords, keys and tokens", "Weak cryptography (MD5, SHA-1, ECB mode)", "Insecure deserialisation and XML external entities (XXE)"],
+ how: 'Reads source code or bytecode without running it (white box).',
     when: 'In the IDE and on every pull request, before merge.',
     finds: 'Injection flaws, unsafe functions, hard-coded secrets, insecure crypto, taint from input to dangerous sinks.',
     misses: 'Runtime and configuration issues, authentication and session flaws, problems that depend on deployed environment.',
@@ -114,7 +118,11 @@ const AST_TYPES = [
     tools: 'CodeQL, Semgrep, SonarQube, Checkmarx, Fortify',
   },
   {
-    name: 'DAST', full: 'Dynamic Application Security Testing', how: 'Attacks the running application from outside, like an attacker (black box).',
+    name: 'DAST', full: 'Dynamic Application Security Testing',
+    meaning: "Like a friendly hacker: it uses the deployed app from the outside and tries attacks to see what actually breaks.",
+    example: "The scanner types <script>alert(1)</script> into the search box of the staging site. The results page shows it back unescaped, so DAST reports reflected XSS on /search?q=, with the request and response as proof.",
+    vulns: ["Reflected and stored cross-site scripting (XSS)", "SQL injection reachable through forms, URLs or APIs", "Missing CSRF protection", "Missing security headers (CSP, HSTS, X-Frame-Options)", "Cookies without Secure or HttpOnly flags, weak session handling", "Open redirects, exposed admin pages, TLS misconfiguration"],
+ how: 'Attacks the running application from outside, like an attacker (black box).',
     when: 'Against staging after deploy, and on a schedule against production-like environments.',
     finds: 'Authentication and session issues, missing security headers, misconfiguration, exposed endpoints, injection reachable over HTTP.',
     misses: 'Exact code location, unreached code paths, logic only reachable with specific data or roles unless configured.',
@@ -123,7 +131,11 @@ const AST_TYPES = [
     tools: 'OWASP ZAP, Burp Suite Enterprise, Invicti, StackHawk',
   },
   {
-    name: 'IAST', full: 'Interactive Application Security Testing', how: 'An agent instruments the running app and observes data flow from the inside while tests run (grey box).',
+    name: 'IAST', full: 'Interactive Application Security Testing',
+    meaning: "Like a camera inside the app: while normal tests click through it, an agent watches where data flows and reports only problems that really happen.",
+    example: "During an automated login test, the IAST agent sees the username field travel unchanged into a database query in the user repository code. It reports a confirmed SQL injection with the exact file, line, request and stack trace.",
+    vulns: ["Confirmed SQL injection and XSS, with exact code location", "Path traversal and server-side request forgery (SSRF)", "Insecure deserialisation", "Weak cryptography actually used at runtime", "Sensitive data written to logs", "Vulnerable library functions that are really called"],
+ how: 'An agent instruments the running app and observes data flow from the inside while tests run (grey box).',
     when: 'During automated functional tests or QA in staging, alongside DAST.',
     finds: 'Confirmed vulnerabilities with the exact line of code and request that triggered them; vulnerable libraries actually loaded.',
     misses: 'Code not exercised by tests; coverage depends on test quality. Language and framework support varies.',
@@ -196,11 +208,15 @@ export default function CicdPipelineSecurity() {
               </tr>
             </thead>
             <tbody>
-              {[['How it works', 'how'], ['Where in the pipeline', 'when'], ['Finds well', 'finds'], ['Misses', 'misses'], ['False positives', 'noise'], ['Audit evidence', 'evidence'], ['Example tools', 'tools']].map(([label, key]) => (
+              {[['What it means', 'meaning'], ['Example', 'example'], ['Vulnerabilities it is good at finding', 'vulns'], ['How it works', 'how'], ['Where in the pipeline', 'when'], ['Finds well', 'finds'], ['Misses', 'misses'], ['False positives', 'noise'], ['Audit evidence', 'evidence'], ['Example tools', 'tools']].map(([label, key]) => (
                 <tr key={key} className="align-top">
                   <th scope="row" className="p-2 border-b border-gray-100 dark:border-slate-800 text-left text-xs font-semibold text-gray-700 dark:text-slate-200">{label}</th>
                   {AST_TYPES.map(t => (
-                    <td key={t.name} className="p-2 border-b border-gray-100 dark:border-slate-800 text-gray-700 dark:text-slate-200">{t[key]}</td>
+                    <td key={t.name} className={`p-2 border-b border-gray-100 dark:border-slate-800 text-gray-700 dark:text-slate-200 ${key === 'meaning' ? 'font-medium' : ''} ${key === 'example' ? 'bg-slate-50 dark:bg-slate-800/60 italic' : ''}`}>
+                      {Array.isArray(t[key]) ? (
+                        <ul className="space-y-1">{t[key].map(v => <li key={v} className="flex gap-1.5"><span className="text-emerald-600 dark:text-emerald-300">-</span>{v}</li>)}</ul>
+                      ) : t[key]}
+                    </td>
                   ))}
                 </tr>
               ))}
