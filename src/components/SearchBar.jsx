@@ -237,7 +237,7 @@ export default function SearchBar({ isDark = false }) {
     transition-all duration-200 ease-in-out truncate
     ${isDark
       ? 'bg-slate-800 border-slate-700 text-white placeholder-slate-500 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 focus:bg-slate-800 focus:outline-none'
-      : 'bg-slate-100 border-slate-300 text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:bg-white focus:outline-none'
+      : 'bg-slate-100 dark:bg-slate-800 border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:bg-white focus:outline-none'
     }
   `;
 
@@ -255,8 +255,8 @@ export default function SearchBar({ isDark = false }) {
     absolute top-full left-0 right-0 mt-2 z-[100] w-full min-w-[22rem] lg:min-w-[26rem] max-w-[calc(100vw-2rem)] max-h-[28rem] overflow-y-auto overflow-x-hidden
     rounded-2xl shadow-2xl shadow-slate-950/50 dark:shadow-slate-950/60 border animate-in fade-in slide-in-from-top-2 duration-200 p-2
     ${isDark
-      ? 'bg-slate-900 border-slate-700'
-      : 'bg-white border-slate-200'
+      ? 'bg-slate-900 dark:bg-indigo-600 border-slate-700'
+      : 'bg-white border-slate-200 dark:border-slate-700'
     }
   `;
 
@@ -290,8 +290,8 @@ export default function SearchBar({ isDark = false }) {
         className={`group flex items-center gap-3 w-full min-w-0 text-left px-3 transition-colors rounded-xl
           ${compact ? 'py-2.5' : 'py-3'}
           ${isSelected
-            ? (isDark ? 'bg-indigo-600/20 text-white' : 'bg-indigo-50 text-indigo-900')
-            : (isDark ? 'hover:bg-slate-800' : 'hover:bg-slate-100')}`}
+            ? (isDark ? 'bg-indigo-600/20 text-white' : 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-900 dark:text-indigo-300')
+            : (isDark ? 'hover:bg-slate-800' : 'hover:bg-slate-100 dark:hover:bg-slate-800')}`}
       >
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 min-w-0">
@@ -321,7 +321,7 @@ export default function SearchBar({ isDark = false }) {
             <Highlight text={item.desc} terms={expansions} />
           </p>
         </div>
-        <ChevronRight className={`w-4 h-4 flex-shrink-0 group-hover:text-indigo-600 dark:group-hover:text-indigo-300 ${isDark ? 'text-slate-500' : 'text-slate-400'}`} />
+        <ChevronRight className={`w-4 h-4 flex-shrink-0 group-hover:text-indigo-600 dark:group-hover:text-indigo-300 dark:group-hover:text-indigo-300 ${isDark ? 'text-slate-500' : 'text-slate-400'}`} />
       </button>
     );
   }
@@ -345,7 +345,7 @@ export default function SearchBar({ isDark = false }) {
                 className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors border
                   ${isDark
                     ? 'bg-slate-800 text-slate-200 border-slate-700 hover:bg-slate-700 hover:text-white hover:border-indigo-500/60'
-                    : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-indigo-50 hover:text-indigo-700 hover:border-indigo-300'}`}
+                    : 'bg-slate-50 text-slate-700 border-slate-200 dark:border-slate-700 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-700 dark:hover:text-indigo-300 hover:border-indigo-300 dark:hover:border-indigo-800'}`}
               >
                 {s}
               </button>
@@ -370,7 +370,7 @@ export default function SearchBar({ isDark = false }) {
       return (
         <div className="p-5">
           <div className="flex items-center gap-3 mb-3">
-            <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${isDark ? 'bg-slate-800' : 'bg-slate-100'}`}>
+            <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${isDark ? 'bg-slate-800' : 'bg-slate-100 dark:bg-slate-800'}`}>
               <Search className={`w-4 h-4 ${isDark ? 'text-slate-400' : 'text-slate-500'}`} />
             </div>
             <div>
@@ -391,7 +391,7 @@ export default function SearchBar({ isDark = false }) {
                 className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors border
                   ${isDark
                     ? 'bg-slate-800 text-slate-200 border-slate-700 hover:bg-slate-700 hover:text-white hover:border-indigo-500/60'
-                    : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-indigo-50 hover:text-indigo-700 hover:border-indigo-300'}`}
+                    : 'bg-slate-50 text-slate-700 border-slate-200 dark:border-slate-700 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-700 dark:hover:text-indigo-300 hover:border-indigo-300 dark:hover:border-indigo-800'}`}
               >
                 {s}
               </button>
@@ -458,7 +458,7 @@ export default function SearchBar({ isDark = false }) {
             </button>
           )}
           {!isMobile && query && result && result.count > 0 && (
-            <span className={`hidden lg:block absolute right-9 top-1/2 -translate-y-1/2 text-xs font-medium px-2 py-0.5 rounded-full ${isDark ? 'bg-slate-800 text-indigo-300' : 'bg-indigo-50 text-indigo-600'}`}>
+            <span className={`hidden lg:block absolute right-9 top-1/2 -translate-y-1/2 text-xs font-medium px-2 py-0.5 rounded-full ${isDark ? 'bg-slate-800 text-indigo-300' : 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600'}`}>
               {result.count}
             </span>
           )}
@@ -478,7 +478,7 @@ export default function SearchBar({ isDark = false }) {
           className="md:hidden flex items-center justify-center w-10 h-10 rounded-xl transition-all duration-200
             ${isDark
               ? 'bg-slate-800 text-slate-300 hover:bg-slate-700'
-              : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+              : 'bg-slate-100 dark:bg-slate-800 text-slate-600 hover:bg-slate-200 dark:hover:bg-slate-700'
             }
             ${isMobileOpen && 'bg-indigo-600 text-white shadow-[0_4px_14px_rgba(79,70,229,0.35)]'}"
           aria-label={isMobileOpen ? 'Close search' : 'Open search'}
@@ -508,7 +508,7 @@ export default function SearchBar({ isDark = false }) {
                     transition-all duration-200 ease-in-out truncate
                     ${isDark
                       ? 'bg-slate-800 border-slate-700 text-white placeholder:text-slate-500 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 focus:outline-none'
-                      : 'bg-slate-100 border-slate-300 text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:bg-white focus:outline-none'
+                      : 'bg-slate-100 dark:bg-slate-800 border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:bg-white focus:outline-none'
                     }
                   `}
                   autoComplete="off"

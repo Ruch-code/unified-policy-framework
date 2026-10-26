@@ -120,7 +120,7 @@ function LockedPanel({ isDark }) {
       ${isDark ? 'bg-surface-dark-100 border-surface-dark-300' : 'bg-white border-surface-300'}`}
       data-testid="vendor-brief-locked">
       <div className={`w-14 h-14 rounded-2xl mx-auto mb-5 flex items-center justify-center
-        ${isDark ? 'bg-indigo-900/40' : 'bg-indigo-50'}`}>
+        ${isDark ? 'bg-indigo-900/40' : 'bg-indigo-50 dark:bg-indigo-900/30'}`}>
         <Lock className="w-7 h-7 text-indigo-500" />
       </div>
       <h3 className={`text-xl font-bold mb-2 ${isDark ? 'text-text-dark-primary' : 'text-navy-900'}`}>
@@ -148,10 +148,10 @@ function Pill({ children, tone = 'neutral', isDark, testId }) {
   const tones = {
     neutral: isDark ? 'bg-surface-dark-200 text-text-dark-secondary border-surface-dark-300'
       : 'bg-surface-100 text-navy-600 border-surface-300',
-    accent: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-    warn: 'bg-amber-50 text-amber-700 border-amber-200',
-    danger: 'bg-red-50 text-red-700 border-red-200',
-    good: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+    accent: 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 border-indigo-200 dark:border-indigo-800',
+    warn: 'bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800',
+    danger: 'bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 border-red-200 dark:border-red-800',
+    good: 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800',
   };
   return (
     <span data-testid={testId}
@@ -429,7 +429,7 @@ export default function VendorIncidentBrief({ isDark = false }) {
           </h3>
 
           {isReal && (
-            <p className="text-sm mb-5 p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-800" data-testid="vendor-brief-factcheck">
+            <p className="text-sm mb-5 p-3 rounded-xl bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-300" data-testid="vendor-brief-factcheck">
               These are condensed public facts and every figure should be checked against the
               source before it goes out under your name. The analysis below is our own.
             </p>
@@ -444,8 +444,8 @@ export default function VendorIncidentBrief({ isDark = false }) {
               <span
                 data-testid="vendor-brief-teaser-count"
                 className={`text-xs font-mono px-2 py-0.5 rounded ${teaserInBand
-                  ? 'bg-emerald-50 text-emerald-700'
-                  : 'bg-red-50 text-red-700'}`}
+                  ? 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300'
+                  : 'bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300'}`}
               >
                 {teaserLen} / {TEASER_MIN}-{TEASER_MAX} chars
               </span>
@@ -577,7 +577,7 @@ export default function VendorIncidentBrief({ isDark = false }) {
                 type="button"
                 onClick={clearLogo}
                 data-testid="vendor-brief-clear-logo"
-                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-medium border border-red-200 bg-red-50 text-red-700"
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-medium border border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300"
               >
                 <Trash2 className="w-4 h-4" />
                 Remove
@@ -597,7 +597,7 @@ export default function VendorIncidentBrief({ isDark = false }) {
         </div>
 
         {logoError && (
-          <p className="mb-4 text-sm p-3 rounded-xl bg-red-50 border border-red-200 text-red-700" data-testid="vendor-brief-logo-error">
+          <p className="mb-4 text-sm p-3 rounded-xl bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300" data-testid="vendor-brief-logo-error">
             {logoError}
           </p>
         )}

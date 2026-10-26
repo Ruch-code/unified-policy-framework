@@ -45,7 +45,7 @@ function LockedSection({ title, description, children, icon: Icon, showLoginProm
             <h3 className="text-2xl font-bold text-white mb-2">Unlock Premium GRC Content</h3>
             <p className="text-indigo-100 mb-6">Sign in to unlock By Region frameworks, Industry mappings, AI Privacy Matrix, and Vendor Risk Management</p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link to="/login" className="inline-flex items-center gap-2 px-6 py-3 bg-white text-indigo-600 font-medium rounded-lg hover:bg-indigo-50 transition-colors">
+              <Link to="/login" className="inline-flex items-center gap-2 px-6 py-3 bg-white text-indigo-600 font-medium rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-colors">
                 <Lock className="w-5 h-5" /> Sign In
               </Link>
               <Link to="/signup" className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white text-white font-medium rounded-lg hover:bg-indigo-700/20 transition-colors">
@@ -361,7 +361,7 @@ function TabPanel({ isDark, activeTab }) {
                       to={fw.path}
                       className="grc-card group block p-5"
                     >
-                      <h3 className="grc-card-title text-lg font-bold group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">{fw.name}</h3>
+                      <h3 className="grc-card-title text-lg font-bold group-hover:text-indigo-600 dark:group-hover:text-indigo-300 dark:group-hover:text-indigo-300 transition-colors">{fw.name}</h3>
                       <p className="grc-card-desc text-sm mt-1">{fw.desc}</p>
                       <span className="inline-block mt-3 text-sm text-indigo-600 dark:text-indigo-400 group-hover:text-indigo-500 dark:group-hover:text-indigo-300 transition-colors">
                         Open playbook →

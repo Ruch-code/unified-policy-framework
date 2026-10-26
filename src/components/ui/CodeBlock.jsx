@@ -14,7 +14,7 @@ export default function CodeBlock({ code, title = 'code', lang = '', className =
 
   return (
     <div className={`rounded-xl border border-slate-700/80 bg-slate-950 overflow-hidden ${className}`}>
-      <div className="flex items-center justify-between gap-3 px-4 py-2 bg-slate-900 border-b border-slate-800">
+      <div className="flex items-center justify-between gap-3 px-4 py-2 bg-slate-900 dark:bg-indigo-600 border-b border-slate-800">
         <div className="flex items-center gap-2 min-w-0">
           <span className="w-2.5 h-2.5 rounded-full bg-red-400/80 shrink-0" aria-hidden="true" />
           <span className="w-2.5 h-2.5 rounded-full bg-amber-300/80 shrink-0" aria-hidden="true" />

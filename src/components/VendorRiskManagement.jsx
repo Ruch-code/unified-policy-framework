@@ -536,16 +536,16 @@ const REVIEW_FREQUENCY = [
 
 function getColorStyles(color) {
   const colors = {
-    '#ef4444': { bg: 'bg-red-50', icon: 'text-red-600', dot: 'bg-red-500', trigger: 'bg-red-500' },
-    '#f59e0b': { bg: 'bg-amber-50', icon: 'text-amber-600', dot: 'bg-amber-500', trigger: 'bg-amber-500' },
-    '#eab308': { bg: 'bg-yellow-50', icon: 'text-yellow-600', dot: 'bg-yellow-500', trigger: 'bg-yellow-500' },
-    '#10b981': { bg: 'bg-emerald-50', icon: 'text-emerald-600', dot: 'bg-emerald-500', trigger: 'bg-emerald-500' },
-    '#4f46e5': { bg: 'bg-indigo-50', icon: 'text-indigo-600', dot: 'bg-indigo-500', trigger: 'bg-indigo-500' },
-    '#8b5cf6': { bg: 'bg-violet-50', icon: 'text-violet-600', dot: 'bg-violet-500', trigger: 'bg-violet-500' },
-    '#84cc16': { bg: 'bg-lime-50', icon: 'text-lime-600', dot: 'bg-lime-500', trigger: 'bg-lime-500' },
-    '#dc2626': { bg: 'bg-red-50', icon: 'text-red-600', dot: 'bg-red-500', trigger: 'bg-red-500' },
-    '#059669': { bg: 'bg-emerald-50', icon: 'text-emerald-600', dot: 'bg-emerald-500', trigger: 'bg-emerald-500' },
-    '#7c3aed': { bg: 'bg-violet-50', icon: 'text-violet-600', dot: 'bg-violet-500', trigger: 'bg-violet-500' },
+    '#ef4444': { bg: 'bg-red-50 dark:bg-red-900/30', icon: 'text-red-600 dark:text-red-300', dot: 'bg-red-500', trigger: 'bg-red-500' },
+    '#f59e0b': { bg: 'bg-amber-50 dark:bg-amber-900/30', icon: 'text-amber-600 dark:text-amber-300', dot: 'bg-amber-500', trigger: 'bg-amber-500' },
+    '#eab308': { bg: 'bg-yellow-50 dark:bg-yellow-900/30', icon: 'text-yellow-600 dark:text-yellow-300', dot: 'bg-yellow-500', trigger: 'bg-yellow-500' },
+    '#10b981': { bg: 'bg-emerald-50 dark:bg-emerald-900/30', icon: 'text-emerald-600 dark:text-emerald-300', dot: 'bg-emerald-500', trigger: 'bg-emerald-500' },
+    '#4f46e5': { bg: 'bg-indigo-50 dark:bg-indigo-900/30', icon: 'text-indigo-600', dot: 'bg-indigo-500', trigger: 'bg-indigo-500' },
+    '#8b5cf6': { bg: 'bg-violet-50 dark:bg-violet-900/30', icon: 'text-violet-600 dark:text-violet-300', dot: 'bg-violet-500', trigger: 'bg-violet-500' },
+    '#84cc16': { bg: 'bg-lime-50 dark:bg-lime-900/30', icon: 'text-lime-600 dark:text-lime-300', dot: 'bg-lime-500', trigger: 'bg-lime-500' },
+    '#dc2626': { bg: 'bg-red-50 dark:bg-red-900/30', icon: 'text-red-600 dark:text-red-300', dot: 'bg-red-500', trigger: 'bg-red-500' },
+    '#059669': { bg: 'bg-emerald-50 dark:bg-emerald-900/30', icon: 'text-emerald-600 dark:text-emerald-300', dot: 'bg-emerald-500', trigger: 'bg-emerald-500' },
+    '#7c3aed': { bg: 'bg-violet-50 dark:bg-violet-900/30', icon: 'text-violet-600 dark:text-violet-300', dot: 'bg-violet-500', trigger: 'bg-violet-500' },
   };
   return colors[color] || colors['#4f46e5'];
 }

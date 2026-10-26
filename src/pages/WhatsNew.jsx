@@ -212,7 +212,7 @@ export default function WhatsNewPage() {
                 className={`w-full pl-10 pr-4 py-2.5 rounded-xl text-sm transition-colors
                   ${isDark
                     ? 'bg-slate-800 border-slate-700 text-white placeholder-slate-500 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20'
-                    : 'bg-white border-slate-200 text-slate-900 placeholder-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20'
+                    : 'bg-white border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20'
                   }`}
                 aria-label="Search changelog"
               />
@@ -227,7 +227,7 @@ export default function WhatsNewPage() {
                       ? 'bg-indigo-600 text-white shadow-lg'
                       : isDark
                         ? 'bg-slate-800 text-slate-300 hover:bg-slate-700'
-                        : 'bg-white text-slate-700 hover:bg-slate-100'
+                        : 'bg-white text-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
                     }`}
                   aria-pressed={activeCategory === cat}
                 >
@@ -269,7 +269,7 @@ export default function WhatsNewPage() {
             </div>
           ) : (
             filteredVersions.map(version => (
-              <article key={version.version} className={`${isDark ? 'bg-slate-900/50' : 'bg-white'} rounded-2xl border ${isDark ? 'border-slate-700/50' : 'border-slate-200'} overflow-hidden`}>
+              <article key={version.version} className={`${isDark ? 'bg-slate-900/50 dark:bg-indigo-600' : 'bg-white'} rounded-2xl border ${isDark ? 'border-slate-700/50' : 'border-slate-200 dark:border-slate-700'} overflow-hidden`}>
                 <button
                   onClick={() => toggleVersion(version.version)}
                   className="w-full px-6 py-4 flex items-center justify-between gap-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors text-left"

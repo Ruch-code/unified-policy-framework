@@ -51,7 +51,7 @@ export default function NewsletterEditor() {
           value={title}
           onChange={e => setTitle(e.target.value)}
           placeholder="e.g. Compliance in 2026: what actually changed"
-          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+          className="w-full px-4 py-2.5 border border-gray-300 dark:border-slate-700 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
         />
         <label className="block text-sm font-semibold text-gray-700 mt-4 mb-1.5">Body</label>
         <textarea
@@ -59,9 +59,9 @@ export default function NewsletterEditor() {
           onChange={e => setBody(e.target.value)}
           rows={10}
           placeholder={`Write your newsletter here…\n\nSeparate paragraphs with a blank line. Plain text is fine.`}
-          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-y"
+          className="w-full px-4 py-2.5 border border-gray-300 dark:border-slate-700 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-y"
         />
-        {status === 'error' && <p className="mt-2 text-sm text-red-600">{error}</p>}
+        {status === 'error' && <p className="mt-2 text-sm text-red-600 dark:text-red-300">{error}</p>}
         <div className="mt-4 flex items-center gap-3">
           <button
             onClick={publish}
@@ -75,8 +75,8 @@ export default function NewsletterEditor() {
 
       {/* Result card */}
       {status === 'done' && result && (
-        <div className="mt-5 bg-white rounded-2xl border border-emerald-200 shadow-sm p-5">
-          <div className="flex items-center gap-2 text-emerald-700 font-semibold">
+        <div className="mt-5 bg-white rounded-2xl border border-emerald-200 dark:border-emerald-800 shadow-sm p-5">
+          <div className="flex items-center gap-2 text-emerald-700 dark:text-emerald-300 font-semibold">
             <CheckCircle className="w-5 h-5" /> Published successfully
           </div>
           <p className="mt-2 text-sm text-gray-700">

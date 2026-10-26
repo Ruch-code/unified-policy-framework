@@ -18,10 +18,10 @@ export default class ErrorBoundary extends Component {
     if (this.state.error) {
       return (
         <div className="min-h-[60vh] flex items-center justify-center p-6">
-          <div className="max-w-lg bg-red-50 border border-red-200 rounded-2xl p-6">
-            <h1 className="text-lg font-bold text-red-800 mb-2">Something went wrong</h1>
-            <p className="text-sm text-red-700 mb-3">An error occurred while rendering this part of the page. Please reload. Details below (visible to developers):</p>
-            <pre className="text-xs bg-white border border-red-100 rounded-lg p-3 overflow-auto text-red-800 whitespace-pre-wrap">
+          <div className="max-w-lg bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-2xl p-6">
+            <h1 className="text-lg font-bold text-red-800 dark:text-red-300 mb-2">Something went wrong</h1>
+            <p className="text-sm text-red-700 dark:text-red-300 mb-3">An error occurred while rendering this part of the page. Please reload. Details below (visible to developers):</p>
+            <pre className="text-xs bg-white border border-red-100 dark:border-red-800 rounded-lg p-3 overflow-auto text-red-800 dark:text-red-300 whitespace-pre-wrap">
               {this.state.error.message || String(this.state.error)}
             </pre>
             <button

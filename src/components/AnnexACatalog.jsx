@@ -133,7 +133,7 @@ export default function AnnexACatalog({ soaState, onDecide, compact = false }) {
                 type="button"
                 onClick={() => setOpen(expanded ? null : c.id)}
                 aria-expanded={expanded}
-                className="flex w-full items-start gap-3 px-4 py-3 text-left hover:bg-slate-50"
+                className="flex w-full items-start gap-3 px-4 py-3 text-left hover:bg-slate-50 dark:hover:bg-slate-800/60"
               >
                 <span className="mt-0.5 shrink-0 rounded bg-indigo-100 dark:bg-indigo-900/40 px-1.5 py-0.5 font-mono text-xs font-semibold text-indigo-800 dark:text-indigo-300">
                   {c.id}
@@ -154,7 +154,7 @@ export default function AnnexACatalog({ soaState, onDecide, compact = false }) {
                   <p className="text-sm text-slate-700">{c.purpose}</p>
                   <p className="text-xs text-slate-500">
                     Original paraphrase, not standard text. See{' '}
-                    <a href={ISO_SOURCES.guidance.url} target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-700">
+                    <a href={ISO_SOURCES.guidance.url} target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-700 dark:hover:text-slate-200">
                       ISO/IEC 27002:2022
                     </a>{' '}
                     for the guidance behind this control.

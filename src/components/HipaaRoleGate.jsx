@@ -165,7 +165,7 @@ function RoleStep({ draft, setDraft }) {
                     <ul className="space-y-1.5 text-sm text-gray-700 dark:text-slate-200">
                       {r.duties.map(d => (
                         <li key={d} className="flex items-start gap-2">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-300 shrink-0 mt-0.5" />
                           <span>{d}</span>
                         </li>
                       ))}
@@ -175,7 +175,7 @@ function RoleStep({ draft, setDraft }) {
                     <ul className="space-y-1.5 text-sm text-gray-700 dark:text-slate-200 mt-3 pt-3 border-t border-slate-200 dark:border-slate-600">
                       {r.notYourDuty.map(d => (
                         <li key={d} className="flex items-start gap-2">
-                          <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                          <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-300 shrink-0 mt-0.5" />
                           <span>{d}</span>
                         </li>
                       ))}
@@ -198,7 +198,7 @@ function RoleStep({ draft, setDraft }) {
               <label key={a.id} className="flex items-start gap-2.5 p-2.5 rounded-lg border border-gray-200 dark:border-slate-600 hover:bg-gray-50 dark:hover:bg-slate-700/30 cursor-pointer">
                 <input
                   type="checkbox"
-                  className="mt-1 w-4 h-4 rounded border-gray-300 text-slate-700 focus:ring-slate-500"
+                  className="mt-1 w-4 h-4 rounded border-gray-300 dark:border-slate-700 text-slate-700 focus:ring-slate-500"
                   checked={(draft.current || []).includes(a.id)}
                   onChange={() => toggle('current', a.id)}
                 />
@@ -220,7 +220,7 @@ function RoleStep({ draft, setDraft }) {
               <label key={a.id} className="flex items-start gap-2.5 p-2.5 rounded-lg border border-gray-200 dark:border-slate-600 hover:bg-gray-50 dark:hover:bg-slate-700/30 cursor-pointer">
                 <input
                   type="checkbox"
-                  className="mt-1 w-4 h-4 rounded border-gray-300 text-slate-700 focus:ring-slate-500"
+                  className="mt-1 w-4 h-4 rounded border-gray-300 dark:border-slate-700 text-slate-700 focus:ring-slate-500"
                   checked={(draft.planned || []).includes(a.id)}
                   onChange={() => toggle('planned', a.id)}
                 />
@@ -272,7 +272,7 @@ function RoleStep({ draft, setDraft }) {
         <label className="mt-3 flex items-start gap-2.5 p-3 rounded-lg border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/20 cursor-pointer">
           <input
             type="checkbox"
-            className="mt-1 w-4 h-4 rounded border-amber-400 text-amber-600 focus:ring-amber-500"
+            className="mt-1 w-4 h-4 rounded border-amber-400 text-amber-600 dark:text-amber-300 focus:ring-amber-500"
             checked={!!draft.reviewer.confirmed}
             onChange={(e) => setDraft(prev => ({ ...prev, reviewer: { ...prev.reviewer, confirmed: e.target.checked } }))}
           />
@@ -336,7 +336,7 @@ function FlowsStep({ flows, setFlows, roleId }) {
       {(unresolvedCount > 0 || unresolvedVendors > 0) && (
         <div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
           <div className="flex items-start gap-2">
-            <AlertTriangle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+            <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-300 shrink-0 mt-0.5" />
             <div>
               <p className="text-sm font-semibold text-amber-900 dark:text-amber-100">
                 {unresolvedCount} of {PHI_FLOW_QUESTIONS.length} questions still need confirmation
@@ -738,7 +738,7 @@ export function UnresolvedFlowsBanner() {
   return (
     <div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 mb-6">
       <div className="flex items-start gap-2">
-        <HelpCircle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+        <HelpCircle className="w-5 h-5 text-amber-600 dark:text-amber-300 shrink-0 mt-0.5" />
         <div className="min-w-0">
           <p className="text-sm font-semibold text-amber-900 dark:text-amber-100">
             {unresolved.length} PHI flow question{unresolved.length === 1 ? '' : 's'} still unresolved

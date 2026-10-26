@@ -65,7 +65,7 @@ export default function CrossFrameworkSeparation({ items = [], onSelect }) {
                 <button
                   type="button"
                   onClick={() => onSelect(item.id)}
-                  className="mt-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50"
+                  className="mt-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800/60"
                 >
                   Open assessment item
                 </button>
@@ -77,7 +77,7 @@ export default function CrossFrameworkSeparation({ items = [], onSelect }) {
 
       <p className="text-xs text-slate-500">
         {GEN_CROSS_FRAMEWORK_IDS.length} of 22 items carry non-ISO material.{' '}
-        <a href={ISO_SOURCES.standard.url} target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-700">
+        <a href={ISO_SOURCES.standard.url} target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-700 dark:hover:text-slate-200">
           ISO/IEC 27001:2022
         </a>{' '}
         ({ISO_SOURCES.standard.version}) does not define notification deadlines, consent

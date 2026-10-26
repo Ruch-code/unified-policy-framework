@@ -43,13 +43,13 @@ export default function NewsletterPopup({ open, onClose }) {
   return (
     <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4" onClick={onClose}>
       <div className="w-full max-w-sm bg-white rounded-3xl shadow-2xl overflow-hidden relative" onClick={e => e.stopPropagation()}>
-        <button onClick={onClose} className="absolute top-3 right-3 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 flex items-center justify-center transition" aria-label="Close">
+        <button onClick={onClose} className="absolute top-3 right-3 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 dark:hover:bg-slate-700 text-gray-600 flex items-center justify-center transition" aria-label="Close">
           <X className="w-4 h-4" />
         </button>
         <div className="h-2 bg-gradient-to-r from-[#7c3aed] via-[#a855f7] to-[#6366f1]" />
 
         <div className="p-6">
-          <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wide text-[#7c3aed] bg-indigo-50 px-2.5 py-1 rounded-full">
+          <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wide text-[#7c3aed] bg-indigo-50 dark:bg-indigo-900/30 px-2.5 py-1 rounded-full">
             <Mail className="w-3.5 h-3.5" /> Newsletter
           </span>
           <h2 className="mt-3 text-xl font-extrabold text-gray-900 leading-tight">
@@ -69,9 +69,9 @@ export default function NewsletterPopup({ open, onClose }) {
               <input
                 type="email" required value={email} onChange={e => setEmail(e.target.value)}
                 placeholder="you@company.com"
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full px-4 py-2.5 border border-gray-300 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
               />
-              {status === 'error' && <p className="mt-1.5 text-xs text-red-600">{msg}</p>}
+              {status === 'error' && <p className="mt-1.5 text-xs text-red-600 dark:text-red-300">{msg}</p>}
               <button type="submit" disabled={status === 'loading'}
                 className="mt-3 w-full flex items-center justify-center gap-2 bg-indigo-600 text-white py-2.5 rounded-xl font-semibold hover:bg-indigo-700 disabled:opacity-60 transition">
                 {status === 'loading' ? <><Loader2 className="w-4 h-4 animate-spin" /> Subscribing…</> : 'Subscribe'}
@@ -80,9 +80,9 @@ export default function NewsletterPopup({ open, onClose }) {
           )}
 
           <div className="mt-4 flex items-center gap-3">
-            <div className="h-px flex-1 bg-gray-200" />
+            <div className="h-px flex-1 bg-gray-200 dark:bg-slate-700" />
             <span className="text-[11px] text-gray-400 font-medium">or share on</span>
-            <div className="h-px flex-1 bg-gray-200" />
+            <div className="h-px flex-1 bg-gray-200 dark:bg-slate-700" />
           </div>
           <button onClick={shareLinkedIn}
             className="mt-3 w-full flex items-center justify-center gap-2 bg-[#0a66c2] text-white py-2.5 rounded-xl font-semibold hover:bg-[#084d94] transition">

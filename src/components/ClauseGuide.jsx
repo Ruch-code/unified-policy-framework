@@ -66,7 +66,7 @@ export default function ClauseGuide() {
                   type="button"
                   onClick={() => setOpen(expanded ? null : clause.id)}
                   aria-expanded={expanded}
-                  className="flex w-full items-start gap-3 px-4 py-3 text-left hover:bg-slate-50"
+                  className="flex w-full items-start gap-3 px-4 py-3 text-left hover:bg-slate-50 dark:hover:bg-slate-800/60"
                 >
                   <span className="mt-0.5 shrink-0 rounded bg-rose-100 dark:bg-rose-900/40 px-2 py-0.5 font-mono text-xs font-semibold text-rose-800 dark:text-rose-300">
                     {clause.id}

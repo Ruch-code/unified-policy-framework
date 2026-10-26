@@ -118,7 +118,7 @@ export default function AIGovernance({ isDark = false }) {
 
         {/* Compliance timeline */}
         <section className="rounded-2xl border border-surface-300 dark:border-surface-dark-300 bg-white dark:bg-slate-900/60 p-6 md:p-8 mb-10">
-          <h2 className="grc-section-title mb-2"><Scale className="w-6 h-6 text-blue-600" /> EU AI Act — phased obligations clock</h2>
+          <h2 className="grc-section-title mb-2"><Scale className="w-6 h-6 text-blue-600 dark:text-blue-300" /> EU AI Act — phased obligations clock</h2>
           <p className="text-sm text-gray-600 dark:text-text-dark-secondary mb-6 max-w-3xl">
             The grace periods are the real deadline driver behind every other task in this module. Alignment with ISO 42001 + NIST AI RMF
             today means each phase below is already evidenced.
@@ -135,7 +135,7 @@ export default function AIGovernance({ isDark = false }) {
 
         {/* Control mapping */}
         <section className="rounded-2xl border border-surface-300 dark:border-surface-dark-300 bg-white dark:bg-slate-900/60 p-6 md:p-8 mb-10">
-          <h2 className="grc-section-title mb-2"><ShieldCheck className="w-6 h-6 text-emerald-600" /> Classify a system across all three frameworks</h2>
+          <h2 className="grc-section-title mb-2"><ShieldCheck className="w-6 h-6 text-emerald-600 dark:text-emerald-300" /> Classify a system across all three frameworks</h2>
           <p className="text-sm text-gray-600 dark:text-text-dark-secondary mb-5 max-w-3xl">
             The same AI system classifies differently per track — this is the table to keep next to your AI inventory.
           </p>
@@ -165,7 +165,7 @@ export default function AIGovernance({ isDark = false }) {
 
         {/* Emerging tech */}
         <section className="rounded-2xl border border-surface-300 dark:border-surface-dark-300 bg-white dark:bg-slate-900/60 p-6 md:p-8 mb-10">
-          <h2 className="grc-section-title mb-2"><Sparkles className="w-6 h-6 text-amber-600" /> Emerging tech coverage</h2>
+          <h2 className="grc-section-title mb-2"><Sparkles className="w-6 h-6 text-amber-600 dark:text-amber-300" /> Emerging tech coverage</h2>
           <p className="text-sm text-gray-600 dark:text-text-dark-secondary mb-6 max-w-3xl">
             The module keeps pace with generative AI, agents, and foundation models so a governance plan from last year is not a
             governance plan this year.

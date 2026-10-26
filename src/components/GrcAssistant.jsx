@@ -22,7 +22,7 @@ function AnswerView({ answer }) {
   return (
     <div className="text-sm text-slate-900 dark:text-[#f8fafc] space-y-3">
       {answer.summary && (
-        <p className="font-semibold text-slate-900 leading-relaxed">{answer.summary}</p>
+        <p className="font-semibold text-slate-900 dark:text-white leading-relaxed">{answer.summary}</p>
       )}
 
       {/* Structured steps — Wise Advisor */}

@@ -108,10 +108,10 @@ function PhaseSection({ phase, items, isDark, progress, handleToggle, expandedTa
             return (
               <div>
                 <div key={`${phase}-${task.id}`} className={`transition ${done ? 'bg-gray-50 opacity-50' : ''}`}>
-                  <div className="flex items-start gap-4 px-6 py-4 cursor-pointer hover:bg-gray-50 transition" onClick={() => !done && setExpandedTask(isExpanded ? null : key)}>
+                  <div className="flex items-start gap-4 px-6 py-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-800/60 transition" onClick={() => !done && setExpandedTask(isExpanded ? null : key)}>
                     <input
                       type="checkbox"
-                      className={`w-5 h-5 mt-0.5 rounded border-gray-300 focus:ring-2 focus:ring-indigo-500 text-indigo-600 shrink-0`}
+                      className={`w-5 h-5 mt-0.5 rounded border-gray-300 dark:border-slate-700 focus:ring-2 focus:ring-indigo-500 text-indigo-600 shrink-0`}
                       checked={done}
                       onChange={(e) => { e.stopPropagation(); handleCheckbox(phase, task.id); }}
                       onClick={(e) => e.stopPropagation()}
@@ -256,17 +256,17 @@ function ScopingGuide({ isDark = false }) {
 
   const searchInputClass = 'w-full pl-10 pr-4 py-2.5 rounded-xl text-sm transition-colors ' + (isDark
     ? 'bg-slate-800 border-slate-700 text-white placeholder-slate-500 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500-[20%]'
-    : 'bg-white border-slate-200 text-slate-900 placeholder-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500-[20%]');
+    : 'bg-white border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500-[20%]');
 
   const selectClass = 'px-3 py-2 rounded-lg text-sm font-medium border transition ' + (isDark
     ? 'bg-slate-800 text-slate-200 border-slate-700 focus:border-indigo-500'
-    : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300 focus:border-indigo-500');
+    : 'bg-white text-slate-700 border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-700 focus:border-indigo-500');
 
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-2">
-          <a href="/" className="text-sm text-gray-500 hover:text-gray-700 mb-2 inline-block transition-colors">
+          <a href="/" className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-slate-200 mb-2 inline-block transition-colors">
             ← Back to Home
           </a>
           <h1 className="text-3xl md:text-4xl font-extrabold text-navy-900 dark:text-text-dark-primary mb-2">
@@ -382,7 +382,7 @@ function ScopingGuide({ isDark = false }) {
             <label className="inline-flex items-center gap-1.5 text-sm text-gray-600 dark:text-slate-400">
               <input
                 type="checkbox"
-                className="w-4 h-4 rounded border-gray-300 focus:ring-2 focus:ring-indigo-500 text-indigo-600"
+                className="w-4 h-4 rounded border-gray-300 dark:border-slate-700 focus:ring-2 focus:ring-indigo-500 text-indigo-600"
               />
               Show only incomplete
             </label>

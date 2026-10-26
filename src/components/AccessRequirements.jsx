@@ -271,12 +271,12 @@ const accessRequirements = {
 
 // Dark mode framework badge - WCAG AA compliant
 const frameworkBadgeDark = 'inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-surface-dark-200 border border-surface-dark-300 text-text-dark-primary hover:border-indigo-400 hover:text-white transition-colors duration-200';
-const frameworkBadgeLight = 'inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-surface-200 border border-surface-300 text-navy-700 hover:bg-indigo-50 hover:border-indigo-400 hover:text-indigo-700 transition-colors duration-200';
+const frameworkBadgeLight = 'inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-surface-200 border border-surface-300 text-navy-700 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:border-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors duration-200';
 
 const frameworkBadge = (isDark) => isDark ? frameworkBadgeDark : frameworkBadgeLight;
 
 // Key enforcement term highlight
-const enforcementTerm = (isDark) => `inline px-1.5 py-0.5 rounded text-xs font-semibold ${isDark ? 'bg-indigo-900/40 text-indigo-300' : 'bg-indigo-50 text-indigo-700'}`;
+const enforcementTerm = (isDark) => `inline px-1.5 py-0.5 rounded text-xs font-semibold ${isDark ? 'bg-indigo-900/40 text-indigo-300' : 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700'}`;
 
 export default function AccessRequirements({ isDark = false }) {
   // Persona accordion state — collapsed by default, toggled per persona.

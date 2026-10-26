@@ -182,7 +182,7 @@ export default function Iso27001SoaWorkspace({ soaState, onPatchControl, onAddCu
             type="button"
             onClick={() => setCustomOpen(v => !v)}
             aria-expanded={customOpen}
-            className="rounded-lg border border-slate-300 dark:border-slate-700 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50"
+            className="rounded-lg border border-slate-300 dark:border-slate-700 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800/60"
           >
             {customOpen ? 'Cancel' : 'Add custom control'}
           </button>
@@ -300,7 +300,7 @@ export default function Iso27001SoaWorkspace({ soaState, onPatchControl, onAddCu
 
       <p className="text-xs text-slate-500">
         Reference controls paraphrased for this app; verify against{' '}
-        <a href={ISO_SOURCES.guidance.url} target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-700">ISO/IEC 27002:2022</a>{' '}
+        <a href={ISO_SOURCES.guidance.url} target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-700 dark:hover:text-slate-200">ISO/IEC 27002:2022</a>{' '}
         and the licensed standard ({ISO_SOURCES.standard.version}).
       </p>
     </div>
@@ -361,7 +361,7 @@ function SoaRow({ control, record, open, onToggle, onPatch }) {
 
   return (
     <li className="rounded-lg border border-slate-200 dark:border-slate-700 bg-white">
-      <button type="button" onClick={onToggle} aria-expanded={open} className="flex w-full items-start gap-3 px-4 py-3 text-left hover:bg-slate-50">
+      <button type="button" onClick={onToggle} aria-expanded={open} className="flex w-full items-start gap-3 px-4 py-3 text-left hover:bg-slate-50 dark:hover:bg-slate-800/60">
         <span className="mt-0.5 shrink-0 rounded bg-indigo-100 dark:bg-indigo-900/40 px-1.5 py-0.5 font-mono text-xs font-semibold text-indigo-800 dark:text-indigo-300">{control.id}</span>
         <span className="min-w-0 flex-1">
           <span className="block text-sm font-medium text-slate-900 dark:text-white">{control.title}</span>

@@ -60,7 +60,7 @@ export default function MarketTicker({ refreshMs = 60000, compact = false }) {
       <div className="w-full overflow-hidden">
         <div className="flex items-center gap-2 overflow-x-auto py-1 scrollbar-none">
           {loading && rows.length === 0 && <span className="text-xs text-gray-400">Loading market…</span>}
-          {error && rows.length === 0 && <span className="text-xs text-amber-600">Market feed unavailable</span>}
+          {error && rows.length === 0 && <span className="text-xs text-amber-600 dark:text-amber-300">Market feed unavailable</span>}
           {rows.length === 0 && !loading && !error && <span className="text-xs text-gray-400">No live data</span>}
           {rows.map((r) => {
             const ac = ACCENT[r.name] || {};

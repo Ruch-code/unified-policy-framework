@@ -41,8 +41,8 @@ export default function ForgotPassword() {
       <div className="w-full max-w-md bg-white rounded-2xl border border-gray-200 p-8">
         <h1 className="text-2xl font-bold text-gray-900 mb-1">Reset password</h1>
         <p className="text-sm text-gray-500 mb-6">Generate a token, then set a new password.</p>
-        {message && <div className="mb-4 p-3 rounded-lg bg-emerald-50 text-emerald-700 text-sm border border-emerald-200">{message}</div>}
-        {error && <div className="mb-4 p-3 rounded-lg bg-red-50 text-red-700 text-sm border border-red-200">{error}</div>}
+        {message && <div className="mb-4 p-3 rounded-lg bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-sm border border-emerald-200 dark:border-emerald-800">{message}</div>}
+        {error && <div className="mb-4 p-3 rounded-lg bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 text-sm border border-red-200 dark:border-red-800">{error}</div>}
 
         {step === 'done' ? (
           <p className="text-sm text-gray-700">You can now <Link to="/login" className="text-indigo-600 font-medium hover:underline">sign in</Link> with your new password.</p>
@@ -53,7 +53,7 @@ export default function ForgotPassword() {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
                   <input type="email" required value={email} onChange={e => setEmail(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" />
+                    className="w-full px-4 py-2 border border-gray-300 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" />
                 </div>
                 <button disabled={loading} className="w-full bg-indigo-600 text-white py-2.5 rounded-lg font-semibold hover:bg-indigo-700 disabled:opacity-50 transition">
                   {loading ? 'Generating token…' : 'Generate reset token'}
@@ -65,13 +65,13 @@ export default function ForgotPassword() {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Reset token</label>
                   <input required value={token} onChange={e => setToken(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent font-mono" />
+                    className="w-full px-4 py-2 border border-gray-300 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent font-mono" />
                   <p className="text-[11px] text-gray-400 mt-1">Token was returned in the previous step (auto-filled).</p>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">New password</label>
                   <input type="password" required minLength={6} value={newPassword} onChange={e => setNewPassword(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" />
+                    className="w-full px-4 py-2 border border-gray-300 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" />
                 </div>
                 <button disabled={loading} className="w-full bg-indigo-600 text-white py-2.5 rounded-lg font-semibold hover:bg-indigo-700 disabled:opacity-50 transition">
                   {loading ? 'Resetting…' : 'Set new password'}

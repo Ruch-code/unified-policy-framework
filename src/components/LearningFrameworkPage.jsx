@@ -296,7 +296,7 @@ function FrameworkBody({ framework, extraSections }) {
               <ArrowRight className="w-4 h-4" />
               ISO 42001 AI Governance Roadmap
             </a>
-            <Link to="/" className="text-sm text-gray-500 hover:text-gray-700 mb-2 inline-block transition-colors">
+            <Link to="/" className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-slate-200 mb-2 inline-block transition-colors">
               ← Back to Home
             </Link>
             <h1 className="text-3xl font-bold text-gray-900 mb-2 flex items-center gap-3 flex-wrap">
@@ -308,15 +308,15 @@ function FrameworkBody({ framework, extraSections }) {
               {framework.name}
               {framework.region && (
                 <span className={`text-xs font-semibold px-3 py-1 rounded-full inline-flex items-center ${
-                  framework.region === 'Global' ? 'bg-gray-200 text-gray-700' :
-                  framework.region === 'United States' ? 'bg-blue-100 text-blue-700' :
-                  framework.region === 'European Union' ? 'bg-gradient-to-r from-blue-100 to-yellow-100 text-blue-700' :
-                  framework.region === 'India' ? 'bg-gradient-to-r from-orange-100 to-green-100 text-orange-700' :
-                  framework.region === 'Brazil' ? 'bg-gradient-to-r from-green-100 to-yellow-100 text-green-700' :
-                  framework.region === 'Singapore' ? 'bg-red-100 text-red-700' :
-                  framework.region === 'China' ? 'bg-red-100 text-red-700' :
-                  framework.region === 'Asia-Pacific' ? 'bg-red-100 text-red-700' :
-                  'bg-gray-200 text-gray-700'
+                  framework.region === 'Global' ? 'bg-gray-200 dark:bg-slate-700 text-gray-700' :
+                  framework.region === 'United States' ? 'bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300' :
+                  framework.region === 'European Union' ? 'bg-gradient-to-r from-blue-100 to-yellow-100 text-blue-700 dark:text-blue-300' :
+                  framework.region === 'India' ? 'bg-gradient-to-r from-orange-100 to-green-100 text-orange-700 dark:text-orange-300' :
+                  framework.region === 'Brazil' ? 'bg-gradient-to-r from-green-100 to-yellow-100 text-green-700 dark:text-green-300' :
+                  framework.region === 'Singapore' ? 'bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-300' :
+                  framework.region === 'China' ? 'bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-300' :
+                  framework.region === 'Asia-Pacific' ? 'bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-300' :
+                  'bg-gray-200 dark:bg-slate-700 text-gray-700'
                 }`}>
                   {framework.region}
                 </span>
@@ -334,7 +334,7 @@ function FrameworkBody({ framework, extraSections }) {
               </Link>
             )}
             {framework.referenceUrl && (
-              <a href={framework.referenceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-gray-100 text-gray-700 px-5 py-2.5 rounded-lg hover:bg-gray-200 transition font-medium">
+              <a href={framework.referenceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-gray-100 text-gray-700 px-5 py-2.5 rounded-lg hover:bg-gray-200 dark:hover:bg-slate-700 transition font-medium">
                 <ExternalLink className="w-4 h-4" />
                 Official Reference
               </a>
@@ -397,9 +397,9 @@ function FrameworkBody({ framework, extraSections }) {
               </div>
               {data.milestones.map(milestone => (
                 <Fragment key={milestone.day}>
-                  <div className="flex-1 h-1 bg-gray-200 mx-2"><div className="h-full rounded bg-gray-300" style={{ width: `${Math.min(100, (completedTasks / totalTasks) * 100)}%`, transition: 'width 1s ease' }} /></div>
+                  <div className="flex-1 h-1 bg-gray-200 dark:bg-slate-700 mx-2"><div className="h-full rounded bg-gray-300" style={{ width: `${Math.min(100, (completedTasks / totalTasks) * 100)}%`, transition: 'width 1s ease' }} /></div>
                   <div className="flex flex-col items-center">
-                    <div className="w-12 h-12 rounded-full bg-white border-4 border-gray-300 text-gray-400 flex items-center justify-center text-xs font-bold shadow">{milestone.day}d</div>
+                    <div className="w-12 h-12 rounded-full bg-white border-4 border-gray-300 dark:border-slate-700 text-gray-400 flex items-center justify-center text-xs font-bold shadow">{milestone.day}d</div>
                     <span className="text-xs text-gray-500 mt-1 font-medium text-center max-w-[80px]">{milestone.label}</span>
                   </div>
                 </Fragment>
@@ -467,11 +467,11 @@ function FrameworkBody({ framework, extraSections }) {
                     const done = !!progress[key];
                     const isExpanded = expandedTask === key;
                     return (
-                      <div key={`${week.week}-${i}`} className={`transition ${done ? 'bg-gray-50/50' : ''}`}>
-                        <div className="flex items-start gap-4 px-6 py-4 cursor-pointer hover:bg-gray-50 transition" onClick={() => !done && setExpandedTask(isExpanded ? null : key)}>
+                      <div key={`${week.week}-${i}`} className={`transition ${done ? 'bg-gray-50/50 dark:bg-slate-800/60' : ''}`}>
+                        <div className="flex items-start gap-4 px-6 py-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-800/60 transition" onClick={() => !done && setExpandedTask(isExpanded ? null : key)}>
                           <input
                             type="checkbox"
-                            className={`w-5 h-5 mt-0.5 rounded border-gray-300 focus:ring-2 focus:ring-${colors.ring}-500 text-${colors.ring}-600 shrink-0`}
+                            className={`w-5 h-5 mt-0.5 rounded border-gray-300 dark:border-slate-700 focus:ring-2 focus:ring-${colors.ring}-500 text-${colors.ring}-600 shrink-0`}
                             checked={done}
                             onChange={(e) => { e.stopPropagation(); handleToggle(week.week, i); }}
                             onClick={(e) => e.stopPropagation()}
@@ -541,7 +541,7 @@ function FrameworkBody({ framework, extraSections }) {
 
               {/* Level Complete Banner */}
               {unlocked && weekStats[week.week]?.pct >= 100 && (
-                <div className={`px-6 py-4 text-center text-sm font-medium bg-green-50 text-green-700 border-t border-green-200`}>
+                <div className={`px-6 py-4 text-center text-sm font-medium bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 border-t border-green-200 dark:border-green-800`}>
                   ✓ Level {idx + 1} complete! {idx < data.weeks.length - 1 ? `Level ${idx + 2} is now unlocked.` : 'All levels complete. You are audit-ready — this is not a certification, and nobody has validated your organization.'}
                 </div>
               )}

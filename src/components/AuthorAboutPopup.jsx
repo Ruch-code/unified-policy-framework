@@ -47,7 +47,7 @@ export default function AuthorAboutPopup({ open, onClose }) {
             { id: 'connect', label: 'Connect' },
           ].map(t => (
             <button key={t.id} onClick={() => setTab(t.id)}
-              className={`px-4 py-1.5 rounded-full text-sm font-semibold transition ${tab === t.id ? 'bg-[#7c3aed] text-white shadow' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>
+              className={`px-4 py-1.5 rounded-full text-sm font-semibold transition ${tab === t.id ? 'bg-[#7c3aed] text-white shadow' : 'bg-gray-100 text-gray-600 hover:bg-gray-200 dark:hover:bg-slate-700'}`}>
               {t.label}
             </button>
           ))}
@@ -65,7 +65,7 @@ export default function AuthorAboutPopup({ open, onClose }) {
               <p>
                 So I built a framework that maps the overlaps, ranks priorities by your actual profile, and gives a practical roadmap — not a wall of jargon.
               </p>
-              <div className="bg-indigo-50 border border-indigo-100 rounded-xl p-3 text-indigo-900">
+              <div className="bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-100 dark:border-indigo-800 rounded-xl p-3 text-indigo-900 dark:text-indigo-300">
                 <span className="inline-flex items-center gap-1.5 font-semibold"><MessagesSquare className="w-4 h-4" /> My goal:</span> make security &amp; privacy achievable for every team, whatever their size.
               </div>
             </div>

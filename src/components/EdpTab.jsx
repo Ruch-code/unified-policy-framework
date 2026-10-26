@@ -23,7 +23,7 @@ function EdpTab() {
         </p>
         
         <div className="grid md:grid-cols-3 gap-6 mb-8">
-          <div className={["bg-blue-50 border border-blue-200 rounded-xl p-6", "dark:bg-blue-900/20", "dark:border-blue-800"].join(' ')}>
+          <div className={["bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-xl p-6", "dark:bg-blue-900/20", "dark:border-blue-800"].join(' ')}>
             <div className="text-3xl mb-3">🛡️</div>
             <h3 className="font-bold text-blue-900 dark:text-blue-200 mb-2">MDM / UEM</h3>
             <p className="text-sm text-blue-700 dark:text-blue-300 mb-3">Mobile Device Management & Unified Endpoint Management</p>
@@ -36,11 +36,11 @@ function EdpTab() {
               <li className="flex items-start gap-2"><span>•</span> EDR integration (Defender, CrowdStrike, SentinelOne)</li>
             </ul>
           </div>
-          <div className={["bg-purple-50 border border-purple-200 rounded-xl p-6", "dark:bg-purple-900/20", "dark:border-purple-800"].join(' ')}>
+          <div className={["bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-xl p-6", "dark:bg-purple-900/20", "dark:border-purple-800"].join(' ')}>
             <div className="text-3xl mb-3">🔐</div>
-            <h3 className="font-bold text-purple-900 mb-2">DLP</h3>
-            <p className="text-sm text-purple-700 mb-3">Data Loss / Leakage Prevention</p>
-            <ul className="space-y-1 text-sm text-purple-800">
+            <h3 className="font-bold text-purple-900 dark:text-purple-300 mb-2">DLP</h3>
+            <p className="text-sm text-purple-700 dark:text-purple-300 mb-3">Data Loss / Leakage Prevention</p>
+            <ul className="space-y-1 text-sm text-purple-800 dark:text-purple-300">
               <li className="flex items-start gap-2"><span>•</span> Email DLP (Exchange, Gmail)</li>
               <li className="flex items-start gap-2"><span>•</span> File storage DLP (OneDrive, Drive, SharePoint)</li>
               <li className="flex items-start gap-2"><span>•</span> Endpoint DLP (clipboard, print, USB, network)</li>
@@ -49,11 +49,11 @@ function EdpTab() {
               <li className="flex items-start gap-2"><span>•</span> AI / GenAI DLP (block paste to public AI)</li>
             </ul>
           </div>
-          <div className={["bg-green-50 border border-green-200 rounded-xl p-6", "dark:bg-green-900/20", "dark:border-green-800"].join(' ')}>
+          <div className={["bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-xl p-6", "dark:bg-green-900/20", "dark:border-green-800"].join(' ')}>
             <div className="text-3xl mb-3">📱</div>
-            <h3 className="font-bold text-green-900 mb-2">BYOD</h3>
-            <p className="text-sm text-green-700 mb-3">Bring Your Own Device</p>
-            <ul className="space-y-1 text-sm text-green-800">
+            <h3 className="font-bold text-green-900 dark:text-green-300 mb-2">BYOD</h3>
+            <p className="text-sm text-green-700 dark:text-green-300 mb-3">Bring Your Own Device</p>
+            <ul className="space-y-1 text-sm text-green-800 dark:text-green-300">
               <li className="flex items-start gap-2"><span>•</span> App protection / MAM (no enrollment)</li>
               <li className="flex items-start gap-2"><span>•</span> Work profile (Android) / User Enrollment (iOS)</li>
               <li className="flex items-start gap-2"><span>•</span> VDI / DaaS / Secure Browser (no local data)</li>
@@ -136,16 +136,16 @@ function EdpTab() {
           <p className="text-gray-600 dark:text-gray-300 mb-4">EDP controls map to these frameworks (ISO 27001:2022 numbering):</p>
           <div className="grid md:grid-cols-2 gap-4 text-sm">
             <div className="bg-blue-50 rounded-lg p-4 dark:bg-blue-900/20 dark:border-blue-800">
-              <h4 className="font-bold text-blue-900 mb-2">ISO 27001:2022</h4>
-              <p className="text-blue-800">A.5.10, A.5.12, A.5.13, A.5.14, A.5.15, A.5.23, A.5.34, A.6.7, A.7.9, A.7.10, A.8.1, A.8.5, A.8.7, A.8.9, A.8.10, A.8.11, A.8.12, A.8.19, A.8.24</p>
+              <h4 className="font-bold text-blue-900 dark:text-blue-300 mb-2">ISO 27001:2022</h4>
+              <p className="text-blue-800 dark:text-blue-300">A.5.10, A.5.12, A.5.13, A.5.14, A.5.15, A.5.23, A.5.34, A.6.7, A.7.9, A.7.10, A.8.1, A.8.5, A.8.7, A.8.9, A.8.10, A.8.11, A.8.12, A.8.19, A.8.24</p>
             </div>
             <div className="bg-purple-50 rounded-lg p-4 dark:bg-purple-900/20 dark:border-purple-800">
-              <h4 className="font-bold text-purple-900 mb-2">SOC 2 / HIPAA / PCI</h4>
-              <p className="text-purple-800">SOC 2: CC6.1, CC6.6, CC6.7, CC6.8, CC7.2<br/>HIPAA: 164.310(d), 164.312(a)(2)(iv), 164.312(e)<br/>PCI DSS v4: Req 3, 4, 5, 12.3</p>
+              <h4 className="font-bold text-purple-900 dark:text-purple-300 mb-2">SOC 2 / HIPAA / PCI</h4>
+              <p className="text-purple-800 dark:text-purple-300">SOC 2: CC6.1, CC6.6, CC6.7, CC6.8, CC7.2<br/>HIPAA: 164.310(d), 164.312(a)(2)(iv), 164.312(e)<br/>PCI DSS v4: Req 3, 4, 5, 12.3</p>
             </div>
             <div className="bg-green-50 rounded-lg p-4 dark:bg-green-900/20 dark:border-green-800">
-              <h4 className="font-bold text-green-900 mb-2">CIS / NIST / GDPR</h4>
-              <p className="text-green-800">CIS v8: 1, 2, 3, 4, 10, 13<br/>NIST 800-53: AC-19, AC-20, CM-8, MP-7, SC-7, SI-4<br/>GDPR: Art 32 | DPDP Act: reasonable safeguards</p>
+              <h4 className="font-bold text-green-900 dark:text-green-300 mb-2">CIS / NIST / GDPR</h4>
+              <p className="text-green-800 dark:text-green-300">CIS v8: 1, 2, 3, 4, 10, 13<br/>NIST 800-53: AC-19, AC-20, CM-8, MP-7, SC-7, SI-4<br/>GDPR: Art 32 | DPDP Act: reasonable safeguards</p>
             </div>
           </div>
         </div>
@@ -153,10 +153,10 @@ function EdpTab() {
         <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-8 dark:bg-gray-800 dark:border-gray-700">
           <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Implementation Roadmap by Size</h3>
           <div className="grid md:grid-cols-3 gap-4">
-            <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
-              <h4 className="font-bold text-blue-900 mb-2">Small (1-50)</h4>
-              <p className="text-sm text-blue-800 mb-2">30/60/90 days</p>
-              <ul className="space-y-1 text-sm text-blue-800">
+            <div className="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-xl p-4">
+              <h4 className="font-bold text-blue-900 dark:text-blue-300 mb-2">Small (1-50)</h4>
+              <p className="text-sm text-blue-800 dark:text-blue-300 mb-2">30/60/90 days</p>
+              <ul className="space-y-1 text-sm text-blue-800 dark:text-blue-300">
                 <li>• Enroll all devices in MDM</li>
                 <li>• Enforce encryption + MFA</li>
                 <li>• Deploy EDR</li>
@@ -165,10 +165,10 @@ function EdpTab() {
                 <li>• Conditional Access for cloud apps</li>
               </ul>
             </div>
-            <div className="bg-purple-50 border border-purple-200 rounded-xl p-4">
-              <h4 className="font-bold text-purple-900 mb-2">Medium (51-500)</h4>
-              <p className="text-sm text-purple-800 mb-2">2 quarters</p>
-              <ul className="space-y-1 text-sm text-purple-800">
+            <div className="bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-xl p-4">
+              <h4 className="font-bold text-purple-900 dark:text-purple-300 mb-2">Medium (51-500)</h4>
+              <p className="text-sm text-purple-800 dark:text-purple-300 mb-2">2 quarters</p>
+              <ul className="space-y-1 text-sm text-purple-800 dark:text-purple-300">
                 <li>• MDM/EDR/MAM full deployment</li>
                 <li>• Conditional Access enforcement</li>
                 <li>• Patch SLAs</li>
@@ -177,10 +177,10 @@ function EdpTab() {
                 <li>• Quarterly access reviews</li>
               </ul>
             </div>
-            <div className="bg-green-50 border border-green-200 rounded-xl p-4">
-              <h4 className="font-bold text-green-900 mb-2">Large (500+)</h4>
-              <p className="text-sm text-green-800 mb-2">12 months</p>
-              <ul className="space-y-1 text-sm text-green-800">
+            <div className="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-xl p-4">
+              <h4 className="font-bold text-green-900 dark:text-green-300 mb-2">Large (500+)</h4>
+              <p className="text-sm text-green-800 dark:text-green-300 mb-2">12 months</p>
+              <ul className="space-y-1 text-sm text-green-800 dark:text-green-300">
                 <li>• Multi-entity scope definition</li>
                 <li>• Centralized logging</li>
                 <li>• Phased MDM/EDR rollout</li>
@@ -195,9 +195,9 @@ function EdpTab() {
         <div className="bg-white border border-gray-200 rounded-2xl p-6 dark:bg-gray-800 dark:border-gray-700">
           <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Audit Evidence & Common Gaps</h3>
           <div className="grid md:grid-cols-2 gap-4 mb-6">
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-              <h4 className="font-bold text-green-900 mb-2">Evidence to Prepare</h4>
-              <ul className="space-y-1 text-sm text-green-800">
+            <div className="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg p-4">
+              <h4 className="font-bold text-green-900 dark:text-green-300 mb-2">Evidence to Prepare</h4>
+              <ul className="space-y-1 text-sm text-green-800 dark:text-green-300">
                 <li>• MDM compliance dashboard export</li>
                 <li>• DLP policy config + incident report sample</li>
                 <li>• BYOD policy + signed acknowledgments</li>
@@ -206,9 +206,9 @@ function EdpTab() {
                 <li>• Sample DLP alert with triage record</li>
               </ul>
             </div>
-            <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
-              <h4 className="font-bold text-amber-900 mb-2">Common Gaps & Pushback</h4>
-              <ul className="space-y-1 text-sm text-amber-800">
+            <div className="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-lg p-4">
+              <h4 className="font-bold text-amber-900 dark:text-amber-300 mb-2">Common Gaps & Pushback</h4>
+              <ul className="space-y-1 text-sm text-amber-800 dark:text-amber-300">
                 <li>• "MDM slows developers" → MAM + VDI alternative</li>
                 <li>• "Too small for DLP" → Start with email DLP for PCI/PII</li>
                 <li>• "Employees won't install MDM" → MAM / VDI alternative</li>

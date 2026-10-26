@@ -177,8 +177,8 @@ export default function KnowledgeBase() {
             <h5 className="flex items-center gap-2 font-bold text-gray-900 text-sm"><Clock className="w-4 h-4 text-indigo-600" /> Policy change timeline — when policies move, and how to evidence them</h5>
             <ul className="mt-2 space-y-2 text-sm text-gray-700">
               <li className="flex gap-2"><span className="font-semibold text-indigo-700 shrink-0">During drafting:</span><span>{fwObj.policyTimeline.drafting}</span></li>
-              <li className="flex gap-2"><span className="font-semibold text-amber-700 shrink-0">Before audit:</span><span>{fwObj.policyTimeline.beforeAudit}</span></li>
-              <li className="flex gap-2"><span className="font-semibold text-emerald-700 shrink-0">After audit findings:</span><span>{fwObj.policyTimeline.afterFindings}</span></li>
+              <li className="flex gap-2"><span className="font-semibold text-amber-700 dark:text-amber-300 shrink-0">Before audit:</span><span>{fwObj.policyTimeline.beforeAudit}</span></li>
+              <li className="flex gap-2"><span className="font-semibold text-emerald-700 dark:text-emerald-300 shrink-0">After audit findings:</span><span>{fwObj.policyTimeline.afterFindings}</span></li>
             </ul>
           </div>
         )}
@@ -198,7 +198,7 @@ export default function KnowledgeBase() {
               {reb && (
                 <div className="p-4 bg-emerald-50/40 dark:bg-emerald-900/20">
                   <div className="flex items-start gap-2">
-                    <SearchCheck className="w-4 h-4 text-emerald-600 mt-0.5 shrink-0" />
+                    <SearchCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-300 mt-0.5 shrink-0" />
                     <div>
                       <p className="font-bold text-emerald-800 text-xs uppercase tracking-wide dark:text-emerald-300">GRC pushback</p>
                       <p className="text-sm text-gray-700 mt-1 dark:text-slate-200">{reb.pushback}</p>

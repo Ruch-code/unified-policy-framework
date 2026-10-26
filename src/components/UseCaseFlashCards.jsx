@@ -100,8 +100,8 @@ export default function UseCaseFlashCards({ isDark = false }) {
             <div
               key={i}
               className={`group rounded-2xl border overflow-hidden shadow-lg transition-all duration-500 ${
-                isDark ? 'bg-slate-900 border-slate-700' : 'bg-white border-gray-200'
-              } hover:${isDark ? 'border-indigo-500' : 'hover:border-[#7c3aed]'} ${isDark ? 'hover:bg-slate-800' : 'hover:bg-gray-100'}`}
+                isDark ? 'bg-slate-900 dark:bg-indigo-600 border-slate-700' : 'bg-white border-gray-200'
+              } hover:${isDark ? 'border-indigo-500' : 'hover:border-[#7c3aed]'} ${isDark ? 'hover:bg-slate-800' : 'hover:bg-gray-100 dark:hover:bg-slate-800'}`}
             >
               <div className="p-6 flex flex-col min-h-[300px]">
                 <div className="flex items-start gap-3 mb-4">
@@ -119,7 +119,7 @@ export default function UseCaseFlashCards({ isDark = false }) {
                   {card.uses.slice(0, 3).map(use => (
                     <span
                       key={use.id}
-                      className={`inline-flex items-center rounded-full text-xs font-medium ${isDark ? 'bg-slate-700/50' : 'bg-gray-100/50'} ${use.badges?.map(b => `text-${b.toLowerCase()}-400`).join(' ')}`}
+                      className={`inline-flex items-center rounded-full text-xs font-medium ${isDark ? 'bg-slate-700/50' : 'bg-gray-100/50 dark:bg-slate-800'} ${use.badges?.map(b => `text-${b.toLowerCase()}-400`).join(' ')}`}
                     >
                       {use.badges?.[0] ? (
                         <span className="w-2.5 h-2.5 rounded-full mr-1" style={{ backgroundColor: use.badges[0].toLowerCase() === 'soc2' ? '#059669' : use.badges[0].toLowerCase() === 'iso' ? '#1d4ed8' : use.badges[0].toLowerCase() === 'pci' ? '#dc2626' : use.badges[0].toLowerCase() === 'hipaa' ? '#dc27c7' : '#7f6b3f' }} />
@@ -137,13 +137,13 @@ export default function UseCaseFlashCards({ isDark = false }) {
             <div
               key={i + industryCards.length}
               className={`group rounded-2xl border overflow-hidden shadow-lg transition-all duration-500 ${
-                isDark ? 'bg-slate-900 border-slate-700' : 'bg-white border-gray-200'
-              } hover:${isDark ? 'border-indigo-500' : 'hover:border-[#7c3aed]'} ${isDark ? 'hover:bg-slate-800' : 'hover:bg-gray-100'}`}
+                isDark ? 'bg-slate-900 dark:bg-indigo-600 border-slate-700' : 'bg-white border-gray-200'
+              } hover:${isDark ? 'border-indigo-500' : 'hover:border-[#7c3aed]'} ${isDark ? 'hover:bg-slate-800' : 'hover:bg-gray-100 dark:hover:bg-slate-800'}`}
             >
               <div className="p-6 flex flex-col min-h-[280px]">
                 <div className="flex items-start gap-3 mb-4">
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: isDark ? '#1e293b' : '#f8fafc' }}>
-                    <TrendingUp className={isDark ? 'text-amber-400' : 'text-amber-600'} />
+                    <TrendingUp className={isDark ? 'text-amber-400' : 'text-amber-600 dark:text-amber-300'} />
                   </div>
                   <div>
                     <h3 className="font-bold text-lg {isDark ? 'text-white' : 'text-gray-900'}">{card.size}</h3>
@@ -156,7 +156,7 @@ export default function UseCaseFlashCards({ isDark = false }) {
                   {card.flash.slice(0, 2).map(use => (
                     <span
                       key={use.id}
-                      className={`inline-flex items-center rounded-full text-xs font-medium ${isDark ? 'bg-slate-700/50' : 'bg-gray-100/50'} ${use.color}`}
+                      className={`inline-flex items-center rounded-full text-xs font-medium ${isDark ? 'bg-slate-700/50' : 'bg-gray-100/50 dark:bg-slate-800'} ${use.color}`}
                     >
                       <span dangerouslySetInnerHTML={{ __html: use.color.replace('bg-', '').replace('/20', '') }} />
                     </span>

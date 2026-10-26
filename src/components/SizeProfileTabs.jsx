@@ -59,7 +59,7 @@ function SizeProfileTabs({ isDark = false, activeSize, onSizeChange }) {
                     ? `bg-${size.color}-600 text-white shadow-lg`
                     : isDark
                       ? 'bg-slate-800 text-slate-300 hover:bg-slate-700'
-                      : 'bg-white text-slate-700 hover:bg-slate-100'
+                      : 'bg-white text-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
                   }`}
                 aria-controls={`panel-${size.id}`}
               >

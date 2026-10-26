@@ -284,9 +284,9 @@ function BranchBlock({ branch, colors, depth }) {
           {Array.isArray(branch.next) && branch.next.length > 0 && (
             <div className="space-y-3 pt-1">
               {branch.next.map(n => (
-                <div key={n.id} className={`rounded-lg border border-slate-200 bg-white dark:bg-slate-900/60 px-4 py-3 ${isYes ? 'border-emerald-100' : 'border-rose-100'}`}>
+                <div key={n.id} className={`rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/60 px-4 py-3 ${isYes ? 'border-emerald-100 dark:border-emerald-800' : 'border-rose-100 dark:border-rose-800'}`}>
                   <p className="flex items-start gap-2 text-sm font-semibold text-gray-800 dark:text-text-dark-primary leading-snug">
-                    <Pointer className={`w-4 h-4 shrink-0 mt-0.5 ${isYes ? 'text-emerald-600' : 'text-rose-600'}`} />
+                    <Pointer className={`w-4 h-4 shrink-0 mt-0.5 ${isYes ? 'text-emerald-600 dark:text-emerald-300' : 'text-rose-600 dark:text-rose-300'}`} />
                     {n.question}
                   </p>
                   <div className="mt-3 grid sm:grid-cols-2 gap-2">

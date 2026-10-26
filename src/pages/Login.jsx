@@ -12,7 +12,7 @@ const TABS = [
 ];
 
 const INPUT_CLASS =
-  'w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent';
+  'w-full px-4 py-2 border border-gray-300 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent';
 
 export default function Login() {
   const { login } = useAuth();
@@ -121,7 +121,7 @@ export default function Login() {
               className={`flex-1 px-2 py-2 rounded-lg text-sm font-semibold transition ${
                 tab === t.id
                   ? 'bg-indigo-600 text-white shadow-sm'
-                  : 'text-gray-600 hover:bg-white hover:text-gray-900'
+                  : 'text-gray-600 hover:bg-white hover:text-gray-900 dark:hover:text-white'
               }`}
             >
               {t.label}
@@ -140,8 +140,8 @@ export default function Login() {
                   ? 'Use the administrator credentials configured for this site.'
                   : 'Access the compliance playbooks once your account is approved.'}
               </p>
-              {error && <div className="mb-4 p-3 rounded-lg bg-red-50 text-red-700 text-sm border border-red-200">{error}</div>}
-              {info && <div className="mb-4 p-3 rounded-lg bg-blue-50 text-blue-700 text-sm border border-blue-200">{info}</div>}
+              {error && <div className="mb-4 p-3 rounded-lg bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 text-sm border border-red-200 dark:border-red-800">{error}</div>}
+              {info && <div className="mb-4 p-3 rounded-lg bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm border border-blue-200 dark:border-blue-800">{info}</div>}
               <form onSubmit={submit} className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
@@ -163,8 +163,8 @@ export default function Login() {
             <>
               <h1 className="text-2xl font-bold text-gray-900 mb-1">Request access</h1>
               <p className="text-sm text-gray-500 mb-6">Create an account. An admin reviews it before you can sign in.</p>
-              {reqError && <div className="mb-4 p-3 rounded-lg bg-red-50 text-red-700 text-sm border border-red-200">{reqError}</div>}
-              {reqMessage && <div className="mb-4 p-3 rounded-lg bg-emerald-50 text-emerald-700 text-sm border border-emerald-200">{reqMessage}</div>}
+              {reqError && <div className="mb-4 p-3 rounded-lg bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 text-sm border border-red-200 dark:border-red-800">{reqError}</div>}
+              {reqMessage && <div className="mb-4 p-3 rounded-lg bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-sm border border-emerald-200 dark:border-emerald-800">{reqMessage}</div>}
               <form onSubmit={requestAccess} className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Full name</label>
@@ -189,8 +189,8 @@ export default function Login() {
             <>
               <h1 className="text-2xl font-bold text-gray-900 mb-1">Reset password</h1>
               <p className="text-sm text-gray-500 mb-6">Generate a token, then set a new password.</p>
-              {resetMessage && <div className="mb-4 p-3 rounded-lg bg-emerald-50 text-emerald-700 text-sm border border-emerald-200">{resetMessage}</div>}
-              {resetError && <div className="mb-4 p-3 rounded-lg bg-red-50 text-red-700 text-sm border border-red-200">{resetError}</div>}
+              {resetMessage && <div className="mb-4 p-3 rounded-lg bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-sm border border-emerald-200 dark:border-emerald-800">{resetMessage}</div>}
+              {resetError && <div className="mb-4 p-3 rounded-lg bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 text-sm border border-red-200 dark:border-red-800">{resetError}</div>}
               <form onSubmit={resetRequest} className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>

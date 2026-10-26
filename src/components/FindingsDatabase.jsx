@@ -3,9 +3,9 @@ import { ClipboardList, ChevronDown, TrendingUp, FileWarning, ShieldCheck, Alert
 import { HITRUST_COMMON_FINDINGS, FINDINGS_DOMAINS, FINDING_SCORING, domLabel } from '../data/findings.js';
 
 const SEVERITY_COLORS = {
-  High: 'bg-red-100 text-red-700 border-red-200',
-  Medium: 'bg-amber-100 text-amber-700 border-amber-200',
-  Low: 'bg-emerald-100 text-emerald-700 border-emerald-200',
+  High: 'bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-300 border-red-200 dark:border-red-800',
+  Medium: 'bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800',
+  Low: 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800',
 };
 
 export default function FindingsDatabase({ color }) {
@@ -26,7 +26,7 @@ export default function FindingsDatabase({ color }) {
     <div className="bg-white rounded-2xl border border-gray-200 p-6 mb-8">
       {/* Header */}
       <div className="flex items-start gap-3 mb-2">
-        <span className="w-8 h-8 rounded-lg bg-rose-100 text-rose-700 flex items-center justify-center shrink-0"><ClipboardList className="w-4 h-4" /></span>
+        <span className="w-8 h-8 rounded-lg bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-300 flex items-center justify-center shrink-0"><ClipboardList className="w-4 h-4" /></span>
         <div>
           <h2 className="text-xl font-bold text-gray-900">Common Findings Database</h2>
           <p className="text-gray-500 text-sm max-w-2xl">
@@ -37,9 +37,9 @@ export default function FindingsDatabase({ color }) {
       </div>
 
       {/* Scoring explainer */}
-      <div className="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
+      <div className="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-100 dark:border-slate-700">
         <div className="flex items-center gap-2 text-sm font-bold text-gray-800">
-          <AlertTriangle className="w-4 h-4 text-amber-600" /> How findings are scored & how they impact certification
+          <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-300" /> How findings are scored & how they impact certification
         </div>
         <p className="text-sm text-gray-600 mt-1">{FINDING_SCORING.impact}</p>
         <div className="flex flex-wrap gap-2 mt-2">
@@ -54,7 +54,7 @@ export default function FindingsDatabase({ color }) {
         <div className="flex flex-wrap gap-1.5">
           <button
             onClick={() => setDomainFilter('all')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${domainFilter === 'all' ? 'bg-slate-800 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${domainFilter === 'all' ? 'bg-slate-800 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200 dark:hover:bg-slate-700'}`}
           >
             All domains
           </button>
@@ -62,7 +62,7 @@ export default function FindingsDatabase({ color }) {
             <button
               key={d.id}
               onClick={() => setDomainFilter(domainFilter === d.id ? 'all' : d.id)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${domainFilter === d.id ? 'text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${domainFilter === d.id ? 'text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200 dark:hover:bg-slate-700'}`}
               style={domainFilter === d.id ? { background: d.color } : {}}
             >
               {d.label}
@@ -72,7 +72,7 @@ export default function FindingsDatabase({ color }) {
         <div className="flex gap-1.5">
           <button
             onClick={() => setSeverityFilter('all')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${severityFilter === 'all' ? 'bg-slate-800 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${severityFilter === 'all' ? 'bg-slate-800 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200 dark:hover:bg-slate-700'}`}
           >
             All severities
           </button>
@@ -80,7 +80,7 @@ export default function FindingsDatabase({ color }) {
             <button
               key={s}
               onClick={() => setSeverityFilter(severityFilter === s ? 'all' : s)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition border ${severityFilter === s ? 'text-white border-transparent' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition border ${severityFilter === s ? 'text-white border-transparent' : 'bg-gray-100 text-gray-600 hover:bg-gray-200 dark:hover:bg-slate-700'}`}
               style={severityFilter === s ? { background: SEVERITY_COLORS[s].includes('red') ? '#ef4444' : SEVERITY_COLORS[s].includes('amber') ? '#f59e0b' : '#10b981' } : {}}
             >
               {s} ({countBySeverity(s)})
@@ -105,7 +105,7 @@ export default function FindingsDatabase({ color }) {
             <div key={idx} className="border rounded-xl overflow-hidden" style={{ borderColor: dom.color + '44' }}>
               <button
                 onClick={() => setOpenId(open ? null : idx)}
-                className="w-full flex items-start gap-3 p-4 text-left bg-white hover:bg-gray-50 transition"
+                className="w-full flex items-start gap-3 p-4 text-left bg-white hover:bg-gray-50 dark:hover:bg-slate-800/60 transition"
               >
                 <span className="shrink-0 w-8 h-8 rounded-lg text-white text-xs font-bold flex items-center justify-center" style={{ background: dom.color }}>
                   {idx + 1}
@@ -116,7 +116,7 @@ export default function FindingsDatabase({ color }) {
                       {dom.ref} · {dom.label}
                     </span>
                     <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border ${SEVERITY_COLORS[f.severity]}`}>{f.severity}</span>
-                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200">{f.maturity}</span>
+                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 border border-slate-200 dark:border-slate-700">{f.maturity}</span>
                     <span className="text-[10px] text-gray-400 italic">{f.frequency}</span>
                   </div>
                   <h4 className="font-bold text-gray-900 mt-1.5 flex items-center justify-between gap-2">
@@ -127,20 +127,20 @@ export default function FindingsDatabase({ color }) {
               </button>
               {open && (
                 <div className="p-4 pt-0 grid md:grid-cols-3 gap-3 bg-white">
-                  <div className="rounded-lg bg-blue-50 border border-blue-100 p-3">
-                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-700 uppercase tracking-wide"><TrendingUp className="w-3.5 h-3.5" /> Root cause</span>
+                  <div className="rounded-lg bg-blue-50 dark:bg-blue-900/30 border border-blue-100 dark:border-blue-800 p-3">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-700 dark:text-blue-300 uppercase tracking-wide"><TrendingUp className="w-3.5 h-3.5" /> Root cause</span>
                     <p className="text-sm text-gray-700 mt-1">{f.rootCause}</p>
                   </div>
-                  <div className="rounded-lg bg-amber-50 border border-amber-100 p-3">
-                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-700 uppercase tracking-wide"><FileWarning className="w-3.5 h-3.5" /> Evidence deficiency</span>
+                  <div className="rounded-lg bg-amber-50 dark:bg-amber-900/30 border border-amber-100 dark:border-amber-800 p-3">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-700 dark:text-amber-300 uppercase tracking-wide"><FileWarning className="w-3.5 h-3.5" /> Evidence deficiency</span>
                     <p className="text-sm text-gray-700 mt-1">{f.evidenceDeficiency}</p>
                   </div>
-                  <div className="rounded-lg bg-green-50 border border-green-100 p-3">
-                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-green-700 uppercase tracking-wide"><ShieldCheck className="w-3.5 h-3.5" /> Prevention</span>
+                  <div className="rounded-lg bg-green-50 dark:bg-green-900/30 border border-green-100 dark:border-green-800 p-3">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-green-700 dark:text-green-300 uppercase tracking-wide"><ShieldCheck className="w-3.5 h-3.5" /> Prevention</span>
                     <p className="text-sm text-gray-700 mt-1">{f.prevent}</p>
                   </div>
                   {f.evidencePack && (
-                    <div className="md:col-span-3 rounded-lg bg-indigo-50 border border-indigo-100 p-3">
+                    <div className="md:col-span-3 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-100 dark:border-indigo-800 p-3">
                       <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-700 uppercase tracking-wide"><ListChecks className="w-3.5 h-3.5" /> ITGC evidence pack — what auditors test for</span>
                       <ul className="mt-1.5 space-y-1.5">
                         {f.evidencePack.map((e, j) => (

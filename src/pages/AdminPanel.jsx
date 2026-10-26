@@ -5,9 +5,9 @@ import { useAuth } from '../context/AuthContext.jsx';
 import ResponsiveTable from '../components/ResponsiveTable';
 
 const STATUS_META = {
-  pending: { label: 'Pending', cls: 'bg-amber-100 text-amber-700 border-amber-200' },
-  active: { label: 'Active', cls: 'bg-emerald-100 text-emerald-700 border-emerald-200' },
-  deactivated: { label: 'Deactivated', cls: 'bg-red-100 text-red-700 border-red-200' },
+  pending: { label: 'Pending', cls: 'bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800' },
+  active: { label: 'Active', cls: 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800' },
+  deactivated: { label: 'Deactivated', cls: 'bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-300 border-red-200 dark:border-red-800' },
 };
 const isDeleted = (u) => !!u.deletedAt;
 
@@ -61,8 +61,8 @@ export default function AdminPanel() {
         <Send className="w-4 h-4" /> Send Newsletter
       </Link>
 
-      {msg && <div className="mb-4 p-3 rounded-lg bg-emerald-50 text-emerald-700 text-sm border border-emerald-200">{msg}</div>}
-      {err && <div className="mb-4 p-3 rounded-lg bg-red-50 text-red-700 text-sm border border-red-200">{err}</div>}
+      {msg && <div className="mb-4 p-3 rounded-lg bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-sm border border-emerald-200 dark:border-emerald-800">{msg}</div>}
+      {err && <div className="mb-4 p-3 rounded-lg bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 text-sm border border-red-200 dark:border-red-800">{err}</div>}
       {loading && <p className="text-gray-500 text-sm">Loading users…</p>}
 
       {/* Pending approvals */}
@@ -70,7 +70,7 @@ export default function AdminPanel() {
       {pending.length === 0 && <p className="text-sm text-gray-500 bg-gray-50 border border-gray-100 rounded-xl p-4">No pending requests.</p>}
       <div className="space-y-3">
         {pending.map(u => (
-          <div key={u._id} className="border border-amber-200 bg-amber-50/40 rounded-xl p-4 flex flex-wrap items-center gap-3">
+          <div key={u._id} className="border border-amber-200 dark:border-amber-800 bg-amber-50/40 dark:bg-amber-900/30 rounded-xl p-4 flex flex-wrap items-center gap-3">
             <div className="flex-1 min-w-[180px]">
               <div className="font-semibold text-gray-900">{u.name}</div>
               <div className="text-sm text-gray-600">{u.email} · requested {new Date(u.createdAt).toLocaleString()}</div>

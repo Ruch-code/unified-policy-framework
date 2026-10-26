@@ -57,7 +57,7 @@ export default function CertAdvisor() {
   return (
     <div className="bg-white rounded-2xl border border-gray-200 p-6 mb-8">
       <div className="flex items-center gap-3 mb-2">
-        <span className="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center"><Star className="w-4 h-4" /></span>
+        <span className="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 flex items-center justify-center"><Star className="w-4 h-4" /></span>
         <div>
           <h2 className="text-xl font-bold text-gray-900">Which certifications should you pursue — and in what order?</h2>
           <p className="text-gray-500 text-sm max-w-2xl">Answer 4 quick questions about your company profile to get a prioritised roadmap of the certifications that matter most.</p>
@@ -72,7 +72,7 @@ export default function CertAdvisor() {
               <span className={`w-7 h-7 rounded-full text-xs font-bold flex items-center justify-center border ${i < step ? 'bg-emerald-600 text-white border-transparent' : i === step ? 'bg-indigo-600 text-white border-transparent' : 'bg-gray-100 text-gray-500 border-gray-200'}`}>
                 {i < step ? <CheckCircle className="w-4 h-4" /> : i + 1}
               </span>
-              {i < PROFILE_QUESTIONS.length - 1 && <div className={`flex-1 h-0.5 rounded-full ${i < step ? 'bg-emerald-400' : 'bg-gray-200'}`} />}
+              {i < PROFILE_QUESTIONS.length - 1 && <div className={`flex-1 h-0.5 rounded-full ${i < step ? 'bg-emerald-400' : 'bg-gray-200 dark:bg-slate-700'}`} />}
             </div>
           ))}
         </div>
@@ -88,8 +88,8 @@ export default function CertAdvisor() {
                 const selected = (qValue || []).includes(o.value);
                 return (
                   <button key={o.value} onClick={() => toggleMulti(o.value)}
-                    className={`flex items-center gap-3 p-3 rounded-xl border text-sm text-left transition ${selected ? 'border-indigo-500 bg-indigo-50 text-indigo-900' : 'border-gray-200 bg-white hover:border-gray-300 text-gray-700'}`}>
-                    <span className={`w-5 h-5 rounded border-2 flex items-center justify-center shrink-0 transition ${selected ? 'bg-indigo-600 border-indigo-600' : 'border-gray-300'}`}>
+                    className={`flex items-center gap-3 p-3 rounded-xl border text-sm text-left transition ${selected ? 'border-indigo-500 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-900 dark:text-indigo-300' : 'border-gray-200 bg-white hover:border-gray-300 dark:hover:border-slate-700 text-gray-700'}`}>
+                    <span className={`w-5 h-5 rounded border-2 flex items-center justify-center shrink-0 transition ${selected ? 'bg-indigo-600 border-indigo-600' : 'border-gray-300 dark:border-slate-700'}`}>
                       {selected && <CheckCircle className="w-3.5 h-3.5 text-white" />}
                     </span>
                     {o.label}
@@ -103,8 +103,8 @@ export default function CertAdvisor() {
                 const selected = qValue === o.value;
                 return (
                   <button key={o.value} onClick={() => setAnswer(o.value)}
-                    className={`flex items-center gap-3 p-3 rounded-xl border text-sm text-left transition ${selected ? 'border-indigo-500 bg-indigo-50 text-indigo-900 font-semibold' : 'border-gray-200 bg-white hover:border-gray-300 text-gray-700'}`}>
-                    <span className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition ${selected ? 'border-indigo-600 bg-indigo-600' : 'border-gray-300'}`}>
+                    className={`flex items-center gap-3 p-3 rounded-xl border text-sm text-left transition ${selected ? 'border-indigo-500 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-900 dark:text-indigo-300 font-semibold' : 'border-gray-200 bg-white hover:border-gray-300 dark:hover:border-slate-700 text-gray-700'}`}>
+                    <span className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition ${selected ? 'border-indigo-600 bg-indigo-600' : 'border-gray-300 dark:border-slate-700'}`}>
                       {selected && <span className="w-2 h-2 rounded-full bg-white" />}
                     </span>
                     {o.label}
@@ -125,22 +125,22 @@ export default function CertAdvisor() {
                 value={website}
                 onChange={e => setWebsite(e.target.value)}
                 placeholder="https://yourcompany.com"
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent" />
+                className="w-full px-4 py-2.5 border border-gray-300 dark:border-slate-700 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent" />
             </div>
           )}
           <div className="mt-5 flex items-center gap-3">
-            {step > 0 && <button onClick={goBack} className="px-4 py-2 rounded-lg bg-gray-100 text-gray-600 text-sm font-semibold hover:bg-gray-200">← Back</button>}
+            {step > 0 && <button onClick={goBack} className="px-4 py-2 rounded-lg bg-gray-100 text-gray-600 text-sm font-semibold hover:bg-gray-200 dark:hover:bg-slate-700">← Back</button>}
             <button onClick={goNext} disabled={!canProceed}
-              className={`ml-auto flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-bold transition ${canProceed ? 'bg-indigo-600 text-white hover:bg-indigo-700' : 'bg-gray-200 text-gray-500 cursor-not-allowed'}`}>
+              className={`ml-auto flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-bold transition ${canProceed ? 'bg-indigo-600 text-white hover:bg-indigo-700' : 'bg-gray-200 dark:bg-slate-700 text-gray-500 cursor-not-allowed'}`}>
               {step === 3 ? 'Show my roadmap' : 'Continue'}
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
 
           {livePlaybooks.length > 0 && (
-            <div className="mt-5 rounded-xl border border-indigo-200 bg-indigo-50/50 p-4">
+            <div className="mt-5 rounded-xl border border-indigo-200 dark:border-indigo-800 bg-indigo-50/50 dark:bg-indigo-900/30 p-4">
               <div className="flex items-center justify-between gap-2 mb-2">
-                <h4 className="text-xs font-bold text-indigo-800 uppercase tracking-wide flex items-center gap-1.5">
+                <h4 className="text-xs font-bold text-indigo-800 dark:text-indigo-300 uppercase tracking-wide flex items-center gap-1.5">
                   <BookOpenCheck className="w-3.5 h-3.5" /> Playbooks that match your profile
                 </h4>
                 <span className="text-[11px] text-indigo-600 font-semibold">{livePlaybooks.length} in scope</span>
@@ -151,14 +151,14 @@ export default function CertAdvisor() {
                     className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold border transition ${
                       p.highlight
                         ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm'
-                        : 'bg-white text-indigo-800 border-indigo-200 hover:bg-indigo-100'
+                        : 'bg-white text-indigo-800 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/40'
                     }`}
                     title={p.reasons.slice(0, 2).join(' · ')}>
                     {p.name}
                   </Link>
                 ))}
               </div>
-              <p className="mt-2 text-[11px] text-indigo-900/70">Updating live as you answer — highlighted ones stack onto a single control baseline.</p>
+              <p className="mt-2 text-[11px] text-indigo-900/70 dark:text-indigo-300">Updating live as you answer — highlighted ones stack onto a single control baseline.</p>
             </div>
           )}
         </div>
@@ -173,16 +173,16 @@ export default function CertAdvisor() {
 
           {/* Website-based business insights */}
           {bizInsight && (
-            <div className="mb-6 rounded-xl border border-indigo-200 bg-indigo-50 p-4">
-              <h5 className="flex items-center gap-2 font-bold text-indigo-900 text-sm mb-2">
+            <div className="mb-6 rounded-xl border border-indigo-200 dark:border-indigo-800 bg-indigo-50 dark:bg-indigo-900/30 p-4">
+              <h5 className="flex items-center gap-2 font-bold text-indigo-900 dark:text-indigo-300 text-sm mb-2">
                 <Shield className="w-4 h-4" /> Read from <span className="font-mono text-xs bg-white px-1.5 py-0.5 rounded">{bizInsight.missUrl}</span>
               </h5>
-              <p className="text-sm text-indigo-800 mb-2">
+              <p className="text-sm text-indigo-800 dark:text-indigo-300 mb-2">
                 Based on your business model, operations and data flow, we've adjusted priorities below:
               </p>
               <ul className="space-y-1.5">
                 {bizInsight.found.map((f, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-indigo-900">
+                  <li key={i} className="flex items-start gap-2 text-sm text-indigo-900 dark:text-indigo-300">
                     <Star className="w-3.5 h-3.5 text-indigo-500 mt-0.5 shrink-0" />
                     <span><strong>{f.cap}</strong> — {f.note}</span>
                   </li>
@@ -194,8 +194,8 @@ export default function CertAdvisor() {
           {/* Priority legend */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
             {PRIORITY_META.map(pm => (
-              <div key={pm.level} className={`rounded-xl border p-3 ${pm.level === 1 ? 'bg-red-50 border-red-200' : pm.level === 2 ? 'bg-amber-50 border-amber-200' : 'bg-blue-50 border-blue-200'}`}>
-                <span className={`text-xs font-bold uppercase tracking-wide ${pm.level === 1 ? 'text-red-700' : pm.level === 2 ? 'text-amber-700' : 'text-blue-700'}`}>{pm.label}</span>
+              <div key={pm.level} className={`rounded-xl border p-3 ${pm.level === 1 ? 'bg-red-50 dark:bg-red-900/30 border-red-200 dark:border-red-800' : pm.level === 2 ? 'bg-amber-50 dark:bg-amber-900/30 border-amber-200 dark:border-amber-800' : 'bg-blue-50 dark:bg-blue-900/30 border-blue-200 dark:border-blue-800'}`}>
+                <span className={`text-xs font-bold uppercase tracking-wide ${pm.level === 1 ? 'text-red-700 dark:text-red-300' : pm.level === 2 ? 'text-amber-700 dark:text-amber-300' : 'text-blue-700 dark:text-blue-300'}`}>{pm.label}</span>
                 <p className="text-xs text-gray-600 mt-1">{pm.desc}</p>
               </div>
             ))}
@@ -203,7 +203,7 @@ export default function CertAdvisor() {
 
           {/* Relevant playbooks */}
           {livePlaybooks.length > 0 && (
-            <div className="mb-6 rounded-xl border border-slate-200 bg-slate-50 p-4">
+            <div className="mb-6 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 p-4">
               <h4 className="text-sm font-bold text-gray-900 mb-1 flex items-center gap-2">
                 <BookOpenCheck className="w-4 h-4 text-indigo-600" /> Open the playbooks that match this profile
               </h4>
@@ -214,7 +214,7 @@ export default function CertAdvisor() {
                     className={`flex items-center gap-3 p-3 rounded-xl border text-sm transition ${
                       p.highlight
                         ? 'bg-indigo-600 text-white border-indigo-600'
-                        : 'bg-white text-gray-800 border-gray-200 hover:border-indigo-300'
+                        : 'bg-white text-gray-800 border-gray-200 hover:border-indigo-300 dark:hover:border-indigo-800'
                     }`}>
                     <Star className={`w-4 h-4 shrink-0 ${p.highlight ? 'text-amber-300' : 'text-indigo-400'}`} />
                     <span className="min-w-0">
@@ -235,7 +235,7 @@ export default function CertAdvisor() {
             <div className="inline-flex items-center rounded-lg bg-gray-100 p-1">
               {['INR', 'USD'].map(cur => (
                 <button key={cur} onClick={() => setCurrency(cur)}
-                  className={`px-3 py-1.5 rounded-md text-xs font-bold transition ${currency === cur ? 'bg-indigo-600 text-white shadow' : 'text-gray-600 hover:text-gray-900'}`}>
+                  className={`px-3 py-1.5 rounded-md text-xs font-bold transition ${currency === cur ? 'bg-indigo-600 text-white shadow' : 'text-gray-600 hover:text-gray-900 dark:hover:text-white'}`}>
                   {cur === 'INR' ? '₹ INR' : '$ USD'}
                 </button>
               ))}
@@ -256,11 +256,11 @@ export default function CertAdvisor() {
                       <div className="flex flex-wrap items-center gap-2">
                         <h4 className="font-bold text-gray-900">{name}</h4>
                         <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-white border border-gray-200 text-gray-600">{c.type}</span>
-                        {priority === 1 && <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-red-100 text-red-700 border border-red-200 uppercase tracking-wide">Priority · upskill first</span>}
+                        {priority === 1 && <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-300 border border-red-200 dark:border-red-800 uppercase tracking-wide">Priority · upskill first</span>}
                       </div>
                       <p className="text-sm text-gray-700 mt-1">{c.why}</p>
                       <div className="mt-2 flex items-center gap-2">
-                        <div className="w-40 h-1.5 rounded-full bg-gray-200 overflow-hidden">
+                        <div className="w-40 h-1.5 rounded-full bg-gray-200 dark:bg-slate-700 overflow-hidden">
                           <div className="h-full rounded-full" style={{ width: relevance + '%', background: c.color }} />
                         </div>
                         <span className="text-[11px] text-gray-500 font-medium">Relevance {relevance}%</span>
@@ -282,7 +282,7 @@ export default function CertAdvisor() {
             <p className="text-xs text-gray-600">Most frameworks share <strong>60–80% of the same underlying controls</strong>. Build one strong baseline (SOC 2 or ISO 27001) first — adding a second framework is mostly a gap-fill exercise, not a ground-up build. That overlap is why pursuing frameworks in priority order is dramatically more efficient.</p>
           </div>
 
-          <button onClick={restart} className="mt-4 px-4 py-2 rounded-lg bg-indigo-100 text-indigo-700 text-sm font-semibold hover:bg-indigo-200 transition">
+          <button onClick={restart} className="mt-4 px-4 py-2 rounded-lg bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 text-sm font-semibold hover:bg-indigo-200 transition">
             ← Re-run with different profile
           </button>
         </div>

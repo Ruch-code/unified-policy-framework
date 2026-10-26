@@ -9,10 +9,10 @@ import { ISO_CATEGORIES, ISO_SOURCES } from '../data/iso27001.js';
 const STORAGE_PREFIX = 'assessment-';
 
 const MANDATE_STYLES = {
-  required: 'bg-rose-50 text-rose-700 border-rose-200',
-  addressable: 'bg-amber-50 text-amber-800 border-amber-200',
-  mixed: 'bg-violet-50 text-violet-700 border-violet-200',
-  guidance: 'bg-slate-100 text-slate-600 border-slate-200',
+  required: 'bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-800',
+  addressable: 'bg-amber-50 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-800',
+  mixed: 'bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 border-violet-200 dark:border-violet-800',
+  guidance: 'bg-slate-100 dark:bg-slate-800 text-slate-600 border-slate-200 dark:border-slate-700',
 };
 
 const MANDATE_LABELS = {
@@ -38,11 +38,11 @@ const HIPAA_ITEMS = HIPAA_ASSESSMENT.map(it => {
 // requirement, the HIPAA item carries the citation and the baseline item stays
 // unlabelled so nothing reads as a federal mandate.
 const ISO_CAT_STYLES = {
-  clause: 'bg-rose-50 text-rose-700 border-rose-200',
-  annexA: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-  practice: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-  otherFramework: 'bg-amber-50 text-amber-800 border-amber-200',
-  unverified: 'bg-slate-100 text-slate-700 border-slate-300',
+  clause: 'bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-800',
+  annexA: 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 border-indigo-200 dark:border-indigo-800',
+  practice: 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800',
+  otherFramework: 'bg-amber-50 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-800',
+  unverified: 'bg-slate-100 dark:bg-slate-800 text-slate-700 border-slate-300 dark:border-slate-700',
 };
 
 const ANNEX_A_TOTAL = 93;
@@ -186,7 +186,7 @@ export default function AssessmentPage({ framework }) {
     <button
       onClick={() => setFilter(label)}
       className={`px-4 py-2 rounded-xl text-sm font-semibold transition ${
-        filter === label ? 'bg-[#1e293b] text-white' : 'bg-white text-gray-600 border border-gray-200 hover:border-gray-300'
+        filter === label ? 'bg-[#1e293b] text-white' : 'bg-white text-gray-600 border border-gray-200 hover:border-gray-300 dark:hover:border-slate-700'
       }`}
     >
       {label === 'All' ? 'All' : label}
@@ -198,13 +198,13 @@ export default function AssessmentPage({ framework }) {
 
   const catPill = (cat) => {
     const map = {
-      'Access Management': 'bg-blue-50 text-blue-700 border-blue-200',
-      'Change Management': 'bg-purple-50 text-purple-700 border-purple-200',
-      'IT Operations': 'bg-emerald-50 text-emerald-700 border-emerald-200',
-      'Program / System Development': 'bg-amber-50 text-amber-700 border-amber-200',
-      'Data Privacy / Governance': 'bg-rose-50 text-rose-700 border-rose-200',
-      'Business Continuity & Incident': 'bg-cyan-50 text-cyan-700 border-cyan-200',
-      'General / Cross-Cutting': 'bg-slate-100 text-slate-700 border-slate-200',
+      'Access Management': 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800',
+      'Change Management': 'bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-800',
+      'IT Operations': 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800',
+      'Program / System Development': 'bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800',
+      'Data Privacy / Governance': 'bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-800',
+      'Business Continuity & Incident': 'bg-cyan-50 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 border-cyan-200 dark:border-cyan-800',
+      'General / Cross-Cutting': 'bg-slate-100 dark:bg-slate-800 text-slate-700 border-slate-200 dark:border-slate-700',
     };
     return map[cat] || map['General / Cross-Cutting'];
   };
@@ -215,7 +215,7 @@ export default function AssessmentPage({ framework }) {
 
   return (
     <div className="container px-4 py-8">
-      <Link to={`${framework.basePath || '/'}`} className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 mb-4">
+      <Link to={`${framework.basePath || '/'}`} className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 dark:hover:text-slate-200 mb-4">
         <ArrowLeft className="w-4 h-4" /> Back to {framework.name}
       </Link>
 
@@ -229,10 +229,10 @@ export default function AssessmentPage({ framework }) {
       </p>
 
       {isIso && (
-        <div className="p-4 rounded-2xl bg-rose-50 border border-rose-200 mb-4 max-w-3xl">
+        <div className="p-4 rounded-2xl bg-rose-50 dark:bg-rose-900/30 border border-rose-200 dark:border-rose-800 mb-4 max-w-3xl">
           <div className="flex items-start gap-2">
-            <Info className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
-            <div className="text-xs text-rose-800 leading-relaxed">
+            <Info className="w-4 h-4 text-rose-600 dark:text-rose-300 shrink-0 mt-0.5" />
+            <div className="text-xs text-rose-800 dark:text-rose-300 leading-relaxed">
               <p className="font-semibold mb-1">Read this list as an environment baseline, not as ISO requirements.</p>
               <p>
                 All {items.length} <span className="font-mono">GEN-*</span> items are retained with their
@@ -254,7 +254,7 @@ export default function AssessmentPage({ framework }) {
 
       {isHipaa && (
         <>
-          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 mb-4 max-w-3xl">
+          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 dark:border-slate-700 mb-4 max-w-3xl">
             <div className="flex items-start gap-2">
               <Info className="w-4 h-4 text-slate-500 shrink-0 mt-0.5" />
               <p className="text-xs text-slate-600 leading-relaxed">
@@ -263,10 +263,10 @@ export default function AssessmentPage({ framework }) {
             </div>
           </div>
 
-          <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 mb-4 max-w-3xl">
+          <div className="p-4 rounded-2xl bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 mb-4 max-w-3xl">
             <div className="flex items-start gap-2">
-              <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-              <div className="text-xs text-amber-800 leading-relaxed">
+              <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-300 shrink-0 mt-0.5" />
+              <div className="text-xs text-amber-800 dark:text-amber-300 leading-relaxed">
                 <p className="font-semibold mb-1">This list was recalculated — your progress was kept.</p>
                 <p>
                   {NON_HIPAA_PRIVACY_ITEMS.length} items that were previously listed here are removed:{' '}
@@ -292,15 +292,15 @@ export default function AssessmentPage({ framework }) {
           <div className="text-xs text-gray-500 mt-1">Controls in place</div>
         </div>
         <div className="bg-white rounded-2xl border border-gray-200 p-4">
-          <div className="text-3xl font-bold text-emerald-600">{itDone}<span className="text-lg text-gray-400">/{itCount}</span></div>
+          <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-300">{itDone}<span className="text-lg text-gray-400">/{itCount}</span></div>
           <div className="text-xs text-gray-500 mt-1">IT controls</div>
         </div>
         <div className="bg-white rounded-2xl border border-gray-200 p-4">
-          <div className="text-3xl font-bold text-purple-600">{nonItDone}<span className="text-lg text-gray-400">/{nonItCount}</span></div>
+          <div className="text-3xl font-bold text-purple-600 dark:text-purple-300">{nonItDone}<span className="text-lg text-gray-400">/{nonItCount}</span></div>
           <div className="text-xs text-gray-500 mt-1">Non-IT controls</div>
         </div>
         <div className="bg-white rounded-2xl border border-gray-200 p-4">
-          <div className="text-3xl font-bold text-amber-600">~{totalEstHours}</div>
+          <div className="text-3xl font-bold text-amber-600 dark:text-amber-300">~{totalEstHours}</div>
           <div className="text-xs text-gray-500 mt-1">Est. effort (h)</div>
         </div>      </div>
 
@@ -311,7 +311,7 @@ export default function AssessmentPage({ framework }) {
         {filterBtn('Non-IT')}
         {itCount > 0 && filterBtn('Hybrid')}
         <div className="ml-auto flex gap-2">
-          <button onClick={download} className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-800 border border-gray-200 bg-white px-3 py-2 rounded-xl">
+          <button onClick={download} className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-800 dark:hover:text-slate-100 border border-gray-200 bg-white px-3 py-2 rounded-xl">
             <Download className="w-4 h-4" /> Export
           </button>
           <button onClick={reset} className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-red-500 px-3 py-2">
@@ -333,16 +333,16 @@ export default function AssessmentPage({ framework }) {
               {visible.map(it => {
                 const isDone = done[it.id];
                 return (
-                  <div key={it.id} className={`flex items-start gap-4 px-5 py-4 ${isDone ? 'bg-emerald-50/40' : ''}`}>
+                  <div key={it.id} className={`flex items-start gap-4 px-5 py-4 ${isDone ? 'bg-emerald-50/40 dark:bg-emerald-900/30' : ''}`}>
                     <button onClick={() => toggle(it.id)} className="mt-0.5 shrink-0">
                       {isDone ? <CheckCircle2 className="w-6 h-6 text-emerald-500" /> : <Circle className="w-6 h-6 text-gray-300 hover:text-gray-400" />}
                     </button>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 flex-wrap">
                         <span className={`inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full border ${
-                          it.category === 'IT' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
-                          it.category === 'Hybrid' ? 'bg-amber-50 text-amber-700 border-amber-200' :
-                          'bg-purple-50 text-purple-700 border-purple-200'
+                          it.category === 'IT' ? 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800' :
+                          it.category === 'Hybrid' ? 'bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800' :
+                          'bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-800'
                         }`}>
                           {typeIcon(it.category)} {it.category}
                         </span>
@@ -363,7 +363,7 @@ export default function AssessmentPage({ framework }) {
                       </div>
                       <p className={`font-medium mt-1 ${isDone ? 'text-gray-400 line-through' : 'text-gray-900'}`}>{controlText(it)}</p>
                       {isoClassification(it)?.replaceTitle && (
-                        <p className="text-[11px] text-amber-700 mt-1">
+                        <p className="text-[11px] text-amber-700 dark:text-amber-300 mt-1">
                           Original wording: &ldquo;{it.control}&rdquo; &mdash; the frequency is not an ISO requirement.
                         </p>
                       )}
@@ -376,7 +376,7 @@ export default function AssessmentPage({ framework }) {
                         </p>
                       )}
                       {isoClassification(it)?.clause?.length > 0 && (
-                        <p className="text-[11px] text-rose-700 mt-1">
+                        <p className="text-[11px] text-rose-700 dark:text-rose-300 mt-1">
                           ISO clause requirement: <span className="font-mono">Clause {isoClassification(it).clause.join(', ')}</span>
                         </p>
                       )}
@@ -387,7 +387,7 @@ export default function AssessmentPage({ framework }) {
                       {it.citation && (
                         <div className="mt-2 flex flex-wrap items-center gap-2">
                           {it.citation.sections.length > 0 && (
-                            <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-700">
+                            <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700">
                               {it.citation.sections.join(' ; ')}
                             </span>
                           )}
@@ -396,7 +396,7 @@ export default function AssessmentPage({ framework }) {
                               href={it.citation.source.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 text-[11px] font-semibold text-blue-600 hover:underline"
+                              className="inline-flex items-center gap-1 text-[11px] font-semibold text-blue-600 dark:text-blue-300 hover:underline"
                             >
                               {it.citation.source.label} <ExternalLink className="w-3 h-3" />
                             </a>
@@ -410,7 +410,7 @@ export default function AssessmentPage({ framework }) {
                         </div>
                       )}
                       {it.citation && it.citation.status === 'addressable' && (
-                        <p className="text-[11px] text-amber-700 mt-1.5 flex items-start gap-1.5">
+                        <p className="text-[11px] text-amber-700 dark:text-amber-300 mt-1.5 flex items-start gap-1.5">
                           <AlertTriangle className="w-3.5 h-3.5 shrink-0 mt-px" />
                           <span>Addressable is not optional. §164.306(d) requires a documented assessment, and if you choose not to implement it, the decision and your alternative safeguard must be written down.</span>
                         </p>
@@ -443,20 +443,20 @@ export default function AssessmentPage({ framework }) {
             type="button"
             onClick={() => setShowOtherFrameworks(v => !v)}
             aria-expanded={showOtherFrameworks}
-            className="w-full flex items-start gap-3 text-left p-4 rounded-2xl border border-amber-300 bg-amber-50 hover:bg-amber-100/70 transition"
+            className="w-full flex items-start gap-3 text-left p-4 rounded-2xl border border-amber-300 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/30 hover:bg-amber-100/70 dark:hover:bg-amber-900/40 transition"
           >
-            <AlertTriangle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+            <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-300 shrink-0 mt-0.5" />
             <span className="flex-1">
-              <span className="block text-sm font-semibold text-amber-900">
+              <span className="block text-sm font-semibold text-amber-900 dark:text-amber-300">
                 {otherFrameworkItems.length} items that are NOT ISO/IEC 27001 requirements
               </span>
-              <span className="block text-xs text-amber-800 mt-0.5">
+              <span className="block text-xs text-amber-800 dark:text-amber-300 mt-0.5">
                 Held separately so a GDPR deadline, a HIPAA artefact or a PCI scanning cadence is never read
                 as an ISO obligation. These are still worth doing &mdash; and your existing progress on them
                 is intact.
               </span>
             </span>
-            <span className="shrink-0 text-xs font-medium text-amber-800 mt-1">{showOtherFrameworks ? '−' : '+'}</span>
+            <span className="shrink-0 text-xs font-medium text-amber-800 dark:text-amber-300 mt-1">{showOtherFrameworks ? '−' : '+'}</span>
           </button>
 
           {showOtherFrameworks && (
@@ -465,7 +465,7 @@ export default function AssessmentPage({ framework }) {
                 const iso = GEN_ISO_CLASSIFICATION[it.id];
                 const isDone = done[it.id];
                 return (
-                  <div key={it.id} className={`p-4 rounded-2xl border border-amber-200 bg-white ${isDone ? 'bg-emerald-50/40' : ''}`}>
+                  <div key={it.id} className={`p-4 rounded-2xl border border-amber-200 dark:border-amber-800 bg-white ${isDone ? 'bg-emerald-50/40 dark:bg-emerald-900/30' : ''}`}>
                     <div className="flex items-start gap-4">
                       <button onClick={() => toggle(it.id)} className="mt-0.5 shrink-0" aria-label={`Mark ${controlText(it)} as done`}>
                         {isDone ? <CheckCircle2 className="w-6 h-6 text-emerald-500" /> : <Circle className="w-6 h-6 text-gray-300 hover:text-gray-400" />}
@@ -473,14 +473,14 @@ export default function AssessmentPage({ framework }) {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 flex-wrap">
                           <span className="text-xs text-gray-400 font-mono">{it.id}</span>
-                          <span className="inline-flex items-center text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full border bg-amber-50 text-amber-800 border-amber-200">
+                          <span className="inline-flex items-center text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full border bg-amber-50 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-800">
                             {ISO_CATEGORIES[iso.primary].short}
                           </span>
                         </div>
                         <p className={`font-medium mt-1 text-sm ${isDone ? 'text-gray-400 line-through' : 'text-gray-900'}`}>{controlText(it)}</p>
                         <ul className="mt-2 space-y-1">
                           {iso.contaminants.map((c, i) => (
-                            <li key={i} className="text-[11px] text-amber-800 bg-amber-50 rounded px-2 py-1">{c}</li>
+                            <li key={i} className="text-[11px] text-amber-800 dark:text-amber-300 bg-amber-50 dark:bg-amber-900/30 rounded px-2 py-1">{c}</li>
                           ))}
                         </ul>
                         <p className="text-[11px] text-slate-500 mt-2 leading-relaxed">{iso.basis}</p>
@@ -495,7 +495,7 @@ export default function AssessmentPage({ framework }) {
                 );
               })}
               <p className="text-xs text-slate-500">
-                Source: <a href={ISO_SOURCES.standard.url} target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-700">{ISO_SOURCES.standard.version}</a>.
+                Source: <a href={ISO_SOURCES.standard.url} target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-700 dark:hover:text-slate-200">{ISO_SOURCES.standard.version}</a>.
                 ISO/IEC 27001:2022 defines no notification deadlines, consent mechanics or regulator-specific forms.
               </p>
             </div>

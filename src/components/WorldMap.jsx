@@ -265,7 +265,7 @@ export default function WorldMap({ height = 560, dark = false }) {
                     <p className="text-xs text-gray-500">{selected.region} · {selected.subCategory}</p>
                   </div>
                 </div>
-                <button className="text-gray-400 hover:text-gray-700" onClick={() => setSelected(null)}><X className="w-5 h-5" /></button>
+                <button className="text-gray-400 hover:text-gray-700 dark:hover:text-slate-200" onClick={() => setSelected(null)}><X className="w-5 h-5" /></button>
               </div>
               <p className="mt-4 text-sm text-gray-600 leading-relaxed">{selected.blurb}</p>
               <div className="mt-4 flex items-center gap-4 text-xs text-gray-500">
@@ -294,7 +294,7 @@ export default function WorldMap({ height = 560, dark = false }) {
                 <div className="text-xs text-gray-500">{activeReg.country} · {activeReg.timezone}</div>
               </div>
             </div>
-            <button className="text-gray-400 hover:text-gray-700" onClick={() => setActiveReg(null)}><X className="w-4 h-4" /></button>
+            <button className="text-gray-400 hover:text-gray-700 dark:hover:text-slate-200" onClick={() => setActiveReg(null)}><X className="w-4 h-4" /></button>
           </div>
           <div className="mt-3 space-y-1.5">
             {regsFor(activeReg.region, activeReg.sub).length === 0 && (
