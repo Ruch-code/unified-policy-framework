@@ -4,6 +4,8 @@ import RegionControlMap from '../components/RegionControlMap.jsx';
 import CertAdvisor from '../components/CertAdvisor.jsx';
 import ErrorBoundary from '../components/ErrorBoundary.jsx';
 import AIPrivacyRisks from '../components/AIPrivacyRisks.jsx';
+import RiskAssessmentModule from '../components/riskAssessment/RiskAssessmentModule.jsx';
+import { WHAT_CAN_GO_WRONG as RISK_WHAT_CAN_GO_WRONG } from '../data/riskAssessment/methodology';
 import VendorRiskManagement from '../components/VendorRiskManagement.jsx';
 import InterviewPrep from '../components/InterviewPrep.jsx';
 import PasswordPolicies from '../components/PasswordPolicies.jsx';
@@ -95,6 +97,13 @@ const TABS = [
       'Supply Chain Risk: Third-party model APIs train on your data - no DPA, cross-border transfer violations',
       'Regulatory Bans: AI Act prohibits high-risk AI without conformity assessment - market ban in EU',
     ],
+  },
+  {
+    id: 'risk-assessment',
+    label: 'Risk Assessment & Treatment',
+    icon: AlertTriangle,
+    description: 'End-to-end risk methodology, 5 x 5 scoring rubric, treatment and approval workflow, sample register, 100+ scenario library and risk to control to test to evidence traceability, mapped to SOC 2 CC3 and CC9, ISO 27001, ISO 42001, NIST, HIPAA, GDPR, DPDPA, EU AI Act, NIS2 and DORA.',
+    whatCanGoWrong: RISK_WHAT_CAN_GO_WRONG,
   },
   {
     id: 'vendor-risk',
@@ -393,6 +402,19 @@ function TabPanel({ isDark, activeTab }) {
           showLoginPrompt={false}
         >
           <AIPrivacyRisks isDark={isDark} />
+        </LockedSection>
+      )}
+
+      {activeTab === 'risk-assessment' && (
+        <LockedSection
+          title="Risk Assessment & Treatment"
+          description="Methodology, scoring rubric, sample risk register, scenario library and risk to control to evidence traceability for SOC 2, ISO 27001 and more."
+          icon={AlertTriangle}
+          showLoginPrompt={false}
+        >
+          <ErrorBoundary>
+            <RiskAssessmentModule isDark={isDark} />
+          </ErrorBoundary>
         </LockedSection>
       )}
 

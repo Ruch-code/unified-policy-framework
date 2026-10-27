@@ -9,7 +9,7 @@ const SHEETS = [
   {
     name: 'Hardware',
     extra: ['Make / Model', 'Serial Number', 'Assigned To', 'Location', 'OS & Version', 'MDM Enrolled (Y/N)', 'Disk Encryption (Y/N)', 'EDR Installed (Y/N)', 'Purchase Date', 'End of Life Date', 'Disposal Method & Certificate'],
-    sample: ['HW-001', 'MacBook Pro 14', 'Laptop', 'Engineering laptop', 'Head of Engineering', 'IT Admin', 'Engineering', 'Confidential', 'Y', 'High', 'Y', 'Apple M3 Pro', 'C02XXXXXXX', 'J. Doe', 'Remote - India', 'macOS 15.1', 'Y', 'Y (FileVault)', 'Y', '2025-04-10', '2029-04-10', '', 'Active', '2025-04-10', '2026-10-01', ''],
+    sample: ['HW-001', 'MacBook Pro 14', 'Laptop', 'Engineering laptop', 'Head of Engineering', 'IT Admin', 'Engineering', 'Confidential', 'Y', 'High', 'Y', 'Apple M3 Pro', 'C02XXXXXXX', 'User A', 'Remote - India', 'macOS 15.1', 'Y', 'Y (FileVault)', 'Y', '2025-04-10', '2029-04-10', '', 'Active', '2025-04-10', '2026-10-01', ''],
   },
   {
     name: 'Software & SaaS',

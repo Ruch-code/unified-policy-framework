@@ -118,7 +118,7 @@ function cellXml(ref, value, style) {
  * sheet = { name, title?, notes?: string[], headers: string[], rows: any[][] }
  * Title and notes sit above the table; the header row is frozen and bold.
  */
-function sheetXml({ title, notes = [], headers, rows }) {
+function sheetXml({ title, notes = [], headers, rows, validations = [] }) {
   const ncol = Math.max(1, headers.length);
   const lastCol = colName(ncol - 1);
   const out = [];
@@ -155,13 +155,23 @@ function sheetXml({ title, notes = [], headers, rows }) {
   const cols = widths.map((w, i) => `<col min="${i + 1}" max="${i + 1}" width="${w}" customWidth="1"/>`).join('');
   const pane = `<pane ySplit="${headerRow}" topLeftCell="A${headerRow + 1}" activePane="bottomLeft" state="frozen"/><selection pane="bottomLeft" activeCell="A${headerRow + 1}" sqref="A${headerRow + 1}"/>`;
   const filter = rows.length ? `<autoFilter ref="A${headerRow}:${lastCol}${headerRow + rows.length}"/>` : '';
+  // Optional dropdown lists: [{ col: <0-based column index>, values: [...] }].
+  const dvLast = headerRow + Math.max(rows.length, 1) + 200;
+  const dvItems = (validations || []).filter(v => v && Number.isInteger(v.col) && v.col >= 0 && v.col < ncol && Array.isArray(v.values) && v.values.length);
+  const dvXml = dvItems.length
+    ? `<dataValidations count="${dvItems.length}">${dvItems.map(v => {
+        const c = colName(v.col);
+        const list = v.values.map(x => toPlainText(x).replace(/,/g, ' ')).join(',').slice(0, 250);
+        return `<dataValidation type="list" allowBlank="1" showErrorMessage="1" sqref="${c}${headerRow + 1}:${c}${dvLast}"><formula1>${xmlEsc(`"${list}"`)}</formula1></dataValidation>`;
+      }).join('')}</dataValidations>`
+    : '';
   const mergeXml = merges.length ? `<mergeCells count="${merges.length}">${merges.map(m => `<mergeCell ref="${m}"/>`).join('')}</mergeCells>` : '';
   return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
 <sheetViews><sheetView workbookViewId="0">${pane}</sheetView></sheetViews>
 <sheetFormatPr defaultRowHeight="15"/>
 <cols>${cols}</cols>
-<sheetData>${out.join('')}</sheetData>${filter}${mergeXml}
+<sheetData>${out.join('')}</sheetData>${filter}${mergeXml}${dvXml}
 <pageSetup orientation="landscape" fitToWidth="1" fitToHeight="0"/>
 </worksheet>`;
 }

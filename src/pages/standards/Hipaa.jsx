@@ -1,3 +1,4 @@
+import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCheck.jsx";
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 import { buildCitation, classifyRoles } from "../../data/hipaaDomain.js";
 
@@ -843,7 +844,12 @@ FRAMEWORK.modules = withCitations(FRAMEWORK.modules);
 FRAMEWORK.roleAware = true;
 
 export default function Hipaa() {
-  return <LearningFrameworkPage framework={FRAMEWORK} />;
+  return (
+    <>
+      <LearningFrameworkPage framework={FRAMEWORK} />
+      <RiskCrossCheckBlock frameworkId="hipaa" />
+    </>
+  );
 }
 
 export { FRAMEWORK };

@@ -110,8 +110,8 @@ const MAPPING = [
 function buildSheets() {
   const reviewHeaders = ['Review ID', 'Review Cycle', 'System / Application', 'System Owner', 'User Name', 'User Email / ID', 'Employment Type (FTE/Contractor/Service)', 'Department', 'Job Title', 'Manager', 'Role / Group / Entitlement', 'Privileged (Y/N)', 'Matches Role Baseline (Y/N)', 'Last Login Date', 'Days Since Last Use', 'HR Status (Active/Leaver/Mover)', 'SoD Conflict (Y/N)', 'Auto-Recommendation (Keep/Remove/Review)', 'Recommendation Reason', 'Reviewer', 'Reviewer Decision (Keep/Remove/Modify)', 'Decision Justification', 'Decision Date', 'Remediation Ticket', 'Removal Completed Date', 'Verified By', 'Notes'];
   const sample = [
-    ['UAR-2026Q4-0001', '2026 Q4', 'AWS Production', 'Head of Platform', 'Jane Doe', 'jane.doe@company.com', 'FTE', 'Engineering', 'Senior Engineer', 'John Smith', 'AdministratorAccess', 'Y', 'N', '2026-10-20', '7', 'Active', 'N', 'Review', 'Privileged role outside baseline', 'Head of Platform', 'Modify', 'Move to JIT via Identity Center; standing admin not needed', '2026-10-24', 'IAM-1234', '2026-10-25', 'GRC Analyst', ''],
-    ['UAR-2026Q4-0002', '2026 Q4', 'Salesforce', 'VP Sales', 'Ravi Kumar', 'ravi.kumar@company.com', 'Contractor', 'Sales', 'SDR', 'Priya Shah', 'Standard User', 'N', 'Y', '2026-06-02', '146', 'Active', 'N', 'Remove', 'No login in 90+ days', 'Priya Shah', 'Remove', 'Contractor no longer uses CRM', '2026-10-23', 'IT-5678', '2026-10-23', 'GRC Analyst', ''],
+    ['UAR-2026Q4-0001', '2026 Q4', 'AWS Production', 'Head of Platform', 'User A', 'user.a@example.com', 'FTE', 'Engineering', 'Senior Engineer', 'Manager A', 'AdministratorAccess', 'Y', 'N', '2026-10-20', '7', 'Active', 'N', 'Review', 'Privileged role outside baseline', 'Head of Platform', 'Modify', 'Move to JIT via Identity Center; standing admin not needed', '2026-10-24', 'IAM-1234', '2026-10-25', 'GRC Analyst', ''],
+    ['UAR-2026Q4-0002', '2026 Q4', 'Salesforce', 'VP Sales', 'User B', 'user.b@example.com', 'Contractor', 'Sales', 'SDR', 'Manager B', 'Standard User', 'N', 'Y', '2026-06-02', '146', 'Active', 'N', 'Remove', 'No login in 90+ days', 'Manager B', 'Remove', 'Contractor no longer uses CRM', '2026-10-23', 'IT-5678', '2026-10-23', 'GRC Analyst', ''],
   ];
   return [
     {
@@ -164,7 +164,7 @@ function buildSheets() {
       title: 'Reviewer Attestation',
       headers: ['System', 'Review Cycle', 'Population Source and Run Date', 'Rows Reviewed', 'Kept', 'Removed', 'Modified', 'Reviewer Name', 'Reviewer Title', 'Attestation Statement', 'Sign-off Date', 'All Removals Verified (Y/N)'],
       rows: [
-        ['AWS Production', '2026 Q4', 'IAM Identity Center export, 2026-10-20', '42', '38', '3', '1', 'A. Reviewer', 'Head of Platform', 'I have reviewed the access listed and confirm it is appropriate, except where marked for removal or change.', '2026-10-24', 'Y'],
+        ['AWS Production', '2026 Q4', 'IAM Identity Center export, 2026-10-20', '42', '38', '3', '1', 'Reviewer', 'Head of Platform', 'I have reviewed the access listed and confirm it is appropriate, except where marked for removal or change.', '2026-10-24', 'Y'],
         ...Array.from({ length: 15 }, () => []),
       ],
     },

@@ -1,3 +1,4 @@
+import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCheck.jsx";
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 import GdprAccountability from "../../components/GdprAccountability.jsx";
 import GdprRoles from "../../components/GdprRoles.jsx";
@@ -207,7 +208,12 @@ const FRAMEWORK = {
 };
 
 export default function Gdpr() {
-  return <LearningFrameworkPage framework={FRAMEWORK} />;
+  return (
+    <>
+      <LearningFrameworkPage framework={FRAMEWORK} />
+      <RiskCrossCheckBlock frameworkId="gdpr" />
+    </>
+  );
 }
 
 export { FRAMEWORK };

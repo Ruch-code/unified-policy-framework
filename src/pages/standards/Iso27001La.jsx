@@ -1,3 +1,4 @@
+import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCheck.jsx";
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 import StatementOfApplicability from "../../components/StatementOfApplicability.jsx";
 import ScopeWalkthrough from "../../components/ScopeWalkthrough.jsx";
@@ -183,6 +184,7 @@ export default function Iso27001La() {
   return (
     <>
       <LearningFrameworkPage framework={FRAMEWORK} />
+      <RiskCrossCheckBlock frameworkId="iso27001" />
       <ScopingGuide />
       <ScopeWalkthrough />
       <StatementOfApplicability />

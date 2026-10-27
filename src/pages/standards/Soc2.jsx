@@ -1,3 +1,4 @@
+import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCheck.jsx";
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 import soc2Template from "../../data/soc2-template.json";
 import TscControlMatrix from "../../components/TscControlMatrix.jsx";
@@ -1145,6 +1146,7 @@ export default function Soc2() {
   return (
     <>
       <LearningFrameworkPage framework={FRAMEWORK} />
+      <RiskCrossCheckBlock frameworkId="soc2" />
       <Soc2TechnicalSection />
       <TscControlMatrix />
     </>

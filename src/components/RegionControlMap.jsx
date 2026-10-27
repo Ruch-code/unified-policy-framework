@@ -2,7 +2,7 @@ import { useId, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { ITGC_DOMAINS, domainsFor } from '../data/itgcMatrix.js';
-import { GENERIC_ASSESSMENT } from '../data/assessments.js';
+import { GENERIC_ASSESSMENT, RISK_MANAGEMENT_ITEMS } from '../data/assessments.js';
 
 const DOMAIN_COLORS = {
   'Access Management': '#6366f1',
@@ -12,6 +12,7 @@ const DOMAIN_COLORS = {
   'Data Privacy / Governance': '#ec4899',
   'Business Continuity & Incident': '#ef4444',
   'General / Cross-Cutting': '#8b5cf6',
+  'Risk Management': '#14b8a6',
 };
 
 export default function RegionControlMap({ frameworks }) {
@@ -35,7 +36,7 @@ export default function RegionControlMap({ frameworks }) {
 
   const selectedControls = useMemo(() => {
     if (!selectedDomain) return [];
-    return GENERIC_ASSESSMENT.filter(g => g.itgc === selectedDomain);
+    return [...GENERIC_ASSESSMENT, ...RISK_MANAGEMENT_ITEMS].filter(g => g.itgc === selectedDomain);
   }, [selectedDomain]);
 
   return (

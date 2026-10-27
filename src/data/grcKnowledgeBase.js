@@ -27,9 +27,14 @@ export const FRAMEWORK_KB = {
         { text: 'CC9.2 - subservice organisation criteria (exclusions if "carve-out")', freq: 'Annual (more often for high-risk)', policy: 'Vendor Risk Policy - Subservice Monitoring (CC9.2)', sla: 'SOC 2 / equivalent refreshed at least annually; exceptions addendum reviewed on publication' },
       ], note: 'Subservice monitors need SOC 2 (or equivalent) evidence, else address as complementary.' },
       { area: 'Risk Assessment & Governance', controls: [
-        { text: 'CC3.1–3.4 - risk identification, assessment, response', freq: 'Annual + on significant change', policy: 'Risk Management Policy (CC3.1–3.4)', sla: 'Risk register updated within 14 days of a material change' },
+        { text: 'CC3.1 - objectives specified clearly enough to identify and assess risks (controls RSK-1, RSK-3)', freq: 'Annual', policy: 'Risk Management Policy (CC3.1)', sla: 'Policy and risk criteria approved before the annual assessment' },
+        { text: 'CC3.2 - risks identified, analysed and assigned owners and treatments (controls RSK-2, RSK-3, TPM-2)', freq: 'Annual + on significant change', policy: 'Risk Management Policy (CC3.2)', sla: 'Register updated within 30 days of a material change; every risk has an owner and approval' },
+        { text: 'CC3.3 - potential for fraud considered, with explicit fraud scenarios (controls RSK-2, IAC-5, FIN-1, CPL-2)', freq: 'Annual', policy: 'Risk Management Policy - Fraud Risk (CC3.3)', sla: 'At least one fraud scenario scored and treated in each annual assessment' },
+        { text: 'CC3.4 - changes in environment, business and technology assessed (controls RSK-2, RSK-3)', freq: 'Event-driven + annual', policy: 'Risk Management Policy - Change Triggers (CC3.4)', sla: 'Trigger events logged and reviewed within 30 days' },
+        { text: 'CC9.1 - business disruption risks mitigated (controls RSK-2, BCD-1, BCD-2)', freq: 'Annual BC/DR test', policy: 'Business Continuity Policy (CC9.1)', sla: 'BC/DR plan tested at least annually' },
+        { text: 'CC9.2 - vendor and business partner risk assessed and managed (controls TPM-1, TPM-2)', freq: 'Before onboarding + annual review', policy: 'Third-Party Management Policy (CC9.2)', sla: 'High-risk vendors reviewed at least annually' },
         { text: 'CC2.x - governance structure & policies', freq: 'Annual', policy: 'Governance Policy (CC2.x)', sla: 'Policies and roles approved/reviewed at least annually' },
-      ], note: 'Auditors want to see risks tied to the system, not a generic register.' },
+      ], note: 'Auditors want to see risks tied to the system, not a generic register. See the Risk Assessment & Treatment module for the full method, register and evidence list.' },
       { area: 'Availability / Continuity (if claimed)', controls: [
         { text: 'A1.1, A1.2 - capacity, backup, restore', freq: 'Daily backups; restore tests at least quarterly', policy: 'Availability & Backup Policy (A1.1–A1.2)', sla: 'Restore within stated RTO (e.g. 4h); backups verified after each test' },
         { text: 'A1.3 - recovery time objectives', freq: 'Annual RTO/RPO review', policy: 'Business Continuity Policy (A1.3)', sla: 'RTO/RPO documented and validated in an annual test' },

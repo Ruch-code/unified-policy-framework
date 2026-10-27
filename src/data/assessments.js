@@ -23,6 +23,16 @@ export const GENERIC_ASSESSMENT = [
   { id: 'GEN-22', itgc: 'Access Management', category: 'Non-IT', control: 'Security awareness training for all staff', tool: 'KnowBe4, Hoxhunt, usecure, or internal sessions', scenario: 'Annual (or quarterly) phishing + policy training.', hours: 3 },
 ];
 
+// Risk Management ITGC domain for the Control Reuse Map. Kept separate from
+// GENERIC_ASSESSMENT so existing assessment counts and classifications are unchanged.
+export const RISK_MANAGEMENT_ITEMS = [
+  { id: 'RM-01', itgc: 'Risk Management', category: 'Non-IT', control: 'Risk Management Policy with objectives, criteria and risk appetite (RSK-1, RSK-3)', tool: 'Policy library, GRC platform', scenario: 'Satisfies SOC 2 CC3.1, ISO 27001 6.1.2, NIST GV.RM, DORA Art. 6, NIS2 Art. 21(2)(a).', hours: 4 },
+  { id: 'RM-02', itgc: 'Risk Management', category: 'Non-IT', control: 'Annual and change-triggered risk assessment with scored register (RSK-2)', tool: 'Risk register template, GRC platform', scenario: 'Satisfies SOC 2 CC3.2 and CC3.4, ISO 27001 8.2, HIPAA 164.308(a)(1)(ii)(A), NIST ID.RA.', hours: 12 },
+  { id: 'RM-03', itgc: 'Risk Management', category: 'Non-IT', control: 'Fraud risk scenarios with segregation of duties and dual approval (IAC-5, FIN-1)', tool: 'SoD matrix, accounts payable workflow', scenario: 'Satisfies SOC 2 CC3.3.', hours: 6 },
+  { id: 'RM-04', itgc: 'Risk Management', category: 'Non-IT', control: 'Risk treatment plan, owner sign-off and documented risk acceptance (RSK-3)', tool: 'Register approval workflow', scenario: 'Satisfies ISO 27001 6.1.3 and 8.3, HIPAA 164.308(a)(1)(ii)(B), SOC 2 CC9.1.', hours: 6 },
+  { id: 'RM-05', itgc: 'Risk Management', category: 'Non-IT', control: 'DPIA and AI system impact assessment for high-risk processing (AIG-3, AIG-4)', tool: 'DPIA template, AI inventory', scenario: 'Satisfies GDPR Art. 35, DPDPA Sec. 10, ISO 42001 6.1.4, EU AI Act Art. 9.', hours: 8 },
+];
+
 export const PRIVACY_ASSESSMENT_EXTRA = [
   { id: 'PRIV-01', itgc: 'Data Privacy / Governance', category: 'Non-IT', control: 'ROPA / record of processing activities maintained', tool: 'OneTrust, Notion/Sheets template', scenario: 'List each data flow: purpose, basis, recipients, retention.', hours: 8 },
   { id: 'PRIV-02', itgc: 'Data Privacy / Governance', category: 'Non-IT', control: 'DPIA performed for high-risk processing', tool: 'ICO/CNIL DPIA templates, OneTrust', scenario: 'Required for profiling, children, large scale, special data.', hours: 6 },

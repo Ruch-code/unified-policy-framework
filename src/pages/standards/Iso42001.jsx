@@ -1,3 +1,4 @@
+import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCheck.jsx";
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 
 const FRAMEWORK = {
@@ -155,6 +156,7 @@ export default function Iso42001Page() {
   return (
     <>
       <LearningFrameworkPage framework={FRAMEWORK} />
+      <RiskCrossCheckBlock frameworkId="iso42001" />
     </>
   );
 }

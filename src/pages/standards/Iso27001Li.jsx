@@ -1,3 +1,4 @@
+import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCheck.jsx";
 import LearningFrameworkPage from "../../components/LearningFrameworkPage";
 import Iso27001Sections from "../../components/Iso27001Sections.jsx";
 import Iso27001ThemeScoping from "../../components/Iso27001ThemeScoping.jsx";
@@ -192,6 +193,7 @@ export default function Iso27001LiPage() {
   return (
     <>
       <LearningFrameworkPage framework={FRAMEWORK} />
+      <RiskCrossCheckBlock frameworkId="iso27001" />
       <Iso27001ThemeScoping />
       <Iso27001Sections basePath="/iso/27001/li" />
     </>

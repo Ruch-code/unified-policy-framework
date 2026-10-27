@@ -788,6 +788,17 @@ function assessmentEntries() {
 
 const TEMPLATE_ENTRIES = [
   {
+    id: 'risk-assessment-module',
+    category: 'Policy & Control Modules',
+    label: 'Risk Assessment & Treatment',
+    desc: 'Risk methodology, 5 x 5 scoring, treatment workflow, sample register, scenario library, risk to control to evidence traceability and downloadable register template.',
+    keywords: ['risk', 'risk assessment', 'risk register', 'risk treatment', 'risk appetite', 'heatmap', 'likelihood', 'impact', 'cc3.1', 'cc3.2', 'cc3.3', 'cc3.4', 'cc9.1', 'cc9.2', 'fraud', '6.1.2', '6.1.3', 'iso 31000', 'nist 800-30', 'risk acceptance', 'residual risk', 'inherent risk'],
+    path: '/',
+    tab: 'risk-assessment',
+    anchorId: 'risk-assessment',
+    mode: 'hash',
+  },
+  {
     id: 'asset-inventory-template',
     category: 'Policy & Control Modules',
     label: 'Asset Inventory Template (Download)',

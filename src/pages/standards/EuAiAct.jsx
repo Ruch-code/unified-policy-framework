@@ -1,3 +1,4 @@
+import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCheck.jsx";
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 import EuAiActOverview from "../../components/EuAiActOverview.jsx";
 
@@ -167,7 +168,12 @@ const FRAMEWORK = {
 };
 
 export default function EuAiActPage() {
-  return <LearningFrameworkPage framework={FRAMEWORK} />;
+  return (
+    <>
+      <LearningFrameworkPage framework={FRAMEWORK} />
+      <RiskCrossCheckBlock frameworkId="euaiact" />
+    </>
+  );
 }
 
 export { FRAMEWORK };
