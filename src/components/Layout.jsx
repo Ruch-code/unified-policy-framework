@@ -8,6 +8,7 @@ import NewsletterPopup from './NewsletterPopup.jsx';
 import InspectorCursor from './InspectorCursor.jsx';
 import ChatWidget from './ChatWidget.jsx';
 import DonateButton from './DonateButton.jsx';
+import LinkedInStory from './LinkedInStory.jsx';
 import SearchBar from './SearchBar.jsx';
 import ErrorBoundary from './ErrorBoundary.jsx';
 import { FEATURES } from '../config/features.js';
@@ -640,18 +641,7 @@ export default function Layout() {
       <footer className="bg-gray-900 dark:bg-indigo-600 text-gray-400 py-8">
         <div className="container text-center flex flex-col items-center gap-3">
           <p className="text-sm font-bold text-white">Made by Ruchi Kandpal</p>
-          <a
-            href="https://www.linkedin.com/in/ruchi-k/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 text-gray-400 hover:text-[#0a66c2] transition-colors duration-300"
-            aria-label="LinkedIn Profile"
-          >
-            <span className="relative flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 group-hover:bg-[#0a66c2]/20 transition-all duration-300 group-hover:scale-110 group-hover:rotate-[360deg] group-hover:shadow-[0_0_20px_rgba(10,102,194,0.4)]">
-              <Linkedin className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
-            </span>
-            <span className="text-sm">Let's connect: <span className="font-medium text-[#4C9BE8]">linkedin.com/in/ruchi-k</span></span>
-          </a>
+          <span className="text-sm text-gray-300"><LinkedInStory /></span>
           <DonateButton />
           <VisitorCounter />
         </div>
