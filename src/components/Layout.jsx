@@ -16,6 +16,7 @@ const STANDARDS = [
   { path: '/iso/27001/li', label: 'ISO 27001 LI' },
   { path: '/iso/42001', label: 'ISO 42001' },
   { path: '/iso/27090', label: 'ISO 27090' },
+  { path: '/eu-ai-act', label: 'EU AI Act' },
   { path: '/iso/27017', label: 'ISO 27017' },
   { path: '/iso/27018', label: 'ISO 27018' },
   { path: '/iso/22301', label: 'ISO 22301' },
@@ -44,6 +45,20 @@ const STANDARDS = [
 
 const MEGA_MENU_REGIONS = [
   {
+    id: 'ai',
+    label: 'Artificial Intelligence',
+    icon: Sparkles,
+    highlight: true,
+    frameworks: [
+      { path: '/eu-ai-act', label: 'EU AI Act', desc: 'Risk-based AI regulation (EU 2024/1689)' },
+      { path: '/iso/42001', label: 'ISO 42001', desc: 'AI management system' },
+      { path: '/iso/27090', label: 'ISO 27090', desc: 'Security threats to AI systems' },
+      { path: '/aigp', label: 'IAPP AIGP', desc: 'AI Governance Professional certification' },
+      { path: '/ai-governance', label: 'AI Governance', desc: 'ISO 42001, EU AI Act and NIST AI RMF together' },
+      { path: '/ai-assurance', label: 'AI Vendor Assurance', desc: 'Assessing AI vendors and breach readiness' },
+    ],
+  },
+  {
     id: 'global',
     label: 'Global / International',
     icon: Globe,
@@ -55,8 +70,6 @@ const MEGA_MENU_REGIONS = [
       { path: '/iso-27701', label: 'ISO 27701', desc: 'Privacy Information Management (PIMS)' },
       { path: '/pci-dss', label: 'PCI-DSS', desc: 'Payment Card Data Security' },
       { path: '/soc2', label: 'SOC 2', desc: 'Trust Services Criteria' },
-      { path: '/aigp', label: 'IAPP AIGP', desc: 'AI Governance Professional Cert' },
-      { path: '/iso/27090', label: 'ISO 27090', desc: 'Security Threats to AI Systems' },
       { path: '/cis', label: 'CIS Controls v8', desc: 'CIS 18 Controls & IGs' },
       { path: '/hitrust', label: 'HITRUST CSF', desc: 'Healthcare Security Framework' },
     ],
@@ -535,19 +548,21 @@ export default function Layout() {
                         onClick={() => toggleRegion(region.id)}
                         aria-expanded={openRegions.includes(region.id)}
                         aria-controls={`mobile-region-${region.id}`}
-                        className="w-full px-4 py-3 flex items-center justify-between text-sm font-medium text-gray-900 dark:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-700/60 rounded-lg transition-colors text-left"
+                        className={region.highlight
+                          ? 'w-full px-4 py-3 flex items-center justify-between text-sm font-semibold rounded-lg transition-colors text-left text-white bg-gradient-to-r from-fuchsia-600 to-violet-600 hover:from-fuchsia-500 hover:to-violet-500 shadow-md shadow-fuchsia-500/20'
+                          : 'w-full px-4 py-3 flex items-center justify-between text-sm font-medium text-gray-900 dark:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-700/60 rounded-lg transition-colors text-left'}
                       >
                         <span className="flex items-center gap-2">
-                          <region.icon className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+                          <region.icon className={region.highlight ? 'w-4 h-4 text-white' : 'w-4 h-4 text-indigo-600 dark:text-indigo-400'} />
                           {region.label}
                         </span>
                         <span className="flex items-center gap-2">
-                          <span className="text-xs text-gray-400 dark:text-slate-500">{region.frameworks.length}</span>
-                          <ChevronDown className={`w-4 h-4 text-gray-400 dark:text-slate-500 transition-transform duration-200 ${openRegions.includes(region.id) ? 'rotate-180' : ''}`} />
+                          <span className={region.highlight ? 'text-xs text-white/80' : 'text-xs text-gray-400 dark:text-slate-500'}>{region.frameworks.length}</span>
+                          <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${region.highlight ? 'text-white' : 'text-gray-400 dark:text-slate-500'} ${openRegions.includes(region.id) ? 'rotate-180' : ''}`} />
                         </span>
                       </button>
                       {openRegions.includes(region.id) && (
-                      <div id={`mobile-region-${region.id}`} className="px-4 pb-3 space-y-1">
+                      <div id={`mobile-region-${region.id}`} className={region.highlight ? 'mt-1 px-2 py-2 space-y-1 rounded-lg border border-fuchsia-200 bg-fuchsia-50/60 dark:border-fuchsia-800/60 dark:bg-fuchsia-950/30' : 'px-4 pb-3 space-y-1'}>
                         {region.frameworks.map(fw => (
                           <Link
                             key={fw.path}
