@@ -7,6 +7,7 @@ import NavHoverIcon from './NavHoverIcon.jsx';
 import NewsletterPopup from './NewsletterPopup.jsx';
 import InspectorCursor from './InspectorCursor.jsx';
 import ChatWidget from './ChatWidget.jsx';
+import DonateButton from './DonateButton.jsx';
 import SearchBar from './SearchBar.jsx';
 import ErrorBoundary from './ErrorBoundary.jsx';
 import { FEATURES } from '../config/features.js';
@@ -651,15 +652,7 @@ export default function Layout() {
             </span>
             <span className="text-sm">Let's connect: <span className="font-medium text-[#4C9BE8]">linkedin.com/in/ruchi-k</span></span>
           </a>
-          <div className="relative flex items-center gap-2">
-            <span
-              className="cursor-pointer text-xl text-gray-400 hover:text-yellow-500 transition-colors"
-              title="Ethereum: 0xdd1e9C99Fa2D42F48f5c5F0c155b48E9b31b9C42"
-            >
-              Ξ
-            </span>
-            <span className="text-xs text-gray-500 dark:text-slate-400">Donate</span>
-          </div>
+          <DonateButton />
           <VisitorCounter />
         </div>
       </footer>
