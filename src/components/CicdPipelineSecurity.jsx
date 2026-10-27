@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { VULNS, VULN_LINKS } from '../data/vulnGlossary.js';
+import VibeCodedApps from './VibeCodedApps.jsx';
 import { GitBranch, Hammer, FlaskConical, Package, Rocket, Activity, Settings2, Bot, ChevronDown, ClipboardCheck, Wrench, Target, Bug, ArrowUp, ArrowDownRight } from 'lucide-react';
 
 /*
@@ -165,6 +166,7 @@ const AUDIT_EVIDENCE = [
   'Scan results and the triage record for findings above your threshold',
   'Hotfix records with retrospective approval',
   'List of agent or bot accounts, their permissions, and a sample of their pull requests with human approval',
+  'Inventory of vibe-coded and citizen-built apps with risk tier, owner and review date',
 ];
 
 function jumpTo(id) {
@@ -393,6 +395,8 @@ export default function CicdPipelineSecurity() {
           ))}
         </div>
       </div>
+
+      <VibeCodedApps />
 
       <div className="bg-white rounded-2xl border border-gray-200 dark:border-slate-700 p-5">
         <h4 className="font-bold text-gray-900 dark:text-white mb-2">Audit evidence checklist</h4>
