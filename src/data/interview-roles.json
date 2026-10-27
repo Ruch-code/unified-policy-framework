@@ -181,6 +181,279 @@
       ]
     },
     {
+      "id": "tprm",
+      "title": "TPRM / Vendor Risk",
+      "subtitle": "Senior to Manager | Third-Party Risk Management",
+      "icon": "Users",
+      "color": "sky",
+      "questions": [
+        {
+          "q": "Walk me through the TPRM lifecycle.",
+          "a": "I describe it as seven stages: planning, sourcing, due diligence, contracting, ongoing monitoring, reassessment and offboarding. The point I stress is that the depth of each stage is driven by the inherent risk tier set at intake. A low-risk tool gets a short questionnaire; a critical processor of customer data gets SOC 2 review, a security schedule and quarterly monitoring.",
+          "tags": [
+            "Lifecycle",
+            "Tiering"
+          ],
+          "example": "Scenario: a business unit signed with a vendor that will process customer personal data, with no assessment. I would confirm what data has flowed and pause further transfers if the risk is high, run an expedited assessment, check for a DPA and security terms and amend the contract if missing, record a process exception, and fix the root cause with procurement so no purchase order is raised without a TPRM ticket.",
+          "pitfalls": [
+            "Describing the lifecycle as a flat checklist with no risk-based scaling",
+            "Forgetting offboarding",
+            "Treating the questionnaire as the assessment"
+          ]
+        },
+        {
+          "q": "Where do TPRM programs usually fail?",
+          "a": "At the two ends. Intake, because business teams buy SaaS on a card and skip the process. And offboarding, because nobody confirms data destruction or removes the vendor's access. I fix intake with a procurement control and offboarding with a checklist tied to contract end.",
+          "tags": [
+            "Lifecycle",
+            "Program design"
+          ]
+        },
+        {
+          "q": "What is the difference between inherent and residual risk, and how do you calculate each?",
+          "a": "Inherent risk is the exposure before controls: data sensitivity, access, criticality, substitutability, regulatory exposure and geography. Residual risk is what remains after the controls I have verified. On a 5 x 5 scale, a payroll SaaS holding employee bank details might be inherent 4 x 5 = 20. With a clean SOC 2 Type II and a current bridge letter, I reduce likelihood two levels, so residual is 2 x 5 = 10. Impact rarely drops through vendor controls; it drops through my own measures such as minimising the data shared.",
+          "tags": [
+            "Inherent risk",
+            "Residual risk",
+            "Tiering"
+          ],
+          "example": "If the same vendor's SOC 2 had exceptions in access reviews, I would give only one level of credit: 3 x 5 = 15, a conditional approval with a remediation plan and a 90-day follow-up.",
+          "pitfalls": [
+            "Crediting controls without evidence",
+            "Claiming vendor controls reduce impact",
+            "Using one score for both criticality and data risk"
+          ]
+        },
+        {
+          "q": "How do you tier vendors and keep the inventory complete?",
+          "a": "I score inherent risk at intake and map the total to four tiers that set due diligence depth and reassessment frequency. For completeness I reconcile the inventory against accounts payable, SSO app lists and the contract repository at least quarterly. Comparing the SSO app list to the inventory is the quickest way to find shadow SaaS.",
+          "tags": [
+            "Inventory",
+            "Tiering"
+          ],
+          "example": "Two Tier 1 vendors and capacity for one deep review: I prioritise by residual uncertainty and exposure, not the tier label. The one with weaker evidence, more data already flowing, or an earlier renewal goes first; the other gets interim controls and a logged deferral."
+        },
+        {
+          "q": "How do you assess fourth-party and concentration risk?",
+          "a": "For fourth parties I ask for the subprocessor list, check which handle our data, and look at subservice organisations in the vendor's SOC 2. If hosting is carved out, I check the vendor reviews that provider and covers the CSOCs, and the contract requires notice before new subprocessors. Concentration I assess across the portfolio: I map critical services to their providers and regions, and two or more critical services on one provider or region is a reportable KRI.",
+          "tags": [
+            "Nth party",
+            "Concentration",
+            "Country risk"
+          ],
+          "example": "A critical vendor moves support to a subcontractor in a new country next month: check the notice and objection rights, get the subcontractor's name, location, access and security evidence, run a transfer impact assessment if personal data is involved, update the profile and subprocessor register, and object or require compensating controls if risk exceeds appetite.",
+          "pitfalls": [
+            "Treating Nth-party risk as out of scope",
+            "Assessing concentration one vendor at a time",
+            "Equating data residency with access location"
+          ]
+        },
+        {
+          "q": "What do you look at first in a SOC 2 report?",
+          "a": "The opinion, then whether the product and region I use are in scope, then the period. If those fail, the rest does not help me. Then subservice organisations and carve-outs, CSOCs, CUECs mapped to owners on our side, and every exception weighed against the controls that protect our data.",
+          "tags": [
+            "SOC 2",
+            "Assurance"
+          ],
+          "pitfalls": [
+            "Accepting a report without checking scope",
+            "Reading only the opinion",
+            "Ignoring CUECs"
+          ]
+        },
+        {
+          "q": "Explain carve-out versus inclusive, and what a bridge letter is worth.",
+          "a": "With carve-out, the vendor's subservice provider is excluded, so I need that provider's own report and I check the CSOCs. With inclusive, the provider's controls were tested in the same report. A bridge letter is a management statement covering the gap since the period end. It is not audited, so I accept it for a short gap, usually up to three months, and beyond that I ask for the next report date and compensating evidence.",
+          "tags": [
+            "SOC 2",
+            "Bridge letter",
+            "Carve-out"
+          ]
+        },
+        {
+          "q": "SOC 1 versus SOC 2: when does each matter?",
+          "a": "SOC 1 covers controls relevant to the customer's financial reporting, using control objectives the service organisation defines; it matters for payroll, billing and payment processors and is read by financial auditors. SOC 2 uses the Trust Services Criteria for security, availability, processing integrity, confidentiality and privacy, and is what most TPRM reviews rely on. For reliance I ask for Type II, which tests operating effectiveness over a period.",
+          "tags": [
+            "SOC 1",
+            "SOC 2"
+          ]
+        },
+        {
+          "q": "Scenario: a critical vendor's SOC 2 has a qualified opinion on logical access and the bridge letter is 4 months old. What do you do?",
+          "a": "1) Read the qualification and exceptions to see which access controls failed and whether they touch our data. 2) Ask for root cause, remediation evidence and the next report date. 3) Request current evidence for the failed controls since the bridge letter is stale: latest access review, MFA configuration, terminated-user sample. 4) Raise a finding with dates and increase monitoring. 5) Reduce exposure meanwhile, for example enforce our SSO and MFA on the tenant and limit data shared. 6) If residual risk stays above appetite, get documented risk acceptance from the business owner and CISO, or escalate for an exit decision.",
+          "tags": [
+            "SOC 2",
+            "Scenario",
+            "Risk acceptance"
+          ]
+        },
+        {
+          "q": "What do you check on an ISO 27001 certificate and a pen test report?",
+          "a": "For ISO: scope and legal entity match what we buy, validity, accreditation of the certification body, the 2022 version, and the SoA for excluded Annex A controls. As a Lead Auditor I also check the scope statement matches the service delivered. For pen tests: under 12 months old and after major releases, scope includes the app or API we use, independent tester, open critical or high findings have dates and retest evidence, and it is a real test rather than an automated scan or a bare attestation letter.",
+          "tags": [
+            "ISO 27001",
+            "SoA",
+            "Pen test"
+          ],
+          "pitfalls": [
+            "Accepting a certificate without the SoA",
+            "Trusting a letter of attestation with no detail",
+            "Missing that the certificate covers a different entity"
+          ]
+        },
+        {
+          "q": "SIG or CAIQ, and how do you validate answers?",
+          "a": "For cloud providers I start with a published CAIQ or CSA STAR entry; for a high-risk processor I scope a SIG Core to the relevant domains, and SIG Lite for lower risk. I never accept answers at face value: high-risk yes answers need evidence, I cross-check against the SOC report or SoA, treat contradictions as findings, and use a call with an engineer for critical vendors.",
+          "tags": [
+            "SIG",
+            "CAIQ",
+            "Questionnaires"
+          ],
+          "example": "A Tier 1 vendor answers yes to everything with no evidence: pick the 10 to 15 answers that matter most, request evidence with a deadline, cross-check against independent reports, and escalate if they will not engage.",
+          "pitfalls": [
+            "Sending the longest questionnaire to everyone",
+            "Scoring answers without evidence"
+          ]
+        },
+        {
+          "q": "Which frameworks would you align a TPRM program to?",
+          "a": "For program structure, NIST CSF 2.0 GV.SC (supply chain risk management) and ISO/IEC 27036. For the controls I assess in vendors, ISO 27001 Annex A 5.19 to 5.23 or NIST SP 800-53, including the SR family and SA-9. For software and hardware supply chain depth, NIST SP 800-161 Rev. 1.",
+          "tags": [
+            "NIST CSF 2.0",
+            "ISO 27036",
+            "SP 800-161"
+          ],
+          "pitfalls": [
+            "Quoting CSF 1.1 ID.SC instead of 2.0 GV.SC",
+            "Confusing NIST RMF with NIST AI RMF",
+            "Calling ISO 27036 certifiable"
+          ]
+        },
+        {
+          "q": "What are the most important controls you look for in a SaaS vendor?",
+          "a": "MFA and SSO, encryption with clear key ownership, tenant isolation, an incident notification commitment, and tested backups. For BCP/DR I ask for RTO and RPO per service and the last test report with achieved times; if they have never restored from backup, I treat the RTO as unproven.",
+          "tags": [
+            "Control domains",
+            "BCP/DR"
+          ],
+          "example": "A vendor claims RTO 4 hours and RPO 1 hour but has never tested: record them as unverified, require a test with results by a date, ask for a restore record, raise a finding for critical services, and add annual DR testing with shared results to the contract.",
+          "pitfalls": [
+            "Accepting targets as achieved figures",
+            "Not asking who holds the encryption keys"
+          ]
+        },
+        {
+          "q": "What must a GDPR processor agreement contain, and how does DORA change TPRM?",
+          "a": "Article 28(3): processing only on documented instructions, confidentiality, Article 32 security, subprocessor approval with flow-down, help with data subject rights and breaches, deletion or return at the end, and audit rights, plus a transfer mechanism outside the EEA. DORA formalises TPRM for EU financial entities: a register of information for all ICT contracts, mandatory contract terms, tested exit strategies, concentration analysis and EU oversight of critical ICT providers.",
+          "tags": [
+            "GDPR",
+            "DORA",
+            "Regulation"
+          ]
+        },
+        {
+          "q": "What does RBI expect when a bank outsources IT, and how do US regulators view vendor oversight?",
+          "a": "RBI's IT outsourcing Master Direction expects a board-approved policy, due diligence and monitoring, RBI's and the bank's right to inspect the provider, business continuity and an exit plan, and no outsourcing of core decision-making. US banking agencies' 2023 interagency guidance expects lifecycle risk management scaled to criticality and board oversight, and the bank remains responsible for what it outsources. My fintech second-line experience showed me how these obligations turn into controls.",
+          "tags": [
+            "RBI",
+            "US regulators",
+            "DPDP"
+          ]
+        },
+        {
+          "q": "A vendor refuses your right-to-audit clause. What do you do?",
+          "a": "I ask what they will accept: an annual SOC 2 Type II, a pen test summary, a call with their security team, and audit on cause after an incident. For a regulated client I hold firm on the regulator's own audit right because the law requires it. If a critical vendor offers nothing, it becomes a documented risk acceptance decision.",
+          "tags": [
+            "Contracts",
+            "Right to audit"
+          ],
+          "pitfalls": [
+            "Vague breach notification wording such as promptly",
+            "Forgetting exit terms"
+          ]
+        },
+        {
+          "q": "How do you handle a vendor that will not remediate a high finding?",
+          "a": "I escalate through the business owner first, because they own the relationship. If the vendor still will not move, the options are a time-bound risk acceptance with compensating controls, contract leverage at renewal, or exit. Every acceptance has an expiry, an owner and a signature at the right level, and the register flags expiries 30 days ahead.",
+          "tags": [
+            "Findings",
+            "Risk acceptance",
+            "Escalation"
+          ],
+          "example": "18% of Tier 1 vendors are overdue for reassessment: find the cause, triage by residual risk and renewal date, clear simple cases using existing assurance, report a recovery plan to the risk committee, and fix scheduling with reminders 60 days ahead.",
+          "pitfalls": [
+            "Closing findings on the vendor's word",
+            "Open-ended risk acceptances",
+            "Reporting activity counts instead of risk"
+          ]
+        },
+        {
+          "q": "What metrics and KRIs would you report?",
+          "a": "Coverage, overdue Tier 1 and 2 assessments, vendors found in use without assessment, critical findings past due, risk acceptances past expiry, rating drops for Tier 1 vendors, concentration per provider, and vendor incidents affecting us. Executives get one page: the decision needed, top five vendor risks with trend, KRIs against thresholds and acceptances expiring this quarter.",
+          "tags": [
+            "KRIs",
+            "Reporting"
+          ]
+        },
+        {
+          "q": "How do you use security ratings and TPRM platforms?",
+          "a": "Ratings such as BitSight or SecurityScorecard are a trigger, not a verdict: a sharp drop for a Tier 1 vendor prompts a conversation, and I let vendors dispute misattributed findings. I have run vendor inventories and reviews in Vanta and Drata style platforms for multiple clients; the workflow carries over to OneTrust, ProcessUnity, Archer or ServiceNow VRM, where the configuration differs.",
+          "tags": [
+            "Monitoring",
+            "Platforms"
+          ],
+          "example": "A Tier 1 vendor's rating drops 80 points overnight: find what drove it, confirm attribution, contact the vendor's security team, check for impact on us, and trigger an off-cycle reassessment if confirmed.",
+          "pitfalls": [
+            "Treating ratings as an assessment",
+            "Buying a platform before defining the process"
+          ]
+        },
+        {
+          "q": "How do you get Procurement and the business to follow the process?",
+          "a": "I make it easy and unavoidable: a short intake form, a fast path for low-risk vendors, and a purchasing control that blocks a PO without a TPRM reference. If the business wants to sign before assessment, I offer a conditional approval with a deadline or a pilot without production data; otherwise the business owner accepts the risk in writing.",
+          "tags": [
+            "Stakeholders",
+            "Procurement"
+          ],
+          "example": "Internal audit finds 6 of 25 sampled vendors had no reassessment: agree the finding, remediate the six quickly, check the whole population, fix the root cause, add a KRI and report closure with evidence."
+        },
+        {
+          "q": "How do you manage several client engagements and a team?",
+          "a": "I keep one tracker per client with evidence status, open items and dates, plus a weekly written status. I have run concurrent SOC 2, ISO 27001 and HIPAA engagements for US clients from India, working overlap hours. I have led a three-person team and a small pod of junior engineers: close review of first deliverables, shared review checklists, then delegating ownership as quality settles.",
+          "tags": [
+            "Consulting",
+            "Leadership"
+          ],
+          "example": "Two clients need deliverables on Friday and a team member is out: re-plan by risk and contractual date, tell both clients early with specific dates, reassign with clear handover, protect quality on the higher-risk deliverable.",
+          "pitfalls": [
+            "Describing activity rather than outcomes",
+            "Overstating team size"
+          ]
+        },
+        {
+          "q": "How would you use AI tools in vendor assessments?",
+          "a": "For first drafts and triage: summarising a SOC 2 report into scope, period, exceptions and CUECs, drafting follow-up questions, and mapping questionnaire answers to controls. A person checks every output before it reaches a client, client documents only go into approved tools, and the judgement stays with the assessor.",
+          "tags": [
+            "AI tools",
+            "Methodology"
+          ]
+        },
+        {
+          "q": "How would you assess an AI vendor differently?",
+          "a": "I add three things to a normal review: how my data is used for training and how long prompts and outputs are retained; how the model is tested for accuracy, bias, prompt injection and data leakage; and how model changes are governed and communicated. I map it to ISO 42001 Annex A.10 and NIST AI RMF GOVERN 6, and in the contract I want no training on our data without consent and notice of material model changes.",
+          "tags": [
+            "AI vendor risk",
+            "ISO 42001",
+            "NIST AI RMF"
+          ],
+          "pitfalls": [
+            "Treating an AI vendor as ordinary SaaS",
+            "Accepting 'we do not train on your data' without checking the contract"
+          ]
+        }
+      ]
+    },
+    {
       "id": "behavioral",
       "title": "Behavioural (STAR)",
       "subtitle": "Stakeholders, auditors, pressure, leadership | Model answers to adapt",

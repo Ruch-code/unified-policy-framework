@@ -1,3 +1,4 @@
+import TprmDeepDive from './TprmDeepDive.jsx';
 import React, { useState, Suspense, lazy, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
@@ -930,8 +931,9 @@ export default function VendorRiskManagement({ isDark = false }) {
             </div>
           )}
         </div>
+
+        <TprmDeepDive />
       </div>
     </section>
   );
 }
-
