@@ -471,24 +471,8 @@ export default function SearchBar({ isDark = false }) {
         )}
       </div>
 
-      {isMobile && (
-        <button
-          data-search-mobile-trigger
-          onClick={handleMobileSearchToggle}
-          className="md:hidden flex items-center justify-center w-10 h-10 rounded-xl transition-all duration-200
-            ${isDark
-              ? 'bg-slate-800 text-slate-300 hover:bg-slate-700'
-              : 'bg-slate-100 dark:bg-slate-800 text-slate-600 hover:bg-slate-200 dark:hover:bg-slate-700'
-            }
-            ${isMobileOpen && 'bg-indigo-600 text-white shadow-[0_4px_14px_rgba(79,70,229,0.35)]'}"
-          aria-label={isMobileOpen ? 'Close search' : 'Open search'}
-          aria-expanded={isMobileOpen}
-          aria-controls="mobile-search-overlay"
-          type="button"
-        >
-          <Search className="w-5 h-5" />
-        </button>
-      )}
+      {/* The separate mobile search button was removed: the search box above already opens
+          results on small screens, so it only showed a duplicate search icon. */}
 
       {isMobile && isMobileOpen && (
         <div id="mobile-search-overlay" ref={mobileOverlayRef} className={mobileOverlayStyles} role="dialog" aria-modal="true" aria-label="Search frameworks">
