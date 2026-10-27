@@ -21,8 +21,8 @@ const CSS = `
 }
 .cd-visible .cd-dot, .cd-visible .cd-ring { opacity: 1; }
 .cd-hover .cd-ring { width: 48px; height: 48px; margin: -24px 0 0 -24px; border-color: rgba(99,102,241,.8); }
-.cd-down .cd-dot { background: #22c55e; box-shadow: 0 0 14px rgba(34,197,94,.9); width: 12px; height: 12px; margin: -6px 0 0 -6px; }
-.cd-down .cd-ring { border-color: rgba(34,197,94,.85); width: 26px; height: 26px; margin: -13px 0 0 -13px; }
+.cd-down .cd-dot { transition-duration: 0s; background: #22c55e; box-shadow: 0 0 14px rgba(34,197,94,.9); width: 12px; height: 12px; margin: -6px 0 0 -6px; }
+.cd-down .cd-ring { transition-duration: 0s; border-color: rgba(34,197,94,.85); width: 26px; height: 26px; margin: -13px 0 0 -13px; }
 html.dark .cd-dot { background: #818cf8; }
 html.dark .cd-ring { border-color: rgba(129,140,248,.6); }
 html.dark .cd-down .cd-dot { background: #4ade80; }
@@ -65,20 +65,34 @@ export function enableCursorDot() {
     wrap.classList.toggle('cd-hover', !!(t && t.closest(CLICKABLE)));
     kick();
   };
-  const onDown = () => wrap.classList.add('cd-down');
-  const onUp = () => wrap.classList.remove('cd-down');
+  // Hold the green state briefly so even a light, quick click or trackpad tap is visible.
+  const HOLD_MS = 400;
+  let downAt = 0, upTimer = 0;
+  const onDown = () => {
+    clearTimeout(upTimer);
+    downAt = performance.now();
+    wrap.classList.add('cd-down');
+  };
+  const onUp = () => {
+    const left = Math.max(0, HOLD_MS - (performance.now() - downAt));
+    clearTimeout(upTimer);
+    upTimer = setTimeout(() => wrap.classList.remove('cd-down'), left);
+  };
   const onLeave = () => wrap.classList.remove('cd-visible', 'cd-down');
 
   document.addEventListener('mousemove', onMove, { passive: true });
-  document.addEventListener('mousedown', onDown);
-  document.addEventListener('mouseup', onUp);
+  document.addEventListener('pointerdown', onDown, { passive: true });
+  document.addEventListener('pointerup', onUp, { passive: true });
+  document.addEventListener('pointercancel', onUp, { passive: true });
   document.documentElement.addEventListener('mouseleave', onLeave);
   window.addEventListener('blur', onLeave);
 
   return () => {
     document.removeEventListener('mousemove', onMove);
-    document.removeEventListener('mousedown', onDown);
-    document.removeEventListener('mouseup', onUp);
+    document.removeEventListener('pointerdown', onDown);
+    document.removeEventListener('pointerup', onUp);
+    document.removeEventListener('pointercancel', onUp);
+    clearTimeout(upTimer);
     document.documentElement.removeEventListener('mouseleave', onLeave);
     window.removeEventListener('blur', onLeave);
     cancelAnimationFrame(raf);
