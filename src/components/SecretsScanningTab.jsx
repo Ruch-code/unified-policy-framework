@@ -3,8 +3,9 @@ import {
   Shield, Lock, Key, Globe, Cloud, Users, FileText, Search, Zap, Cpu,
   HardDrive, Network, BookOpen, ExternalLink, CalendarDays, ShieldAlert,
   Clock, Timer, CheckCircle, Copy, Check, ChevronDown, ChevronRight,
-  AlertTriangle, List, BarChart3, Target, Layers,
+  AlertTriangle, List, BarChart3, Target, Layers, Box, Server, Wrench, ShieldCheck,
 } from 'lucide-react';
+import { SECRET_ENVIRONMENTS, CLOUD_RUNBOOK } from '../data/secretsBeyondCode.js';
 import {
   SECRET_TYPES, LEAK_SURFACES, CONTROL_POINTS, TOOLS, FRAMEWORK_MAPPINGS,
   ROADMAP, MATURITY_LEVELS, GAP_ROWS, SLA_ROWS, REMEDIATION_STEPS,
@@ -40,6 +41,64 @@ function triageSeverity(type, visibility, live, env, priv) {
   }
   const slaMap = { Critical: '4 hours', High: '24 hours', Medium: '7 days', Low: '30 days (triage)' };
   return { severity: sev, sla: slaMap[sev] };
+}
+
+const ENV_ICONS = { Cloud, Layers, Box, FileText, Server, Users, HardDrive, Cpu, Globe };
+
+function SecretsBeyondCode() {
+  const [active, setActive] = React.useState('aws');
+  const env = SECRET_ENVIRONMENTS.find(e => e.id === active);
+  const EnvIcon = ENV_ICONS[env.icon] || Cloud;
+  const li = x => <li key={x} className="flex gap-2"><span>-</span><span>{x}</span></li>;
+  return (
+    <div className="bg-white border border-gray-200 rounded-2xl p-6 dark:bg-[#1e293b] dark:border-[#334155]" id="secrets-beyond-code">
+      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Secret scanning beyond code: cloud and everywhere else</h3>
+      <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 max-w-3xl">
+        Repository scanning catches secrets before they ship. Many leaks happen after that: in cloud settings, storage, images, logs, chat tools and laptops. Pick an environment to see where secrets hide, how to scan for them, and how to stop them appearing.
+      </p>
+      <div className="flex flex-wrap gap-2 mb-4" role="tablist" aria-label="Environments">
+        {SECRET_ENVIRONMENTS.map(e => {
+          const I = ENV_ICONS[e.icon] || Cloud;
+          return (
+            <button key={e.id} type="button" role="tab" aria-selected={active === e.id} onClick={() => setActive(e.id)}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border transition ${active === e.id ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-700 border-gray-200 hover:border-indigo-300 dark:bg-slate-800 dark:text-slate-200 dark:border-slate-600'}`}>
+              <I className="w-3.5 h-3.5" /> {e.name}
+            </button>
+          );
+        })}
+      </div>
+      <div className="rounded-xl border border-gray-200 dark:border-slate-700 p-4" role="tabpanel">
+        <p className="font-bold text-gray-900 dark:text-white flex items-center gap-2 mb-3"><EnvIcon className="w-4 h-4 text-indigo-600 dark:text-indigo-300" /> {env.name}</p>
+        <div className="grid md:grid-cols-3 gap-3 text-sm">
+          <div className="rounded-lg p-3 bg-amber-50 border border-amber-200 dark:bg-amber-900/30 dark:border-amber-800">
+            <p className="text-[11px] font-bold uppercase tracking-wide text-amber-800 dark:text-amber-300 mb-1 flex items-center gap-1.5"><Search className="w-3.5 h-3.5" /> Where secrets hide</p>
+            <ul className="space-y-1 text-gray-700 dark:text-slate-200">{env.hide.map(li)}</ul>
+          </div>
+          <div className="rounded-lg p-3 bg-blue-50 border border-blue-200 dark:bg-blue-900/30 dark:border-blue-800">
+            <p className="text-[11px] font-bold uppercase tracking-wide text-blue-800 dark:text-blue-300 mb-1 flex items-center gap-1.5"><Wrench className="w-3.5 h-3.5" /> How to scan</p>
+            <ul className="space-y-1 text-gray-700 dark:text-slate-200">{env.scan.map(li)}</ul>
+            <p className="mt-2 text-xs text-gray-600 dark:text-slate-300"><span className="font-semibold">Open source:</span> {env.oss}</p>
+          </div>
+          <div className="rounded-lg p-3 bg-emerald-50 border border-emerald-200 dark:bg-emerald-900/30 dark:border-emerald-800">
+            <p className="text-[11px] font-bold uppercase tracking-wide text-emerald-800 dark:text-emerald-300 mb-1 flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /> How to prevent it</p>
+            <ul className="space-y-1 text-gray-700 dark:text-slate-200">{env.prevent.map(li)}</ul>
+          </div>
+        </div>
+      </div>
+      <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">Cloud secrets runbook</h4>
+      <ol className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2">
+        {CLOUD_RUNBOOK.map((r, i) => (
+          <li key={r.step} className="rounded-lg p-3 border border-gray-200 dark:border-slate-700 text-sm">
+            <p className="font-semibold text-gray-900 dark:text-white flex items-center gap-2">
+              <span className="w-5 h-5 rounded-full bg-indigo-600 text-white text-[10px] flex items-center justify-center">{i + 1}</span>{r.step}
+            </p>
+            <p className="text-gray-600 dark:text-slate-300 mt-1">{r.text}</p>
+          </li>
+        ))}
+      </ol>
+      <p className="text-xs text-gray-500 dark:text-slate-400 mt-3">Tool names are common examples, not endorsements. Some native features depend on your plan or tier.</p>
+    </div>
+  );
 }
 
 function SecretsScanningTab() {
@@ -195,6 +254,9 @@ function SecretsScanningTab() {
           </p>
         </div>
       </div>
+
+      {/* 5b. Beyond code: cloud and other environments */}
+      <SecretsBeyondCode />
 
       {/* 6. Tool comparison */}
       <div className="bg-white border border-gray-200 rounded-2xl p-6 dark:bg-[#1e293b] dark:border-[#334155]">
