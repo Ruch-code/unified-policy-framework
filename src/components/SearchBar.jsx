@@ -191,25 +191,27 @@ export default function SearchBar({ isDark = false }) {
       return;
     }
     if (item.mode === 'hash' && item.anchorId) {
-      handleHashNavigate(item.anchorId);
+      handleHashNavigate(item.anchorId, item.tab);
       return;
     }
     navigate(item.path);
   };
 
   // Deep-link to a Home tab panel with smooth scroll + focus flash
-  const handleHashNavigate = (anchorId) => {
+  const handleHashNavigate = (anchorId, tab) => {
     closeAll();
+    // Switch to the owning tab first so the target section is rendered.
+    const hashTarget = tab || anchorId;
     const scroll = () => {
       window.dispatchEvent(
         new CustomEvent('compliance:scroll-to-section', { detail: { id: anchorId } }),
       );
     };
     if (window.location.pathname !== '/') {
-      navigate('/#' + anchorId);
+      navigate('/#' + hashTarget);
       setTimeout(scroll, 120);
     } else {
-      window.location.hash = anchorId;
+      window.location.hash = hashTarget;
       setTimeout(scroll, 80);
     }
   };

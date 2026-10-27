@@ -786,7 +786,33 @@ function assessmentEntries() {
   });
 }
 
+const TEMPLATE_ENTRIES = [
+  {
+    id: 'asset-inventory-template',
+    category: 'Policy & Control Modules',
+    label: 'Asset Inventory Template (Download)',
+    desc: 'Downloadable Excel asset register: hardware, SaaS, cloud, data stores, code repositories, AI systems, classification key and framework mapping.',
+    keywords: ['asset', 'assets', 'asset inventory', 'asset register', 'inventory', 'cmdb', 'template', 'download', 'excel', 'xlsx', 'hardware', 'saas', 'data stores', 'a.5.9', 'classification'],
+    path: '/',
+    tab: 'regional',
+    anchorId: 'asset-inventory',
+    mode: 'hash',
+  },
+  {
+    id: 'access-review-template',
+    category: 'Policy & Control Modules',
+    label: 'Access Reviews by Design + Access Review Template (Download)',
+    desc: 'Review patterns for busy, high-volume teams (JIT, event-driven reviews, auto-recommendations) and a downloadable UAR Excel template.',
+    keywords: ['access', 'access review', 'access reviews', 'uar', 'user access review', 'template', 'download', 'excel', 'xlsx', 'jit', 'just in time', 'busy teams', 'high volume', 'recertification', 'attestation', 'rubber stamp', 'by design'],
+    path: '/',
+    tab: 'access-governance',
+    anchorId: 'access-review-by-design',
+    mode: 'hash',
+  },
+];
+
 const SEARCH_ENTRIES = [
+  ...TEMPLATE_ENTRIES,
   ...frameworkEntries(),
   ...moduleEntries,
   ...personaEntries,
