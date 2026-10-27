@@ -110,6 +110,8 @@ const MEGA_MENU_REGIONS = [
 export default function Layout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [grcKbOpen, setGrcKbOpen] = useState(false);
+  const [openRegions, setOpenRegions] = useState([]);
+  const toggleRegion = id => setOpenRegions(o => (o.includes(id) ? o.filter(x => x !== id) : [...o, id]));
   const location = useLocation();
   const { user, logout } = useAuth();
   const [newsletterOpen, setNewsletterOpen] = useState(false);
@@ -526,15 +528,23 @@ export default function Layout() {
                   {MEGA_MENU_REGIONS.map(region => (
                     <div key={region.id}>
                       <button
+                        type="button"
+                        onClick={() => toggleRegion(region.id)}
+                        aria-expanded={openRegions.includes(region.id)}
+                        aria-controls={`mobile-region-${region.id}`}
                         className="w-full px-4 py-3 flex items-center justify-between text-sm font-medium text-gray-900 dark:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-700/60 rounded-lg transition-colors text-left"
                       >
                         <span className="flex items-center gap-2">
                           <region.icon className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
                           {region.label}
                         </span>
-                        <ChevronDown className="w-4 h-4 text-gray-400 dark:text-slate-500" />
+                        <span className="flex items-center gap-2">
+                          <span className="text-xs text-gray-400 dark:text-slate-500">{region.frameworks.length}</span>
+                          <ChevronDown className={`w-4 h-4 text-gray-400 dark:text-slate-500 transition-transform duration-200 ${openRegions.includes(region.id) ? 'rotate-180' : ''}`} />
+                        </span>
                       </button>
-                      <div className="px-4 pb-3 space-y-1">
+                      {openRegions.includes(region.id) && (
+                      <div id={`mobile-region-${region.id}`} className="px-4 pb-3 space-y-1">
                         {region.frameworks.map(fw => (
                           <Link
                             key={fw.path}
@@ -547,6 +557,7 @@ export default function Layout() {
                           </Link>
                         ))}
                       </div>
+                      )}
                     </div>
                   ))}
                 </div>
