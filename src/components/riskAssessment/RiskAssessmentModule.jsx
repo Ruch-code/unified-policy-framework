@@ -3,11 +3,13 @@ import RiskRegisterSection from './RiskRegisterSection.jsx';
 import RiskTraceability from './RiskTraceability.jsx';
 import RiskCrossCheck from './RiskCrossCheck.jsx';
 import RiskDownloads from './RiskDownloads.jsx';
+import AiRiskFactors from '../aiAssurance/AiRiskFactors.jsx';
 import { sectionCls, h3Cls, leadCls } from './riskUtils.jsx';
 
 const NAV = [
   ['ra-methodology', 'Methodology'],
   ['ra-rubric', 'Scoring'],
+  ['ra-ai', 'AI risk layer'],
   ['ra-treatment', 'Treatment'],
   ['ra-register', 'Register'],
   ['ra-library', 'Scenario library'],
@@ -39,6 +41,7 @@ export default function RiskAssessmentModule({ isDark = false }) {
 
       <MethodologySection />
       <RubricSection />
+      <AiRiskFactors />
       <TreatmentSection />
       <RiskRegisterSection isDark={isDark} />
       <RiskTraceability />

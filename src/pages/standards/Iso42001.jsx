@@ -1,3 +1,5 @@
+import AimsRoadmap from "../../components/aiAssurance/AimsRoadmap.jsx";
+import AiSecurityAudit from "../../components/aiAssurance/AiSecurityAudit.jsx";
 import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCheck.jsx";
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 
@@ -157,6 +159,10 @@ export default function Iso42001Page() {
     <>
       <LearningFrameworkPage framework={FRAMEWORK} />
       <RiskCrossCheckBlock frameworkId="iso42001" />
+      <div className="max-w-6xl mx-auto px-4">
+        <AimsRoadmap />
+        <AiSecurityAudit />
+      </div>
     </>
   );
 }

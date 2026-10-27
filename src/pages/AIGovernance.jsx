@@ -1,3 +1,5 @@
+import AimsRoadmap from '../components/aiAssurance/AimsRoadmap.jsx';
+import AiSecurityAudit from '../components/aiAssurance/AiSecurityAudit.jsx';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BrainCircuit, Scale, ShieldCheck, Workflow, FileText, Cpu, Sparkles, ArrowRight, AlertTriangle, CheckCircle2 } from 'lucide-react';
@@ -182,6 +184,9 @@ export default function AIGovernance({ isDark = false }) {
             ))}
           </div>
         </section>
+
+        <AimsRoadmap />
+        <AiSecurityAudit />
 
         {/* Operating rhythm */}
         <section className="rounded-2xl border border-surface-300 dark:border-surface-dark-300 bg-white dark:bg-slate-900/60 p-6 md:p-8">
