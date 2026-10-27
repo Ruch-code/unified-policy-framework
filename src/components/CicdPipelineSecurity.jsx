@@ -257,7 +257,7 @@ function VulnerabilityGuide({ openIds, toggle }) {
   );
 }
 
-export default function CicdPipelineSecurity() {
+export default function CicdPipelineSecurity({ onOpenTab }) {
   const [open, setOpen] = useState('source');
   const [openVulns, setOpenVulns] = useState([]);
   const toggleVuln = id => setOpenVulns(v => (v.includes(id) ? v.filter(x => x !== id) : [...v, id]));
@@ -272,6 +272,12 @@ export default function CicdPipelineSecurity() {
         <p className="text-sm text-gray-600 dark:text-slate-300 max-w-3xl">
           Every change takes the same path: source, build, test, artifact, deploy, monitor. Each stage has checks that should run automatically, and auditors test both the design (are the checks required?) and operation (did they run for the changes in the period?). Open a stage to see what it is, how it is tested, and typical tools.
         </p>
+        {onOpenTab && (
+          <p className="text-sm text-gray-600 dark:text-slate-300 mt-2">
+            For the full process around the pipeline (requirements, change types, approvals, hotfixes and what to do when review cannot keep up), see{' '}
+            <button type="button" onClick={() => onOpenTab('change')} className="font-semibold text-indigo-700 dark:text-indigo-300 underline">Change Management</button>.
+          </p>
+        )}
         <div className="flex flex-wrap items-center gap-1.5 mt-4" aria-label="Pipeline stages">
           {STAGES.map((s, i) => (
             <div key={s.id} className="flex items-center gap-1.5">
