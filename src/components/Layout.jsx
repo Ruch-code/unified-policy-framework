@@ -649,7 +649,7 @@ export default function Layout() {
             <span className="relative flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 group-hover:bg-[#0a66c2]/20 transition-all duration-300 group-hover:scale-110 group-hover:rotate-[360deg] group-hover:shadow-[0_0_20px_rgba(10,102,194,0.4)]">
               <Linkedin className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
             </span>
-            <span className="text-sm hidden sm:inline opacity-0 group-hover:opacity-100 transition-opacity duration-300">Let's connect</span>
+            <span className="text-sm">Let's connect: <span className="font-medium text-[#4C9BE8]">linkedin.com/in/ruchi-k</span></span>
           </a>
           <div className="relative flex items-center gap-2">
             <span
