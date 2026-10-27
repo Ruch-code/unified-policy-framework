@@ -275,7 +275,8 @@ export default function CicdPipelineSecurity({ onOpenTab }) {
         {onOpenTab && (
           <p className="text-sm text-gray-600 dark:text-slate-300 mt-2">
             For the full process around the pipeline (requirements, change types, approvals, hotfixes and what to do when review cannot keep up), see{' '}
-            <button type="button" onClick={() => onOpenTab('change')} className="font-semibold text-indigo-700 dark:text-indigo-300 underline">Change Management</button>.
+            <button type="button" onClick={() => onOpenTab('change')} className="font-semibold text-indigo-700 dark:text-indigo-300 underline">Change Management</button>. For SBOM, AIBOM and ABOM explained with templates, see{' '}
+            <button type="button" onClick={() => onOpenTab('bom')} className="font-semibold text-indigo-700 dark:text-indigo-300 underline">SBOM, AIBOM &amp; ABOM</button>.
           </p>
         )}
         <div className="flex flex-wrap items-center gap-1.5 mt-4" aria-label="Pipeline stages">

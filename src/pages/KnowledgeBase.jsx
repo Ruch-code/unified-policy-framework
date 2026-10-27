@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import {
   BookOpenCheck, SearchCheck, FileSignature, Radar, MessageSquareText,
   CheckCircle, Copy, Check, ScrollText, ShieldAlert, Clock, CalendarDays, FileText, Timer,
-  Shield, ShieldCheck, GitBranch, GitPullRequest, Smartphone, HardDrive, Cloud, Globe, Network, Users, Layers, Zap, Cpu, Key,
+  Shield, ShieldCheck, GitBranch, GitPullRequest, Package, Smartphone, HardDrive, Cloud, Globe, Network, Users, Layers, Zap, Cpu, Key,
 } from 'lucide-react';
 import {
   FRAMEWORK_KB, UNIFIED_POLICY_MAP, DISCREPANCY_MATRIX,
@@ -20,6 +20,7 @@ import AiVendorAssuranceTab from '../components/AiVendorAssuranceTab.jsx';
 import AuditObservations from '../components/AuditObservations.jsx';
 import CicdPipelineSecurity from '../components/CicdPipelineSecurity.jsx';
 import ChangeManagementTab from '../components/ChangeManagementTab.jsx';
+import BomTab from '../components/BomTab.jsx';
 
 const order = ['soc2', 'iso27001', 'iso42001', 'pci', 'hipaa', 'nist', 'gdpr', 'cis', 'hitrust', 'dpdpa', 'fedramp', 'cjis'];
 const EDP_TABS = [
@@ -46,6 +47,7 @@ const TABS = [
   { id: 'secrets', label: 'Secrets Scanning', icon: Key },
   { id: 'change', label: 'Change Management', icon: GitPullRequest },
   { id: 'cicd', label: 'CI/CD Pipelines', icon: GitBranch },
+  { id: 'bom', label: 'SBOM, AIBOM & ABOM', icon: Package },
   { id: 'ai-assurance', label: 'AI Vendor Assurance', icon: ShieldCheck },
 ];
 
@@ -78,6 +80,8 @@ export default function KnowledgeBase() {
       setTab('edp');
     } else if (t === 'change-management') {
       setTab('change');
+    } else if (t === 'sbom' || t === 'aibom' || t === 'abom') {
+      setTab('bom');
     } else if (t === 'cicd') {
       setTab('cicd');
     } else if (t === 'secrets-scanning') {
@@ -284,6 +288,7 @@ export default function KnowledgeBase() {
     secrets: <SecretsScanningTab />,
     change: <ChangeManagementTab onOpenTab={setTab} />,
     cicd: <CicdPipelineSecurity onOpenTab={setTab} />,
+    bom: <BomTab onOpenTab={setTab} />,
     'ai-assurance': <AiVendorAssuranceTab />,
   };
 
