@@ -9,6 +9,7 @@ import InterviewPrep from '../components/InterviewPrep.jsx';
 import PasswordPolicies from '../components/PasswordPolicies.jsx';
 import AccessRequirements from '../components/AccessRequirements.jsx';
 import UserAccessReview from '../components/UserAccessReview.jsx';
+import AccessReviewByDesign from '../components/AccessReviewByDesign.jsx';
 import SecurityOperations from '../components/SecurityOperations.jsx';
 import HybridSecurityFramework from '../components/HybridSecurityFramework.jsx';
 import AssetInventoryTemplate from '../components/AssetInventoryTemplate.jsx';
@@ -445,6 +446,9 @@ function TabPanel({ isDark, activeTab }) {
             showLoginPrompt={false}
           >
             <UserAccessReview isDark={isDark} />
+            <ErrorBoundary>
+              <AccessReviewByDesign />
+            </ErrorBoundary>
           </LockedSection>
         </>
       )}
