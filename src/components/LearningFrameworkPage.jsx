@@ -249,7 +249,11 @@ function FrameworkBody({ framework, extraSections }) {
     weekStats[week.week] = { completed, total: week.tasks.length, pct: week.tasks.length ? Math.round((completed / week.tasks.length) * 100) : 0 };
   });
 
+  // All levels are open so every level's content can be read at any time.
+  // Set LEVEL_GATING to true to restore the old 80% unlock rule.
+  const LEVEL_GATING = false;
   const isWeekUnlocked = (weekIndex) => {
+    if (!LEVEL_GATING) return true;
     if (weekIndex === 0) return true;
     const prev = data.weeks[weekIndex - 1];
     return weekStats[prev.week]?.pct >= 80;
@@ -323,7 +327,7 @@ function FrameworkBody({ framework, extraSections }) {
               )}
             </h1>
             <p className="text-gray-600 text-lg max-w-2xl">
-              Compliance playbook - complete each level to unlock the next. Learn the controls, how to implement them, and how to verify.
+              Compliance playbook - all levels are open, so you can read every level in any order. Learn the controls, how to implement them, and how to verify.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
@@ -414,7 +418,7 @@ function FrameworkBody({ framework, extraSections }) {
           const Meta = LEVEL_META[idx] || LEVEL_META[0];
           const Icon = Meta.icon;
           const prevComplete = idx > 0 && weekStats[data.weeks[idx - 1].week]?.pct >= 80;
-          const justUnlocked = unlocked && idx > 0 && !progress[`seen-level-${week.week}`];
+          const justUnlocked = LEVEL_GATING && unlocked && idx > 0 && !progress[`seen-level-${week.week}`];
 
           return (
             <div key={week.week} className={`mb-8 rounded-2xl border overflow-hidden transition-all ${unlocked ? 'bg-white border-gray-200 shadow-sm' : 'bg-gray-50 border-gray-200 opacity-60 dark:bg-slate-800/50 dark:border-slate-700 dark:opacity-90'}`}>
@@ -468,7 +472,7 @@ function FrameworkBody({ framework, extraSections }) {
                     const isExpanded = expandedTask === key;
                     return (
                       <div key={`${week.week}-${i}`} className={`transition ${done ? 'bg-gray-50/50 dark:bg-slate-800/60' : ''}`}>
-                        <div className="flex items-start gap-4 px-6 py-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-800/60 transition" onClick={() => !done && setExpandedTask(isExpanded ? null : key)}>
+                        <div className="flex items-start gap-4 px-6 py-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-800/60 transition" onClick={() => setExpandedTask(isExpanded ? null : key)}>
                           <input
                             type="checkbox"
                             className={`w-5 h-5 mt-0.5 rounded border-gray-300 dark:border-slate-700 focus:ring-2 focus:ring-${colors.ring}-500 text-${colors.ring}-600 shrink-0`}
@@ -478,7 +482,7 @@ function FrameworkBody({ framework, extraSections }) {
                           />
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2 flex-wrap">
-                              <p className={`font-medium ${done ? 'text-gray-400 line-through' : 'text-gray-900'}`}>
+                              <p className={`font-medium ${done ? 'text-gray-500' : 'text-gray-900'}`}>
                                 {typeof task === 'string' ? task : task.title}
                               </p>
                               {typeof task === 'object' && typeof task.hours === 'number' && (
@@ -542,7 +546,7 @@ function FrameworkBody({ framework, extraSections }) {
               {/* Level Complete Banner */}
               {unlocked && weekStats[week.week]?.pct >= 100 && (
                 <div className={`px-6 py-4 text-center text-sm font-medium bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 border-t border-green-200 dark:border-green-800`}>
-                  ✓ Level {idx + 1} complete! {idx < data.weeks.length - 1 ? `Level ${idx + 2} is now unlocked.` : 'All levels complete. You are audit-ready - this is not a certification, and nobody has validated your organization.'}
+                  ✓ Level {idx + 1} complete! {idx < data.weeks.length - 1 ? `Continue with Level ${idx + 2}.` : 'All levels complete. You are audit-ready - this is not a certification, and nobody has validated your organization.'}
                 </div>
               )}
             </div>

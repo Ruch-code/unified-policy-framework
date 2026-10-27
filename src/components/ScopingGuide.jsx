@@ -40,7 +40,7 @@ function PhaseSection({ phase, items, isDark, progress, handleToggle, expandedTa
 
   const phaseColor = PHASE_COLORS[phase] || 'bg-indigo-600';
   const phaseIndex = PHASES_ORDER.indexOf(phase);
-  const isUnlocked = phaseIndex === 0 || (phaseIndex > 0 && progress[`${PHASES_ORDER[phaseIndex - 1]}-complete`] >= 80);
+  const isUnlocked = true; // all levels open; old rule: phaseIndex === 0 || progress[`${PHASES_ORDER[phaseIndex - 1]}-complete`] >= 80
 
   const lockedContainerClass = 'mb-8 rounded-2xl border overflow-hidden bg-gray-50 border-gray-200 opacity-60 dark:bg-slate-800/50 dark:border-slate-700 dark:opacity-90';
   const lockedHeaderClass = 'px-5 sm:px-6 py-5 flex flex-wrap items-center justify-between gap-x-4 gap-y-3 bg-gray-400 dark:bg-gray-700';
