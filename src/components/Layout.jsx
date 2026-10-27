@@ -71,10 +71,7 @@ const MEGA_MENU_REGIONS = [
       { path: '/nist', label: 'NIST CSF / 800-53', desc: 'Cybersecurity Framework & Controls' },
       { path: '/hipaa', label: 'HIPAA', desc: 'US Health Data Protection (PHI)' },
       { path: '/ccpa', label: 'CCPA / CPRA', desc: 'California Consumer Privacy' },
-      { path: '/sebi', label: 'SEBI', desc: 'Securities & Exchange Board of India' },
-      { path: '/rbi', label: 'RBI', desc: 'Reserve Bank of India' },
-      { path: '/cscrf', label: 'CSCRF', desc: 'India Cyber Security Framework' },
-      { path: '/cert-in', label: 'CERT-In', desc: 'Indian CERT Incident Directives' },
+      { path: '/lgpd', label: 'LGPD', desc: 'Brazil General Data Protection Law' },
     ],
   },
   {
@@ -95,14 +92,20 @@ const MEGA_MENU_REGIONS = [
     label: 'APAC (Asia-Pacific)',
     icon: Globe,
     frameworks: [
-      { path: '/dpdpa', label: 'DPDPA', desc: 'India Digital Personal Data Protection Act' },
       { path: '/pdpa', label: 'PDPA', desc: 'Singapore Personal Data Protection Act' },
       { path: '/pipl', label: 'PIPL', desc: 'China Personal Information Protection Law' },
-      { path: '/lgpd', label: 'LGPD', desc: 'Brazil Lei Geral de Proteção de Dados' },
-      { path: '/sebi', label: 'SEBI', desc: 'India Securities & Exchange Board' },
-      { path: '/rbi', label: 'RBI', desc: 'India Reserve Bank' },
-      { path: '/cscrf', label: 'CSCRF', desc: 'India Cyber Security Framework' },
-      { path: '/cert-in', label: 'CERT-In', desc: 'India CERT Incident Reporting' },
+    ],
+  },
+  {
+    id: 'india',
+    label: 'India',
+    icon: Globe,
+    frameworks: [
+      { path: '/dpdpa', label: 'DPDPA', desc: 'Digital Personal Data Protection Act, 2023' },
+      { path: '/sebi', label: 'SEBI', desc: 'Securities and Exchange Board of India' },
+      { path: '/rbi', label: 'RBI', desc: 'Reserve Bank of India cyber and IT directions' },
+      { path: '/cert-in', label: 'CERT-In', desc: 'Incident reporting directions' },
+      { path: '/cscrf', label: 'CSCRF', desc: 'Cyber Security and Cyber Resilience Framework' },
     ],
   },
 ];
