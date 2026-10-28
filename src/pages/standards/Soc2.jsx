@@ -114,17 +114,17 @@ const FRAMEWORK = {
             },
             {
               title:
-                "Download AICPA SOC 2 System Description Template (Markdown)",
+                "Download AICPA SOC 2 System Description Template (Word)",
               control:
                 "TSC Common Criteria - System Description Template Download",
               how:
-                "Click the link below to download the complete AICPA SOC 2 System Description Template in Markdown format. Save as .md file and open in any markdown editor (VS Code, Obsidian, Notion, etc.) or convert to PDF/Word using pandoc.",
+                "Click the link below to download the complete AICPA SOC 2 System Description Template as a Word document. Open it in Microsoft Word or Google Docs and fill in each section.",
               check:
-                "Template downloaded successfully as .md file",
+                "Template downloaded and saved as a Word document",
               links: [
                 {
-                  href: "/soc2-system-description-template.md",
-                  text: "📥 Download AICPA SOC 2 System Description Template (.md)",
+                  href: "/soc2-system-description-template.docx",
+                  text: "📥 Download AICPA SOC 2 System Description Template (Word)",
                   download: true
                 }
               ]

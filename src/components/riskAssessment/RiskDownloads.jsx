@@ -1,10 +1,9 @@
 import { Download, FileText, ClipboardCheck } from 'lucide-react';
-import { downloadXlsx, downloadBlob } from '../../utils/xlsxExport.js';
+import { downloadXlsx } from '../../utils/xlsxExport.js';
 import { SEED_REGISTER } from '../../data/riskAssessment/register';
 import { CONTROLS } from '../../data/riskAssessment/controls';
 import { LIBRARY_CATEGORIES } from '../../data/riskAssessment/library';
 import { LIKELIHOOD, IMPACT, BANDS, APPETITE, TREATMENTS, WORKFLOW } from '../../data/riskAssessment/methodology';
-import { REPORT_OUTLINE_MD } from '../../data/riskAssessment/report';
 import { score, sectionCls, h3Cls, leadCls } from './riskUtils.jsx';
 
 const REGISTER_HEADERS = ['ID', 'Risk scenario', 'Categories', 'CIA', 'Owner', 'Likelihood', 'Impact', 'Inherent score', 'Treatment', 'Treatment status', 'Residual likelihood', 'Residual impact', 'Residual score', 'Approval status', 'Linked controls', 'Approver', 'Identified date', 'Last reviewed date', 'Approval date', 'Notes'];
@@ -60,7 +59,12 @@ export function downloadRegisterTemplate() {
 }
 
 export function downloadReportOutline() {
-  downloadBlob(new Blob([REPORT_OUTLINE_MD], { type: 'text/markdown;charset=utf-8' }), 'risk-assessment-report-outline.md');
+  const a = document.createElement('a');
+  a.href = '/risk-assessment-report-outline.docx';
+  a.download = 'risk-assessment-report-outline.docx';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
 }
 
 export function downloadEvidenceChecklist() {
@@ -77,7 +81,7 @@ export function downloadEvidenceChecklist() {
 
 const ITEMS = [
   { icon: Download, title: 'Risk register template (.xlsx)', desc: 'Register columns from Section 4 with dropdowns, the 16 sample risks, a rubric sheet and allowed values.', action: downloadRegisterTemplate, cta: 'Download template' },
-  { icon: FileText, title: 'Risk assessment report outline (.md)', desc: 'Scope, methodology, participants by role, heatmap, top risks, treatment plans, accepted risks with sign-off and next review date.', action: downloadReportOutline, cta: 'Download outline' },
+  { icon: FileText, title: 'Risk assessment report outline (Word)', desc: 'Scope, methodology, participants by role, heatmap, top risks, treatment plans, accepted risks with sign-off and next review date.', action: downloadReportOutline, cta: 'Download outline' },
   { icon: ClipboardCheck, title: 'Auditor evidence checklist (.xlsx)', desc: 'Every control from Section 6 with its tests and each evidence item to collect and review.', action: downloadEvidenceChecklist, cta: 'Download checklist' },
 ];
 
