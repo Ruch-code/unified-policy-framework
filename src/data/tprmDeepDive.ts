@@ -131,6 +131,37 @@ export const DEEP_DIVE: DeepDiveSection[] = [
     ],
   },
   {
+    id: 'threat-intel',
+    title: 'Threat intelligence and breach history for high-risk vendors',
+    lead: 'For Tier 1 and Tier 2 vendors, look outward as well as at what the vendor tells you: past breaches, active threats and exposure signals change the risk faster than an annual review cycle.',
+    tables: [
+      { caption: 'What to check, at onboarding and continuously', table: { headers: ['Signal', 'Where to look', 'What it tells you'], rows: [
+        ['Past breaches and incidents', 'Regulator enforcement notices, breach notification portals (for example US state AG and HHS breach portals), the vendor\'s own disclosures and status page history, SEC 8-K Item 1.05 filings for listed vendors, news archives', 'Whether they have been breached, how they handled it, and whether root causes were fixed'],
+        ['Leaked credentials and data', 'Threat intelligence and dark web monitoring services, breach corpus checks on the vendor\'s domains', 'Exposed staff credentials or customer data that could be reused against the vendor or you'],
+        ['Ransomware and extortion listings', 'Threat intelligence feeds that track ransomware leak sites', 'An active or recent compromise the vendor may not have disclosed yet'],
+        ['Exploited vulnerabilities in their stack', 'CISA Known Exploited Vulnerabilities catalogue matched to the vendor\'s known products and internet-facing services; security ratings', 'Whether the vendor is exposed to vulnerabilities attackers are using now'],
+        ['Targeting of the vendor\'s sector', 'ISAC advisories (for example FS-ISAC, Health-ISAC), CERT-In and national CERT advisories, vendor threat reports', 'Campaigns aimed at vendors like this one, such as MSPs, payroll or file transfer providers'],
+        ['Supply chain attacks on their software', 'Advisories on compromised packages, CI/CD or update channels, SBOM matching', 'Whether a dependency or update mechanism the vendor uses has been compromised'],
+      ] } },
+      { caption: 'How past breaches change the assessment', table: { headers: ['Finding', 'Typical response'], rows: [
+        ['Breach in the last 24 months, root cause fixed and evidenced', 'Ask for the post-incident report or summary, confirm the fix with evidence, note it in the risk profile; residual may stay unchanged'],
+        ['Breach with no clear root cause or fix', 'Raise a finding, require a remediation plan, increase monitoring, consider tighter contract terms before signing or renewing'],
+        ['Breach not disclosed to you when it affected your data', 'Escalate: likely contract breach on notification; reassess the relationship and the notification clause'],
+        ['Repeated incidents of the same type', 'Treat as a control failure, not bad luck; residual risk goes up and the vendor may need an exit plan'],
+      ] } },
+    ],
+    lists: [
+      { caption: 'Make it operational', ordered: true, items: [
+        'Run a breach history and threat intelligence check at onboarding for every Tier 1 and Tier 2 vendor and record the result in the vendor file',
+        'Monitor those vendors continuously and define triggers: a confirmed breach, a leak site listing, a KEV match on an exposed service, or a sharp rating drop',
+        'On a trigger, contact the vendor\'s security contact within 24 hours, ask whether your data or access is affected, and track their response',
+        'Check your own exposure in parallel: rotate shared credentials and API keys, review the vendor\'s access to your systems, and watch for related activity in your logs',
+        'Feed the outcome into the risk register and, if needed, an off-cycle reassessment',
+      ] },
+    ],
+    note: 'Contract support: a breach notification SLA with a fixed number of hours, a duty to share a post-incident report, and a right to reassess or terminate after a material incident make this work in practice.',
+  },
+  {
     id: 'reporting',
     title: 'Findings, risk acceptance, KRIs and reporting',
     lead: 'Each finding needs an owner, a date, a rating and a decision: fix, accept or exit. Close only on evidence you have checked.',

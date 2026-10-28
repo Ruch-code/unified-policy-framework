@@ -603,6 +603,46 @@
           ]
         },
         {
+          "q": "How do you use threat intelligence and breach history when assessing high-risk vendors?",
+          "a": "For a Tier 1 or Tier 2 vendor, I don't just rely on what the vendor tells me. At onboarding I check their breach history: regulator notices, breach notification portals, their own disclosures and status page history, and for listed companies, their SEC incident filings. I also look at threat intelligence: leaked staff credentials, any listing on ransomware leak sites, and whether their internet-facing services are exposed to vulnerabilities in CISA's Known Exploited Vulnerabilities catalogue.\n\nA past breach isn't automatically a no. What I care about is how they handled it. If they can show me the root cause and the fix, that can actually be reassuring. If they can't, or if it's the same kind of incident again, that goes into the risk register and changes the decision. And it doesn't stop at onboarding. I keep those vendors under continuous monitoring with clear triggers for an off-cycle review.",
+          "tags": [
+            "Threat intelligence",
+            "Breach history",
+            "Monitoring"
+          ],
+          "example": "Expect: \"Would you reject a vendor because they had a breach last year?\" Not automatically. Ask for the post-incident summary, check the root cause was fixed with evidence, and weigh it against their current controls. Undisclosed or repeated breaches are the real red flags.",
+          "pitfalls": [
+            {
+              "pitfall": "Relying only on the vendor's questionnaire answer about past incidents.",
+              "reply": "\"I check independent sources too, because a questionnaire only tells me what the vendor chooses to share.\""
+            },
+            {
+              "pitfall": "Treating any past breach as an automatic rejection.",
+              "reply": "\"What matters is how they responded and whether the root cause is fixed.\""
+            }
+          ]
+        },
+        {
+          "q": "Scenario: threat intelligence shows a critical vendor listed on a ransomware leak site, but they haven't told you anything. What do you do?",
+          "a": "I'd move quickly, but I'd verify before assuming the worst, because leak site claims are sometimes exaggerated or old.\n\nFirst, I'd contact the vendor's security contact the same day and ask directly: is the listing genuine, is our data or access affected, and what are they doing about it. In parallel, I'd reduce our own exposure: rotate any shared credentials and API keys, review and if needed suspend the vendor's access to our systems, and ask our SOC to watch for related activity. I'd bring in Legal and Privacy early, because if our personal data is involved, our own notification clock may already be running.\n\nThen I'd track the vendor's response against our contract. If they knew and didn't notify us within the agreed window, that's a contract breach and it changes the relationship. Afterwards I'd run an off-cycle reassessment, update the risk register, and decide with the business owner whether we stay, add conditions, or start an exit plan.",
+          "tags": [
+            "Threat intelligence",
+            "Incident",
+            "Scenario"
+          ],
+          "example": "Expect: \"What if the vendor says it's not them?\" Ask for evidence, such as their own investigation summary, and keep heightened monitoring for a period. Record the outcome either way so the next reviewer can see what happened.",
+          "pitfalls": [
+            {
+              "pitfall": "Waiting for the vendor to come to you.",
+              "reply": "\"I'd reach out the same day and start protecting our side in parallel.\""
+            },
+            {
+              "pitfall": "Forgetting your own regulatory notification obligations.",
+              "reply": "\"If our personal data might be involved, Legal and Privacy need to know immediately, because our own clock may have started.\""
+            }
+          ]
+        },
+        {
           "q": "How do you get Procurement and the business to follow the process?",
           "a": "Mostly by making the process easy and hard to avoid at the same time. A short intake form, a fast path for low-risk tools, and ideally a control in the purchasing system so a PO can't go out without a TPRM reference. Then I report bypasses by business unit, which tends to fix behaviour quickly.\n\nAnd when the business wants to sign before we've finished, I try to offer a way forward rather than a flat no: a conditional approval with a deadline, or a pilot without production data. If the risk really is too high, the business owner accepts it in writing.",
           "tags": [
