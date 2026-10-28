@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 import {
   FRAMEWORK_KB, UNIFIED_POLICY_MAP, DISCREPANCY_MATRIX,
-  VENDOR_CLAUSE_BASE, VENDOR_CLAUSE_CONDITIONAL, GRC_RESPONSE_PLAYBOOK,
+  GRC_RESPONSE_PLAYBOOK,
 } from '../data/grcKnowledgeBase.js';
 import {
   mdmControls, dlpControls, byodControls, byodModels, ecosystemComparison,
@@ -17,7 +17,6 @@ import {
 import GrcAssistant from '../components/GrcAssistant.jsx';
 import EdpTab from '../components/EdpTab.jsx';
 import SecretsScanningTab from '../components/SecretsScanningTab.jsx';
-import AiVendorAssuranceTab from '../components/AiVendorAssuranceTab.jsx';
 import AuditObservations from '../components/AuditObservations.jsx';
 import CicdPipelineSecurity from '../components/CicdPipelineSecurity.jsx';
 import ChangeManagementTab from '../components/ChangeManagementTab.jsx';
@@ -41,7 +40,6 @@ const EDP_TABS = [
 const TABS = [
   { id: 'policies', label: 'Policies → Controls', icon: BookOpenCheck },
   { id: 'audit', label: 'Audit & Rebuttals', icon: ShieldAlert },
-  { id: 'contracts', label: 'Vendor Clause Builder', icon: FileSignature },
   { id: 'radar', label: 'Discrepancy Radar', icon: Radar },
   { id: 'assistant', label: 'GRC Assistant', icon: MessageSquareText },
   { id: 'edp', label: 'Endpoint & Data Protection', icon: Smartphone },
@@ -49,7 +47,6 @@ const TABS = [
   { id: 'change', label: 'Change Management', icon: GitPullRequest },
   { id: 'cicd', label: 'CI/CD Pipelines', icon: GitBranch },
   { id: 'bom', label: 'SBOM, AIBOM & ABOM', icon: Package },
-  { id: 'ai-assurance', label: 'AI Vendor Assurance', icon: ShieldCheck },
 ];
 
 function useCopy() {
@@ -65,7 +62,6 @@ function useCopy() {
 export default function KnowledgeBase() {
   const [fw, setFw] = useState('soc2');
   const [tab, setTab] = useState('policies');
-  const [sel, setSel] = useState({ soc2: true, iso27001: true, pci: true, hipaa: true, gdpr: true, dpdpa: true });
   const [edpTab, setEdpTab] = useState('overview');
   const { copied, copy } = useCopy();
 
@@ -88,8 +84,10 @@ export default function KnowledgeBase() {
       setTab('cicd');
     } else if (t === 'secrets-scanning') {
       setTab('secrets');
-    } else if (t === 'ai-vendor-assurance') {
-      setTab('ai-assurance');
+    } else if (t === 'ai-vendor-assurance' || t === 'vendor-clauses') {
+      // Vendor topics now live in one place: Home, Vendor Risk Management.
+      window.location.replace(t === 'ai-vendor-assurance' ? '/?section=ai-vendors#vendor-risk' : '/?section=contract-clauses#vendor-risk');
+      return;
     } else if (t === 'audit-observations') {
       setTab('audit');
     } else if (p && FRAMEWORK_KB[p]) {
@@ -97,11 +95,6 @@ export default function KnowledgeBase() {
     }
   }, [location.search]);
 
-  const selectedClauses = Object.entries(VENDOR_CLAUSE_CONDITIONAL)
-    .filter(([id]) => sel[id])
-    .map(([, c]) => `[${c.label}] ${c.clause}`);
-  const contractText = VENDOR_CLAUSE_BASE.map(c => `${c.title}.\n${c.text}`).join('\n\n')
-    + '\n\n' + selectedClauses.join('\n\n');
 
   const tabContent = {
     policies: (
@@ -245,28 +238,6 @@ export default function KnowledgeBase() {
         </div>
       </div>
     ),
-    contracts: (
-      <div className="space-y-4">
-        <div className="bg-white border border-gray-200 rounded-2xl p-4">
-          <h4 className="flex items-center gap-2 font-bold text-gray-900 text-sm mb-2 dark:text-[#f8fafc]"><FileSignature className="w-4 h-4 text-[#7c3aed]" /> Pick frameworks your vendor must comply with</h4>
-          <div className="flex flex-wrap gap-2">
-            {Object.entries(VENDOR_CLAUSE_CONDITIONAL).map(([id, c]) => (
-              <button key={id} onClick={() => setSel(s => ({ ...s, [id]: !s[id] }))}
-                className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition ${sel[id] ? 'bg-[#7c3aed] text-white border-[#7c3aed]' : 'bg-white text-gray-600 border-gray-200 hover:border-gray-300 dark:bg-[#1e293b] dark:text-[#cbd5e1] dark:border-[#334155] dark:hover:border-[#475569]'}`}>
-                {c.label}
-              </button>
-            ))}
-          </div>
-          <button onClick={() => copy(contractText, 'full')}
-            className="mt-4 inline-flex items-center gap-2 bg-[#7c3aed] text-white px-4 py-2.5 rounded-xl text-sm font-bold hover:bg-[#6d28d9] transition">
-            {copied === 'full' ? <><Check className="w-4 h-4" /> Copied to clipboard</> : <><Copy className="w-4 h-4" /> Copy full clause set</>}
-          </button>
-        </div>
-        <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 max-h-[480px] overflow-y-auto dark:bg-[#1e293b] dark:border-[#334155]">
-          <pre className="whitespace-pre-wrap text-sm text-gray-700 dark:text-[#cbd5e1] font-sans">{contractText}</pre>
-        </div>
-      </div>
-    ),
     radar: (
       <div className="space-y-3">
         {DISCREPANCY_MATRIX.map(row => (
@@ -291,7 +262,6 @@ export default function KnowledgeBase() {
     change: <ChangeManagementTab onOpenTab={setTab} />,
     cicd: <CicdPipelineSecurity onOpenTab={setTab} />,
     bom: <BomTab onOpenTab={setTab} />,
-    'ai-assurance': <AiVendorAssuranceTab />,
   };
 
   return (

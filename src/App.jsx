@@ -87,7 +87,7 @@ function App() {
           <Route path="admin" element={<RequireAuth admin><AdminPanel /></RequireAuth>} />
           <Route path="newsletter" element={<RequireAuth admin><NewsletterEditor /></RequireAuth>} />
           <Route path="knowledge" element={<RequireAuth><KnowledgeBase /></RequireAuth>} />
-          <Route path="ai-assurance" element={<Navigate to="/knowledge?topic=ai-vendor-assurance" replace />} />
+          <Route path="ai-assurance" element={<Navigate to="/?section=ai-vendors#vendor-risk" replace />} />
           <Route path="profile" element={<RequireAuth><Profile /></RequireAuth>} />
 
           <Route path="iso/27001" element={<Navigate to="/iso/27001/li" replace />} />

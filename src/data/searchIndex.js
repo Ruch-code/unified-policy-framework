@@ -454,7 +454,7 @@ const moduleEntries = [
       'regulatory applicability', 'controller processor', 'sub-processor', 'prompt injection',
       'tenant separation', 'sandbox isolation', 'training use', 'model provider',
     ],
-    path: '/knowledge?topic=ai-vendor-assurance',
+    path: '/?section=ai-vendors#vendor-risk',
     mode: 'route',
     anchorId: null,
   },

@@ -1,4 +1,6 @@
 import TprmDeepDive from './TprmDeepDive.jsx';
+import VendorClauseBuilder from './VendorClauseBuilder.jsx';
+import AiVendorAssuranceTab from './AiVendorAssuranceTab.jsx';
 import React, { useState, Suspense, lazy, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
@@ -551,28 +553,32 @@ function getColorStyles(color) {
   return colors[color] || colors['#4f46e5'];
 }
 
+// Tab label to URL slug (?section=...) for every Vendor Risk tab.
+const SECTION_SLUGS = {
+  'Lifecycle': 'lifecycle',
+  'Tiering': 'tiering',
+  'Sectors': 'sectors',
+  'Regional Laws': 'regional-laws',
+  'Sub-Processors': 'sub-processors',
+  'Review Frequency': 'review-frequency',
+  'SOC 2 Review': 'soc2-review',
+  'Contract Clauses': 'contract-clauses',
+  'AI Vendors': 'ai-vendors',
+  'Issue Management': 'issue-management',
+  'TPRM Deep Dive': 'tprm-deep-dive',
+  'Incident Brief': 'incident-brief',
+};
+const SLUG_TO_SECTION = Object.fromEntries(Object.entries(SECTION_SLUGS).map(([k, v]) => [v, k]));
+
 export default function VendorRiskManagement({ isDark = false }) {
   const [activeTab, setActiveTab] = useState(() => {
     if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      const section = params.get('section');
-      const validTabs = ['Sectors', 'Regional Laws', 'Sub-Processors', 'Review Frequency', 'Incident Brief'];
-      if (section) {
-        const mapped = {
-          'sub-processors': 'Sub-Processors',
-          'review-frequency': 'Review Frequency',
-          'incident-brief': 'Incident Brief',
-          'regional-laws': 'Regional Laws',
-          'sectors': 'Sectors'
-        };
-        if (mapped[section.toLowerCase()]) return mapped[section.toLowerCase()];
-      }
-      // Fallback to hash for backwards compatibility
-      const hash = window.location.hash.slice(1);
-      const validTabsHash = ['Sectors', 'Regional Laws', 'Sub-Processors', 'Review Frequency', 'Incident Brief'];
-      if (validTabsHash.includes(hash)) return hash;
+      const section = new URLSearchParams(window.location.search).get('section');
+      if (section && SLUG_TO_SECTION[section.toLowerCase()]) return SLUG_TO_SECTION[section.toLowerCase()];
+      const hash = decodeURIComponent(window.location.hash.slice(1));
+      if (SECTION_SLUGS[hash]) return hash;
     }
-    return 'Sectors';
+    return 'Lifecycle';
   });
   const [expandedSector, setExpandedSector] = useState(null);
   const [expandedRegion, setExpandedRegion] = useState(null);
@@ -593,10 +599,16 @@ export default function VendorRiskManagement({ isDark = false }) {
   };
 
   const tabs = [
+    'Lifecycle',
+    'Tiering',
     'Sectors',
     'Regional Laws',
     'Sub-Processors',
     'Review Frequency',
+    'SOC 2 Review',
+    'Contract Clauses',
+    'AI Vendors',
+    'Issue Management',
     deepDiveTab,
     ...(user ? [briefTab] : []),
   ];
@@ -605,15 +617,7 @@ export default function VendorRiskManagement({ isDark = false }) {
   const [searchParams, setSearchParams] = useSearchParams();
   
   useEffect(() => {
-    const sectionMap = {
-      'Sectors': 'sectors',
-      'Regional Laws': 'regional-laws',
-      'Sub-Processors': 'sub-processors',
-      'Review Frequency': 'review-frequency',
-      'TPRM Deep Dive': 'tprm-deep-dive',
-      'Incident Brief': 'incident-brief'
-    };
-    const section = sectionMap[activeTab];
+    const section = SECTION_SLUGS[activeTab];
     if (section) {
       setSearchParams({ section }, { replace: true });
     }
@@ -623,16 +627,8 @@ export default function VendorRiskManagement({ isDark = false }) {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const section = params.get('section');
-    const sectionMap = {
-      'sectors': 'Sectors',
-      'regional-laws': 'Regional Laws',
-      'sub-processors': 'Sub-Processors',
-      'review-frequency': 'Review Frequency',
-      'tprm-deep-dive': 'TPRM Deep Dive',
-      'incident-brief': 'Incident Brief'
-    };
-    if (section && sectionMap[section.toLowerCase()]) {
-      setActiveTab(sectionMap[section.toLowerCase()]);
+    if (section && SLUG_TO_SECTION[section.toLowerCase()]) {
+      setActiveTab(SLUG_TO_SECTION[section.toLowerCase()]);
     }
   }, []);
 
@@ -657,8 +653,8 @@ export default function VendorRiskManagement({ isDark = false }) {
             End-to-End Vendor Risk Management
           </h2>
           <p className="text-lg text-navy-600 dark:text-text-dark-secondary max-w-3xl mx-auto">
-            Complete vendor risk lifecycle: sector compliance, regional law mapping, sub-processor governance, 
-            nth-party visibility, and review frequency automation.
+            Everything vendor-related in one place: lifecycle, tiering, sector and regional requirements, sub-processors,
+            review cadence, SOC 2 review, contract clauses, AI vendors, issue management and the practitioner deep dive.
           </p>
         </div>
 
@@ -936,6 +932,12 @@ export default function VendorRiskManagement({ isDark = false }) {
           )}
         </div>
 
+        {activeTab === 'Lifecycle' && <LifecyclePanel />}
+        {activeTab === 'Tiering' && <TieringPanel />}
+        {activeTab === 'SOC 2 Review' && <Soc2ReviewPanel />}
+        {activeTab === 'Contract Clauses' && <ContractClausesPanel />}
+        {activeTab === 'AI Vendors' && <AiVendorsPanel />}
+        {activeTab === 'Issue Management' && <IssuePanel />}
         {activeTab === deepDiveTab && (
           <div id="panel-tprm-deep-dive" role="tabpanel" aria-labelledby="vtab-tprm-deep-dive">
             <TprmDeepDive />
@@ -943,5 +945,183 @@ export default function VendorRiskManagement({ isDark = false }) {
         )}
       </div>
     </section>
+  );
+}
+
+
+/* ---------- Panels for content defined above ---------- */
+const card = 'rounded-2xl border border-surface-300 dark:border-surface-dark-300 bg-white dark:bg-surface-dark-100 p-5';
+const h4c = 'font-bold text-navy-900 dark:text-text-dark-primary';
+const small = 'text-sm text-navy-600 dark:text-text-dark-secondary';
+
+function Pills({ label, items, tone = 'indigo' }) {
+  const tones = { indigo: 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-200', emerald: 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-200', amber: 'bg-amber-50 dark:bg-amber-900/30 text-amber-800 dark:text-amber-200' };
+  return (
+    <div className="mt-2">
+      <p className="text-[11px] font-semibold uppercase tracking-wide text-navy-500 dark:text-text-dark-muted mb-1">{label}</p>
+      <div className="flex flex-wrap gap-1.5">{items.map((i) => <span key={i} className={`px-2 py-0.5 rounded-md text-xs ${tones[tone]}`}>{i}</span>)}</div>
+    </div>
+  );
+}
+
+function LifecyclePanel() {
+  return (
+    <div id="panel-lifecycle" role="tabpanel" aria-labelledby="vtab-lifecycle" className="space-y-4">
+      <p className={small}>The end-to-end TPRM lifecycle. Depth at each stage scales with the vendor's tier (see Tiering).</p>
+      <ol className="grid gap-4 md:grid-cols-2">
+        {LIFECYCLE_STAGES.map((st) => {
+          const Icon = st.icon;
+          return (
+            <li key={st.id} className={card}>
+              <div className="flex items-center gap-3 mb-2">
+                <span className="w-8 h-8 rounded-full bg-indigo-600 text-white text-sm font-bold flex items-center justify-center shrink-0">{st.id}</span>
+                {Icon && <Icon className="w-5 h-5 text-indigo-600 dark:text-indigo-300" aria-hidden="true" />}
+                <h4 className={h4c}>{st.name}</h4>
+              </div>
+              <p className={small}>{st.purpose}</p>
+              <p className="text-xs mt-2 text-navy-700 dark:text-text-dark-secondary"><strong>Owner:</strong> {st.owner}</p>
+              {st.inputs && <Pills label="Inputs" items={st.inputs} />}
+              {st.outputs && <Pills label="Outputs" items={st.outputs} tone="emerald" />}
+              {st.evidence && <Pills label="Audit evidence" items={st.evidence} tone="amber" />}
+              {st.regulations && <p className="text-[11px] mt-2 text-navy-500 dark:text-text-dark-muted">{st.regulations.join(' · ')}</p>}
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  );
+}
+
+function TieringPanel() {
+  const [ans, setAns] = useState(() => Object.fromEntries(TIERING_QUESTIONS.map((q) => [q.id, q.options[0].score])));
+  const totalWeight = TIERING_QUESTIONS.reduce((a, q) => a + q.weight, 0);
+  const weighted = TIERING_QUESTIONS.reduce((a, q) => a + ans[q.id] * q.weight, 0) / totalWeight; // 1 to 5
+  const score = Math.round(6 + ((weighted - 1) / 4) * 30); // 6 to 36
+  const result = TIERING_RESULTS.find((r) => score >= r.min && score <= r.max) || TIERING_RESULTS[0];
+  return (
+    <div id="panel-tiering" role="tabpanel" aria-labelledby="vtab-tiering" className="grid gap-6 lg:grid-cols-2">
+      <div className="space-y-3">
+        <p className={small}>Inherent risk tiering. Answer for the vendor as it will be used; the weighted score sets the tier, review cadence, evidence and contract clauses.</p>
+        {TIERING_QUESTIONS.map((q) => (
+          <fieldset key={q.id} className={card}>
+            <legend className="text-sm font-semibold text-navy-900 dark:text-text-dark-primary px-1">{q.text} <span className="text-xs font-normal text-navy-500">(weight {q.weight}%)</span></legend>
+            <div className="grid sm:grid-cols-2 gap-1 mt-1">
+              {q.options.map((o) => (
+                <label key={o.value} className="flex items-center gap-2 text-sm text-navy-700 dark:text-text-dark-secondary cursor-pointer">
+                  <input type="radio" name={`tier-q${q.id}`} checked={ans[q.id] === o.score} onChange={() => setAns((a) => ({ ...a, [q.id]: o.score }))} />
+                  {o.label}
+                </label>
+              ))}
+            </div>
+          </fieldset>
+        ))}
+      </div>
+      <div className="lg:sticky lg:top-24 self-start">
+        <div className={card}>
+          <p className="text-xs uppercase tracking-wide text-navy-500 dark:text-text-dark-muted">Inherent risk score</p>
+          <p className="text-4xl font-extrabold text-navy-900 dark:text-text-dark-primary">{score}<span className="text-base font-medium text-navy-500"> / 36</span></p>
+          <h4 className={`${h4c} mt-2`}>{result.label}</h4>
+          <p className={small}>Review: {result.frequency}</p>
+          <Pills label="Evidence to collect" items={result.evidence} />
+          <Pills label="Contract clauses" items={result.clauses} tone="emerald" />
+          <p className="text-xs mt-3 text-navy-500 dark:text-text-dark-muted">This is inherent risk. Approve on residual risk after reviewing evidence (see TPRM Deep Dive).</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Soc2ReviewPanel() {
+  return (
+    <div id="panel-soc2-review" role="tabpanel" aria-labelledby="vtab-soc-2-review" className="space-y-4">
+      <p className={small}>Use when reviewing a vendor's SOC 2 report. Red flags, SOC 1 vs SOC 2 and Type 1 vs Type 2 are in TPRM Deep Dive, Assurance evidence review.</p>
+      <div className="grid gap-4 md:grid-cols-2">
+        {SOC2_REVIEW_CHECKLIST.map((sec) => (
+          <div key={sec.section} className={card}>
+            <h4 className={`${h4c} mb-2`}>{sec.section}</h4>
+            <ul className="space-y-1">
+              {sec.items.map((i) => (
+                <li key={i} className="flex items-start gap-2 text-sm text-navy-700 dark:text-text-dark-secondary">
+                  <input type="checkbox" className="mt-1" aria-label={i} /> <span>{i}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ContractClausesPanel() {
+  const [open, setOpen] = useState(null);
+  return (
+    <div id="panel-contract-clauses" role="tabpanel" aria-labelledby="vtab-contract-clauses" className="space-y-6">
+      <VendorClauseBuilder />
+      <div>
+        <h4 className={`${h4c} mb-2`}>Clause library</h4>
+        <div className="space-y-2">
+          {CLAUSE_LIBRARY.map((c) => (
+            <div key={c.title} className="rounded-xl border border-surface-300 dark:border-surface-dark-300 bg-white dark:bg-surface-dark-100">
+              <button type="button" onClick={() => setOpen(open === c.title ? null : c.title)} aria-expanded={open === c.title} className="w-full flex items-center justify-between gap-2 p-4 text-left">
+                <span className="font-semibold text-navy-900 dark:text-text-dark-primary">{c.title}</span>
+                <span className="text-xs text-navy-500 dark:text-text-dark-muted">{c.category} {open === c.title ? '▲' : '▼'}</span>
+              </button>
+              {open === c.title && (
+                <div className="px-4 pb-4 space-y-2">
+                  {c.clauses.map((cl) => (
+                    <div key={cl.name}>
+                      <p className="text-sm font-semibold text-navy-800 dark:text-text-dark-primary">{cl.name}</p>
+                      <p className="text-sm text-navy-600 dark:text-text-dark-secondary">{cl.text}</p>
+                    </div>
+                  ))}
+                  {c.source && <a href={c.source} target="_blank" rel="noopener noreferrer" className="text-xs text-indigo-600 dark:text-indigo-300 underline">Source</a>}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function AiVendorsPanel() {
+  return (
+    <div id="panel-ai-vendors" role="tabpanel" aria-labelledby="vtab-ai-vendors" className="space-y-6">
+      <div className={card}>
+        <h4 className={`${h4c} mb-2`}>Quick AI vendor due diligence checklist</h4>
+        <div className="grid gap-4 md:grid-cols-2">
+          {AI_VENDOR_CHECKLIST.map((g) => (
+            <div key={g.category}>
+              <p className="text-sm font-semibold text-navy-800 dark:text-text-dark-primary">{g.category}</p>
+              <ul className="list-disc pl-5 text-sm text-navy-600 dark:text-text-dark-secondary">{g.items.map((i) => <li key={i}>{i}</li>)}</ul>
+            </div>
+          ))}
+        </div>
+      </div>
+      <AiVendorAssuranceTab />
+    </div>
+  );
+}
+
+function IssuePanel() {
+  return (
+    <div id="panel-issue-management" role="tabpanel" aria-labelledby="vtab-issue-management" className="space-y-4">
+      <p className={small}>From finding to closure or formal risk acceptance. KRIs and reporting are in TPRM Deep Dive.</p>
+      <ol className="space-y-3">
+        {ISSUE_MANAGEMENT_STAGES.map((st, i) => (
+          <li key={st.name} className={`${card} flex gap-4`}>
+            <span className="w-8 h-8 rounded-full bg-indigo-600 text-white text-sm font-bold flex items-center justify-center shrink-0">{i + 1}</span>
+            <div>
+              <h4 className={h4c}>{st.name}</h4>
+              <p className={small}>{st.description}</p>
+              <p className="text-xs mt-1 text-navy-700 dark:text-text-dark-secondary"><strong>Owner:</strong> {st.owner}</p>
+              <Pills label="Evidence" items={st.evidence} tone="amber" />
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
   );
 }
