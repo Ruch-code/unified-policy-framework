@@ -333,6 +333,82 @@
           ]
         },
         {
+          "q": "When is a SOC 2 Type 1 report required, and when do you need a Type 2?",
+          "a": "A Type 1 looks at whether controls are designed properly at a single point in time. A Type 2 looks at whether those controls actually operated over a period, usually somewhere between three and twelve months.\n\nIn practice, nobody is legally required to have either. It's customers who ask for them. Enterprise buyers, regulated customers and most mature procurement teams want a Type 2, because it shows the controls worked over time. A Type 1 is normally a stepping stone: a company's first audit, when a deal needs something now and a full observation period isn't possible yet. From the TPRM side, I'll accept a Type 1 for a lower-tier vendor or as a short-term bridge with a committed Type 2 date, but for a critical vendor I want the Type 2.",
+          "tags": [
+            "SOC 2",
+            "Type 1",
+            "Type 2"
+          ],
+          "example": "Expect: \"So why would anyone stop at a Type 1?\" They usually don't. It buys time for a first deal or proves design before the observation period ends. The plan should always be a Type 2 within about 6 to 12 months.",
+          "pitfalls": [
+            {
+              "pitfall": "Saying SOC 2 is a legal requirement.",
+              "reply": "\"It's a market expectation, not a law. Customers and their auditors are the ones who ask for it.\""
+            },
+            {
+              "pitfall": "Treating a Type 1 as equal to a Type 2.",
+              "reply": "\"A Type 1 tells me the controls are designed well on one day; only a Type 2 tells me they actually worked.\""
+            }
+          ]
+        },
+        {
+          "q": "Why do companies choose a SOC 2 Type 1 instead of going straight to Type 2?",
+          "a": "Mostly time and readiness. A Type 2 needs an observation period, and for a first audit that's at least three months of evidence before fieldwork can even start. If a startup has a big customer asking for assurance next quarter, a Type 1 can be done in a few weeks once controls are in place, so it unblocks the deal.\n\nThere are a few other reasons. It's a cheaper first audit, it surfaces design gaps before they become operating exceptions in a Type 2, and it gives the team a dry run with the auditor. The trade-off is that it carries less weight, so most mature buyers will accept it only as a stepping stone. When I've helped startups get audit-ready quickly, the Type 1 was usually the first milestone, with the Type 2 observation period starting the same day.",
+          "tags": [
+            "SOC 2",
+            "Type 1",
+            "Strategy"
+          ],
+          "example": "Expect: \"Would you ever skip the Type 1?\" Yes, if there's no urgent customer deadline and controls are already operating. Going straight into a 3 to 6 month Type 2 observation period saves the cost of a separate Type 1.",
+          "pitfalls": [
+            {
+              "pitfall": "Presenting Type 1 as the end goal.",
+              "reply": "\"I'd always pair a Type 1 with a date for the Type 2, otherwise customers see it as incomplete.\""
+            }
+          ]
+        },
+        {
+          "q": "What does a typical SOC 2 timeline look like, from readiness to report?",
+          "a": "For a first-time SOC 2, I'd describe it roughly like this:\n\n1. Readiness and gap assessment: about 2 to 4 weeks. Scope the system, pick the Trust Services Criteria, compare current controls against them.\n2. Gap remediation: about 1 to 3 months. Write and approve policies, switch on MFA, logging, access reviews, vendor reviews, background checks, training, and get a compliance platform collecting evidence.\n3. Type 1 audit, if you need one: fieldwork takes 1 to 3 weeks, and the report usually lands 2 to 4 weeks after that.\n4. Type 2 observation period: at least 3 months for a first report, more commonly 6 months, and 12 months once you're on an annual cycle.\n5. Type 2 fieldwork: 2 to 4 weeks after the period ends.\n6. Report issuance: usually 2 to 6 weeks after fieldwork.\n\nSo a Type 1 can be ready in about 2 to 4 months from a standing start, and a first Type 2 in roughly 6 to 12 months. A well-organised startup can move faster; I've helped companies get audit-ready in about 45 to 60 days. After that it's annual, with each new period starting the day after the last one ends so there's no gap.",
+          "tags": [
+            "SOC 2",
+            "Timeline",
+            "Audit readiness"
+          ],
+          "example": "Expect: \"What usually slows it down?\" Remediation that depends on engineering time, evidence that was never captured during the period (access reviews, onboarding records), and late changes to scope. Say how you'd prevent each: early ownership, automated evidence collection, and freezing scope at readiness.",
+          "pitfalls": [
+            {
+              "pitfall": "Promising a Type 2 in a few weeks.",
+              "reply": "\"The observation period sets the floor. A first Type 2 needs at least three months of evidence before fieldwork starts.\""
+            },
+            {
+              "pitfall": "Forgetting the gap between report periods.",
+              "reply": "\"I start the next period the day after the last one ends, so customers never see a gap.\""
+            }
+          ]
+        },
+        {
+          "q": "A prospect wants security assurance before signing, but your SOC 2 evidence isn't all in place yet. What do you do?",
+          "a": "I'd be honest about where we are and give them as much real assurance as we can, without implying we have a report we don't.\n\nPractically, that means: answer their security questionnaire properly, or share a pre-filled one like a SIG Lite or CAIQ. Share our approved policies and a short summary of the controls already operating, things like SSO and MFA, encryption, backups and logging. If we have a recent pen test, share the executive summary. If an audit firm is engaged, a letter confirming the engagement and the planned dates helps, and so does a readiness timeline showing when the Type 1 and Type 2 will land. Some companies also put up a trust center with all this in one place.\n\nIf they still need more, I'd offer a contractual commitment: a security addendum, a date by which we'll deliver the report, and a right to terminate if we miss it. What I wouldn't do is share draft evidence that hasn't been reviewed, or call a readiness assessment an audit report.",
+          "tags": [
+            "SOC 2",
+            "Customer assurance",
+            "Sales"
+          ],
+          "example": "Expect: \"What if the customer says only a SOC 2 Type 2 will do?\" Ask whether a Type 1 plus a contractual Type 2 date would satisfy their procurement for now. Many accept that for the first year if the timeline is credible and in writing.",
+          "pitfalls": [
+            {
+              "pitfall": "Overstating readiness to win the deal.",
+              "reply": "\"I'd rather tell them exactly what's in place and when the report arrives. Overstating it creates a contract risk later.\""
+            },
+            {
+              "pitfall": "Sending raw evidence screenshots in bulk.",
+              "reply": "\"I share curated, reviewed material: policies, a control summary and a pen test summary, not unreviewed evidence.\""
+            }
+          ]
+        },
+        {
           "q": "When is a SOC 2 Type 1 needed, and when a Type 2?",
           "a": "A Type 1 says the controls were designed properly at a single point in time. A Type 2 says they were designed properly and actually worked over a period, usually 3 to 12 months. So a Type 2 is the one customers really want, because it shows the controls operate, not just that they exist on paper.\n\nA Type 1 makes sense when a company is new to SOC 2 and a customer needs something soon, when controls were only just put in place so there isn't enough history to test yet, or after a big change like a new product or an acquisition. A Type 2 is what most enterprise customers and procurement teams expect for any vendor handling their data, and after the first year it's normal to renew it every 12 months with no gap between periods.",
           "tags": [
