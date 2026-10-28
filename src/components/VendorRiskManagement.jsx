@@ -1,5 +1,6 @@
 import TprmDeepDive from './TprmDeepDive.jsx';
 import VendorClauseBuilder from './VendorClauseBuilder.jsx';
+import VendorQuestionnaires from './VendorQuestionnaires.jsx';
 import AiVendorAssuranceTab from './AiVendorAssuranceTab.jsx';
 import React, { useState, Suspense, lazy, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -562,6 +563,7 @@ const SECTION_SLUGS = {
   'Sub-Processors': 'sub-processors',
   'Review Frequency': 'review-frequency',
   'SOC 2 Review': 'soc2-review',
+  'Questionnaires': 'questionnaires',
   'Contract Clauses': 'contract-clauses',
   'AI Vendors': 'ai-vendors',
   'Issue Management': 'issue-management',
@@ -605,6 +607,7 @@ export default function VendorRiskManagement({ isDark = false }) {
     'Regional Laws',
     'Sub-Processors',
     'Review Frequency',
+    'Questionnaires',
     'SOC 2 Review',
     'Contract Clauses',
     'AI Vendors',
@@ -934,6 +937,7 @@ export default function VendorRiskManagement({ isDark = false }) {
 
         {activeTab === 'Lifecycle' && <LifecyclePanel />}
         {activeTab === 'Tiering' && <TieringPanel />}
+        {activeTab === 'Questionnaires' && <VendorQuestionnaires />}
         {activeTab === 'SOC 2 Review' && <Soc2ReviewPanel />}
         {activeTab === 'Contract Clauses' && <ContractClausesPanel />}
         {activeTab === 'AI Vendors' && <AiVendorsPanel />}
