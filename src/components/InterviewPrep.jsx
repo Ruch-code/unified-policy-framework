@@ -165,7 +165,7 @@ export default function InterviewPrep({ isDark = false }) {
                       <div className="flex-1 min-w-0">
                         <h5 className="font-bold mb-1">Interviewer Follow-up Tip</h5>
                         <div>
-                            <p className="text-sm">{q.example || 'Expect the interviewer to ask for a real example next. Have one ready: what the situation was, what you did, and what changed as a result.'}</p>
+                            <p className="text-sm">{q.example}</p>
                             {q.examples?.length > 0 && (
                               <>
                                 <button

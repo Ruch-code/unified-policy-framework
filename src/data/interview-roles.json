@@ -15,6 +15,17 @@
             "SOC 2",
             "DPA",
             "Risk Register"
+          ],
+          "example": "Expect: \"The vendor has no SOC 2. What now?\" Say you would accept an ISO 27001 certificate with its SoA, or validate key controls directly (MFA, encryption, backups, incident notification) with evidence and a call, add contract commitments, and set a date for an independent report.",
+          "pitfalls": [
+            {
+              "pitfall": "Listing steps without saying how depth changes by risk.",
+              "reply": "\"For a low-risk tool I keep it light; for a vendor holding customer data I go deep on evidence and contract terms.\""
+            },
+            {
+              "pitfall": "Treating the questionnaire as the assessment.",
+              "reply": "\"The questionnaire tells me what they claim; the evidence and the SOC report tell me what's true.\""
+            }
           ]
         },
         {
@@ -24,6 +35,17 @@
             "Control Mapping",
             "Unified Framework",
             "Evidence Collection"
+          ],
+          "example": "Expect: \"Give me one control mapped across all three.\" For example, MFA: ISO 27001 A.8.5, SOC 2 CC6.1, NIST CSF 2.0 PR.AA. One piece of evidence (the IdP MFA policy export) satisfies all three.",
+          "pitfalls": [
+            {
+              "pitfall": "Claiming the frameworks are equivalent.",
+              "reply": "\"They overlap heavily, but each has unique requirements, like ISO's Statement of Applicability or SOC 2's system description, so the mapping keeps those visible.\""
+            },
+            {
+              "pitfall": "Citing outdated IDs such as ISO 27001:2013 A.10.1 or CSF 1.1 PR.DS-1.",
+              "reply": "\"I map to ISO 27001:2022 and CSF 2.0, since that's what auditors use now.\""
+            }
           ]
         },
         {
@@ -33,6 +55,17 @@
             "Audit Finding",
             "Remediation",
             "Compensating Controls"
+          ],
+          "example": "Expect: \"How do you decide whether it's a design or operating failure?\" Design means the control as written would not meet the objective even if followed; operating means it was designed well but not performed consistently, for example access reviews skipped for two quarters.",
+          "pitfalls": [
+            {
+              "pitfall": "Jumping straight to remediation without root cause.",
+              "reply": "\"Before fixing it I want to know why it failed, otherwise it fails again next quarter.\""
+            },
+            {
+              "pitfall": "Ignoring the impact on the external audit.",
+              "reply": "\"I check whether the same period is in scope for SOC 2 or ISO, and tell the auditor early with the remediation plan.\""
+            }
           ]
         }
       ]
@@ -52,6 +85,17 @@
             "Privacy by Design",
             "AI⁄ML",
             "GDPR Art⁄35"
+          ],
+          "example": "Expect: \"What lawful basis would you use for training?\" Usually consent or legitimate interests with a documented balancing test; contract is rarely enough. Then say how you would let users opt out and remove their data from future training sets.",
+          "pitfalls": [
+            {
+              "pitfall": "Treating the DPIA as paperwork after launch.",
+              "reply": "\"The DPIA happens at design so its findings can still change the feature.\""
+            },
+            {
+              "pitfall": "Assuming anonymised training data needs no assessment.",
+              "reply": "\"I check the data is truly anonymous, because pseudonymous data is still personal data under GDPR.\""
+            }
           ]
         },
         {
@@ -62,6 +106,17 @@
             "Data Discovery",
             "ML Models",
             "Automation"
+          ],
+          "example": "Expect: \"What if the person asks you to delete data used to train a model?\" Explain you delete it from source and training sets, record it so future training excludes it, and assess whether retraining or other measures are needed based on risk and feasibility.",
+          "pitfalls": [
+            {
+              "pitfall": "Forgetting identity verification.",
+              "reply": "\"Before I release anything, I verify the requester, because sending data to the wrong person is a breach.\""
+            },
+            {
+              "pitfall": "Missing the deadline while searching manually.",
+              "reply": "\"With a data catalogue and automated queries we can answer within a month, even across many systems.\""
+            }
           ]
         },
         {
@@ -72,6 +127,13 @@
             "Anonymization",
             "Pseudonymization",
             "Data Protection"
+          ],
+          "example": "Expect: \"Is hashing an email address anonymisation?\" No. A hash can usually be linked back or matched, so it is pseudonymisation and the data is still personal data.",
+          "pitfalls": [
+            {
+              "pitfall": "Calling pseudonymised data anonymous.",
+              "reply": "\"If re-identification is possible with extra information, it's pseudonymised and GDPR still applies.\""
+            }
           ]
         }
       ]
@@ -91,6 +153,17 @@
             "DevSecOps",
             "Supply Chain",
             "SBOM"
+          ],
+          "example": "Expect: \"How do you stop a compromised dependency reaching production?\" Pin versions, run SCA and signature checks, keep an SBOM, and use admission controls that only allow signed images from your registry.",
+          "pitfalls": [
+            {
+              "pitfall": "Focusing only on code scanning.",
+              "reply": "\"The pipeline itself is an attack target, so I lock down runners, secrets and who can change pipeline config.\""
+            },
+            {
+              "pitfall": "Storing long-lived cloud keys in CI.",
+              "reply": "\"I use short-lived credentials through OIDC federation instead of static keys.\""
+            }
           ]
         },
         {
@@ -100,6 +173,13 @@
             "Secrets Management",
             "Incident Response",
             "Cloud Security"
+          ],
+          "example": "Expect: \"The key was public for six hours. What else do you check?\" Review cloud audit logs for any use of the key, look for new users, roles, instances or data access, and treat any activity as an incident.",
+          "pitfalls": [
+            {
+              "pitfall": "Deleting the commit and considering it fixed.",
+              "reply": "\"Rewriting history doesn't help once it's public. The key has to be revoked and its usage investigated.\""
+            }
           ]
         },
         {
@@ -110,6 +190,13 @@
             "mTLS",
             "Micro-segmentation",
             "Identity"
+          ],
+          "example": "Expect: \"Where would you start with limited budget?\" Identity first: SSO and phishing-resistant MFA for everyone, then device posture, then replace the VPN for the most sensitive apps with identity-aware access.",
+          "pitfalls": [
+            {
+              "pitfall": "Describing zero trust as a product purchase.",
+              "reply": "\"It's an approach: verify identity, device and context on every request. Tools support it, they don't deliver it.\""
+            }
           ]
         }
       ]
@@ -129,6 +216,13 @@
             "FAIR Model",
             "Risk Quantification",
             "Executive Presence"
+          ],
+          "example": "Expect: \"How confident are you in those dollar figures?\" Say they are ranges built from industry data and your own incident history, and the point is to compare risks and investments, not to predict an exact loss.",
+          "pitfalls": [
+            {
+              "pitfall": "Leading with technical metrics like patch counts.",
+              "reply": "\"I lead with the business impact and the decision I need, then show the few metrics that support it.\""
+            }
           ]
         },
         {
@@ -139,6 +233,13 @@
             "DevSecOps",
             "Security Champions",
             "Leadership"
+          ],
+          "example": "Expect: \"How do you measure whether it's working?\" Track mean time to fix vulnerabilities, the share of issues caught before production, and participation in the champions program.",
+          "pitfalls": [
+            {
+              "pitfall": "Relying on annual training to change behaviour.",
+              "reply": "\"Training helps, but secure defaults and quick feedback in the pipeline change behaviour far more.\""
+            }
           ]
         },
         {
@@ -148,6 +249,13 @@
             "Incident Leadership",
             "Vulnerability Management",
             "Crisis Management"
+          ],
+          "example": "Expect: \"Do you tell customers before you have a fix?\" If it's being actively exploited or customers need to act to protect themselves, yes, with mitigations. Otherwise coordinate disclosure with the fix, guided by contracts and regulatory duties.",
+          "pitfalls": [
+            {
+              "pitfall": "Waiting until Monday to decide.",
+              "reply": "\"Exploitability decides the clock, not the calendar. If there's a public exploit, we act tonight.\""
+            }
           ]
         }
       ]
@@ -167,6 +275,17 @@
             "Continuous Monitoring",
             "Evidence Automation",
             "Audit Readiness"
+          ],
+          "example": "Expect: \"What do you do when evidence is uploaded but not yet checked?\" Keep it as uploaded and awaiting review, not done, so nothing reaches the auditor unchecked. Stage partial samples as drafts rather than submitting incomplete populations.",
+          "pitfalls": [
+            {
+              "pitfall": "Treating an uploaded file as completed evidence.",
+              "reply": "\"An item is done only after someone has checked the evidence actually meets the control.\""
+            },
+            {
+              "pitfall": "Collecting everything at the end of the period.",
+              "reply": "\"Type II tests the whole period, so I collect evidence as it happens, not in a rush before fieldwork.\""
+            }
           ]
         },
         {
@@ -176,6 +295,13 @@
             "Regulatory Change Management",
             "Horizon Scanning",
             "Multi-jurisdiction"
+          ],
+          "example": "Expect: \"Give me a recent change you'd prioritise.\" For example the EU AI Act timelines or India's DPDP Rules: show how you map the obligation to affected products, controls and owners, with a deadline.",
+          "pitfalls": [
+            {
+              "pitfall": "Tracking changes without assigning owners.",
+              "reply": "\"Every relevant change gets an owner, an impact assessment and a due date, otherwise it's just a news feed.\""
+            }
           ]
         }
       ]
