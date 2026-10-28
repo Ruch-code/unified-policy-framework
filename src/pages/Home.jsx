@@ -17,7 +17,7 @@ import HybridSecurityFramework from '../components/HybridSecurityFramework.jsx';
 import AssetInventoryTemplate from '../components/AssetInventoryTemplate.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 import { useState, useEffect } from 'react';
-import { Lock, AlertCircle, Shield, AlertTriangle, Building, Users, ShieldCheck, Globe, Lock as LockIcon, Briefcase, GraduationCap, MessageSquare, Star, ArrowRight, Key, Server, Database, ClipboardCheck, ChevronRight, Menu, X } from 'lucide-react';
+import { Lock, AlertCircle, Shield, AlertTriangle, Building, Users, ShieldCheck, Globe, Lock as LockIcon, Briefcase, GraduationCap, MessageSquare, Star, ArrowRight, Key, Server, Database, ClipboardCheck, ChevronRight, Menu, X, FileText } from 'lucide-react';
 
 function useDark() {
   const [dark, setDark] = useState(() => document.documentElement.classList.contains('dark'));
@@ -351,6 +351,23 @@ function TabPanel({ isDark, activeTab }) {
           </div>
           <Link to="/ai-governance" className="inline-flex items-center gap-2 shrink-0 px-4 py-2.5 rounded-lg bg-violet-600 text-white text-sm font-bold hover:bg-violet-700 transition-colors">
             Open module <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      )}
+
+      {activeTab === 'regional' && (
+        <div className="rounded-2xl border border-violet-300 dark:border-violet-900/50 bg-white dark:bg-slate-900/60 p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
+          <span className="inline-flex w-12 h-12 rounded-xl bg-violet-600 text-white items-center justify-center shrink-0">
+            <FileText className="w-6 h-6" />
+          </span>
+          <div className="flex-1">
+            <h2 className="text-lg font-extrabold text-navy-900 dark:text-text-dark-primary">Templates</h2>
+            <p className="text-sm text-navy-600 dark:text-text-dark-secondary mt-0.5 max-w-2xl">
+              155 evidence and document templates for SOC 2, ISO 27001:2022, HIPAA and GDPR, each downloadable as a Word document.
+            </p>
+          </div>
+          <Link to="/templates" className="inline-flex items-center gap-2 shrink-0 px-4 py-2.5 rounded-lg bg-violet-600 text-white text-sm font-bold hover:bg-violet-700 transition-colors">
+            Browse templates <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       )}

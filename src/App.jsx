@@ -10,6 +10,8 @@ import AdminPanel from './pages/AdminPanel.jsx';
 import NewsletterEditor from './pages/NewsletterEditor.jsx';
 import KnowledgeBase from './pages/KnowledgeBase.jsx';
 import Profile from './pages/Profile.jsx';
+import Templates from './pages/Templates.jsx';
+import TemplatePreview from './pages/TemplatePreview.jsx';
 import { getFramework, FRAMEWORKS } from './data/registry.js';
 
 import Iso27001La from './pages/standards/Iso27001La.jsx';
@@ -130,6 +132,8 @@ function App() {
           <Route path="dora" element={<Protected><Dora /></Protected>} />
           <Route path="cmmc" element={<Protected><Nist800171Cmmc /></Protected>} />
           <Route path="uk-gdpr" element={<Protected><UkGdpr /></Protected>} />
+          <Route path="templates" element={<Templates />} />
+          <Route path="templates/:slug" element={<TemplatePreview />} />
           <Route path="whats-new" element={<Protected><WhatsNew /></Protected>} />
           <Route path="*" element={<Protected><AssessRoute /></Protected>} />
         </Route>
