@@ -73,6 +73,7 @@ export interface LibraryScenario {
   likelihood: number;
   impact: number;
   controls?: string[];
+  required?: { basis: string; why: string };
 }
 
 export interface CrossCheckRow {

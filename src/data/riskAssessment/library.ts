@@ -181,6 +181,22 @@ export const CATEGORY_CONTROLS: Record<string, string[]> = {
   'Access control': ['IAC-12', 'IAC-6', 'IAC-5', 'CHG-2'],
 };
 
+// Baseline risks every organisation is expected to assess. Keyed by scenario
+// text. These are added to "my register" automatically and cannot be removed.
+export const REQUIRED_RISKS: Record<string, { basis: string; why: string }> = {
+  'Personnel alter security records under pressure to pass external audits.': { basis: 'SOC 2 CC3.3; ISO/IEC 27001:2022 6.1.2', why: 'The risk assessment must consider the potential for fraud. A register without a fraud scenario is a common audit exception.' },
+  'Fictitious vendors are created or payments are released without dual approval.': { basis: 'SOC 2 CC3.3, CC5.1', why: 'Fraud risk over financial transactions must be assessed and covered by control activities such as segregation of duties.' },
+  'A vendor with access to company data suffers a breach.': { basis: 'SOC 2 CC9.2; ISO/IEC 27001:2022 A.5.19 to A.5.22; GDPR Art. 28; DPDP Act Sec. 8', why: 'Vendor and processor risk must be assessed and managed for any third party that handles company or personal data.' },
+  'Backups fail or cannot be restored when needed.': { basis: 'SOC 2 CC9.1, A1.2; ISO/IEC 27001:2022 A.8.13; HIPAA 164.308(a)(7)', why: 'Business disruption risk must be assessed and backups shown to restore.' },
+  'Unpatched systems are exploited through known vulnerabilities.': { basis: 'SOC 2 CC7.1; ISO/IEC 27001:2022 A.8.8; PCI DSS Req. 6.3', why: 'Technical vulnerability management is a baseline control in every major framework.' },
+  'Personnel are not trained and fall for phishing or social engineering.': { basis: 'SOC 2 CC1.4, CC2.2; ISO/IEC 27001:2022 7.3, A.6.3; HIPAA 164.308(a)(5)', why: 'Security awareness training is required for all personnel.' },
+  'Security incidents are not detected in time.': { basis: 'SOC 2 CC7.2, CC7.3; ISO/IEC 27001:2022 A.5.24 to A.5.26, A.8.16', why: 'Monitoring and incident detection are required to meet incident response and notification duties.' },
+  'Breach notification deadlines are missed.': { basis: 'GDPR Art. 33 (72 hours); DPDP Act Sec. 8(6); HIPAA 164.404; CERT-In Directions (6 hours)', why: 'Breach notification timelines are legal obligations wherever personal data is processed.' },
+  'The risk assessment is not performed annually or after significant change.': { basis: 'SOC 2 CC3.2, CC3.4; ISO/IEC 27001:2022 6.1.2, 8.2; HIPAA 164.308(a)(1)(ii)(A)', why: 'A periodic, change-triggered risk assessment is itself a mandatory requirement.' },
+  'Accounts are compromised because MFA is not enforced.': { basis: 'SOC 2 CC6.1; ISO/IEC 27001:2022 A.8.5; PCI DSS Req. 8.4', why: 'Strong authentication for remote and privileged access is a baseline control.' },
+  'Access is not removed promptly when roles change.': { basis: 'SOC 2 CC6.2, CC6.3; ISO/IEC 27001:2022 A.5.18', why: 'Timely removal and review of access rights is required in every major framework.' },
+};
+
 export const LIBRARY: LibraryScenario[] = LIBRARY_CATEGORIES.flatMap((category) =>
   (RAW[category] || []).map(([scenario, cia, likelihood, impact, controls], i) => ({
     id: `LIB-${LIBRARY_CATEGORIES.indexOf(category) + 1}.${i + 1}`,
@@ -190,5 +206,6 @@ export const LIBRARY: LibraryScenario[] = LIBRARY_CATEGORIES.flatMap((category) 
     likelihood,
     impact,
     controls: [...new Set([...(controls || []), ...(CATEGORY_CONTROLS[category] || [])])],
+    ...(REQUIRED_RISKS[scenario] ? { required: REQUIRED_RISKS[scenario] } : {}),
   })),
 );

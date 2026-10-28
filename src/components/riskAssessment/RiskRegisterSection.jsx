@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Plus, Check, Trash2, Search, Download, X } from 'lucide-react';
+import { Plus, Check, Trash2, Search, Download, X, Lock, AlertTriangle } from 'lucide-react';
 import { downloadXlsx } from '../../utils/xlsxExport.js';
 import { CONTROL_BY_ID } from '../../data/riskAssessment/controls';
 import ResponsiveTable from '../ResponsiveTable';
@@ -18,7 +18,7 @@ function toTableRow(r) {
     inherentSort: pad(score(r.likelihood, r.impact)),
     residualSort: pad(score(r.residualLikelihood, r.residualImpact)),
     controlsText: r.controls.join(', '),
-    statusText: r.recommended ? `${r.treatmentStatus} (Recommended addition)` : r.source === 'library' ? `${r.treatmentStatus} (Added from library)` : r.treatmentStatus,
+    statusText: r.recommended ? `${r.treatmentStatus} (Recommended addition)` : r.required ? `${r.treatmentStatus} (Required baseline)` : r.source === 'library' ? `${r.treatmentStatus} (Added from library)` : r.treatmentStatus,
   };
 }
 
@@ -44,7 +44,20 @@ function libraryToRisk(item, n) {
     approvalDate: '',
     source: 'library',
     libraryId: item.id,
+    ...(item.required ? { required: true, requiredBasis: item.required.basis } : {}),
   };
+}
+
+// Required baseline risks are always present in the user's register.
+function ensureRequired(rows) {
+  const have = new Set(rows.map((r) => r.libraryId));
+  let n = rows.reduce((m, r) => Math.max(m, Number(String(r.id).replace('U-', '')) || 0), 0);
+  const missing = LIBRARY.filter((it) => it.required && !have.has(it.id)).map((it) => libraryToRisk(it, ++n));
+  const marked = rows.map((r) => {
+    const it = LIBRARY.find((x) => x.id === r.libraryId);
+    return it && it.required ? { ...r, required: true, requiredBasis: it.required.basis } : r;
+  });
+  return [...missing, ...marked];
 }
 
 export function exportMyRegister(rows) {
@@ -54,7 +67,7 @@ export function exportMyRegister(rows) {
     const res = score(r.residualLikelihood, r.residualImpact);
     return [r.id, r.scenario, r.categories.join(', '), r.cia.join(', '), r.likelihood, r.impact, inh, bandFor(inh).label,
       r.treatment, r.treatmentStatus, r.residualLikelihood, r.residualImpact, res, bandFor(res).label,
-      r.controls.length, r.controls.join(', '), r.owner, r.approver, r.approvalStatus, r.identifiedDate, r.libraryId || ''];
+      r.controls.length, r.controls.join(', '), r.owner, r.approver, r.approvalStatus, r.identifiedDate, r.libraryId || '', r.required ? `Required: ${r.requiredBasis || ''}` : 'Optional'];
   });
   const controlRows = rows.flatMap((r) => (r.controls.length ? r.controls : ['']).map((id) => {
     const c = CONTROL_BY_ID[id];
@@ -65,7 +78,7 @@ export function exportMyRegister(rows) {
     {
       name: 'My Risk Register', title: `My Risk Register (exported ${today})`,
       notes: ['Score = likelihood x impact. Bands: 1 to 4 Low, 5 to 9 Medium, 10 to 16 High, 17 to 25 Critical. Residual assumes the linked controls are fully implemented with evidence.'],
-      headers: ['ID', 'Risk scenario', 'Category', 'CIA', 'Likelihood', 'Impact', 'Inherent score', 'Inherent rating', 'Treatment', 'Treatment status', 'Residual likelihood', 'Residual impact', 'Residual score', 'Residual rating', 'No. of controls', 'Linked controls', 'Owner', 'Approver', 'Approval status', 'Identified date', 'Library ref'],
+      headers: ['ID', 'Risk scenario', 'Category', 'CIA', 'Likelihood', 'Impact', 'Inherent score', 'Inherent rating', 'Treatment', 'Treatment status', 'Residual likelihood', 'Residual impact', 'Residual score', 'Residual rating', 'No. of controls', 'Linked controls', 'Owner', 'Approver', 'Approval status', 'Identified date', 'Library ref', 'Required baseline'],
       rows: riskRows,
       validations: [{ col: 4, values: ['1', '2', '3', '4', '5'] }, { col: 5, values: ['1', '2', '3', '4', '5'] }, { col: 10, values: ['1', '2', '3', '4', '5'] }, { col: 11, values: ['1', '2', '3', '4', '5'] },
         { col: 8, values: ['Mitigate', 'Transfer', 'Avoid', 'Accept'] }, { col: 18, values: ['Not submitted', 'Pending approval', 'Approved', 'Rejected'] }],
@@ -86,7 +99,8 @@ export function exportMyRegister(rows) {
 }
 
 export default function RiskRegisterSection({ isDark = false }) {
-  const [userRisks, setUserRisks] = useState(() => (typeof window === 'undefined' ? [] : loadUserRisks()));
+  const [userRisks, setUserRisks] = useState(() => ensureRequired(typeof window === 'undefined' ? [] : loadUserRisks()));
+  const [notice, setNotice] = useState(null);
   useEffect(() => { saveUserRisks(userRisks); }, [userRisks]);
 
   const [cat, setCat] = useState('all');
@@ -134,15 +148,30 @@ export default function RiskRegisterSection({ isDark = false }) {
 
   const added = new Set(userRisks.map((r) => r.libraryId));
   const removeLibraryItem = (libId) => setUserRisks((prev) => prev.filter((r) => r.libraryId !== libId));
+  const showRequired = (libId) => {
+    const item = LIBRARY.find((x) => x.id === libId);
+    if (item && item.required) setNotice({ id: libId, scenario: item.scenario, ...item.required });
+  };
   const addFromLibrary = (item) => {
-    if (added.has(item.id)) { removeLibraryItem(item.id); return; }
+    if (added.has(item.id)) {
+      if (item.required) { showRequired(item.id); return; }
+      removeLibraryItem(item.id); return;
+    }
     setUserRisks((prev) => {
       const next = prev.reduce((m, r) => Math.max(m, Number(String(r.id).replace('U-', '')) || 0), 0) + 1;
       return [...prev, libraryToRisk(item, next)];
     });
   };
-  const removeUser = (id) => setUserRisks((prev) => prev.filter((r) => r.id !== id));
-  const clearUser = () => setUserRisks([]);
+  const removeUser = (id) => {
+    const r = userRisks.find((x) => x.id === id);
+    if (r && r.required) { showRequired(r.libraryId); return; }
+    setUserRisks((prev) => prev.filter((x) => x.id !== id));
+  };
+  const clearUser = () => {
+    const kept = userRisks.filter((r) => r.required).length;
+    setUserRisks((prev) => prev.filter((r) => r.required));
+    if (kept) setNotice({ id: 'all', scenario: `${kept} required baseline risks were kept`, basis: 'SOC 2, ISO/IEC 27001 and applicable privacy laws', why: 'Optional risks were removed. Required baseline risks stay in the register.' });
+  };
 
   // Library filters
   const [libCat, setLibCat] = useState('all');
@@ -152,6 +181,25 @@ export default function RiskRegisterSection({ isDark = false }) {
 
   return (
     <>
+      {notice && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/50 p-4" role="alertdialog" aria-modal="true" aria-labelledby="req-title" onClick={() => setNotice(null)}>
+          <div className="max-w-md w-full rounded-2xl bg-white dark:bg-slate-900 border border-amber-300 dark:border-amber-800 p-5 shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-start gap-3">
+              <AlertTriangle className="w-6 h-6 text-amber-600 shrink-0" aria-hidden="true" />
+              <div>
+                <h4 id="req-title" className="font-bold text-navy-900 dark:text-text-dark-primary">This risk is a required baseline</h4>
+                <p className="text-sm text-navy-700 dark:text-text-dark-secondary mt-1">{notice.scenario}</p>
+                <p className="text-sm mt-3 text-navy-800 dark:text-text-dark-primary"><strong>Required by:</strong> {notice.basis}</p>
+                <p className="text-sm mt-1 text-navy-700 dark:text-text-dark-secondary">{notice.why}</p>
+                <p className="text-xs mt-3 text-navy-600 dark:text-text-dark-secondary">It stays in your register. Score it for your environment. If it genuinely does not apply, record the justification and get Approver sign-off rather than removing it.</p>
+              </div>
+            </div>
+            <div className="flex justify-end mt-4">
+              <button type="button" autoFocus onClick={() => setNotice(null)} className="px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-bold hover:bg-indigo-700">Understood</button>
+            </div>
+          </div>
+        </div>
+      )}
       <section id="ra-register" className={sectionCls}>
         <h3 className={h3Cls}>4. Sample risk register</h3>
         <p className={leadCls}>Example Co. register for a typical SaaS company. Inherent scores show the starting point; residual scores assume the treatment plan is fully implemented with evidence. Rows you add from the scenario library appear here, are saved in this browser only, and are included in the export.</p>
@@ -197,7 +245,7 @@ export default function RiskRegisterSection({ isDark = false }) {
                 <button type="button" onClick={() => exportMyRegister(userRisks)} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700">
                   <Download className="w-3.5 h-3.5" /> Export my register (Excel)
                 </button>
-                <button type="button" onClick={clearUser} className="text-xs text-red-700 dark:text-red-300 hover:underline">Remove all</button>
+                <button type="button" onClick={clearUser} className="text-xs text-red-700 dark:text-red-300 hover:underline">Remove optional</button>
               </div>
             </div>
             <ul className="space-y-1">
@@ -207,7 +255,9 @@ export default function RiskRegisterSection({ isDark = false }) {
                   <span className="flex-1">{r.scenario}</span>
                   <span className="shrink-0 hidden sm:inline text-[11px]">{r.controls.length} controls</span>
                   <span className="shrink-0"><BandBadge value={score(r.likelihood, r.impact)} /></span>
-                  <button type="button" onClick={() => removeUser(r.id)} aria-label={`Remove ${r.id}`} title="Remove from my register" className="shrink-0 text-red-600 dark:text-red-300 hover:opacity-80"><Trash2 className="w-3.5 h-3.5" /></button>
+                  {r.required
+                    ? <button type="button" onClick={() => removeUser(r.id)} aria-label={`${r.id} is required`} title="Required baseline, cannot be removed" className="shrink-0 text-amber-600 dark:text-amber-300"><Lock className="w-3.5 h-3.5" /></button>
+                    : <button type="button" onClick={() => removeUser(r.id)} aria-label={`Remove ${r.id}`} title="Remove from my register" className="shrink-0 text-red-600 dark:text-red-300 hover:opacity-80"><Trash2 className="w-3.5 h-3.5" /></button>}
                 </li>
               ))}
             </ul>
@@ -224,7 +274,7 @@ export default function RiskRegisterSection({ isDark = false }) {
 
       <section id="ra-library" className={sectionCls}>
         <h3 className={h3Cls}>5. Risk scenario library</h3>
-        <p className={leadCls}>{LIBRARY.length} generic scenarios across {LIBRARY_CATEGORIES.length} categories. Use "Add to my register" to copy a scenario into the register above with suggested scores and controls, then adjust it to your environment.</p>
+        <p className={leadCls}>{LIBRARY.length} generic scenarios across {LIBRARY_CATEGORIES.length} categories. Use "Add to my register" to copy a scenario into the register above with suggested scores and controls, then adjust it to your environment. Risks marked Required baseline are added automatically and cannot be removed, because the frameworks and laws listed on them expect every organisation to assess them.</p>
         <div className="flex flex-wrap gap-2 mb-4">
           <label className="relative">
             <span className="sr-only">Search scenarios</span>
@@ -251,14 +301,21 @@ export default function RiskRegisterSection({ isDark = false }) {
                   <span>CIA: {it.cia.join(', ')}</span>
                   <span>L{it.likelihood} x I{it.impact}</span>
                   <BandBadge value={score(it.likelihood, it.impact)} />
+                  {it.required && (
+                    <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-amber-100 dark:bg-amber-900/40 text-amber-900 dark:text-amber-200 font-semibold" title={it.required.basis}>
+                      <Lock className="w-3 h-3" aria-hidden="true" /> Required baseline
+                    </span>
+                  )}
                   <button
                     type="button"
                     onClick={() => addFromLibrary(it)}
                     aria-pressed={isAdded}
                     title={isAdded ? 'Click to remove from your register' : 'Add to your register'}
-                    className={`group ml-auto inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold transition-colors ${isAdded ? 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-200 hover:bg-red-100 dark:hover:bg-red-900/40 hover:text-red-800 dark:hover:text-red-200' : 'bg-indigo-600 text-white hover:bg-indigo-700'}`}
+                    className={it.required && isAdded ? 'ml-auto inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-amber-100 dark:bg-amber-900/40 text-amber-900 dark:text-amber-200' : `group ml-auto inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold transition-colors ${isAdded ? 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-200 hover:bg-red-100 dark:hover:bg-red-900/40 hover:text-red-800 dark:hover:text-red-200' : 'bg-indigo-600 text-white hover:bg-indigo-700'}`}
                   >
-                    {isAdded
+                    {isAdded && it.required
+                      ? <><Lock className="w-3.5 h-3.5" /> Required</>
+                      : isAdded
                       ? <><Check className="w-3.5 h-3.5 group-hover:hidden" /><X className="w-3.5 h-3.5 hidden group-hover:inline" /> <span className="group-hover:hidden">Added</span><span className="hidden group-hover:inline">Remove</span></>
                       : <><Plus className="w-3.5 h-3.5" /> Add to my register</>}
                   </button>
