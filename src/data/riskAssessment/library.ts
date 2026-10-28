@@ -160,6 +160,27 @@ const RAW: Record<string, Seed[]> = {
   ],
 };
 
+// Baseline controls applied to every scenario in a category, merged with the
+// scenario's own controls so an exported risk carries its full control set.
+export const CATEGORY_CONTROLS: Record<string, string[]> = {
+  'Information security operations': ['POL-1', 'GOV-4', 'RSK-2', 'IAO-1'],
+  'Asset management': ['MDM-1', 'CRY-3', 'DAT-1', 'POL-1'],
+  'People operations': ['HRS-1', 'HRS-2', 'HRS-3', 'HRS-4', 'IAC-6'],
+  'Operations security': ['VPM-1', 'VPM-2', 'VPM-3', 'MON-1', 'MON-2'],
+  'Business continuity and disaster recovery': ['BCD-1', 'BCD-2', 'RSK-2'],
+  'Fraud': ['IAC-5', 'FIN-1', 'MON-3', 'CPL-2', 'RSK-2', 'IAO-1'],
+  'Vendor relationships': ['TPM-1', 'TPM-2', 'RSK-2'],
+  'Communications security': ['CRY-1', 'VPM-3', 'MON-2'],
+  'Cryptography': ['CRY-1', 'CRY-3'],
+  'Physical and environmental security': ['POL-1', 'DAT-1'],
+  'Software development and acquisition': ['CHG-1', 'CHG-2', 'CHG-3', 'IAO-2', 'VPM-2'],
+  'Privacy': ['POL-1', 'DAT-1', 'AIG-4', 'IRO-3', 'TPM-1'],
+  'Compliance': ['RSK-1', 'RSK-3', 'POL-1', 'IAO-1'],
+  'Incident response management': ['IRO-1', 'IRO-3', 'MON-1', 'MON-2'],
+  'Artificial intelligence': ['AIG-1', 'AIG-2', 'AIG-3', 'AIG-5', 'AIG-6'],
+  'Access control': ['IAC-12', 'IAC-6', 'IAC-5', 'CHG-2'],
+};
+
 export const LIBRARY: LibraryScenario[] = LIBRARY_CATEGORIES.flatMap((category) =>
   (RAW[category] || []).map(([scenario, cia, likelihood, impact, controls], i) => ({
     id: `LIB-${LIBRARY_CATEGORIES.indexOf(category) + 1}.${i + 1}`,
@@ -168,6 +189,6 @@ export const LIBRARY: LibraryScenario[] = LIBRARY_CATEGORIES.flatMap((category) 
     cia,
     likelihood,
     impact,
-    controls: controls || [],
+    controls: [...new Set([...(controls || []), ...(CATEGORY_CONTROLS[category] || [])])],
   })),
 );

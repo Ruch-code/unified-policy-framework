@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Plus, Check, Trash2, Search } from 'lucide-react';
+import { Plus, Check, Trash2, Search, Download, X } from 'lucide-react';
+import { downloadXlsx } from '../../utils/xlsxExport.js';
+import { CONTROL_BY_ID } from '../../data/riskAssessment/controls';
 import ResponsiveTable from '../ResponsiveTable';
 import { SEED_REGISTER, COVERAGE_GAPS } from '../../data/riskAssessment/register';
 import { LIBRARY, LIBRARY_CATEGORIES } from '../../data/riskAssessment/library';
-import { bandFor } from '../../data/riskAssessment/methodology';
+import { bandFor, BANDS, LIKELIHOOD, IMPACT } from '../../data/riskAssessment/methodology';
 import { score, BandBadge, loadUserRisks, saveUserRisks, sectionCls, h3Cls, leadCls, inputCls } from './riskUtils.jsx';
 
 const pad = (n) => String(n).padStart(2, '0');
@@ -43,6 +45,44 @@ function libraryToRisk(item, n) {
     source: 'library',
     libraryId: item.id,
   };
+}
+
+export function exportMyRegister(rows) {
+  const today = new Date().toISOString().slice(0, 10);
+  const riskRows = rows.map((r) => {
+    const inh = score(r.likelihood, r.impact);
+    const res = score(r.residualLikelihood, r.residualImpact);
+    return [r.id, r.scenario, r.categories.join(', '), r.cia.join(', '), r.likelihood, r.impact, inh, bandFor(inh).label,
+      r.treatment, r.treatmentStatus, r.residualLikelihood, r.residualImpact, res, bandFor(res).label,
+      r.controls.length, r.controls.join(', '), r.owner, r.approver, r.approvalStatus, r.identifiedDate, r.libraryId || ''];
+  });
+  const controlRows = rows.flatMap((r) => (r.controls.length ? r.controls : ['']).map((id) => {
+    const c = CONTROL_BY_ID[id];
+    return [r.id, r.scenario, bandFor(score(r.likelihood, r.impact)).label, id || 'None linked yet', c ? c.name : '', c ? c.description : '',
+      c ? c.soc2.join(', ') : '', c && c.otherMappings ? c.otherMappings.join('; ') : '', c ? c.tests.join('; ') : '', c ? c.evidence.join('; ') : '', '', ''];
+  }));
+  downloadXlsx([
+    {
+      name: 'My Risk Register', title: `My Risk Register (exported ${today})`,
+      notes: ['Score = likelihood x impact. Bands: 1 to 4 Low, 5 to 9 Medium, 10 to 16 High, 17 to 25 Critical. Residual assumes the linked controls are fully implemented with evidence.'],
+      headers: ['ID', 'Risk scenario', 'Category', 'CIA', 'Likelihood', 'Impact', 'Inherent score', 'Inherent rating', 'Treatment', 'Treatment status', 'Residual likelihood', 'Residual impact', 'Residual score', 'Residual rating', 'No. of controls', 'Linked controls', 'Owner', 'Approver', 'Approval status', 'Identified date', 'Library ref'],
+      rows: riskRows,
+      validations: [{ col: 4, values: ['1', '2', '3', '4', '5'] }, { col: 5, values: ['1', '2', '3', '4', '5'] }, { col: 10, values: ['1', '2', '3', '4', '5'] }, { col: 11, values: ['1', '2', '3', '4', '5'] },
+        { col: 8, values: ['Mitigate', 'Transfer', 'Avoid', 'Accept'] }, { col: 18, values: ['Not submitted', 'Pending approval', 'Approved', 'Rejected'] }],
+    },
+    {
+      name: 'Risk Controls', title: 'Controls, Tests and Evidence per Risk',
+      notes: ['One row per risk and control. Use Status to track evidence; uploaded but not yet reviewed is not complete.'],
+      headers: ['Risk ID', 'Risk scenario', 'Inherent rating', 'Control ID', 'Control', 'Description', 'SOC 2', 'Other mappings', 'Tests', 'Evidence required', 'Status', 'Evidence location'],
+      rows: controlRows,
+      validations: [{ col: 10, values: ['Not started', 'File uploaded, to review', 'Reviewed and accepted', 'Needs rework'] }],
+    },
+    {
+      name: 'Rating Scale', title: 'Rating Scale',
+      headers: ['Scale', 'Value', 'Label', 'Definition'],
+      rows: [...LIKELIHOOD.map((x) => ['Likelihood', x.value, x.label, x.definition]), ...IMPACT.map((x) => ['Impact', x.value, x.label, x.definition]), ...BANDS.map((b) => ['Rating', `${b.min} to ${b.max}`, b.label, b.action])],
+    },
+  ], 'my-risk-register');
 }
 
 export default function RiskRegisterSection({ isDark = false }) {
@@ -93,8 +133,9 @@ export default function RiskRegisterSection({ isDark = false }) {
   ];
 
   const added = new Set(userRisks.map((r) => r.libraryId));
+  const removeLibraryItem = (libId) => setUserRisks((prev) => prev.filter((r) => r.libraryId !== libId));
   const addFromLibrary = (item) => {
-    if (added.has(item.id)) return;
+    if (added.has(item.id)) { removeLibraryItem(item.id); return; }
     setUserRisks((prev) => {
       const next = prev.reduce((m, r) => Math.max(m, Number(String(r.id).replace('U-', '')) || 0), 0) + 1;
       return [...prev, libraryToRisk(item, next)];
@@ -152,14 +193,21 @@ export default function RiskRegisterSection({ isDark = false }) {
           <div className="mt-4 rounded-xl border border-surface-200 dark:border-surface-dark-200 p-3">
             <div className="flex items-center justify-between gap-2 mb-2">
               <h4 className="text-sm font-semibold text-navy-900 dark:text-text-dark-primary">Your added risks ({userRisks.length})</h4>
-              <button type="button" onClick={clearUser} className="text-xs text-red-700 dark:text-red-300 hover:underline">Remove all</button>
+              <div className="flex items-center gap-3">
+                <button type="button" onClick={() => exportMyRegister(userRisks)} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700">
+                  <Download className="w-3.5 h-3.5" /> Export my register (Excel)
+                </button>
+                <button type="button" onClick={clearUser} className="text-xs text-red-700 dark:text-red-300 hover:underline">Remove all</button>
+              </div>
             </div>
             <ul className="space-y-1">
               {userRisks.map((r) => (
                 <li key={r.id} className="flex items-start gap-2 text-xs text-navy-700 dark:text-text-dark-secondary">
                   <span className="font-mono shrink-0">{r.id}</span>
                   <span className="flex-1">{r.scenario}</span>
-                  <button type="button" onClick={() => removeUser(r.id)} aria-label={`Remove ${r.id}`} className="shrink-0 text-red-600 dark:text-red-300 hover:opacity-80"><Trash2 className="w-3.5 h-3.5" /></button>
+                  <span className="shrink-0 hidden sm:inline text-[11px]">{r.controls.length} controls</span>
+                  <span className="shrink-0"><BandBadge value={score(r.likelihood, r.impact)} /></span>
+                  <button type="button" onClick={() => removeUser(r.id)} aria-label={`Remove ${r.id}`} title="Remove from my register" className="shrink-0 text-red-600 dark:text-red-300 hover:opacity-80"><Trash2 className="w-3.5 h-3.5" /></button>
                 </li>
               ))}
             </ul>
@@ -206,10 +254,13 @@ export default function RiskRegisterSection({ isDark = false }) {
                   <button
                     type="button"
                     onClick={() => addFromLibrary(it)}
-                    disabled={isAdded}
-                    className={`ml-auto inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold transition-colors ${isAdded ? 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-200 cursor-default' : 'bg-indigo-600 text-white hover:bg-indigo-700'}`}
+                    aria-pressed={isAdded}
+                    title={isAdded ? 'Click to remove from your register' : 'Add to your register'}
+                    className={`group ml-auto inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold transition-colors ${isAdded ? 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-200 hover:bg-red-100 dark:hover:bg-red-900/40 hover:text-red-800 dark:hover:text-red-200' : 'bg-indigo-600 text-white hover:bg-indigo-700'}`}
                   >
-                    {isAdded ? <><Check className="w-3.5 h-3.5" /> Added</> : <><Plus className="w-3.5 h-3.5" /> Add to my register</>}
+                    {isAdded
+                      ? <><Check className="w-3.5 h-3.5 group-hover:hidden" /><X className="w-3.5 h-3.5 hidden group-hover:inline" /> <span className="group-hover:hidden">Added</span><span className="hidden group-hover:inline">Remove</span></>
+                      : <><Plus className="w-3.5 h-3.5" /> Add to my register</>}
                   </button>
                 </div>
               </li>
