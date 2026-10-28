@@ -333,6 +333,92 @@
           ]
         },
         {
+          "q": "When is a SOC 2 Type 1 needed, and when a Type 2?",
+          "a": "A Type 1 says the controls were designed properly at a single point in time. A Type 2 says they were designed properly and actually worked over a period, usually 3 to 12 months. So a Type 2 is the one customers really want, because it shows the controls operate, not just that they exist on paper.\n\nA Type 1 makes sense when a company is new to SOC 2 and a customer needs something soon, when controls were only just put in place so there isn't enough history to test yet, or after a big change like a new product or an acquisition. A Type 2 is what most enterprise customers and procurement teams expect for any vendor handling their data, and after the first year it's normal to renew it every 12 months with no gap between periods.",
+          "tags": [
+            "SOC 2",
+            "Type 1",
+            "Type 2"
+          ],
+          "example": "Expect: \"Would you accept a Type 1 from a critical vendor?\" Say yes for a first-year vendor, but only as a stepping stone: get a committed date for the Type 2, check the observation window has started, and add a contract clause to deliver it.",
+          "pitfalls": [
+            {
+              "pitfall": "Saying a Type 1 is a lighter Type 2.",
+              "reply": "\"They answer different questions. A Type 1 is about design at a moment; a Type 2 is about whether it actually worked over time.\""
+            },
+            {
+              "pitfall": "Treating a Type 1 as good enough indefinitely.",
+              "reply": "\"A Type 1 is fine for year one. After that, customers should expect a Type 2 on a 12-month cycle.\""
+            }
+          ]
+        },
+        {
+          "q": "What does a realistic SOC 2 timeline look like, from readiness to report?",
+          "a": "For a first audit, I walk clients through it in phases.\n\nReadiness and gap assessment takes about 2 to 6 weeks: scope the system, pick the Trust Services Criteria, and compare current controls to them. Remediation is the variable part, usually 1 to 3 months to write policies, switch on MFA and logging, set up access reviews and change management, and start collecting evidence. A Type 1 can then follow quickly: fieldwork of 1 to 3 weeks and the report about 2 to 4 weeks later.\n\nFor a Type 2, the observation period runs 3 to 12 months; for a first one, 3 to 6 months is common. After it ends, fieldwork is 2 to 6 weeks and the report lands 2 to 6 weeks after that. So end to end, a well-run first Type 2 is about 6 to 9 months, and 12 to 15 if the company chooses a full year or has a lot to fix. With startups that already use a compliance platform, I've helped get audit-ready in 45 to 60 days, but the observation period still has to run its course.",
+          "tags": [
+            "SOC 2",
+            "Timeline",
+            "Audit readiness"
+          ],
+          "example": "Expect: \"How would you shorten it?\" You can shorten readiness and remediation with a compliance platform and templates, and choose a 3-month observation window. What you can't shorten is the observation period itself or skip evidence collection during it.",
+          "pitfalls": [
+            {
+              "pitfall": "Promising a Type 2 in a few weeks.",
+              "reply": "\"The observation period is time the controls have to operate. The fastest honest route is a short first window, about 3 months.\""
+            },
+            {
+              "pitfall": "Starting the observation period before controls are working.",
+              "reply": "\"If the window starts before the controls run, the auditor finds exceptions from day one, so remediation comes first.\""
+            }
+          ],
+          "examples": [
+            {
+              "label": "Typical first Type 2",
+              "text": "Readiness 1 month, remediation 2 months, observation 3 months, fieldwork 1 month, report 1 month: about 8 months."
+            },
+            {
+              "label": "Typical Type 1",
+              "text": "Readiness 1 month, remediation 1 to 2 months, fieldwork and report about 1 month: about 3 to 4 months."
+            }
+          ]
+        },
+        {
+          "q": "A customer wants assurance before signing, but our SOC 2 isn't done yet. What do you give them?",
+          "a": "I'd be honest about where we are and give them the strongest evidence we genuinely have. Usually that's a completed security questionnaire like a SIG Lite or CAIQ, our key policies under NDA, a security overview or trust page, a recent penetration test summary, and evidence of the main controls: MFA, encryption, backups, access reviews.\n\nIf the audit is underway, the engagement letter or a letter from the audit firm confirming the audit is in progress and the expected report date helps a lot. A readiness assessment letter can also help, as long as everyone understands it isn't an audit opinion. And sometimes the right answer is in the contract: we commit to deliver the Type 1 or Type 2 by a date, and they get a right to terminate or re-review if we miss it. What I'd never do is overstate it, like calling a readiness letter a SOC 2 or sharing a draft report as if it were final.",
+          "tags": [
+            "SOC 2",
+            "Assurance",
+            "Pre-contract"
+          ],
+          "example": "Expect: \"The customer's security team says only a SOC 2 Type 2 will do.\" Offer a bridging package plus a contractual date for the report, suggest a call between their security team and yours, and if they still can't proceed, escalate the trade-off to the business: wait, or limit the data shared until the report is issued.",
+          "pitfalls": [
+            {
+              "pitfall": "Sending a draft SOC 2 report or calling a readiness letter an audit.",
+              "reply": "\"I'm clear about what each document is. A readiness letter shows progress; it isn't an opinion.\""
+            },
+            {
+              "pitfall": "Saying nothing can be shared until the audit ends.",
+              "reply": "\"There's a lot of real evidence we can share now, and a contract date for the report closes the gap.\""
+            }
+          ]
+        },
+        {
+          "q": "Is a SOC 2 Type 1 required, and when do auditors go for it?",
+          "a": "No, a Type 1 isn't required. The AICPA doesn't say you must do a Type 1 before a Type 2, and plenty of companies go straight to a Type 2 with a short first window.\n\nAuditors and companies choose a Type 1 when there's a reason a period of testing isn't possible or useful yet: controls were only recently implemented, so there isn't enough operating history; a customer needs an independent report quickly; the company wants to check the design is sound before committing to a Type 2; or there's been a significant change, like a new system or an acquisition, and they want to establish the design first. Some auditors also suggest it as a first step for very early-stage companies. If a company already has a few months of working controls and evidence, I'd usually skip the Type 1 and go straight to a 3-month Type 2, because that's what customers will ask for anyway.",
+          "tags": [
+            "SOC 2",
+            "Type 1",
+            "Auditor approach"
+          ],
+          "example": "Expect: \"Is doing a Type 1 first a waste of money?\" Not if a customer needs a report soon or the controls are brand new; otherwise a short-window Type 2 often gives better value because it's the report buyers ask for.",
+          "pitfalls": [
+            {
+              "pitfall": "Saying a Type 1 is mandatory before a Type 2.",
+              "reply": "\"There's no such rule. It's a choice based on how mature the controls are and what customers need.\""
+            }
+          ]
+        },
+        {
           "q": "Scenario: a critical vendor's SOC 2 has a qualified opinion on logical access and the bridge letter is 4 months old. What do you do?",
           "a": "First I'd read the qualification and the exceptions properly, because a qualified opinion on access could mean anything from a missed quarterly review to shared admin accounts. I want to know exactly which controls failed and whether they touch our data.\n\nThen I'd go to the vendor for the root cause, what they've fixed, and when the next report lands. Since the bridge letter is already four months old, I'd ask for current evidence on the failed controls: the latest access review, their MFA configuration, and a sample of leavers showing access was removed. I'd log a finding with dates and step up monitoring. Meanwhile I'd reduce our own exposure where I can, for example enforcing our SSO and MFA on the tenant. If the residual risk still sits above appetite, it goes to the business owner and CISO for a documented risk acceptance, or for an exit decision.",
           "tags": [

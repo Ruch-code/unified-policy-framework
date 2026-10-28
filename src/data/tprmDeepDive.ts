@@ -42,6 +42,27 @@ export const DEEP_DIVE: DeepDiveSection[] = [
         ['Typical reader', 'Financial auditors, SOX teams', 'Security, TPRM, customers'],
         ['TPRM use', 'Payroll, billing and payment processors', 'Most SaaS and infrastructure vendors'],
       ] } },
+      { caption: 'SOC 2 Type 1 vs Type 2', table: { headers: ['', 'Type 1', 'Type 2'], rows: [
+        ['Tests', 'Design of controls at a point in time', 'Design and operating effectiveness over a period (3 to 12 months)'],
+        ['Required?', 'No. Optional; not a prerequisite for Type 2', 'What most enterprise customers expect; renewed every 12 months'],
+        ['When chosen', 'First audit with a customer deadline, newly implemented controls, major system change or acquisition', 'Controls have operated for at least a few months with evidence'],
+        ['TPRM reliance', 'Stepping stone only; get a committed Type 2 date', 'Primary assurance for Tier 1 and 2 vendors'],
+      ] } },
+      { caption: 'Typical first-audit timeline', table: { headers: ['Phase', 'Typical duration', 'Notes'], rows: [
+        ['Readiness and gap assessment', '2 to 6 weeks', 'Scope, Trust Services Criteria, gap list'],
+        ['Remediation', '1 to 3 months', 'Policies, MFA, logging, access reviews, change management, evidence collection'],
+        ['Type 1 fieldwork and report', '1 to 3 weeks fieldwork, report 2 to 4 weeks later', 'Point in time; can follow remediation directly'],
+        ['Type 2 observation period', '3 to 12 months (3 to 6 common for a first report)', 'Cannot be shortened once started; controls must run from day one'],
+        ['Type 2 fieldwork', '2 to 6 weeks after the period ends', 'Sampling across the whole period'],
+        ['Type 2 report issuance', '2 to 6 weeks after fieldwork', 'First Type 2 end to end: about 6 to 9 months, up to 12 to 15'],
+      ] } },
+      { caption: 'Customer wants assurance before the report exists', table: { headers: ['Share', 'Caution'], rows: [
+        ['Completed SIG Lite or CAIQ, key policies under NDA, security overview or trust page', 'Answers must match reality; they may be checked later against the report'],
+        ['Pen test summary and evidence of key controls (MFA, encryption, backups, access reviews)', 'Share summaries, not raw vulnerability details'],
+        ['Audit firm letter or engagement letter confirming the audit and expected report date', 'Not an opinion; say so'],
+        ['Readiness assessment letter', 'Shows progress only; never present it as a SOC 2'],
+        ['Contract commitment to deliver the Type 1 or Type 2 by a date, with a remedy if missed', 'Gives the customer recourse while the audit completes'],
+      ] } },
     ],
     lists: [
       { caption: 'Read a SOC 2 Type II in this order', ordered: true, items: [
