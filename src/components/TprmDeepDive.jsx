@@ -44,7 +44,7 @@ function ItemList({ caption, items, ordered, check }) {
 export default function TprmDeepDive() {
   const [open, setOpen] = useState('residual');
   return (
-    <section id="tprm-deep-dive" className="mt-12 scroll-mt-24">
+    <section id="tprm-deep-dive" className="scroll-mt-24">
       <div className="flex items-start gap-3 mb-4">
         <BookOpenCheck className="w-6 h-6 text-sky-600 shrink-0 mt-1" aria-hidden="true" />
         <div>

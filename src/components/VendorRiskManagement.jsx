@@ -581,6 +581,7 @@ export default function VendorRiskManagement({ isDark = false }) {
 
   const { user } = useAuth();
   const briefTab = 'Incident Brief';
+  const deepDiveTab = 'TPRM Deep Dive';
 
   const tabToId = (tab) => {
     return tab.toLowerCase()
@@ -596,6 +597,7 @@ export default function VendorRiskManagement({ isDark = false }) {
     'Regional Laws',
     'Sub-Processors',
     'Review Frequency',
+    deepDiveTab,
     ...(user ? [briefTab] : []),
   ];
 
@@ -608,6 +610,7 @@ export default function VendorRiskManagement({ isDark = false }) {
       'Regional Laws': 'regional-laws',
       'Sub-Processors': 'sub-processors',
       'Review Frequency': 'review-frequency',
+      'TPRM Deep Dive': 'tprm-deep-dive',
       'Incident Brief': 'incident-brief'
     };
     const section = sectionMap[activeTab];
@@ -625,6 +628,7 @@ export default function VendorRiskManagement({ isDark = false }) {
       'regional-laws': 'Regional Laws',
       'sub-processors': 'Sub-Processors',
       'review-frequency': 'Review Frequency',
+      'tprm-deep-dive': 'TPRM Deep Dive',
       'incident-brief': 'Incident Brief'
     };
     if (section && sectionMap[section.toLowerCase()]) {
@@ -932,7 +936,11 @@ export default function VendorRiskManagement({ isDark = false }) {
           )}
         </div>
 
-        <TprmDeepDive />
+        {activeTab === deepDiveTab && (
+          <div id="panel-tprm-deep-dive" role="tabpanel" aria-labelledby="vtab-tprm-deep-dive">
+            <TprmDeepDive />
+          </div>
+        )}
       </div>
     </section>
   );
