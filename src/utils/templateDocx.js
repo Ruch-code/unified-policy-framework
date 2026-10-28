@@ -23,10 +23,8 @@ export function frameworkMapping(t) {
 
 /** Plain description of the document structure, shared by the preview page and the generator. */
 export function templateStructure(t) {
-  const docId = '[ORG]-' + t.slug.toUpperCase();
   return {
     control: [
-      ['Document ID', docId],
       ['Version', '1.0'],
       ['Owner (role)', '[Role]'],
       ['Approver', '[Role]'],
