@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import data from '../data/templates.json';
-import { templateStructure, FOOTER_TEXT } from '../utils/templateDocx.js';
+import { templateStructure, FOOTER_TEXT, templateFormat } from '../utils/templateDocx.js';
 import TemplateDownloadButton, { FrameworkBadges } from '../components/templates/TemplateDownloadButton.jsx';
 
 const H2 = 'text-base font-bold text-violet-700 dark:text-violet-300 mt-6 mb-2';
@@ -46,7 +46,7 @@ export default function TemplatePreview() {
       </div>
 
       <article className="mt-6 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-900/60 p-4 sm:p-6 text-sm">
-        <p className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400">Word document structure</p>
+        <p className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400">{templateFormat(t) === 'xlsx' ? 'Excel workbook structure: a Record sheet and a Document control sheet' : 'Word document structure'}</p>
 
         <h2 className={H2}>Document control</h2>
         <div className="overflow-x-auto">

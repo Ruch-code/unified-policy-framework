@@ -363,7 +363,7 @@ function TabPanel({ isDark, activeTab }) {
           <div className="flex-1">
             <h2 className="text-lg font-extrabold text-navy-900 dark:text-text-dark-primary">Templates</h2>
             <p className="text-sm text-navy-600 dark:text-text-dark-secondary mt-0.5 max-w-2xl">
-              155 evidence and document templates for SOC 2, ISO 27001:2022, HIPAA and GDPR, each downloadable as a Word document.
+              155 evidence and document templates for SOC 2, ISO 27001:2022, HIPAA and GDPR, with policies in Word and logs and records in Excel.
             </p>
           </div>
           <Link to="/templates" className="inline-flex items-center gap-2 shrink-0 px-4 py-2.5 rounded-lg bg-violet-600 text-white text-sm font-bold hover:bg-violet-700 transition-colors">

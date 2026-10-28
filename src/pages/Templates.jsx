@@ -32,7 +32,7 @@ function CategorySection({ category, templates, forceOpen }) {
           type="button"
           onClick={zip}
           disabled={zipping}
-          aria-label={`Download all ${category.name} templates as a zip of Word documents`}
+          aria-label={`Download all ${category.name} templates as a zip file`}
           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border border-violet-300 dark:border-violet-700 text-violet-700 dark:text-violet-300 hover:bg-violet-50 dark:hover:bg-violet-900/30 disabled:opacity-60 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
         >
           {zipping ? <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> : <FolderDown className="w-4 h-4" aria-hidden="true" />}
@@ -78,6 +78,7 @@ export default function Templates() {
       <header className="mb-6">
         <h1 className="text-2xl sm:text-3xl font-extrabold text-navy-900 dark:text-text-dark-primary">Evidence &amp; Document Templates</h1>
         <p className="mt-2 text-navy-600 dark:text-text-dark-secondary">Generic, audit-ready templates mapped to SOC 2, ISO 27001:2022, HIPAA and GDPR.</p>
+        <p className="mt-1 text-sm text-navy-600 dark:text-text-dark-secondary">Policies and documents download as Word. Logs, records and trackers download as Excel so you can add rows, filter and sort.</p>
       </header>
 
       <div className="flex flex-col gap-3 mb-6">

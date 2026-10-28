@@ -1,14 +1,17 @@
 import { useState } from 'react';
-import { FileText, Loader2 } from 'lucide-react';
-import { downloadTemplateDocx } from '../../utils/templateDocx.js';
+import { FileText, FileSpreadsheet, Loader2 } from 'lucide-react';
+import { downloadTemplate, templateFormat, FORMAT_LABEL } from '../../utils/templateDocx.js';
 
-/** Word download button. Generates the .docx in the browser on click. */
+/** Download button. Word for documents, Excel for records and logs; built in the browser on click. */
 export default function TemplateDownloadButton({ template, compact = false }) {
   const [busy, setBusy] = useState(false);
+  const fmt = templateFormat(template);
+  const Icon = fmt === 'xlsx' ? FileSpreadsheet : FileText;
+  const tone = fmt === 'xlsx' ? 'bg-emerald-700 hover:bg-emerald-800' : 'bg-violet-600 hover:bg-violet-700';
   const onClick = async () => {
     if (busy) return;
     setBusy(true);
-    try { await downloadTemplateDocx(template); }
+    try { await downloadTemplate(template); }
     catch (e) { console.error('Template download failed', e); }
     finally { setBusy(false); }
   };
@@ -17,15 +20,15 @@ export default function TemplateDownloadButton({ template, compact = false }) {
       type="button"
       onClick={onClick}
       disabled={busy}
-      aria-label={`Download ${template.name} as Word document`}
-      title="Download .docx"
+      aria-label={`Download ${template.name} as ${FORMAT_LABEL[fmt]} ${fmt === 'xlsx' ? 'workbook' : 'document'}`}
+      title={`Download .${fmt}`}
       className={`inline-flex items-center justify-center gap-1.5 shrink-0 rounded-lg font-semibold transition-colors
-        bg-violet-600 text-white hover:bg-violet-700 disabled:opacity-60
+        text-white disabled:opacity-60 ${tone}
         focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900
         ${compact ? 'px-2.5 py-1.5 text-xs' : 'px-3.5 py-2 text-sm'}`}
     >
-      {busy ? <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> : <FileText className="w-4 h-4" aria-hidden="true" />}
-      <span>Download .docx</span>
+      {busy ? <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> : <Icon className="w-4 h-4" aria-hidden="true" />}
+      <span>Download .{fmt}</span>
     </button>
   );
 }

@@ -1,4 +1,4 @@
-// Builds a Word (.docx) file for any template in src/data/templates.json.
+// Builds the download for any template (Word for documents, Excel for records and logs) in src/data/templates.json.
 // Runs fully in the browser; the "docx" library is loaded on first use so it
 // stays out of the main bundle.
 
@@ -123,6 +123,53 @@ export async function buildTemplateDocument(t, lib) {
   });
 }
 
+/** Record and log templates download as Excel; policies and documents as Word. */
+export function templateFormat(t) {
+  // Reports, forms, requests and certificates read better as Word even when they record evidence.
+  if (/\b(Matrix|Statement of Applicability|Records of Processing|Objectives Plan|Communication Plan|Review Plan)\b/.test(t.name)) return 'xlsx';
+  return t.type === 'record' && !/\b(Report|Form|Certificate|Outline)\b/.test(t.name) ? 'xlsx' : 'docx';
+}
+export const FORMAT_LABEL = { xlsx: 'Excel', docx: 'Word' };
+export function templateFilename(t) {
+  return t.slug + '.' + templateFormat(t);
+}
+
+const XLSX_ENTRY_ROWS = 25;
+/** Excel workbook for a record or log template: one entry sheet plus document control. */
+export async function templateXlsxBlob(t) {
+  const { buildXlsx } = await import('./xlsxExport.js');
+  const s = templateStructure(t);
+  const headers = [...s.fields.map(f => f.field), 'Screenshot / attachment reference', 'Reviewed by (role)', 'Review date'];
+  const first = [...s.fields.map(f => f.placeholder), '[System] export or screenshot, captured [Date]', '[Role]', '[Date]'];
+  const rows = [first, ...Array.from({ length: XLSX_ENTRY_ROWS - 1 }, () => headers.map(() => ''))];
+  const validations = [];
+  headers.forEach((h, i) => {
+    if (/keep\/modify\/remove/i.test(h)) validations.push({ col: i, values: ['Keep', 'Modify', 'Remove'] });
+    else if (/keep\/remove/i.test(h)) validations.push({ col: i, values: ['Keep', 'Remove'] });
+  });
+  return buildXlsx([
+    {
+      name: 'Record',
+      title: t.name,
+      notes: [s.purpose, 'Framework mapping: ' + frameworkMapping(t), 'Add one row per entry. Attach screenshots in the evidence folder and reference them in the attachment column.', FOOTER_TEXT],
+      headers,
+      rows,
+      validations,
+    },
+    {
+      name: 'Document control',
+      title: 'Document control',
+      notes: [FOOTER_TEXT],
+      headers: ['Field', 'Value'],
+      rows: s.control,
+    },
+  ]);
+}
+
+export async function templateFileBlob(t) {
+  return templateFormat(t) === 'xlsx' ? templateXlsxBlob(t) : templateDocxBlob(t);
+}
+
 export async function templateDocxBlob(t) {
   const d = await loadDocx();
   return d.Packer.toBlob(await buildTemplateDocument(t, d));
@@ -139,13 +186,14 @@ function saveBlob(blob, filename) {
   setTimeout(() => URL.revokeObjectURL(url), 1500);
 }
 
-export async function downloadTemplateDocx(t) {
-  saveBlob(await templateDocxBlob(t), t.slug + '.docx');
+export async function downloadTemplate(t) {
+  saveBlob(await templateFileBlob(t), templateFilename(t));
 }
+export const downloadTemplateDocx = downloadTemplate;
 
 export async function downloadCategoryZip(category) {
   const { default: JSZip } = await import('jszip');
   const zip = new JSZip();
-  for (const t of category.templates) zip.file(t.slug + '.docx', await templateDocxBlob(t));
+  for (const t of category.templates) zip.file(templateFilename(t), await templateFileBlob(t));
   saveBlob(await zip.generateAsync({ type: 'blob' }), category.id + '-templates.zip');
 }
