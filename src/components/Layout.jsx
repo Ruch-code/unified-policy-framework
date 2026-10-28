@@ -57,7 +57,7 @@ const MEGA_MENU_REGIONS = [
       { path: '/iso/27090', label: 'ISO 27090', desc: 'Security threats to AI systems' },
       { path: '/aigp', label: 'IAPP AIGP', desc: 'AI Governance Professional certification' },
       { path: '/ai-governance', label: 'AI Governance', desc: 'ISO 42001, EU AI Act and NIST AI RMF together' },
-      { path: '/ai-assurance', label: 'AI Vendor Assurance', desc: 'Assessing AI vendors and breach readiness' },
+      { path: '/knowledge?topic=ai-vendor-assurance', label: 'AI Vendor Assurance', desc: 'Assessing AI vendors and breach readiness' },
     ],
   },
   {

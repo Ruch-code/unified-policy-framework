@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import {
   BookOpenCheck, SearchCheck, FileSignature, Radar, MessageSquareText,
@@ -72,6 +73,7 @@ export default function KnowledgeBase() {
   const isEdpTopic = fw === 'endpoint-data-protection';
   const fwObj = isEdpTopic ? null : FRAMEWORK_KB[fw];
 
+  const location = useLocation();
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const p = params.get('fw');
@@ -93,7 +95,7 @@ export default function KnowledgeBase() {
     } else if (p && FRAMEWORK_KB[p]) {
       setFw(p);
     }
-  }, []);
+  }, [location.search]);
 
   const selectedClauses = Object.entries(VENDOR_CLAUSE_CONDITIONAL)
     .filter(([id]) => sel[id])
