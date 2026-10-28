@@ -1,26 +1,11 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Plus, Check, Trash2, Search, Download, X, Lock, AlertTriangle } from 'lucide-react';
 import { downloadXlsx } from '../../utils/xlsxExport.js';
 import { CONTROL_BY_ID } from '../../data/riskAssessment/controls';
-import ResponsiveTable from '../ResponsiveTable';
 import { SEED_REGISTER, COVERAGE_GAPS } from '../../data/riskAssessment/register';
 import { LIBRARY, LIBRARY_CATEGORIES } from '../../data/riskAssessment/library';
 import { bandFor, BANDS, LIKELIHOOD, IMPACT } from '../../data/riskAssessment/methodology';
 import { score, BandBadge, loadUserRisks, saveUserRisks, sectionCls, h3Cls, leadCls, inputCls } from './riskUtils.jsx';
-
-const pad = (n) => String(n).padStart(2, '0');
-
-function toTableRow(r) {
-  return {
-    ...r,
-    categoriesText: r.categories.join(', '),
-    ciaText: r.cia.join(', '),
-    inherentSort: pad(score(r.likelihood, r.impact)),
-    residualSort: pad(score(r.residualLikelihood, r.residualImpact)),
-    controlsText: r.controls.join(', '),
-    statusText: r.recommended ? `${r.treatmentStatus} (Recommended addition)` : r.required ? `${r.treatmentStatus} (Required baseline)` : r.source === 'library' ? `${r.treatmentStatus} (Added from library)` : r.treatmentStatus,
-  };
-}
 
 function libraryToRisk(item, n) {
   const today = new Date().toISOString().slice(0, 10);
@@ -67,7 +52,7 @@ export function exportMyRegister(rows) {
     const res = score(r.residualLikelihood, r.residualImpact);
     return [r.id, r.scenario, r.categories.join(', '), r.cia.join(', '), r.likelihood, r.impact, inh, bandFor(inh).label,
       r.treatment, r.treatmentStatus, r.residualLikelihood, r.residualImpact, res, bandFor(res).label,
-      r.controls.length, r.controls.join(', '), r.owner, r.approver, r.approvalStatus, r.identifiedDate, r.libraryId || '', r.required ? `Required: ${r.requiredBasis || ''}` : 'Optional'];
+      r.controls.length, r.controls.join(', '), r.owner, r.approver, r.approvalStatus, r.approvalDate || '', r.identifiedDate, r.lastReviewedDate || '', r.libraryId || (r.source === 'seed' ? 'Sample' : ''), r.required ? `Required: ${r.requiredBasis || ''}` : r.recommended ? 'Recommended addition' : 'Optional', r.note || ''];
   });
   const controlRows = rows.flatMap((r) => (r.controls.length ? r.controls : ['']).map((id) => {
     const c = CONTROL_BY_ID[id];
@@ -78,7 +63,7 @@ export function exportMyRegister(rows) {
     {
       name: 'My Risk Register', title: `My Risk Register (exported ${today})`,
       notes: ['Score = likelihood x impact. Bands: 1 to 4 Low, 5 to 9 Medium, 10 to 16 High, 17 to 25 Critical. Residual assumes the linked controls are fully implemented with evidence.'],
-      headers: ['ID', 'Risk scenario', 'Category', 'CIA', 'Likelihood', 'Impact', 'Inherent score', 'Inherent rating', 'Treatment', 'Treatment status', 'Residual likelihood', 'Residual impact', 'Residual score', 'Residual rating', 'No. of controls', 'Linked controls', 'Owner', 'Approver', 'Approval status', 'Identified date', 'Library ref', 'Required baseline'],
+      headers: ['ID', 'Risk scenario', 'Category', 'CIA', 'Likelihood', 'Impact', 'Inherent score', 'Inherent rating', 'Treatment', 'Treatment status', 'Residual likelihood', 'Residual impact', 'Residual score', 'Residual rating', 'No. of controls', 'Linked controls', 'Owner', 'Approver', 'Approval status', 'Approval date', 'Identified date', 'Last reviewed date', 'Source', 'Required baseline', 'Notes'],
       rows: riskRows,
       validations: [{ col: 4, values: ['1', '2', '3', '4', '5'] }, { col: 5, values: ['1', '2', '3', '4', '5'] }, { col: 10, values: ['1', '2', '3', '4', '5'] }, { col: 11, values: ['1', '2', '3', '4', '5'] },
         { col: 8, values: ['Mitigate', 'Transfer', 'Avoid', 'Accept'] }, { col: 18, values: ['Not submitted', 'Pending approval', 'Approved', 'Rejected'] }],
@@ -103,48 +88,7 @@ export default function RiskRegisterSection({ isDark = false }) {
   const [notice, setNotice] = useState(null);
   useEffect(() => { saveUserRisks(userRisks); }, [userRisks]);
 
-  const [cat, setCat] = useState('all');
-  const [band, setBand] = useState('all');
-  const [approval, setApproval] = useState('all');
-  const [q, setQ] = useState('');
-
-  const all = useMemo(() => [...SEED_REGISTER, ...userRisks].map(toTableRow), [userRisks]);
-  const categories = useMemo(() => [...new Set(all.flatMap((r) => r.categories))].sort(), [all]);
-
-  const filtered = all.filter((r) => {
-    if (cat !== 'all' && !r.categories.includes(cat)) return false;
-    if (band !== 'all' && bandFor(score(r.likelihood, r.impact)).label !== band) return false;
-    if (approval !== 'all' && r.approvalStatus !== approval) return false;
-    if (q && !`${r.id} ${r.scenario} ${r.controlsText}`.toLowerCase().includes(q.toLowerCase())) return false;
-    return true;
-  });
-
-  const columns = [
-    { key: 'id', header: 'ID', sortable: true },
-    { key: 'scenario', header: 'Risk scenario', sortable: false },
-    { key: 'categoriesText', header: 'Categories', sortable: true },
-    { key: 'ciaText', header: 'CIA', sortable: false },
-    { key: 'owner', header: 'Owner', sortable: true },
-    { key: 'likelihood', header: 'Likelihood', sortable: true, align: 'center' },
-    { key: 'impact', header: 'Impact', sortable: true, align: 'center' },
-    { key: 'inherentSort', header: 'Inherent score', sortable: true, align: 'center', render: (v) => <BandBadge value={Number(v)} />, format: (v) => Number(v) },
-    { key: 'treatment', header: 'Treatment', sortable: true },
-    { key: 'statusText', header: 'Treatment status', sortable: true },
-    { key: 'residualLikelihood', header: 'Residual likelihood', sortable: true, align: 'center' },
-    { key: 'residualImpact', header: 'Residual impact', sortable: true, align: 'center' },
-    { key: 'residualSort', header: 'Residual score', sortable: true, align: 'center', render: (v) => <BandBadge value={Number(v)} />, format: (v) => Number(v) },
-    { key: 'approvalStatus', header: 'Approval status', sortable: true },
-    { key: 'controlsText', header: 'Linked controls', sortable: false, render: (v, row) => (
-      <span>
-        {v || 'None yet'}
-        {row.note && <span className="block mt-1 text-[11px] text-amber-700 dark:text-amber-300">{row.note}</span>}
-      </span>
-    ) },
-    { key: 'approver', header: 'Approver', sortable: true },
-    { key: 'identifiedDate', header: 'Identified', sortable: true },
-    { key: 'lastReviewedDate', header: 'Last reviewed', sortable: true },
-    { key: 'approvalDate', header: 'Approval date', sortable: true },
-  ];
+  const [includeSamples, setIncludeSamples] = useState(false);
 
   const added = new Set(userRisks.map((r) => r.libraryId));
   const removeLibraryItem = (libId) => setUserRisks((prev) => prev.filter((r) => r.libraryId !== libId));
@@ -201,50 +145,22 @@ export default function RiskRegisterSection({ isDark = false }) {
         </div>
       )}
       <section id="ra-register" className={sectionCls}>
-        <h3 className={h3Cls}>4. Sample risk register</h3>
-        <p className={leadCls}>Example Co. register for a typical SaaS company. Inherent scores show the starting point; residual scores assume the treatment plan is fully implemented with evidence. Rows you add from the scenario library appear here, are saved in this browser only, and are included in the export.</p>
+        <h3 className={h3Cls}>4. My risk register</h3>
+        <p className={leadCls}>Your register starts with the required baseline risks. Add more from the scenario library below. Rows are saved in this browser only. The Excel export carries every field: inherent and residual scores and ratings, treatment and status, owner, approver, approval status and dates, notes, and every linked control with its tests and evidence.</p>
 
-        <div className="flex flex-wrap gap-2 mb-4" role="group" aria-label="Register filters">
-          <label className="relative">
-            <span className="sr-only">Search register</span>
-            <Search className="w-4 h-4 absolute left-2.5 top-2.5 text-gray-400" aria-hidden="true" />
-            <input className={`${inputCls} pl-8 w-48`} placeholder="Search ID, scenario, control" value={q} onChange={(e) => setQ(e.target.value)} />
-          </label>
-          <select className={inputCls} value={cat} onChange={(e) => setCat(e.target.value)} aria-label="Filter by category">
-            <option value="all">All categories</option>
-            {categories.map((c) => <option key={c} value={c}>{c}</option>)}
-          </select>
-          <select className={inputCls} value={band} onChange={(e) => setBand(e.target.value)} aria-label="Filter by inherent band">
-            <option value="all">All inherent bands</option>
-            {['Low', 'Medium', 'High', 'Critical'].map((b) => <option key={b} value={b}>{b}</option>)}
-          </select>
-          <select className={inputCls} value={approval} onChange={(e) => setApproval(e.target.value)} aria-label="Filter by approval status">
-            <option value="all">All approval states</option>
-            {['Approved', 'Pending approval', 'Not submitted', 'Rejected'].map((a) => <option key={a} value={a}>{a}</option>)}
-          </select>
-          <span className="self-center text-xs text-navy-600 dark:text-text-dark-secondary">{filtered.length} of {all.length} risks</span>
-        </div>
 
-        <ResponsiveTable
-          data={filtered}
-          columns={columns}
-          caption="Risk register with inherent and residual scores, treatment and approval status"
-          filename="risk-register.csv"
-          exportLabel="Export Risk Register"
-          isDark={isDark}
-          enableSort
-          defaultSortKey="id"
-          keyExtractor={(row) => row.id}
-        />
-
-        {userRisks.length > 0 && (
+        {(
           <div className="mt-4 rounded-xl border border-surface-200 dark:border-surface-dark-200 p-3">
             <div className="flex items-center justify-between gap-2 mb-2">
-              <h4 className="text-sm font-semibold text-navy-900 dark:text-text-dark-primary">Your added risks ({userRisks.length})</h4>
-              <div className="flex items-center gap-3">
-                <button type="button" onClick={() => exportMyRegister(userRisks)} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700">
+              <h4 className="text-sm font-semibold text-navy-900 dark:text-text-dark-primary">Risks in my register ({userRisks.length})</h4>
+              <div className="flex flex-wrap items-center gap-3">
+                <button type="button" onClick={() => exportMyRegister(includeSamples ? [...SEED_REGISTER, ...userRisks] : userRisks)} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700">
                   <Download className="w-3.5 h-3.5" /> Export my register (Excel)
                 </button>
+                <label className="inline-flex items-center gap-1.5 text-xs text-navy-700 dark:text-text-dark-secondary cursor-pointer">
+                  <input type="checkbox" checked={includeSamples} onChange={(e) => setIncludeSamples(e.target.checked)} />
+                  Include sample risks R-1 to R-16
+                </label>
                 <button type="button" onClick={clearUser} className="text-xs text-red-700 dark:text-red-300 hover:underline">Remove optional</button>
               </div>
             </div>

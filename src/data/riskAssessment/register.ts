@@ -59,5 +59,5 @@ export const SEED_REGISTER: RiskRow[] = [
 export const COVERAGE_GAPS = [
   'A register for an AI SaaS company should include at least one explicit fraud scenario. SOC 2 CC3.3 requires the assessment to consider the potential for fraud, and a register with none is a common audit exception.',
   'It should also include AI-specific scenarios covering customer data in training or prompts, and inaccurate, biased or manipulated outputs.',
-  'R-12 to R-16 below are marked "Recommended addition". Review them, adjust the scores to your environment and submit them for approval.',
+  'Sample risks R-12 to R-16 are marked "Recommended addition" and appear in the traceability section and the register template. Several equivalents are already required baseline risks in your register.',
 ];
