@@ -430,6 +430,7 @@ export default function SearchBar({ isDark = false }) {
 
     return (
       <div>
+        {renderTemplateHits()}
         {SEARCH_CATEGORIES.map(category => {
           const items = grouped[category];
           if (!items?.length) return null;
@@ -442,7 +443,6 @@ export default function SearchBar({ isDark = false }) {
             </div>
           );
         })}
-        {renderTemplateHits()}
         <div className={`px-3 pt-2 pb-1 text-[11px] ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>
           {result.count} result{result.count !== 1 ? 's' : ''} · <span className="opacity-80">↑↓ to navigate, Enter to open</span>
         </div>
