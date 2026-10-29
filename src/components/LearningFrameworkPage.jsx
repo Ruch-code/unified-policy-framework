@@ -1,4 +1,5 @@
 import { useState, useEffect, Fragment } from 'react';
+import RelatedTemplates from './templates/RelatedTemplates.jsx';
 import { Link } from 'react-router-dom';
 import { Clock, RefreshCw, ArrowRight, BookOpen, ExternalLink, Lock, CheckCircle, ChevronDown, ChevronRight, Zap, Shield, Award, Target, TrendingUp, AlertTriangle, Lightbulb, ClipboardList, Info } from 'lucide-react';
 import FindingsDatabase from './FindingsDatabase.jsx';
@@ -496,6 +497,7 @@ function FrameworkBody({ framework, extraSections }) {
                                 <TaskDetail label="Control" value={task.control} color={colors.text} />
                                 <TaskDetail label="How" value={task.how} color={colors.text} />
                                 <TaskDetail label="Check" value={task.check} color={colors.text} />
+                                <RelatedTemplates className="ml-5" text={[task.title, task.control, task.how, task.check, task.citation && (task.citation.ref || task.citation.section || task.citation.label)].filter(Boolean).join(' ')} />
                                 {task.citation && (
                                   <CitationRow
                                     citation={{
@@ -783,6 +785,7 @@ function GapCard({ item, colors }) {
           <div className="rounded-lg bg-violet-50 border border-violet-100 dark:bg-violet-900/30 dark:border-violet-800 p-3">
             <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-violet-700 dark:text-violet-300 uppercase tracking-wide"><BookOpen className="w-3.5 h-3.5" /> Policy that ties to this framework</span>
             <p className="text-sm text-gray-700 mt-1 dark:text-slate-200">{policy || 'Align controls to your Information Security Policy set.'}</p>
+            <RelatedTemplates className="mt-2" text={[policy, item.gap, item.itgc].filter(Boolean).join(' ')} />
           </div>
           <div className="rounded-lg bg-green-50 border border-green-100 dark:bg-green-900/30 dark:border-green-800 p-3">
             <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-green-700 dark:text-green-300 uppercase tracking-wide"><Lightbulb className="w-3.5 h-3.5" /> The lean way</span>

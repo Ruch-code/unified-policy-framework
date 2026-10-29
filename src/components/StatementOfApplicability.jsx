@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import RelatedTemplates from './templates/RelatedTemplates.jsx';
 import {
   ClipboardList, GitBranch, CheckCircle, AlertTriangle,
   FileSignature, XCircle, MinusCircle, ListChecks, ScrollText, Landmark, Briefcase, Building2, Cpu,
@@ -379,6 +380,7 @@ export default function StatementOfApplicability() {
                             </span>
                           </summary>
                           <div className="px-3 pb-3 space-y-3 text-xs">
+                            <RelatedTemplates text={[f.ref, f.title, ...(f.checks || [])].join(' ')} />
                             <p className="text-gray-600 dark:text-text-dark-secondary">
                               <span className="font-bold text-gray-800 dark:text-text-dark-primary">SoA justification:</span> {f.just}
                             </p>

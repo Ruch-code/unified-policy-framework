@@ -339,40 +339,6 @@ function TabPanel({ isDark, activeTab }) {
       )}
 
       {activeTab === 'regional' && (
-        <div className="rounded-2xl border border-violet-300 dark:border-violet-900/50 bg-gradient-to-r from-violet-50 to-indigo-50 dark:from-violet-950/40 dark:to-indigo-950/40 p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
-          <span className="inline-flex w-12 h-12 rounded-xl bg-violet-600 text-white items-center justify-center shrink-0">
-            <GraduationCap className="w-6 h-6" />
-          </span>
-          <div className="flex-1">
-            <h2 className="text-lg font-extrabold text-navy-900 dark:text-text-dark-primary">AI Governance & Emerging Tech</h2>
-            <p className="text-sm text-navy-600 dark:text-text-dark-secondary mt-0.5 max-w-2xl">
-              One module across ISO 42001, the EU AI Act, and NIST AI RMF - AI inventory, risk-tier classification, model-release rhythm, and agentic-AI coverage.
-            </p>
-          </div>
-          <Link to="/ai-governance" className="inline-flex items-center gap-2 shrink-0 px-4 py-2.5 rounded-lg bg-violet-600 text-white text-sm font-bold hover:bg-violet-700 transition-colors">
-            Open module <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      )}
-
-      {activeTab === 'regional' && (
-        <div className="rounded-2xl border border-violet-300 dark:border-violet-900/50 bg-white dark:bg-slate-900/60 p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
-          <span className="inline-flex w-12 h-12 rounded-xl bg-violet-600 text-white items-center justify-center shrink-0">
-            <FileText className="w-6 h-6" />
-          </span>
-          <div className="flex-1">
-            <h2 className="text-lg font-extrabold text-navy-900 dark:text-text-dark-primary">Templates</h2>
-            <p className="text-sm text-navy-600 dark:text-text-dark-secondary mt-0.5 max-w-2xl">
-              155 evidence and document templates for SOC 2, ISO 27001:2022, HIPAA and GDPR, with policies in Word and logs and records in Excel.
-            </p>
-          </div>
-          <Link to="/templates" className="inline-flex items-center gap-2 shrink-0 px-4 py-2.5 rounded-lg bg-violet-600 text-white text-sm font-bold hover:bg-violet-700 transition-colors">
-            Browse templates <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      )}
-
-      {activeTab === 'regional' && (
         <LockedSection
           title="By Region Framework Cards"
           description="Access detailed framework cards for ISO 27001, GDPR, DPDPA, FedRAMP, CJIS, and 20+ regulations across 8 global regions with direct playbook links."

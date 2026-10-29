@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import RelatedTemplates from './templates/RelatedTemplates.jsx';
 import { BookOpen, FileSearch, Scale, Globe2, ChevronDown, CheckCircle2, AlertTriangle, ListChecks } from 'lucide-react';
 
 /*
@@ -155,6 +156,8 @@ function DocCard({ d, open, onToggle }) {
         <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
       {open && (
+        <>
+        <RelatedTemplates className="mx-4 mb-3" text={`${d.name} ${d.full} ${d.art}`} />
         <div className="px-4 pb-4 grid md:grid-cols-3 gap-3 text-sm">
           <div className="rounded-lg p-3 bg-amber-50 border border-amber-200 dark:bg-amber-900/30 dark:border-amber-800">
             <p className="text-[11px] font-bold uppercase tracking-wide text-amber-800 dark:text-amber-300 mb-1">When you need it</p>
@@ -169,6 +172,7 @@ function DocCard({ d, open, onToggle }) {
             <ul className="space-y-1 text-gray-700 dark:text-slate-200">{d.tips.map(x => <li key={x} className="flex gap-2"><span>-</span>{x}</li>)}</ul>
           </div>
         </div>
+        </>
       )}
     </div>
   );

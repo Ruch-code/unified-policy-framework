@@ -431,13 +431,6 @@ export default function Layout() {
               {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
 
-            {/* Templates link - hidden on mobile (shown in the mobile menu instead) */}
-            {user && (
-              <Link to="/templates" className={'hidden md:inline-flex ' + NAV_LINK.replace('inline-flex ', '')}>
-                Templates
-              </Link>
-            )}
-
             {/* ISO 42001 AI Link - hidden on mobile, shown on sm+ */}
             <a
               href="https://inspiring-ganache-fdd3be.netlify.app/"
@@ -536,15 +529,6 @@ export default function Layout() {
                   >
                     Knowledge Base
                   </Link>
-                  {user && (
-                  <Link
-                      to="/templates"
-                      onClick={() => { setMobileMenuOpen(false); setGrcKbOpen(false); }}
-                      className="block px-3 py-2.5 text-sm text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-800/50 rounded-lg transition-colors"
-                    >
-                      Templates
-                    </Link>
-                  )}
                   <Link
                     to="/"
                     onClick={() => { setMobileMenuOpen(false); setGrcKbOpen(false); }}

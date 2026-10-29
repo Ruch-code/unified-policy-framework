@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import RelatedTemplates from './templates/RelatedTemplates.jsx';
 import {
   ScrollText, ShieldCheck, Activity, Database, Lock, EyeOff, CheckCircle, MinusCircle, Info,
 } from 'lucide-react';
@@ -585,6 +586,7 @@ export default function TscControlMatrix() {
                         <span className="shrink-0 text-[10px] font-bold uppercase tracking-wide text-gray-500 dark:text-text-dark-muted">{s.criteria.length}</span>
                       </summary>
                       <div className="px-3 pb-3 space-y-3 text-xs">
+                        <RelatedTemplates text={[s.ref, s.title, ...(s.criteria || []).map(cr => `${cr.ref} ${cr.title}`), ...(s.checks || [])].join(' ')} />
                         {s.note && (
                           <p className={`font-bold uppercase tracking-wide text-[10px] ${c.title}`}>{s.note}</p>
                         )}

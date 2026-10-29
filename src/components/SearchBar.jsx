@@ -1,4 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { searchTemplates } from '../utils/templateMatch.js';
+import TemplateDownloadButton from './templates/TemplateDownloadButton.jsx';
+import { useAuth } from '../context/AuthContext.jsx';
 import { Search, X, ChevronRight, Sparkles, ExternalLink } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
@@ -116,6 +119,24 @@ export default function SearchBar({ isDark = false }) {
   }, [query]);
 
   const result = searchQ ? searchCompliance(searchQ) : null;
+  const { user: authUser } = useAuth() || {};
+  const templateHits = authUser && searchQ ? searchTemplates(searchQ, 5) : [];
+  const renderTemplateHits = () => templateHits.length > 0 && (
+    <div>
+      {renderSectionLabel('Ready-to-use templates')}
+      <div className="space-y-1 px-2 pb-1">
+        {templateHits.map(t => (
+          <div key={t.slug} className={`flex items-center gap-2 rounded-lg px-2 py-1.5 ${isDark ? 'hover:bg-slate-800' : 'hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
+            <TemplateDownloadButton template={t} compact />
+            <button type="button" onClick={() => { closeAll(); navigate('/templates/' + t.slug); }}
+              className={`text-left text-sm font-medium break-words ${isDark ? 'text-slate-200' : 'text-slate-700 dark:text-slate-200'} hover:underline`}>
+              {t.name}
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
   const flatItems = result?.items || [];
   const grouped = result?.grouped || {};
   const expansions = result?.expansions || [];
@@ -368,6 +389,10 @@ export default function SearchBar({ isDark = false }) {
       );
     }
 
+    if (result && result.count === 0 && templateHits.length > 0) {
+      return <div>{renderTemplateHits()}</div>;
+    }
+
     if (result && result.count === 0) {
       return (
         <div className="p-5">
@@ -417,6 +442,7 @@ export default function SearchBar({ isDark = false }) {
             </div>
           );
         })}
+        {renderTemplateHits()}
         <div className={`px-3 pt-2 pb-1 text-[11px] ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>
           {result.count} result{result.count !== 1 ? 's' : ''} · <span className="opacity-80">↑↓ to navigate, Enter to open</span>
         </div>
