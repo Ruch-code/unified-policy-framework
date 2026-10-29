@@ -22,7 +22,7 @@ export default async (req) => {
       return json({ message: 'Your account has been deactivated. Contact an admin.' }, 403);
     }
 
-    const token = signToken(user);
+    const token = await signToken(user);
     const defaultPw = process.env.DEFAULT_USER_PASSWORD;
     return json({ token, user, isDefaultPassword: !!defaultPw && password === defaultPw });
   } catch (err) {
