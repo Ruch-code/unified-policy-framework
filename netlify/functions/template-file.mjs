@@ -16,6 +16,14 @@ const CANDIDATE_DIRS = [
 ];
 
 export default async (req, context) => {
+  const requested = context.params?.file || new URL(req.url).pathname.split('/').pop();
+  // Health check: reports only whether template files are reachable, no content.
+  if (requested === 'status') {
+    for (const dir of CANDIDATE_DIRS) {
+      try { const n = (await fs.readdir(dir)).length; return json({ ok: true, files: n }); } catch { /* next */ }
+    }
+    return json({ ok: false, files: 0, cwd: process.cwd() }, 500);
+  }
   const user = await authUser(req);
   if (!user) return json({ message: 'Please sign in to download templates.' }, 401);
   const name = context.params?.file || new URL(req.url).pathname.split('/').pop();
