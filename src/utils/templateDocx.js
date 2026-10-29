@@ -167,9 +167,12 @@ export async function templateXlsxBlob(t) {
 }
 
 export async function templateFileBlob(t) {
-  // Ready-made templates are static files in public/templates/.
+  // Ready-made templates are served only to signed-in users by the template-file function.
   if (t.file) {
-    const res = await fetch('/templates/' + t.file);
+    let token = null;
+    try { token = localStorage.getItem('compliance_token'); } catch { /* storage unavailable */ }
+    const res = await fetch('/api/templates/' + t.file, { headers: token ? { Authorization: 'Bearer ' + token } : {} });
+    if (res.status === 401) throw new Error('Please sign in to download templates.');
     if (!res.ok) throw new Error('Template file not found: ' + t.file);
     return res.blob();
   }

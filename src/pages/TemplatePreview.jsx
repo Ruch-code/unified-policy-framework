@@ -1,7 +1,7 @@
+import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import data from '../data/templates.json';
-import previews from '../data/templatePreviews.json';
 import { templateStructure, FOOTER_TEXT, templateFormat } from '../utils/templateDocx.js';
 import TemplateDownloadButton, { FrameworkBadges } from '../components/templates/TemplateDownloadButton.jsx';
 
@@ -42,7 +42,24 @@ function ReadyPreview({ blocks }) {
   );
 }
 
+// Previews of ready-made files are served only to signed-in users.
+let previewsCache = null;
+function usePreviews() {
+  const [previews, setPreviews] = useState(previewsCache || {});
+  useEffect(() => {
+    if (previewsCache) return;
+    let token = null;
+    try { token = localStorage.getItem('compliance_token'); } catch { /* storage unavailable */ }
+    fetch('/api/templates/previews.json', { headers: token ? { Authorization: 'Bearer ' + token } : {} })
+      .then(r => (r.ok ? r.json() : {}))
+      .then(d => { previewsCache = d; setPreviews(d); })
+      .catch(() => {});
+  }, []);
+  return previews;
+}
+
 export default function TemplatePreview() {
+  const previews = usePreviews();
   const { slug } = useParams();
   const category = data.categories.find(c => c.templates.some(t => t.slug === slug));
   const t = category?.templates.find(x => x.slug === slug);

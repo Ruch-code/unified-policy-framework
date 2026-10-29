@@ -41,3 +41,7 @@
   for = "/index.html"
   [headers.values]
     Cache-Control = "no-cache, no-store, must-revalidate"
+
+# Template files are only served to signed-in users through the template-file function
+[functions.template-file]
+  included_files = ["netlify/template-files/**"]

@@ -132,8 +132,8 @@ function App() {
           <Route path="dora" element={<Protected><Dora /></Protected>} />
           <Route path="cmmc" element={<Protected><Nist800171Cmmc /></Protected>} />
           <Route path="uk-gdpr" element={<Protected><UkGdpr /></Protected>} />
-          <Route path="templates" element={<Templates />} />
-          <Route path="templates/:slug" element={<TemplatePreview />} />
+          <Route path="templates" element={<Protected><Templates /></Protected>} />
+          <Route path="templates/:slug" element={<Protected><TemplatePreview /></Protected>} />
           <Route path="whats-new" element={<Protected><WhatsNew /></Protected>} />
           <Route path="*" element={<Protected><AssessRoute /></Protected>} />
         </Route>

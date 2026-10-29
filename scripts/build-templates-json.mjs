@@ -61,7 +61,7 @@ for (const line of md.split('\n')) {
   let file = null;
   const dl = cells[cells.length - 1].match(/^\[Download\]\(templates\/([^)]+)\)$/);
   if (dl) cells = cells.slice(0, -1);
-  // A star after the slug marks a ready-made file shipped in public/templates/
+  // A star after the slug marks a ready-made file served by the template-file function
   const ready = /\u2605|★/.test(cells[cells.length - 1]);
   cells[cells.length - 1] = cells[cells.length - 1].replace(/\s*(\u2605|★)\s*$/, '');
   if (dl && ready) file = dl[1];
