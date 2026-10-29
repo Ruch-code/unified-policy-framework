@@ -15,6 +15,7 @@ import AccessReviewByDesign from '../components/AccessReviewByDesign.jsx';
 import SecurityOperations from '../components/SecurityOperations.jsx';
 import HybridSecurityFramework from '../components/HybridSecurityFramework.jsx';
 import AssetInventoryTemplate from '../components/AssetInventoryTemplate.jsx';
+import CloudControlTesting from '../components/CloudControlTesting.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 import { useState, useEffect } from 'react';
 import { Lock, AlertCircle, Shield, AlertTriangle, Building, Users, ShieldCheck, Globe, Lock as LockIcon, Briefcase, GraduationCap, MessageSquare, Star, ArrowRight, Key, Server, Database, ClipboardCheck, ChevronRight, Menu, X, FileText } from 'lucide-react';
@@ -335,6 +336,12 @@ function TabPanel({ isDark, activeTab }) {
       {activeTab === 'regional' && (
         <ErrorBoundary>
           <AssetInventoryTemplate />
+        </ErrorBoundary>
+      )}
+
+      {activeTab === 'regional' && (
+        <ErrorBoundary>
+          <CloudControlTesting />
         </ErrorBoundary>
       )}
 
