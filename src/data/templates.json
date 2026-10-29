@@ -23,6 +23,22 @@
         },
         {
           "num": 2,
+          "slug": "isms-scoping-questionnaire",
+          "name": "ISMS Scoping Questionnaire",
+          "purpose": "Covers scoping questions by clause and Annex A domain, scope determination and summary tracker.",
+          "fields": [
+            "Scoping questions by clause and Annex A domain",
+            "Scope determination",
+            "Summary tracker"
+          ],
+          "frameworks": [
+            "ISO27001"
+          ],
+          "type": "document",
+          "file": "isms-scoping-questionnaire.xlsx"
+        },
+        {
+          "num": 3,
           "slug": "isms-policy",
           "name": "ISMS Policy",
           "purpose": "Covers top management commitment, objectives framework and review cycle.",
@@ -37,7 +53,7 @@
           "type": "document"
         },
         {
-          "num": 3,
+          "num": 4,
           "slug": "roles-raci",
           "name": "Roles, Responsibilities and Authorities Matrix",
           "purpose": "Covers RACI for security roles, deputies and approval rights.",
@@ -55,7 +71,7 @@
           "type": "document"
         },
         {
-          "num": 4,
+          "num": 5,
           "slug": "risk-methodology",
           "name": "Risk Assessment and Treatment Methodology",
           "purpose": "Covers likelihood/impact scales, acceptance criteria and treatment options.",
@@ -72,7 +88,7 @@
           "type": "document"
         },
         {
-          "num": 5,
+          "num": 6,
           "slug": "statement-of-applicability",
           "name": "Statement of Applicability",
           "purpose": "Covers annex A control, applicable Y/N, justification and implementation status.",
@@ -88,7 +104,7 @@
           "type": "document"
         },
         {
-          "num": 6,
+          "num": 7,
           "slug": "legal-register",
           "name": "Legal, Regulatory and Contractual Requirements Register",
           "purpose": "Captures requirement, source, owner, applicable controls and review date.",
@@ -106,7 +122,7 @@
           "type": "record"
         },
         {
-          "num": 7,
+          "num": 8,
           "slug": "document-control",
           "name": "Documented Information Control Procedure",
           "purpose": "Covers versioning, approval, distribution and retention of documents.",
@@ -122,7 +138,7 @@
           "type": "document"
         },
         {
-          "num": 8,
+          "num": 9,
           "slug": "master-document-list",
           "name": "Master Document List",
           "purpose": "Captures doc ID, title, owner, version, last review and next review.",
@@ -140,7 +156,7 @@
           "type": "record"
         },
         {
-          "num": 9,
+          "num": 10,
           "slug": "security-objectives",
           "name": "Security Objectives Plan",
           "purpose": "Covers objective, metric, target, owner, due date and status.",
@@ -158,7 +174,7 @@
           "type": "document"
         },
         {
-          "num": 10,
+          "num": 11,
           "slug": "communication-plan",
           "name": "Security Communication Plan",
           "purpose": "Covers what, when, with whom, who communicates and channel.",
@@ -175,7 +191,7 @@
           "type": "document"
         },
         {
-          "num": 11,
+          "num": 12,
           "slug": "isms-change-plan",
           "name": "ISMS Change Planning Record",
           "purpose": "Captures proposed change, impact, resources and approval.",
@@ -191,7 +207,7 @@
           "type": "record"
         },
         {
-          "num": 12,
+          "num": 13,
           "slug": "internal-audit-programme",
           "name": "Internal Audit Procedure and Programme",
           "purpose": "Covers audit cycle, auditor independence and scope by clause/control.",
@@ -206,7 +222,7 @@
           "type": "document"
         },
         {
-          "num": 13,
+          "num": 14,
           "slug": "internal-audit-report",
           "name": "Internal Audit Report",
           "purpose": "Captures scope, criteria, findings, nonconformities, OFIs and sign-off.",
@@ -224,7 +240,7 @@
           "type": "record"
         },
         {
-          "num": 14,
+          "num": 15,
           "slug": "corrective-action-log",
           "name": "Nonconformity and Corrective Action Log",
           "purpose": "Captures finding, root cause, correction, corrective action and verification.",
@@ -241,9 +257,9 @@
           "type": "record"
         },
         {
-          "num": 15,
+          "num": 16,
           "slug": "management-review",
-          "name": "Management Review Agenda and Minutes",
+          "name": "ISMS Management Review: Agenda, Presentation and Minutes",
           "purpose": "Covers mandatory inputs (9.3.2), decisions, actions and attendees.",
           "fields": [
             "Mandatory inputs (9.3.2)",
@@ -252,25 +268,11 @@
             "Attendees"
           ],
           "frameworks": [
-            "ISO27001"
+            "ISO27001",
+            "SOC2"
           ],
-          "type": "document"
-        },
-        {
-          "num": 16,
-          "slug": "management-review-deck",
-          "name": "Management Review Presentation Outline",
-          "purpose": "Captures slide skeleton covering KPIs, risks, audit results and resources.",
-          "fields": [
-            "Slide skeleton covering KPIs",
-            "Risks",
-            "Audit results",
-            "Resources"
-          ],
-          "frameworks": [
-            "ISO27001"
-          ],
-          "type": "record"
+          "type": "document",
+          "file": "management-review.docx"
         },
         {
           "num": 17,
@@ -336,6 +338,26 @@
         },
         {
           "num": 21,
+          "slug": "control-environment-questionnaire",
+          "name": "Management Ethics and Control Environment Questionnaire",
+          "purpose": "Covers ethics, hiring, oversight, communication, complaints and major events.",
+          "fields": [
+            "Ethics",
+            "Hiring",
+            "Oversight",
+            "Communication",
+            "Complaints",
+            "Major events"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001"
+          ],
+          "type": "document",
+          "file": "control-environment-questionnaire.docx"
+        },
+        {
+          "num": 22,
           "slug": "org-chart",
           "name": "Organisation Chart Template",
           "purpose": "Covers reporting lines and security function placement.",
@@ -350,7 +372,7 @@
           "type": "document"
         },
         {
-          "num": 22,
+          "num": 23,
           "slug": "whistleblower-notice",
           "name": "Anonymous Whistleblower Channel Notice",
           "purpose": "Covers how to report, confidentiality and non-retaliation.",
@@ -365,7 +387,7 @@
           "type": "document"
         },
         {
-          "num": 23,
+          "num": 24,
           "slug": "security-memberships",
           "name": "Security Community Membership Record",
           "purpose": "Captures associations, forums and threat-intel subscriptions joined.",
@@ -380,7 +402,7 @@
           "type": "record"
         },
         {
-          "num": 24,
+          "num": 25,
           "slug": "audit-calendar",
           "name": "Audit Cycle Calendar",
           "purpose": "Captures external and internal audit dates and surveillance cycle.",
@@ -400,7 +422,7 @@
       "name": "Policies",
       "templates": [
         {
-          "num": 25,
+          "num": 26,
           "slug": "infosec-aup-policy",
           "name": "Information Security Policy / Acceptable Use",
           "purpose": "Sets the overall security commitment and the acceptable use rules for systems, data and devices.",
@@ -421,7 +443,7 @@
           "type": "document"
         },
         {
-          "num": 26,
+          "num": 27,
           "slug": "access-control-policy",
           "name": "Access Control Policy",
           "purpose": "Defines how access is requested, approved, provisioned, reviewed and removed.",
@@ -442,7 +464,7 @@
           "type": "document"
         },
         {
-          "num": 27,
+          "num": 28,
           "slug": "asset-management-policy",
           "name": "Asset Management Policy",
           "purpose": "Defines how information assets are identified, owned, classified and handled through their life cycle.",
@@ -462,7 +484,7 @@
           "type": "document"
         },
         {
-          "num": 28,
+          "num": 29,
           "slug": "bcdr-plan",
           "name": "Business Continuity and Disaster Recovery Plan",
           "purpose": "Describes how critical services are kept running or restored after a disruption, with recovery objectives and roles.",
@@ -483,7 +505,7 @@
           "type": "document"
         },
         {
-          "num": 29,
+          "num": 30,
           "slug": "code-of-conduct",
           "name": "Code of Conduct",
           "purpose": "Sets expected behaviour, integrity and ethics standards for all personnel.",
@@ -503,7 +525,7 @@
           "type": "document"
         },
         {
-          "num": 30,
+          "num": 31,
           "slug": "cryptography-policy",
           "name": "Cryptography Policy",
           "purpose": "Defines approved encryption standards and how keys are generated, stored, rotated and retired.",
@@ -524,7 +546,7 @@
           "type": "document"
         },
         {
-          "num": 31,
+          "num": 32,
           "slug": "data-management-policy",
           "name": "Data Management and Retention Policy",
           "purpose": "Defines data classification, handling, retention periods and secure disposal.",
@@ -545,7 +567,7 @@
           "type": "document"
         },
         {
-          "num": 32,
+          "num": 33,
           "slug": "hr-security-policy",
           "name": "Human Resources Security Policy",
           "purpose": "Covers security across the employment life cycle: screening, terms, training, discipline and exit.",
@@ -565,7 +587,7 @@
           "type": "document"
         },
         {
-          "num": 33,
+          "num": 34,
           "slug": "incident-response-plan",
           "name": "Incident Response Plan (with HIPAA and GDPR breach addenda)",
           "purpose": "Defines how security incidents are detected, triaged, contained, recovered and reviewed, with HIPAA and GDPR breach notification addenda.",
@@ -586,7 +608,7 @@
           "type": "document"
         },
         {
-          "num": 34,
+          "num": 35,
           "slug": "operations-security-policy",
           "name": "Operations Security Policy",
           "purpose": "Covers operating procedures, change, capacity, malware protection, backup, logging and vulnerability management.",
@@ -607,7 +629,7 @@
           "type": "document"
         },
         {
-          "num": 35,
+          "num": 36,
           "slug": "physical-security-policy",
           "name": "Physical Security Policy",
           "purpose": "Defines physical access, secure areas, visitor handling and equipment protection.",
@@ -627,7 +649,7 @@
           "type": "document"
         },
         {
-          "num": 36,
+          "num": 37,
           "slug": "risk-management-policy",
           "name": "Risk Management Policy",
           "purpose": "Sets how information security risks are identified, assessed, treated, accepted and reviewed.",
@@ -647,7 +669,7 @@
           "type": "document"
         },
         {
-          "num": 37,
+          "num": 38,
           "slug": "secure-development-policy",
           "name": "Secure Development Policy",
           "purpose": "Defines security requirements across design, coding, testing, review and release.",
@@ -668,7 +690,7 @@
           "type": "document"
         },
         {
-          "num": 38,
+          "num": 39,
           "slug": "vendor-management-policy",
           "name": "Third-Party / Vendor Management Policy",
           "purpose": "Defines how third parties are selected, assessed, contracted, monitored and offboarded.",
@@ -688,7 +710,7 @@
           "type": "document"
         },
         {
-          "num": 39,
+          "num": 40,
           "slug": "workstation-security-policy",
           "name": "Workstation Security Policy",
           "purpose": "Defines safeguards for workstations that access protected health information.",
@@ -706,7 +728,7 @@
           "type": "document"
         },
         {
-          "num": 40,
+          "num": 41,
           "slug": "hipaa-compliance-policy",
           "name": "HIPAA Compliance Policy",
           "purpose": "Sets how the organisation meets the HIPAA Security, Privacy and Breach Notification Rules.",
@@ -724,7 +746,7 @@
           "type": "document"
         },
         {
-          "num": 41,
+          "num": 42,
           "slug": "hipaa-privacy-policy",
           "name": "HIPAA Privacy Policy",
           "purpose": "Defines permitted uses and disclosures of PHI and individual rights under the Privacy Rule.",
@@ -742,7 +764,7 @@
           "type": "document"
         },
         {
-          "num": 42,
+          "num": 43,
           "slug": "gdpr-compliance-policy",
           "name": "GDPR Compliance Policy",
           "purpose": "Sets how the organisation meets GDPR principles, lawful bases, rights and accountability duties.",
@@ -760,7 +782,7 @@
           "type": "document"
         },
         {
-          "num": 43,
+          "num": 44,
           "slug": "internal-privacy-policy",
           "name": "Internal Privacy Policy",
           "purpose": "Explains to personnel how their own personal data is processed and protected.",
@@ -778,7 +800,7 @@
           "type": "document"
         },
         {
-          "num": 44,
+          "num": 45,
           "slug": "privacy-compliance-policy",
           "name": "Privacy Compliance Policy",
           "purpose": "Defines the privacy programme, roles, monitoring and how privacy requirements are met.",
@@ -796,7 +818,7 @@
           "type": "document"
         },
         {
-          "num": 45,
+          "num": 46,
           "slug": "termination-security-policy",
           "name": "Employee Termination Security Policy",
           "purpose": "Defines security steps when employment or a contract ends, including access removal and asset return.",
@@ -817,7 +839,7 @@
           "type": "document"
         },
         {
-          "num": 46,
+          "num": 47,
           "slug": "secure-engineering-principles",
           "name": "Secure Engineering Principles",
           "purpose": "Records the engineering principles applied when designing and building secure systems.",
@@ -835,7 +857,7 @@
           "type": "document"
         },
         {
-          "num": 47,
+          "num": 48,
           "slug": "data-masking-standard",
           "name": "Data Masking and Pseudonymisation Standard",
           "purpose": "Defines when and how data is masked or pseudonymised, and who can reverse it.",
@@ -860,22 +882,24 @@
       "name": "People and HR Evidence",
       "templates": [
         {
-          "num": 48,
+          "num": 49,
           "slug": "security-job-description",
-          "name": "Job Description: Key Security Role",
-          "purpose": "Covers responsibilities, security duties and reporting line.",
+          "name": "Key Security Roles and Responsibilities",
+          "purpose": "Covers responsibilities per role (board to all staff) and mapped to job titles.",
           "fields": [
-            "Responsibilities",
-            "Security duties",
-            "Reporting line"
+            "Responsibilities per role (board to all staff)",
+            "Mapped to job titles"
           ],
           "frameworks": [
-            "SOC2"
+            "SOC2",
+            "ISO27001",
+            "HIPAA"
           ],
-          "type": "document"
+          "type": "document",
+          "file": "security-job-description.docx"
         },
         {
-          "num": 49,
+          "num": 50,
           "slug": "competence-evaluation",
           "name": "Pre-Hire Competence Evaluation Form",
           "purpose": "Captures role criteria, assessment method and evaluator sign-off.",
@@ -890,7 +914,7 @@
           "type": "record"
         },
         {
-          "num": 50,
+          "num": 51,
           "slug": "background-check-log",
           "name": "Background Check Completion Log",
           "purpose": "Captures employee ID, check type, date and result status (no personal detail).",
@@ -908,7 +932,7 @@
           "type": "record"
         },
         {
-          "num": 51,
+          "num": 52,
           "slug": "employee-agreement-clauses",
           "name": "Employment Agreement Security Clauses",
           "purpose": "Covers confidentiality, acceptable use, IP and return of assets.",
@@ -925,22 +949,27 @@
           "type": "document"
         },
         {
-          "num": 52,
+          "num": 53,
           "slug": "contractor-agreement-clauses",
-          "name": "Contractor Agreement Security Clauses",
-          "purpose": "Covers same as above for contractors and right to audit.",
+          "name": "Contractor Personnel Security Agreement (Amendment)",
+          "purpose": "Covers endpoint security, training, access, incident notice, screening and audit rights.",
           "fields": [
-            "Same as above for contractors",
-            "Right to audit"
+            "Endpoint security",
+            "Training",
+            "Access",
+            "Incident notice",
+            "Screening",
+            "Audit rights"
           ],
           "frameworks": [
             "SOC2",
             "ISO27001"
           ],
-          "type": "document"
+          "type": "document",
+          "file": "contractor-agreement-clauses.docx"
         },
         {
-          "num": 53,
+          "num": 54,
           "slug": "internal-nda",
           "name": "Internal NDA",
           "purpose": "Covers mutual confidentiality for staff.",
@@ -954,7 +983,7 @@
           "type": "document"
         },
         {
-          "num": 54,
+          "num": 55,
           "slug": "external-nda",
           "name": "External NDA",
           "purpose": "Covers third-party confidentiality.",
@@ -967,7 +996,7 @@
           "type": "document"
         },
         {
-          "num": 55,
+          "num": 56,
           "slug": "confidentiality-acknowledgement",
           "name": "Signed Confidentiality Acknowledgement",
           "purpose": "Covers name placeholder, date and signature block.",
@@ -985,7 +1014,7 @@
           "type": "document"
         },
         {
-          "num": 56,
+          "num": 57,
           "slug": "policy-acknowledgement",
           "name": "Policy Acknowledgement / Availability Evidence",
           "purpose": "Covers where policies are published and acknowledgement tracker.",
@@ -999,7 +1028,7 @@
           "type": "document"
         },
         {
-          "num": 57,
+          "num": 58,
           "slug": "awareness-training-record",
           "name": "Security Awareness Training Record",
           "purpose": "Captures course, audience, completion date and pass score.",
@@ -1018,7 +1047,7 @@
           "type": "record"
         },
         {
-          "num": 58,
+          "num": 59,
           "slug": "hipaa-training-record",
           "name": "HIPAA Workforce Training Record",
           "purpose": "Captures HIPAA-specific modules and completion.",
@@ -1031,7 +1060,7 @@
           "type": "record"
         },
         {
-          "num": 59,
+          "num": 60,
           "slug": "secure-coding-training",
           "name": "Secure Coding Training Record",
           "purpose": "Captures developer training topics and completion.",
@@ -1044,7 +1073,7 @@
           "type": "record"
         },
         {
-          "num": 60,
+          "num": 61,
           "slug": "performance-review-log",
           "name": "Performance Evaluation Completion Log",
           "purpose": "Captures review cycle, completion status and security objective included.",
@@ -1060,15 +1089,16 @@
           "type": "record"
         },
         {
-          "num": 61,
+          "num": 62,
           "slug": "termination-checklist",
-          "name": "Offboarding / Termination Checklist",
-          "purpose": "Captures access revoked per system, assets returned, date and verifier.",
+          "name": "Employee Termination and Offboarding Checklist",
+          "purpose": "Captures leaver details, access revoked per system, assets returned, SLAs and sign-off.",
           "fields": [
+            "Leaver details",
             "Access revoked per system",
             "Assets returned",
-            "Date",
-            "Verifier"
+            "SLAs",
+            "Sign-off"
           ],
           "frameworks": [
             "SOC2",
@@ -1076,23 +1106,8 @@
             "HIPAA",
             "GDPR"
           ],
-          "type": "record"
-        },
-        {
-          "num": 62,
-          "slug": "exit-process",
-          "name": "Employee Exit Process Flow",
-          "purpose": "Covers steps, owners and SLA.",
-          "fields": [
-            "Steps",
-            "Owners",
-            "SLA"
-          ],
-          "frameworks": [
-            "HIPAA",
-            "ISO27001"
-          ],
-          "type": "document"
+          "type": "record",
+          "file": "termination-checklist.docx"
         },
         {
           "num": 63,
@@ -1543,19 +1558,19 @@
         {
           "num": 90,
           "slug": "firewall-review",
-          "name": "Firewall Rule Review",
-          "purpose": "Captures rule, purpose, owner, keep/remove and reviewer.",
+          "name": "Firewall and Security Group Rule Review",
+          "purpose": "Captures rule inventory, review criteria, changes required and dual approval.",
           "fields": [
-            "Rule",
-            "Purpose",
-            "Owner",
-            "Keep/remove",
-            "Reviewer"
+            "Rule inventory",
+            "Review criteria",
+            "Changes required",
+            "Dual approval"
           ],
           "frameworks": [
             "SOC2"
           ],
-          "type": "record"
+          "type": "record",
+          "file": "firewall-review.docx"
         },
         {
           "num": 91,
@@ -1806,13 +1821,14 @@
         {
           "num": 107,
           "slug": "dr-tabletop",
-          "name": "DR Tabletop Exercise Report",
-          "purpose": "Captures scenario, participants, timeline and lessons learned.",
+          "name": "Incident Response and DR Tabletop Exercise",
+          "purpose": "Covers 5 ready scenarios, participants, exercise log, findings and sign-off.",
           "fields": [
-            "Scenario",
+            "5 ready scenarios",
             "Participants",
-            "Timeline",
-            "Lessons learned"
+            "Exercise log",
+            "Findings",
+            "Sign-off"
           ],
           "frameworks": [
             "SOC2",
@@ -1820,18 +1836,16 @@
             "HIPAA",
             "GDPR"
           ],
-          "type": "record"
+          "type": "document",
+          "file": "dr-tabletop.docx"
         },
         {
           "num": 108,
           "slug": "disposal-certificate",
-          "name": "Media / Device Disposal Certificate",
-          "purpose": "Captures asset, method, date and witness.",
+          "name": "Media and Device Disposal Certificate and Log",
+          "purpose": "Captures disposal certificate (NIST 800-88) plus nil-disposal email confirmation.",
           "fields": [
-            "Asset",
-            "Method",
-            "Date",
-            "Witness"
+            "Disposal certificate (NIST 800-88) plus nil-disposal email confirmation"
           ],
           "frameworks": [
             "SOC2",
@@ -1839,7 +1853,8 @@
             "HIPAA",
             "GDPR"
           ],
-          "type": "record"
+          "type": "record",
+          "file": "disposal-certificate.docx"
         },
         {
           "num": 109,
@@ -1859,20 +1874,18 @@
         {
           "num": 110,
           "slug": "customer-deletion-record",
-          "name": "Customer Data Deletion Record",
-          "purpose": "Captures request, scope, completion date and confirmation.",
+          "name": "Customer Data Deletion Certificate and Record",
+          "purpose": "Captures deletion certificate across all systems plus nil-request email confirmation.",
           "fields": [
-            "Request",
-            "Scope",
-            "Completion date",
-            "Confirmation"
+            "Deletion certificate across all systems plus nil-request email confirmation"
           ],
           "frameworks": [
             "GDPR",
             "ISO27001",
             "SOC2"
           ],
-          "type": "record"
+          "type": "record",
+          "file": "customer-deletion-record.docx"
         }
       ]
     },
@@ -1971,13 +1984,15 @@
         {
           "num": 116,
           "slug": "incident-rca",
-          "name": "Incident Report / Root Cause Analysis",
-          "purpose": "Captures timeline, impact, root cause and corrective actions.",
+          "name": "Security Incident Report and Root Cause Analysis",
+          "purpose": "Captures detection, containment, RCA, notifications, CAPA and nil-incident confirmation.",
           "fields": [
-            "Timeline",
-            "Impact",
-            "Root cause",
-            "Corrective actions"
+            "Detection",
+            "Containment",
+            "RCA",
+            "Notifications",
+            "CAPA",
+            "Nil-incident confirmation"
           ],
           "frameworks": [
             "SOC2",
@@ -1985,17 +2000,19 @@
             "HIPAA",
             "GDPR"
           ],
-          "type": "record"
+          "type": "record",
+          "file": "incident-rca.docx"
         },
         {
           "num": 117,
-          "slug": "ir-test",
-          "name": "Incident Response Test Record",
-          "purpose": "Captures scenario, participants and gaps found.",
+          "slug": "incident-register",
+          "name": "Incident Register",
+          "purpose": "Captures incident log with SLA timers, severity matrix, PIR and control mapping.",
           "fields": [
-            "Scenario",
-            "Participants",
-            "Gaps found"
+            "Incident log with SLA timers",
+            "Severity matrix",
+            "PIR",
+            "Control mapping"
           ],
           "frameworks": [
             "SOC2",
@@ -2003,7 +2020,8 @@
             "HIPAA",
             "GDPR"
           ],
-          "type": "record"
+          "type": "record",
+          "file": "incident-register.xlsx"
         },
         {
           "num": 118,
@@ -2091,17 +2109,24 @@
         {
           "num": 123,
           "slug": "msa-template",
-          "name": "Master Services Agreement Template",
-          "purpose": "Covers core commercial and security terms.",
+          "name": "Master Services Agreement",
+          "purpose": "Covers term, fees, security, incident notice, confidentiality, DPA and SLA appendices.",
           "fields": [
-            "Core commercial and security terms"
+            "Term",
+            "Fees",
+            "Security",
+            "Incident notice",
+            "Confidentiality",
+            "DPA",
+            "SLA appendices"
           ],
           "frameworks": [
             "GDPR",
             "ISO27001",
             "SOC2"
           ],
-          "type": "document"
+          "type": "document",
+          "file": "msa-template.docx"
         },
         {
           "num": 124,
@@ -2183,37 +2208,39 @@
       "templates": [
         {
           "num": 129,
-          "slug": "ropa",
-          "name": "Data Inventory / Records of Processing",
-          "purpose": "Covers data category, purpose, lawful basis, systems and retention.",
+          "slug": "data-inventory-map",
+          "name": "Data Inventory Map",
+          "purpose": "Covers system-level inventory: data subjects, categories, lawful basis, location, transfers, retention and owner.",
           "fields": [
-            "Data category",
-            "Purpose",
+            "System-level inventory: data subjects",
+            "Categories",
             "Lawful basis",
-            "Systems",
-            "Retention"
+            "Location",
+            "Transfers",
+            "Retention",
+            "Owner"
           ],
           "frameworks": [
             "GDPR",
             "ISO27001"
           ],
-          "type": "document"
+          "type": "document",
+          "file": "data-inventory-map.xlsx"
         },
         {
           "num": 130,
-          "slug": "dpia",
-          "name": "DPIA Template",
-          "purpose": "Covers processing description, necessity, risks and mitigations.",
+          "slug": "ropa-dpia",
+          "name": "Records of Processing (ROPA) and DPIA",
+          "purpose": "Covers controller and processor Art. 30 records with examples and DPIA template and guidance.",
           "fields": [
-            "Processing description",
-            "Necessity",
-            "Risks",
-            "Mitigations"
+            "Controller and processor Art. 30 records with examples",
+            "DPIA template and guidance"
           ],
           "frameworks": [
             "GDPR"
           ],
-          "type": "document"
+          "type": "document",
+          "file": "ropa-dpia.xlsx"
         },
         {
           "num": 131,
@@ -2477,17 +2504,19 @@
         {
           "num": 149,
           "slug": "cookie-policy",
-          "name": "Cookie Policy and Consent Configuration",
-          "purpose": "Covers cookie list, categories and consent flow.",
+          "name": "Cookie Policy",
+          "purpose": "Covers cookie categories, consent, GPC and blank cookie tables.",
           "fields": [
-            "Cookie list",
-            "Categories",
-            "Consent flow"
+            "Cookie categories",
+            "Consent",
+            "GPC",
+            "Blank cookie tables"
           ],
           "frameworks": [
             "GDPR"
           ],
-          "type": "document"
+          "type": "document",
+          "file": "cookie-policy.docx"
         }
       ]
     },

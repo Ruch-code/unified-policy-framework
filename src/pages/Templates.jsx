@@ -49,6 +49,7 @@ function CategorySection({ category, templates, forceOpen }) {
                 <p className="text-sm text-navy-600 dark:text-text-dark-secondary mt-0.5 break-words">{t.purpose}</p>
                 <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1">
                   <FrameworkBadges frameworks={t.frameworks} />
+                  {t.file && <span className="px-1.5 py-0.5 rounded text-[11px] font-semibold bg-fuchsia-100 text-fuchsia-800 dark:bg-fuchsia-900/40 dark:text-fuchsia-200">Ready-made</span>}
                   <Link to={`/templates/${t.slug}`} className="text-xs font-semibold text-violet-700 dark:text-violet-300 hover:underline">Preview</Link>
                 </div>
               </div>

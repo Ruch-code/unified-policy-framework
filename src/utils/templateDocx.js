@@ -123,12 +123,14 @@ export async function buildTemplateDocument(t, lib) {
 
 /** Record and log templates download as Excel; policies and documents as Word. */
 export function templateFormat(t) {
+  if (t.file) return t.file.split('.').pop();
   // Reports, forms, requests and certificates read better as Word even when they record evidence.
   if (/\b(Matrix|Statement of Applicability|Records of Processing|Objectives Plan|Communication Plan|Review Plan)\b/.test(t.name)) return 'xlsx';
   return t.type === 'record' && !/\b(Report|Form|Certificate|Outline)\b/.test(t.name) ? 'xlsx' : 'docx';
 }
 export const FORMAT_LABEL = { xlsx: 'Excel', docx: 'Word' };
 export function templateFilename(t) {
+  if (t.file) return t.file;
   return t.slug + '.' + templateFormat(t);
 }
 
@@ -165,6 +167,12 @@ export async function templateXlsxBlob(t) {
 }
 
 export async function templateFileBlob(t) {
+  // Ready-made templates are static files in public/templates/.
+  if (t.file) {
+    const res = await fetch('/templates/' + t.file);
+    if (!res.ok) throw new Error('Template file not found: ' + t.file);
+    return res.blob();
+  }
   return templateFormat(t) === 'xlsx' ? templateXlsxBlob(t) : templateDocxBlob(t);
 }
 

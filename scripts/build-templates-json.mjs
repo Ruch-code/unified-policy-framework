@@ -56,7 +56,15 @@ for (const line of md.split('\n')) {
   const h = line.match(/^## (\d+)\. (.+)$/);
   if (h) { cur = { id: h[2].toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-$/, ''), name: h[2].trim(), templates: [] }; categories.push(cur); continue; }
   if (!cur || !/^\| \d+ \|/.test(line)) continue;
-  const cells = line.split('|').slice(1, -1).map(s => s.trim());
+  let cells = line.split('|').slice(1, -1).map(s => s.trim());
+  // Trailing Download column: [Download](templates/<file>)
+  let file = null;
+  const dl = cells[cells.length - 1].match(/^\[Download\]\(templates\/([^)]+)\)$/);
+  if (dl) cells = cells.slice(0, -1);
+  // A star after the slug marks a ready-made file shipped in public/templates/
+  const ready = /\u2605|★/.test(cells[cells.length - 1]);
+  cells[cells.length - 1] = cells[cells.length - 1].replace(/\s*(\u2605|★)\s*$/, '');
+  if (dl && ready) file = dl[1];
   let [num, name, keys, fw, slug] = cells.length === 5 ? cells : [cells[0], cells[1], null, cells[2], cells[3]];
   name = name.replace(/\s*[–—]\s*/g, ': ');
   const frameworks = fw === 'All' ? ALL : fw.split(',').map(s => s.trim());
@@ -71,7 +79,7 @@ for (const line of md.split('\n')) {
     fields = TRUST_SECTIONS[slug] || POLICY_SECTIONS;
     if (!purpose) throw new Error('No purpose for ' + slug);
   }
-  cur.templates.push({ num: Number(num), slug, name, purpose, fields, frameworks, type: isRecord ? 'record' : 'document' });
+  cur.templates.push({ num: Number(num), slug, name, purpose, fields, frameworks, type: isRecord ? 'record' : 'document', ...(file ? { file } : {}) });
 }
 const total = categories.reduce((n, c) => n + c.templates.length, 0);
 const out = JSON.stringify({ categories }, null, 2);
