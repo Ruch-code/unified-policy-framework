@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import data from '../data/templates.json';
+import previews from '../data/templatePreviews.json';
 import { templateStructure, FOOTER_TEXT, templateFormat } from '../utils/templateDocx.js';
 import TemplateDownloadButton, { FrameworkBadges } from '../components/templates/TemplateDownloadButton.jsx';
 
@@ -13,6 +14,31 @@ function BackLink() {
     <Link to="/templates" className="inline-flex items-center gap-1.5 text-sm font-semibold text-violet-700 dark:text-violet-300 hover:underline">
       <ArrowLeft className="w-4 h-4" aria-hidden="true" /> Back to Templates
     </Link>
+  );
+}
+
+/** Shows the actual content of a ready-made template file. */
+function ReadyPreview({ blocks }) {
+  return (
+    <>
+      <p className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400 mb-2">Preview of the downloadable file</p>
+      {blocks.map((b, i) => {
+        if (b.t === 'h') return <h2 key={i} className={H2}>{b.x}</h2>;
+        if (b.t === 'li') return <p key={i} className="pl-4 my-1 text-navy-700 dark:text-text-dark-secondary break-words">{'\u2022 '}{b.x}</p>;
+        if (b.t === 'p') return <p key={i} className="my-2 text-navy-700 dark:text-text-dark-secondary break-words">{b.x}</p>;
+        return (
+          <div key={i} className="overflow-x-auto my-3">
+            <table className="w-full border-collapse">
+              <tbody>
+                {b.rows.map((r, j) => (
+                  <tr key={j}>{r.map((c, k) => j === 0 ? <th key={k} scope="col" className={TH}>{c}</th> : <td key={k} className={TD}>{c}</td>)}</tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        );
+      })}
+    </>
   );
 }
 
@@ -46,6 +72,7 @@ export default function TemplatePreview() {
       </div>
 
       <article className="mt-6 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-900/60 p-4 sm:p-6 text-sm">
+        {previews[t.slug] ? <ReadyPreview blocks={previews[t.slug]} /> : (<>
         <p className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400">{templateFormat(t) === 'xlsx' ? 'Excel workbook structure: a Record sheet and a Document control sheet' : 'Word document structure'}</p>
 
         <h2 className={H2}>Document control</h2>
@@ -106,6 +133,7 @@ export default function TemplatePreview() {
             </div>
           </>
         )}
+        </>)}
         <p className="mt-6 pt-3 border-t border-slate-200 dark:border-slate-700 text-center text-xs text-slate-500 dark:text-slate-400">Footer: {FOOTER_TEXT}</p>
       </article>
 

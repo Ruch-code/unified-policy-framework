@@ -259,8 +259,8 @@
         {
           "num": 16,
           "slug": "management-review",
-          "name": "ISMS Management Review: Agenda, Presentation and Minutes",
-          "purpose": "Covers mandatory inputs (9.3.2), decisions, actions and attendees.",
+          "name": "Management Review Meeting Presentation",
+          "purpose": "Captures mandatory inputs (9.3.2), decisions, actions and attendees.",
           "fields": [
             "Mandatory inputs (9.3.2)",
             "Decisions",
@@ -271,7 +271,7 @@
             "ISO27001",
             "SOC2"
           ],
-          "type": "document",
+          "type": "record",
           "file": "management-review.docx"
         },
         {
@@ -339,7 +339,7 @@
         {
           "num": 21,
           "slug": "control-environment-questionnaire",
-          "name": "Management Ethics and Control Environment Questionnaire",
+          "name": "Ethical Management Survey",
           "purpose": "Covers ethics, hiring, oversight, communication, complaints and major events.",
           "fields": [
             "Ethics",
@@ -884,7 +884,7 @@
         {
           "num": 49,
           "slug": "security-job-description",
-          "name": "Key Security Roles and Responsibilities",
+          "name": "Job Descriptions for Key Security Roles",
           "purpose": "Covers responsibilities per role (board to all staff) and mapped to job titles.",
           "fields": [
             "Responsibilities per role (board to all staff)",
@@ -951,7 +951,7 @@
         {
           "num": 53,
           "slug": "contractor-agreement-clauses",
-          "name": "Contractor Personnel Security Agreement (Amendment)",
+          "name": "Contractor Personnel Security Agreement Language",
           "purpose": "Covers endpoint security, training, access, incident notice, screening and audit rights.",
           "fields": [
             "Endpoint security",
@@ -1091,7 +1091,7 @@
         {
           "num": 62,
           "slug": "termination-checklist",
-          "name": "Employee Termination and Offboarding Checklist",
+          "name": "Employee Termination Checklist",
           "purpose": "Captures leaver details, access revoked per system, assets returned, SLAs and sign-off.",
           "fields": [
             "Leaver details",
@@ -1558,7 +1558,7 @@
         {
           "num": 90,
           "slug": "firewall-review",
-          "name": "Firewall and Security Group Rule Review",
+          "name": "Firewall Review",
           "purpose": "Captures rule inventory, review criteria, changes required and dual approval.",
           "fields": [
             "Rule inventory",
@@ -1821,7 +1821,7 @@
         {
           "num": 107,
           "slug": "dr-tabletop",
-          "name": "Incident Response and DR Tabletop Exercise",
+          "name": "Table Top Exercise Scenarios (Incident Response and DR)",
           "purpose": "Covers 5 ready scenarios, participants, exercise log, findings and sign-off.",
           "fields": [
             "5 ready scenarios",
@@ -1842,8 +1842,8 @@
         {
           "num": 108,
           "slug": "disposal-certificate",
-          "name": "Media and Device Disposal Certificate and Log",
-          "purpose": "Captures disposal certificate (NIST 800-88) plus nil-disposal email confirmation.",
+          "name": "Proof of Media / Device Disposal (Nil Activity Email)",
+          "purpose": "Covers disposal certificate (NIST 800-88) plus nil-disposal email confirmation.",
           "fields": [
             "Disposal certificate (NIST 800-88) plus nil-disposal email confirmation"
           ],
@@ -1853,7 +1853,7 @@
             "HIPAA",
             "GDPR"
           ],
-          "type": "record",
+          "type": "document",
           "file": "disposal-certificate.docx"
         },
         {
@@ -1874,7 +1874,7 @@
         {
           "num": 110,
           "slug": "customer-deletion-record",
-          "name": "Customer Data Deletion Certificate and Record",
+          "name": "Certificate of Destruction (Customer Data Deletion Record)",
           "purpose": "Captures deletion certificate across all systems plus nil-request email confirmation.",
           "fields": [
             "Deletion certificate across all systems plus nil-request email confirmation"
@@ -1886,6 +1886,24 @@
           ],
           "type": "record",
           "file": "customer-deletion-record.docx"
+        },
+        {
+          "num": 111,
+          "slug": "customer-deletion-nil-confirmation",
+          "name": "Customer Data Deletion Review: Nil Requests (Internal Email Chain)",
+          "purpose": "Captures review sources, outcome and compliance register entry.",
+          "fields": [
+            "Review sources",
+            "Outcome",
+            "Compliance register entry"
+          ],
+          "frameworks": [
+            "GDPR",
+            "ISO27001",
+            "SOC2"
+          ],
+          "type": "record",
+          "file": "customer-deletion-nil-confirmation.docx"
         }
       ]
     },
@@ -1894,7 +1912,7 @@
       "name": "Vulnerability Management and Incidents",
       "templates": [
         {
-          "num": 111,
+          "num": 112,
           "slug": "vuln-procedure",
           "name": "Vulnerability Management Procedure",
           "purpose": "Covers identification, CVSS-based prioritisation and SLAs.",
@@ -1909,7 +1927,7 @@
           "type": "document"
         },
         {
-          "num": 112,
+          "num": 113,
           "slug": "vuln-scan-summary",
           "name": "Vulnerability Scan Summary",
           "purpose": "Captures scope, date, severity counts and owner.",
@@ -1928,7 +1946,7 @@
           "type": "record"
         },
         {
-          "num": 113,
+          "num": 114,
           "slug": "vuln-remediation-sample",
           "name": "Remediated Vulnerability Sample",
           "purpose": "Captures finding, severity, fix date and verification.",
@@ -1947,7 +1965,7 @@
           "type": "record"
         },
         {
-          "num": 114,
+          "num": 115,
           "slug": "pentest-report",
           "name": "Penetration Test Report Template",
           "purpose": "Covers scope, method, findings and risk ratings.",
@@ -1965,7 +1983,7 @@
           "type": "document"
         },
         {
-          "num": 115,
+          "num": 116,
           "slug": "pentest-remediation",
           "name": "Pen Test Remediation Tracker",
           "purpose": "Captures finding, owner, target date and retest result.",
@@ -1982,10 +2000,10 @@
           "type": "record"
         },
         {
-          "num": 116,
+          "num": 117,
           "slug": "incident-rca",
-          "name": "Security Incident Report and Root Cause Analysis",
-          "purpose": "Captures detection, containment, RCA, notifications, CAPA and nil-incident confirmation.",
+          "name": "Incident Report Template",
+          "purpose": "Covers detection, containment, RCA, notifications, CAPA and nil-incident confirmation.",
           "fields": [
             "Detection",
             "Containment",
@@ -2000,11 +2018,30 @@
             "HIPAA",
             "GDPR"
           ],
-          "type": "record",
+          "type": "document",
           "file": "incident-rca.docx"
         },
         {
-          "num": 117,
+          "num": 118,
+          "slug": "incident-nil-confirmation",
+          "name": "No Reportable Security Incidents (Internal Email Chain)",
+          "purpose": "Covers records reviewed, confirmation and incident register entry.",
+          "fields": [
+            "Records reviewed",
+            "Confirmation",
+            "Incident register entry"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001",
+            "HIPAA",
+            "GDPR"
+          ],
+          "type": "document",
+          "file": "incident-nil-confirmation.docx"
+        },
+        {
+          "num": 119,
           "slug": "incident-register",
           "name": "Incident Register",
           "purpose": "Captures incident log with SLA timers, severity matrix, PIR and control mapping.",
@@ -2024,7 +2061,7 @@
           "file": "incident-register.xlsx"
         },
         {
-          "num": 118,
+          "num": 120,
           "slug": "hipaa-breach-report",
           "name": "HIPAA Breach Report",
           "purpose": "Captures discovery date, PHI involved and risk assessment (4-factor).",
@@ -2039,7 +2076,7 @@
           "type": "record"
         },
         {
-          "num": 119,
+          "num": 121,
           "slug": "breach-notifications",
           "name": "Breach Notification Letter Set",
           "purpose": "Covers individual and regulator and media notice templates.",
@@ -2053,7 +2090,7 @@
           "type": "document"
         },
         {
-          "num": 120,
+          "num": 122,
           "slug": "regulator-cooperation",
           "name": "Regulator Investigation Cooperation Record",
           "purpose": "Captures request, records provided and dates.",
@@ -2074,7 +2111,7 @@
       "name": "Vendor and Third-Party Risk",
       "templates": [
         {
-          "num": 121,
+          "num": 123,
           "slug": "vendor-security-review",
           "name": "Vendor Security Review Questionnaire and Summary",
           "purpose": "Covers criticality, data access, findings and decision.",
@@ -2092,7 +2129,7 @@
           "type": "document"
         },
         {
-          "num": 122,
+          "num": 124,
           "slug": "supplier-clauses",
           "name": "Supplier Agreement Security Clauses",
           "purpose": "Covers security requirements, breach notice and audit rights.",
@@ -2107,9 +2144,9 @@
           "type": "document"
         },
         {
-          "num": 123,
+          "num": 125,
           "slug": "msa-template",
-          "name": "Master Services Agreement",
+          "name": "Professional Service Agreement (MSA) with SOW, Fee Schedule and SLA",
           "purpose": "Covers term, fees, security, incident notice, confidentiality, DPA and SLA appendices.",
           "fields": [
             "Term",
@@ -2129,7 +2166,7 @@
           "file": "msa-template.docx"
         },
         {
-          "num": 124,
+          "num": 126,
           "slug": "cloud-provider-review",
           "name": "Cloud Provider Agreement Review",
           "purpose": "Captures shared responsibility and certifications reviewed.",
@@ -2144,7 +2181,7 @@
           "type": "record"
         },
         {
-          "num": 125,
+          "num": 127,
           "slug": "provider-cert-review",
           "name": "Infrastructure Provider Certification Review",
           "purpose": "Captures report reviewed, period, exceptions and CUECs.",
@@ -2160,7 +2197,7 @@
           "type": "record"
         },
         {
-          "num": 126,
+          "num": 128,
           "slug": "baa-template",
           "name": "Business Associate Agreement Template",
           "purpose": "Covers HIPAA BAA standard terms.",
@@ -2173,7 +2210,7 @@
           "type": "document"
         },
         {
-          "num": 127,
+          "num": 129,
           "slug": "subcontractor-phi-check",
           "name": "Subcontractor PHI Requirements Verification",
           "purpose": "Covers flow-down of BAA terms.",
@@ -2186,7 +2223,7 @@
           "type": "document"
         },
         {
-          "num": 128,
+          "num": 130,
           "slug": "cyber-insurance-summary",
           "name": "Cyber Insurance Summary",
           "purpose": "Captures coverage type, limits and period (no policy numbers).",
@@ -2207,7 +2244,7 @@
       "name": "Privacy (GDPR and Data Protection)",
       "templates": [
         {
-          "num": 129,
+          "num": 131,
           "slug": "data-inventory-map",
           "name": "Data Inventory Map",
           "purpose": "Covers system-level inventory: data subjects, categories, lawful basis, location, transfers, retention and owner.",
@@ -2228,7 +2265,7 @@
           "file": "data-inventory-map.xlsx"
         },
         {
-          "num": 130,
+          "num": 132,
           "slug": "ropa-dpia",
           "name": "Records of Processing (ROPA) and DPIA",
           "purpose": "Covers controller and processor Art. 30 records with examples and DPIA template and guidance.",
@@ -2243,7 +2280,7 @@
           "file": "ropa-dpia.xlsx"
         },
         {
-          "num": 131,
+          "num": 133,
           "slug": "prior-consultation",
           "name": "Prior Consultation Record",
           "purpose": "Captures when DPIA residual risk is high and regulator correspondence.",
@@ -2257,7 +2294,7 @@
           "type": "record"
         },
         {
-          "num": 132,
+          "num": 134,
           "slug": "special-category-assessment",
           "name": "Special Category Data Assessment",
           "purpose": "Covers category, article 9 condition and safeguards.",
@@ -2272,7 +2309,7 @@
           "type": "document"
         },
         {
-          "num": 133,
+          "num": 135,
           "slug": "criminal-data-authorisation",
           "name": "Criminal Offence Data Authorisation",
           "purpose": "Covers legal basis under Article 10.",
@@ -2285,7 +2322,7 @@
           "type": "document"
         },
         {
-          "num": 134,
+          "num": 136,
           "slug": "customer-dpa",
           "name": "Customer DPA Template",
           "purpose": "Covers controller/processor terms, SCCs and sub-processors.",
@@ -2300,7 +2337,7 @@
           "type": "document"
         },
         {
-          "num": 135,
+          "num": 137,
           "slug": "dsar",
           "name": "Data Subject Request Procedure and Log",
           "purpose": "Covers request type, ID verification and response date.",
@@ -2315,7 +2352,7 @@
           "type": "document"
         },
         {
-          "num": 136,
+          "num": 138,
           "slug": "subprocessor-notice",
           "name": "Sub-Processor Change Notice",
           "purpose": "Covers notice period and objection process.",
@@ -2329,7 +2366,7 @@
           "type": "document"
         },
         {
-          "num": 137,
+          "num": 139,
           "slug": "transfers-register",
           "name": "Transfers and Disclosures Register",
           "purpose": "Captures recipient, country, mechanism and date.",
@@ -2345,7 +2382,7 @@
           "type": "record"
         },
         {
-          "num": 138,
+          "num": 140,
           "slug": "processing-instructions",
           "name": "Processing on Customer Instruction Record",
           "purpose": "Captures instruction source, scope and deviations.",
@@ -2360,7 +2397,7 @@
           "type": "record"
         },
         {
-          "num": 139,
+          "num": 141,
           "slug": "joint-controller-matrix",
           "name": "Joint Controller Responsibility Matrix",
           "purpose": "Covers obligation and party responsible.",
@@ -2374,7 +2411,7 @@
           "type": "document"
         },
         {
-          "num": 140,
+          "num": 142,
           "slug": "data-minimisation",
           "name": "Data Minimisation Objectives",
           "purpose": "Covers field, necessity test and reduction action.",
@@ -2389,7 +2426,7 @@
           "type": "document"
         },
         {
-          "num": 141,
+          "num": 143,
           "slug": "pseudonymisation",
           "name": "Pseudonymisation Procedure",
           "purpose": "Covers technique, key separation and re-identification controls.",
@@ -2404,7 +2441,7 @@
           "type": "document"
         },
         {
-          "num": 142,
+          "num": 144,
           "slug": "parental-consent",
           "name": "Parental Consent Record and Response",
           "purpose": "Captures age verification, consent method and follow-up.",
@@ -2419,7 +2456,7 @@
           "type": "record"
         },
         {
-          "num": 143,
+          "num": 145,
           "slug": "authority-cooperation",
           "name": "Supervisory Authority Cooperation Procedure",
           "purpose": "Covers contact point and response SLAs.",
@@ -2433,7 +2470,7 @@
           "type": "document"
         },
         {
-          "num": 144,
+          "num": 146,
           "slug": "lead-authority",
           "name": "Lead Supervisory Authority Determination",
           "purpose": "Covers main establishment analysis.",
@@ -2446,7 +2483,7 @@
           "type": "document"
         },
         {
-          "num": 145,
+          "num": 147,
           "slug": "eu-representative",
           "name": "EU Representative Appointment Letter",
           "purpose": "Covers article 27 mandate.",
@@ -2459,7 +2496,7 @@
           "type": "document"
         },
         {
-          "num": 146,
+          "num": 148,
           "slug": "dpf-certification",
           "name": "Data Privacy Framework Self-Certification Checklist and Annual Verification",
           "purpose": "Captures principles, recourse and annual review.",
@@ -2474,7 +2511,7 @@
           "type": "record"
         },
         {
-          "num": 147,
+          "num": 149,
           "slug": "dpf-contact",
           "name": "DPF Contact Designation",
           "purpose": "Covers named role and contact channel.",
@@ -2488,7 +2525,7 @@
           "type": "document"
         },
         {
-          "num": 148,
+          "num": 150,
           "slug": "recourse-mechanism",
           "name": "Independent Recourse / Arbitration Record",
           "purpose": "Captures selected body and fee contribution record.",
@@ -2502,9 +2539,9 @@
           "type": "record"
         },
         {
-          "num": 149,
+          "num": 151,
           "slug": "cookie-policy",
-          "name": "Cookie Policy",
+          "name": "Cookie Policy Template",
           "purpose": "Covers cookie categories, consent, GPC and blank cookie tables.",
           "fields": [
             "Cookie categories",
@@ -2525,7 +2562,7 @@
       "name": "Customer-Facing Trust Documents",
       "templates": [
         {
-          "num": 150,
+          "num": 152,
           "slug": "privacy-notice",
           "name": "Public Privacy Notice",
           "purpose": "Public notice explaining what personal data is collected, why, how long it is kept and individual rights.",
@@ -2546,7 +2583,7 @@
           "type": "document"
         },
         {
-          "num": 151,
+          "num": 153,
           "slug": "terms-of-service",
           "name": "Terms of Service",
           "purpose": "Public terms governing use of the service, including security and data commitments.",
@@ -2566,7 +2603,7 @@
           "type": "document"
         },
         {
-          "num": 152,
+          "num": 154,
           "slug": "security-page",
           "name": "Security Information Page",
           "purpose": "Public page describing security practices, certifications and how to report a vulnerability.",
@@ -2584,7 +2621,7 @@
           "type": "document"
         },
         {
-          "num": 153,
+          "num": 155,
           "slug": "support-page",
           "name": "Customer Support Contact Page",
           "purpose": "Public page describing support channels, hours and response targets.",
@@ -2601,7 +2638,7 @@
           "type": "document"
         },
         {
-          "num": 154,
+          "num": 156,
           "slug": "product-docs",
           "name": "Product Documentation Site Outline",
           "purpose": "Outline for product documentation, covering setup, features, security settings and change history.",
@@ -2619,7 +2656,7 @@
           "type": "document"
         },
         {
-          "num": 155,
+          "num": 157,
           "slug": "soc2-system-description",
           "name": "SOC 2 System Description (Section III)",
           "purpose": "Section III of a SOC 2 report: services, boundaries, components, commitments and control environment.",

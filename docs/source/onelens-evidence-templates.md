@@ -5,7 +5,7 @@ Generic, reusable evidence and document templates for SOC 2, ISO/IEC 27001:2022,
 **Framework tags:** `SOC2` | `ISO27001` | `HIPAA` | `GDPR`
 **Slug** is the file name and URL path on the site: `/templates/<slug>`. Every row has a **Download** link to `templates/<slug>.docx` (or `.xlsx`).
 
-**Ready-made files:** 16 templates already exist as finished Word/Excel files in the `templates/` folder (marked ★ below). All other rows are generated as Word files at build time from this catalogue.
+**Ready-made files:** 18 templates already exist as finished Word/Excel files in the `templates/` folder (marked ★ below). All other rows are generated as Word files at build time from this catalogue.
 
 ---
 
@@ -28,12 +28,12 @@ Generic, reusable evidence and document templates for SOC 2, ISO/IEC 27001:2022,
 | 13 | Internal Audit Procedure and Programme | Audit cycle, auditor independence, scope by clause/control | ISO27001 | internal-audit-programme | [Download](templates/internal-audit-programme.docx) |
 | 14 | Internal Audit Report | Scope, criteria, findings, nonconformities, OFIs, sign-off | ISO27001 | internal-audit-report | [Download](templates/internal-audit-report.docx) |
 | 15 | Nonconformity and Corrective Action Log | Finding, root cause, correction, corrective action, verification | ISO27001 | corrective-action-log | [Download](templates/corrective-action-log.docx) |
-| 16 | ISMS Management Review: Agenda, Presentation and Minutes | Mandatory inputs (9.3.2), decisions, actions, attendees | ISO27001, SOC2 | management-review ★ | [Download](templates/management-review.docx) |
+| 16 | Management Review Meeting Presentation | Mandatory inputs (9.3.2), decisions, actions, attendees | ISO27001, SOC2 | management-review ★ | [Download](templates/management-review.docx) |
 | 17 | Security Leadership Qualifications Record | Role, qualifications, certifications, experience summary | ISO27001 | security-leadership-quals | [Download](templates/security-leadership-quals.docx) |
 | 18 | Board / Governing Body Charter | Oversight responsibilities, independence, meeting cadence | SOC2 | board-charter | [Download](templates/board-charter.docx) |
 | 19 | Board Meeting Agenda and Minutes | Security and risk agenda items, decisions, attendance | SOC2 | board-minutes | [Download](templates/board-minutes.docx) |
 | 20 | Board Member Profile Sheet | Name placeholder, expertise, independence declaration | SOC2, ISO27001 | board-profiles | [Download](templates/board-profiles.docx) |
-| 21 | Management Ethics and Control Environment Questionnaire | Ethics, hiring, oversight, communication, complaints, major events | SOC2, ISO27001 | control-environment-questionnaire ★ | [Download](templates/control-environment-questionnaire.docx) |
+| 21 | Ethical Management Survey | Ethics, hiring, oversight, communication, complaints, major events | SOC2, ISO27001 | control-environment-questionnaire ★ | [Download](templates/control-environment-questionnaire.docx) |
 | 22 | Organisation Chart Template | Reporting lines, security function placement | SOC2, ISO27001 | org-chart | [Download](templates/org-chart.docx) |
 | 23 | Anonymous Whistleblower Channel Notice | How to report, confidentiality, non-retaliation | SOC2 | whistleblower-notice | [Download](templates/whistleblower-notice.docx) |
 | 24 | Security Community Membership Record | Associations, forums, threat-intel subscriptions joined | ISO27001 | security-memberships | [Download](templates/security-memberships.docx) |
@@ -71,11 +71,11 @@ Generic, reusable evidence and document templates for SOC 2, ISO/IEC 27001:2022,
 
 | # | Template | Purpose / key fields | Frameworks | Slug | Download |
 |---|---|---|---|---|---|
-| 49 | Key Security Roles and Responsibilities | Responsibilities per role (board to all staff), mapped to job titles | SOC2, ISO27001, HIPAA | security-job-description ★ | [Download](templates/security-job-description.docx) |
+| 49 | Job Descriptions for Key Security Roles | Responsibilities per role (board to all staff), mapped to job titles | SOC2, ISO27001, HIPAA | security-job-description ★ | [Download](templates/security-job-description.docx) |
 | 50 | Pre-Hire Competence Evaluation Form | Role criteria, assessment method, evaluator sign-off | ISO27001 | competence-evaluation | [Download](templates/competence-evaluation.docx) |
 | 51 | Background Check Completion Log | Employee ID, check type, date, result status (no personal detail) | SOC2, ISO27001, HIPAA | background-check-log | [Download](templates/background-check-log.docx) |
 | 52 | Employment Agreement Security Clauses | Confidentiality, acceptable use, IP, return of assets | SOC2, ISO27001 | employee-agreement-clauses | [Download](templates/employee-agreement-clauses.docx) |
-| 53 | Contractor Personnel Security Agreement (Amendment) | Endpoint security, training, access, incident notice, screening, audit rights | SOC2, ISO27001 | contractor-agreement-clauses ★ | [Download](templates/contractor-agreement-clauses.docx) |
+| 53 | Contractor Personnel Security Agreement Language | Endpoint security, training, access, incident notice, screening, audit rights | SOC2, ISO27001 | contractor-agreement-clauses ★ | [Download](templates/contractor-agreement-clauses.docx) |
 | 54 | Internal NDA | Mutual confidentiality for staff | ISO27001, GDPR | internal-nda | [Download](templates/internal-nda.docx) |
 | 55 | External NDA | Third-party confidentiality | ISO27001 | external-nda | [Download](templates/external-nda.docx) |
 | 56 | Signed Confidentiality Acknowledgement | Name placeholder, date, signature block | All | confidentiality-acknowledgement | [Download](templates/confidentiality-acknowledgement.docx) |
@@ -84,7 +84,7 @@ Generic, reusable evidence and document templates for SOC 2, ISO/IEC 27001:2022,
 | 59 | HIPAA Workforce Training Record | HIPAA-specific modules and completion | HIPAA | hipaa-training-record | [Download](templates/hipaa-training-record.docx) |
 | 60 | Secure Coding Training Record | Developer training topics and completion | ISO27001 | secure-coding-training | [Download](templates/secure-coding-training.docx) |
 | 61 | Performance Evaluation Completion Log | Review cycle, completion status, security objective included | SOC2, ISO27001 | performance-review-log | [Download](templates/performance-review-log.docx) |
-| 62 | Employee Termination and Offboarding Checklist | Leaver details, access revoked per system, assets returned, SLAs, sign-off | All | termination-checklist ★ | [Download](templates/termination-checklist.docx) |
+| 62 | Employee Termination Checklist | Leaver details, access revoked per system, assets returned, SLAs, sign-off | All | termination-checklist ★ | [Download](templates/termination-checklist.docx) |
 | 63 | Asset Return Record | Asset tag, condition, received by, date | ISO27001 | asset-return-record | [Download](templates/asset-return-record.docx) |
 | 64 | Office Visitor Log | Visitor, host, purpose, time in/out, badge | ISO27001 | visitor-log | [Download](templates/visitor-log.docx) |
 
@@ -127,7 +127,7 @@ Generic, reusable evidence and document templates for SOC 2, ISO/IEC 27001:2022,
 |---|---|---|---|---|---|
 | 88 | Network Diagram Template | Trust zones, data flows, ingress/egress | SOC2, ISO27001 | network-diagram | [Download](templates/network-diagram.docx) |
 | 89 | Network Segregation Evidence | Segments, rules, justification | All | network-segregation | [Download](templates/network-segregation.docx) |
-| 90 | Firewall and Security Group Rule Review | Rule inventory, review criteria, changes required, dual approval | SOC2 | firewall-review ★ | [Download](templates/firewall-review.docx) |
+| 90 | Firewall Review | Rule inventory, review criteria, changes required, dual approval | SOC2 | firewall-review ★ | [Download](templates/firewall-review.docx) |
 | 91 | Intrusion Detection Deployment Record | Coverage, configuration, alert routing | SOC2, GDPR | ids-deployment | [Download](templates/ids-deployment.docx) |
 | 92 | IDS Alert Review Log | Alert, triage outcome, ticket, analyst | ISO27001, GDPR | ids-alert-log | [Download](templates/ids-alert-log.docx) |
 | 93 | Log Alerting Configuration | Event types, thresholds, recipients | HIPAA, ISO27001 | log-alerting | [Download](templates/log-alerting.docx) |
@@ -144,75 +144,77 @@ Generic, reusable evidence and document templates for SOC 2, ISO/IEC 27001:2022,
 | 104 | Backup Schedule and Completion Log | System, frequency, success, retention | ISO27001 | backup-log | [Download](templates/backup-log.docx) |
 | 105 | Redundant Location Evidence | Primary/secondary regions, failover method | ISO27001 | redundancy | [Download](templates/redundancy.docx) |
 | 106 | Data Restore Test Record | Backup tested, restore time, integrity check, result | HIPAA, ISO27001 | restore-test | [Download](templates/restore-test.docx) |
-| 107 | Incident Response and DR Tabletop Exercise | 5 ready scenarios, participants, exercise log, findings, sign-off | All | dr-tabletop ★ | [Download](templates/dr-tabletop.docx) |
-| 108 | Media and Device Disposal Certificate and Log | Disposal certificate (NIST 800-88) plus nil-disposal email confirmation | All | disposal-certificate ★ | [Download](templates/disposal-certificate.docx) |
+| 107 | Table Top Exercise Scenarios (Incident Response and DR) | 5 ready scenarios, participants, exercise log, findings, sign-off | All | dr-tabletop ★ | [Download](templates/dr-tabletop.docx) |
+| 108 | Proof of Media / Device Disposal (Nil Activity Email) | Disposal certificate (NIST 800-88) plus nil-disposal email confirmation | All | disposal-certificate ★ | [Download](templates/disposal-certificate.docx) |
 | 109 | Automated Data Deletion on Retention Expiry | Data type, retention, deletion mechanism | ISO27001 | retention-deletion | [Download](templates/retention-deletion.docx) |
-| 110 | Customer Data Deletion Certificate and Record | Deletion certificate across all systems plus nil-request email confirmation | GDPR, ISO27001, SOC2 | customer-deletion-record ★ | [Download](templates/customer-deletion-record.docx) |
+| 110 | Certificate of Destruction (Customer Data Deletion Record) | Deletion certificate across all systems plus nil-request email confirmation | GDPR, ISO27001, SOC2 | customer-deletion-record ★ | [Download](templates/customer-deletion-record.docx) |
+| 111 | Customer Data Deletion Review: Nil Requests (Internal Email Chain) | Review sources, outcome, compliance register entry | GDPR, ISO27001, SOC2 | customer-deletion-nil-confirmation ★ | [Download](templates/customer-deletion-nil-confirmation.docx) |
 
 ## 7. Vulnerability Management and Incidents
 
 | # | Template | Purpose / key fields | Frameworks | Slug | Download |
 |---|---|---|---|---|---|
-| 111 | Vulnerability Management Procedure | Identification, CVSS-based prioritisation, SLAs | ISO27001 | vuln-procedure | [Download](templates/vuln-procedure.docx) |
-| 112 | Vulnerability Scan Summary | Scope, date, severity counts, owner | All | vuln-scan-summary | [Download](templates/vuln-scan-summary.docx) |
-| 113 | Remediated Vulnerability Sample | Finding, severity, fix date, verification | All | vuln-remediation-sample | [Download](templates/vuln-remediation-sample.docx) |
-| 114 | Penetration Test Report Template | Scope, method, findings, risk ratings | SOC2, ISO27001, HIPAA | pentest-report | [Download](templates/pentest-report.docx) |
-| 115 | Pen Test Remediation Tracker | Finding, owner, target date, retest result | SOC2, ISO27001 | pentest-remediation | [Download](templates/pentest-remediation.docx) |
-| 116 | Security Incident Report and Root Cause Analysis | Detection, containment, RCA, notifications, CAPA, nil-incident confirmation | All | incident-rca ★ | [Download](templates/incident-rca.docx) |
-| 117 | Incident Register | Incident log with SLA timers, severity matrix, PIR, control mapping | All | incident-register ★ | [Download](templates/incident-register.xlsx) |
-| 118 | HIPAA Breach Report | Discovery date, PHI involved, risk assessment (4-factor) | HIPAA | hipaa-breach-report | [Download](templates/hipaa-breach-report.docx) |
-| 119 | Breach Notification Letter Set | Individual, regulator and media notice templates | HIPAA | breach-notifications | [Download](templates/breach-notifications.docx) |
-| 120 | Regulator Investigation Cooperation Record | Request, records provided, dates | HIPAA | regulator-cooperation | [Download](templates/regulator-cooperation.docx) |
+| 112 | Vulnerability Management Procedure | Identification, CVSS-based prioritisation, SLAs | ISO27001 | vuln-procedure | [Download](templates/vuln-procedure.docx) |
+| 113 | Vulnerability Scan Summary | Scope, date, severity counts, owner | All | vuln-scan-summary | [Download](templates/vuln-scan-summary.docx) |
+| 114 | Remediated Vulnerability Sample | Finding, severity, fix date, verification | All | vuln-remediation-sample | [Download](templates/vuln-remediation-sample.docx) |
+| 115 | Penetration Test Report Template | Scope, method, findings, risk ratings | SOC2, ISO27001, HIPAA | pentest-report | [Download](templates/pentest-report.docx) |
+| 116 | Pen Test Remediation Tracker | Finding, owner, target date, retest result | SOC2, ISO27001 | pentest-remediation | [Download](templates/pentest-remediation.docx) |
+| 117 | Incident Report Template | Detection, containment, RCA, notifications, CAPA, nil-incident confirmation | All | incident-rca ★ | [Download](templates/incident-rca.docx) |
+| 118 | No Reportable Security Incidents (Internal Email Chain) | Records reviewed, confirmation, incident register entry | All | incident-nil-confirmation ★ | [Download](templates/incident-nil-confirmation.docx) |
+| 119 | Incident Register | Incident log with SLA timers, severity matrix, PIR, control mapping | All | incident-register ★ | [Download](templates/incident-register.xlsx) |
+| 120 | HIPAA Breach Report | Discovery date, PHI involved, risk assessment (4-factor) | HIPAA | hipaa-breach-report | [Download](templates/hipaa-breach-report.docx) |
+| 121 | Breach Notification Letter Set | Individual, regulator and media notice templates | HIPAA | breach-notifications | [Download](templates/breach-notifications.docx) |
+| 122 | Regulator Investigation Cooperation Record | Request, records provided, dates | HIPAA | regulator-cooperation | [Download](templates/regulator-cooperation.docx) |
 
 ## 8. Vendor and Third-Party Risk
 
 | # | Template | Purpose / key fields | Frameworks | Slug | Download |
 |---|---|---|---|---|---|
-| 121 | Vendor Security Review Questionnaire and Summary | Criticality, data access, findings, decision | HIPAA, ISO27001, SOC2 | vendor-security-review | [Download](templates/vendor-security-review.docx) |
-| 122 | Supplier Agreement Security Clauses | Security requirements, breach notice, audit rights | ISO27001 | supplier-clauses | [Download](templates/supplier-clauses.docx) |
-| 123 | Master Services Agreement | Term, fees, security, incident notice, confidentiality, DPA, SLA appendices | GDPR, ISO27001, SOC2 | msa-template ★ | [Download](templates/msa-template.docx) |
-| 124 | Cloud Provider Agreement Review | Shared responsibility, certifications reviewed | ISO27001, SOC2 | cloud-provider-review | [Download](templates/cloud-provider-review.docx) |
-| 125 | Infrastructure Provider Certification Review | Report reviewed, period, exceptions, CUECs | ISO27001 | provider-cert-review | [Download](templates/provider-cert-review.docx) |
-| 126 | Business Associate Agreement Template | HIPAA BAA standard terms | HIPAA | baa-template | [Download](templates/baa-template.docx) |
-| 127 | Subcontractor PHI Requirements Verification | Flow-down of BAA terms | HIPAA | subcontractor-phi-check | [Download](templates/subcontractor-phi-check.docx) |
-| 128 | Cyber Insurance Summary | Coverage type, limits, period (no policy numbers) | SOC2 | cyber-insurance-summary | [Download](templates/cyber-insurance-summary.docx) |
+| 123 | Vendor Security Review Questionnaire and Summary | Criticality, data access, findings, decision | HIPAA, ISO27001, SOC2 | vendor-security-review | [Download](templates/vendor-security-review.docx) |
+| 124 | Supplier Agreement Security Clauses | Security requirements, breach notice, audit rights | ISO27001 | supplier-clauses | [Download](templates/supplier-clauses.docx) |
+| 125 | Professional Service Agreement (MSA) with SOW, Fee Schedule and SLA | Term, fees, security, incident notice, confidentiality, DPA, SLA appendices | GDPR, ISO27001, SOC2 | msa-template ★ | [Download](templates/msa-template.docx) |
+| 126 | Cloud Provider Agreement Review | Shared responsibility, certifications reviewed | ISO27001, SOC2 | cloud-provider-review | [Download](templates/cloud-provider-review.docx) |
+| 127 | Infrastructure Provider Certification Review | Report reviewed, period, exceptions, CUECs | ISO27001 | provider-cert-review | [Download](templates/provider-cert-review.docx) |
+| 128 | Business Associate Agreement Template | HIPAA BAA standard terms | HIPAA | baa-template | [Download](templates/baa-template.docx) |
+| 129 | Subcontractor PHI Requirements Verification | Flow-down of BAA terms | HIPAA | subcontractor-phi-check | [Download](templates/subcontractor-phi-check.docx) |
+| 130 | Cyber Insurance Summary | Coverage type, limits, period (no policy numbers) | SOC2 | cyber-insurance-summary | [Download](templates/cyber-insurance-summary.docx) |
 
 ## 9. Privacy (GDPR and Data Protection)
 
 | # | Template | Purpose / key fields | Frameworks | Slug | Download |
 |---|---|---|---|---|---|
-| 129 | Data Inventory Map | System-level inventory: data subjects, categories, lawful basis, location, transfers, retention, owner | GDPR, ISO27001 | data-inventory-map ★ | [Download](templates/data-inventory-map.xlsx) |
-| 130 | Records of Processing (ROPA) and DPIA | Controller and processor Art. 30 records with examples, DPIA template and guidance | GDPR | ropa-dpia ★ | [Download](templates/ropa-dpia.xlsx) |
-| 131 | Prior Consultation Record | When DPIA residual risk is high, regulator correspondence | GDPR | prior-consultation | [Download](templates/prior-consultation.docx) |
-| 132 | Special Category Data Assessment | Category, Article 9 condition, safeguards | GDPR | special-category-assessment | [Download](templates/special-category-assessment.docx) |
-| 133 | Criminal Offence Data Authorisation | Legal basis under Article 10 | GDPR | criminal-data-authorisation | [Download](templates/criminal-data-authorisation.docx) |
-| 134 | Customer DPA Template | Controller/processor terms, SCCs, sub-processors | GDPR | customer-dpa | [Download](templates/customer-dpa.docx) |
-| 135 | Data Subject Request Procedure and Log | Request type, ID verification, response date | GDPR | dsar | [Download](templates/dsar.docx) |
-| 136 | Sub-Processor Change Notice | Notice period, objection process | GDPR | subprocessor-notice | [Download](templates/subprocessor-notice.docx) |
-| 137 | Transfers and Disclosures Register | Recipient, country, mechanism, date | GDPR | transfers-register | [Download](templates/transfers-register.docx) |
-| 138 | Processing on Customer Instruction Record | Instruction source, scope, deviations | GDPR | processing-instructions | [Download](templates/processing-instructions.docx) |
-| 139 | Joint Controller Responsibility Matrix | Obligation, party responsible | GDPR | joint-controller-matrix | [Download](templates/joint-controller-matrix.docx) |
-| 140 | Data Minimisation Objectives | Field, necessity test, reduction action | GDPR | data-minimisation | [Download](templates/data-minimisation.docx) |
-| 141 | Pseudonymisation Procedure | Technique, key separation, re-identification controls | GDPR | pseudonymisation | [Download](templates/pseudonymisation.docx) |
-| 142 | Parental Consent Record and Response | Age verification, consent method, follow-up | GDPR | parental-consent | [Download](templates/parental-consent.docx) |
-| 143 | Supervisory Authority Cooperation Procedure | Contact point, response SLAs | GDPR | authority-cooperation | [Download](templates/authority-cooperation.docx) |
-| 144 | Lead Supervisory Authority Determination | Main establishment analysis | GDPR | lead-authority | [Download](templates/lead-authority.docx) |
-| 145 | EU Representative Appointment Letter | Article 27 mandate | GDPR | eu-representative | [Download](templates/eu-representative.docx) |
-| 146 | Data Privacy Framework Self-Certification Checklist and Annual Verification | Principles, recourse, annual review | GDPR | dpf-certification | [Download](templates/dpf-certification.docx) |
-| 147 | DPF Contact Designation | Named role, contact channel | GDPR | dpf-contact | [Download](templates/dpf-contact.docx) |
-| 148 | Independent Recourse / Arbitration Record | Selected body, fee contribution record | GDPR | recourse-mechanism | [Download](templates/recourse-mechanism.docx) |
-| 149 | Cookie Policy | Cookie categories, consent, GPC, blank cookie tables | GDPR | cookie-policy ★ | [Download](templates/cookie-policy.docx) |
+| 131 | Data Inventory Map | System-level inventory: data subjects, categories, lawful basis, location, transfers, retention, owner | GDPR, ISO27001 | data-inventory-map ★ | [Download](templates/data-inventory-map.xlsx) |
+| 132 | Records of Processing (ROPA) and DPIA | Controller and processor Art. 30 records with examples, DPIA template and guidance | GDPR | ropa-dpia ★ | [Download](templates/ropa-dpia.xlsx) |
+| 133 | Prior Consultation Record | When DPIA residual risk is high, regulator correspondence | GDPR | prior-consultation | [Download](templates/prior-consultation.docx) |
+| 134 | Special Category Data Assessment | Category, Article 9 condition, safeguards | GDPR | special-category-assessment | [Download](templates/special-category-assessment.docx) |
+| 135 | Criminal Offence Data Authorisation | Legal basis under Article 10 | GDPR | criminal-data-authorisation | [Download](templates/criminal-data-authorisation.docx) |
+| 136 | Customer DPA Template | Controller/processor terms, SCCs, sub-processors | GDPR | customer-dpa | [Download](templates/customer-dpa.docx) |
+| 137 | Data Subject Request Procedure and Log | Request type, ID verification, response date | GDPR | dsar | [Download](templates/dsar.docx) |
+| 138 | Sub-Processor Change Notice | Notice period, objection process | GDPR | subprocessor-notice | [Download](templates/subprocessor-notice.docx) |
+| 139 | Transfers and Disclosures Register | Recipient, country, mechanism, date | GDPR | transfers-register | [Download](templates/transfers-register.docx) |
+| 140 | Processing on Customer Instruction Record | Instruction source, scope, deviations | GDPR | processing-instructions | [Download](templates/processing-instructions.docx) |
+| 141 | Joint Controller Responsibility Matrix | Obligation, party responsible | GDPR | joint-controller-matrix | [Download](templates/joint-controller-matrix.docx) |
+| 142 | Data Minimisation Objectives | Field, necessity test, reduction action | GDPR | data-minimisation | [Download](templates/data-minimisation.docx) |
+| 143 | Pseudonymisation Procedure | Technique, key separation, re-identification controls | GDPR | pseudonymisation | [Download](templates/pseudonymisation.docx) |
+| 144 | Parental Consent Record and Response | Age verification, consent method, follow-up | GDPR | parental-consent | [Download](templates/parental-consent.docx) |
+| 145 | Supervisory Authority Cooperation Procedure | Contact point, response SLAs | GDPR | authority-cooperation | [Download](templates/authority-cooperation.docx) |
+| 146 | Lead Supervisory Authority Determination | Main establishment analysis | GDPR | lead-authority | [Download](templates/lead-authority.docx) |
+| 147 | EU Representative Appointment Letter | Article 27 mandate | GDPR | eu-representative | [Download](templates/eu-representative.docx) |
+| 148 | Data Privacy Framework Self-Certification Checklist and Annual Verification | Principles, recourse, annual review | GDPR | dpf-certification | [Download](templates/dpf-certification.docx) |
+| 149 | DPF Contact Designation | Named role, contact channel | GDPR | dpf-contact | [Download](templates/dpf-contact.docx) |
+| 150 | Independent Recourse / Arbitration Record | Selected body, fee contribution record | GDPR | recourse-mechanism | [Download](templates/recourse-mechanism.docx) |
+| 151 | Cookie Policy Template | Cookie categories, consent, GPC, blank cookie tables | GDPR | cookie-policy ★ | [Download](templates/cookie-policy.docx) |
 
 ## 10. Customer-Facing Trust Documents
 
 | # | Template | Frameworks | Slug | Download |
 |---|---|---|---|---|
-| 150 | Public Privacy Notice | GDPR, HIPAA, SOC2 | privacy-notice | [Download](templates/privacy-notice.docx) |
-| 151 | Terms of Service | ISO27001, SOC2 | terms-of-service | [Download](templates/terms-of-service.docx) |
-| 152 | Security Information Page | SOC2 | security-page | [Download](templates/security-page.docx) |
-| 153 | Customer Support Contact Page | SOC2 | support-page | [Download](templates/support-page.docx) |
-| 154 | Product Documentation Site Outline | SOC2 | product-docs | [Download](templates/product-docs.docx) |
-| 155 | SOC 2 System Description (Section III) | SOC2 | soc2-system-description | [Download](templates/soc2-system-description.docx) |
+| 152 | Public Privacy Notice | GDPR, HIPAA, SOC2 | privacy-notice | [Download](templates/privacy-notice.docx) |
+| 153 | Terms of Service | ISO27001, SOC2 | terms-of-service | [Download](templates/terms-of-service.docx) |
+| 154 | Security Information Page | SOC2 | security-page | [Download](templates/security-page.docx) |
+| 155 | Customer Support Contact Page | SOC2 | support-page | [Download](templates/support-page.docx) |
+| 156 | Product Documentation Site Outline | SOC2 | product-docs | [Download](templates/product-docs.docx) |
+| 157 | SOC 2 System Description (Section III) | SOC2 | soc2-system-description | [Download](templates/soc2-system-description.docx) |
 
 ---
 
