@@ -504,6 +504,28 @@
         },
         {
           "num": 29,
+          "slug": "infosec-roles-policy",
+          "name": "Information Security Roles and Responsibilities Policy",
+          "purpose": "Defines information security roles, responsibilities and authorities across the organisation.",
+          "fields": [
+            "Purpose and scope",
+            "Roles and responsibilities",
+            "Policy statements",
+            "Exceptions",
+            "Enforcement",
+            "Review and approval"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001",
+            "HIPAA",
+            "GDPR"
+          ],
+          "type": "document",
+          "file": "infosec-roles-policy.docx"
+        },
+        {
+          "num": 30,
           "slug": "access-control-policy",
           "name": "Access Control Policy",
           "purpose": "Defines how access is requested, approved, provisioned, reviewed and removed.",
@@ -525,7 +547,7 @@
           "file": "access-control-policy.docx"
         },
         {
-          "num": 30,
+          "num": 31,
           "slug": "asset-management-policy",
           "name": "Asset Management Policy",
           "purpose": "Defines how information assets are identified, owned, classified and handled through their life cycle.",
@@ -546,7 +568,7 @@
           "file": "asset-management-policy.docx"
         },
         {
-          "num": 31,
+          "num": 32,
           "slug": "bcdr-plan",
           "name": "Business Continuity and Disaster Recovery Plan",
           "purpose": "Describes how critical services are kept running or restored after a disruption, with recovery objectives and roles.",
@@ -568,7 +590,7 @@
           "file": "bcdr-plan.docx"
         },
         {
-          "num": 32,
+          "num": 33,
           "slug": "code-of-conduct",
           "name": "Code of Conduct",
           "purpose": "Sets expected behaviour, integrity and ethics standards for all personnel.",
@@ -589,7 +611,7 @@
           "file": "code-of-conduct.docx"
         },
         {
-          "num": 33,
+          "num": 34,
           "slug": "cryptography-policy",
           "name": "Cryptography Policy",
           "purpose": "Defines approved encryption standards and how keys are generated, stored, rotated and retired.",
@@ -611,7 +633,7 @@
           "file": "cryptography-policy.docx"
         },
         {
-          "num": 34,
+          "num": 35,
           "slug": "data-management-policy",
           "name": "Data Management and Retention Policy",
           "purpose": "Defines data classification, handling, retention periods and secure disposal.",
@@ -633,7 +655,7 @@
           "file": "data-management-policy.docx"
         },
         {
-          "num": 35,
+          "num": 36,
           "slug": "hr-security-policy",
           "name": "Human Resources Security Policy",
           "purpose": "Covers security across the employment life cycle: screening, terms, training, discipline and exit.",
@@ -654,7 +676,7 @@
           "file": "hr-security-policy.docx"
         },
         {
-          "num": 36,
+          "num": 37,
           "slug": "incident-response-plan",
           "name": "Incident Response Plan (with HIPAA and GDPR breach addenda)",
           "purpose": "Defines how security incidents are detected, triaged, contained, recovered and reviewed, with HIPAA and GDPR breach notification addenda.",
@@ -676,7 +698,7 @@
           "file": "incident-response-plan.docx"
         },
         {
-          "num": 37,
+          "num": 38,
           "slug": "operations-security-policy",
           "name": "Operations Security Policy",
           "purpose": "Covers operating procedures, change, capacity, malware protection, backup, logging and vulnerability management.",
@@ -698,7 +720,7 @@
           "file": "operations-security-policy.docx"
         },
         {
-          "num": 38,
+          "num": 39,
           "slug": "physical-security-policy",
           "name": "Physical Security Policy",
           "purpose": "Defines physical access, secure areas, visitor handling and equipment protection.",
@@ -719,7 +741,28 @@
           "file": "physical-security-policy.docx"
         },
         {
-          "num": 39,
+          "num": 40,
+          "slug": "physical-security-policy-remote",
+          "name": "Physical Security Policy (Remote-First Organisations)",
+          "purpose": "Physical security requirements for remote-first organisations without dedicated offices.",
+          "fields": [
+            "Purpose and scope",
+            "Roles and responsibilities",
+            "Policy statements",
+            "Exceptions",
+            "Enforcement",
+            "Review and approval"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001",
+            "HIPAA"
+          ],
+          "type": "document",
+          "file": "physical-security-policy-remote.docx"
+        },
+        {
+          "num": 41,
           "slug": "risk-management-policy",
           "name": "Risk Management Policy",
           "purpose": "Sets how information security risks are identified, assessed, treated, accepted and reviewed.",
@@ -740,7 +783,7 @@
           "file": "risk-management-policy.docx"
         },
         {
-          "num": 40,
+          "num": 42,
           "slug": "secure-development-policy",
           "name": "Secure Development Policy",
           "purpose": "Defines security requirements across design, coding, testing, review and release.",
@@ -762,7 +805,7 @@
           "file": "secure-development-policy.docx"
         },
         {
-          "num": 41,
+          "num": 43,
           "slug": "vendor-management-policy",
           "name": "Third-Party / Vendor Management Policy",
           "purpose": "Defines how third parties are selected, assessed, contracted, monitored and offboarded.",
@@ -783,7 +826,7 @@
           "file": "vendor-management-policy.docx"
         },
         {
-          "num": 42,
+          "num": 44,
           "slug": "workstation-security-policy",
           "name": "Workstation Security Policy",
           "purpose": "Defines safeguards for workstations that access protected health information.",
@@ -802,7 +845,7 @@
           "file": "workstation-security-policy.docx"
         },
         {
-          "num": 43,
+          "num": 45,
           "slug": "hipaa-compliance-policy",
           "name": "HIPAA Compliance Policy",
           "purpose": "Sets how the organisation meets the HIPAA Security, Privacy and Breach Notification Rules.",
@@ -821,7 +864,7 @@
           "file": "hipaa-compliance-policy.docx"
         },
         {
-          "num": 44,
+          "num": 46,
           "slug": "hipaa-privacy-policy",
           "name": "HIPAA Privacy Policy",
           "purpose": "Defines permitted uses and disclosures of PHI and individual rights under the Privacy Rule.",
@@ -840,7 +883,7 @@
           "file": "hipaa-privacy-policy.docx"
         },
         {
-          "num": 45,
+          "num": 47,
           "slug": "gdpr-compliance-policy",
           "name": "GDPR Compliance Policy",
           "purpose": "Sets how the organisation meets GDPR principles, lawful bases, rights and accountability duties.",
@@ -859,7 +902,7 @@
           "file": "gdpr-compliance-policy.docx"
         },
         {
-          "num": 46,
+          "num": 48,
           "slug": "internal-privacy-policy",
           "name": "Internal Privacy Policy",
           "purpose": "Explains to personnel how their own personal data is processed and protected.",
@@ -878,7 +921,7 @@
           "file": "internal-privacy-policy.docx"
         },
         {
-          "num": 47,
+          "num": 49,
           "slug": "privacy-compliance-policy",
           "name": "Privacy Compliance Policy",
           "purpose": "Defines the privacy programme, roles, monitoring and how privacy requirements are met.",
@@ -897,7 +940,7 @@
           "file": "privacy-compliance-policy.docx"
         },
         {
-          "num": 48,
+          "num": 50,
           "slug": "termination-security-policy",
           "name": "Employee Termination Security Policy",
           "purpose": "Defines security steps when employment or a contract ends, including access removal and asset return.",
@@ -919,7 +962,7 @@
           "file": "termination-security-policy.docx"
         },
         {
-          "num": 49,
+          "num": 51,
           "slug": "secure-engineering-principles",
           "name": "Secure Engineering Principles",
           "purpose": "Records the engineering principles applied when designing and building secure systems.",
@@ -938,7 +981,7 @@
           "file": "secure-engineering-principles.docx"
         },
         {
-          "num": 50,
+          "num": 52,
           "slug": "data-masking-standard",
           "name": "Data Masking and Pseudonymisation Standard",
           "purpose": "Defines when and how data is masked or pseudonymised, and who can reverse it.",
@@ -964,7 +1007,7 @@
       "name": "People and HR Evidence",
       "templates": [
         {
-          "num": 51,
+          "num": 53,
           "slug": "security-job-description",
           "name": "Job Descriptions for Key Security Roles",
           "purpose": "Covers responsibilities per role (board to all staff) and mapped to job titles.",
@@ -981,7 +1024,7 @@
           "file": "security-job-description.docx"
         },
         {
-          "num": 52,
+          "num": 54,
           "slug": "competence-evaluation",
           "name": "Pre-Hire Competence Evaluation Form",
           "purpose": "Captures role criteria, assessment method and evaluator sign-off.",
@@ -997,7 +1040,7 @@
           "file": "competence-evaluation.docx"
         },
         {
-          "num": 53,
+          "num": 55,
           "slug": "background-check-log",
           "name": "Background Check Completion Log",
           "purpose": "Captures employee ID, check type, date and result status (no personal detail).",
@@ -1016,7 +1059,7 @@
           "file": "background-check-log.xlsx"
         },
         {
-          "num": 54,
+          "num": 56,
           "slug": "employee-agreement-clauses",
           "name": "Employment Agreement Security Clauses",
           "purpose": "Covers confidentiality, acceptable use, IP and return of assets.",
@@ -1034,7 +1077,7 @@
           "file": "employee-agreement-clauses.docx"
         },
         {
-          "num": 55,
+          "num": 57,
           "slug": "contractor-agreement-clauses",
           "name": "Contractor Personnel Security Agreement Language",
           "purpose": "Covers endpoint security, training, access, incident notice, screening and audit rights.",
@@ -1054,7 +1097,7 @@
           "file": "contractor-agreement-clauses.docx"
         },
         {
-          "num": 56,
+          "num": 58,
           "slug": "internal-nda",
           "name": "Internal NDA",
           "purpose": "Covers mutual confidentiality for staff.",
@@ -1069,7 +1112,7 @@
           "file": "internal-nda.docx"
         },
         {
-          "num": 57,
+          "num": 59,
           "slug": "external-nda",
           "name": "External NDA",
           "purpose": "Covers third-party confidentiality.",
@@ -1083,7 +1126,7 @@
           "file": "external-nda.docx"
         },
         {
-          "num": 58,
+          "num": 60,
           "slug": "confidentiality-acknowledgement",
           "name": "Signed Confidentiality Acknowledgement",
           "purpose": "Covers name placeholder, date and signature block.",
@@ -1102,7 +1145,7 @@
           "file": "confidentiality-acknowledgement.docx"
         },
         {
-          "num": 59,
+          "num": 61,
           "slug": "policy-acknowledgement",
           "name": "Policy Acknowledgement / Availability Evidence",
           "purpose": "Covers where policies are published and acknowledgement tracker.",
@@ -1117,7 +1160,7 @@
           "file": "policy-acknowledgement.xlsx"
         },
         {
-          "num": 60,
+          "num": 62,
           "slug": "awareness-training-record",
           "name": "Security Awareness Training Record",
           "purpose": "Captures course, audience, completion date and pass score.",
@@ -1137,7 +1180,7 @@
           "file": "awareness-training-record.xlsx"
         },
         {
-          "num": 61,
+          "num": 63,
           "slug": "hipaa-training-record",
           "name": "HIPAA Workforce Training Record",
           "purpose": "Captures HIPAA-specific modules and completion.",
@@ -1151,7 +1194,7 @@
           "file": "hipaa-training-record.xlsx"
         },
         {
-          "num": 62,
+          "num": 64,
           "slug": "secure-coding-training",
           "name": "Secure Coding Training Record",
           "purpose": "Captures developer training topics and completion.",
@@ -1165,7 +1208,7 @@
           "file": "secure-coding-training.xlsx"
         },
         {
-          "num": 63,
+          "num": 65,
           "slug": "performance-review-log",
           "name": "Performance Evaluation Completion Log",
           "purpose": "Captures review cycle, completion status and security objective included.",
@@ -1182,7 +1225,7 @@
           "file": "performance-review-log.xlsx"
         },
         {
-          "num": 64,
+          "num": 66,
           "slug": "termination-checklist",
           "name": "Employee Termination Checklist",
           "purpose": "Captures leaver details, access revoked per system, assets returned, SLAs and sign-off.",
@@ -1203,7 +1246,7 @@
           "file": "termination-checklist.docx"
         },
         {
-          "num": 65,
+          "num": 67,
           "slug": "asset-return-record",
           "name": "Asset Return Record",
           "purpose": "Captures asset tag, condition, received by and date.",
@@ -1220,7 +1263,7 @@
           "file": "asset-return-record.xlsx"
         },
         {
-          "num": 66,
+          "num": 68,
           "slug": "visitor-log",
           "name": "Office Visitor Log",
           "purpose": "Captures visitor, host, purpose, time in/out and badge.",
@@ -1244,7 +1287,7 @@
       "name": "Access Management",
       "templates": [
         {
-          "num": 67,
+          "num": 69,
           "slug": "access-request",
           "name": "Access Request Form and Ticket History",
           "purpose": "Captures requester, system, role, approver and provisioned date.",
@@ -1264,7 +1307,7 @@
           "file": "access-request.xlsx"
         },
         {
-          "num": 68,
+          "num": 70,
           "slug": "access-denial-log",
           "name": "Access Request Denial Log",
           "purpose": "Captures request, reason denied and approver.",
@@ -1280,7 +1323,7 @@
           "file": "access-denial-log.xlsx"
         },
         {
-          "num": 69,
+          "num": 71,
           "slug": "customer-access-request",
           "name": "Customer Account Access Request",
           "purpose": "Captures support access to customer tenant, consent and expiry.",
@@ -1296,7 +1339,7 @@
           "file": "customer-access-request.xlsx"
         },
         {
-          "num": 70,
+          "num": 72,
           "slug": "access-review-plan",
           "name": "User Access Review Plan",
           "purpose": "Covers systems, frequency and reviewers.",
@@ -1312,7 +1355,7 @@
           "file": "access-review-plan.docx"
         },
         {
-          "num": 71,
+          "num": 73,
           "slug": "access-review-record",
           "name": "User Access Review Record",
           "purpose": "Captures user, role, keep/modify/remove, reviewer and date.",
@@ -1333,7 +1376,7 @@
           "file": "access-review-record.xlsx"
         },
         {
-          "num": 72,
+          "num": 74,
           "slug": "privileged-user-list",
           "name": "Privileged User List",
           "purpose": "Captures account, privilege, justification and owner.",
@@ -1350,7 +1393,7 @@
           "file": "privileged-user-list.xlsx"
         },
         {
-          "num": 73,
+          "num": 75,
           "slug": "repo-access-review",
           "name": "Source Control Access Review",
           "purpose": "Captures repo, user, permission level and decision.",
@@ -1367,7 +1410,7 @@
           "file": "repo-access-review.xlsx"
         },
         {
-          "num": 74,
+          "num": 76,
           "slug": "change-permission-matrix",
           "name": "Change Control Permission Matrix",
           "purpose": "Covers who can merge/deploy and segregation of duties.",
@@ -1382,7 +1425,7 @@
           "file": "change-permission-matrix.docx"
         },
         {
-          "num": 75,
+          "num": 77,
           "slug": "admin-non-repudiation",
           "name": "Admin Account Non-Repudiation Evidence",
           "purpose": "Captures named admin accounts, logging and no shared credentials.",
@@ -1398,7 +1441,7 @@
           "file": "admin-non-repudiation.xlsx"
         },
         {
-          "num": 76,
+          "num": 78,
           "slug": "session-timeout",
           "name": "Session Timeout Configuration Evidence",
           "purpose": "Captures application, timeout value and screenshot slot.",
@@ -1421,7 +1464,7 @@
       "name": "Engineering, Change and SDLC",
       "templates": [
         {
-          "num": 77,
+          "num": 79,
           "slug": "change-management-procedure",
           "name": "Change Management Procedure",
           "purpose": "Covers request, risk rating, testing, approval and rollback.",
@@ -1439,7 +1482,7 @@
           "file": "change-management-procedure.docx"
         },
         {
-          "num": 78,
+          "num": 80,
           "slug": "qa-process",
           "name": "QA Process Documentation",
           "purpose": "Covers test levels and entry/exit criteria.",
@@ -1454,7 +1497,7 @@
           "file": "qa-process.docx"
         },
         {
-          "num": 79,
+          "num": 81,
           "slug": "acceptance-test-record",
           "name": "QA and Acceptance Test Record",
           "purpose": "Captures release, test cases, results and sign-off.",
@@ -1471,7 +1514,7 @@
           "file": "acceptance-test-record.xlsx"
         },
         {
-          "num": 80,
+          "num": 82,
           "slug": "security-test-record",
           "name": "Security Integration Test Record",
           "purpose": "Captures security test cases in pipeline and results.",
@@ -1486,7 +1529,7 @@
           "file": "security-test-record.xlsx"
         },
         {
-          "num": 81,
+          "num": 83,
           "slug": "cicd-description",
           "name": "CI/CD Pipeline Description",
           "purpose": "Covers stages, automated checks and approvals.",
@@ -1502,7 +1545,7 @@
           "file": "cicd-description.docx"
         },
         {
-          "num": 82,
+          "num": 84,
           "slug": "engineering-runbook",
           "name": "Engineering Operating Procedures",
           "purpose": "Covers runbooks for routine operations.",
@@ -1516,7 +1559,7 @@
           "file": "engineering-runbook.docx"
         },
         {
-          "num": 83,
+          "num": 85,
           "slug": "project-risk-assessment",
           "name": "Project Security Risk Assessment",
           "purpose": "Covers project, threats, controls and residual risk.",
@@ -1533,7 +1576,7 @@
           "file": "project-risk-assessment.docx"
         },
         {
-          "num": 84,
+          "num": 86,
           "slug": "prod-data-attestation",
           "name": "Production Data in Non-Prod Attestation",
           "purpose": "Covers environments, data handling rules and exceptions.",
@@ -1549,7 +1592,7 @@
           "file": "prod-data-attestation.docx"
         },
         {
-          "num": 85,
+          "num": 87,
           "slug": "config-baseline",
           "name": "Secure Configuration Baseline",
           "purpose": "Covers component, hardening standard and deviations.",
@@ -1565,7 +1608,7 @@
           "file": "config-baseline.docx"
         },
         {
-          "num": 86,
+          "num": 88,
           "slug": "client-code-review",
           "name": "Mobile / Client Code Security Review",
           "purpose": "Captures component, scan tool type and findings.",
@@ -1581,7 +1624,7 @@
           "file": "client-code-review.xlsx"
         },
         {
-          "num": 87,
+          "num": 89,
           "slug": "release-notes",
           "name": "Release Notes / Public Change Log",
           "purpose": "Captures version, date, changes and security fixes.",
@@ -1599,7 +1642,7 @@
           "file": "release-notes.xlsx"
         },
         {
-          "num": 88,
+          "num": 90,
           "slug": "internal-change-notice",
           "name": "Internal System Update Communication",
           "purpose": "Covers audience, change summary, date and channel.",
@@ -1617,7 +1660,7 @@
           "file": "internal-change-notice.docx"
         },
         {
-          "num": 89,
+          "num": 91,
           "slug": "outsourced-dev-clauses",
           "name": "Outsourced Development Contract Clauses",
           "purpose": "Covers secure SDLC, IP, testing and audit rights.",
@@ -1640,7 +1683,7 @@
       "name": "Infrastructure, Operations and Monitoring",
       "templates": [
         {
-          "num": 90,
+          "num": 92,
           "slug": "network-diagram",
           "name": "Network Diagram Template",
           "purpose": "Covers trust zones, data flows and ingress/egress.",
@@ -1657,7 +1700,7 @@
           "file": "network-diagram.docx"
         },
         {
-          "num": 91,
+          "num": 93,
           "slug": "network-segregation",
           "name": "Network Segregation Evidence",
           "purpose": "Captures segments, rules and justification.",
@@ -1676,7 +1719,7 @@
           "file": "network-segregation.xlsx"
         },
         {
-          "num": 92,
+          "num": 94,
           "slug": "firewall-review",
           "name": "Firewall Review",
           "purpose": "Captures rule inventory, review criteria, changes required and dual approval.",
@@ -1693,7 +1736,7 @@
           "file": "firewall-review.docx"
         },
         {
-          "num": 93,
+          "num": 95,
           "slug": "ids-deployment",
           "name": "Intrusion Detection Deployment Record",
           "purpose": "Captures coverage, configuration and alert routing.",
@@ -1710,7 +1753,7 @@
           "file": "ids-deployment.xlsx"
         },
         {
-          "num": 94,
+          "num": 96,
           "slug": "ids-alert-log",
           "name": "IDS Alert Review Log",
           "purpose": "Captures alert, triage outcome, ticket and analyst.",
@@ -1728,7 +1771,7 @@
           "file": "ids-alert-log.xlsx"
         },
         {
-          "num": 95,
+          "num": 97,
           "slug": "log-alerting",
           "name": "Log Alerting Configuration",
           "purpose": "Captures event types, thresholds and recipients.",
@@ -1745,7 +1788,7 @@
           "file": "log-alerting.xlsx"
         },
         {
-          "num": 96,
+          "num": 98,
           "slug": "ops-dashboard",
           "name": "Operational Alert Dashboard Evidence",
           "purpose": "Captures metrics monitored and screenshot slot.",
@@ -1760,7 +1803,7 @@
           "file": "ops-dashboard.xlsx"
         },
         {
-          "num": 97,
+          "num": 99,
           "slug": "capacity-monitoring",
           "name": "Capacity Monitoring Record",
           "purpose": "Captures resource, threshold, trend and action.",
@@ -1777,7 +1820,7 @@
           "file": "capacity-monitoring.xlsx"
         },
         {
-          "num": 98,
+          "num": 100,
           "slug": "capacity-request",
           "name": "Capacity Increase Request",
           "purpose": "Captures driver, forecast and approval.",
@@ -1793,7 +1836,7 @@
           "file": "capacity-request.xlsx"
         },
         {
-          "num": 99,
+          "num": 101,
           "slug": "autoscaling",
           "name": "Autoscaling Configuration Evidence",
           "purpose": "Captures service, min/max and triggers.",
@@ -1809,7 +1852,7 @@
           "file": "autoscaling.xlsx"
         },
         {
-          "num": 100,
+          "num": 102,
           "slug": "status-page",
           "name": "Application Status Page Evidence",
           "purpose": "Captures public URL placeholder, components and history.",
@@ -1826,7 +1869,7 @@
           "file": "status-page.xlsx"
         },
         {
-          "num": 101,
+          "num": 103,
           "slug": "malware-protection",
           "name": "Malware Protection Deployment Record",
           "purpose": "Captures endpoint coverage and update frequency.",
@@ -1841,7 +1884,7 @@
           "file": "malware-protection.xlsx"
         },
         {
-          "num": 102,
+          "num": 104,
           "slug": "software-monitoring",
           "name": "Installed Software Monitoring Record",
           "purpose": "Captures allowed list, exceptions and review.",
@@ -1857,7 +1900,7 @@
           "file": "software-monitoring.xlsx"
         },
         {
-          "num": 103,
+          "num": 105,
           "slug": "web-filtering",
           "name": "Web Filtering Configuration",
           "purpose": "Covers categories blocked and coverage.",
@@ -1872,7 +1915,7 @@
           "file": "web-filtering.docx"
         },
         {
-          "num": 104,
+          "num": 106,
           "slug": "encryption-at-rest",
           "name": "Encryption at Rest Evidence",
           "purpose": "Captures data store, method and key management.",
@@ -1888,7 +1931,7 @@
           "file": "encryption-at-rest.xlsx"
         },
         {
-          "num": 105,
+          "num": 107,
           "slug": "removable-media",
           "name": "Removable Media Encryption Standard",
           "purpose": "Covers allowed devices, encryption and approvals.",
@@ -1905,7 +1948,7 @@
           "file": "removable-media.docx"
         },
         {
-          "num": 106,
+          "num": 108,
           "slug": "backup-log",
           "name": "Backup Schedule and Completion Log",
           "purpose": "Captures system, frequency, success and retention.",
@@ -1922,7 +1965,7 @@
           "file": "backup-log.xlsx"
         },
         {
-          "num": 107,
+          "num": 109,
           "slug": "redundancy",
           "name": "Redundant Location Evidence",
           "purpose": "Captures primary/secondary regions and failover method.",
@@ -1937,7 +1980,7 @@
           "file": "redundancy.xlsx"
         },
         {
-          "num": 108,
+          "num": 110,
           "slug": "restore-test",
           "name": "Data Restore Test Record",
           "purpose": "Captures backup tested, restore time, integrity check and result.",
@@ -1955,7 +1998,7 @@
           "file": "restore-test.xlsx"
         },
         {
-          "num": 109,
+          "num": 111,
           "slug": "dr-tabletop",
           "name": "Table Top Exercise Scenarios (Incident Response and DR)",
           "purpose": "Covers 5 ready scenarios, participants, exercise log, findings and sign-off.",
@@ -1976,7 +2019,7 @@
           "file": "dr-tabletop.docx"
         },
         {
-          "num": 110,
+          "num": 112,
           "slug": "disposal-certificate",
           "name": "Proof of Media / Device Disposal (Nil Activity Email)",
           "purpose": "Covers disposal certificate (NIST 800-88) plus nil-disposal email confirmation.",
@@ -1993,7 +2036,7 @@
           "file": "disposal-certificate.docx"
         },
         {
-          "num": 111,
+          "num": 113,
           "slug": "retention-deletion",
           "name": "Automated Data Deletion on Retention Expiry",
           "purpose": "Covers data type, retention and deletion mechanism.",
@@ -2009,7 +2052,7 @@
           "file": "retention-deletion.docx"
         },
         {
-          "num": 112,
+          "num": 114,
           "slug": "customer-deletion-record",
           "name": "Certificate of Destruction (Customer Data Deletion Record)",
           "purpose": "Captures deletion certificate across all systems plus nil-request email confirmation.",
@@ -2025,7 +2068,7 @@
           "file": "customer-deletion-record.docx"
         },
         {
-          "num": 113,
+          "num": 115,
           "slug": "customer-deletion-nil-confirmation",
           "name": "Customer Data Deletion Review: Nil Requests (Internal Email Chain)",
           "purpose": "Captures review sources, outcome and compliance register entry.",
@@ -2049,7 +2092,7 @@
       "name": "Vulnerability Management and Incidents",
       "templates": [
         {
-          "num": 114,
+          "num": 116,
           "slug": "vuln-procedure",
           "name": "Vulnerability Management Procedure",
           "purpose": "Covers identification, CVSS-based prioritisation and SLAs.",
@@ -2065,7 +2108,7 @@
           "file": "vuln-procedure.docx"
         },
         {
-          "num": 115,
+          "num": 117,
           "slug": "vuln-scan-summary",
           "name": "Vulnerability Scan Summary",
           "purpose": "Captures scope, date, severity counts and owner.",
@@ -2085,7 +2128,7 @@
           "file": "vuln-scan-summary.xlsx"
         },
         {
-          "num": 116,
+          "num": 118,
           "slug": "vuln-remediation-sample",
           "name": "Remediated Vulnerability Sample",
           "purpose": "Captures finding, severity, fix date and verification.",
@@ -2105,7 +2148,7 @@
           "file": "vuln-remediation-sample.xlsx"
         },
         {
-          "num": 117,
+          "num": 119,
           "slug": "pentest-report",
           "name": "Penetration Test Report Template",
           "purpose": "Covers scope, method, findings and risk ratings.",
@@ -2124,7 +2167,7 @@
           "file": "pentest-report.docx"
         },
         {
-          "num": 118,
+          "num": 120,
           "slug": "pentest-remediation",
           "name": "Pen Test Remediation Tracker",
           "purpose": "Captures finding, owner, target date and retest result.",
@@ -2142,7 +2185,7 @@
           "file": "pentest-remediation.xlsx"
         },
         {
-          "num": 119,
+          "num": 121,
           "slug": "incident-rca",
           "name": "Incident Report Template",
           "purpose": "Covers detection, containment, RCA, notifications, CAPA and nil-incident confirmation.",
@@ -2164,7 +2207,7 @@
           "file": "incident-rca.docx"
         },
         {
-          "num": 120,
+          "num": 122,
           "slug": "incident-nil-confirmation",
           "name": "No Reportable Security Incidents (Internal Email Chain)",
           "purpose": "Covers records reviewed, confirmation and incident register entry.",
@@ -2183,7 +2226,7 @@
           "file": "incident-nil-confirmation.docx"
         },
         {
-          "num": 121,
+          "num": 123,
           "slug": "incident-register",
           "name": "Incident Register",
           "purpose": "Captures incident log with SLA timers, severity matrix, PIR and control mapping.",
@@ -2203,7 +2246,7 @@
           "file": "incident-register.xlsx"
         },
         {
-          "num": 122,
+          "num": 124,
           "slug": "hipaa-breach-report",
           "name": "HIPAA Breach Report",
           "purpose": "Captures discovery date, PHI involved and risk assessment (4-factor).",
@@ -2219,7 +2262,7 @@
           "file": "hipaa-breach-report.docx"
         },
         {
-          "num": 123,
+          "num": 125,
           "slug": "breach-notifications",
           "name": "Breach Notification Letter Set",
           "purpose": "Covers individual and regulator and media notice templates.",
@@ -2234,7 +2277,7 @@
           "file": "breach-notifications.docx"
         },
         {
-          "num": 124,
+          "num": 126,
           "slug": "regulator-cooperation",
           "name": "Regulator Investigation Cooperation Record",
           "purpose": "Captures request, records provided and dates.",
@@ -2256,7 +2299,7 @@
       "name": "Vendor and Third-Party Risk",
       "templates": [
         {
-          "num": 125,
+          "num": 127,
           "slug": "vendor-security-review",
           "name": "Vendor Security Review Questionnaire and Summary",
           "purpose": "Covers criticality, data access, findings and decision.",
@@ -2275,7 +2318,7 @@
           "file": "vendor-security-review.docx"
         },
         {
-          "num": 126,
+          "num": 128,
           "slug": "supplier-clauses",
           "name": "Supplier Agreement Security Clauses",
           "purpose": "Covers security requirements, breach notice and audit rights.",
@@ -2291,7 +2334,7 @@
           "file": "supplier-clauses.docx"
         },
         {
-          "num": 127,
+          "num": 129,
           "slug": "msa-template",
           "name": "Professional Service Agreement (MSA) with SOW, Fee Schedule and SLA",
           "purpose": "Covers term, fees, security, incident notice, confidentiality, DPA and SLA appendices.",
@@ -2313,7 +2356,7 @@
           "file": "msa-template.docx"
         },
         {
-          "num": 128,
+          "num": 130,
           "slug": "cloud-provider-review",
           "name": "Cloud Provider Agreement Review",
           "purpose": "Captures shared responsibility and certifications reviewed.",
@@ -2329,7 +2372,7 @@
           "file": "cloud-provider-review.xlsx"
         },
         {
-          "num": 129,
+          "num": 131,
           "slug": "provider-cert-review",
           "name": "Infrastructure Provider Certification Review",
           "purpose": "Captures report reviewed, period, exceptions and CUECs.",
@@ -2346,7 +2389,7 @@
           "file": "provider-cert-review.xlsx"
         },
         {
-          "num": 130,
+          "num": 132,
           "slug": "baa-template",
           "name": "Business Associate Agreement Template",
           "purpose": "Covers HIPAA BAA standard terms.",
@@ -2360,7 +2403,7 @@
           "file": "baa-template.docx"
         },
         {
-          "num": 131,
+          "num": 133,
           "slug": "subcontractor-phi-check",
           "name": "Subcontractor PHI Requirements Verification",
           "purpose": "Covers flow-down of BAA terms.",
@@ -2374,7 +2417,7 @@
           "file": "subcontractor-phi-check.docx"
         },
         {
-          "num": 132,
+          "num": 134,
           "slug": "cyber-insurance-summary",
           "name": "Cyber Insurance Summary",
           "purpose": "Captures coverage type, limits and period (no policy numbers).",
@@ -2396,7 +2439,7 @@
       "name": "Privacy (GDPR and Data Protection)",
       "templates": [
         {
-          "num": 133,
+          "num": 135,
           "slug": "data-inventory-map",
           "name": "Data Inventory Map",
           "purpose": "Covers system-level inventory: data subjects, categories, lawful basis, location, transfers, retention and owner.",
@@ -2417,7 +2460,7 @@
           "file": "data-inventory-map.xlsx"
         },
         {
-          "num": 134,
+          "num": 136,
           "slug": "ropa-dpia",
           "name": "Records of Processing (ROPA) and DPIA",
           "purpose": "Covers controller and processor Art. 30 records with examples and DPIA template and guidance.",
@@ -2432,7 +2475,7 @@
           "file": "ropa-dpia.xlsx"
         },
         {
-          "num": 135,
+          "num": 137,
           "slug": "prior-consultation",
           "name": "Prior Consultation Record",
           "purpose": "Captures when DPIA residual risk is high and regulator correspondence.",
@@ -2447,7 +2490,7 @@
           "file": "prior-consultation.xlsx"
         },
         {
-          "num": 136,
+          "num": 138,
           "slug": "special-category-assessment",
           "name": "Special Category Data Assessment",
           "purpose": "Covers category, article 9 condition and safeguards.",
@@ -2463,7 +2506,7 @@
           "file": "special-category-assessment.docx"
         },
         {
-          "num": 137,
+          "num": 139,
           "slug": "criminal-data-authorisation",
           "name": "Criminal Offence Data Authorisation",
           "purpose": "Covers legal basis under Article 10.",
@@ -2477,7 +2520,7 @@
           "file": "criminal-data-authorisation.docx"
         },
         {
-          "num": 138,
+          "num": 140,
           "slug": "customer-dpa",
           "name": "Customer DPA Template",
           "purpose": "Covers controller/processor terms, SCCs and sub-processors.",
@@ -2493,7 +2536,7 @@
           "file": "customer-dpa.docx"
         },
         {
-          "num": 139,
+          "num": 141,
           "slug": "dsar",
           "name": "Data Subject Request Procedure and Log",
           "purpose": "Covers request type, ID verification and response date.",
@@ -2509,7 +2552,7 @@
           "file": "dsar.docx"
         },
         {
-          "num": 140,
+          "num": 142,
           "slug": "subprocessor-notice",
           "name": "Sub-Processor Change Notice",
           "purpose": "Covers notice period and objection process.",
@@ -2524,7 +2567,7 @@
           "file": "subprocessor-notice.docx"
         },
         {
-          "num": 141,
+          "num": 143,
           "slug": "transfers-register",
           "name": "Transfers and Disclosures Register",
           "purpose": "Captures recipient, country, mechanism and date.",
@@ -2541,7 +2584,7 @@
           "file": "transfers-register.xlsx"
         },
         {
-          "num": 142,
+          "num": 144,
           "slug": "processing-instructions",
           "name": "Processing on Customer Instruction Record",
           "purpose": "Captures instruction source, scope and deviations.",
@@ -2557,7 +2600,7 @@
           "file": "processing-instructions.xlsx"
         },
         {
-          "num": 143,
+          "num": 145,
           "slug": "joint-controller-matrix",
           "name": "Joint Controller Responsibility Matrix",
           "purpose": "Covers obligation and party responsible.",
@@ -2572,7 +2615,7 @@
           "file": "joint-controller-matrix.docx"
         },
         {
-          "num": 144,
+          "num": 146,
           "slug": "data-minimisation",
           "name": "Data Minimisation Objectives",
           "purpose": "Covers field, necessity test and reduction action.",
@@ -2588,7 +2631,7 @@
           "file": "data-minimisation.docx"
         },
         {
-          "num": 145,
+          "num": 147,
           "slug": "pseudonymisation",
           "name": "Pseudonymisation Procedure",
           "purpose": "Covers technique, key separation and re-identification controls.",
@@ -2604,7 +2647,7 @@
           "file": "pseudonymisation.docx"
         },
         {
-          "num": 146,
+          "num": 148,
           "slug": "parental-consent",
           "name": "Parental Consent Record and Response",
           "purpose": "Captures age verification, consent method and follow-up.",
@@ -2620,7 +2663,7 @@
           "file": "parental-consent.xlsx"
         },
         {
-          "num": 147,
+          "num": 149,
           "slug": "authority-cooperation",
           "name": "Supervisory Authority Cooperation Procedure",
           "purpose": "Covers contact point and response SLAs.",
@@ -2635,7 +2678,7 @@
           "file": "authority-cooperation.docx"
         },
         {
-          "num": 148,
+          "num": 150,
           "slug": "lead-authority",
           "name": "Lead Supervisory Authority Determination",
           "purpose": "Covers main establishment analysis.",
@@ -2649,7 +2692,7 @@
           "file": "lead-authority.docx"
         },
         {
-          "num": 149,
+          "num": 151,
           "slug": "eu-representative",
           "name": "EU Representative Appointment Letter",
           "purpose": "Covers article 27 mandate.",
@@ -2663,7 +2706,7 @@
           "file": "eu-representative.docx"
         },
         {
-          "num": 150,
+          "num": 152,
           "slug": "dpf-certification",
           "name": "Data Privacy Framework Self-Certification Checklist and Annual Verification",
           "purpose": "Captures principles, recourse and annual review.",
@@ -2679,7 +2722,7 @@
           "file": "dpf-certification.xlsx"
         },
         {
-          "num": 151,
+          "num": 153,
           "slug": "dpf-contact",
           "name": "DPF Contact Designation",
           "purpose": "Covers named role and contact channel.",
@@ -2694,7 +2737,7 @@
           "file": "dpf-contact.docx"
         },
         {
-          "num": 152,
+          "num": 154,
           "slug": "recourse-mechanism",
           "name": "Independent Recourse / Arbitration Record",
           "purpose": "Captures selected body and fee contribution record.",
@@ -2709,7 +2752,7 @@
           "file": "recourse-mechanism.xlsx"
         },
         {
-          "num": 153,
+          "num": 155,
           "slug": "cookie-policy",
           "name": "Cookie Policy Template",
           "purpose": "Covers cookie categories, consent, GPC and blank cookie tables.",
@@ -2732,7 +2775,7 @@
       "name": "Customer-Facing Trust Documents",
       "templates": [
         {
-          "num": 154,
+          "num": 156,
           "slug": "privacy-notice",
           "name": "Public Privacy Notice",
           "purpose": "Public notice explaining what personal data is collected, why, how long it is kept and individual rights.",
@@ -2754,7 +2797,7 @@
           "file": "privacy-notice.docx"
         },
         {
-          "num": 155,
+          "num": 157,
           "slug": "terms-of-service",
           "name": "Terms of Service",
           "purpose": "Public terms governing use of the service, including security and data commitments.",
@@ -2775,7 +2818,7 @@
           "file": "terms-of-service.docx"
         },
         {
-          "num": 156,
+          "num": 158,
           "slug": "security-page",
           "name": "Security Information Page",
           "purpose": "Public page describing security practices, certifications and how to report a vulnerability.",
@@ -2794,7 +2837,7 @@
           "file": "security-page.docx"
         },
         {
-          "num": 157,
+          "num": 159,
           "slug": "support-page",
           "name": "Customer Support Contact Page",
           "purpose": "Public page describing support channels, hours and response targets.",
@@ -2812,7 +2855,7 @@
           "file": "support-page.docx"
         },
         {
-          "num": 158,
+          "num": 160,
           "slug": "product-docs",
           "name": "Product Documentation Site Outline",
           "purpose": "Outline for product documentation, covering setup, features, security settings and change history.",
@@ -2831,7 +2874,7 @@
           "file": "product-docs.docx"
         },
         {
-          "num": 159,
+          "num": 161,
           "slug": "soc2-system-description",
           "name": "SOC 2 System Description (Section III)",
           "purpose": "Section III of a SOC 2 report: services, boundaries, components, commitments and control environment.",

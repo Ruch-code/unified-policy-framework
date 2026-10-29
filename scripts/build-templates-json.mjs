@@ -8,6 +8,8 @@ const ALL = ['SOC2', 'ISO27001', 'HIPAA', 'GDPR'];
 // so they get a written purpose and standard document sections.
 const DOC_PURPOSE = {
   'infosec-aup-policy': 'Sets the overall security commitment and the acceptable use rules for systems, data and devices.',
+  'infosec-roles-policy': 'Defines information security roles, responsibilities and authorities across the organisation.',
+  'physical-security-policy-remote': 'Physical security requirements for remote-first organisations without dedicated offices.',
   'access-control-policy': 'Defines how access is requested, approved, provisioned, reviewed and removed.',
   'asset-management-policy': 'Defines how information assets are identified, owned, classified and handled through their life cycle.',
   'bcdr-plan': 'Describes how critical services are kept running or restored after a disruption, with recovery objectives and roles.',
