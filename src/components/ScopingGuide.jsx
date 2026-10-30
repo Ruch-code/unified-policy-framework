@@ -283,86 +283,6 @@ function ScopingGuide({ isDark = false }) {
         </p>
       </div>
 
-      <div className={`bg-white rounded-2xl border ${isDark ? 'bg-surface-dark-100 border-surface-dark-300' : 'bg-surface-100 border-surface-300'} p-6 mb-8`}>
-        <div className="flex flex-col md:flex-row items-center gap-8">
-          <div className="relative shrink-0">
-            <svg width="160" height="160" viewBox="0 0 160 160">
-              <circle cx="80" cy="80" r="70" stroke="#e5e7eb" strokeWidth="12" fill="none" />
-              <circle cx="80" cy="80" r="70" stroke="#7c3aed" strokeWidth="12" fill="none" strokeDasharray={2 * Math.PI * 70} strokeDashoffset={2 * Math.PI * 70 * (1 - progressPercent / 100)} strokeLinecap="round" transform="rotate(-90 80 80)" style={{ transition: 'stroke-dashoffset 1s ease' }} />
-            </svg>
-            <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-4xl font-bold text-navy-900">{progressPercent}%</span>
-              <span className="text-sm text-gray-500">{completedTasks}/{totalTasks} complete</span>
-              <span className="text-xs text-gray-400 mt-1 flex items-center gap-1"><Clock className="w-3 h-3" /> ~{checklistItems.reduce((s, t) => s + (t.hours || 0), 0)}h total</span>
-            </div>
-          </div>
-
-          <div className="flex-1 grid grid-cols-2 sm:grid-cols-4 gap-3">
-            {PHASES_ORDER.map((phase, idx) => {
-              const stats = {
-                completed: checklistItems.filter(item => item.phase === phase).filter((_, i) => progress[`${phase}-${i}`]).length,
-                total: checklistItems.filter(item => item.phase === phase).length
-              };
-              const pct = stats.total > 0 ? Math.round((stats.completed / stats.total) * 100) : 0;
-              const phaseCardClass = 'text-center p-3 rounded-xl border transition-all ' + (pct >= 80 ? 'bg-indigo-50 border-indigo-200 dark:bg-indigo-900/30 dark:border-indigo-800' : 'bg-gray-50 border-gray-200 dark:bg-slate-800/60 dark:border-slate-700');
-              return (
-                <div key={phase} className={phaseCardClass}>
-                  <div className={'text-lg font-bold ' + (pct >= 80 ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-500 dark:text-slate-300')}>
-                    {pct >= 80 ? '✓' : `${pct}%`}
-                  </div>
-                  <div className="text-xs font-medium text-gray-500 dark:text-slate-400">Lvl {PHASES_ORDER.indexOf(phase) + 1}: {phase.split(' ')[0]}</div>
-                </div>
-              );
-            })}
-          </div>
-
-          <button onClick={resetProgress} className="text-sm text-gray-400 hover:text-red-500 transition underline self-start shrink-0">
-            <RefreshCw className="w-4 h-4 inline mr-1" />
-            Reset
-          </button>
-        </div>
-      </div>
-
-      <div className="mb-6 flex flex-col sm:flex-row gap-4">
-        <div className="flex-1 relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-[50%] w-5 h-5 text-slate-400" aria-hidden="true" />
-          <input
-            type="search"
-            value={searchQuery}
-            onChange={e => setSearchQuery(e.target.value)}
-            placeholder="Search tasks, clauses, IDs…"
-            className={searchInputClass}
-            autoComplete="off"
-            autoCapitalize="off"
-            autoCorrect="off"
-            spellCheck={false}
-            aria-label="Search compliance tasks"
-          />
-        </div>
-        <div className="flex flex-wrap gap-2">
-          <select
-            value={activeSize}
-            onChange={e => setActiveSize(e.target.value)}
-            className={selectClass}
-            aria-label="Filter by organization size"
-          >
-            <option value="all">All Sizes</option>
-            <option value="small">Small (1-50)</option>
-            <option value="medium">Medium (51-500)</option>
-            <option value="large">Large (500+)</option>
-          </select>
-          <select
-            value={activeScenario}
-            onChange={e => setActiveScenario(e.target.value)}
-            className={selectClass}
-            aria-label="Filter by scenario"
-          >
-            <option value="all">All Scenarios</option>
-            {scenarios.map(s => <option key={s.id} value={s.id}>{s.label}</option>)}
-          </select>
-        </div>
-      </div>
-
       <ScopingIntro isDark={isDark} />
       <ScopeDimensions isDark={isDark} />
       <InterfacesAndDependencies isDark={isDark} />
@@ -370,42 +290,6 @@ function ScopingGuide({ isDark = false }) {
       <ScopeStatementTemplate isDark={isDark} />
       <SizeProfileTabs isDark={isDark} activeSize={activeSize} onSizeChange={setActiveSize} />
 
-      <div className="mt-8">
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
-          <h2 className="text-2xl font-bold text-navy-900 dark:text-text-dark-primary flex items-center gap-3">
-            <span className="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center">
-              <ClipboardCheck className="w-5 h-5" />
-            </span>
-            Interactive Checklist
-          </h2>
-          <div className="flex items-center gap-2">
-            <label className="inline-flex items-center gap-1.5 text-sm text-gray-600 dark:text-slate-400">
-              <input
-                type="checkbox"
-                className="w-4 h-4 rounded border-gray-300 dark:border-slate-700 focus:ring-2 focus:ring-indigo-500 text-indigo-600"
-              />
-              Show only incomplete
-            </label>
-          </div>
-        </div>
-
-        <div className="space-y-6">
-          {PHASES_ORDER.map((phase, idx) => (
-            <PhaseSection
-              key={phase}
-              phase={phase}
-              items={checklistItems}
-              isDark={isDark}
-              progress={progress}
-              handleToggle={handleToggle}
-              expandedTask={expandedTask}
-              setExpandedTask={setExpandedTask}
-              handleCheckbox={handleCheckbox}
-              storageKey="onelens-iso27001-scoping-v1"
-            />
-          ))}
-        </div>
-      </div>
     </div>
   );
 }
