@@ -165,7 +165,7 @@ export default function RaiCrosswalk() {
 
       {tab === 'Use-case catalogue' && (
         <div>
-          <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Illustrative, generalised patterns, not taken from any client tracker. EU AI Act tiers are indicative; confirm with Legal. Click a row for prioritised actions.</p>
+          <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Generalised patterns common in enterprise AI reviews, with no customer, region or frequency details. EU AI Act tiers are indicative; confirm with Legal. Click a row for prioritised actions.</p>
           <div className="flex flex-wrap gap-2 mb-3" role="group" aria-label="Filter by industry">
             {['All', ...INDUSTRIES].map(i => <button key={i} type="button" aria-pressed={ind === i} onClick={() => setInd(i)} className={`px-2.5 py-1 rounded-full text-[11px] font-semibold border ${ind === i ? 'bg-violet-600 border-violet-600 text-white' : 'border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200'}`}>{i}</button>)}
           </div>
