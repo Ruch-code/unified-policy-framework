@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Layers } from 'lucide-react';
 import RelatedTemplates from '../templates/RelatedTemplates.jsx';
-import { AI_TYPES, AUTONOMY, AUDIENCE, PATTERNS, ASSESSMENT_BLOCK, ESCALATION_RULES, PRESALES_CHECKLIST, INDUSTRIES } from '../../data/raiUseCases.js';
+import { AI_TYPES, AUTONOMY, AUDIENCE, PATTERNS, ASSESSMENT_BLOCK, ESCALATION_RULES, PRESALES_CHECKLIST, INDUSTRIES, PATTERN_DETAIL, ART5_WATCH } from '../../data/raiUseCases.js';
 
 // Responsible AI review process: how the EU AI Act, ISO/IEC 42001, ISO/IEC 27090, GDPR and NIST AI RMF map and apply.
 
@@ -165,7 +165,7 @@ export default function RaiCrosswalk() {
 
       {tab === 'Use-case catalogue' && (
         <div>
-          <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Generalised patterns common in enterprise AI reviews, with no customer, region or frequency details. EU AI Act tiers are indicative; confirm with Legal. Click a row for prioritised actions.</p>
+          <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Generalised patterns common in enterprise AI reviews, with no customer, region or frequency details. EU AI Act tiers are indicative; confirm with Legal. Click a row for prioritised actions; rows with worked detail also show the end-to-end flow and key risks.</p>
           <div className="flex flex-wrap gap-2 mb-3" role="group" aria-label="Filter by industry">
             {['All', ...INDUSTRIES].map(i => <button key={i} type="button" aria-pressed={ind === i} onClick={() => setInd(i)} className={`px-2.5 py-1 rounded-full text-[11px] font-semibold border ${ind === i ? 'bg-violet-600 border-violet-600 text-white' : 'border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200'}`}>{i}</button>)}
           </div>
@@ -180,7 +180,7 @@ export default function RaiCrosswalk() {
                       <td className={TD}>{p.industry}</td><td className={TD + ' font-semibold text-gray-900 dark:text-white'}>{p.pattern}</td><td className={TD}>{p.type}</td><td className={TD}>{p.autonomy}</td><td className={TD}>{p.audience}</td><td className={TD}>{p.data}</td><td className={TD}>{p.tier}</td>
                       <td className={TD}><span className={`px-2 py-0.5 rounded-full text-xs font-bold ${RISK_CLS[p.risk]}`}>{p.risk}</span></td><td className={TD}>{p.escalate ? 'Yes' : 'No'}</td>
                     </tr>,
-                    open && <tr key={k + '-d'}><td colSpan={9} className="p-3 bg-violet-50/50 dark:bg-violet-900/10"><ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300">{p.actions.map(x => <li key={x}><span className={`font-bold ${x.startsWith('Must') ? 'text-rose-700 dark:text-rose-300' : 'text-sky-700 dark:text-sky-300'}`}>{x.split(':')[0]}:</span>{x.slice(x.indexOf(':') + 1)}</li>)}</ul></td></tr>,
+                    open && <tr key={k + '-d'}><td colSpan={9} className="p-3 bg-violet-50/50 dark:bg-violet-900/10">{PATTERN_DETAIL[p.pattern] && <div className="mb-2 space-y-1 text-sm text-gray-700 dark:text-gray-300"><p><span className="font-bold text-gray-900 dark:text-white">End-to-end flow:</span> {PATTERN_DETAIL[p.pattern].flow}</p><p><span className="font-bold text-gray-900 dark:text-white">Key risks:</span> {PATTERN_DETAIL[p.pattern].risks}</p></div>}<ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300">{[...p.actions, ...((PATTERN_DETAIL[p.pattern] || {}).extra || [])].sort((a, b) => (b.startsWith('Must') ? 1 : 0) - (a.startsWith('Must') ? 1 : 0)).map(x => <li key={x}><span className={`font-bold ${x.startsWith('Must') ? 'text-rose-700 dark:text-rose-300' : 'text-sky-700 dark:text-sky-300'}`}>{x.split(':')[0]}:</span>{x.slice(x.indexOf(':') + 1)}</li>)}</ul></td></tr>,
                   ];
                 })}
               </tbody>
@@ -210,6 +210,13 @@ export default function RaiCrosswalk() {
           <div className="rounded-xl border border-rose-200 bg-rose-50 dark:bg-rose-900/20 dark:border-rose-800 p-4">
             <h3 className="font-bold text-rose-900 dark:text-rose-200 mb-2 text-sm">Escalate to a responsible AI office or legal review when</h3>
             <ul className="list-disc pl-5 space-y-1 text-sm text-gray-800 dark:text-gray-200">{ESCALATION_RULES.map(r => <li key={r}>{r}</li>)}</ul>
+          </div>
+          <div className="overflow-x-auto rounded-xl border border-amber-200 dark:border-amber-800">
+            <table className="w-full text-sm min-w-[720px]">
+              <caption className="text-left font-bold text-amber-900 dark:text-amber-200 text-sm p-3 bg-amber-50 dark:bg-amber-900/20">EU AI Act Art. 5 watch list: patterns that can drift into prohibited practices</caption>
+              <thead><tr>{['Pattern', 'Possible Art. 5 issue', 'Check'].map(h => <th key={h} scope="col" className={TH}>{h}</th>)}</tr></thead>
+              <tbody className="divide-y divide-gray-100 dark:divide-gray-700">{ART5_WATCH.map(([a, b, c]) => <tr key={a}><td className={TD + ' font-semibold text-gray-900 dark:text-white'}>{a}</td><td className={TD}>{b}</td><td className={TD}>{c}</td></tr>)}</tbody>
+            </table>
           </div>
         </div>
       )}
