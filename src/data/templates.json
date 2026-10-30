@@ -95,12 +95,13 @@
           "num": 6,
           "slug": "statement-of-applicability",
           "name": "Statement of Applicability",
-          "purpose": "Covers annex A control, applicable Y/N, justification and implementation status.",
+          "purpose": "Covers all 93 Annex A controls, mandatory or Conditional with basis, inclusion and exclusion justification, status and auditor checks.",
           "fields": [
-            "Annex A control",
-            "Applicable Y/N",
-            "Justification",
-            "Implementation status"
+            "All 93 Annex A controls",
+            "Mandatory or Conditional with basis",
+            "Inclusion and exclusion justification",
+            "Status",
+            "Auditor checks"
           ],
           "frameworks": [
             "ISO27001"

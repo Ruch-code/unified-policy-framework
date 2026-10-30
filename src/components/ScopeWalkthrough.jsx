@@ -81,7 +81,7 @@ const SCOPE_TREE = [
     icon: CloudCog,
     title: '2. Where is production infrastructure hosted?',
     question: 'Is infrastructure fully cloud-hosted (AWS/GCP/Azure/Heroku), self-hosted (own data centers, colocation, on-prem), or hybrid?',
-    hint: 'Drives A.7.8, A.7.11, A.7.12 and A.5.23 (cloud services). Check the client’s Streetsmart page if unsure, then confirm with the client.',
+    hint: 'Drives A.7.8, A.7.11, A.7.12 and A.5.23 (cloud services). Check the client’s system description or hosting documentation if unsure, then confirm with the client.',
     branches: [
       {
         dir: 'yes',
@@ -93,7 +93,7 @@ const SCOPE_TREE = [
       {
         dir: 'no',
         label: 'Self-hosted / colocated / on-prem',
-        outcome: 'A.7.8, A.7.11, A.7.12 FLIP to Implemented and re-enter scope with Vanta test links. A.7.5 also likely re-enters for facilities protection.',
+        outcome: 'A.7.8, A.7.11, A.7.12 FLIP to Implemented and re-enter scope with GRC platform test links. A.7.5 also likely re-enters for facilities protection.',
         checks: [
           'Data center / server room physical access control',
           'UPS + power redundancy, tested (A.7.11)',
@@ -481,7 +481,7 @@ export default function ScopeWalkthrough() {
                 <strong>How to use this in the walkthrough:</strong> record each answer and the branch it takes. Whatever direction the
                 branch goes, you still must capture evidence in the SoA - an exclusion is only as good as the written reason and the named
                 compensating control. Re-run the tree whenever the client adds an office, a server, a dev, or a data processor. When in
-                doubt about hosting or vendors, check the client’s Streetsmart page, then confirm with the client before finalizing.
+                doubt about hosting or vendors, check the client’s system description or hosting documentation, then confirm with the client before finalizing.
               </span>
             </p>
           </div>

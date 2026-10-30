@@ -18,7 +18,7 @@ Generic, reusable evidence and document templates for SOC 2, ISO/IEC 27001:2022,
 | 3 | ISMS Policy | Top management commitment, objectives framework, review cycle | ISO27001 | isms-policy ★ | [Download](templates/isms-policy.docx) |
 | 4 | Roles, Responsibilities and Authorities Matrix | RACI for security roles, deputies, approval rights | ISO27001, SOC2, HIPAA, GDPR | roles-raci ★ | [Download](templates/roles-raci.docx) |
 | 5 | Risk Assessment and Treatment Methodology | Likelihood/impact scales, acceptance criteria, treatment options | ISO27001, SOC2, HIPAA | risk-methodology ★ | [Download](templates/risk-methodology.docx) |
-| 6 | Statement of Applicability | Annex A control, applicable Y/N, justification, implementation status | ISO27001 | statement-of-applicability ★ | [Download](templates/statement-of-applicability.xlsx) |
+| 6 | Statement of Applicability | All 93 Annex A controls, Mandatory or Conditional with basis, inclusion and exclusion justification, status, auditor checks | ISO27001 | statement-of-applicability ★ | [Download](templates/statement-of-applicability.xlsx) |
 | 7 | Legal, Regulatory and Contractual Requirements Register | Requirement, source, owner, applicable controls, review date | ISO27001, GDPR | legal-register ★ | [Download](templates/legal-register.docx) |
 | 8 | Documented Information Control Procedure | Versioning, approval, distribution, retention of documents | ISO27001 | document-control ★ | [Download](templates/document-control.docx) |
 | 9 | Master Document List | Doc ID, title, owner, version, last review, next review | ISO27001 | master-document-list ★ | [Download](templates/master-document-list.docx) |

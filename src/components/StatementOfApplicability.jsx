@@ -1,5 +1,39 @@
 import React, { useState } from 'react';
 import RelatedTemplates from './templates/RelatedTemplates.jsx';
+import REQ from '../data/iso27001Requirement.json';
+import TemplateDownloadButton from './templates/TemplateDownloadButton.jsx';
+import { templateBySlug } from '../utils/templateMatch.js';
+import { useAuth } from '../context/AuthContext.jsx';
+
+// Expands 'A.5.15–5.18' to ['5.15','5.16','5.17','5.18'] and returns requirement info per control.
+function requirementFor(ref) {
+  const m = String(ref).replace(/^A\./, '').match(/^(\d+)\.(\d+)(?:[–-](\d+)\.(\d+))?$/);
+  if (!m) return [];
+  const a = +m[1], b = +m[2], d = m[4] ? +m[4] : b;
+  const out = [];
+  for (let i = b; i <= d; i++) { const id = `${a}.${i}`; out.push({ id, basis: REQ.conditional[id] || null }); }
+  return out;
+}
+function RequirementBadge({ refId }) {
+  const items = requirementFor(refId);
+  if (!items.length) return null;
+  const cond = items.filter(x => x.basis);
+  if (!cond.length) return <span className="shrink-0 text-[10px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded border border-emerald-300 text-emerald-700 bg-emerald-50 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-800">Mandatory</span>;
+  return <span className="shrink-0 text-[10px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded border border-amber-300 text-amber-700 bg-amber-50 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800">{cond.length === items.length ? 'Conditional' : 'Partly conditional'}</span>;
+}
+function RequirementDetail({ refId }) {
+  const items = requirementFor(refId);
+  if (!items.length) return null;
+  const cond = items.filter(x => x.basis);
+  if (!cond.length) return <p className="text-gray-600 dark:text-text-dark-secondary"><span className="font-bold text-emerald-700 dark:text-emerald-300">Mandatory:</span> always applicable; an exclusion would not be accepted by a certification auditor.</p>;
+  return (
+    <div className="text-gray-600 dark:text-text-dark-secondary">
+      <p className="font-bold text-amber-700 dark:text-amber-300">Conditional: applicable when</p>
+      <ul className="mt-1 space-y-1">{cond.map(x => <li key={x.id}><span className="font-semibold">A.{x.id}:</span> {x.basis}</li>)}</ul>
+      {cond.length < items.length && <p className="mt-1">Other controls in this group are mandatory.</p>}
+    </div>
+  );
+}
 import {
   ClipboardList, GitBranch, CheckCircle, AlertTriangle,
   FileSignature, XCircle, MinusCircle, ListChecks, ScrollText, Landmark, Briefcase, Building2, Cpu,
@@ -121,15 +155,15 @@ const THEMES = [
     intro: 'Mostly about facilities. For a cloud-first startup without a data center, a large slice of A.7 becomes justifiably EXCLUDED - but you must write and re-validate the justification.',
     color: 'amber',
     families: [
-{ ref: 'A.7.1–7.4', title: 'Perimeters, entry, offices, monitoring', sel: 'excluded', just: 'Fully remote or landlord-controlled space → excluded; company-controlled office → in scope (badge/monitoring).', checks: ['Determine the facility model FIRST: fully remote / no on-site hosting, landlord-controlled co-working, or company-controlled office.', 'Fully remote or no on-site facility: move the controls OUT of scope - remove the justification for inclusion, flip Status to Excluded, and remove the Vanta test link in the Implementation column.', 'If excluded: document who provides the compensating control (co-working landlord badging, CCTV) - never a bare “not applicable”.', 'Company controls its own office security: keep in scope - check entry control (badge/lock), visitor policy, and monitoring (CCTV where warranted), and re-add the Vanta test link.', 'Cross-check the Streetsmart page (or confirm with the client) for on-prem vs cloud hosting before finalizing column F.'], questions: ['Who controls access to your workspace - you, the co-working landlord, or nobody?', 'Do you hold any on-site servers, racks, or network closets that change the verdict?', 'If you lease your own floor, what entry + monitoring controls exist today?', 'Is the exclusion written with a named compensating party and a re-validate date?'] },
+{ ref: 'A.7.1–7.4', title: 'Perimeters, entry, offices, monitoring', sel: 'excluded', just: 'Fully remote or landlord-controlled space → excluded; company-controlled office → in scope (badge/monitoring).', checks: ['Determine the facility model FIRST: fully remote / no on-site hosting, landlord-controlled co-working, or company-controlled office.', 'Fully remote or no on-site facility: move the controls OUT of scope - remove the justification for inclusion, flip Status to Excluded, and remove the GRC platform test link in the Implementation column.', 'If excluded: document who provides the compensating control (co-working landlord badging, CCTV) - never a bare “not applicable”.', 'Company controls its own office security: keep in scope - check entry control (badge/lock), visitor policy, and monitoring (CCTV where warranted), and re-add the GRC platform test link.', 'Cross-check the system description or hosting documentation (or confirm with the client) for on-prem vs cloud hosting before finalizing column F.'], questions: ['Who controls access to your workspace - you, the co-working landlord, or nobody?', 'Do you hold any on-site servers, racks, or network closets that change the verdict?', 'If you lease your own floor, what entry + monitoring controls exist today?', 'Is the exclusion written with a named compensating party and a re-validate date?'] },
       { ref: 'A.7.5', title: 'Protection against physical & environmental threats', sel: 'excluded', just: 'Cloud provider handles facilities and environmental protection.', checks: ['Confirm no on-prem servers/NAS/network racks anywhere (incl. someone\'s home lab).', 'If excluded: cite the cloud provider\'s environmental controls (ISO 27001/22301 or SLA) in the SoA.', 'If on-prem exists: check fire/water/power protections (smoke detectors, UPS, off-floor storage).'], questions: ['Do you run any server, NAS, or network rack at the office or at home?', 'Which cloud guarantee covers facilities uptime, and is that cited in the SoA?', 'What would trigger this control back into scope?'] },
       { ref: 'A.7.6', title: 'Working in secure areas', sel: 'excluded', just: 'No classified secure zones in the startup footprint.', checks: ['Confirm no restricted-zones exist (hardware lab, secrets room, production cage).', 'If excluded: write why it does not apply and confirm no such area is planned without review.', 'If a secure area exists (e.g., hardware lab): check access control + visitor escort + logs.'], questions: ['Do you keep any no-entry zones or anywhere visitors can\'t go unescorted?', 'What is the most sensitive thing you\'d physically protect, and where does it live?', 'Is the exclusion consistent with your asset inventory (no secret room listed)?'] },
       { ref: 'A.7.7', title: 'Clear desk and clear screen', sel: 'selected', just: 'Auto-lock + tidy desks in shared/office environments.', checks: ['Confirm policy exists + endpoints auto-lock ≤5 min (MDM enforce).', 'Walk the floor: note visible confidential info on desks/screens (or remote equivalent audit).', 'Verify enforcement, not just policy - check MDM config screenshots.', 'Confirm shared screens/privacy filters where needed.'], questions: ['What happens to confidential printouts at end of day?', 'How fast do screens auto-lock, and is that forced by MDM?', 'When you last walked the floor, what did you see?'] },
-      { ref: 'A.7.8', title: 'Equipment siting and protection', sel: 'selected', just: 'Cloud-hosted infra → defaults correct; self-hosted data centers/servers → stay in scope as Implemented.', checks: ['All infrastructure hosted by a cloud provider (the large majority of clients): by default the inputs are accurate - confirm device inventory via MDM + reasonable physical control.', 'Self-hosted (own data centers, servers, networking): keep the control IN scope - remove the justification for exclusion, flip Status to Implemented, and add the Vanta test link in the Implementation column.', 'Check shared/loaner devices are secured and tracked.', 'Verify no unattended unlocked hardware holding sensitive data.', 'Check devices in the office are locked to desks where co-working/public.'], questions: ['Is your infrastructure fully cloud-hosted (AWS/GCP/Azure/Heroku), or do you run on-prem servers?', 'If self-hosted, where are machines physically sited and who can access them?', 'Does your Streetsmart page confirm the hosting model, or must we ask the client?'] },
+      { ref: 'A.7.8', title: 'Equipment siting and protection', sel: 'selected', just: 'Cloud-hosted infra → defaults correct; self-hosted data centers/servers → stay in scope as Implemented.', checks: ['All infrastructure hosted by a cloud provider (the large majority of clients): by default the inputs are accurate - confirm device inventory via MDM + reasonable physical control.', 'Self-hosted (own data centers, servers, networking): keep the control IN scope - remove the justification for exclusion, flip Status to Implemented, and add the GRC platform test link in the Implementation column.', 'Check shared/loaner devices are secured and tracked.', 'Verify no unattended unlocked hardware holding sensitive data.', 'Check devices in the office are locked to desks where co-working/public.'], questions: ['Is your infrastructure fully cloud-hosted (AWS/GCP/Azure/Heroku), or do you run on-prem servers?', 'If self-hosted, where are machines physically sited and who can access them?', 'Does your system description or hosting documentation confirm the hosting model, or must we ask the client?'] },
       { ref: 'A.7.9', title: 'Security of assets off-premises', sel: 'selected', just: 'Laptops travel: disk encryption + locate/wipe + insurance.', checks: ['Confirm disk encryption + MDM locate/wipe enabled on all company devices.', 'Check insurance/commercial coverage for loss/theft of devices.', 'Verify travel policy (VPN, no unattended bags, airport handling) exists and is followed.', 'Check a lost-device drill: wipe + credential rotation actually works.'], questions: ['If a laptop is stolen at a conference, what does your team do in the first hour?', 'Are all laptops encrypted by default, including loaners?', 'Who is liable - company or employee - for an off-prem device loss?'] },
       { ref: 'A.7.10', title: 'Storage media', sel: 'selected', just: 'Encrypted media, wiped before reuse or disposal.', checks: ['Confirm encryption on any removable/backup media.', 'Check a wipe procedure exists and is executed before media leaves control.', 'Verify lost media is tracked in the incident register.', 'Check backups on removable media (if any) follow the same encryption + handling rules.'], questions: ['Are there USB drives or portable disks in the wild? Where, and are they encrypted?', 'What is the wipe procedure before recycling an old disk?', 'How do you destroy media that cannot be wiped?'] },
-      { ref: 'A.7.11', title: 'Supporting utilities', sel: 'excluded', just: 'Cloud-hosted → managed by provider SLA; self-hosted infra → in scope (UPS/power).', checks: ['All infrastructure hosted by a cloud provider: by default the inputs are accurate - nothing depends on office power/internet, provider SLA covers it.', 'Self-hosted (own data centers, servers, networking devices): keep the control IN scope - remove the justification for exclusion, flip Status to Implemented, and add the Vanta test link for the utility protections (UPS, power redundancy, climate).', 'If excluded: cite provider SLAs/multi-AZ in the SoA.', 'Re-check whenever colocation or on-prem equipment is added.'], questions: ['Does anything you own depend on office power or office internet to function?', 'If you host on-prem, is there a UPS/generator, and is it tested?', 'What cloud redundancy covers services if a region has an outage?'] },
-      { ref: 'A.7.12', title: 'Cabling security', sel: 'excluded', just: 'Cloud-hosted → no on-prem network rooms; self-hosted → in scope.', checks: ['All infrastructure hosted by a cloud provider: by default the inputs are accurate - no on-prem network closets, racks, or physical cabling to protect.', 'Self-hosted: keep the control IN scope - remove the justification for exclusion, flip Status to Implemented, and add the Vanta test link covering cable-routing/physical access protections.', 'If any on-prem networking exists (office router/switch): check basic physical access + documentation.', 'Write the exclusion and tie it to the (empty) on-prem inventory.'], questions: ['Do you have any on-prem network closets or racks?', 'If so, who can physically reach the cabling?', 'Is the exclusion consistent with the asset inventory?'] },
+      { ref: 'A.7.11', title: 'Supporting utilities', sel: 'excluded', just: 'Cloud-hosted → managed by provider SLA; self-hosted infra → in scope (UPS/power).', checks: ['All infrastructure hosted by a cloud provider: by default the inputs are accurate - nothing depends on office power/internet, provider SLA covers it.', 'Self-hosted (own data centers, servers, networking devices): keep the control IN scope - remove the justification for exclusion, flip Status to Implemented, and add the GRC platform test link for the utility protections (UPS, power redundancy, climate).', 'If excluded: cite provider SLAs/multi-AZ in the SoA.', 'Re-check whenever colocation or on-prem equipment is added.'], questions: ['Does anything you own depend on office power or office internet to function?', 'If you host on-prem, is there a UPS/generator, and is it tested?', 'What cloud redundancy covers services if a region has an outage?'] },
+      { ref: 'A.7.12', title: 'Cabling security', sel: 'excluded', just: 'Cloud-hosted → no on-prem network rooms; self-hosted → in scope.', checks: ['All infrastructure hosted by a cloud provider: by default the inputs are accurate - no on-prem network closets, racks, or physical cabling to protect.', 'Self-hosted: keep the control IN scope - remove the justification for exclusion, flip Status to Implemented, and add the GRC platform test link covering cable-routing/physical access protections.', 'If any on-prem networking exists (office router/switch): check basic physical access + documentation.', 'Write the exclusion and tie it to the (empty) on-prem inventory.'], questions: ['Do you have any on-prem network closets or racks?', 'If so, who can physically reach the cabling?', 'Is the exclusion consistent with the asset inventory?'] },
       { ref: 'A.7.13', title: 'Equipment maintenance', sel: 'selected', just: 'Minimal: MDM inventory + vendor warranty.', checks: ['Confirm MDM tracks age/warranty/battery/OS-version for hardware.', 'Check a replacement cadence exists for EOL devices (no unsupported OS in service).', 'Verify maintenance is logged when performed (repair, battery swap, screen).', 'Check loaner stock is current and patched before issue.'], questions: ['How old is the average company laptop, and when do you replace?', 'What happens to devices that stop receiving OS updates?', 'Who performs maintenance, and is it recorded?'] },
       { ref: 'A.7.14', title: 'Secure disposal or re-use of equipment', sel: 'selected', just: 'Crypto-erase before devices leave your control.', checks: ['Confirm crypto-erase/verified-wipe before ANY device leaves (sale, recycle, donation, re-purpose).', 'Check a disposal log: serial → wipe evidence → disposition.', 'Verify third-party disposers are vetted (if used) and wipe certificates retained.', 'Check BYO/re-purpose doesn’t skip the wipe step.'], questions: ['What is the last thing done to a laptop before you sell or donate it?', 'Can you show wipe evidence for the last 3 retired devices?', 'Do you use a certified disposal vendor, or in-house wipe?'] },
     ],
@@ -188,22 +222,22 @@ const SCENARIO_OVERRIDES = [
     title: 'Fully remote / no on-site facility - A.7.1–7.4',
     Icon: Briefcase,
     apply: 'The startup has no office, no co-working lease, and nothing physically hosted on-site.',
-    action: 'Move the four controls OUT of scope: remove the justification for inclusion, flip Status to Excluded, and remove the Vanta test links from the Implementation column.',
+    action: 'Move the four controls OUT of scope: remove the justification for inclusion, flip Status to Excluded, and remove the GRC platform test links from the Implementation column.',
     note: 'Never write a bare “not applicable”. Name the compensating party (co-working landlord badging, CCTV) and who owns that control, then re-validate the exclusion at each review.',
   },
   {
     title: 'Company-controlled office - A.7.1–7.4',
     Icon: Factory,
     apply: 'The startup leases its own floor / office and manages entry itself.',
-    action: 'Keep the controls IN scope: badge/lock entry, visitor policy, CCTV where warranted - and re-add the Vanta test links.',
+    action: 'Keep the controls IN scope: badge/lock entry, visitor policy, CCTV where warranted - and re-add the GRC platform test links.',
     note: 'If anything sensitive is hosted on-site (NAS, backup, hardware lab), those physical controls become high priority, not default-excluded.',
   },
   {
     title: 'Self-hosted infrastructure - A.7.8, A.7.11, A.7.12',
     Icon: Server,
     apply: 'The startup runs its own data center, colocated servers, network racks, or on-prem equipment.',
-    action: 'Keep the controls IN scope: remove the justification for exclusion, flip Status to Implemented, and add the Vanta test links covering equipment siting, UPS/power redundancy, climate, and cable-routing protection.',
-    note: `The cloud-first defaults are only correct for cloud-hosted startups (the majority). If you're not sure which applies, check the client's Streetsmart page (on-prem vs AWS/GCP/Azure/Heroku) and confirm with the client before finalizing column F.`,
+    action: 'Keep the controls IN scope: remove the justification for exclusion, flip Status to Implemented, and add the GRC platform test links covering equipment siting, UPS/power redundancy, climate, and cable-routing protection.',
+    note: `The cloud-first defaults are only correct for cloud-hosted startups (the majority). If you're not sure which applies, check the client's system description or hosting documentation (on-prem vs AWS/GCP/Azure/Heroku) and confirm with the client before finalizing column F.`,
   },
   {
     title: 'Cloud-hosted infrastructure - A.7.8, A.7.11, A.7.12',
@@ -274,7 +308,7 @@ const SCENARIO_PLAYBOOK = [
   },
   {
     scenario: 'Self-hosted infrastructure',
-    outcome: 'A.7.8, A.7.11, A.7.12 flip to Implemented with Vanta test links; A.7.5 back in scope for facilities protection.',
+    outcome: 'A.7.8, A.7.11, A.7.12 flip to Implemented with GRC platform test links; A.7.5 back in scope for facilities protection.',
     tech: ['UPS + power redundancy tested', 'Climate/water detection', 'Cable-routing + physical access protection', 'Server-room access control + logs'],
     nonTech: ['Change of hosting = re-run the SoA', 'Colocation contract + right-to-audit', 'Maintenance windows logged', 'Environmental-threat register for the site'],
   },
@@ -291,6 +325,18 @@ const SCENARIO_PLAYBOOK = [
     nonTech: ['Every exclusion written with a reason', 'Residual-risk + vendor-management notes in SoA', 'Contract-mapping: which vendor owns what control', 'Re-validate exclusions when they hire a dev'],
   },
 ];
+
+function SoaDownload() {
+  const { user } = useAuth() || {};
+  const t = templateBySlug('statement-of-applicability');
+  if (!user || !t) return null;
+  return (
+    <div className="mt-4 flex flex-wrap items-center gap-3 rounded-xl border border-indigo-200 dark:border-indigo-800 bg-indigo-50/60 dark:bg-indigo-900/20 p-3">
+      <TemplateDownloadButton template={t} />
+      <p className="text-sm text-gray-700 dark:text-text-dark-secondary">Ready-to-use SoA workbook: all 93 controls, Mandatory or Conditional with the basis for each, auditor checks, and the mandatory ISMS documents list.</p>
+    </div>
+  );
+}
 
 export default function StatementOfApplicability() {
   const [refFilter, setRefFilter] = useState('all');
@@ -324,6 +370,7 @@ export default function StatementOfApplicability() {
             evidence. The reference card below maps every Annex A control family to its SoA verdict, with step-by-step checks and questions to
             gauge each one against a real startup.
           </p>
+          <SoaDownload />
         </div>
 
         {/* Annex A reference card - full detail */}
@@ -374,6 +421,7 @@ export default function StatementOfApplicability() {
                             <div className="flex items-center gap-2 min-w-0">
                               <span className={`shrink-0 text-[11px] font-bold px-2 py-0.5 rounded-md border ${c.box} ${c.title}`}>{f.ref}</span>
                               <span className="text-sm font-semibold text-gray-800 dark:text-text-dark-primary leading-snug">{f.title}</span>
+                              <RequirementBadge refId={f.ref} />
                             </div>
                             <span className={`shrink-0 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full border ${m.cls}`}>
                               <MIcon className="w-3 h-3" /> {m.label}
@@ -381,6 +429,7 @@ export default function StatementOfApplicability() {
                           </summary>
                           <div className="px-3 pb-3 space-y-3 text-xs">
                             <RelatedTemplates text={[f.ref, f.title, ...(f.checks || [])].join(' ')} />
+                            <RequirementDetail refId={f.ref} />
                             <p className="text-gray-600 dark:text-text-dark-secondary">
                               <span className="font-bold text-gray-800 dark:text-text-dark-primary">SoA justification:</span> {f.just}
                             </p>
