@@ -16,6 +16,8 @@ import SecurityOperations from '../components/SecurityOperations.jsx';
 import HybridSecurityFramework from '../components/HybridSecurityFramework.jsx';
 import AssetInventoryTemplate from '../components/AssetInventoryTemplate.jsx';
 import CloudControlTesting from '../components/CloudControlTesting.jsx';
+import ContactCenterThreatModel from '../components/ccThreat/ContactCenterThreatModel.jsx';
+import CcDownloads from '../components/ccThreat/CcDownloads.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 import { useState, useEffect } from 'react';
 import { Lock, AlertCircle, Shield, AlertTriangle, Building, Users, ShieldCheck, Globe, Lock as LockIcon, Briefcase, GraduationCap, MessageSquare, Star, ArrowRight, Key, Server, Database, ClipboardCheck, ChevronRight, Menu, X, FileText } from 'lucide-react';
@@ -405,6 +407,9 @@ function TabPanel({ isDark, activeTab }) {
           <ErrorBoundary>
             <RiskAssessmentModule isDark={isDark} />
           </ErrorBoundary>
+          <ErrorBoundary>
+            <ContactCenterThreatModel />
+          </ErrorBoundary>
         </LockedSection>
       )}
 
@@ -416,6 +421,7 @@ function TabPanel({ isDark, activeTab }) {
           showLoginPrompt={false}
         >
           <VendorRiskManagement isDark={isDark} />
+          <CcDownloads groups={['vendor']} title="Contact-centre vendor governance templates" />
         </LockedSection>
       )}
 
@@ -427,6 +433,7 @@ function TabPanel({ isDark, activeTab }) {
           showLoginPrompt={false}
         >
           <InterviewPrep isDark={isDark} />
+          <CcDownloads groups={['interview']} title="Contact-centre threat modelling interview Q&As" />
         </LockedSection>
       )}
 
@@ -461,6 +468,7 @@ function TabPanel({ isDark, activeTab }) {
             <ErrorBoundary>
               <AccessReviewByDesign />
             </ErrorBoundary>
+            <CcDownloads groups={['access']} title="Contact-centre access review checklist" />
           </LockedSection>
         </>
       )}

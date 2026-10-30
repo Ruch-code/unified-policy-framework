@@ -27,7 +27,7 @@ export default async (req, context) => {
   const user = await authUser(req);
   if (!user) return json({ message: 'Please sign in to download templates.' }, 401);
   const name = context.params?.file || new URL(req.url).pathname.split('/').pop();
-  if (!/^([a-z0-9-]+\.(docx|xlsx)|previews\.json)$/.test(name)) return json({ message: 'Not found.' }, 404);
+  if (!/^([a-z0-9_-]+\.(docx|xlsx)|previews\.json)$/.test(name)) return json({ message: 'Not found.' }, 404);
   for (const dir of CANDIDATE_DIRS) {
     try {
       const data = await fs.readFile(path.join(dir, name));

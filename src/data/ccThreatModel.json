@@ -1,0 +1,486 @@
+{
+ "stride": [
+  [
+   "S",
+   "Spoofing",
+   "Pretending to be someone else.",
+   "Someone calls your bank using your phone number shown on caller ID.",
+   "A fraudster spoofs a VIP customer's caller ID so the voice bot skips verification."
+  ],
+  [
+   "T",
+   "Tampering",
+   "Changing something you shouldn't.",
+   "Altering the amount on a cheque.",
+   "An attacker edits the SBC dial plan so refund calls route to a premium-rate number."
+  ],
+  [
+   "R",
+   "Repudiation",
+   "Doing something and denying it later.",
+   "\"I never ordered that pizza\" when there's no receipt.",
+   "An admin deletes a routing rule, and no audit log proves who did it."
+  ],
+  [
+   "I",
+   "Information Disclosure",
+   "Data seen by the wrong people.",
+   "A doctor's note left on a printer.",
+   "An API error message shows a database connection string to any caller of the endpoint."
+  ],
+  [
+   "D",
+   "Denial of Service",
+   "Making it unavailable.",
+   "A prank caller who keeps your phone line busy all day.",
+   "A SIP INVITE flood fills every inbound line so real customers can't get through."
+  ],
+  [
+   "E",
+   "Elevation of Privilege",
+   "Gaining powers you shouldn't have.",
+   "A hotel guest's key card opens the staff-only floor.",
+   "An app in a container breaks out to the host node and reads every secret in the cluster."
+  ]
+ ],
+ "linddun": [
+  [
+   "L",
+   "Linking",
+   "Joining data points about a person.",
+   "A loyalty card connecting all your shopping trips.",
+   "Phone number, chat session ID and CRM record joined in the data lake to build a full behaviour profile nobody consented to."
+  ],
+  [
+   "I",
+   "Identifying",
+   "Figuring out who someone is.",
+   "Recognising a neighbour from their \"anonymous\" online review.",
+   "\"Anonymised\" call analytics still include caller-ID prefixes and voice snippets that identify individuals."
+  ],
+  [
+   "N",
+   "Non-repudiation",
+   "A person can't deny something they'd legitimately want deniable.",
+   "A permanent public record of attending a support group.",
+   "Immutable call logs permanently tie a caller to a sensitive complaint, and the record can't be erased even on a valid request."
+  ],
+  [
+   "D",
+   "Detecting",
+   "Learning a record exists, even without seeing it.",
+   "Seeing a colleague's name on a clinic's appointment list.",
+   "Telemetry shows a customer called the debt-collections or fraud line."
+  ],
+  [
+   "D",
+   "Data Disclosure",
+   "Collecting or exposing more personal data than needed.",
+   "An app asking for your contacts just to set an alarm.",
+   "Full caller PII sent to a third-party observability vendor in raw telemetry."
+  ],
+  [
+   "U",
+   "Unawareness / unintervenability",
+   "People don't know, and can't control, what happens to their data.",
+   "Discovering a smart speaker kept your recordings.",
+   "Callers aren't told they're speaking to an AI, or that transcripts feed analytics, and can't opt out or delete them."
+  ],
+  [
+   "N",
+   "Non-compliance",
+   "Breaking privacy law, policy or promises.",
+   "A shop keeping CCTV footage for years \"just in case\".",
+   "Call recordings kept indefinitely and replicated to another region, breaking [LOCAL_PRIVACY_LAW] residency and retention rules."
+  ]
+ ],
+ "tension": [
+  [
+   "Immutable, attributable audit logs",
+   "Fixes Repudiation",
+   "Creates Non-repudiation and blocks erasure",
+   "Pseudonymise caller identifiers in logs; keep the re-identification key separately; crypto-shred the key on a valid erasure request."
+  ],
+  [
+   "Full CDR and SIP header logging",
+   "Helps forensics and fraud investigation",
+   "Raises Linking and Identifying risk",
+   "Tiered retention: full detail for [FORENSIC_DAYS] days, then truncate numbers and drop headers; access only through a logged break-glass role."
+  ],
+  [
+   "Backups and replicas for resilience",
+   "Defends against DoS and deletion",
+   "Keeps data that should have been deleted",
+   "Backup retention aligned to the deletion schedule; per-subject encryption keys so erasure covers backups; document the backup erasure position for [REGULATOR]."
+  ],
+  [
+   "Rich telemetry for detection",
+   "Better detection of attacks",
+   "Data Disclosure to the observability vendor",
+   "Field-level masking at the collector; allow-list of telemetry fields; vendor DPA and residency checks."
+  ],
+  [
+   "Voice biometrics against spoofing",
+   "Stronger caller verification",
+   "Identifying; special category data",
+   "Opt-in enrolment, a non-biometric fallback, templates kept separate from recordings, and a DPIA."
+  ]
+ ],
+ "domains": [
+  {
+   "id": "D1",
+   "name": "Cloud identity and control plane",
+   "plain": "The control plane is where people and automation create, change and delete cloud resources. If an attacker gets a privileged identity, they can do anything that identity can, from reading data to deleting whole environments. Missing MFA, standing admin rights and no resource locks make this easier. Weak logging means nobody notices until damage is done.",
+   "analogy": "It is the master key to the building plus the power to rewrite the floor plan.",
+   "narrative": "A Cloud Platform Admin's credentials are phished, with no MFA on the account. The attacker signs in from a new country, grants a hidden identity Owner rights, removes resource locks and deletes the infrastructure-as-code repository, the production vault and the backup policy.",
+   "stride": "S, E, R, D",
+   "linddun": "—",
+   "impact": "Customer: contact centre down for hours or days. Regulatory: possible breach notification if data is accessed. Financial: recovery cost and lost calls. Operational: rebuild from scratch if backups are gone.",
+   "mit": [
+    "Phishing-resistant MFA and conditional access for all privileged identities",
+    "Just-in-time (PIM/JIT) elevation with approval; no standing Owner rights",
+    "Resource locks and immutable, separately held backups of IaC, vault and config"
+   ],
+   "det": [
+    "Sign-in from a new location or impossible travel for a privileged account",
+    "Role assignment created outside a change window",
+    "Resource lock removed; mass delete operations; diagnostic settings changed"
+   ],
+   "tension": "Detailed sign-in logs hold admin location data; restrict who can query them."
+  },
+  {
+   "id": "D2",
+   "name": "Secrets and key management",
+   "plain": "Applications use keys, passwords and certificates to talk to each other, and these are kept in a secrets vault. If keys are never rotated, are copied into containers in plain text or are readable by too many identities, one leak opens many doors. Unlogged vault access means you cannot tell which secrets were read.",
+   "analogy": "Keeping the spare house key under the doormat, for years, with your address written on it.",
+   "narrative": "A developer builds a container image with a database connection string in an environment variable. The image is pushed to a registry with broad read access. An attacker pulls it, finds the string and the vault client secret, and reads every secret the API identity can reach.",
+   "stride": "S, I, E, R",
+   "linddun": "—",
+   "impact": "Customer: data exposure. Regulatory: breach assessment. Financial: rotation effort across services. Operational: outages during emergency rotation.",
+   "mit": [
+    "Workload identity instead of static client secrets; no secrets in images or environment variables",
+    "Automatic rotation with defined lifetimes; alerts on expiry",
+    "Least-privilege vault access per application, with all vault reads logged"
+   ],
+   "det": [
+    "Vault reads from a new identity or IP",
+    "Spike in secret reads; secret listed by an identity that normally only gets one",
+    "Secret-scanning hits in images or repositories"
+   ],
+   "tension": "Vault audit logs show which service touched which customer key; restrict access to them."
+  },
+  {
+   "id": "D3",
+   "name": "Container platform",
+   "plain": "The Web API runs on a managed Kubernetes cluster. Weak cluster authentication, a public API server, flat pod networking and privileged containers let one compromised app spread across the cluster. Unsigned images and no runtime detection mean malicious code can run unnoticed.",
+   "analogy": "An apartment block where every flat shares one front-door key and the internal doors have no locks.",
+   "narrative": "An attacker exploits a library flaw in a public-facing pod. The pod runs privileged, so they escape to the node, read service-account tokens of other pods and call the cluster API, which is reachable from the internet.",
+   "stride": "S, T, I, E",
+   "linddun": "—",
+   "impact": "Customer: data exposure through other workloads. Regulatory: breach assessment. Operational: cluster rebuild.",
+   "mit": [
+    "Private API server, cloud identity for cluster auth, no local admin accounts or downloadable admin kubeconfig",
+    "Namespace RBAC, network policies and pod security standards that block privileged containers",
+    "Signed images from a trusted registry, admission control and runtime threat detection"
+   ],
+   "det": [
+    "Privileged pod created; exec into a pod in production",
+    "Calls to the cluster API from a pod's service account outside its normal pattern",
+    "Runtime alert for shell spawned in a container or host file access"
+   ],
+   "tension": "Runtime detection may capture request payloads with caller data; mask before storage."
+  },
+  {
+   "id": "D4",
+   "name": "Web API and partner web app",
+   "plain": "The Web API and the partner-facing web app pass requests through to an on-premises backend. Broken authorisation, replayable client secrets, injection and verbose errors let attackers read or change data they should not see. Sensitive data in URLs and logs leaks quietly.",
+   "analogy": "A receptionist who hands any file to anyone who says the right room number.",
+   "narrative": "A partner's client secret leaks. An attacker replays it and changes the customer ID in API calls, pulling other customers' records (broken object-level authorisation). Error messages reveal backend hostnames.",
+   "stride": "S, T, R, I, D, E",
+   "linddun": "Data Disclosure",
+   "impact": "Customer: records of many customers exposed. Regulatory: likely notifiable breach. Financial: partner contract issues.",
+   "mit": [
+    "Mutual TLS or signed tokens for partners; short-lived tokens instead of static secrets",
+    "Object-level authorisation checks on every request; input validation and parameterised queries",
+    "Generic error messages; no PII in URLs; API gateway with rate limits and audit logs"
+   ],
+   "det": [
+    "One partner identity requesting many different customer IDs",
+    "Spike in 4xx/5xx errors or unusual query patterns",
+    "Requests from IPs outside the partner allow-list"
+   ],
+   "tension": "API audit logs prove who accessed what but hold customer IDs; pseudonymise them."
+  },
+  {
+   "id": "D5",
+   "name": "Conversational AI and CRM data",
+   "plain": "The bot platform reads and writes customer records in the CRM data store. Without field-level security, bots, makers and agents can see PII they do not need. Anonymous access to transcripts or broad record ownership exposes conversations. Customers may not know an AI is handling them.",
+   "analogy": "A call-centre script folder that also contains every customer's full file, left on every desk.",
+   "narrative": "A maker shares a bot with \"everyone in the organisation\". The bot's connection runs as a service account with full CRM read rights, so any employee can ask it for any customer's date of birth and address.",
+   "stride": "I, E",
+   "linddun": "Data Disclosure, Detecting, Linking, Unawareness",
+   "impact": "Customer: privacy harm and loss of trust. Regulatory: GDPR Arts. 5, 13, 25 issues. Operational: bot taken offline.",
+   "mit": [
+    "Field-level security on PII and role hierarchy; bot connections use the end user's rights, not a super account",
+    "No anonymous access to transcripts; retention limits on transcripts",
+    "AI disclosure at the start of every conversation and a route to a human"
+   ],
+   "det": [
+    "Bot shared with large groups; new connections using privileged accounts",
+    "Unusual query volume for PII fields through the bot",
+    "Transcript exports"
+   ],
+   "tension": "Transcript logging helps quality and investigations but stores sensitive disclosures; mask and limit retention."
+  },
+  {
+   "id": "D6",
+   "name": "Telephony, SIP and SBC",
+   "plain": "Calls pass from an on-premises SBC to a cloud SBC pool and on to the calling platform using SIP for signalling and RTP for voice. Spoofed caller ID, tampered SIP headers, unencrypted voice and exposed management interfaces enable fraud, eavesdropping and outages. Floods can exhaust lines or autoscaling budgets.",
+   "analogy": "A switchboard where anyone can claim to be anyone and the operator never checks.",
+   "narrative": "Attackers flood the public SBC with SIP INVITEs while spoofing a VIP's number on a parallel call. The bot trusts caller ID, skips verification and reads out account details. Meanwhile someone with access to the exposed SBC admin page changes a dial plan to route refund calls to a premium-rate number.",
+   "stride": "S, T, R, I, D, E",
+   "linddun": "Identifying, Linking, Non-repudiation",
+   "impact": "Customer: account takeover and fraud. Financial: toll fraud charges. Operational: lines unavailable. Regulatory: telecom and privacy duties.",
+   "mit": [
+    "Never use caller ID alone to verify; SIP over TLS and SRTP for media",
+    "Management interfaces on a private network with MFA; config baselines and drift alerts",
+    "Rate limiting, SIP-aware firewall and autoscaling cost caps; CDR and admin logging"
+   ],
+   "det": [
+    "INVITE rate spikes; calls to premium-rate prefixes",
+    "Dial-plan changes outside change windows",
+    "Many verification bypasses on one number"
+   ],
+   "tension": "CDRs and SIP headers prove what happened but reveal who called whom and when; tier retention and restrict access."
+  },
+  {
+   "id": "D7",
+   "name": "Data lake and sync pipeline",
+   "plain": "Customer data is copied from the CRM data store into a cloud data lake through a sync link. If the lake is open to the network, unaudited and holds sensitive data in plain text, it becomes the single richest target. A redirected sync can send data to an attacker's storage.",
+   "analogy": "Copying every customer file into one warehouse with the loading-bay door left open.",
+   "narrative": "A misconfigured ACL gives a broad group write access to the lake. A compromised account uploads a poisoned file that corrupts analytics, then changes the sync target to external storage.",
+   "stride": "S, T, R, I, E",
+   "linddun": "Linking, Identifying, Non-compliance",
+   "impact": "Customer: profiling and exposure. Regulatory: purpose limitation and residency breaches. Operational: untrustworthy analytics.",
+   "mit": [
+    "Private endpoints and network rules; no public access; customer-managed encryption",
+    "Least-privilege ACLs; sync targets fixed and monitored",
+    "Pseudonymise or minimise fields before sync; data-access auditing"
+   ],
+   "det": [
+    "Sync target changed; data written to new external storage",
+    "Bulk reads or writes by unusual identities",
+    "ACL changes on sensitive folders"
+   ],
+   "tension": "Full-history lakes help analytics and investigations but defeat deletion; build deletion into the pipeline."
+  },
+  {
+   "id": "D8",
+   "name": "Analytics and BI",
+   "plain": "Analysts use an analytics workspace and BI dashboards over the lake. Personal access tokens, jobs tied to departed users and storage accessed by account keys create long-lived backdoors. Dashboards can re-identify people by joining data.",
+   "analogy": "Every analyst has a key that never expires, and some belong to people who left years ago.",
+   "narrative": "A contractor's personal access token stays valid after they leave. It is later found in a public code repository and used to export customer call analytics.",
+   "stride": "S, I, E, D",
+   "linddun": "Linking, Identifying",
+   "impact": "Customer: profiling exposure. Regulatory: access control failure. Operational: broken jobs on clean-up.",
+   "mit": [
+    "Disable personal access tokens or cap their lifetime; use service principals for jobs",
+    "Private workspace access; no account-key access to storage",
+    "Joiner-mover-leaver review of tokens and job ownership"
+   ],
+   "det": [
+    "Token used from a new IP or after the owner left",
+    "Large exports from dashboards",
+    "Jobs owned by disabled users"
+   ],
+   "tension": "Detailed BI audit logs show who looked at which customer cohorts; restrict access."
+  },
+  {
+   "id": "D9",
+   "name": "Event streaming",
+   "plain": "An event hub carries telemetry and events between services. Shared access keys with broad rights, no network isolation and unprotected messages allow reading, injecting or altering events.",
+   "analogy": "A shared radio channel where anyone with the frequency can listen or broadcast.",
+   "narrative": "A shared access key with send and listen rights is copied into a script on a laptop. The laptop is compromised and the attacker reads events containing caller numbers, then injects fake events to trigger alerts.",
+   "stride": "S, T, I, E",
+   "linddun": "Data Disclosure",
+   "impact": "Customer: data exposure. Operational: false alerts and broken downstream processing.",
+   "mit": [
+    "Identity-based access instead of shared keys; separate send and listen rights",
+    "Private endpoints and network rules",
+    "No PII in events, or encrypt payloads; schema validation"
+   ],
+   "det": [
+    "Connections from new IPs",
+    "Unexpected consumers on a topic",
+    "Malformed or out-of-pattern events"
+   ],
+   "tension": "Event replay helps investigations but keeps data longer; set short retention."
+  },
+  {
+   "id": "D10",
+   "name": "Observability and logging integrity",
+   "plain": "Telemetry and logs are how you detect and investigate attacks. Attackers try to switch logging off, redirect it, or flood it. Telemetry often captures PII or secrets by accident, which then flows to a third-party vendor.",
+   "analogy": "A burglar unplugging the CCTV, or the CCTV company quietly keeping copies of your home footage.",
+   "narrative": "After gaining admin access, an attacker changes diagnostic settings to stop sending logs to the workspace. Separately, a review finds full caller numbers and auth tokens in APM traces sent to the observability vendor.",
+   "stride": "S, T, R, I, D, E",
+   "linddun": "Detecting, Data Disclosure, Non-repudiation",
+   "impact": "Operational: blind during an attack. Regulatory: processor and transfer issues. Customer: exposure via vendor.",
+   "mit": [
+    "Lock diagnostic settings with policy; alert on any change; send critical logs to immutable storage",
+    "Mask PII and secrets at the collector; telemetry field allow-list",
+    "Ingestion caps and alerts; capacity planning for log volume"
+   ],
+   "det": [
+    "Diagnostic setting changed or deleted",
+    "Drop in log volume from a source",
+    "PII patterns in telemetry samples"
+   ],
+   "tension": "Immutable logs vs erasure: pseudonymise and crypto-shred keys."
+  },
+  {
+   "id": "D11",
+   "name": "Third-party SaaS and supply chain",
+   "plain": "The contact centre relies on SaaS vendors and native cloud integrations. A vendor's weak SSO set-up, a compromised deployment pipeline or data stored in the wrong region creates risk you do not directly control.",
+   "analogy": "You lock your house, but the cleaner keeps a copy of the key in their unlocked van.",
+   "narrative": "A vendor's deployment pipeline is compromised and pushes a malicious update to the monitoring agent, which disables itself and sends data to an attacker. The vendor also turns out to store backups in a region outside [DATA_REGION].",
+   "stride": "S, T, I, E",
+   "linddun": "Non-compliance",
+   "impact": "Regulatory: transfer and processor issues. Operational: monitoring gap. Customer: exposure.",
+   "mit": [
+    "Security and privacy due diligence before onboarding; contract clauses for breach notice and residency",
+    "SSO with enforced MFA for vendor consoles; least-privilege integrations",
+    "Monitor agent health; staged rollout of vendor updates where possible"
+   ],
+   "det": [
+    "Agents going silent",
+    "Vendor breach notice",
+    "New vendor IPs or regions in traffic"
+   ],
+   "tension": "Asking vendors for detailed logs about your users may itself be a transfer; scope requests."
+  },
+  {
+   "id": "D12",
+   "name": "Network segmentation",
+   "plain": "The network is hub-and-spoke, with public-facing services in spokes. If spokes can reach each other or internal workloads freely, one compromised public service becomes a path to everything.",
+   "analogy": "A shop where the customer entrance leads straight into the vault.",
+   "narrative": "An attacker compromises the partner web app in a public spoke, then reaches the on-prem backend API through an over-broad route and exfiltrates customer data over an allowed outbound path.",
+   "stride": "E",
+   "linddun": "—",
+   "impact": "Customer: large-scale exposure. Operational: wide containment effort.",
+   "mit": [
+    "Default-deny between spokes; traffic forced through a hub firewall",
+    "Private endpoints for PaaS; no direct internet egress from internal workloads",
+    "Micro-segmentation for the backend API with allow-lists"
+   ],
+   "det": [
+    "New east-west flows",
+    "Outbound traffic to unknown destinations",
+    "Firewall rule changes"
+   ],
+   "tension": "Full packet capture helps forensics but captures content; limit to metadata by default."
+  },
+  {
+   "id": "D13",
+   "name": "Privacy and data protection",
+   "plain": "Even if everything is secure, the contact centre can still harm people through what it collects and how long it keeps it. Recording notices, AI disclosure, voice as biometric data, reuse of data in BI, retention across many stores, rights requests and transfers all need design, not afterthought.",
+   "analogy": "A perfectly locked filing cabinet that holds files you were never allowed to keep.",
+   "narrative": "A customer asks for erasure. Their data sits in the CRM, the lake, BI extracts, telemetry at a vendor, immutable logs and backups in two regions. The team cannot delete it all, and nobody told the customer an AI handled their calls.",
+   "stride": "—",
+   "linddun": "All, especially Unawareness and Non-compliance",
+   "impact": "Regulatory: fines and orders. Customer: trust loss. Operational: rework of data flows.",
+   "mit": [
+    "Data map across all stores, with retention and deletion per store; DPIA for AI and voice processing",
+    "Recording and AI-interaction notices; opt-out route; [LAWFUL_BASIS] documented per purpose",
+    "Processor agreements with AI, telephony and observability vendors; transfer mechanism for each flow"
+   ],
+   "det": [
+    "Rights requests that miss SLA",
+    "Data found in stores not on the data map",
+    "Complaints about AI or recording"
+   ],
+   "tension": "This is where STRIDE controls (logs, backups) meet erasure and minimisation; use the balancing controls above."
+  }
+ ],
+ "interview": [
+  [
+   "What is STRIDE and when do you use it?",
+   "STRIDE is a checklist of six ways a system can be attacked: Spoofing, Tampering, Repudiation, Information disclosure, Denial of service and Elevation of privilege. I use it at design time on each component and data flow. Example: for a voice bot, Spoofing makes me ask whether caller ID alone is trusted for verification."
+  ],
+  [
+   "What is LINDDUN and how is it different from STRIDE?",
+   "LINDDUN asks whether the system harms people even when it works as designed: Linking, Identifying, Non-repudiation, Detecting, Data disclosure, Unawareness and Non-compliance. STRIDE protects the system; LINDDUN protects the people in the data. Example: a perfectly secure data lake can still link phone numbers to chat sessions to build profiles nobody agreed to."
+  ],
+  [
+   "Give an example where a security control creates a privacy harm.",
+   "Immutable audit logs stop people denying actions, but they also make it impossible to erase a caller's link to a sensitive complaint. I pseudonymise identifiers and crypto-shred the key on a valid erasure request, so the log stays intact but the person can no longer be identified."
+  ],
+  [
+   "How would you threat-model a new contact-centre integration?",
+   "Draw the data flow, mark trust boundaries, then run STRIDE per element and LINDDUN per personal data flow. Rate each threat, map controls, and record residual risk with an owner. Example: a new CRM-to-lake sync gets a Tampering check on the sync target and a Linking check on the joined fields."
+  ],
+  [
+   "What are the top container security controls?",
+   "Private API server, cloud identity auth with no local admin accounts, namespace RBAC, network policies, no privileged pods, signed images and runtime detection. Example: blocking privileged pods stops the classic container-escape-to-node attack."
+  ],
+  [
+   "Why is workload identity better than client secrets?",
+   "There is no long-lived secret to leak or rotate; the platform issues short-lived tokens tied to the workload. Example: a connection string baked into an image can be pulled by anyone with registry read access; workload identity leaves nothing to steal."
+  ],
+  [
+   "What are the main SIP security risks?",
+   "Caller-ID and INVITE spoofing, header tampering, unencrypted RTP, exposed SBC management, floods and toll fraud. Controls are SIP over TLS, SRTP, private management, rate limits and dial-plan change monitoring. Example: a changed dial plan can route refund calls to premium-rate numbers."
+  ],
+  [
+   "How do you protect logging integrity?",
+   "Lock diagnostic settings with policy, alert on any change or volume drop, and copy critical logs to immutable storage under a separate account. Example: if logs from production drop to zero at 3 a.m., treat it as tampering until proven otherwise."
+  ],
+  [
+   "How do you stop PII leaking into telemetry?",
+   "Mask at the collector, allow-list fields, scan samples for PII patterns and contract the vendor as a processor. Example: APM traces often capture full URLs that contain phone numbers."
+  ],
+  [
+   "What does privacy by design mean in a contact centre?",
+   "Collect only what the purpose needs, tell callers about recording and AI, set retention per store, and build deletion into pipelines. Example: pseudonymise caller numbers before syncing to the lake, so analysts never see raw numbers."
+  ],
+  [
+   "When is voice data special category under GDPR?",
+   "When it is processed to uniquely identify someone, such as voice biometrics. Then you need an Art. 9 condition, usually explicit consent, and a DPIA. Example: recording a call for quality is not biometric; matching a voiceprint to authenticate is."
+  ],
+  [
+   "How do you handle an erasure request that spans immutable logs and backups?",
+   "Delete what you can, restrict processing of the rest, and document why. Use crypto-shredding or per-subject keys so backups become unreadable. Example: the backup tape stays, but the caller's key is destroyed."
+  ],
+  [
+   "What would you check in a vendor questionnaire for an observability provider?",
+   "Data residency, sub-processors, PII handling and masking options, retention, deletion on request, breach notice time, SSO and MFA, and certifications. Example: confirm whether traces are stored outside [DATA_REGION]."
+  ],
+  [
+   "How do you run an incident command structure?",
+   "An incident commander owns decisions, with leads for technical, communications, legal and privacy, and a scribe. Decisions and times are logged. Example: in a SIP flood, the commander decides whether to block IP ranges while the comms lead updates customer-facing teams."
+  ],
+  [
+   "What makes a good tabletop exercise?",
+   "A realistic scenario, timed injects that force decisions, the right people in the room, and an after-action report with owners and dates. Example: an inject that says \"logs stopped at 03:00\" tests both detection and escalation."
+  ],
+  [
+   "How do you score TTX maturity?",
+   "1 ad hoc, 2 roles known, 3 documented and followed, 4 measured with metrics, 5 continuously improved. Example: if no one knew who could disable an admin account at night, that response scores 1 or 2."
+  ],
+  [
+   "How do you decide whether a privacy incident is notifiable?",
+   "Assess whether personal data was affected and the risk to people's rights, then check the notification rules in [LOCAL_PRIVACY_LAW]. Under GDPR, notify the regulator within 72 hours unless risk is unlikely, and individuals when risk is high. Example: masked phone numbers leaking may be low risk; full names with health complaints are not."
+  ],
+  [
+   "What is the risk with personal access tokens in BI tools?",
+   "They are long-lived, tied to individuals and often survive offboarding. Example: a contractor's token found in a public repository months after they left."
+  ],
+  [
+   "How do you balance forensic needs with data minimisation?",
+   "Tiered retention, pseudonymised logs, break-glass access to raw data, and logging of who accessed forensic data. Example: keep full SIP headers for 30 days, then truncate."
+  ],
+  [
+   "How would you explain STRIDE vs LINDDUN to an executive?",
+   "STRIDE asks whether someone can break into or misuse the system; LINDDUN asks whether the system, even working perfectly, treats customers' data fairly and lawfully. Example: a locked filing cabinet is secure, but it is still a problem if it holds files we were never allowed to keep."
+  ]
+ ]
+}

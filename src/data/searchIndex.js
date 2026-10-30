@@ -820,6 +820,17 @@ const TEMPLATE_ENTRIES = [
     anchorId: null,
   },
   {
+    id: 'contact-center-threat-model',
+    category: 'Policy & Control Modules',
+    label: 'Contact-centre threat model: STRIDE, LINDDUN and tabletop exercises',
+    desc: 'STRIDE and LINDDUN primers, security vs privacy trade-offs, 13 threat domains (cloud, secrets, containers, SIP/SBC, data lake, observability, privacy) and TTX, risk, mapping, access, vendor and interview templates.',
+    keywords: ['stride', 'linddun', 'threat model', 'threat modelling', 'tabletop', 'ttx', 'tabletop exercise', 'contact center', 'contact centre', 'sip', 'sbc', 'telephony', 'kubernetes', 'container', 'secrets', 'logging integrity', 'after action report', 'inject', 'privacy by design', 'erasure'],
+    path: '/',
+    tab: 'risk-assessment',
+    anchorId: 'contact-center-threat-model',
+    mode: 'hash',
+  },
+  {
     id: 'cloud-control-testing',
     category: 'Policy & Control Modules',
     label: 'Cloud Control Testing Guide: AWS, GCP and Azure',
