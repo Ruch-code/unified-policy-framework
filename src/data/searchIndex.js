@@ -810,6 +810,16 @@ const TEMPLATE_ENTRIES = [
     mode: 'hash',
   },
   {
+    id: 'rai-crosswalk',
+    category: 'Policy & Control Modules',
+    label: 'Responsible AI review: regulations and standards crosswalk',
+    desc: 'How the EU AI Act, ISO/IEC 42001, ISO/IEC 27090, GDPR and NIST AI RMF map to each stage of a responsible AI review, with use-case examples and interview answers.',
+    keywords: ['responsible ai', 'rai', 'eu ai act', 'iso 42001', '42001', 'iso 27090', '27090', 'nist ai rmf', 'fria', 'dpia', 'high-risk', 'prompt injection', 'interview', 'crosswalk', 'ai governance'],
+    path: '/ai-governance#rai-crosswalk',
+    mode: 'route',
+    anchorId: null,
+  },
+  {
     id: 'cloud-control-testing',
     category: 'Policy & Control Modules',
     label: 'Cloud Control Testing Guide: AWS, GCP and Azure',

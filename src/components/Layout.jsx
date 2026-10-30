@@ -431,18 +431,19 @@ export default function Layout() {
               {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
 
-            {/* ISO 42001 AI Link - hidden on mobile, shown on sm+ */}
-            <a
-              href="https://inspiring-ganache-fdd3be.netlify.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden sm:inline-flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors
-                bg-indigo-600 text-white hover:bg-indigo-700
-                dark:bg-indigo-500 dark:hover:bg-indigo-600"
-            >
-              ISO 42001 AI
-              <ExternalLink className="w-3.5 h-3.5 opacity-70" />
-            </a>
+            {user && (
+              <a
+                href="https://inspiring-ganache-fdd3be.netlify.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden sm:inline-flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors
+                  bg-indigo-600 text-white hover:bg-indigo-700
+                  dark:bg-indigo-500 dark:hover:bg-indigo-600"
+              >
+                ISO 42001 AI
+                <ExternalLink className="w-3.5 h-3.5 opacity-70" />
+              </a>
+            )}
 
             {/* Desktop Auth Actions - hidden on mobile */}
             <div className="hidden md:flex items-center gap-1.5">
