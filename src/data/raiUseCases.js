@@ -253,3 +253,19 @@ export const ART5_LIST = [
   ['5(1)(g)', 'Biometric categorisation to infer sensitive traits such as race, religion or sexual orientation.'],
   ['5(1)(h)', 'Real-time remote biometric identification in public spaces for law enforcement, except narrow listed cases.'],
 ];
+
+// OECD AI Principles (adopted 2019, updated May 2024).
+export const OECD_PRINCIPLES = [
+  ['1.1', 'Inclusive growth, sustainable development and well-being', 'AI should benefit people and the planet, reduce inequality and support sustainability.', 'EU AI Act recitals and Art. 27 FRIA; ISO 42001 A.5 impact assessment; NIST AI RMF MAP 5', 'Is the benefit stated? Who could be left worse off?'],
+  ['1.2', 'Respect for the rule of law, human rights and democratic values, including fairness and privacy', 'Respect non-discrimination, privacy, dignity and autonomy; keep human agency and oversight; address misinformation.', 'EU AI Act Arts. 5, 10, 14; GDPR; ISO 42001 A.5, A.7; NIST AI RMF MEASURE 2.11', 'Bias testing done? DPIA done? Human can override?'],
+  ['1.3', 'Transparency and explainability', 'Disclose when AI is used; give meaningful information on capabilities, limits, data and logic so people can understand and challenge outcomes.', 'EU AI Act Arts. 13, 50; GDPR Arts. 13 to 15, 22; ISO 42001 A.8', 'AI disclosure shown? Explanation and contest route for affected people?'],
+  ['1.4', 'Robustness, security and safety', 'Function safely across the lifecycle, including under misuse; be able to override, repair or decommission safely.', 'EU AI Act Art. 15; ISO 42001 A.6; ISO 27001; NIST AI RMF MANAGE 2', 'Red-teamed? Kill switch and rollback tested?'],
+  ['1.5', 'Accountability', 'Actors are accountable for proper functioning, with traceability of data, processes and decisions, and systematic risk management.', 'EU AI Act Arts. 9, 11, 12, 17; ISO 42001 clauses 5 and 6, A.3; NIST AI RMF GOVERN', 'Named owner? Logs and documentation kept? Risk register entry?'],
+];
+export const OECD_RECS = [
+  ['2.1', 'Investing in AI research and development'],
+  ['2.2', 'Fostering an inclusive AI-enabling ecosystem (data, compute, technology)'],
+  ['2.3', 'Enabling an interoperable governance and policy environment'],
+  ['2.4', 'Building human capacity and preparing for labour market transition'],
+  ['2.5', 'International co-operation for trustworthy AI'],
+];

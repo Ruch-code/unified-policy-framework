@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Layers } from 'lucide-react';
 import RelatedTemplates from '../templates/RelatedTemplates.jsx';
-import { AI_TYPES, AUTONOMY, AUDIENCE, PATTERNS, ASSESSMENT_BLOCK, ESCALATION_RULES, PRESALES_CHECKLIST, INDUSTRIES, PATTERN_DETAIL, ART5_WATCH, ART9_CONDITIONS, ART9_CATEGORIES, ART9_EXAMPLE, ART_REF, ART5_LIST } from '../../data/raiUseCases.js';
+import { AI_TYPES, AUTONOMY, AUDIENCE, PATTERNS, ASSESSMENT_BLOCK, ESCALATION_RULES, PRESALES_CHECKLIST, INDUSTRIES, PATTERN_DETAIL, ART5_WATCH, ART9_CONDITIONS, ART9_CATEGORIES, ART9_EXAMPLE, ART_REF, ART5_LIST, OECD_PRINCIPLES, OECD_RECS } from '../../data/raiUseCases.js';
 
 // Responsible AI review process: how the EU AI Act, ISO/IEC 42001, ISO/IEC 27090, GDPR and NIST AI RMF map and apply.
 
@@ -104,7 +104,7 @@ const ANSWERS = [
       'The takeaway: high-risk does not mean no; it means approved with evidence and human oversight.'] },
 ];
 
-const TABS = ['Regulations', 'Stage crosswalk', 'Use-case examples', 'Use-case catalogue', 'Assessment method', 'GDPR Art. 9', 'Pre-sales checklist', 'Interview answers'];
+const TABS = ['Regulations', 'Stage crosswalk', 'Use-case examples', 'Use-case catalogue', 'Assessment method', 'GDPR Art. 9', 'OECD AI Principles', 'Pre-sales checklist', 'Interview answers'];
 const RISK_CLS = { High: 'bg-rose-100 text-rose-800 dark:bg-rose-900/40 dark:text-rose-200', Med: 'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-200', Low: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-200' };
 const TH = 'text-left p-2 font-semibold text-gray-900 dark:text-white bg-gray-100 dark:bg-gray-800 align-bottom';
 const TD = 'p-2 text-gray-700 dark:text-gray-300 align-top';
@@ -246,6 +246,28 @@ export default function RaiCrosswalk() {
           <div className="rounded-xl border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/20 p-4 text-sm text-gray-800 dark:text-gray-200">
             <p><span className="font-bold">Interview line:</span> "For special category data I ask two questions, not one: what is the Art. 6 basis, and which Art. 9(2) exception lifts the prohibition. Then I check the exception covers every purpose, including model training, because that is where most AI projects fall down."</p>
             <p className="mt-2 text-xs">Conditions (b), (g), (h), (i) and (j) depend on member state law, so confirm the exact position per country with Legal.</p>
+          </div>
+        </div>
+      )}
+
+      {tab === 'OECD AI Principles' && (
+        <div className="space-y-4">
+          <div className="rounded-xl border border-violet-200 dark:border-violet-800 bg-violet-50 dark:bg-violet-900/20 p-4 text-sm text-gray-800 dark:text-gray-200 space-y-2">
+            <p>The OECD AI Principles were the first intergovernmental AI standard, adopted in May 2019 and updated in May 2024 to cover generative AI, misinformation and safety. They are not binding, but 47 adherents have signed up, the G20 AI Principles are based on them, and the EU AI Act takes its definition of an AI system from the OECD.</p>
+            <p>There are five values-based principles for anyone building or using AI, and five recommendations for governments.</p>
+          </div>
+          <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700">
+            <table className="w-full text-sm min-w-[900px]">
+              <thead><tr>{['#', 'Principle', 'What it asks', 'Where it is made concrete', 'Assessor check'].map(h => <th key={h} scope="col" className={TH}>{h}</th>)}</tr></thead>
+              <tbody className="divide-y divide-gray-100 dark:divide-gray-700">{OECD_PRINCIPLES.map(([n, t, w, m, c]) => <tr key={n}><td className={TD + ' font-bold'}>{n}</td><td className={TD + ' font-semibold text-gray-900 dark:text-white'}>{t}</td><td className={TD}>{w}</td><td className={TD + ' text-teal-700 dark:text-teal-300'}>{m}</td><td className={TD}>{c}</td></tr>)}</tbody>
+            </table>
+          </div>
+          <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-4">
+            <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-sm">Recommendations for governments</h3>
+            <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300">{OECD_RECS.map(([n, t]) => <li key={n}><span className="font-bold">{n}</span> {t}</li>)}</ul>
+          </div>
+          <div className="rounded-xl border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/20 p-4 text-sm text-gray-800 dark:text-gray-200">
+            <p><span className="font-bold">Interview line:</span> "I treat the OECD principles as the why and the EU AI Act, ISO 42001 and NIST AI RMF as the how. If a control can't be traced back to one of the five principles, I ask what it is for; if a principle has no control behind it, that is a gap."</p>
           </div>
         </div>
       )}
