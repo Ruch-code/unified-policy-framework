@@ -43,7 +43,7 @@ function DecisionTree() {
       <A d="M680 193 L770 193 L770 300" label="Yes" lx={700} ly={186} />
       <Out x={695} y={302} label="Transfer" sub="Insurance or contract" tone="sk" />
       <A d="M570 216 L570 300" label="No" lx={578} ly={262} />
-      <Out x={495} y={302} label="Accept" sub="Approver sign-off (above appetite)" tone="am" />
+      <Out x={495} y={302} label="Accept" sub="Above appetite: Approver" tone="am" />
       <text x={430} y={400} textAnchor="middle" className="fill-gray-500 dark:fill-gray-400" fontSize="11">Options can be combined: for example mitigate first, then transfer or accept what remains.</text>
     </svg>
   );
@@ -63,10 +63,10 @@ function Lifecycle() {
       <path d={`M${pos[3][0]} ${pos[3][1] + H / 2} L${pos[4][0]} ${pos[4][1] - H / 2}`} className="stroke-emerald-500" strokeWidth="1.5" markerEnd="url(#ra-arr2)" />
       <text x={640} y={155} className="fill-emerald-700 dark:fill-emerald-300" fontSize="10" fontWeight="700">controls evidenced</text>
       <path d={`M${pos[3][0] + W / 2} ${pos[3][1] - 10} C 790 0, 560 0, ${pos[2][0] + 30} ${pos[2][1] - H / 2}`} fill="none" className="stroke-rose-400" strokeDasharray="4 3" strokeWidth="1.5" markerEnd="url(#ra-arr2)" />
-      <text x={600} y={18} className="fill-rose-600 dark:fill-rose-300" fontSize="10" fontWeight="700">gap: re-plan treatment</text>
+      <text x={655} y={12} className="fill-rose-600 dark:fill-rose-300" fontSize="10" fontWeight="700">gap: re-plan treatment</text>
       {[[4, 5], [5, 6], [6, 7]].map(([a, b]) => <path key={a} d={`M${pos[a][0] - W / 2} ${pos[a][1]} L${pos[b][0] + W / 2} ${pos[b][1]}`} className="stroke-gray-400 dark:stroke-gray-500" strokeWidth="1.5" markerEnd="url(#ra-arr2)" />)}
-      <path d={`M${pos[5][0]} ${pos[5][1] + H / 2} C ${pos[5][0]} 320, ${pos[2][0] + 200} 320, ${pos[2][0] + 200} 200 L ${pos[2][0] + 200} 120`} fill="none" className="stroke-rose-400" strokeDasharray="4 3" strokeWidth="1.5" />
-      <text x={470} y={318} className="fill-rose-600 dark:fill-rose-300" fontSize="10" fontWeight="700">rejected by Approver</text>
+      <path d={`M${pos[5][0]} ${pos[5][1] - H / 2} L${pos[2][0]} ${pos[2][1] + H / 2}`} className="stroke-rose-400" strokeDasharray="4 3" strokeWidth="1.5" markerEnd="url(#ra-arr2)" />
+      <text x={pos[5][0] + 8} y={155} className="fill-rose-600 dark:fill-rose-300" fontSize="10" fontWeight="700">rejected by Approver</text>
       <path d={`M${pos[7][0]} ${pos[7][1] - H / 2} L${pos[0][0]} ${pos[0][1] + H / 2 + 60}`} className="stroke-amber-500" strokeWidth="1.5" />
       <path d={`M${pos[0][0]} ${pos[0][1] + H / 2 + 60} L${pos[1][0] - 30} ${pos[1][1] + H / 2}`} className="stroke-amber-500" strokeWidth="1.5" markerEnd="url(#ra-arr2)" />
       <text x={100} y={168} className="fill-amber-700 dark:fill-amber-300" fontSize="10" fontWeight="700">annual or trigger: re-score</text>
