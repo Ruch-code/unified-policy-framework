@@ -204,3 +204,76 @@ export const SECTION5_REDFLAGS = [
   'No process to track regulatory changes.',
   'Conflating AI governance with general data protection.',
 ];
+
+// ---------------------------------------------------------------------------
+// Worked example: AI coding (vibe coding) platform, production on GCP and AWS
+// with Kubernetes and object storage buckets. Every cell describes a typical
+// design to VERIFY against your own platform, not a claim to copy.
+// ---------------------------------------------------------------------------
+
+export interface RoleRow { activity: string; role: string; why: string; document: string; }
+
+export const PLATFORM_ROLES: RoleRow[] = [
+  { activity: 'Customer account, sign-in, billing and support contacts', role: 'Controller', why: 'The platform decides why and how this data is used to run its own business.', document: 'Privacy notice and terms of service (not the DPA).' },
+  { activity: 'Prompts, uploaded files, source code, repositories and generated code', role: 'Processor', why: 'The customer decides what to build and what content to submit; the platform acts on their instructions.', document: 'Customer DPA: scope, instructions, data categories, security measures.' },
+  { activity: 'Personal data of end users inside apps customers build and host on the platform', role: 'Processor (sub-processor if the customer is itself a processor)', why: 'The customer controls the app, its users and its purposes.', document: 'Customer DPA and published sub-processor list.' },
+  { activity: 'Security, abuse and fraud monitoring of platform usage', role: 'Controller for this purpose', why: 'The platform decides to monitor to protect the service (legitimate interests).', document: 'Stated as a permitted purpose in the DPA and privacy notice.' },
+  { activity: 'Product improvement or model training using customer content', role: 'Controller for this purpose, only if contractually permitted', why: 'Using content for the platform\'s own purposes makes it a controller for that use.', document: 'Explicit training position in DPA and terms (default off, opt-in, or opt-out); without it, do not use the content.' },
+  { activity: 'LLM model providers, GCP, AWS, logging and email providers', role: 'Sub-processors', why: 'They process customer data on the platform\'s behalf.', document: 'Sub-processor list with notice and objection process; flow-down terms.' },
+];
+
+export const PLATFORM_DATA_FLOWS: DataFlowRow[] = [
+  { dataType: 'Prompts and user input', stored: 'Application database (Cloud SQL / RDS) and conversation store, partitioned by workspace', retention: 'Life of the project; deleted within [30] days of project or account deletion', access: 'Workspace members; agent service scoped to the workspace; support only through time-limited, customer-approved, logged access', why: 'Show history and give the agent context', encryption: 'TLS 1.2+; KMS-managed keys at rest', training: 'State the default and the contractual position (e.g. not used for training on business plans)', evidence: 'Data model, retention job config, support access log' },
+  { dataType: 'Source code and repositories', stored: 'Object storage per project prefix (GCS / S3) or managed Git, private', retention: 'Life of the project; versioned; deleted on project deletion plus backup expiry', access: 'Workspace members; build and agent service accounts scoped to the project', why: 'Edit, build and run the customer app', encryption: 'TLS 1.2+; bucket encryption with KMS', training: 'State the contractual position', evidence: 'Bucket IAM and conditions, lifecycle rules' },
+  { dataType: 'Uploaded files', stored: 'Object storage with per-tenant prefix; short-lived signed URLs', retention: 'Life of the project', access: 'Workspace members; agent in that workspace', why: 'Provide context or assets for the app', encryption: 'TLS 1.2+; KMS at rest', training: 'State the contractual position', evidence: 'Bucket policy, signed URL expiry setting, malware scanning config' },
+  { dataType: 'Secrets and credentials (customer API keys, env vars)', stored: 'Secret Manager / AWS Secrets Manager or KMS-encrypted Kubernetes secrets', retention: 'Until deleted by the customer or project deletion', access: 'Injected only into that tenant\'s runtime; no plaintext staff access; never sent to the model provider', why: 'Let the generated app call external services', encryption: 'TLS 1.2+; envelope encryption with KMS', training: 'Never', evidence: 'Secret store IAM, log redaction tests, prompt construction code review' },
+  { dataType: 'Generated outputs and code', stored: 'Same store as source code; built images in a private container registry', retention: 'Life of the project', access: 'Workspace members; deploy pipeline', why: 'Deliver and deploy the app', encryption: 'TLS 1.2+; KMS at rest', training: 'State the contractual position', evidence: 'Registry permissions, image scanning config' },
+  { dataType: 'Tool calls and third-party API actions', stored: 'Action metadata in audit log; payloads not stored by default', retention: 'Audit log [1 year]', access: 'Workspace admins (own actions); security team', why: 'Accountability and incident investigation', encryption: 'TLS 1.2+ through an egress proxy', training: 'No', evidence: 'Egress proxy allowlist, OAuth scopes per integration, audit log sample' },
+  { dataType: 'Execution environments and sandboxes', stored: 'Ephemeral sandboxed pods (GKE Sandbox / gVisor, Kata or microVMs) on dedicated node pools', retention: 'Destroyed at session end or idle timeout', access: 'Only the owning workspace session; no shell access for staff without break-glass', why: 'Run and preview generated code safely', encryption: 'Encrypted node disks; TLS for traffic', training: 'No', evidence: 'Node pool sandbox config, network policies, pod security admission, isolation test results' },
+  { dataType: 'Logs and telemetry', stored: 'Cloud Logging / CloudWatch, central log project or account', retention: 'Application logs [30 to 90] days; audit logs [1 year]', access: 'On-call engineers and security, least privilege', why: 'Operate, debug and investigate incidents', encryption: 'TLS 1.2+; provider-managed or KMS at rest', training: 'No', evidence: 'Redaction rules for prompts, code and secrets; log IAM; retention settings' },
+  { dataType: 'Model providers (LLM APIs)', stored: 'Provider side, under API terms (zero or limited retention where contracted)', retention: 'Per provider terms, e.g. none or [30] days for abuse monitoring', access: 'Provider systems under contract', why: 'Generate code and responses', encryption: 'TLS 1.2+', training: 'Contractually no training on API data; verify in terms', evidence: 'Model provider DPA, zero-data-retention confirmation, region settings' },
+  { dataType: 'Other sub-processors', stored: 'GCP, AWS, email, error tracking, analytics, payments', retention: 'Per contract', access: 'Per contract', why: 'Hosting and supporting services', encryption: 'Per provider; verify', training: 'No', evidence: 'Sub-processor list, DPAs, SOC 2 / ISO reports reviewed' },
+];
+
+export interface IsolationRow { control: string; verify: string; evidence: string; }
+
+export const PLATFORM_ISOLATION_CHECKS: IsolationRow[] = [
+  { control: 'Tenant separation in Kubernetes', verify: 'Namespace per tenant or per session; Kubernetes RBAC denies cross-namespace access; no shared service accounts. Test with kubectl auth can-i --as=SERVICE_ACCOUNT across namespaces.', evidence: 'Namespace and RBAC config; cross-tenant access test result' },
+  { control: 'Sandboxed runtime for untrusted code', verify: 'Generated code runs under a sandbox runtime (GKE Sandbox / gVisor, Kata or microVMs) on a dedicated, tainted node pool, never on system nodes.', evidence: 'gcloud container node-pools describe (sandboxConfig) or EKS node group config; pod runtimeClassName' },
+  { control: 'Network boundaries', verify: 'Default-deny NetworkPolicies; egress only through a proxy with an allowlist; no access to internal services or other tenants.', evidence: 'kubectl get networkpolicy -A; egress proxy rules; blocked-request test' },
+  { control: 'Cloud credential exposure', verify: 'Metadata server blocked from sandboxes; Workload Identity (GKE) or IRSA / Pod Identity (EKS) scoped per service; IMDSv2 with hop limit 1.', evidence: 'Node metadata config; IAM bindings per workload' },
+  { control: 'Storage bucket isolation', verify: 'Per-tenant prefixes with IAM conditions or per-tenant buckets; uniform bucket-level access; public access prevention; short-lived signed URLs.', evidence: 'Bucket IAM policy, public access settings, signed URL TTL' },
+  { control: 'Permissions and least privilege for agents', verify: 'Agent tools scoped per workspace; OAuth scopes minimal; no standing admin credentials in sandboxes.', evidence: 'Tool permission matrix; OAuth scope list' },
+  { control: 'Human approval before high-impact actions', verify: 'Approval required before production deploys, data deletion, external messages, spending or permission changes.', evidence: 'Approval workflow screenshots; audit log of approvals' },
+  { control: 'Prompt injection (direct and indirect)', verify: 'Untrusted content from repos, files, web pages and tool output is treated as data; tool calls constrained; outputs checked before action.', evidence: 'Red-team or test results against OWASP LLM01; defense design doc' },
+  { control: 'Sensitive data and secret exposure', verify: 'Secrets and personal data redacted from logs and not included in prompts sent to model providers; output scanning for secrets.', evidence: 'Redaction tests; secret scanning results' },
+  { control: 'Resource limits and abuse', verify: 'CPU, memory and time limits per sandbox; rate limits per workspace.', evidence: 'ResourceQuota / LimitRange config; rate limit settings' },
+  { control: 'Retention and training use', verify: 'Retention matches what the DPA and questionnaires say; model provider zero-retention or no-training terms in place.', evidence: 'Retention configs; provider terms; DPA training clause' },
+];
+
+export const PLATFORM_EVIDENCE_TO_PROVIDE: string[] = [
+  'Provide the agent permission model and IAM policies with a dated review.',
+  'Provide the tenant isolation architecture and a cross-tenant access test result.',
+  'Provide sandbox configuration and isolation test results.',
+  'Provide the approval workflow and a sample of approval audit logs.',
+  'Provide prompt injection test results covering files, web pages and tool output.',
+  'Provide log redaction and secret scanning configuration with test results.',
+  'Provide the retention policy and the configuration that enforces it.',
+  'Provide the training-use position in the DPA and terms, and the default setting.',
+  'Provide model provider terms showing retention and training commitments.',
+];
+
+export interface GovStep { step: string; detail: string; example: string; }
+
+export const GOVERNANCE_STEPS: GovStep[] = [
+  { step: '1. Describe the intended purpose', detail: 'What the system is for, who uses it, in what context, and what its outputs are used for. Classification follows intended purpose, not the technology.', example: 'An AI coding platform that generates, runs and deploys software for developers and business users.' },
+  { step: '2. Determine your role for each AI system', detail: 'Under the EU AI Act: provider (develops or has it developed and places it on the market under its own name), deployer (uses it under its authority), importer or distributor. Separately, identify any general-purpose AI (GPAI) model providers you rely on.', example: 'Likely provider of the platform as an AI system; downstream user of third-party GPAI models; customers are deployers of the platform and may become providers of the apps they build.' },
+  { step: '3. Screen for prohibited practices', detail: 'Check the intended purpose against Art. 5 prohibited practices and document the result.', example: 'Code generation is not a prohibited practice; record the screening.' },
+  { step: '4. Check high-risk classification', detail: 'High-risk only if the system is a safety component under Annex I or its intended purpose falls in an Annex III area (e.g. employment, credit, education), subject to the Art. 6(3) exceptions.', example: 'A general coding platform is not listed in Annex III by itself. If a customer builds an app for an Annex III use, obligations fall on that customer as provider of that app; consider contract terms and acceptable use.' },
+  { step: '5. Check transparency obligations', detail: 'Art. 50 duties such as informing people they are interacting with AI and marking synthetic content where applicable.', example: 'Confirm whether any chat interface or generated media needs disclosure or marking.' },
+  { step: '6. Map GPAI obligations', detail: 'GPAI model obligations sit with the model provider. As a downstream provider, obtain the model documentation you need to meet your own obligations.', example: 'Request model documentation and usage policies from each LLM provider.' },
+  { step: '7. Check other applicable rules', detail: 'GDPR (including Art. 22 automated decisions), US state AI laws, sector rules and customer contract requirements, based on markets and data processed.', example: 'Record jurisdictions where customers and end users are located.' },
+  { step: '8. Document and review', detail: 'Record the assessment with rationale, owner and review date. Re-run it when the intended purpose, markets or role change, and when rules change.', example: 'Use the AI Regulatory Applicability Assessment template.' },
+];
+
+export const GOVERNANCE_RULE = 'Using AI does not by itself make a system high-risk or subject to specific obligations. Start from the intended purpose and your role, then derive the obligations. Confirm the conclusion with Legal; this guidance is not legal advice.';

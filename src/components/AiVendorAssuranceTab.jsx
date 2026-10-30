@@ -15,7 +15,9 @@ import {
   SECTION3_BULLETS, SECTION3_REDFLAGS,
   SECTION4_BULLETS, SECTION4_REDFLAGS,
   SECTION5_BULLETS, SECTION5_REDFLAGS,
+  PLATFORM_ROLES, PLATFORM_DATA_FLOWS, PLATFORM_ISOLATION_CHECKS, PLATFORM_EVIDENCE_TO_PROVIDE, GOVERNANCE_STEPS, GOVERNANCE_RULE,
 } from '../data/aiVendorAssurance.ts';
+import RelatedTemplates from './templates/RelatedTemplates.jsx';
 
 function useCopy() {
   const [copied, setCopied] = useState(null);
@@ -69,9 +71,26 @@ function SectionEnd({ evidence, redFlags }) {
   );
 }
 
+const TH = 'text-left p-2 font-semibold text-gray-900 dark:text-white';
+const TD = 'p-2 text-gray-600 dark:text-gray-300 align-top';
+
+function ExampleBox({ title, children }) {
+  return (
+    <div className="rounded-xl border border-indigo-200 bg-indigo-50/60 dark:bg-indigo-900/20 dark:border-indigo-800 p-4 mb-4">
+      <p className="text-xs font-bold uppercase tracking-wide text-indigo-700 dark:text-indigo-300 mb-1">Worked example</p>
+      <h4 className="font-bold text-gray-900 dark:text-white mb-2 text-sm">{title}</h4>
+      {children}
+    </div>
+  );
+}
+
 function AiVendorAssuranceTab() {
   const { copied, copy } = useCopy();
   const [verified, setVerified] = useState({});
+  const [mode, setMode] = useState(() => { try { return localStorage.getItem('aiva-mode') || 'platform'; } catch { return 'platform'; } });
+  const pickMode = m => { setMode(m); try { localStorage.setItem('aiva-mode', m); } catch { /* storage unavailable */ } };
+  const platform = mode === 'platform';
+  const flows = platform ? PLATFORM_DATA_FLOWS : DATA_FLOW_ROWS;
 
   return (
     <div className="space-y-6">
@@ -80,6 +99,20 @@ function AiVendorAssuranceTab() {
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">AI Vendor Assurance</h2>
         <p className="text-gray-600 dark:text-gray-300">
           This module helps you review customer DPAs, map AI agent data flows, answer security questionnaires accurately, verify AI controls with customers and auditors, and determine which emerging AI regulations apply. Every AI control is presented as a claim to verify, not an assumed capability.
+        </p>
+        <div className="mt-4 flex flex-wrap items-center gap-2" role="group" aria-label="Perspective">
+          <span className="text-sm font-semibold text-gray-700 dark:text-gray-200 mr-1">Perspective:</span>
+          {[['platform', 'Preparing our AI platform for customer review'], ['vendor', 'Assessing an AI vendor we use']].map(([id, label]) => (
+            <button key={id} type="button" aria-pressed={mode === id} onClick={() => pickMode(id)}
+              className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-colors ${mode === id ? 'bg-indigo-600 border-indigo-600 text-white' : 'border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:border-indigo-400'}`}>
+              {label}
+            </button>
+          ))}
+        </div>
+        <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+          {platform
+            ? 'Worked example: an AI coding (vibe coding) platform with production on GCP and AWS, running Kubernetes and storage buckets. Example values describe a typical design to verify against your own platform, never answers to copy.'
+            : 'Use the questions and evidence lists to assess an AI vendor before you share data with it.'}
         </p>
       </div>
 
@@ -141,6 +174,20 @@ function AiVendorAssuranceTab() {
         <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
           This checklist supports Legal review and does not replace it.
         </p>
+        {platform && (
+          <ExampleBox title="Role split for an AI coding platform (decide per processing activity)">
+            <div className="overflow-x-auto rounded-lg border border-indigo-200 dark:border-indigo-800 bg-white dark:bg-gray-900">
+              <table className="w-full text-sm min-w-[720px]">
+                <thead className="bg-indigo-100/70 dark:bg-indigo-900/40"><tr><th className={TH}>Processing activity</th><th className={TH}>Platform role</th><th className={TH}>Why</th><th className={TH}>Where it is documented</th></tr></thead>
+                <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
+                  {PLATFORM_ROLES.map(r => <tr key={r.activity}><td className={TD + ' font-medium text-gray-900 dark:text-white'}>{r.activity}</td><td className={TD + ' font-semibold'}>{r.role}</td><td className={TD}>{r.why}</td><td className={TD}>{r.document}</td></tr>)}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-xs text-gray-600 dark:text-gray-300 mt-2">Review the outcome with Legal, then work through the checklist above for each customer DPA. Record redlines and agreed positions.</p>
+          </ExampleBox>
+        )}
+        <RelatedTemplates className="mb-4" limit={4} text="customer dpa data processing agreement sub-processor notice transfers register record of processing" />
         <div className="text-xs text-gray-500 dark:text-gray-400 mb-4">
           Maps to: GDPR Art. 28, 32, 33, 44-49; UK GDPR; DPDPA s.8; ISO 27701; SOC 2 P-series and CC9.2.
         </div>
@@ -157,6 +204,7 @@ function AiVendorAssuranceTab() {
         <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
           Data flow: User → Agent → Tool calls / Execution sandbox / Model provider → Logs. Mark trust boundaries at each step.
         </p>
+        {platform && <p className="text-xs font-semibold text-indigo-700 dark:text-indigo-300 mb-2">Showing the worked example for a GCP and AWS platform on Kubernetes and storage buckets. Replace each cell with your verified design and evidence.</p>}
         <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700 mb-4">
           <table className="w-full text-sm min-w-[900px]">
             <thead className="bg-gray-100 dark:bg-gray-700">
@@ -172,7 +220,7 @@ function AiVendorAssuranceTab() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
-              {DATA_FLOW_ROWS.map((r) => (
+              {flows.map((r) => (
                 <tr key={r.dataType}>
                   <td className="p-2 font-medium text-gray-900 dark:text-white">{r.dataType}</td>
                   <td className="p-2 text-gray-600 dark:text-gray-300">{r.stored}</td>
@@ -195,6 +243,7 @@ function AiVendorAssuranceTab() {
         <div className="text-xs text-gray-500 dark:text-gray-400 mb-4">
           Maps to: ISO 42001 A.7 (data for AI systems), ISO 27001 A.5.12, A.5.14, A.8.10, A.8.11, NIST AI RMF MAP, SOC 2 CC6.1 and C1.1.
         </div>
+        <RelatedTemplates className="mb-4" limit={3} text="ai data flow register data inventory network diagram" />
         <SectionEnd evidence={['Data flow diagram with trust boundaries', 'Data type inventory', 'Access control documentation', 'Encryption configuration', 'Retention policy', 'Model provider agreement']} redFlags={SECTION2_REDFLAGS} />
       </Card>
 
@@ -237,6 +286,7 @@ function AiVendorAssuranceTab() {
             <li key={b} className="flex items-start gap-2"><span>•</span> {b}</li>
           ))}
         </ul>
+        <RelatedTemplates className="mb-4" limit={3} text="questionnaire answer library security page soc 2 system description" />
         <SectionEnd evidence={['Answer library with owners and last-verified dates', 'Product scope documentation', 'Exception register', 'Control owner contact list']} redFlags={SECTION3_REDFLAGS} />
       </Card>
 
@@ -249,8 +299,8 @@ function AiVendorAssuranceTab() {
           <table className="w-full text-sm">
             <thead className="bg-gray-100 dark:bg-gray-700">
               <tr>
-                <th className="text-left p-3 font-semibold text-gray-900 dark:text-white">Question to ask</th>
-                <th className="text-left p-3 font-semibold text-gray-900 dark:text-white">Evidence to request</th>
+                <th className="text-left p-3 font-semibold text-gray-900 dark:text-white">{platform ? 'Claim to verify' : 'Question to ask'}</th>
+                <th className="text-left p-3 font-semibold text-gray-900 dark:text-white">{platform ? 'Evidence to provide' : 'Evidence to request'}</th>
                 <th className="text-left p-3 font-semibold text-gray-900 dark:text-white">Verified?</th>
               </tr>
             </thead>
@@ -258,7 +308,7 @@ function AiVendorAssuranceTab() {
               {ASSURANCE_ROWS.map((r, i) => (
                 <tr key={r.question}>
                   <td className="p-3 text-gray-700 dark:text-gray-300">{r.question}</td>
-                  <td className="p-3 text-gray-600 dark:text-gray-300">{r.evidence}</td>
+                  <td className="p-3 text-gray-600 dark:text-gray-300">{platform ? PLATFORM_EVIDENCE_TO_PROVIDE[i] || r.evidence : r.evidence}</td>
                   <td className="p-3">
                     <select
                       value={verified[i] || 'No'}
@@ -283,11 +333,37 @@ function AiVendorAssuranceTab() {
         <div className="text-xs text-gray-500 dark:text-gray-400 mb-4">
           Maps to: OWASP Top 10 for LLM Applications, MITRE ATLAS, NIST AI 600-1, ISO 42001 Annex A, SOC 2 CC6 and CC7.
         </div>
+        {platform && (
+          <ExampleBox title="How to verify each claim on GKE / EKS and storage buckets">
+            <div className="overflow-x-auto rounded-lg border border-indigo-200 dark:border-indigo-800 bg-white dark:bg-gray-900">
+              <table className="w-full text-sm min-w-[720px]">
+                <thead className="bg-indigo-100/70 dark:bg-indigo-900/40"><tr><th className={TH}>Control</th><th className={TH}>How to verify</th><th className={TH}>Evidence</th></tr></thead>
+                <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
+                  {PLATFORM_ISOLATION_CHECKS.map(r => <tr key={r.control}><td className={TD + ' font-medium text-gray-900 dark:text-white'}>{r.control}</td><td className={TD}>{r.verify}</td><td className={TD}>{r.evidence}</td></tr>)}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-xs text-gray-600 dark:text-gray-300 mt-2">Commands are read-only and should be run with a least-privilege audit role. See the Cloud Control Testing Guide for baseline cloud controls.</p>
+          </ExampleBox>
+        )}
+        <RelatedTemplates className="mb-4" limit={3} text="ai assurance checklist penetration test vendor security review" />
         <SectionEnd evidence={['IAM policy documentation', 'Architecture diagram', 'Sandbox configuration', 'Approval workflow documentation', 'Security testing results', 'DLP configuration', 'Retention policy', 'Terms of service', 'Model provider agreement']} redFlags={SECTION4_REDFLAGS} />
       </Card>
 
       {/* Section 5: AI Governance and Regulatory Applicability */}
       <Card icon={Building2} title="5. AI Governance and Regulatory Applicability" purpose="Decide which emerging AI rules apply, starting from facts and not from the fact that AI is used.">
+        <div className="rounded-xl border border-amber-300 bg-amber-50 dark:bg-amber-900/20 dark:border-amber-800 p-3 mb-4">
+          <p className="text-sm font-semibold text-amber-900 dark:text-amber-200">{GOVERNANCE_RULE}</p>
+        </div>
+        <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700 mb-4">
+          <table className="w-full text-sm min-w-[720px]">
+            <thead className="bg-gray-100 dark:bg-gray-700"><tr><th className={TH}>Step</th><th className={TH}>What to do</th><th className={TH}>{platform ? 'AI coding platform example' : 'Example'}</th></tr></thead>
+            <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
+              {GOVERNANCE_STEPS.map(g => <tr key={g.step}><td className={TD + ' font-semibold text-gray-900 dark:text-white whitespace-nowrap'}>{g.step}</td><td className={TD}>{g.detail}</td><td className={TD}>{g.example}</td></tr>)}
+            </tbody>
+          </table>
+        </div>
+        <RelatedTemplates className="mb-4" limit={3} text="ai regulatory applicability assessment eu ai act legal register" />
         <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300 mb-4">
           {SECTION5_BULLETS.map((b) => (
             <li key={b} className="flex items-start gap-2"><span>•</span> {b}</li>
