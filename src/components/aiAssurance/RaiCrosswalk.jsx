@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Layers } from 'lucide-react';
 import RelatedTemplates from '../templates/RelatedTemplates.jsx';
-import { AI_TYPES, AUTONOMY, AUDIENCE, PATTERNS, ASSESSMENT_BLOCK, ESCALATION_RULES, PRESALES_CHECKLIST, INDUSTRIES, PATTERN_DETAIL, ART5_WATCH, ART9_CONDITIONS, ART9_CATEGORIES, ART9_EXAMPLE } from '../../data/raiUseCases.js';
+import { AI_TYPES, AUTONOMY, AUDIENCE, PATTERNS, ASSESSMENT_BLOCK, ESCALATION_RULES, PRESALES_CHECKLIST, INDUSTRIES, PATTERN_DETAIL, ART5_WATCH, ART9_CONDITIONS, ART9_CATEGORIES, ART9_EXAMPLE, ART_REF, ART5_LIST } from '../../data/raiUseCases.js';
 
 // Responsible AI review process: how the EU AI Act, ISO/IEC 42001, ISO/IEC 27090, GDPR and NIST AI RMF map and apply.
 
@@ -215,8 +215,12 @@ export default function RaiCrosswalk() {
             <table className="w-full text-sm min-w-[720px]">
               <caption className="text-left font-bold text-amber-900 dark:text-amber-200 text-sm p-3 bg-amber-50 dark:bg-amber-900/20">EU AI Act Art. 5 watch list: patterns that can drift into prohibited practices</caption>
               <thead><tr>{['Pattern', 'Possible Art. 5 issue', 'Check'].map(h => <th key={h} scope="col" className={TH}>{h}</th>)}</tr></thead>
-              <tbody className="divide-y divide-gray-100 dark:divide-gray-700">{ART5_WATCH.map(([a, b, c]) => <tr key={a}><td className={TD + ' font-semibold text-gray-900 dark:text-white'}>{a}</td><td className={TD}>{b}</td><td className={TD}>{c}</td></tr>)}</tbody>
+              <tbody className="divide-y divide-gray-100 dark:divide-gray-700">{ART5_WATCH.map(([a, b, c]) => { const refs = Object.keys(ART_REF).filter(r => b.includes(r) && !(r === 'Art. 5' && /Art\. 5\(/.test(b))); return <tr key={a}><td className={TD + ' font-semibold text-gray-900 dark:text-white'}>{a}</td><td className={TD}>{b}{refs.map(r => <span key={r} className="block mt-1 text-xs text-teal-700 dark:text-teal-300"><span className="font-semibold">{r}:</span> {ART_REF[r]}</span>)}</td><td className={TD}>{c}</td></tr>; })}</tbody>
             </table>
+            <div className="p-3 bg-teal-50/60 dark:bg-teal-900/10 border-t border-amber-200 dark:border-amber-800">
+              <p className="text-xs font-bold text-teal-800 dark:text-teal-200 mb-1">What each Art. 5(1) prohibition covers</p>
+              <ul className="grid md:grid-cols-2 gap-x-4 gap-y-1 text-xs text-teal-700 dark:text-teal-300">{ART5_LIST.map(([k, d]) => <li key={k}><span className="font-semibold">Art. {k}:</span> {d}</li>)}</ul>
+            </div>
           </div>
         </div>
       )}

@@ -234,3 +234,22 @@ export const ART9_EXAMPLE = [
   ['Check it covers every use', 'Consent to assess the application does not cover training or fine-tuning a model on the same reports. That is a new purpose and needs its own condition, or the data must be anonymised first.'],
   ['Add what Art. 9 triggers', 'A DPIA (Art. 35(3)(b) for large-scale special category processing), stronger security, a DPA with the model provider ruling out training and retention, and a record of which condition was chosen and why.'],
 ];
+
+// Plain-English meaning of each EU AI Act article referenced in the Art. 5 watch list.
+export const ART_REF = {
+  'Art. 5(1)(e)': 'Bans building or expanding facial recognition databases by untargeted scraping of facial images from the internet or CCTV.',
+  'Art. 5(1)(f)': 'Bans AI that infers emotions of people in the workplace or in education, except for medical or safety reasons.',
+  'Art. 5(1)(g)': 'Bans biometric categorisation that deduces race, political opinions, union membership, religion, sex life or sexual orientation.',
+  'Art. 50': 'Transparency duties: tell people they are talking to AI, label deepfakes and synthetic content, and inform people exposed to emotion recognition or biometric categorisation.',
+  'Art. 5': 'The list of prohibited AI practices, banned since 2 February 2025.',
+};
+export const ART5_LIST = [
+  ['5(1)(a)', 'Subliminal, manipulative or deceptive techniques that distort behaviour and cause significant harm.'],
+  ['5(1)(b)', 'Exploiting vulnerabilities due to age, disability or social or economic situation.'],
+  ['5(1)(c)', 'Social scoring that leads to unjustified or disproportionate detrimental treatment.'],
+  ['5(1)(d)', 'Predicting that a person will commit a crime based solely on profiling or personality traits.'],
+  ['5(1)(e)', 'Untargeted scraping of facial images to build facial recognition databases.'],
+  ['5(1)(f)', 'Emotion recognition in the workplace or in education, except for medical or safety reasons.'],
+  ['5(1)(g)', 'Biometric categorisation to infer sensitive traits such as race, religion or sexual orientation.'],
+  ['5(1)(h)', 'Real-time remote biometric identification in public spaces for law enforcement, except narrow listed cases.'],
+];
