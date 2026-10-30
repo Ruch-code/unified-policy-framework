@@ -3,6 +3,7 @@ import RiskRegisterSection from './RiskRegisterSection.jsx';
 import RiskTraceability from './RiskTraceability.jsx';
 import RiskCrossCheck from './RiskCrossCheck.jsx';
 import RiskDownloads from './RiskDownloads.jsx';
+import PracticalScenarios from './PracticalScenarios.jsx';
 import AiRiskFactors from '../aiAssurance/AiRiskFactors.jsx';
 import { sectionCls, h3Cls, leadCls } from './riskUtils.jsx';
 
@@ -13,6 +14,7 @@ const NAV = [
   ['ra-treatment', 'Treatment'],
   ['ra-register', 'Register'],
   ['ra-library', 'Scenario library'],
+  ['ra-scenarios', 'Practical scenarios'],
   ['ra-traceability', 'Traceability'],
   ['ra-crosscheck', 'Framework cross-check'],
   ['ra-downloads', 'Downloads'],
@@ -44,9 +46,10 @@ export default function RiskAssessmentModule({ isDark = false }) {
       <AiRiskFactors />
       <TreatmentSection />
       <RiskRegisterSection isDark={isDark} />
+      <PracticalScenarios />
       <RiskTraceability />
       <section id="ra-crosscheck" className={sectionCls}>
-        <h3 className={h3Cls}>7. Framework cross-check</h3>
+        <h3 className={h3Cls}>8. Framework cross-check</h3>
         <p className={leadCls}>One risk assessment satisfies the risk requirements of many frameworks. Each framework playbook links back here.</p>
         <RiskCrossCheck />
       </section>

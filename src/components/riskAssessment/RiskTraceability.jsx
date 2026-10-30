@@ -32,7 +32,7 @@ export default function RiskTraceability() {
 
   return (
     <section id="ra-traceability" className={sectionCls}>
-      <h3 className={h3Cls}>6. Risk to control to test to evidence</h3>
+      <h3 className={h3Cls}>7. Risk to control to test to evidence</h3>
       <p className={leadCls}>Click a risk to see the controls that mitigate it, then click a control to see its description, framework mappings, automated tests and the evidence an auditor will ask for. A treatment is only complete when every linked control has current evidence.</p>
 
       <ul className="space-y-2">
