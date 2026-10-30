@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Layers } from 'lucide-react';
 import RelatedTemplates from '../templates/RelatedTemplates.jsx';
+import { AI_TYPES, AUTONOMY, AUDIENCE, PATTERNS, ASSESSMENT_BLOCK, ESCALATION_RULES, PRESALES_CHECKLIST, INDUSTRIES } from '../../data/raiUseCases.js';
 
 // Responsible AI review process: how the EU AI Act, ISO/IEC 42001, ISO/IEC 27090, GDPR and NIST AI RMF map and apply.
 
@@ -103,13 +104,18 @@ const ANSWERS = [
       'The takeaway: high-risk does not mean no; it means approved with evidence and human oversight.'] },
 ];
 
-const TABS = ['Regulations', 'Stage crosswalk', 'Use-case examples', 'Interview answers'];
+const TABS = ['Regulations', 'Stage crosswalk', 'Use-case examples', 'Use-case catalogue', 'Assessment method', 'Pre-sales checklist', 'Interview answers'];
+const RISK_CLS = { High: 'bg-rose-100 text-rose-800 dark:bg-rose-900/40 dark:text-rose-200', Med: 'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-200', Low: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-200' };
 const TH = 'text-left p-2 font-semibold text-gray-900 dark:text-white bg-gray-100 dark:bg-gray-800 align-bottom';
 const TD = 'p-2 text-gray-700 dark:text-gray-300 align-top';
 
 export default function RaiCrosswalk() {
   const [tab, setTab] = useState(TABS[0]);
   const [openQ, setOpenQ] = useState(0);
+  const [ind, setInd] = useState('All');
+  const [openP, setOpenP] = useState(null);
+  const [checks, setChecks] = useState({});
+  const pats = PATTERNS.filter(p => ind === 'All' || p.industry === ind);
   return (
     <section id="rai-crosswalk" className="grc-section scroll-mt-24">
       <h2 className="grc-section-title mb-2"><Layers className="w-6 h-6 text-violet-600 dark:text-violet-300" /> Responsible AI review: how the regulations and standards map</h2>
@@ -157,6 +163,72 @@ export default function RaiCrosswalk() {
         </div>
       )}
 
+      {tab === 'Use-case catalogue' && (
+        <div>
+          <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Illustrative, generalised patterns, not taken from any client tracker. EU AI Act tiers are indicative; confirm with Legal. Click a row for prioritised actions.</p>
+          <div className="flex flex-wrap gap-2 mb-3" role="group" aria-label="Filter by industry">
+            {['All', ...INDUSTRIES].map(i => <button key={i} type="button" aria-pressed={ind === i} onClick={() => setInd(i)} className={`px-2.5 py-1 rounded-full text-[11px] font-semibold border ${ind === i ? 'bg-violet-600 border-violet-600 text-white' : 'border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200'}`}>{i}</button>)}
+          </div>
+          <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700">
+            <table className="w-full text-sm min-w-[1000px]">
+              <thead><tr>{['Industry', 'Use-case pattern', 'AI type', 'Autonomy', 'Audience', 'Data processed', 'EU AI Act tier (indicative)', 'Overall risk', 'Escalate'].map(h => <th key={h} scope="col" className={TH}>{h}</th>)}</tr></thead>
+              <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
+                {pats.map(p => {
+                  const k = p.industry + p.pattern; const open = openP === k;
+                  return [
+                    <tr key={k} className="cursor-pointer hover:bg-violet-50/60 dark:hover:bg-violet-900/20" onClick={() => setOpenP(open ? null : k)} aria-expanded={open}>
+                      <td className={TD}>{p.industry}</td><td className={TD + ' font-semibold text-gray-900 dark:text-white'}>{p.pattern}</td><td className={TD}>{p.type}</td><td className={TD}>{p.autonomy}</td><td className={TD}>{p.audience}</td><td className={TD}>{p.data}</td><td className={TD}>{p.tier}</td>
+                      <td className={TD}><span className={`px-2 py-0.5 rounded-full text-xs font-bold ${RISK_CLS[p.risk]}`}>{p.risk}</span></td><td className={TD}>{p.escalate ? 'Yes' : 'No'}</td>
+                    </tr>,
+                    open && <tr key={k + '-d'}><td colSpan={9} className="p-3 bg-violet-50/50 dark:bg-violet-900/10"><ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300">{p.actions.map(x => <li key={x}><span className={`font-bold ${x.startsWith('Must') ? 'text-rose-700 dark:text-rose-300' : 'text-sky-700 dark:text-sky-300'}`}>{x.split(':')[0]}:</span>{x.slice(x.indexOf(':') + 1)}</li>)}</ul></td></tr>,
+                  ];
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {tab === 'Assessment method' && (
+        <div className="space-y-4">
+          <div className="grid md:grid-cols-3 gap-3">
+            <div className="md:col-span-2 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-4">
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-sm">AI type (one primary, any secondary)</h3>
+              <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300">{AI_TYPES.map(([c, n, d]) => <li key={c}><span className="font-bold">{c}. {n}:</span> {d}</li>)}</ul>
+            </div>
+            <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-4 text-sm text-gray-700 dark:text-gray-300">
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-sm">Autonomy level</h3><ul className="list-disc pl-5 mb-3">{AUTONOMY.map(a => <li key={a}>{a}</li>)}</ul>
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-sm">Audience</h3><ul className="list-disc pl-5">{AUDIENCE.map(a => <li key={a}>{a}</li>)}</ul>
+            </div>
+          </div>
+          <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700">
+            <table className="w-full text-sm min-w-[720px]">
+              <thead><tr><th className={TH}>Assessment block</th><th className={TH}>What to cover</th></tr></thead>
+              <tbody className="divide-y divide-gray-100 dark:divide-gray-700">{ASSESSMENT_BLOCK.map(([h, d]) => <tr key={h}><td className={TD + ' font-semibold text-gray-900 dark:text-white whitespace-nowrap'}>{h}</td><td className={TD}>{d}</td></tr>)}</tbody>
+            </table>
+          </div>
+          <div className="rounded-xl border border-rose-200 bg-rose-50 dark:bg-rose-900/20 dark:border-rose-800 p-4">
+            <h3 className="font-bold text-rose-900 dark:text-rose-200 mb-2 text-sm">Escalate to a responsible AI office or legal review when</h3>
+            <ul className="list-disc pl-5 space-y-1 text-sm text-gray-800 dark:text-gray-200">{ESCALATION_RULES.map(r => <li key={r}>{r}</li>)}</ul>
+          </div>
+        </div>
+      )}
+
+      {tab === 'Pre-sales checklist' && (
+        <div>
+          <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Complete before the responsible AI intake call. Any "Yes" on questions 3 to 8, or any "No" on the others, is a topic to raise at intake. Ticks are not saved.</p>
+          <ol className="space-y-1.5">
+            {PRESALES_CHECKLIST.map((q, i) => (
+              <li key={q} className="flex flex-wrap items-center gap-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-sm">
+                <span className="font-bold text-gray-500 w-6">{i + 1}.</span>
+                <span className="flex-1 min-w-[200px] text-gray-800 dark:text-gray-200">{q}</span>
+                {['Yes', 'No', 'Unknown'].map(v => <button key={v} type="button" aria-pressed={checks[i] === v} onClick={() => setChecks(c => ({ ...c, [i]: v }))} className={`px-2 py-0.5 rounded text-xs font-semibold border ${checks[i] === v ? 'bg-violet-600 border-violet-600 text-white' : 'border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200'}`}>{v}</button>)}
+              </li>
+            ))}
+          </ol>
+        </div>
+      )}
+
       {tab === 'Interview answers' && (
         <div className="space-y-2">
           <p className="text-xs text-gray-600 dark:text-gray-400">First-person answers of 60 to 120 seconds: direct answer, a short example, then one takeaway line.</p>
@@ -169,7 +241,7 @@ export default function RaiCrosswalk() {
         </div>
       )}
 
-      <RelatedTemplates className="mt-4" limit={4} text="ai regulatory applicability assessment ai assurance checklist dpia ai data flow register" />
+      <RelatedTemplates className="mt-4" limit={4} text="ai use-case assessment ai regulatory applicability assessment ai assurance checklist dpia" />
     </section>
   );
 }

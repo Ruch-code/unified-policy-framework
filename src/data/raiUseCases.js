@@ -1,0 +1,113 @@
+// Responsible AI use-case assessment method and illustrative industry catalogue.
+// Patterns are generic illustrations, not drawn from any client tracker. EU AI Act tiers are indicative; confirm with Legal.
+
+export const AI_TYPES = [
+  ['A', 'Agentic AI', 'Multi-agent orchestration, tool or API calling, autonomous or semi-autonomous actions, write-back to systems'],
+  ['B', 'RAG / internal knowledge assistant', 'Answers grounded on internal documents and data'],
+  ['C', 'Customer- or public-facing chatbot', 'Virtual assistants for customers, citizens or the public'],
+  ['D', 'Document intelligence', 'OCR, extraction and classification of documents'],
+  ['E', 'Speech and voice AI', 'Transcription, summarisation, voice bots, voice biometrics'],
+  ['F', 'Predictive ML', 'Forecasting, anomaly and fraud detection, scoring, recommenders'],
+  ['G', 'Computer vision and biometrics', 'Face, video and image inspection'],
+  ['H', 'Generative content and drafting', 'Drafting text, code, images or media'],
+  ['I', 'Conversational analytics / text-to-SQL', 'Natural language questions over structured data'],
+  ['J', 'Platform, Copilot rollout, dev tooling', 'Enabling off-the-shelf AI with no custom model or logic'],
+];
+export const AUTONOMY = ['Assistive (human decides)', 'Human-approved action', 'Autonomous action'];
+export const AUDIENCE = ['Internal employees', 'External customers', 'Public', 'Vulnerable groups'];
+
+export const PATTERNS = [
+  { industry: 'Financial Services', pattern: 'Credit or loan pre-assessment assistant', type: 'F / D, A', autonomy: 'Human-approved action', audience: 'External customers', data: 'PII, financial data', tier: 'High-risk (creditworthiness, Annex III)', risk: 'High', escalate: true,
+    actions: ['Must: human makes every credit decision; document Art. 22 safeguards (GDPR Art. 22, EU AI Act Art. 14)', 'Must: DPIA and bias testing across protected groups (GDPR Art. 35, AI Act Art. 10)', 'Must: logging and technical documentation for the scoring logic (AI Act Arts. 11, 12)', 'Should: DORA ICT third-party register entry for the model provider'] },
+  { industry: 'Financial Services', pattern: 'Contact-centre call summarisation and agent assist', type: 'E / B, H', autonomy: 'Assistive', audience: 'Internal employees', data: 'PII, possibly card data', tier: 'Minimal', risk: 'Med', escalate: false,
+    actions: ['Must: redact card numbers before transcripts reach the model (PCI DSS)', 'Must: retention limits on recordings and summaries (GDPR Art. 5(1)(e))', 'Should: show source snippets for each summary to limit hallucination (ISO 42001 A.6)'] },
+  { industry: 'Healthcare & Life Sciences', pattern: 'Ambient clinical note drafting', type: 'E / H', autonomy: 'Assistive', audience: 'Vulnerable groups (patients)', data: 'Special-category (health)', tier: 'Possibly high-risk if a medical device; confirm under MDR', risk: 'High', escalate: true,
+    actions: ['Must: patient notice or consent per local law and Art. 9 condition (GDPR Arts. 9, 13)', 'Must: clinician reviews and signs every note (AI Act Art. 14)', 'Must: BAA or DPA with every processor (HIPAA, GDPR Art. 28)', 'Should: regional data residency for recordings'] },
+  { industry: 'Healthcare & Life Sciences', pattern: 'Medical information RAG for internal staff', type: 'B', autonomy: 'Assistive', audience: 'Internal employees', data: 'Confidential, little PII', tier: 'Minimal', risk: 'Low', escalate: false,
+    actions: ['Must: ground only on approved, versioned sources with citations (ISO 42001 A.7)', 'Should: access control mirrors document permissions'] },
+  { industry: 'Government & Public Sector', pattern: 'Citizen services chatbot', type: 'C / B', autonomy: 'Assistive', audience: 'Public, vulnerable groups', data: 'PII', tier: 'Transparency (Art. 50); high-risk if it decides eligibility', risk: 'Med', escalate: true,
+    actions: ['Must: disclose AI interaction (AI Act Art. 50)', 'Must: no eligibility decisions without a human; FRIA if used for public services (AI Act Art. 27)', 'Should: accessible hand-off to a human agent'] },
+  { industry: 'Government & Public Sector', pattern: 'Tax or benefits case triage and risk scoring', type: 'F / D', autonomy: 'Human-approved action', audience: 'Public', data: 'PII, financial', tier: 'High-risk (essential public services, Annex III)', risk: 'High', escalate: true,
+    actions: ['Must: FRIA before deployment (AI Act Art. 27)', 'Must: bias and accuracy testing, explanation to caseworkers (AI Act Arts. 10, 13)', 'Must: DPIA (GDPR Art. 35)'] },
+  { industry: 'Manufacturing & Automotive/Mobility', pattern: 'Visual quality inspection on the line', type: 'G / F', autonomy: 'Autonomous action', audience: 'Internal', data: 'Operational, no PII if cameras exclude workers', tier: 'Minimal (high-risk only if a safety component)', risk: 'Low', escalate: false,
+    actions: ['Must: camera framing and masking so workers are not identifiable (GDPR Art. 25)', 'Should: drift monitoring and fallback to manual inspection (ISO 42001 A.6)'] },
+  { industry: 'Manufacturing & Automotive/Mobility', pattern: 'Maintenance agent creating work orders', type: 'A / B', autonomy: 'Human-approved action', audience: 'Internal', data: 'Confidential operational', tier: 'Minimal', risk: 'Med', escalate: true,
+    actions: ['Must: agent identity with least-privilege write scope (ISO 27090, ISO 27001 A.8.2)', 'Must: human approval before writing to the system of record', 'Should: prompt-injection testing on ingested manuals and tickets'] },
+  { industry: 'Energy, Utilities, Oil & Gas', pattern: 'Grid or asset failure forecasting', type: 'F', autonomy: 'Assistive', audience: 'Internal', data: 'Operational', tier: 'Possibly high-risk if a safety component of critical infrastructure', risk: 'Med', escalate: true,
+    actions: ['Must: confirm critical infrastructure classification with Legal (AI Act Annex III point 2)', 'Must: NIS2-aligned security controls on the data pipeline', 'Should: human operator retains control of switching decisions'] },
+  { industry: 'Energy, Utilities, Oil & Gas', pattern: 'Field engineer knowledge assistant', type: 'B / E', autonomy: 'Assistive', audience: 'Internal', data: 'Confidential', tier: 'Minimal', risk: 'Low', escalate: false,
+    actions: ['Must: citations and version control on safety procedures', 'Should: offline access controls on mobile devices'] },
+  { industry: 'Retail & Consumer Goods', pattern: 'Personalised product recommendations', type: 'F', autonomy: 'Autonomous action', audience: 'External customers', data: 'PII, behavioural', tier: 'Minimal', risk: 'Med', escalate: false,
+    actions: ['Must: lawful basis and cookie consent for tracking (GDPR Art. 6, ePrivacy)', 'Must: opt-out of profiling (GDPR Art. 21)', 'Should: exclude sensitive inferences (health, religion)'] },
+  { industry: 'Retail & Consumer Goods', pattern: 'Customer service chatbot with order actions', type: 'C / A', autonomy: 'Human-approved action', audience: 'External customers', data: 'PII, payment references', tier: 'Transparency (Art. 50)', risk: 'Med', escalate: false,
+    actions: ['Must: AI disclosure (AI Act Art. 50)', 'Must: authentication before account actions; no card data in prompts (PCI DSS)', 'Should: jailbreak and injection testing'] },
+  { industry: 'Telecommunications & Media', pattern: 'Churn prediction and retention offers', type: 'F', autonomy: 'Assistive', audience: 'External customers', data: 'PII, usage data', tier: 'Minimal', risk: 'Med', escalate: false,
+    actions: ['Must: purpose compatibility check for usage data (GDPR Art. 6(4))', 'Should: avoid unfair price discrimination; document fairness review'] },
+  { industry: 'Telecommunications & Media', pattern: 'Synthetic voice or avatar content', type: 'H / E', autonomy: 'Assistive', audience: 'Public', data: 'Voice likeness (biometric if used for identification)', tier: 'Transparency (label synthetic content)', risk: 'Med', escalate: true,
+    actions: ['Must: label synthetic content (AI Act Art. 50)', 'Must: written consent from the voice or likeness owner', 'Should: watermarking and misuse monitoring'] },
+  { industry: 'Professional Services', pattern: 'Contract review and clause extraction', type: 'D / B, H', autonomy: 'Assistive', audience: 'Internal', data: 'Confidential client data, some PII', tier: 'Minimal', risk: 'Med', escalate: false,
+    actions: ['Must: client consent and confidentiality terms allow AI processing', 'Must: no client data used for model training (DPA, model provider terms)', 'Should: lawyer reviews every extraction'] },
+  { industry: 'Professional Services', pattern: 'Candidate screening and ranking', type: 'F / D', autonomy: 'Human-approved action', audience: 'External (candidates)', data: 'PII, possibly special-category', tier: 'High-risk (employment, Annex III)', risk: 'High', escalate: true,
+    actions: ['Must: human decides; notify candidates (GDPR Arts. 13, 22; AI Act Art. 26)', 'Must: bias testing and DPIA (AI Act Art. 10, GDPR Art. 35)', 'Must: logs retained for oversight (AI Act Art. 12)'] },
+  { industry: 'Travel, Transport & Logistics', pattern: 'Route and load optimisation', type: 'F', autonomy: 'Autonomous action', audience: 'Internal', data: 'Operational, driver location (PII)', tier: 'Minimal', risk: 'Med', escalate: false,
+    actions: ['Must: limit driver location tracking to working purposes (GDPR Art. 5)', 'Should: works council or employee consultation where required'] },
+  { industry: 'Travel, Transport & Logistics', pattern: 'Biometric boarding or check-in', type: 'G', autonomy: 'Autonomous action', audience: 'Public', data: 'Special-category (biometric)', tier: 'High-risk (remote biometric identification) or prohibited depending on use', risk: 'High', escalate: true,
+    actions: ['Must: explicit consent and alternative non-biometric path (GDPR Art. 9)', 'Must: legal classification under AI Act Art. 5 and Annex III', 'Must: template storage on device or deletion after use'] },
+  { industry: 'Hospitality, Gaming & Entertainment/Sports', pattern: 'Responsible gaming risk detection', type: 'F', autonomy: 'Human-approved action', audience: 'Vulnerable groups', data: 'PII, behavioural, possibly health inferences', tier: 'Minimal to high-risk depending on effects; confirm', risk: 'High', escalate: true,
+    actions: ['Must: DPIA for profiling of vulnerable people (GDPR Art. 35)', 'Must: human review before account restrictions', 'Should: regulator expectations mapped per jurisdiction'] },
+  { industry: 'Hospitality, Gaming & Entertainment/Sports', pattern: 'Guest concierge chatbot', type: 'C / B', autonomy: 'Assistive', audience: 'External customers', data: 'PII', tier: 'Transparency (Art. 50)', risk: 'Low', escalate: false,
+    actions: ['Must: AI disclosure (AI Act Art. 50)', 'Should: no storage of payment details in chat history'] },
+  { industry: 'Education & Non-profit', pattern: 'Automated grading or exam proctoring', type: 'F / G', autonomy: 'Human-approved action', audience: 'Vulnerable groups (students, minors)', data: 'PII, possibly biometric', tier: 'High-risk (education, Annex III); emotion recognition prohibited', risk: 'High', escalate: true,
+    actions: ['Must: no emotion recognition (AI Act Art. 5)', 'Must: teacher confirms grades; appeal route (AI Act Art. 14, GDPR Art. 22)', 'Must: parental consent for minors where required (GDPR Art. 8)'] },
+  { industry: 'Education & Non-profit', pattern: 'Donor or beneficiary knowledge assistant', type: 'B / I', autonomy: 'Assistive', audience: 'Internal', data: 'PII', tier: 'Minimal', risk: 'Med', escalate: false,
+    actions: ['Must: role-based access to donor and beneficiary records', 'Should: PII scrubbing in logs'] },
+];
+
+export const ASSESSMENT_BLOCK = [
+  ['End-to-end flow', 'Trigger, data sources, AI processing (models, retrieval, agents), outputs, human review, downstream systems and actions.'],
+  ['Data inventory', 'Personal data categories; special-category data (health, biometric, criminal, union); children or vulnerable subjects; residency and cross-border transfers; retention.'],
+  ['Key risks', 'Privacy, security (prompt injection, data leakage, over-permissioned agents, model and supply-chain risk), fairness and bias, accuracy and hallucination, over-reliance, impact on rights or life opportunities.'],
+  ['GDPR checks', 'Lawful basis (Art. 6) and Art. 9/10 condition; purpose limitation and minimisation; notices (Arts. 13/14); automated decisions (Art. 22); DPIA (Art. 35); data subject rights; controller and processor roles and DPA (Art. 28); transfers (Chapter V); retention and deletion; security (Art. 32); breach readiness.'],
+  ['EU AI Act checks', 'Prohibited practices (Art. 5); Annex III high-risk classification; provider vs deployer obligations; risk management, data governance and documentation; logging; human oversight (Art. 14); accuracy and robustness; transparency (Art. 50); FRIA (Art. 27); GPAI considerations. Tiers are indicative; confirm with Legal.'],
+  ['ISO/IEC 42001 checks', 'AI policy and roles; AI risk and impact assessment; data quality and provenance; lifecycle controls; supplier management; incident handling; continual improvement; relevant Annex A themes.'],
+  ['Security baseline', 'Identity and RBAC including agent identities and least-privilege tools; encryption; network isolation and private endpoints; secrets management; content safety; injection and jailbreak testing; grounding and citations; logging with PII scrubbing; delivery team access to production data; subcontractor and IP-reuse checks.'],
+  ['Sector overlays', 'Financial services: DORA, PSD2, PCI DSS. Healthcare: HIPAA, MDR. Other: India DPDP Act, UAE/KSA PDPL, Australia Privacy Act, Brazil LGPD, Singapore PDPA, local AI rules.'],
+  ['Recommendations', '5 to 10 prioritised actions, each tagged with the regulation or control, prefixed Must (mandatory) or Should (good practice).'],
+  ['Escalation flag', 'Whether to treat as sensitive or high-risk and escalate to a responsible AI office or legal review, and why.'],
+];
+
+export const ESCALATION_RULES = [
+  'Any agent with write access to systems of record or the ability to act externally (payments, emails, deployments).',
+  'Biometrics of any kind: identification, verification, categorisation or emotion recognition.',
+  'Decisions affecting employment, credit, insurance, benefits, education, housing or liberty.',
+  'Special-category data (health, biometric, criminal, union) or children and other vulnerable groups.',
+  'Public-sector use affecting access to services or rights.',
+  'Public-facing generative content that could be mistaken for real people or official statements.',
+  'Use of customer data to train or fine-tune models.',
+  'Cross-border transfers to countries without adequacy, or unclear data residency.',
+];
+
+export const PRESALES_CHECKLIST = [
+  'Is the intended purpose and the business decision the AI supports written down?',
+  'Will the system process personal data?',
+  'Will it process special-category data (health, biometric, criminal, union) or children\'s data?',
+  'Will it make or support decisions about employment, credit, insurance, benefits, education or access to services?',
+  'Does it use biometrics or analyse faces, voices or emotions?',
+  'Will end users interact with it directly (chatbot, voice bot)?',
+  'Will it generate content shown to the public (text, images, voice, video)?',
+  'Can it take actions or write to systems without a human approving each action?',
+  'Are agent and service identities scoped to least privilege?',
+  'Is the customer the provider, deployer or both under the EU AI Act? Is that agreed in writing?',
+  'Are the model provider and other sub-processors known, contracted and approved by the customer?',
+  'Is customer data excluded from model training by contract and configuration?',
+  'Where will data be stored and processed, and are cross-border transfers covered?',
+  'Will the delivery team need access to production data? If yes, is it approved and time-limited?',
+  'Is there a plan for prompt-injection and jailbreak testing before go-live?',
+  'Are outputs grounded with citations where accuracy matters?',
+  'Is logging in place with PII scrubbing and a defined retention period?',
+  'Is a human review step defined for high-impact outputs?',
+  'Are sector rules identified (DORA, PCI DSS, HIPAA, MDR, local AI rules)?',
+  'Has a DPIA or FRIA been triggered and scheduled where required?',
+];
+
+export const INDUSTRIES = [...new Set(PATTERNS.map(p => p.industry))];
