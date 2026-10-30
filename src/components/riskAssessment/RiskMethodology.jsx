@@ -1,3 +1,4 @@
+import TreatmentVisual from './TreatmentVisual.jsx';
 import { useState } from 'react';
 import {
   METHOD_ALIGNMENT, METHOD_STEPS, CADENCE, CALLOUTS, LIKELIHOOD, IMPACT, IMPACT_DIMENSIONS,
@@ -185,28 +186,7 @@ export function TreatmentSection() {
   return (
     <section id="ra-treatment" className={sectionCls}>
       <h3 className={h3Cls}>3. Treatment options and approval workflow</h3>
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        {TREATMENTS.map((t) => (
-          <div key={t.option} className="rounded-xl border border-surface-200 dark:border-surface-dark-200 p-4 bg-surface-50 dark:bg-slate-900/40">
-            <h4 className="font-bold text-sm text-navy-900 dark:text-text-dark-primary">{t.option}</h4>
-            <p className="text-xs mt-1 text-navy-600 dark:text-text-dark-secondary"><strong>When:</strong> {t.when}</p>
-            <p className="text-xs mt-1 text-navy-600 dark:text-text-dark-secondary"><strong>Example:</strong> {t.example}</p>
-          </div>
-        ))}
-      </div>
-
-      <h4 className="font-semibold text-sm text-navy-900 dark:text-text-dark-primary mt-6 mb-2">Workflow states</h4>
-      <ol className="flex flex-wrap gap-2">
-        {WORKFLOW.map((w, n) => (
-          <li key={w.state} className="flex items-center gap-2">
-            <span className="rounded-lg border border-indigo-200 dark:border-indigo-900/50 bg-indigo-50 dark:bg-indigo-950/30 px-2.5 py-1.5 text-xs text-indigo-900 dark:text-indigo-200" title={w.meaning}>
-              <strong>{w.state}</strong>
-              <span className="block text-[11px] opacity-80 max-w-[14rem]">{w.meaning}</span>
-            </span>
-            {n < WORKFLOW.length - 1 && <span aria-hidden="true" className="text-gray-400">→</span>}
-          </li>
-        ))}
-      </ol>
+      <TreatmentVisual />
       <p className="text-xs mt-4 text-navy-600 dark:text-text-dark-secondary"><strong>Every risk needs:</strong> {REQUIRED_FIELDS.join(', ')}.</p>
     </section>
   );
