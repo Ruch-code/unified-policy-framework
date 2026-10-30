@@ -209,3 +209,28 @@ export const ART5_WATCH = [
   ['Exam proctoring', 'Emotion recognition in education (Art. 5(1)(f))', 'No emotion signals; human review of flags'],
   ['Face recognition built from scraped images', 'Untargeted facial scraping (Art. 5(1)(e))', 'Only consented, user-enrolled faces'],
 ];
+
+// GDPR Art. 9 special category data explainer.
+export const ART9_CONDITIONS = [
+  ['(a)', 'Explicit consent', 'A clear, specific, opt-in statement, freely given and withdrawable.', 'Voice biometrics enrolment, face check-in, symptom checker apps'],
+  ['(b)', 'Employment and social security law', 'Required by employment or social protection law.', 'Sick-leave records in HR copilots'],
+  ['(c)', 'Vital interests', 'Life-or-death situation where the person cannot consent.', 'Emergency triage when a patient is unconscious'],
+  ['(d)', 'Not-for-profit bodies', 'Processing about members of a union, church or political group.', 'Rare in enterprise AI'],
+  ['(e)', 'Made manifestly public by the person', 'The person deliberately published it.', 'Narrow; a public social post is not automatically enough'],
+  ['(f)', 'Legal claims', 'Establishing, exercising or defending legal claims.', 'Litigation or claims-dispute analysis'],
+  ['(g)', 'Substantial public interest', 'Based on EU or member state law with safeguards.', 'Fraud prevention or KYC where national law provides it'],
+  ['(h)', 'Health and social care', 'Diagnosis, treatment or care, by or under a professional bound by secrecy.', 'Ambient clinical notes, patient record retrieval'],
+  ['(i)', 'Public health', 'Serious cross-border health threats, quality and safety of medicines.', 'Influenza forecasting, drug safety monitoring'],
+  ['(j)', 'Archiving, research or statistics', 'With safeguards such as pseudonymisation (Art. 89).', 'Clinical trial matching, R&D data mining'],
+];
+
+export const ART9_CATEGORIES = 'Health, genetic data, biometric data used to uniquely identify someone, racial or ethnic origin, political opinions, religious or philosophical beliefs, trade union membership, and sex life or sexual orientation. Criminal records are handled separately under Art. 10.';
+
+export const ART9_EXAMPLE = [
+  ['Spot the special category data', 'Medical reports and lab results are health data. If the signature score is used to confirm the applicant is who they claim to be, it is biometric data used for identification.'],
+  ['Art. 6 basis', 'Performance of a contract (Art. 6(1)(b)): the applicant asked for a policy.'],
+  ['Art. 9 condition', 'Contract necessity does not unlock health data. The insurer usually relies on explicit consent (9(2)(a)) on the application form, or a national insurance derogation under 9(2)(g) where member state law provides one.'],
+  ['Make the condition real', 'Explicit consent is a separate, specific statement, for example "I consent to the insurer processing my medical information to assess this application". A buried clause in the terms does not count. Tell the applicant AI is used, and allow withdrawal even if the application then cannot proceed.'],
+  ['Check it covers every use', 'Consent to assess the application does not cover training or fine-tuning a model on the same reports. That is a new purpose and needs its own condition, or the data must be anonymised first.'],
+  ['Add what Art. 9 triggers', 'A DPIA (Art. 35(3)(b) for large-scale special category processing), stronger security, a DPA with the model provider ruling out training and retention, and a record of which condition was chosen and why.'],
+];
