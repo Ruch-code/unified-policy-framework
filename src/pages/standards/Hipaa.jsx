@@ -4,6 +4,7 @@ import { buildCitation, classifyRoles } from "../../data/hipaaDomain.js";
 import { withEvidence, appendToLevel } from "../../data/playbookEvidence.js";
 import { HIPAA_L2_SECURITY, HIPAA_L3_PRIVACY_BREACH, HIPAA_SECURITY_MATRIX, HIPAA_STATUS_NOTES } from "../../data/playbookAdditions/hipaa.js";
 import ReferenceTable from "../../components/playbook/ReferenceTable.jsx";
+import HipaaCeVsBa from "../../components/playbook/HipaaCeVsBa.jsx";
 
 const FRAMEWORK = {
   id: "hipaa",
@@ -860,6 +861,7 @@ export default function Hipaa() {
   return (
     <>
       <LearningFrameworkPage framework={FRAMEWORK_WITH_EVIDENCE} />
+      <HipaaCeVsBa />
       <RiskCrossCheckBlock frameworkId="hipaa" />
       <ReferenceTable id="hipaa-security-matrix" title="Security Rule implementation specifications: required or addressable"
         intro="Every Security Rule standard and implementation specification, one per row, checked against the eCFR matrix (Appendix A to Subpart C of Part 164). Addressable does not mean optional: implement it, implement an equivalent, or document why neither is reasonable and appropriate."
