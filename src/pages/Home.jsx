@@ -112,7 +112,7 @@ const TABS = [
     id: 'vendor-risk',
     label: 'Vendor Risk Management',
     icon: Users,
-    description: 'Complete vendor risk lifecycle across 6 sectors, 12 regional jurisdictions, sub-processor governance, nth-party visibility, and 4-tier review frequency automation',
+    description: 'Complete vendor risk lifecycle across 7 sectors, 13 jurisdictions, sub-processor governance, nth-party visibility, and 4-tier review frequency automation',
     whatCanGoWrong: [
       '4th/5th Party Blindness: 60% of breaches originate from sub-processors you don\'t track - no visibility = no liability protection',
       'Contractual Gaps: Missing flow-down clauses = no audit rights, no liability flow-down, no breach notification SLAs',
@@ -416,7 +416,7 @@ function TabPanel({ isDark, activeTab }) {
       {activeTab === 'vendor-risk' && (
         <LockedSection
           title="End-to-End Vendor Risk Management"
-          description="Complete vendor risk lifecycle across 6 sectors, 12 regional jurisdictions, sub-processor governance, nth-party visibility, and 4-tier review frequency automation."
+          description="Complete vendor risk lifecycle across 7 sectors, 13 jurisdictions, sub-processor governance, nth-party visibility, and 4-tier review frequency automation."
           icon={Users}
           showLoginPrompt={false}
         >

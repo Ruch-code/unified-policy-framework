@@ -2,6 +2,8 @@ import TprmDeepDive from './TprmDeepDive.jsx';
 import VendorClauseBuilder from './VendorClauseBuilder.jsx';
 import VendorQuestionnaires from './VendorQuestionnaires.jsx';
 import AiVendorAssuranceTab from './AiVendorAssuranceTab.jsx';
+import { Governance, LifecycleOps, TemplateStrip, TieringModel, Assurance, SubProcessorOps, MonitoringOps, IssueOps, LegalTable, SectorGuide, Fold, L, Note } from './tprm/TprmBlocks.jsx';
+import { QUESTIONNAIRE_VALIDATION } from '../data/tprm/operatingModel.js';
 import React, { useState, Suspense, lazy, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
@@ -33,9 +35,9 @@ const VENDOR_RISK_SECTORS = {
   Healthcare: {
     icon: Shield,
     color: '#059669',
-    description: 'Hospitals, health tech, pharma, and payers - HIPAA, HITECH, and 21st Century Cures Act require BAA enforcement, minimum necessary access, and breach notification within 60 days.',
+    description: 'Hospitals, health tech, pharma, and payers - HIPAA and HITECH require business associate agreements, minimum necessary access, and breach notification by business associates to the covered entity without unreasonable delay and no later than 60 days after discovery (45 CFR 164.410).',
     risks: ['PHI exposure', 'Ransomware', 'Regulatory penalties', 'Patient safety'],
-    controls: ['BAA mandatory', 'Minimum necessary', 'Breach notification 60d', 'Subcontractor flow-down'],
+    controls: ['BAA mandatory', 'Minimum necessary', 'BA breach notice: no later than 60 days', 'Subcontractor flow-down'],
     subProcessorReq: ['BAA flow-down required', 'Subcontractor approval', 'Audit rights extend'],
     regions: ['Americas', 'EMEA'],
     regulations: ['HIPAA', 'HITECH', '21st Century Cures Act', 'GDPR Art. 28'],
@@ -66,7 +68,7 @@ const VENDOR_RISK_SECTORS = {
     risks: ['Card data theft', 'Magecart attacks', 'PCI non-compliance', 'Tokenization gaps'],
     controls: ['PCI DSS validation', 'Tokenization', 'Consent management', 'Data retention policies'],
     regions: ['Global'],
-    regulations: ['PCI DSS v4.0', 'PCI MPE', 'PA-DSS'],
+    regulations: ['PCI DSS v4.0.1', 'PCI MPE', 'PCI Software Security Framework'],
   },
   Manufacturing: {
     icon: Layers,
@@ -114,7 +116,7 @@ const REGIONAL_LAWS = {
     laws: ['UK GDPR', 'Data Protection Act 2018', 'PECR', 'NIS Regulations'],
   },
   'Canada': {
-    laws: ['PIPEDA', 'CPPA (Bill C-27)', 'Quebec Law 25', 'Alberta PIPA'],
+    laws: ['PIPEDA', 'Bill C-27 / CPPA (proposed, not enacted)', 'Quebec Law 25', 'Alberta PIPA'],
   },
   'Australia': {
     laws: ['Privacy Act 1988', 'Notifiable Data Breaches Scheme', 'APRA CPS 234'],
@@ -123,7 +125,7 @@ const REGIONAL_LAWS = {
     laws: ['PDPA', 'Cybersecurity Act', 'MAS TRM Guidelines'],
   },
   'Japan': {
-    laws: ['APPI', 'CSL', 'FIEA'],
+    laws: ['APPI', 'Basic Act on Cybersecurity', 'FIEA'],
   },
   'Brazil': {
     laws: ['LGPD', 'BCB Resolutions'],
@@ -132,125 +134,36 @@ const REGIONAL_LAWS = {
 
 const SUB_PROCESSOR_RISKS = {
   '4th/5th Party Blindness': {
-    description: '60% of breaches originate from sub-processors you don\'t track - no visibility = no liability protection.',
+    description: 'You often do not know which providers your vendor relies on to host, support or process your data, so an incident or outage there can reach you without warning.',
     impact: 'Critical',
-    controls: ['Tier 1 vendor sub-processor registry', 'Automated discovery', 'Contractual flow-down'],
+    controls: ['Dependency register for Tier 1 and 2 services', 'Sub-processor lists and change notices in contracts', 'Record unknowns explicitly'],
   },
   'Contractual Gaps': {
-    description: 'Missing flow-down clauses = no audit rights, no liability flow-down, no breach notification SLAs.',
+    description: 'Without flow-down terms, sub-processors may not be bound by the security, audit, incident notice or deletion duties you agreed with the vendor.',
     impact: 'High',
-    controls: ['Standardized flow-down clauses', 'Audit rights', 'Liability allocation'],
+    controls: ['Standard flow-down clauses', 'Assurance or audit rights through the vendor', 'Liability allocation'],
   },
   'Concentration Risk': {
-    description: 'Single cloud provider for critical services = single point of failure (SolarWinds, Kaseya).',
+    description: 'Several critical services may depend on the same cloud provider, region or software supplier, so one failure can hit them all at once.',
     impact: 'Critical',
-    controls: ['Multi-cloud strategy', 'Exit planning', 'Portability testing'],
+    controls: ['Concentration mapping', 'Exit and portability planning', 'Resilience and failover testing'],
   },
   'Regulatory Non-Compliance': {
-    description: 'DORA Art. 28, NIS2 Art. 21, GDPR Art. 28 require sub-processor governance - fines up to 2% revenue.',
+    description: 'GDPR Art. 28(2) and (4) set sub-processor authorisation and flow-down duties for processors; DORA (Arts. 28 to 30) and NIS2 (Art. 21(2)(d)) add supply chain duties for entities in scope. See Regional Laws for duty holders and sources.',
     impact: 'High',
-    controls: ['Regulatory mapping', 'Sub-processor compliance tracking', 'Automated alerts'],
+    controls: ['Map which regimes apply to each service', 'Track sub-processor compliance evidence', 'Change notices and objection process'],
   },
   'Incident Cascade': {
-    description: 'Vendor breach without notification SLA = 72-hour GDPR window missed, mandatory notification fails.',
+    description: 'A sub-processor incident can reach you late if notice has to pass through several parties. Under GDPR the processor must tell the controller without undue delay (Art. 33(2)); the controller\'s own 72-hour clock (Art. 33(1)) starts when the controller becomes aware.',
     impact: 'Critical',
-    controls: ['Notification SLAs (4-24h)', 'Joint liability clauses', 'Insurance requirements'],
+    controls: ['Contractual notice windows that flow down', 'Named incident contacts', 'Vendor incident playbook (Lifecycle, stage 9)'],
   },
 };
 
 // ========== NEW DATA STRUCTURES FOR PHASE 6 TABS ==========
 
 // Lifecycle: 8-stage stepper
-const LIFECYCLE_STAGES = [
-  { 
-    id: 1, 
-    name: 'Intake', 
-    icon: Building,
-    purpose: 'Capture vendor request, categorize spend, identify data types, assign owner',
-    owner: 'Procurement / Vendor Manager',
-    inputs: ['Vendor request form', 'Spend estimate', 'Data types questionnaire'],
-    outputs: ['Vendor record created', 'Inherent risk score assigned', 'Intake approval'],
-    evidence: ['Intake form', 'Risk score worksheet', 'Approval email'],
-    regulations: ['GDPR Art. 28', 'NIS2 Art. 28', 'DORA Art. 28'],
-  },
-  { 
-    id: 2, 
-    name: 'Inherent Risk Scoring', 
-    icon: BarChart2,
-    purpose: 'Assess vendor risk before contract using data sensitivity, system access, criticality',
-    owner: 'Security / Risk Team',
-    inputs: ['Vendor questionnaire', 'Data types', 'System access', 'Spend', 'Criticality'],
-    outputs: ['Inherent risk tier (1-4)', 'Due diligence scope', 'Contract tier'],
-    evidence: ['Risk scoring worksheet', 'Tier assignment', 'Scope memo'],
-    regulations: ['GDPR Art. 28', 'NIS2 Art. 21', 'DORA Art. 28', 'PCI DSS 12.8'],
-  },
-  { 
-    id: 3, 
-    name: 'Due Diligence', 
-    icon: Search,
-    purpose: 'Collect evidence, assess controls, validate vendor security posture',
-    owner: 'Security / Risk Team',
-    inputs: ['SOC 2 Type II', 'ISO 27001', 'Pen test', 'SIG Lite', 'DPA', 'Insurance'],
-    outputs: ['Due diligence report', 'Control gaps identified', 'Remediation plan'],
-    evidence: ['SOC 2 report', 'Pen test summary', 'SIG Lite', 'DPA executed'],
-    regulations: ['GDPR Art. 28', 'NIS2 Art. 28', 'DORA Art. 28', 'PCI DSS 12.10'],
-  },
-  { 
-    id: 4, 
-    name: 'Contracting', 
-    icon: FileText,
-    purpose: 'Execute contract with DPA/BAA, security addendum, breach SLAs, right to audit',
-    owner: 'Legal / Procurement',
-    inputs: ['Master Services Agreement', 'DPA/BAA', 'Security addendum', 'Right to audit clause'],
-    outputs: ['Executed contract', 'DPA/BAA executed', 'Security addendum attached'],
-    evidence: ['Executed MSA', 'DPA/BAA', 'Security addendum', 'Right to audit clause'],
-    regulations: ['GDPR Art. 28', 'HIPAA BAA', 'PCI DSS 12.8', 'NIS2 Art. 28'],
-  },
-  { 
-    id: 5, 
-    name: 'Onboarding', 
-    icon: Users,
-    purpose: 'Provision access, configure monitoring, register sub-processors, train vendor',
-    owner: 'IT / Security / Vendor Manager',
-    inputs: ['Access request', 'Monitoring config', 'Sub-processor list', 'Training materials'],
-    outputs: ['Access provisioned', 'Monitoring active', 'Sub-processors registered', 'Training completed'],
-    evidence: ['Access logs', 'Monitoring dashboard', 'Sub-processor register', 'Training records'],
-    regulations: ['GDPR Art. 28', 'NIS2 Art. 28', 'HIPAA BAA'],
-  },
-  { 
-    id: 6, 
-    name: 'Ongoing Monitoring', 
-    icon: Shield,
-    purpose: 'Continuous control monitoring, security ratings, breach alerts, performance tracking',
-    owner: 'Security / Vendor Manager',
-    inputs: ['Security ratings (SecurityScorecard/BitSight)', 'SIEM alerts', 'Vendor self-assessment', 'Sub-processor updates'],
-    outputs: ['Monitoring dashboard', 'Risk score updates', 'Alerts generated', 'Sub-processor updates'],
-    evidence: ['SecurityScorecard/BitSight reports', 'SIEM alerts', 'Self-assessment results'],
-    regulations: ['GDPR Art. 28', 'NIS2 Art. 23', 'DORA Art. 11', 'PCI DSS 12.10'],
-  },
-  { 
-    id: 7, 
-    name: 'Issue Management', 
-    icon: AlertTriangle,
-    purpose: 'Track findings, remediation, risk acceptance, escalation, compensating controls',
-    owner: 'Risk / Security / Vendor Manager',
-    inputs: ['Findings from monitoring', 'Audit findings', 'Incidents', 'Vendor self-disclosure'],
-    outputs: ['Issue register', 'Remediation plans', 'Risk acceptances', 'Compensating controls', 'Escalations'],
-    evidence: ['Issue register', 'Remediation plans with owners/dates', 'Risk acceptance forms', 'Escalation logs'],
-    regulations: ['GDPR Art. 28', 'NIS2 Art. 23', 'PCI DSS 12.10', 'DORA Art. 11'],
-  },
-  { 
-    id: 8, 
-    name: 'Offboarding', 
-    icon: RefreshCw,
-    purpose: 'Revoke access, return/destroy data, certify destruction, update records',
-    owner: 'IT / Legal / Procurement',
-    inputs: ['Termination notice', 'Data return/destruction request', 'Access revocation list'],
-    outputs: ['Access revoked', 'Data returned/destroyed', 'Destruction certificate', 'Records updated'],
-    evidence: ['Termination notice', 'Destruction certificate', 'Access revocation logs', 'Updated vendor register'],
-    regulations: ['GDPR Art. 28', 'HIPAA BAA', 'PCI DSS 12.8', 'DORA Art. 28'],
-  },
-];
+const LIFECYCLE_STAGES = ['Request and intake', 'Discovery', 'Inherent risk tiering', 'Due diligence', 'Residual risk and approval', 'Contracting', 'Onboarding', 'Ongoing monitoring', 'Vendor incidents', 'Issues and risk acceptance', 'Offboarding and exit'].map((name, i) => ({ id: i + 1, name }));
 
 // Tiering Calculator: 6 questions
 const TIERING_QUESTIONS = [
@@ -356,14 +269,14 @@ const CLAUSE_LIBRARY = [
     { name: 'Audit scope', text: 'Audit may cover facilities, systems, processes, personnel, and documentation relevant to the services...' },
   ]},
   { title: 'Breach Notification SLA', category: 'Incident Response', clauses: [
-    { name: 'Notification timeline', text: 'Vendor shall notify Customer of any security incident within 4 hours (critical) / 24 hours (high) / 72 hours (GDPR notifiable)...' },
+    { name: 'Notification timeline', text: 'Vendor shall notify Customer of any security incident affecting Customer Data or the Services without undue delay and in any event within [24/48] hours of becoming aware (example window; agree per tier). This window is contractual: under GDPR the processor must notify the controller without undue delay (Art. 33(2)); the 72-hour limit in Art. 33(1) applies to the controller.' },
     { name: 'Incident details', text: 'Notification shall include: nature of incident, categories of data affected, number of data subjects, likely consequences, measures taken...' },
     { name: 'Cooperation', text: 'Vendor shall cooperate with Customer in investigating, mitigating, and remediating the incident...' },
   ]},
   { title: 'Security Addendum', category: 'Security', clauses: [
     { name: 'Encryption standards', text: 'Vendor shall encrypt all Customer Data at rest using AES-256 or equivalent, and in transit using TLS 1.2+...' },
     { name: 'Access control', text: 'Vendor shall implement MFA for all access to Customer Data, least privilege, and quarterly access reviews...' },
-    { name: 'Vulnerability management', text: 'Vendor shall patch critical vulnerabilities within 24 hours, high within 7 days, and maintain a vulnerability management program...' },
+    { name: 'Vulnerability management', text: 'Vendor shall maintain a vulnerability management programme and remediate critical vulnerabilities within [X] days and high within [Y] days (example targets to agree)...' },
     { name: 'Logging & monitoring', text: 'Vendor shall maintain audit logs for all access to Customer Data for a minimum of 1 year...' },
   ]},
   { title: 'Sub-Processor Approval', category: 'Governance', clauses: [
@@ -464,7 +377,7 @@ const REGIONAL_LAWS_ADDITIONS = {
   },
   'South Korea': {
     name: 'South Korea',
-    laws: ['PIPA (Personal Information Protection Act)', 'PIPL amendments 2023', 'PIPC enforcement'],
+    laws: ['PIPA (Personal Information Protection Act), amended 2023', 'PIPC enforcement'],
   },
 };
 
@@ -474,7 +387,7 @@ const UPDATED_REGIONAL_LAWS = {
     federal: ['SOX', 'GLBA', 'HIPAA', 'FERPA', 'FISMA', 'FedRAMP', 'PCI DSS', 'CISA'],
     states: [
       { name: 'California', laws: ['CCPA/CPRA', 'CalOPPA', 'CCPA Regulations', 'CPPA Enforcement'] },
-      { name: 'New York', laws: ['SHIELD Act', 'DFS 500', 'NYPA'] },
+      { name: 'New York', laws: ['SHIELD Act', 'DFS 23 NYCRR 500'] },
       { name: 'Texas', laws: ['Texas Data Privacy and Security Act (TDPSA), effective 1 July 2024', 'Identity Theft Enforcement'] },
       { name: 'Virginia', laws: ['VCDPA', 'Consumer Data Protection Act'] },
       { name: 'Colorado', laws: ['CPA', 'Colorado Privacy Act'] },
@@ -495,7 +408,7 @@ const UPDATED_REGIONAL_LAWS = {
     laws: ['UK GDPR', 'Data Protection Act 2018', 'PECR', 'NIS Regulations'],
   },
   'Canada': {
-    laws: ['PIPEDA', 'CPPA (Bill C-27)', 'Quebec Law 25', 'Alberta PIPA'],
+    laws: ['PIPEDA', 'Bill C-27 / CPPA (proposed, not enacted)', 'Quebec Law 25', 'Alberta PIPA'],
   },
   'Australia': {
     laws: ['Privacy Act 1988', 'Notifiable Data Breaches Scheme', 'APRA CPS 234'],
@@ -504,7 +417,7 @@ const UPDATED_REGIONAL_LAWS = {
     laws: ['PDPA', 'Cybersecurity Act', 'MAS TRM Guidelines'],
   },
   'Japan': {
-    laws: ['APPI', 'CSL', 'FIEA'],
+    laws: ['APPI', 'Basic Act on Cybersecurity', 'FIEA'],
   },
   'Brazil': {
     laws: ['LGPD', 'BCB Resolutions'],
@@ -527,7 +440,7 @@ const UPDATED_REGIONAL_LAWS = {
     laws: ['POPIA (Protection of Personal Information Act, effective 2021)', 'Information Regulator guidelines'],
   },
   'South Korea': {
-    laws: ['PIPA (Personal Information Protection Act)', 'PIPL amendments 2023', 'PIPC enforcement'],
+    laws: ['PIPA (Personal Information Protection Act), amended 2023', 'PIPC enforcement'],
   },
 };
 
@@ -656,8 +569,9 @@ export default function VendorRiskManagement({ isDark = false }) {
             End-to-End Vendor Risk Management
           </h2>
           <p className="text-lg text-navy-600 dark:text-text-dark-secondary max-w-3xl mx-auto">
-            Everything vendor-related in one place: lifecycle, tiering, sector and regional requirements, sub-processors,
-            review cadence, SOC 2 review, contract clauses, AI vendors, issue management and the practitioner deep dive.
+            A practical third-party risk management (TPRM) operating model: governance, an eleven-stage lifecycle with gates,
+            a transparent tiering method, assurance review, sub-processor and concentration controls, 7 sectors and 13 jurisdictions,
+            monitoring and KRIs, incident and exit playbooks, and ready-to-use templates.
           </p>
         </div>
 
@@ -757,9 +671,17 @@ export default function VendorRiskManagement({ isDark = false }) {
             </div>
           )}
 
+          {activeTab === 'Sectors' && (
+            <div className="mt-6 space-y-2">
+              <Note>7 sectors. Each card summarises typical risks; the sections below set out who is in scope, the obligation, controls, evidence and caveats. Regulation lists are pointers, not a statement that every entity is covered.</Note>
+              {Object.keys(VENDOR_RISK_SECTORS).map(sec => <Fold key={sec} title={`${sec}: obligations and evidence`}><SectorGuide sector={sec} /></Fold>)}
+            </div>
+          )}
+
           {activeTab === 'Regional Laws' && (
             <div id="panel-regional-laws" className="space-y-4" role="tabpanel" aria-labelledby="vtab-regional-laws">
-              {Object.entries(REGIONAL_LAWS).map(([region, data]) => (
+              <LegalTable />
+              {Object.entries(UPDATED_REGIONAL_LAWS).map(([region, data]) => (
                 <div key={region} className="rounded-2xl border border-surface-300 dark:border-surface-dark-300 bg-white dark:bg-surface-dark-100 overflow-hidden">
                   <div className="bg-navy-50 dark:bg-navy-900/30 px-6 py-4 border-b border-surface-300 dark:border-surface-dark-300">
                     <h3 className="text-xl font-bold text-navy-900 dark:text-text-dark-primary">{region}</h3>
@@ -885,6 +807,8 @@ export default function VendorRiskManagement({ isDark = false }) {
                   </details>
                 );
               })}
+              <SubProcessorOps />
+              <TemplateStrip files={['tprm-subprocessor-register.xlsx']} title="Sub-processor register template" />
             </div>
           )}
 
@@ -919,6 +843,9 @@ export default function VendorRiskManagement({ isDark = false }) {
                   );
                 })}
               </div>
+              <Note tone="amber">Cadences are an example internal policy to calibrate, not a legal requirement. Event-driven triggers apply to every tier.</Note>
+              <MonitoringOps />
+              <TemplateStrip files={['tprm-review-checklist.xlsx']} title="Review checklist template" />
             </div>
           )}
 
@@ -937,7 +864,7 @@ export default function VendorRiskManagement({ isDark = false }) {
 
         {activeTab === 'Lifecycle' && <LifecyclePanel />}
         {activeTab === 'Tiering' && <TieringPanel />}
-        {activeTab === 'Questionnaires' && <VendorQuestionnaires />}
+        {activeTab === 'Questionnaires' && <div className="space-y-4"><VendorQuestionnaires /><Fold title="Validating questionnaire answers" defaultOpen><L items={QUESTIONNAIRE_VALIDATION} /></Fold><TemplateStrip files={['tprm-intake-dataflow.xlsx', 'tprm-evidence-request.xlsx']} /></div>}
         {activeTab === 'SOC 2 Review' && <Soc2ReviewPanel />}
         {activeTab === 'Contract Clauses' && <ContractClausesPanel />}
         {activeTab === 'AI Vendors' && <AiVendorsPanel />}
@@ -971,66 +898,23 @@ function Pills({ label, items, tone = 'indigo' }) {
 function LifecyclePanel() {
   return (
     <div id="panel-lifecycle" role="tabpanel" aria-labelledby="vtab-lifecycle" className="space-y-4">
-      <p className={small}>The end-to-end TPRM lifecycle. Depth at each stage scales with the vendor's tier (see Tiering).</p>
-      <ol className="grid gap-4 md:grid-cols-2">
-        {LIFECYCLE_STAGES.map((st) => {
-          const Icon = st.icon;
-          return (
-            <li key={st.id} className={card}>
-              <div className="flex items-center gap-3 mb-2">
-                <span className="w-8 h-8 rounded-full bg-indigo-600 text-white text-sm font-bold flex items-center justify-center shrink-0">{st.id}</span>
-                {Icon && <Icon className="w-5 h-5 text-indigo-600 dark:text-indigo-300" aria-hidden="true" />}
-                <h4 className={h4c}>{st.name}</h4>
-              </div>
-              <p className={small}>{st.purpose}</p>
-              <p className="text-xs mt-2 text-navy-700 dark:text-text-dark-secondary"><strong>Owner:</strong> {st.owner}</p>
-              {st.inputs && <Pills label="Inputs" items={st.inputs} />}
-              {st.outputs && <Pills label="Outputs" items={st.outputs} tone="emerald" />}
-              {st.evidence && <Pills label="Audit evidence" items={st.evidence} tone="amber" />}
-              {st.regulations && <p className="text-[11px] mt-2 text-navy-500 dark:text-text-dark-muted">{st.regulations.join(' · ')}</p>}
-            </li>
-          );
-        })}
+      <p className={small}>The TPRM operating model: governance first, then eleven stages from intake to exit. Each stage opens into an operating procedure. Depth scales with the tier (Tiering tab).</p>
+      <ol className="flex flex-wrap gap-2 text-xs" aria-label="Lifecycle stages at a glance">
+        {LIFECYCLE_STAGES.map((st) => <li key={st.id} className="px-2.5 py-1 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-200">{st.id}. {st.name}</li>)}
       </ol>
+      <Governance />
+      <LifecycleOps />
+      <TemplateStrip title="TPRM templates" />
     </div>
   );
 }
 
 function TieringPanel() {
-  const [ans, setAns] = useState(() => Object.fromEntries(TIERING_QUESTIONS.map((q) => [q.id, q.options[0].score])));
-  const totalWeight = TIERING_QUESTIONS.reduce((a, q) => a + q.weight, 0);
-  const weighted = TIERING_QUESTIONS.reduce((a, q) => a + ans[q.id] * q.weight, 0) / totalWeight; // 1 to 5
-  const score = Math.round(6 + ((weighted - 1) / 4) * 30); // 6 to 36
-  const result = TIERING_RESULTS.find((r) => score >= r.min && score <= r.max) || TIERING_RESULTS[0];
   return (
-    <div id="panel-tiering" role="tabpanel" aria-labelledby="vtab-tiering" className="grid gap-6 lg:grid-cols-2">
-      <div className="space-y-3">
-        <p className={small}>Inherent risk tiering. Answer for the vendor as it will be used; the weighted score sets the tier, review cadence, evidence and contract clauses.</p>
-        {TIERING_QUESTIONS.map((q) => (
-          <fieldset key={q.id} className={card}>
-            <legend className="text-sm font-semibold text-navy-900 dark:text-text-dark-primary px-1">{q.text} <span className="text-xs font-normal text-navy-500">(weight {q.weight}%)</span></legend>
-            <div className="grid sm:grid-cols-2 gap-1 mt-1">
-              {q.options.map((o) => (
-                <label key={o.value} className="flex items-center gap-2 text-sm text-navy-700 dark:text-text-dark-secondary cursor-pointer">
-                  <input type="radio" name={`tier-q${q.id}`} checked={ans[q.id] === o.score} onChange={() => setAns((a) => ({ ...a, [q.id]: o.score }))} />
-                  {o.label}
-                </label>
-              ))}
-            </div>
-          </fieldset>
-        ))}
-      </div>
-      <div className="lg:sticky lg:top-24 self-start">
-        <div className={card}>
-          <p className="text-xs uppercase tracking-wide text-navy-500 dark:text-text-dark-muted">Inherent risk score</p>
-          <p className="text-4xl font-extrabold text-navy-900 dark:text-text-dark-primary">{score}<span className="text-base font-medium text-navy-500"> / 36</span></p>
-          <h4 className={`${h4c} mt-2`}>{result.label}</h4>
-          <p className={small}>Review: {result.frequency}</p>
-          <Pills label="Evidence to collect" items={result.evidence} />
-          <Pills label="Contract clauses" items={result.clauses} tone="emerald" />
-          <p className="text-xs mt-3 text-navy-500 dark:text-text-dark-muted">This is inherent risk. Approve on residual risk after reviewing evidence (see TPRM Deep Dive).</p>
-        </div>
-      </div>
+    <div id="panel-tiering" role="tabpanel" aria-labelledby="vtab-tiering" className="space-y-4">
+      <p className={small}>Inherent risk is scored before controls, per service. Due diligence then gives a residual risk, which is what gets approved (Lifecycle, stage 5). Weights and cutoffs are examples to calibrate, not a standard.</p>
+      <TieringModel />
+      <TemplateStrip files={['tprm-risk-assessment.xlsx']} title="Risk assessment template" />
     </div>
   );
 }
@@ -1039,6 +923,9 @@ function Soc2ReviewPanel() {
   return (
     <div id="panel-soc2-review" role="tabpanel" aria-labelledby="vtab-soc-2-review" className="space-y-4">
       <p className={small}>Use when reviewing a vendor's SOC 2 report. Red flags, SOC 1 vs SOC 2 and Type 1 vs Type 2 are in TPRM Deep Dive, Assurance evidence review.</p>
+      <Assurance />
+      <TemplateStrip files={['tprm-soc2-worksheet.xlsx', 'tprm-evidence-request.xlsx', 'tprm-decision-memo.docx']} />
+      <h4 className={h4c}>Quick checklist</h4>
       <div className="grid gap-4 md:grid-cols-2">
         {SOC2_REVIEW_CHECKLIST.map((sec) => (
           <div key={sec.section} className={card}>
@@ -1061,7 +948,9 @@ function ContractClausesPanel() {
   const [open, setOpen] = useState(null);
   return (
     <div id="panel-contract-clauses" role="tabpanel" aria-labelledby="vtab-contract-clauses" className="space-y-6">
+      <Note tone="amber">Clause text is a starting point, not legal advice. Every clause needs review by counsel for your jurisdiction, role and deal. Bracketed values are examples to agree.</Note>
       <VendorClauseBuilder />
+      <TemplateStrip files={['tprm-clause-checklist.xlsx']} title="Clause checklist template" />
       <div>
         <h4 className={`${h4c} mb-2`}>Clause library</h4>
         <div className="space-y-2">
@@ -1112,7 +1001,10 @@ function AiVendorsPanel() {
 function IssuePanel() {
   return (
     <div id="panel-issue-management" role="tabpanel" aria-labelledby="vtab-issue-management" className="space-y-4">
-      <p className={small}>From finding to closure or formal risk acceptance. KRIs and reporting are in TPRM Deep Dive.</p>
+      <p className={small}>From finding to closure or formal risk acceptance.</p>
+      <IssueOps />
+      <TemplateStrip files={['tprm-issue-register.xlsx', 'tprm-incident-offboarding.docx']} />
+      <h4 className={h4c}>Issue workflow</h4>
       <ol className="space-y-3">
         {ISSUE_MANAGEMENT_STAGES.map((st, i) => (
           <li key={st.name} className={`${card} flex gap-4`}>

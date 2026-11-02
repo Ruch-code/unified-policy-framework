@@ -281,7 +281,7 @@ const moduleEntries = [
     id: 'vendor-risk',
     category: 'Policy & Control Modules',
     label: 'End-to-End Vendor Risk Management',
-    desc: 'Vendor risk lifecycle across 6 sectors, 13 jurisdictions, sub-processor governance, nth-party visibility, and 4-tier review frequency automation.',
+    desc: 'Vendor risk lifecycle across 7 sectors, 13 jurisdictions, sub-processor governance, nth-party visibility, and 4-tier review frequency automation.',
     keywords: [
       'vendor', 'vendors', 'third-party', 'sub-processor', 'nth-party', '4th party', 'dpa', 'scc',
       'schrems', 'flow-down', 'due diligence', 'right-to-audit', 'sectors', 'review frequency',
