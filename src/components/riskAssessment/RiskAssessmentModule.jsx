@@ -16,6 +16,7 @@ const NAV = [
   ['ra-library', 'Scenario library'],
   ['ra-scenarios', 'Practical scenarios'],
   ['ra-traceability', 'Traceability'],
+  ['ra-cia', 'CIA mapping'],
   ['ra-crosscheck', 'Framework cross-check'],
   ['ra-downloads', 'Downloads'],
 ];

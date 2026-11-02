@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 import { SEED_REGISTER } from '../../data/riskAssessment/register';
 import { CONTROL_BY_ID } from '../../data/riskAssessment/controls';
+import ControlCiaMap, { CiaBadges } from './ControlCiaMap.jsx';
 import { score, BandBadge, sectionCls, h3Cls, leadCls } from './riskUtils.jsx';
 
 function ControlDetail({ id }) {
@@ -75,7 +76,8 @@ export default function RiskTraceability() {
                           >
                             {cOpen ? <ChevronDown className="w-3.5 h-3.5 shrink-0 text-gray-500" /> : <ChevronRight className="w-3.5 h-3.5 shrink-0 text-gray-500" />}
                             <span className="font-mono text-[11px] text-indigo-700 dark:text-indigo-300 shrink-0 w-14">{id}</span>
-                            <span className="text-xs font-medium text-navy-900 dark:text-text-dark-primary">{c ? c.name : 'Unknown control'}</span>
+                            <span className="text-xs font-medium text-navy-900 dark:text-text-dark-primary flex-1">{c ? c.name : 'Unknown control'}</span>
+                            <CiaBadges id={id} />
                           </button>
                           {cOpen && <div className="px-3 pb-3"><ControlDetail id={id} /></div>}
                         </li>
@@ -88,6 +90,7 @@ export default function RiskTraceability() {
           );
         })}
       </ul>
+          <ControlCiaMap />
     </section>
   );
 }

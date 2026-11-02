@@ -2,6 +2,7 @@ import { Download, FileText, ClipboardCheck } from 'lucide-react';
 import { downloadXlsx } from '../../utils/xlsxExport.js';
 import { SEED_REGISTER } from '../../data/riskAssessment/register';
 import { CONTROLS } from '../../data/riskAssessment/controls';
+import { CONTROL_CIA } from '../../data/riskAssessment/controlCia';
 import { LIBRARY_CATEGORIES } from '../../data/riskAssessment/library';
 import { LIKELIHOOD, IMPACT, BANDS, APPETITE, TREATMENTS, WORKFLOW } from '../../data/riskAssessment/methodology';
 import { score, sectionCls, h3Cls, leadCls } from './riskUtils.jsx';
@@ -68,21 +69,22 @@ export function downloadReportOutline() {
 }
 
 export function downloadEvidenceChecklist() {
-  const rows = CONTROLS.flatMap((c) => c.evidence.map((e, n) => [c.id, n === 0 ? c.name : '', n === 0 ? c.soc2.join(', ') : '', n === 0 ? c.tests.join('; ') : '', e, '', '', '']));
+  const cia = (c, k) => ({ P: 'Primary', S: 'Supporting' })[(CONTROL_CIA[c.id] || {})[k]] || '';
+  const rows = CONTROLS.flatMap((c) => c.evidence.map((e, n) => [c.id, n === 0 ? c.name : '', n === 0 ? cia(c, 'C') : '', n === 0 ? cia(c, 'I') : '', n === 0 ? cia(c, 'A') : '', n === 0 ? c.soc2.join(', ') : '', n === 0 ? c.tests.join('; ') : '', e, '', '', '']));
   downloadXlsx([{
     name: 'Evidence Checklist',
     title: 'Auditor Evidence Checklist by Control',
     notes: ['Mark each evidence item when it is uploaded, then again when it has been reviewed. Uploaded but not yet reviewed is not complete.'],
-    headers: ['Control ID', 'Control', 'SOC 2', 'Tests', 'Evidence required', 'Status', 'Location / link', 'Reviewed by and date'],
+    headers: ['Control ID', 'Control', 'Confidentiality', 'Integrity', 'Availability', 'SOC 2', 'Tests', 'Evidence required', 'Status', 'Location / link', 'Reviewed by and date'],
     rows,
-    validations: [{ col: 5, values: ['Not started', 'File uploaded, to review', 'Reviewed and accepted', 'Needs rework'] }],
+    validations: [{ col: 8, values: ['Not started', 'File uploaded, to review', 'Reviewed and accepted', 'Needs rework'] }],
   }], 'risk-control-evidence-checklist');
 }
 
 const ITEMS = [
   { icon: Download, title: 'Risk register template (.xlsx)', desc: 'Register columns from Section 4 with dropdowns, the 16 sample risks, a rubric sheet and allowed values.', action: downloadRegisterTemplate, cta: 'Download template' },
   { icon: FileText, title: 'Risk assessment report outline (Word)', desc: 'Scope, methodology, participants by role, heatmap, top risks, treatment plans, accepted risks with sign-off and next review date.', action: downloadReportOutline, cta: 'Download outline' },
-  { icon: ClipboardCheck, title: 'Auditor evidence checklist (.xlsx)', desc: 'Every control from Section 6 with its tests and each evidence item to collect and review.', action: downloadEvidenceChecklist, cta: 'Download checklist' },
+  { icon: ClipboardCheck, title: 'Auditor evidence checklist (.xlsx)', desc: 'Every control with its CIA mapping, tests and each evidence item to collect and review.', action: downloadEvidenceChecklist, cta: 'Download checklist' },
 ];
 
 export default function RiskDownloads() {
