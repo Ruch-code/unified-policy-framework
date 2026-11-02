@@ -42,6 +42,7 @@ Generic, reusable evidence and document templates for SOC 2, ISO/IEC 27001:2022,
 | 27 | Anonymous Whistleblower Channel Notice | How to report, confidentiality, non-retaliation | SOC2 | whistleblower-notice ★ | [Download](templates/whistleblower-notice.docx) |
 | 28 | Security Community Membership Record | Associations, forums, threat-intel subscriptions joined | ISO27001 | security-memberships ★ | [Download](templates/security-memberships.xlsx) |
 | 29 | Audit Cycle Calendar | External and internal audit dates, surveillance cycle | ISO27001 | audit-calendar ★ | [Download](templates/audit-calendar.xlsx) |
+| 167 | Control Self-Assessment Record | Control, owner, test performed, sample, result, deficiency, remediation date, management review | SOC2, ISO27001 | control-self-assessment ★ | [Download](templates/control-self-assessment.xlsx) |
 
 ## 2. Policies
 
@@ -212,6 +213,7 @@ Generic, reusable evidence and document templates for SOC 2, ISO/IEC 27001:2022,
 | 157 | DPF Contact Designation | Named role, contact channel | GDPR | dpf-contact ★ | [Download](templates/dpf-contact.docx) |
 | 158 | Independent Recourse / Arbitration Record | Selected body, fee contribution record | GDPR | recourse-mechanism ★ | [Download](templates/recourse-mechanism.xlsx) |
 | 159 | Cookie Policy Template | Cookie categories, consent, GPC, blank cookie tables | GDPR | cookie-policy ★ | [Download](templates/cookie-policy.docx) |
+| 168 | Data Use Agreement (Limited Data Set) | Permitted uses, authorised recipients, safeguards, reporting, agents, no re-identification or contact, excluded identifiers | HIPAA | data-use-agreement ★ | [Download](templates/data-use-agreement.docx) |
 
 ## 10. Customer-Facing Trust Documents
 

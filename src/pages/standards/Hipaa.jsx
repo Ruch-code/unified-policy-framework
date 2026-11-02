@@ -1,6 +1,9 @@
 import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCheck.jsx";
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 import { buildCitation, classifyRoles } from "../../data/hipaaDomain.js";
+import { withEvidence, appendToLevel } from "../../data/playbookEvidence.js";
+import { HIPAA_L2_SECURITY, HIPAA_L3_PRIVACY_BREACH, HIPAA_SECURITY_MATRIX, HIPAA_STATUS_NOTES } from "../../data/playbookAdditions/hipaa.js";
+import ReferenceTable from "../../components/playbook/ReferenceTable.jsx";
 
 const FRAMEWORK = {
   id: "hipaa",
@@ -824,6 +827,12 @@ function withCitations(modules) {
       ...day,
       tasks: (day.tasks || []).map(task => {
         if (typeof task === 'string') return task;
+        // New tasks carry a verified citation; keep it instead of deriving one.
+        if (task.citationOverride) {
+          const { citationOverride, ...rest } = task;
+          const roles = citationOverride.roles.includes('dual') ? citationOverride.roles : [...citationOverride.roles, 'dual'];
+          return { ...rest, citation: { ...citationOverride, roles, kind: 'regulatory', roleNote: citationOverride.note } };
+        }
         const citation = buildCitation(task.control);
         const role = classifyRoles(task.title, task.control);
         return {
@@ -840,14 +849,21 @@ function withCitations(modules) {
   }));
 }
 
+// Additive: new tasks are appended at the end of a level so saved progress keys do not move.
+appendToLevel(FRAMEWORK, 1, HIPAA_L2_SECURITY);
+appendToLevel(FRAMEWORK, 2, HIPAA_L3_PRIVACY_BREACH);
 FRAMEWORK.modules = withCitations(FRAMEWORK.modules);
+const FRAMEWORK_WITH_EVIDENCE = withEvidence(FRAMEWORK);
 FRAMEWORK.roleAware = true;
 
 export default function Hipaa() {
   return (
     <>
-      <LearningFrameworkPage framework={FRAMEWORK} />
+      <LearningFrameworkPage framework={FRAMEWORK_WITH_EVIDENCE} />
       <RiskCrossCheckBlock frameworkId="hipaa" />
+      <ReferenceTable id="hipaa-security-matrix" title="Security Rule implementation specifications: required or addressable"
+        intro="Every Security Rule standard and implementation specification, one per row, checked against the eCFR matrix (Appendix A to Subpart C of Part 164). Addressable does not mean optional: implement it, implement an equivalent, or document why neither is reasonable and appropriate."
+        headers={['Citation', 'Specification', 'Required (R) or Addressable (A)']} rows={HIPAA_SECURITY_MATRIX} notes={HIPAA_STATUS_NOTES} />
     </>
   );
 }

@@ -2,6 +2,9 @@ import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCh
 import LearningFrameworkPage from "../../components/LearningFrameworkPage";
 import Iso27001Sections from "../../components/Iso27001Sections.jsx";
 import Iso27001ThemeScoping from "../../components/Iso27001ThemeScoping.jsx";
+import AnnexACoverage from "../../components/playbook/AnnexACoverage.jsx";
+import { withEvidence, appendToLevel, extendTasks } from "../../data/playbookEvidence.js";
+import { LI_L1_CLAUSES, LI_EXTEND } from "../../data/playbookAdditions/iso27001.js";
 
 const FRAMEWORK = {
   id: "iso27001-li",
@@ -189,13 +192,20 @@ const FRAMEWORK = {
   ]
 };
 
+// Additive: new tasks are appended at the end of a level so saved progress keys do not move.
+appendToLevel(FRAMEWORK, 0, { tasks: LI_L1_CLAUSES.slice(0, 5) });
+appendToLevel(FRAMEWORK, 1, { tasks: LI_L1_CLAUSES.slice(5) });
+extendTasks(FRAMEWORK, LI_EXTEND);
+const FRAMEWORK_WITH_EVIDENCE = withEvidence(FRAMEWORK);
+
 export default function Iso27001LiPage() {
   return (
     <>
-      <LearningFrameworkPage framework={FRAMEWORK} />
+      <LearningFrameworkPage framework={FRAMEWORK_WITH_EVIDENCE} />
       <RiskCrossCheckBlock frameworkId="iso27001" />
       <Iso27001ThemeScoping />
       <Iso27001Sections basePath="/iso/27001/li" />
+      <AnnexACoverage />
     </>
   );
 }

@@ -2,6 +2,9 @@ import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCh
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 import GdprAccountability from "../../components/GdprAccountability.jsx";
 import GdprRoles from "../../components/GdprRoles.jsx";
+import { withEvidence, appendToLevel } from "../../data/playbookEvidence.js";
+import { GDPR_L1, GDPR_L2, GDPR_L3, GDPR_L4_US, GDPR_NOTES, GDPR_EVIDENCE_TYPES } from "../../data/playbookAdditions/gdpr.js";
+import ReferenceTable from "../../components/playbook/ReferenceTable.jsx";
 
 const FRAMEWORK = {
   id: 'gdpr',
@@ -207,11 +210,23 @@ const FRAMEWORK = {
   extraSections: [<GdprRoles key="gdpr-roles" />, <GdprAccountability key="gdpr-accountability" />]
 };
 
+// Additive: new tasks are appended at the end of each level so saved progress keys do not move.
+appendToLevel(FRAMEWORK, 0, { tasks: GDPR_L1 });
+appendToLevel(FRAMEWORK, 1, { tasks: GDPR_L2 });
+appendToLevel(FRAMEWORK, 2, { tasks: GDPR_L3 });
+appendToLevel(FRAMEWORK, 3, { tasks: GDPR_L4_US });
+const FRAMEWORK_WITH_EVIDENCE = withEvidence(FRAMEWORK);
+
 export default function Gdpr() {
   return (
     <>
-      <LearningFrameworkPage framework={FRAMEWORK} />
+      <LearningFrameworkPage framework={FRAMEWORK_WITH_EVIDENCE} />
       <RiskCrossCheckBlock frameworkId="gdpr" />
+      <ReferenceTable id="gdpr-applicability-notes" title="Articles with no direct organizational control"
+        intro="These articles are covered by a short applicability note rather than a task. Core evidence types for GDPR are listed below."
+        notes={GDPR_NOTES}>
+        <p className="text-sm text-gray-700 dark:text-slate-300"><strong>Core evidence:</strong> {GDPR_EVIDENCE_TYPES.join('; ')}.</p>
+      </ReferenceTable>
     </>
   );
 }

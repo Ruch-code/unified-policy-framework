@@ -413,6 +413,14 @@ function FrameworkBody({ framework, extraSections }) {
           </div>
         )}
 
+        {data.weeks.some(w => w.tasks.some(t => t && t.evidence)) && (
+          <div className="mb-6 rounded-xl border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/20 p-4 text-sm text-amber-900 dark:text-amber-100">
+            <p className="font-semibold mb-1">Evidence handling conventions</p>
+            <ul className="list-disc pl-5 space-y-0.5">{EVIDENCE_CONVENTIONS.map(c => <li key={c}>{c}</li>)}</ul>
+            <p className="mt-2 text-xs">Each task has an "Evidence required" section. Entries marked as topic-based were assigned from the task's subject; tailor them to your systems.</p>
+          </div>
+        )}
+
         {/* Level Sections */}
         {data.weeks.map((week, idx) => {
           const unlocked = isWeekUnlocked(idx);
@@ -494,10 +502,11 @@ function FrameworkBody({ framework, extraSections }) {
                             </div>
                             {typeof task === 'object' && !done && (
                               <div className="mt-2 space-y-1.5">
-                                <TaskDetail label="Control" value={task.control} color={colors.text} />
+                                <TaskDetail label="Control" value={task.alsoMapsTo ? `${task.control} (also maps to ${task.alsoMapsTo})` : task.control} color={colors.text} />
                                 <TaskDetail label="How" value={task.how} color={colors.text} />
                                 <TaskDetail label="Check" value={task.check} color={colors.text} />
-                                <RelatedTemplates className="ml-5" text={[task.title, task.control, task.how, task.check, task.citation && (task.citation.ref || task.citation.section || task.citation.label)].filter(Boolean).join(' ')} />
+                                {task.evidence && <EvidenceDetail evidence={task.evidence} color={colors.text} />}
+                                <RelatedTemplates className="ml-5" slugs={task.templates} text={[task.title, task.control, task.how, task.check, task.citation && (task.citation.ref || task.citation.section || task.citation.label)].filter(Boolean).join(' ')} />
                                 {task.citation && (
                                   <CitationRow
                                     citation={{
@@ -636,6 +645,46 @@ function TaskDetail({ label, value, color }) {
         <ChevronRight className={`w-3 h-3 transition-transform ${open ? 'rotate-90' : ''}`} />
       </button>
       {open && <p className="text-gray-600 mt-1 ml-7 leading-relaxed">{value}</p>}
+    </div>
+  );
+}
+
+const EVIDENCE_FIELDS = [
+  ['artifacts', 'Evidence artifacts'],
+  ['owner', 'Owner role'],
+  ['frequency', 'Frequency or timing'],
+  ['sampling', 'Population and sampling'],
+  ['pass', 'Pass criteria'],
+  ['rejection', 'Common auditor rejection reason'],
+];
+
+export const EVIDENCE_CONVENTIONS = [
+  'Screenshots show the system, the relevant setting and a timestamp.',
+  'Evidence uploaded but not yet reviewed is marked "file uploaded, to review", never "done".',
+  'A partly evidenced population stays in draft and is not submitted incomplete.',
+  'Superseded evidence is archived and labelled, not deleted.',
+];
+
+function EvidenceDetail({ evidence, color }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="text-sm">
+      <button onClick={(e) => { e.stopPropagation(); setOpen(!open); }} aria-expanded={open} className={`flex items-center gap-2 font-medium ${color} hover:underline`}>
+        <span className="w-5 h-5 rounded-full text-white text-[10px] flex items-center justify-center font-bold bg-amber-500">E</span>
+        Evidence required
+        <ChevronRight className={`w-3 h-3 transition-transform ${open ? 'rotate-90' : ''}`} />
+      </button>
+      {open && (
+        <dl className="mt-1 ml-7 space-y-1 text-gray-600 dark:text-slate-300">
+          {EVIDENCE_FIELDS.filter(([k]) => evidence[k]).map(([k, label]) => (
+            <div key={k}>
+              <dt className="inline font-semibold text-gray-800 dark:text-slate-100">{label}: </dt>
+              <dd className="inline">{Array.isArray(evidence[k]) ? evidence[k].join('; ') : evidence[k]}</dd>
+            </div>
+          ))}
+          {evidence.basis && <p className="text-xs italic text-gray-500 dark:text-slate-400">{evidence.basis}</p>}
+        </dl>
+      )}
     </div>
   );
 }

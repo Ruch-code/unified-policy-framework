@@ -108,3 +108,15 @@ export const HIPAA_MIGRATION_NOTE = {
   added: HIPAA_ASSESSMENT.map(it => it.id),
   kept: 'All existing GEN-* items keep their IDs and their saved progress.',
 };
+
+// Cross-framework mappings for governance and evidence controls added to the
+// SOC 2, ISO 27001, HIPAA and GDPR playbooks. Kept separate so existing
+// assessment counts are unchanged.
+export const PLAYBOOK_REUSE_ITEMS = [
+  { id: 'REUSE-01', itgc: 'General / Cross-Cutting', category: 'Non-IT', control: 'Board or governing body oversight of security and privacy, with annual briefing and minutes', tool: 'Board charter, minutes', scenario: 'Satisfies SOC 2 CC1.2 and CC1.3, ISO 27001 Clause 5.1 and 9.3.', hours: 4 },
+  { id: 'REUSE-02', itgc: 'General / Cross-Cutting', category: 'Non-IT', control: 'Code of conduct, confidentiality agreements and background checks at hire', tool: 'HR onboarding records', scenario: 'Satisfies SOC 2 CC1.1 and CC1.4, ISO 27001 A.6.1, A.6.2 and A.6.6, HIPAA 164.308(a)(3)(ii)(B), GDPR Art. 29.', hours: 4 },
+  { id: 'REUSE-03', itgc: 'General / Cross-Cutting', category: 'Non-IT', control: 'Control self-assessments with deficiency tracking', tool: 'Control self-assessment record', scenario: 'Satisfies SOC 2 CC4.1 and CC4.2, ISO 27001 Clause 9.1 and A.5.36, HIPAA 164.308(a)(8).', hours: 6 },
+  { id: 'REUSE-04', itgc: 'Business Continuity & Incident', category: 'Non-IT', control: 'Incident response plan tested at least annually with lessons learned', tool: 'Tabletop record, action tracker', scenario: 'Satisfies SOC 2 CC7.4 and CC7.5, ISO 27001 A.5.24 to A.5.27, HIPAA 164.308(a)(6) and 164.308(a)(7)(ii)(D), GDPR Art. 33(5).', hours: 4 },
+  { id: 'REUSE-05', itgc: 'Data Privacy / Governance', category: 'Non-IT', control: 'Customer data returned or deleted at contract end with a deletion record', tool: 'Customer data deletion record', scenario: 'Satisfies SOC 2 CC6.5, ISO 27001 A.8.10, HIPAA 164.504(e)(2)(ii)(J), GDPR Art. 28(3)(g).', hours: 3 },
+  { id: 'REUSE-06', itgc: 'Data Privacy / Governance', category: 'Non-IT', control: 'Processor and business associate agreements with flow-down to subcontractors', tool: 'DPA and BAA templates, vendor inventory', scenario: 'Satisfies GDPR Art. 28(2) to (4), HIPAA 164.314(a) and 164.504(e)(5), SOC 2 CC9.2, ISO 27001 A.5.20.', hours: 6 },
+];

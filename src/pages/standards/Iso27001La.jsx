@@ -3,6 +3,8 @@ import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 import StatementOfApplicability from "../../components/StatementOfApplicability.jsx";
 import ScopeWalkthrough from "../../components/ScopeWalkthrough.jsx";
 import ScopingGuide from "../../components/ScopingGuide";
+import { withEvidence, appendToLevel } from "../../data/playbookEvidence.js";
+import { LA_L3_CONTROLS } from "../../data/playbookAdditions/iso27001.js";
 
 const FRAMEWORK = {
   id: "iso-27001-la",
@@ -180,10 +182,14 @@ const FRAMEWORK = {
   ],
 };
 
+// Additive: Annex A audit tasks appended to the fieldwork level so saved progress keys do not move.
+appendToLevel(FRAMEWORK, 2, { tasks: LA_L3_CONTROLS });
+const FRAMEWORK_WITH_EVIDENCE = withEvidence(FRAMEWORK);
+
 export default function Iso27001La() {
   return (
     <>
-      <LearningFrameworkPage framework={FRAMEWORK} />
+      <LearningFrameworkPage framework={FRAMEWORK_WITH_EVIDENCE} />
       <RiskCrossCheckBlock frameworkId="iso27001" />
       <ScopingGuide />
       <ScopeWalkthrough />
