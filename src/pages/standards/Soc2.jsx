@@ -3,6 +3,8 @@ import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 import soc2Template from "../../data/soc2-template.json";
 import TscControlMatrix from "../../components/TscControlMatrix.jsx";
 import Soc2TechnicalSection from "../../components/Soc2TechnicalSection.jsx";
+import { withEvidence, appendToLevel, extendTasks } from "../../data/playbookEvidence.js";
+import { SOC2_L1_GOVERNANCE, SOC2_L3_TESTS, SOC2_EXTEND } from "../../data/playbookAdditions/soc2.js";
 
 const FRAMEWORK = {
   id: "soc2",
@@ -1142,10 +1144,16 @@ const FRAMEWORK = {
   ],
 };
 
+// Additive: new tasks go at the end of a level so saved progress keys do not move.
+appendToLevel(FRAMEWORK, 0, SOC2_L1_GOVERNANCE);
+appendToLevel(FRAMEWORK, 2, SOC2_L3_TESTS);
+extendTasks(FRAMEWORK, SOC2_EXTEND);
+const FRAMEWORK_WITH_EVIDENCE = withEvidence(FRAMEWORK);
+
 export default function Soc2() {
   return (
     <>
-      <LearningFrameworkPage framework={FRAMEWORK} />
+      <LearningFrameworkPage framework={FRAMEWORK_WITH_EVIDENCE} />
       <RiskCrossCheckBlock frameworkId="soc2" />
       <Soc2TechnicalSection />
       <TscControlMatrix />

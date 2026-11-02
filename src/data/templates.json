@@ -519,6 +519,28 @@
           ],
           "type": "record",
           "file": "audit-calendar.xlsx"
+        },
+        {
+          "num": 167,
+          "slug": "control-self-assessment",
+          "name": "Control Self-Assessment Record",
+          "purpose": "Captures control, owner, test performed, sample, result, deficiency, remediation date and management review.",
+          "fields": [
+            "Control",
+            "Owner",
+            "Test performed",
+            "Sample",
+            "Result",
+            "Deficiency",
+            "Remediation date",
+            "Management review"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001"
+          ],
+          "type": "record",
+          "file": "control-self-assessment.xlsx"
         }
       ]
     },
@@ -2862,6 +2884,26 @@
           ],
           "type": "document",
           "file": "cookie-policy.docx"
+        },
+        {
+          "num": 168,
+          "slug": "data-use-agreement",
+          "name": "Data Use Agreement (Limited Data Set)",
+          "purpose": "Covers permitted uses, authorised recipients, safeguards, reporting, agents, no re-identification or contact and excluded identifiers.",
+          "fields": [
+            "Permitted uses",
+            "Authorised recipients",
+            "Safeguards",
+            "Reporting",
+            "Agents",
+            "No re-identification or contact",
+            "Excluded identifiers"
+          ],
+          "frameworks": [
+            "HIPAA"
+          ],
+          "type": "document",
+          "file": "data-use-agreement.docx"
         }
       ]
     },
