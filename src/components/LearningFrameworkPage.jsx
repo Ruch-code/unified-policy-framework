@@ -224,6 +224,7 @@ function InnerGateScope({ children }) {
 }
 
 function FrameworkBody({ framework, extraSections }) {
+  const LEVELS = framework.levelMeta ? framework.levelMeta.map((m, i) => ({ ...LEVEL_META[i], ...m })) : LEVEL_META;
   const data = normalizeFramework(framework);
   const extensionNodes = extraSections ?? framework.extraSections;
   const [progress, setProgress] = useState({});
@@ -290,8 +291,8 @@ function FrameworkBody({ framework, extraSections }) {
   const circumference = 2 * Math.PI * 70;
 
   const currentLevel = Math.min(unlockedLevels - 1, 3);
-  const levelName = LEVEL_META[currentLevel]?.label || 'Foundation';
-  const LevelIcon = LEVEL_META[currentLevel]?.icon || Shield;
+  const levelName = LEVELS[currentLevel]?.label || 'Foundation';
+  const LevelIcon = LEVELS[currentLevel]?.icon || Shield;
 
   return (
     <section className="py-8">
@@ -299,13 +300,15 @@ function FrameworkBody({ framework, extraSections }) {
         {/* Header */}
         <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <a href="https://inspiring-ganache-fdd3be.netlify.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-[#7c3aed] hover:text-[#5b21b6] mb-2 transition-colors">
-              <ArrowRight className="w-4 h-4" />
-              ISO 42001 AI Governance Roadmap
-            </a>
-            <Link to="/" className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-slate-200 mb-2 inline-block transition-colors">
-              ← Back to Home
-            </Link>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-2">
+              <Link to="/" className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-slate-200 inline-block transition-colors">
+                ← Back to Home
+              </Link>
+              <a href="https://inspiring-ganache-fdd3be.netlify.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-[#7c3aed] hover:text-[#5b21b6] transition-colors">
+                ISO 42001 companion site (external)
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2 flex items-center gap-3 flex-wrap">
               {framework.flag && (
                 <span className={`text-3xl inline-block ${framework.flagAnimation === 'bounce' ? 'flag-bounce' : framework.flagAnimation === 'pulse' ? 'flag-pulse' : 'flag-float'}`} aria-label={framework.name}>
@@ -349,6 +352,10 @@ function FrameworkBody({ framework, extraSections }) {
           </div>
         </div>
 
+        {framework.timelineNote && (
+          <p className="mb-6 rounded-xl border border-violet-200 dark:border-violet-800 bg-violet-50/60 dark:bg-violet-900/20 p-3 text-sm text-gray-700 dark:text-slate-200">{framework.timelineNote}</p>
+        )}
+
         {/* Progress Dashboard */}
         <div className={`bg-white rounded-2xl border ${colors.border} p-6 mb-8`}>
           <div className="flex flex-col md:flex-row items-center gap-8">
@@ -369,7 +376,7 @@ function FrameworkBody({ framework, extraSections }) {
             <div className="flex-1 grid grid-cols-2 sm:grid-cols-4 gap-3">
               {data.weeks.map((week, idx) => {
                 const unlocked = isWeekUnlocked(idx);
-                const Meta = LEVEL_META[idx] || LEVEL_META[0];
+                const Meta = LEVELS[idx] || LEVELS[0];
                 const Icon = Meta.icon;
                 return (
                   <div key={week.week} className={`text-center p-3 rounded-xl border transition-all ${unlocked ? colors.bgLight + ' border-current ' + colors.border : 'bg-gray-50 border-gray-200 opacity-50 dark:bg-slate-800/60 dark:border-slate-700 dark:opacity-90'}`}>
@@ -426,7 +433,7 @@ function FrameworkBody({ framework, extraSections }) {
         {/* Level Sections */}
         {data.weeks.map((week, idx) => {
           const unlocked = isWeekUnlocked(idx);
-          const Meta = LEVEL_META[idx] || LEVEL_META[0];
+          const Meta = LEVELS[idx] || LEVELS[0];
           const Icon = Meta.icon;
           const prevComplete = idx > 0 && weekStats[data.weeks[idx - 1].week]?.pct >= 80;
           const justUnlocked = LEVEL_GATING && unlocked && idx > 0 && !progress[`seen-level-${week.week}`];
@@ -465,7 +472,7 @@ function FrameworkBody({ framework, extraSections }) {
               {!unlocked && (
                 <div className="px-6 py-8 text-center">
                   <Lock className="w-10 h-10 text-gray-500 mx-auto mb-3 dark:text-slate-300" />
-                  <p className="text-gray-600 dark:text-slate-300 text-sm">Complete <strong>{LEVEL_META[idx - 1]?.label || 'previous level'}</strong> ({weekStats[data.weeks[idx - 1]?.week]?.pct || 0}% / 80%) to unlock this level</p>
+                  <p className="text-gray-600 dark:text-slate-300 text-sm">Complete <strong>{LEVELS[idx - 1]?.label || 'previous level'}</strong> ({weekStats[data.weeks[idx - 1]?.week]?.pct || 0}% / 80%) to unlock this level</p>
                 </div>
               )}
 
@@ -584,8 +591,8 @@ function FrameworkBody({ framework, extraSections }) {
               </div>
             </div>
             <a href="https://inspiring-ganache-fdd3be.netlify.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#7c3aed] text-white px-5 py-2.5 rounded-lg hover:bg-[#6d28d9] transition font-medium whitespace-nowrap">
-              <ArrowRight className="w-4 h-4" />
-              View ISO 42001 Roadmap
+              <ExternalLink className="w-4 h-4" />
+              ISO 42001 companion site (external)
             </a>
           </div>
         </div>
@@ -612,19 +619,19 @@ function FrameworkBody({ framework, extraSections }) {
               </div>
               <div className="grid md:grid-cols-2 gap-5">
                 {gaps.map((item, i) => (
-                  <GapCard key={i} item={item} colors={colors} />
+                  <GapCard key={i} item={item} colors={colors} controlMap={framework.itgcControlMap} />
                 ))}
               </div>
               <details className="mt-6 rounded-xl border border-violet-200 dark:border-violet-800">
                 <summary className="cursor-pointer p-4 font-semibold text-gray-900 dark:text-white">AI and vibe coding platforms: gaps across the ITGC domains</summary>
                 <div className="p-4 pt-0 grid md:grid-cols-2 gap-5">
-                  {VIBE_ITGC_GAPS.map((item, i) => <GapCard key={`vibe-${i}`} item={item} colors={colors} />)}
+                  {VIBE_ITGC_GAPS.map((item, i) => <GapCard key={`vibe-${i}`} item={item} colors={colors} controlMap={framework.itgcControlMap} />)}
                 </div>
               </details>
               <details className="mt-4 rounded-xl border border-teal-200 dark:border-teal-800">
                 <summary className="cursor-pointer p-4 font-semibold text-gray-900 dark:text-white">Engineering partnership: gaps between GRC and engineering</summary>
                 <div className="p-4 pt-0 grid md:grid-cols-2 gap-5">
-                  {ENG_ITGC_GAPS.map((item, i) => <GapCard key={`eng-${i}`} item={item} colors={colors} />)}
+                  {ENG_ITGC_GAPS.map((item, i) => <GapCard key={`eng-${i}`} item={item} colors={colors} controlMap={framework.itgcControlMap} />)}
                 </div>
                 <p className="px-4 pb-4 text-sm"><a className="underline text-teal-700 dark:text-teal-300" href="/#engineering-partnership">Open the Engineering &amp; Infrastructure Partnership module</a></p>
               </details>
@@ -802,7 +809,7 @@ function CitationRow({ citation }) {
   );
 }
 
-function GapCard({ item, colors }) {
+function GapCard({ item, colors, controlMap }) {
   const [open, setOpen] = useState(false);
   const hasPushback = !!item.pushback;
   const dom = item.itgc || 'General / Cross-Cutting';
@@ -830,6 +837,9 @@ function GapCard({ item, colors }) {
       </button>
       {open && (
         <div className="p-4 space-y-3 bg-white dark:bg-slate-900">
+          {controlMap?.[dom] && (
+            <p className="text-sm text-gray-700 dark:text-slate-200"><strong>ISO 42001 controls for this ITGC domain:</strong> {controlMap[dom].join(', ')}</p>
+          )}
           {hasPushback && (
             <div className="rounded-lg bg-amber-50 border border-amber-100 dark:bg-amber-900/30 dark:border-amber-800 p-3">
               <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-700 dark:text-amber-300 uppercase tracking-wide"><AlertTriangle className="w-3.5 h-3.5" /> What founders/staff say</span>

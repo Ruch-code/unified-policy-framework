@@ -3293,6 +3293,1143 @@
           "file": "soc2-system-description.docx"
         }
       ]
+    },
+    {
+      "id": "iso-42001-aims",
+      "name": "ISO 42001 AIMS",
+      "templates": [
+        {
+          "num": 200,
+          "slug": "ai-policy",
+          "name": "AI Policy",
+          "purpose": "Sets the organization's direction and commitments for developing and using AI.",
+          "fields": [
+            "Purpose",
+            "Scope",
+            "Owner",
+            "Review cycle",
+            "Policy statements",
+            "Exceptions"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "ai-policy.docx"
+        },
+        {
+          "num": 201,
+          "slug": "ai-risk-policy",
+          "name": "AI Risk Management Policy",
+          "purpose": "Defines how AI risks are assessed, treated and accepted.",
+          "fields": [
+            "Purpose",
+            "Scope",
+            "Owner",
+            "Review cycle",
+            "Policy statements",
+            "Exceptions"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "ai-risk-policy.docx"
+        },
+        {
+          "num": 202,
+          "slug": "ai-impact-policy",
+          "name": "AI System Impact Assessment Policy",
+          "purpose": "Defines when and how effects on people and society are assessed.",
+          "fields": [
+            "Purpose",
+            "Scope",
+            "Owner",
+            "Review cycle",
+            "Policy statements",
+            "Exceptions"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "ai-impact-policy.docx"
+        },
+        {
+          "num": 203,
+          "slug": "ai-development-policy",
+          "name": "Responsible AI Development Policy",
+          "purpose": "Sets requirements for designing, building, testing, releasing and operating AI systems.",
+          "fields": [
+            "Purpose",
+            "Scope",
+            "Owner",
+            "Review cycle",
+            "Policy statements",
+            "Exceptions"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "ai-development-policy.docx"
+        },
+        {
+          "num": 204,
+          "slug": "ai-data-policy",
+          "name": "AI Data Governance Policy",
+          "purpose": "Sets rules for acquiring, preparing and using data for AI.",
+          "fields": [
+            "Purpose",
+            "Scope",
+            "Owner",
+            "Review cycle",
+            "Policy statements",
+            "Exceptions"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "ai-data-policy.docx"
+        },
+        {
+          "num": 205,
+          "slug": "ai-use-policy",
+          "name": "AI Acceptable Use Policy",
+          "purpose": "Sets rules for how staff may use AI systems and tools.",
+          "fields": [
+            "Purpose",
+            "Scope",
+            "Owner",
+            "Review cycle",
+            "Policy statements",
+            "Exceptions"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "ai-use-policy.docx"
+        },
+        {
+          "num": 206,
+          "slug": "ai-third-party-policy",
+          "name": "AI Third-Party and Customer Policy",
+          "purpose": "Sets how responsibilities are allocated with suppliers, partners and customers.",
+          "fields": [
+            "Purpose",
+            "Scope",
+            "Owner",
+            "Review cycle",
+            "Policy statements",
+            "Exceptions"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "ai-third-party-policy.docx"
+        },
+        {
+          "num": 207,
+          "slug": "ai-incident-policy",
+          "name": "AI Incident and Concern Reporting Policy",
+          "purpose": "Defines how AI incidents and concerns are reported, handled and communicated.",
+          "fields": [
+            "Purpose",
+            "Scope",
+            "Owner",
+            "Review cycle",
+            "Policy statements",
+            "Exceptions"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "ai-incident-policy.docx"
+        },
+        {
+          "num": 208,
+          "slug": "ai-transparency-policy",
+          "name": "AI Transparency and Communication Policy",
+          "purpose": "Sets what is communicated about AI systems, and to whom.",
+          "fields": [
+            "Purpose",
+            "Scope",
+            "Owner",
+            "Review cycle",
+            "Policy statements",
+            "Exceptions"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "ai-transparency-policy.docx"
+        },
+        {
+          "num": 209,
+          "slug": "aims-document-policy",
+          "name": "AIMS Document Control Policy",
+          "purpose": "Sets how AIMS documents are created, approved, protected and retired.",
+          "fields": [
+            "Purpose",
+            "Scope",
+            "Owner",
+            "Review cycle",
+            "Policy statements",
+            "Exceptions"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "aims-document-policy.docx"
+        },
+        {
+          "num": 210,
+          "slug": "aims-context-analysis",
+          "name": "AIMS Context Analysis",
+          "purpose": "Records internal and external issues and your AI role for each system.",
+          "fields": [
+            "AI role",
+            "External issues",
+            "Internal issues",
+            "Climate considerations",
+            "Approval"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "aims-context-analysis.docx"
+        },
+        {
+          "num": 211,
+          "slug": "aims-obligations-register",
+          "name": "AIMS Stakeholder and Obligations Register",
+          "purpose": "Lists interested parties, requirements, and reporting duties.",
+          "fields": [
+            "Interested party",
+            "Requirement",
+            "Source",
+            "Addressed in AIMS (Yes/No)",
+            "Rationale",
+            "Owner",
+            "Report due",
+            "Status"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "aims-obligations-register.xlsx"
+        },
+        {
+          "num": 212,
+          "slug": "aims-scope-statement",
+          "name": "AIMS Scope Statement",
+          "purpose": "Defines in-scope AI systems, teams, locations, interfaces and exclusions.",
+          "fields": [
+            "In-scope AI systems",
+            "Teams and locations",
+            "Interfaces",
+            "Exclusions",
+            "Sign-off"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "aims-scope-statement.docx"
+        },
+        {
+          "num": 213,
+          "slug": "ai-system-inventory",
+          "name": "AI System Inventory",
+          "purpose": "One record per AI system, with role, owner and risk tier.",
+          "fields": [
+            "System",
+            "Purpose",
+            "Your role",
+            "Owner",
+            "Model or provider",
+            "Data categories",
+            "Affected people",
+            "Risk tier",
+            "In scope",
+            "Last reviewed"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "ai-system-inventory.xlsx"
+        },
+        {
+          "num": 214,
+          "slug": "aims-manual",
+          "name": "AIMS Manual",
+          "purpose": "Describes the AIMS processes and how they connect.",
+          "fields": [
+            "Purpose",
+            "Process map",
+            "Process owners",
+            "Document links"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "aims-manual.docx"
+        },
+        {
+          "num": 215,
+          "slug": "ai-governance-charter",
+          "name": "AI Governance Committee Charter",
+          "purpose": "Sets committee membership, authority, cadence and an agenda and minutes format.",
+          "fields": [
+            "Purpose and authority",
+            "Members",
+            "Cadence",
+            "Standing agenda",
+            "Minutes format"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "ai-governance-charter.docx"
+        },
+        {
+          "num": 216,
+          "slug": "aims-raci",
+          "name": "AIMS RACI",
+          "purpose": "Assigns AIMS and life cycle responsibilities.",
+          "fields": [
+            "Activity",
+            "Life cycle stage",
+            "Responsible",
+            "Accountable",
+            "Consulted",
+            "Informed"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "aims-raci.xlsx"
+        },
+        {
+          "num": 217,
+          "slug": "ai-risk-methodology",
+          "name": "AI Risk Assessment Methodology",
+          "purpose": "Defines criteria, scales and acceptance rules.",
+          "fields": [
+            "Risk criteria",
+            "Likelihood scale",
+            "Risk sources",
+            "Acceptance rules",
+            "When to repeat"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "ai-risk-methodology.docx"
+        },
+        {
+          "num": 218,
+          "slug": "ai-risk-register",
+          "name": "AI Risk and Opportunity Register",
+          "purpose": "Records AIMS and system risks and opportunities.",
+          "fields": [
+            "ID",
+            "Type (risk or opportunity)",
+            "System",
+            "Description",
+            "Source",
+            "Consequence",
+            "Likelihood",
+            "Rating",
+            "Owner",
+            "Treatment decision",
+            "Review date"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "ai-risk-register.xlsx"
+        },
+        {
+          "num": 219,
+          "slug": "ai-risk-treatment-plan",
+          "name": "AI Risk Treatment Plan",
+          "purpose": "Tracks treatments, verification and residual risk approval.",
+          "fields": [
+            "Risk ID",
+            "Treatment option",
+            "Controls selected",
+            "Action",
+            "Owner",
+            "Due date",
+            "Status",
+            "Verification method",
+            "Verification result",
+            "Residual risk",
+            "Approved by"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "ai-risk-treatment-plan.xlsx"
+        },
+        {
+          "num": 220,
+          "slug": "aims-soa",
+          "name": "AIMS Statement of Applicability",
+          "purpose": "Blank SoA. The page's SoA builder exports the same format with your answers.",
+          "fields": [
+            "Control",
+            "Title",
+            "Applicable",
+            "Justification",
+            "Implementation status",
+            "Owner"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "aims-soa.xlsx"
+        },
+        {
+          "num": 221,
+          "slug": "ai-impact-process",
+          "name": "AI System Impact Assessment Process",
+          "purpose": "Defines triggers, method, approvers and frequency.",
+          "fields": [
+            "Triggers",
+            "Method",
+            "Participants",
+            "Approval",
+            "Frequency"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "ai-impact-process.docx"
+        },
+        {
+          "num": 222,
+          "slug": "ai-impact-assessment",
+          "name": "AI System Impact Assessment",
+          "purpose": "Assesses effects on individuals, groups and society for one system.",
+          "fields": [
+            "System and purpose",
+            "Affected individuals and groups",
+            "Fairness, privacy, safety, autonomy, accessibility",
+            "Societal impacts",
+            "Mitigations and remaining impact",
+            "Link to risk register"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "ai-impact-assessment.docx"
+        },
+        {
+          "num": 223,
+          "slug": "ai-objectives-register",
+          "name": "AI Objectives Register",
+          "purpose": "Tracks AIMS and responsible use objectives.",
+          "fields": [
+            "Objective",
+            "Measure",
+            "Target",
+            "Owner",
+            "Resources",
+            "Due date",
+            "Evaluation method",
+            "Latest result",
+            "Status"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "ai-objectives-register.xlsx"
+        },
+        {
+          "num": 224,
+          "slug": "aims-change-log",
+          "name": "AIMS Change Log",
+          "purpose": "Records planned AIMS changes and their review.",
+          "fields": [
+            "Change",
+            "Reason",
+            "Impact on scope, risk and resources",
+            "Approved by",
+            "Date",
+            "Follow-up"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "aims-change-log.xlsx"
+        },
+        {
+          "num": 225,
+          "slug": "aims-resource-plan",
+          "name": "AI Resource Plan",
+          "purpose": "Records resources for the AIMS and each system.",
+          "fields": [
+            "System or AIMS",
+            "Resource type",
+            "Description",
+            "Capacity or quantity",
+            "Hosting",
+            "Owner",
+            "Budget",
+            "Last reviewed"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "aims-resource-plan.xlsx"
+        },
+        {
+          "num": 226,
+          "slug": "ai-skills-matrix",
+          "name": "AI Skills Matrix",
+          "purpose": "Maps required competence to people and gaps.",
+          "fields": [
+            "Role",
+            "Required competence",
+            "Current level",
+            "Gap",
+            "Action",
+            "Proof",
+            "Single point of failure (Yes/No)",
+            "Review date"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "ai-skills-matrix.xlsx"
+        },
+        {
+          "num": 227,
+          "slug": "ai-awareness-record",
+          "name": "AI Awareness and Training Record",
+          "purpose": "Records training completion and attestations.",
+          "fields": [
+            "Role or team",
+            "Course",
+            "Version",
+            "Completion date",
+            "Attestation (Yes/No)",
+            "Next due"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "ai-awareness-record.xlsx"
+        },
+        {
+          "num": 228,
+          "slug": "aims-communication-plan",
+          "name": "AIMS Communication Plan",
+          "purpose": "Defines what, when, with whom and how.",
+          "fields": [
+            "Topic",
+            "Audience",
+            "Timing",
+            "Channel",
+            "Owner",
+            "Sample link"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "aims-communication-plan.xlsx"
+        },
+        {
+          "num": 229,
+          "slug": "aims-document-register",
+          "name": "AIMS Master Document Register",
+          "purpose": "Lists documents, versions, access and retention.",
+          "fields": [
+            "Document",
+            "Required by",
+            "Owner",
+            "Version",
+            "Approved by",
+            "Approved date",
+            "Next review",
+            "Location",
+            "Access",
+            "Retention",
+            "Disposal"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "aims-document-register.xlsx"
+        },
+        {
+          "num": 230,
+          "slug": "ai-development-procedure",
+          "name": "AI Development Procedure",
+          "purpose": "Defines stages, gates and approvals.",
+          "fields": [
+            "Stages",
+            "Stage gates",
+            "Responsible development objectives",
+            "Human oversight",
+            "Outsourced work"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "ai-development-procedure.docx"
+        },
+        {
+          "num": 231,
+          "slug": "ai-kpi-report",
+          "name": "AIMS KPI Report",
+          "purpose": "Defines measures and records results.",
+          "fields": [
+            "KPI",
+            "Definition",
+            "Method",
+            "Frequency",
+            "Owner",
+            "Target",
+            "Result",
+            "Reviewer",
+            "Action taken"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "ai-kpi-report.xlsx"
+        },
+        {
+          "num": 232,
+          "slug": "aims-internal-audit-programme",
+          "name": "AIMS Internal Audit Programme",
+          "purpose": "Plans audits and records independence.",
+          "fields": [
+            "Audit area",
+            "Clauses and controls",
+            "Planned date",
+            "Method",
+            "Auditor",
+            "Independence confirmed",
+            "Status",
+            "Report link"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "aims-internal-audit-programme.xlsx"
+        },
+        {
+          "num": 233,
+          "slug": "aims-internal-audit-report",
+          "name": "AIMS Internal Audit Report",
+          "purpose": "Records audit scope, findings and conclusions.",
+          "fields": [
+            "Scope and criteria",
+            "Sample and method",
+            "Findings",
+            "Conclusion",
+            "Distribution"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "aims-internal-audit-report.docx"
+        },
+        {
+          "num": 234,
+          "slug": "aims-management-review",
+          "name": "AIMS Management Review Pack and Minutes",
+          "purpose": "Fixed agenda covering inputs, decisions and actions.",
+          "fields": [
+            "Attendance",
+            "Prior actions",
+            "Changes",
+            "Performance",
+            "Improvement opportunities",
+            "Decisions and actions"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "aims-management-review.docx"
+        },
+        {
+          "num": 235,
+          "slug": "aims-improvement-log",
+          "name": "AIMS Improvement Log",
+          "purpose": "Tracks improvements.",
+          "fields": [
+            "Improvement",
+            "Source",
+            "Owner",
+            "Due date",
+            "Status",
+            "Benefit seen"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "aims-improvement-log.xlsx"
+        },
+        {
+          "num": 236,
+          "slug": "ai-capa-log",
+          "name": "AI Nonconformity and CAPA Log",
+          "purpose": "Tracks containment, root cause and effectiveness.",
+          "fields": [
+            "ID",
+            "Nonconformity",
+            "Source",
+            "Containment",
+            "Root cause",
+            "Corrective action",
+            "Owner",
+            "Due date",
+            "Effectiveness check",
+            "Closure proof",
+            "Status"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "ai-capa-log.xlsx"
+        },
+        {
+          "num": 237,
+          "slug": "ai-policy-alignment",
+          "name": "AI Policy Alignment Matrix",
+          "purpose": "Maps other policies to AI objectives.",
+          "fields": [
+            "Policy",
+            "Owner",
+            "AI topic affected",
+            "Conflict or gap",
+            "Resolution",
+            "Decided by",
+            "Date"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "ai-policy-alignment.xlsx"
+        },
+        {
+          "num": 238,
+          "slug": "ai-concern-log",
+          "name": "AI Concern and External Report Log",
+          "purpose": "Tracks internal concerns and external reports. Keep reporter identity restricted.",
+          "fields": [
+            "Case ID",
+            "Internal or external",
+            "Date received",
+            "System",
+            "Summary",
+            "Handler",
+            "Action",
+            "Outcome",
+            "Closed date"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "ai-concern-log.xlsx"
+        },
+        {
+          "num": 239,
+          "slug": "ai-data-inventory",
+          "name": "AI Data Inventory and Lineage Record",
+          "purpose": "Records sources, rights, provenance and versions.",
+          "fields": [
+            "Dataset",
+            "System",
+            "Source",
+            "Type and categories",
+            "Rights or licence",
+            "Acquired date",
+            "Transformations",
+            "Version",
+            "Retention",
+            "Owner"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "ai-data-inventory.xlsx"
+        },
+        {
+          "num": 240,
+          "slug": "ai-bom",
+          "name": "AI Bill of Materials",
+          "purpose": "Records models, frameworks, libraries and pipelines.",
+          "fields": [
+            "System",
+            "Component",
+            "Type",
+            "Version",
+            "Source",
+            "Licence",
+            "Owner",
+            "Last checked"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "ai-bom.xlsx"
+        },
+        {
+          "num": 241,
+          "slug": "ai-requirements-spec",
+          "name": "AI System Requirements Specification",
+          "purpose": "Documents testable requirements.",
+          "fields": [
+            "Purpose and intended use",
+            "Functional and performance requirements",
+            "Fairness and safety",
+            "Security and data",
+            "Traceability"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "ai-requirements-spec.docx"
+        },
+        {
+          "num": 242,
+          "slug": "ai-model-card",
+          "name": "Model Card and Design Record",
+          "purpose": "Records design choices, training and limitations.",
+          "fields": [
+            "Model details",
+            "Architecture and alternatives",
+            "Training approach",
+            "Evaluation",
+            "Limitations and trade-offs"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "ai-model-card.docx"
+        },
+        {
+          "num": 243,
+          "slug": "ai-validation-report",
+          "name": "AI Verification and Validation Report",
+          "purpose": "Records metrics, thresholds and sign-off.",
+          "fields": [
+            "System version",
+            "Test",
+            "Data set",
+            "Metric",
+            "Threshold set before testing",
+            "Result",
+            "Subgroup",
+            "Pass or fail",
+            "Signed off by",
+            "Date"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "ai-validation-report.xlsx"
+        },
+        {
+          "num": 244,
+          "slug": "ai-deployment-checklist",
+          "name": "AI Deployment Checklist",
+          "purpose": "Confirms release readiness.",
+          "fields": [
+            "Check",
+            "Required",
+            "Result",
+            "Evidence link",
+            "Checked by",
+            "Date"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "ai-deployment-checklist.xlsx"
+        },
+        {
+          "num": 245,
+          "slug": "ai-monitoring-runbook",
+          "name": "AI Monitoring Runbook",
+          "purpose": "Defines monitoring, alerts and response.",
+          "fields": [
+            "What is monitored",
+            "Thresholds and alerts",
+            "Response steps",
+            "Repairs and updates"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "ai-monitoring-runbook.docx"
+        },
+        {
+          "num": 246,
+          "slug": "ai-technical-file",
+          "name": "AI Technical Documentation Pack",
+          "purpose": "Collects documents by audience.",
+          "fields": [
+            "For users",
+            "For partners",
+            "For regulators",
+            "Version map"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "ai-technical-file.docx"
+        },
+        {
+          "num": 247,
+          "slug": "ai-logging-spec",
+          "name": "AI Event Logging Specification",
+          "purpose": "Defines events, fields, retention and protection.",
+          "fields": [
+            "Event",
+            "Why logged",
+            "Fields",
+            "Model version captured",
+            "Masked or excluded data",
+            "Retention",
+            "Tamper protection",
+            "Owner"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "ai-logging-spec.xlsx"
+        },
+        {
+          "num": 248,
+          "slug": "ai-data-quality-report",
+          "name": "AI Data Quality Report",
+          "purpose": "Records quality checks, including representativeness.",
+          "fields": [
+            "Dataset version",
+            "Requirement",
+            "Method",
+            "Threshold",
+            "Result",
+            "Bias or representativeness note",
+            "Action",
+            "Reviewed by"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "ai-data-quality-report.xlsx"
+        },
+        {
+          "num": 249,
+          "slug": "ai-data-preparation-record",
+          "name": "AI Data Preparation Record",
+          "purpose": "Records cleaning, labelling and splitting.",
+          "fields": [
+            "Dataset version",
+            "Step",
+            "Method",
+            "Tool",
+            "Labelling guidance link",
+            "Quality check",
+            "Performed by",
+            "Date"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "ai-data-preparation-record.xlsx"
+        },
+        {
+          "num": 250,
+          "slug": "ai-user-notice",
+          "name": "AI User Information and Notice",
+          "purpose": "Tells users purpose, limitations and oversight.",
+          "fields": [
+            "What this system does",
+            "AI notice",
+            "Limitations",
+            "Human oversight",
+            "How to report a problem"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "ai-user-notice.docx"
+        },
+        {
+          "num": 251,
+          "slug": "ai-incident-plan",
+          "name": "AI Incident Plan",
+          "purpose": "Defines AI incident response and notification.",
+          "fields": [
+            "What counts as an AI incident",
+            "Roles",
+            "Response",
+            "Notification",
+            "Records"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "ai-incident-plan.docx"
+        },
+        {
+          "num": 252,
+          "slug": "ai-use-approval",
+          "name": "AI Use Approval Record",
+          "purpose": "Records approvals of AI tools and use cases.",
+          "fields": [
+            "Tool or use case",
+            "Requester",
+            "Purpose",
+            "Data used",
+            "Risk tier",
+            "Conditions",
+            "Approved by",
+            "Date",
+            "Review date"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "ai-use-approval.xlsx"
+        },
+        {
+          "num": 253,
+          "slug": "ai-intended-use",
+          "name": "AI Intended Use Statement",
+          "purpose": "Records documented use and monitoring for deviation.",
+          "fields": [
+            "Intended use",
+            "Prohibited or unassessed uses",
+            "Provider instructions",
+            "Human oversight",
+            "Usage monitoring"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "ai-intended-use.docx"
+        },
+        {
+          "num": 254,
+          "slug": "ai-responsibility-matrix",
+          "name": "AI Shared Responsibility Matrix",
+          "purpose": "Allocates duties across the supply chain.",
+          "fields": [
+            "Activity",
+            "Your organization",
+            "Supplier",
+            "Customer",
+            "Contract clause",
+            "Notes"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "ai-responsibility-matrix.xlsx"
+        },
+        {
+          "num": 255,
+          "slug": "ai-vendor-assessment",
+          "name": "AI Vendor Assessment",
+          "purpose": "Assesses AI suppliers and model providers.",
+          "fields": [
+            "Vendor",
+            "Service",
+            "Trains on your data (Yes/No)",
+            "Retention",
+            "Model change notice",
+            "Sub-processors",
+            "Evidence reviewed",
+            "Risk rating",
+            "Decision",
+            "Next review"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "ai-vendor-assessment.xlsx"
+        },
+        {
+          "num": 256,
+          "slug": "ai-customer-checklist",
+          "name": "AI Customer Requirements Checklist",
+          "purpose": "Tracks customer expectations, terms and feedback.",
+          "fields": [
+            "Customer segment",
+            "Expectation",
+            "Where addressed",
+            "Documentation provided",
+            "Feedback",
+            "Owner",
+            "Status"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "ai-customer-checklist.xlsx"
+        }
+      ]
     }
   ]
 }

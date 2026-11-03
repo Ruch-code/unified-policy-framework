@@ -2,7 +2,7 @@
 // Runs fully in the browser; the "docx" library is loaded on first use so it
 // stays out of the main bundle.
 
-export const FRAMEWORK_LABELS = { SOC2: 'SOC 2', ISO27001: 'ISO 27001:2022', HIPAA: 'HIPAA', GDPR: 'GDPR' };
+export const FRAMEWORK_LABELS = { SOC2: 'SOC 2', ISO27001: 'ISO 27001:2022', HIPAA: 'HIPAA', GDPR: 'GDPR', ISO42001: 'ISO/IEC 42001:2023' };
 export const FOOTER_TEXT = 'Template provided by OneLens by Ruchi';
 const ACCENT = '7C3AED';
 const EMPTY_ROWS = 5;

@@ -440,7 +440,7 @@ export default function Layout() {
                   bg-indigo-600 text-white hover:bg-indigo-700
                   dark:bg-indigo-500 dark:hover:bg-indigo-600"
               >
-                ISO 42001 AI
+                ISO 42001 site (external)
                 <ExternalLink className="w-3.5 h-3.5 opacity-70" />
               </a>
             )}
@@ -625,7 +625,7 @@ export default function Layout() {
                   onClick={() => setMobileMenuOpen(false)}
                   className="block px-4 py-3 text-center text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 rounded-lg transition-colors border border-indigo-200 dark:border-indigo-800/30"
                 >
-                  ISO 42001 AI Governance →
+                  ISO 42001 companion site (external) →
                 </a>
               </div>
             </div>
