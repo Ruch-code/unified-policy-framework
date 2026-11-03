@@ -39,6 +39,7 @@ export const FW_CHIPS = [
   { id: 'ISO27001', label: 'ISO 27001' },
   { id: 'HIPAA', label: 'HIPAA' },
   { id: 'GDPR', label: 'GDPR' },
+  { id: 'ISO42001', label: 'ISO 42001' },
 ];
 
 const BADGE = {
@@ -46,6 +47,7 @@ const BADGE = {
   ISO27001: 'bg-violet-100 text-violet-800 dark:bg-violet-900/40 dark:text-violet-200',
   HIPAA: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-200',
   GDPR: 'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-200',
+  ISO42001: 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900/40 dark:text-indigo-200',
 };
 
 export function FrameworkBadges({ frameworks }) {

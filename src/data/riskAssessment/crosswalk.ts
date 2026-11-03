@@ -61,6 +61,7 @@ export const CROSSWALK: FrameworkCrossCheck[] = [
       row('6.1.4', 'AI system impact assessment of consequences for individuals, groups and society.', 'Complete an impact assessment for each AI system that affects people.', ['AIG-4']),
       row('8.2', 'Perform AI risk assessments at planned intervals and on significant change.', 'Re-assess on model, data or vendor change.', ['AIG-3']),
       row('8.3', 'Implement the AI risk treatment plan.', 'Track AI treatments such as oversight and testing to completion.', ['AIG-5', 'AIG-6']),
+      row('8.4', 'Perform AI system impact assessments at planned intervals and on significant change.', 'Repeat the impact assessment on model, data or use change.', ['AIG-4']),
     ],
   },
   {
