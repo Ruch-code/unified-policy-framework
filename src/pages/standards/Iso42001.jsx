@@ -4,6 +4,7 @@ import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCh
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 import { VibePlatformLink } from "../../components/playbook/VibePlatformScenario.jsx";
 import Iso42001Library from "../../components/iso42001/Iso42001Library.jsx";
+import PolicyTemplateLibrary from "../../components/iso42001/PolicyTemplateLibrary.jsx";
 import { ITGC_MAPPING } from "../../data/iso42001.js";
 
 const FRAMEWORK = {
@@ -47,7 +48,7 @@ const FRAMEWORK = {
         },
         {
           title: "Analyze Organizational Context for AI",
-          templates: ['aims-context-analysis', 'aims-obligations-register'],
+          templates: ['aims-context-analysis', 'compliance-obligations'],
           templatesExclusive: true,
           control: "ISO/IEC 42001 Clauses 4.1 and 4.2 - Context of the Organization for AI",
           how: "Conduct structured analysis of internal/external issues affecting AI governance (regulatory landscape, AI technology evolution, ethical considerations, supply chain dependencies). Map all AI stakeholders-customers, regulators, employees, affected communities, AI suppliers-and document their AI-related requirements. Use PESTLE analysis extended for AI-specific factors (ethical AI, bias, transparency, explainability).",
@@ -55,7 +56,7 @@ const FRAMEWORK = {
         },
         {
           title: "Define AI System Roles & Responsibilities",
-          templates: ['aims-raci', 'ai-governance-charter'],
+          templates: ['executive-oversight', 'ai-governance-charter'],
           templatesExclusive: true,
           control: "ISO/IEC 42001 Clause 5.3 - Organizational roles, responsibilities, and authorities",
           how: "Define AI-specific roles: AI System Owner, AI Ethics Officer, Data Steward, Model Validator, AI Risk Owner. Document RACI matrix for AI governance activities. Ensure top management assigns AI governance accountability. Define decision-making authorities for AI system deployment, model approval, incident escalation, and data governance.",
@@ -80,7 +81,7 @@ const FRAMEWORK = {
       tasks: [
         {
           title: "Conduct AI-Specific Risk Assessment",
-          templates: ['ai-risk-methodology', 'ai-risk-register', 'ai-impact-assessment'],
+          templates: ['ai-risk-methodology', 'ai-risk-register', 'ai-impact-report'],
           templatesExclusive: true,
           control: "ISO/IEC 42001 Clauses 6.1.2, 8.2, 8.3 and 8.4 - AI Risk and Impact Assessment & ISO/IEC 23894",
           how: "Select or develop AI-specific risk assessment methodology (e.g., ISO/IEC 23894). Define AI-specific risk criteria: bias & fairness, transparency/explainability, robustness, data quality, model drift, adversarial attacks, privacy leakage, supply chain risks. Assess risks across AI lifecycle: data preparation, model training, validation, deployment, monitoring, decommissioning. Document risk register with AI-specific risk scenarios.",
@@ -88,7 +89,7 @@ const FRAMEWORK = {
         },
         {
           title: "Classify AI Systems per EU AI Act & Risk Tiering",
-          templates: ['ai-system-inventory', 'aims-obligations-register'],
+          templates: ['ai-system-inventory', 'compliance-obligations'],
           templatesExclusive: true,
           control: "EU AI Act (Regulation 2024/1689) - Classification of AI Systems",
           how: "Classify each AI system per EU AI Act risk tiers: Prohibited (unacceptable risk), High-Risk (Annex III), Limited Risk (transparency obligations), Minimal Risk. For High-Risk AI systems: identify applicable Annex III categories (biometrics, critical infrastructure, education, employment, essential services, law enforcement, migration, justice). Document classification rationale with evidence. Map to ISO 42001 Annex A controls.",
@@ -104,7 +105,7 @@ const FRAMEWORK = {
         },
         {
           title: "Create Statement of Applicability for AI Controls",
-          templates: ['aims-soa'],
+          templates: ['soa-workbook'],
           templatesExclusive: true,
           control: "ISO/IEC 42001 Clause 6.1.3d - Statement of Applicability",
           how: "Review all controls from ISO 42001 Annex A (38 controls across 9 domains, A.2 to A.10). For each control, determine applicability based on AI risk assessment. Justify inclusion/exclusion with risk-based rationale. Document implementation status for applicable controls. Link to EU AI Act conformity requirements for high-risk systems.",
@@ -121,7 +122,7 @@ const FRAMEWORK = {
       tasks: [
         {
           title: "Implement AI Data Governance & Quality Controls",
-          templates: ['ai-data-policy', 'ai-data-inventory', 'ai-data-quality-report'],
+          templates: ['ai-data-policy', 'ai-data-management', 'ai-data-quality-report'],
           templatesExclusive: true,
           control: "ISO/IEC 42001 Annex A.7 - Data for AI Systems",
           how: "Implement data governance for AI: data provenance tracking, data quality metrics (accuracy, completeness, consistency, representativeness), bias detection & mitigation in training data, data lineage documentation, data versioning, data minimization & purpose limitation, consent management for personal data. Implement data quality checks in pipelines: schema validation, distribution monitoring, anomaly detection, bias monitoring (demographic parity, equalized odds).",
@@ -129,7 +130,7 @@ const FRAMEWORK = {
         },
         {
           title: "Implement Model Development & Validation Controls",
-          templates: ['ai-development-procedure', 'ai-model-card', 'ai-validation-report'],
+          templates: ['ai-lifecycle', 'ai-model-card', 'ai-validation-report'],
           templatesExclusive: true,
           control: "ISO/IEC 42001 Annex A.6 - AI System Life Cycle",
           how: "Implement model development controls: model documentation (model cards), reproducible training pipelines (MLflow, DVC), experiment tracking, hyperparameter tracking, model versioning, model registry (MLflow, SageMaker). Validation controls: train/validation/test splits, cross-validation, bias/fairness testing (disparate impact, equal opportunity), robustness testing (adversarial, out-of-distribution), performance thresholds with automated gates. Deployment controls: canary deployments, shadow mode, rollback capability, model monitoring (drift, performance, data quality).",
@@ -137,7 +138,7 @@ const FRAMEWORK = {
         },
         {
           title: "Implement Human Oversight & Transparency Controls",
-          templates: ['ai-user-notice', 'ai-intended-use', 'ai-incident-plan'],
+          templates: ['ai-user-notice', 'ai-system-usage', 'ai-incident-response'],
           templatesExclusive: true,
           control: "ISO/IEC 42001 Annex A.8 and A.9 - Information and Use of AI Systems & EU AI Act Art. 14",
           how: "Implement human oversight mechanisms: human-in-the-loop for high-risk decisions, human-on-the-loop for monitoring, clear escalation paths for AI decisions. Transparency controls: model cards published, user-facing explanations (LIME/SHAP), AI disclosure notices for end-users, logging of AI decisions for audit trail. Implement AI incident response: detection, triage, containment, root cause analysis, user notification, regulatory reporting (EU AI Act Art. 73).",
@@ -145,7 +146,7 @@ const FRAMEWORK = {
         },
         {
           title: "Implement AI Supply Chain & Third-Party Model Governance",
-          templates: ['ai-vendor-assessment', 'ai-bom', 'ai-responsibility-matrix'],
+          templates: ['ai-third-party', 'ai-bom', 'ai-responsibility-matrix'],
           templatesExclusive: true,
           control: "ISO/IEC 42001 Annex A.4 - Resources & A.10 Third-Party Relationships",
           how: "Govern third-party AI: model provenance verification (model cards, datasheets), supplier AI risk assessment, contractual clauses (IP rights, liability, audit rights, model updates), sub-model registry, open-source model scanning (ModelScan, Protect AI). Implement AI-BOM (AI Bill of Materials): base models, fine-tuning data, libraries, dependencies. Monitor for: model supply chain attacks (pickled models, dependency confusion), license compliance, vulnerability scanning.",
@@ -162,7 +163,7 @@ const FRAMEWORK = {
       tasks: [
         {
           title: "Prepare for ISO 42001 Certification Audit",
-          templates: ['aims-internal-audit-programme', 'aims-internal-audit-report', 'aims-document-register'],
+          templates: ['audit-cycle-plan', 'aims-audit-report', 'aims-document-register'],
           templatesExclusive: true,
           control: "ISO/IEC 42001 Certification Process & ISO/IEC 17021-1",
           how: "Compile evidence package: AI policy, risk assessment, risk treatment, SoA, policies, procedures, records, monitoring data, incident logs, management review minutes. Conduct internal audit (ISO 19011) covering all Annex A controls. Address findings, close nonconformities. Select accredited certification body. Prepare for Stage 1 (document review) and Stage 2 (on-site assessment).",
@@ -170,7 +171,7 @@ const FRAMEWORK = {
         },
         {
           title: "Establish Continuous AI Monitoring & Improvement",
-          templates: ['ai-kpi-report', 'aims-management-review', 'aims-improvement-log'],
+          templates: ['ai-kpi-report', 'aims-management-review-record', 'nc-ca-tracker'],
           templatesExclusive: true,
           control: "ISO/IEC 42001 Clauses 9 & 10 - Performance Evaluation & Improvement",
           how: "Establish continuous monitoring: AI model performance dashboards (accuracy, drift, bias, latency), data quality dashboards, incident tracking, regulatory change monitoring. Implement management review: quarterly AI governance reviews, annual strategy review, KPI tracking (model accuracy, bias incidents, drift events, incident MTTR). Establish continual improvement: AI red teaming schedule, bias audits, model retraining triggers, feedback loops from users/affected parties.",
@@ -178,7 +179,7 @@ const FRAMEWORK = {
         },
         {
           title: "Align with EU AI Act Conformity Assessment",
-          templates: ['ai-technical-file', 'aims-obligations-register'],
+          templates: ['ai-technical-documentation', 'compliance-obligations'],
           templatesExclusive: true,
           control: "EU AI Act (Regulation 2024/1689) - Conformity Assessment for High-Risk AI",
           how: "For high-risk AI systems: complete conformity assessment per AI Act (internal control + notified body or full QMS). Prepare technical documentation (Art. 11): system description, design specs, risk management, data governance, testing results, deployment instructions. Implement post-market monitoring (Art. 72): incident reporting, periodic safety updates, performance tracking. Prepare for CE marking and EU declaration of conformity.",
@@ -186,7 +187,7 @@ const FRAMEWORK = {
         },
         {
           title: "Finalize AI Governance Maturity Assessment",
-          templates: ['aims-improvement-log', 'ai-objectives-register'],
+          templates: ['nc-ca-tracker', 'ai-objectives-register'],
           templatesExclusive: true,
           control: "Organizational AI Governance Maturity",
           how: "Assess AI governance maturity across 5 levels: Initial (ad hoc), Developing (documented), Defined (standardized), Managed (measured), Optimized (continuous improvement). Assess across: governance structure, risk management, data governance, model lifecycle, monitoring, incident response, supply chain, culture. Create improvement roadmap with 12-month targets.",
@@ -204,6 +205,7 @@ export default function Iso42001Page() {
       <RiskCrossCheckBlock frameworkId="iso42001" />
       <div className="max-w-6xl mx-auto px-4">
         <Iso42001Library />
+        <PolicyTemplateLibrary />
         <AimsRoadmap />
         <AiSecurityAudit />
         <VibePlatformLink className="my-8" />
