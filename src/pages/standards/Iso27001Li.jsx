@@ -1,3 +1,4 @@
+import { EngPartnershipLink } from "../../components/engineering/EngineeringPartnership.jsx";
 import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCheck.jsx";
 import LearningFrameworkPage from "../../components/LearningFrameworkPage";
 import Iso27001Sections from "../../components/Iso27001Sections.jsx";
@@ -206,6 +207,7 @@ export default function Iso27001LiPage() {
       <Iso27001ThemeScoping />
       <Iso27001Sections basePath="/iso/27001/li" />
       <AnnexACoverage />
+      <div className="max-w-6xl mx-auto px-4 my-8"><EngPartnershipLink set="iso27001" /></div>
     </>
   );
 }

@@ -1,3 +1,4 @@
+import { EngPartnershipLink } from "../../components/engineering/EngineeringPartnership.jsx";
 import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCheck.jsx";
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 import StatementOfApplicability from "../../components/StatementOfApplicability.jsx";
@@ -194,6 +195,7 @@ export default function Iso27001La() {
       <ScopingGuide />
       <ScopeWalkthrough />
       <StatementOfApplicability />
+      <div className="max-w-6xl mx-auto px-4 my-8"><EngPartnershipLink set="iso27001" /></div>
     </>
   );
 }

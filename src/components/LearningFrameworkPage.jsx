@@ -1,6 +1,7 @@
 import { useState, useEffect, Fragment } from 'react';
 import RelatedTemplates from './templates/RelatedTemplates.jsx';
 import { VIBE_ITGC_GAPS, SOC1_ICFR_NOTE } from '../data/vibeItgcGaps.js';
+import { ENG_ITGC_GAPS } from '../data/engineeringPartnership.js';
 import { Link } from 'react-router-dom';
 import { Clock, RefreshCw, ArrowRight, BookOpen, ExternalLink, Lock, CheckCircle, ChevronDown, ChevronRight, Zap, Shield, Award, Target, TrendingUp, AlertTriangle, Lightbulb, ClipboardList, Info } from 'lucide-react';
 import FindingsDatabase from './FindingsDatabase.jsx';
@@ -619,6 +620,13 @@ function FrameworkBody({ framework, extraSections }) {
                 <div className="p-4 pt-0 grid md:grid-cols-2 gap-5">
                   {VIBE_ITGC_GAPS.map((item, i) => <GapCard key={`vibe-${i}`} item={item} colors={colors} />)}
                 </div>
+              </details>
+              <details className="mt-4 rounded-xl border border-teal-200 dark:border-teal-800">
+                <summary className="cursor-pointer p-4 font-semibold text-gray-900 dark:text-white">Engineering partnership: gaps between GRC and engineering</summary>
+                <div className="p-4 pt-0 grid md:grid-cols-2 gap-5">
+                  {ENG_ITGC_GAPS.map((item, i) => <GapCard key={`eng-${i}`} item={item} colors={colors} />)}
+                </div>
+                <p className="px-4 pb-4 text-sm"><a className="underline text-teal-700 dark:text-teal-300" href="/#engineering-partnership">Open the Engineering &amp; Infrastructure Partnership module</a></p>
               </details>
               <div className="mt-4 rounded-xl border border-gray-200 dark:border-slate-700 p-4 text-sm text-gray-700 dark:text-slate-300">
                 <p className="font-semibold text-gray-900 dark:text-white mb-1">SOC 1 and ICFR: when ITGCs matter for financial reporting</p>

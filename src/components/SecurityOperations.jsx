@@ -1,3 +1,4 @@
+import { EngPartnershipLink } from './engineering/EngineeringPartnership.jsx';
 import React, { useState } from 'react';
 import { toPlainDeep } from '../utils/xlsxExport.js';
 import { Radar, FileClock, Siren, ShieldAlert, CheckCircle2, Activity, Database, Clock, FileSearch, GitBranch, Repeat, Search, ShieldCheck, Shield, Download } from 'lucide-react';
@@ -362,6 +363,7 @@ export default function SecurityOperations({ isDark = false }) {
             <p className="mt-3 text-xs text-gray-500 dark:text-text-dark-muted">
               Regulated minimums to honor: <strong>CERT-In</strong> directions require ICT system logs to be kept for 180 days within India; DPDP Rules 6 and 8 require processing logs, traffic data and associated personal data to be kept for at least one year; PCI DSS requires one year of audit logs; other regulated records can need up to 6 years in immutable storage. Where rules differ, keep the longest period that applies.
             </p>
+            <EngPartnershipLink className="mt-4" only={['eng-logging']} />
           </div>
         </section>
 

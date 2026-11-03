@@ -1,3 +1,4 @@
+import { EngPartnershipLink } from "../../components/engineering/EngineeringPartnership.jsx";
 import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCheck.jsx";
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 import soc2Template from "../../data/soc2-template.json";
@@ -1156,6 +1157,7 @@ export default function Soc2() {
       <LearningFrameworkPage framework={FRAMEWORK_WITH_EVIDENCE} />
       <RiskCrossCheckBlock frameworkId="soc2" />
       <Soc2TechnicalSection />
+      <div className="max-w-6xl mx-auto px-4 my-8"><EngPartnershipLink set="soc2" /></div>
       <TscControlMatrix />
     </>
   );

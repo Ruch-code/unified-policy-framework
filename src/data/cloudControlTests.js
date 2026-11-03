@@ -4,6 +4,8 @@
 // cli = CLI / console verification, ev = evidence to collect, pass = pass criteria,
 // exc = common exceptions and remediation.
 
+import { ENG_CLOUD_TESTS } from './engineeringPartnership.js';
+
 export const DOMAINS = [
   'Identity and Access',
   'Logging and Monitoring',
@@ -281,6 +283,8 @@ export const CROSS = [
     cli: 'Not applicable', ev: 'Signed firewall review, tabletop report, restore test',
     pass: 'All three completed within 12 months', exc: 'Overdue: schedule and complete before period end.' },
 ];
+
+CROSS.push(...ENG_CLOUD_TESTS);
 
 export const CLOUDS = [
   { id: 'aws', label: 'AWS', rows: AWS },

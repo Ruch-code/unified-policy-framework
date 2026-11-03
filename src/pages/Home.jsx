@@ -18,6 +18,7 @@ import AssetInventoryTemplate from '../components/AssetInventoryTemplate.jsx';
 import CloudControlTesting from '../components/CloudControlTesting.jsx';
 import ContactCenterThreatModel from '../components/ccThreat/ContactCenterThreatModel.jsx';
 import CcDownloads from '../components/ccThreat/CcDownloads.jsx';
+import EngineeringPartnership, { EngPartnershipLink } from '../components/engineering/EngineeringPartnership.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 import { useState, useEffect } from 'react';
 import { Lock, AlertCircle, Shield, AlertTriangle, Building, Users, ShieldCheck, Globe, Lock as LockIcon, Briefcase, GraduationCap, MessageSquare, Star, ArrowRight, Key, Server, Database, ClipboardCheck, ChevronRight, Menu, X, FileText } from 'lucide-react';
@@ -158,6 +159,18 @@ const TABS = [
       'Intern Over-Provisioning: Interns with production access or privileged credentials',
       'Contractor Offboarding: Delayed revocation, orphaned accounts, no sub-contractor flow-down',
       'UAR Blind Spots: Missing non-human identities (service accounts, CI/CD runners, API keys) from reviews',
+    ],
+  },  {
+    id: 'engineering-partnership',
+    label: 'Engineering & Infrastructure Partnership',
+    icon: Server,
+    description: 'Turning risk into controls engineers can build and prove: control delivery cards, identity inventory, log event catalogue, change controls by type, CI/CD traceability, cloud and AI agent execution boundaries, and worked scenarios.',
+    whatCanGoWrong: [
+      'Policy Text, Not Tasks: Requirements with no owner, acceptance criteria or evidence source never get built',
+      'Untraceable Deployments: Hotfixes and console changes reach production without a reviewed PR',
+      'Unowned Workload Identities: Service, pipeline and agent credentials with no owner or expiry',
+      'Logs That Cannot Answer Questions: Missing actor or request ID, non-UTC timestamps, secrets in logs',
+      'Agent Overreach: AI agents with human tokens, open egress or the ability to approve their own PRs',
     ],
   },
 ];
@@ -469,8 +482,22 @@ function TabPanel({ isDark, activeTab }) {
               <AccessReviewByDesign />
             </ErrorBoundary>
             <CcDownloads groups={['access']} title="Contact-centre access review checklist" />
+            <EngPartnershipLink className="mt-6" only={['eng-access']} />
           </LockedSection>
         </>
+      )}
+
+      {activeTab === 'engineering-partnership' && (
+        <LockedSection
+          title="Engineering & Infrastructure Partnership"
+          description="Understand the architecture first, agree the risk with engineers, build the control into the normal workflow, verify it, and expose exceptions."
+          icon={Server}
+          showLoginPrompt={false}
+        >
+          <ErrorBoundary>
+            <EngineeringPartnership />
+          </ErrorBoundary>
+        </LockedSection>
       )}
 
       {/* Unified control matrix teaser - only on last tab or regional */}

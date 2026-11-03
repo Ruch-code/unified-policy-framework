@@ -1524,6 +1524,30 @@
           ],
           "type": "record",
           "file": "session-timeout.xlsx"
+        },
+        {
+          "num": 177,
+          "slug": "identity-inventory",
+          "name": "Identity Inventory",
+          "purpose": "Covers identity, type, system, owner, purpose, privilege, credential type, last used, review frequency and removal evidence.",
+          "fields": [
+            "Identity",
+            "Type",
+            "System",
+            "Owner",
+            "Purpose",
+            "Privilege",
+            "Credential type",
+            "Last used",
+            "Review frequency",
+            "Removal evidence"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001"
+          ],
+          "type": "document",
+          "file": "identity-inventory.xlsx"
         }
       ]
     },
@@ -1743,6 +1767,71 @@
           ],
           "type": "document",
           "file": "outsourced-dev-clauses.docx"
+        },
+        {
+          "num": 176,
+          "slug": "control-delivery-card",
+          "name": "Control Delivery Card",
+          "purpose": "Covers risk statement, control and implementation owners, task, acceptance criteria, evidence source and frequency, exception path, friction and automation decision.",
+          "fields": [
+            "Risk statement",
+            "Control and implementation owners",
+            "Task",
+            "Acceptance criteria",
+            "Evidence source and frequency",
+            "Exception path",
+            "Friction",
+            "Automation decision"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001"
+          ],
+          "type": "document",
+          "file": "control-delivery-card.docx"
+        },
+        {
+          "num": 179,
+          "slug": "change-traceability-sample",
+          "name": "Change Traceability Sample Sheet",
+          "purpose": "Captures deployment, artifact digest, build, commit, PR, reviewer, ticket and result.",
+          "fields": [
+            "Deployment",
+            "Artifact digest",
+            "Build",
+            "Commit",
+            "PR",
+            "Reviewer",
+            "Ticket",
+            "Result"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001"
+          ],
+          "type": "record",
+          "file": "change-traceability-sample.xlsx"
+        },
+        {
+          "num": 180,
+          "slug": "agent-execution-review",
+          "name": "Agent Execution Review Checklist",
+          "purpose": "Captures agent identity, environment, execution permissions, code path, untrusted input, logging and exceptions.",
+          "fields": [
+            "Agent identity",
+            "Environment",
+            "Execution permissions",
+            "Code path",
+            "Untrusted input",
+            "Logging",
+            "Exceptions"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001"
+          ],
+          "type": "record",
+          "file": "agent-execution-review.docx"
         }
       ]
     },
@@ -2152,6 +2241,29 @@
           ],
           "type": "record",
           "file": "customer-deletion-nil-confirmation.docx"
+        },
+        {
+          "num": 178,
+          "slug": "log-event-catalogue",
+          "name": "Log Event Catalogue",
+          "purpose": "Captures event, why it matters, source, required fields, alert, investigation use, retention tier, privacy risk and owner.",
+          "fields": [
+            "Event",
+            "Why it matters",
+            "Source",
+            "Required fields",
+            "Alert",
+            "Investigation use",
+            "Retention tier",
+            "Privacy risk",
+            "Owner"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001"
+          ],
+          "type": "record",
+          "file": "log-event-catalogue.xlsx"
         }
       ]
     },

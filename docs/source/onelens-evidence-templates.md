@@ -109,6 +109,7 @@ Generic, reusable evidence and document templates for SOC 2, ISO/IEC 27001:2022,
 | 78 | Change Control Permission Matrix | Who can merge/deploy, segregation of duties | ISO27001 | change-permission-matrix ★ | [Download](templates/change-permission-matrix.docx) |
 | 79 | Admin Account Non-Repudiation Evidence | Named admin accounts, logging, no shared credentials | ISO27001 | admin-non-repudiation ★ | [Download](templates/admin-non-repudiation.xlsx) |
 | 80 | Session Timeout Configuration Evidence | Application, timeout value, screenshot slot | HIPAA, ISO27001 | session-timeout ★ | [Download](templates/session-timeout.xlsx) |
+| 177 | Identity Inventory | Identity, type, system, owner, purpose, privilege, credential type, last used, review frequency, removal evidence | SOC2, ISO27001 | identity-inventory ★ | [Download](templates/identity-inventory.xlsx) |
 
 ## 5. Engineering, Change and SDLC
 
@@ -127,6 +128,9 @@ Generic, reusable evidence and document templates for SOC 2, ISO/IEC 27001:2022,
 | 91 | Release Notes / Public Change Log | Version, date, changes, security fixes | SOC2, HIPAA | release-notes ★ | [Download](templates/release-notes.xlsx) |
 | 92 | Internal System Update Communication | Audience, change summary, date, channel | SOC2, HIPAA | internal-change-notice ★ | [Download](templates/internal-change-notice.docx) |
 | 93 | Outsourced Development Contract Clauses | Secure SDLC, IP, testing, audit rights | ISO27001 | outsourced-dev-clauses ★ | [Download](templates/outsourced-dev-clauses.docx) |
+| 176 | Control Delivery Card | Risk statement, control and implementation owners, task, acceptance criteria, evidence source and frequency, exception path, friction, automation decision | SOC2, ISO27001 | control-delivery-card ★ | [Download](templates/control-delivery-card.docx) |
+| 179 | Change Traceability Sample Sheet | Deployment, artifact digest, build, commit, PR, reviewer, ticket, result | SOC2, ISO27001 | change-traceability-sample ★ | [Download](templates/change-traceability-sample.xlsx) |
+| 180 | Agent Execution Review Checklist | Agent identity, environment, execution permissions, code path, untrusted input, logging, exceptions | SOC2, ISO27001 | agent-execution-review ★ | [Download](templates/agent-execution-review.docx) |
 
 ## 6. Infrastructure, Operations and Monitoring
 
@@ -156,6 +160,7 @@ Generic, reusable evidence and document templates for SOC 2, ISO/IEC 27001:2022,
 | 115 | Automated Data Deletion on Retention Expiry | Data type, retention, deletion mechanism | ISO27001 | retention-deletion ★ | [Download](templates/retention-deletion.docx) |
 | 116 | Certificate of Destruction (Customer Data Deletion Record) | Deletion certificate across all systems plus nil-request email confirmation | GDPR, ISO27001, SOC2 | customer-deletion-record ★ | [Download](templates/customer-deletion-record.docx) |
 | 117 | Customer Data Deletion Review: Nil Requests (Internal Email Chain) | Review sources, outcome, compliance register entry | GDPR, ISO27001, SOC2 | customer-deletion-nil-confirmation ★ | [Download](templates/customer-deletion-nil-confirmation.docx) |
+| 178 | Log Event Catalogue | Event, why it matters, source, required fields, alert, investigation use, retention tier, privacy risk, owner | SOC2, ISO27001 | log-event-catalogue ★ | [Download](templates/log-event-catalogue.xlsx) |
 
 ## 7. Vulnerability Management and Incidents
 

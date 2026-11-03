@@ -832,6 +832,140 @@
       ]
     },
     {
+      "id": "engineering-partnership",
+      "title": "Engineering Partnership",
+      "subtitle": "Mid to Senior | Access, Logging, Change, CI/CD, Agent Execution, Control Delivery",
+      "icon": "Server",
+      "color": "teal",
+      "questions": [
+        {
+          "q": "An engineering team says your access review is a waste of time. How do you respond?",
+          "a": "I'd start by asking what makes it feel wasteful, because usually they're right about something. Often the review is a spreadsheet of hundreds of rows with no last-used data, so people approve everything.\n\nSo I'd fix the inputs first: pull last-used dates from the IdP and the system, pre-flag anything unused for 90 days for removal by default, and include the service and pipeline identities they actually worry about. Then the review takes minutes and finds real things. The risk I'm protecting is access that outlives its need, and I can show them that with their own data.",
+          "tags": [
+            "Access Reviews",
+            "Control Delivery"
+          ],
+          "example": "Expect: \"What if they still won't do it?\" Say you'd agree the minimum together, for example quarterly for privileged and production access, with removals proven by ticket, and escalate to the system owner only if that is missed.",
+          "pitfalls": [
+            {
+              "pitfall": "Defending the review because the framework requires it.",
+              "reply": "\"The framework asks for it, but the reason it matters here is that unused production access is how incidents start.\""
+            },
+            {
+              "pitfall": "Ignoring non-human identities.",
+              "reply": "\"I'd also bring in the service accounts and deploy roles, since they often hold more privilege than people.\""
+            }
+          ]
+        },
+        {
+          "q": "How do you make sure an access review population is complete?",
+          "a": "I reconcile three lists. HR tells me who works here. The IdP tells me who can sign in. And each system's own account export tells me who actually has access, including local accounts, service accounts and API keys that never touch SSO.\n\nAnything in a system that doesn't match HR or the IdP is a finding: an orphaned account, a shared login or an integration nobody owns. I keep the exports with dates so the auditor can re-perform it.",
+          "tags": [
+            "Access Reviews",
+            "Identity"
+          ],
+          "example": "Expect: \"Which system usually breaks this?\" Say SaaS tools added outside SSO and database-level accounts, and that you'd add them to the review from their own exports until they're on SSO.",
+          "pitfalls": [
+            {
+              "pitfall": "Relying on the IdP list alone.",
+              "reply": "\"The IdP shows who can sign in through SSO, not who has a local account in the database.\""
+            }
+          ]
+        },
+        {
+          "q": "What makes a log useful as evidence in an investigation?",
+          "a": "It has to answer who did what, to what, when, from where, and whether it worked. So I want an actor ID, action, target, result, source, a request or correlation ID, and a UTC timestamp from a synced clock.\n\nThen it has to be trustworthy: shipped to a separate account engineers can't alter, access-restricted and logged, and alerting if a source goes quiet. And it must not contain things that create new risk, like tokens, passwords or raw personal data.",
+          "tags": [
+            "Logging",
+            "Audit Trails"
+          ],
+          "example": "Expect: \"How long do you keep them?\" Say you'd follow the organisation's retention tiers by log type, with legal or regulatory minimums applied where they exist, rather than one number for everything.",
+          "pitfalls": [
+            {
+              "pitfall": "Saying \"we log everything\".",
+              "reply": "\"Volume isn't the point. I start with the ten events that matter and make sure each has the fields to answer an investigation.\""
+            }
+          ]
+        },
+        {
+          "q": "A developer pushed a hotfix directly to production during an outage. What do you do?",
+          "a": "First, not punish it. Fixing production was the right priority. What I want is for the emergency path to exist and be followed: an incident ticket, the change recorded, and a retrospective review by someone other than the person who made it within a couple of business days.\n\nThen the change goes back through a PR so code matches production, and I'd want drift detection so we'd see a console change even if nobody told us. If emergencies are frequent, that's a signal the normal path is too slow, which is worth fixing too.",
+          "tags": [
+            "Change Management",
+            "Emergency Change"
+          ],
+          "example": "Expect: \"How would an auditor find this?\" Say they sample from production deployments, not PRs, so an untraced deploy shows up as an exception unless it has an emergency change record.",
+          "pitfalls": [
+            {
+              "pitfall": "Treating every emergency change as a control failure.",
+              "reply": "\"Emergency changes are allowed. The failure is when one has no ticket and no review afterwards.\""
+            }
+          ]
+        },
+        {
+          "q": "How would you design change controls for a two-person engineering team?",
+          "a": "Segregation of duties is hard when there are two of you and one is on leave. So I'd keep branch protection with one reviewer who isn't the author, and when that's impossible, allow a merge with a recorded reason and a post-merge review by someone outside the team within a set time.\n\nThe pipeline does the rest: required checks, deploys only from main, and an alert on any production change that didn't come from the pipeline. That gives an auditor a compensating control they can test.",
+          "tags": [
+            "Change Management",
+            "Segregation of Duties"
+          ],
+          "example": "Expect: \"Who reviews if there's nobody outside the team?\" Say a technical advisor, a fractional CTO or a contracted reviewer, logged in the PR.",
+          "pitfalls": [
+            {
+              "pitfall": "Waiving review entirely for small teams.",
+              "reply": "\"Small teams still need a second set of eyes. It can just come after the merge, with a time limit.\""
+            }
+          ]
+        },
+        {
+          "q": "Walk me through how you'd test a CI/CD pipeline's controls.",
+          "a": "I'd sample backward from production. Export every production deployment in the period, pick a sample, and for each trace the deployed artifact digest to the build, the commit, the PR and the ticket. I check that the PR was reviewed by a non-author, checks passed, and the digest that was signed is the one that ran.\n\nThen I look at the pipeline itself: who can edit the deploy job, whether CI uses short-lived OIDC credentials instead of stored keys, and whether branch protection applies to admins.",
+          "tags": [
+            "CI/CD",
+            "Traceability"
+          ],
+          "example": "Expect: \"Why backward and not forward from PRs?\" Say forward sampling only tests changes that went through the process; backward sampling finds the ones that didn't.",
+          "pitfalls": [
+            {
+              "pitfall": "Only checking that PRs were approved.",
+              "reply": "\"Approved PRs prove the process works when used. I also need to know nothing reached production another way.\""
+            }
+          ]
+        },
+        {
+          "q": "An AI coding agent can open pull requests and run commands. What controls do you want?",
+          "a": "I'd start with architecture questions: what identity it uses, where its commands run, what that environment can reach, whether it can merge, and what untrusted content it reads.\n\nThen the controls follow: its own identity, not a person's token; a sandbox with no production secrets and egress limited to approved hosts; it can open PRs but can't approve or merge; and every tool call logged with a session ID. Prompt injection is really a boundary problem, so I limit what it can do after it reads untrusted content.",
+          "tags": [
+            "Agent Execution",
+            "Cloud",
+            "AI"
+          ],
+          "example": "Expect: \"The team says egress limits break package installs.\" Say you'd allow the internal package mirror and code host, and grant wider access per task by ticket with an expiry.",
+          "pitfalls": [
+            {
+              "pitfall": "Focusing only on the model's output quality.",
+              "reply": "\"Output quality matters, but my first question is what the agent can reach and do if it's tricked.\""
+            }
+          ]
+        },
+        {
+          "q": "How do you write a control requirement that engineers will actually build?",
+          "a": "I write it as a control delivery card with them, not for them. It has a risk statement in their terms, a control owner and an implementation owner, the task in their backlog, testable acceptance criteria, the system that produces evidence, how often, the exception path with an approver and expiry, and an honest friction assessment.\n\nSo instead of 'ensure access is restricted', it's 'production database access only through the broker, with a ticket, expiring within 8 hours'. That's something they can build and I can test.",
+          "tags": [
+            "Control Delivery",
+            "Requirements"
+          ],
+          "example": "Expect: \"What if engineering disagrees with the risk?\" Say you'd go back to the architecture and evidence, and if you still disagree, record the risk acceptance with the system owner rather than forcing a control nobody will run.",
+          "pitfalls": [
+            {
+              "pitfall": "Handing over a policy paragraph.",
+              "reply": "\"I'd rather agree one clear ticket than send ten pages of policy that nobody turns into work.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "behavioral",
       "title": "Behavioural (STAR)",
       "subtitle": "Stakeholders, auditors, pressure, leadership | Model answers to adapt",
