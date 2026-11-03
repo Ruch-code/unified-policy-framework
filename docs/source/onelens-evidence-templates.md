@@ -214,6 +214,13 @@ Generic, reusable evidence and document templates for SOC 2, ISO/IEC 27001:2022,
 | 158 | Independent Recourse / Arbitration Record | Selected body, fee contribution record | GDPR | recourse-mechanism ★ | [Download](templates/recourse-mechanism.xlsx) |
 | 159 | Cookie Policy Template | Cookie categories, consent, GPC, blank cookie tables | GDPR | cookie-policy ★ | [Download](templates/cookie-policy.docx) |
 | 168 | Data Use Agreement (Limited Data Set) | Permitted uses, authorised recipients, safeguards, reporting, agents, no re-identification or contact, excluded identifiers | HIPAA | data-use-agreement ★ | [Download](templates/data-use-agreement.docx) |
+| 169 | DPDPA Consent Notice | Itemised data, purposes, withdrawal link, rights, grievance and Board complaint, English or Eighth Schedule languages | DPDPA | dpdpa-consent-notice ★ | [Download](templates/dpdpa-consent-notice.docx) |
+| 170 | DPDPA Breach Intimation and Board Report | Rule 7 intimation to Data Principals, initial Board intimation, 72-hour detailed report | DPDPA | dpdpa-breach-intimation ★ | [Download](templates/dpdpa-breach-intimation.docx) |
+| 171 | Data Principal Grievance Log | Request, right, identity check, systems actioned, response within published period (max 90 days) | DPDPA | dpdpa-grievance-log ★ | [Download](templates/dpdpa-grievance-log.xlsx) |
+| 172 | Nomination Form | Nominee details, rights covered, verification, change or revocation | DPDPA | dpdpa-nomination-form ★ | [Download](templates/dpdpa-nomination-form.docx) |
+| 173 | Cross-Border Restriction Register | Transfer, destination, Section 16 restriction check, Rule 15 order, sector localisation, SDF specified data | DPDPA | dpdpa-crossborder-register ★ | [Download](templates/dpdpa-crossborder-register.xlsx) |
+| 174 | Significant Data Fiduciary Assessment | Section 10 factors, notification status, DPO, auditor, annual DPIA and audit, Board report, algorithm checks | DPDPA | dpdpa-sdf-assessment ★ | [Download](templates/dpdpa-sdf-assessment.docx) |
+| 175 | Vendor DPDPA Addendum | Instructions, Rule 6 safeguards, Rule 8 logs, breach notice, erasure, sub-processors, transfers | DPDPA | dpdpa-vendor-addendum ★ | [Download](templates/dpdpa-vendor-addendum.docx) |
 
 ## 10. Customer-Facing Trust Documents
 

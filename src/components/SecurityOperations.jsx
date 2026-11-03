@@ -16,10 +16,10 @@ const VULN_WORKFLOW = [
 ];
 
 const PATCH_SLA = [
-  { sev: 'Critical', window: '≤ 48 hours', action: 'Immediately patch; otherwise block/mitigate (egress cut, WAF block) within 24h while fixing.' },
-  { sev: 'High', window: '≤ 7 days', action: 'Patch in next maintenance window; re-scan and document.' },
-  { sev: 'Medium', window: '≤ 30 days', action: 'Batch into monthly patch cycle; track in the vuln register.' },
-  { sev: 'Low', window: '≤ 90 days', action: 'Triage + accept with owner sign-off; include in next hardening pass.' },
+  { rank: '1', sev: 'Critical', window: '≤ 48 hours', action: 'Immediately patch; otherwise block/mitigate (egress cut, WAF block) within 24h while fixing.' },
+  { rank: '2', sev: 'High', window: '≤ 7 days', action: 'Patch in next maintenance window; re-scan and document.' },
+  { rank: '3', sev: 'Medium', window: '≤ 30 days', action: 'Batch into monthly patch cycle; track in the vuln register.' },
+  { rank: '4', sev: 'Low', window: '≤ 90 days', action: 'Triage + accept with owner sign-off; include in next hardening pass.' },
 ];
 
 const VULN_PROVIDERS = [
@@ -77,7 +77,8 @@ const RETENTION = [
   { tier: 'Hot', window: 'Live - ≤ 7 days', store: 'SIEM / log search (OpenSearch, Log Analytics, Cloud Logging)', detects: 'Real-time alerting, dashboards, correlation rules' },
   { tier: 'Warm', window: '7 – 30 days', store: 'Searchable log store with longer life', detects: 'Retrospective queries, forensics triage' },
   { tier: 'Cold / archive', window: '90 days – 1 year', store: 'Object storage lifecycle tier (S3-IA, Blob archive, Coldline)', detects: 'Policy/regulatory review, threat-hunting rests' },
-  { tier: 'Regulated / legal hold', window: '1 – 6 years', store: 'Immutable / object-lock bucket (WORM), append-only', detects: 'Cert-In (180-day mandatory), PCI 1 year, regulated 6 years' },
+  { tier: 'Regulated / legal hold', window: '1 – 6 years', store: 'Immutable / object-lock bucket (WORM), append-only', detects: 'CERT-In (180-day log retention), PCI 1 year, regulated 6 years' },
+  { tier: 'India: DPDP Rules', window: '≥ 1 year', store: 'Restricted, access-logged log store; then erase', detects: 'DPDP Rules 6(1)(e) and 8(3): processing logs, traffic data and associated personal data kept at least one year from processing, then erased unless another law requires longer' },
 ];
 
 const DETECTION = [
@@ -291,7 +292,7 @@ export default function SecurityOperations({ isDark = false }) {
               exportLabel="Export Patch SLAs"
               isDark={isDark}
               enableSort
-              defaultSortKey="sev"
+              defaultSortKey="rank"
             />
           </div>
         </section>
@@ -359,8 +360,7 @@ export default function SecurityOperations({ isDark = false }) {
               defaultSortKey="tier"
             />
             <p className="mt-3 text-xs text-gray-500 dark:text-text-dark-muted">
-              Regulated minimums to honor: <strong>CERT-In</strong> to the contrary notwithstanding, logs carrying user/network metadata are
-              typically held 180 days, PCI-DSS 1 year, and other regulated data up to 6 years in immutable storage.
+              Regulated minimums to honor: <strong>CERT-In</strong> directions require ICT system logs to be kept for 180 days within India; DPDP Rules 6 and 8 require processing logs, traffic data and associated personal data to be kept for at least one year; PCI DSS requires one year of audit logs; other regulated records can need up to 6 years in immutable storage. Where rules differ, keep the longest period that applies.
             </p>
           </div>
         </section>

@@ -8,12 +8,12 @@ import { useAuth } from '../../context/AuthContext.jsx';
  * Shows ready-to-use templates that match the given guidance text (control refs and keywords),
  * each with a direct download. Renders nothing when there is no match or the user is signed out.
  */
-export default function RelatedTemplates({ text, framework, limit = 3, className = '', slugs = [] }) {
+export default function RelatedTemplates({ text, framework, limit = 3, className = '', slugs = [], exclusive = false }) {
   const { user } = useAuth() || {};
   if (!user) return null;
   // Explicitly linked templates (chosen by hand for a task) come first; keyword matches fill the rest.
   const pinned = (slugs || []).map(templateBySlug).filter(Boolean);
-  const items = [...pinned, ...findTemplates(text, { limit, framework }).filter(t => !pinned.some(p => p.slug === t.slug))].slice(0, Math.max(limit, pinned.length));
+  const items = exclusive ? pinned : [...pinned, ...findTemplates(text, { limit, framework }).filter(t => !pinned.some(p => p.slug === t.slug))].slice(0, Math.max(limit, pinned.length));
   if (!items.length) return null;
   return (
     <div className={`rounded-lg border border-violet-200 bg-violet-50/60 dark:border-violet-800 dark:bg-violet-900/20 p-2.5 ${className}`} onClick={e => e.stopPropagation()}>

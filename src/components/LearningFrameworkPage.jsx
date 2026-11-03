@@ -1,5 +1,6 @@
 import { useState, useEffect, Fragment } from 'react';
 import RelatedTemplates from './templates/RelatedTemplates.jsx';
+import { VIBE_ITGC_GAPS, SOC1_ICFR_NOTE } from '../data/vibeItgcGaps.js';
 import { Link } from 'react-router-dom';
 import { Clock, RefreshCw, ArrowRight, BookOpen, ExternalLink, Lock, CheckCircle, ChevronDown, ChevronRight, Zap, Shield, Award, Target, TrendingUp, AlertTriangle, Lightbulb, ClipboardList, Info } from 'lucide-react';
 import FindingsDatabase from './FindingsDatabase.jsx';
@@ -506,7 +507,7 @@ function FrameworkBody({ framework, extraSections }) {
                                 <TaskDetail label="How" value={task.how} color={colors.text} />
                                 <TaskDetail label="Check" value={task.check} color={colors.text} />
                                 {task.evidence && <EvidenceDetail evidence={task.evidence} color={colors.text} />}
-                                <RelatedTemplates className="ml-5" slugs={task.templates} text={[task.title, task.control, task.how, task.check, task.citation && (task.citation.ref || task.citation.section || task.citation.label)].filter(Boolean).join(' ')} />
+                                <RelatedTemplates className="ml-5" slugs={task.templates} exclusive={!!task.templatesExclusive} text={[task.title, task.control, task.how, task.check, task.citation && (task.citation.ref || task.citation.section || task.citation.label)].filter(Boolean).join(' ')} />
                                 {task.citation && (
                                   <CitationRow
                                     citation={{
@@ -612,6 +613,16 @@ function FrameworkBody({ framework, extraSections }) {
                 {gaps.map((item, i) => (
                   <GapCard key={i} item={item} colors={colors} />
                 ))}
+              </div>
+              <details className="mt-6 rounded-xl border border-violet-200 dark:border-violet-800">
+                <summary className="cursor-pointer p-4 font-semibold text-gray-900 dark:text-white">AI and vibe coding platforms: gaps across the ITGC domains</summary>
+                <div className="p-4 pt-0 grid md:grid-cols-2 gap-5">
+                  {VIBE_ITGC_GAPS.map((item, i) => <GapCard key={`vibe-${i}`} item={item} colors={colors} />)}
+                </div>
+              </details>
+              <div className="mt-4 rounded-xl border border-gray-200 dark:border-slate-700 p-4 text-sm text-gray-700 dark:text-slate-300">
+                <p className="font-semibold text-gray-900 dark:text-white mb-1">SOC 1 and ICFR: when ITGCs matter for financial reporting</p>
+                <p>{SOC1_ICFR_NOTE}</p>
               </div>
               {isPrivacy && framework.privacyStartupNotes && (
                 <div className={`mt-6 p-4 rounded-xl ${colors.bgLight} text-sm ${colors.text}`}>
@@ -834,7 +845,7 @@ function GapCard({ item, colors }) {
           <div className="rounded-lg bg-violet-50 border border-violet-100 dark:bg-violet-900/30 dark:border-violet-800 p-3">
             <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-violet-700 dark:text-violet-300 uppercase tracking-wide"><BookOpen className="w-3.5 h-3.5" /> Policy that ties to this framework</span>
             <p className="text-sm text-gray-700 mt-1 dark:text-slate-200">{policy || 'Align controls to your Information Security Policy set.'}</p>
-            <RelatedTemplates className="mt-2" text={[policy, item.gap, item.itgc].filter(Boolean).join(' ')} />
+            <RelatedTemplates className="mt-2" slugs={item.templates} exclusive={Array.isArray(item.templates)} text={[policy, item.gap, item.itgc].filter(Boolean).join(' ')} />
           </div>
           <div className="rounded-lg bg-green-50 border border-green-100 dark:bg-green-900/30 dark:border-green-800 p-3">
             <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-green-700 dark:text-green-300 uppercase tracking-wide"><Lightbulb className="w-3.5 h-3.5" /> The lean way</span>

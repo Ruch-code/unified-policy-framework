@@ -1,3 +1,4 @@
+import { VibePlatformLink } from './playbook/VibePlatformScenario.jsx';
 import TprmDeepDive from './TprmDeepDive.jsx';
 import VendorClauseBuilder from './VendorClauseBuilder.jsx';
 import VendorQuestionnaires from './VendorQuestionnaires.jsx';
@@ -982,6 +983,7 @@ function ContractClausesPanel() {
 function AiVendorsPanel() {
   return (
     <div id="panel-ai-vendors" role="tabpanel" aria-labelledby="vtab-ai-vendors" className="space-y-6">
+      <VibePlatformLink />
       <div className={card}>
         <h4 className={`${h4c} mb-2`}>Quick AI vendor due diligence checklist</h4>
         <div className="grid gap-4 md:grid-cols-2">

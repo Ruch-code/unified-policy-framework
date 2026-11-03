@@ -713,7 +713,7 @@ dpdpa: {
       { area: 'Legal Basis & Consent', controls: [
         { text: 'Consent (with notice), or specified "legitimate use" grounds (employment, legal, public function, health emergencies)', freq: 'Continuous logging', policy: 'Consent & Notice Policy (Sec 6/7)', sla: 'Notice before collection; consent granular, timestamped and withdrawable' },
       ] },
-      { area: 'Breach & Cert-In', controls: [
+      { area: 'Breach & CERT-In', controls: [
         { text: 'Notify DPDPA Board "without delay"; note CERT-In directions require reporting serious incidents to cert-in.org.in (often 6 hours)', freq: 'Event-driven', policy: 'Breach Response Policy (Sec 23 / CERT-In)', sla: 'DPDPA Board notified without delay; CERT-In serious incidents within 6 hours (current direction)' },
       ] },
       { area: 'Rights', controls: [

@@ -32,10 +32,11 @@ const PRIVACY_DOC_NOTES = {
     docs: ['Privacy Notice (Art. 13/14)', 'Cookie Policy (ePrivacy + Art. 13)', 'DPIA set (Art. 35/36)', 'ROPA (Art. 30)', 'DSAR procedure (Art. 15-22)', 'Data Protection Officer where required (Art. 37)', 'International transfer & SCC register (Art. 44-49)'],
   },
   dpdpa: {
-    cookie: "The DPDPA 2023 never says 'cookie', but cookies that collect digital personal data (IP, device ID, email via pixels) are in scope: s.5 requires a consent notice (purpose, categories, use, right to withdraw) and genuine consent (ss.6-7), and s.6(1) a notice before non-consent processing. A cookie banner + policy is the practical way to satisfy consent-notice duties for site traffic - treat every tracker as handling digital personal data.",
-    dpia: "The statute requires 'reasonable security safeguards' (s.8(6)); the draft DPDP Rules (2025) add a formal data protection impact assessment for high-risk processing. Building DPIAs now pre-empts the Rules and directly evidences the safeguard duty you already owe.",
-    ropa: "DPDPA doesn't mandate a register by that name, but s.8 accountability and the draft Rules' documentation duties expect a structured record of processing. A ROPA is the cheapest evidence base when the Data Protection Board or a customer asks how you protect digital personal data.",
-    docs: ['Privacy Notice (s.6(1))', 'Consent notice template (s.5)', 'Cookie Policy & banner', 'Safeguard assessment / DPIA (s.8(6))', 'Processing register', 'Breach notification procedure (s.8(5))', 'Children-data consent flows (s.9)'],
+    cookie: "Indian law: the DPDP Act, 2023 does not mention cookies, but cookies and trackers that collect digital personal data (IP address, device ID, email captured by pixels) are in scope. Where you rely on consent, Section 5 and Rule 3 require a notice with an itemised description of the data and purposes before consent is requested, and Section 6(1) requires consent that is free, specific, informed, unconditional and unambiguous, given by clear affirmative action and limited to the specified purpose. Withdrawal must be as easy as giving consent (Section 6(4)). Strictly necessary processing may fall under a Section 7 legitimate use, but check it fits. The step-by-step guidance below reflects EU ePrivacy practice (prior opt-in for non-essential cookies); India has no ePrivacy equivalent, so use it as good practice, not as Indian law.",
+    dpia: "Indian law: a Data Protection Impact Assessment is mandatory only for Significant Data Fiduciaries, once every twelve months, with significant observations reported to the Data Protection Board (Section 10(2)(c); Rule 13(1) and (2)). For other Data Fiduciaries it is good practice for high-risk processing and helps evidence the reasonable security safeguards duty (Section 8(5); Rule 6).",
+    ropa: "Indian law: the DPDP Act and Rules do not require a register by that name. Section 8(1) still makes the Data Fiduciary responsible for compliance, and a processing register is the practical way to produce the itemised Rule 3 notice, answer Section 11 access requests and evidence Rule 6 and Rule 8 controls.",
+    docs: ['Consent notice with itemised data and purposes (Section 5; Rule 3)', 'Privacy notice in English or Eighth Schedule languages (Section 5(3))', 'Cookie Policy and banner (good practice)', 'Security safeguards record and DPIA if Significant Data Fiduciary (Section 8(5); Rules 6, 13)', 'Processing register (good practice)', 'Breach intimation procedure (Section 8(6); Rule 7)', 'Verifiable parental consent flows for under-18s (Section 9; Rule 10)', 'Grievance and nomination procedures (Sections 13, 14; Rule 14)'],
+    india: ['Notice must be understandable on its own, without relying on other documents (Rule 3(a)).', 'Give an itemised description of each item of personal data and the specified purpose for each, plus the goods or services enabled (Rule 3(b)).', 'Include how to withdraw consent, exercise rights, raise a grievance and complain to the Data Protection Board (Rule 3(c)).', 'Offer the notice in English or any language in the Eighth Schedule to the Constitution (Section 5(3)).', 'Use the DPDPA Consent Notice template in the template library.'],
   },
   'ccpa-cpra': {
     cookie: "CCPA/CPRA is opt-out, not opt-in: you need a 'Do Not Sell or Share My Personal Information' link on the homepage and a privacy policy that lists the categories of personal information collected, sold, and shared (Civ. Code §1798.130). Advertising/analytics cookies that fire bidder/user IDs count as 'selling' or 'sharing' - so the banner must expose an opt-out toggle and honor the Global Privacy Control signal.",
@@ -536,6 +537,12 @@ export default function PrivacyDocuments({ framework, colors }) {
       ) : (
         <div>
           <LegalHook text={notes[tab]} />
+          {tab === 'cookie' && Array.isArray(notes.india) && (
+            <div className="mb-5 rounded-xl border border-orange-200 bg-orange-50 dark:bg-orange-900/20 dark:border-orange-800 p-4">
+              <p className="text-xs font-bold uppercase tracking-wide text-orange-800 dark:text-orange-200 mb-2">India-specific notice (DPDP Act and Rules)</p>
+              <ul className="text-sm space-y-1 text-gray-800 dark:text-slate-200">{notes.india.map(x => <li key={x} className="flex gap-2"><span aria-hidden="true">-</span><span>{x}</span></li>)}</ul>
+            </div>
+          )}
           <p className="text-sm text-gray-600 mb-5 leading-relaxed">{pillar.tagline}</p>
           <Steps steps={pillar.steps} />
           <ToolsGrid tools={pillar.tools} />

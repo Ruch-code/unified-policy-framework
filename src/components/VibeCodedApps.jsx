@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Sparkles, AlertTriangle, ShieldCheck, ListChecks, ClipboardCheck, Check, X, Workflow } from 'lucide-react';
+import { VibePlatformLink } from './playbook/VibePlatformScenario.jsx';
 
 /*
  * High-risk apps and tools built with vibe coding platforms (prompt-to-app builders and
@@ -151,6 +152,8 @@ export default function VibeCodedApps() {
         <p className="text-gray-700 dark:text-slate-200">A customer success manager builds a renewal tracker in an afternoon and shares the link with the team. It pulls customer contacts and contract values from the CRM using an admin API key placed in the front-end code, and the database has no access rules. Anyone with the link can read every customer record, and the key can be copied from the browser. The quick check marks it high risk: the key is rotated, access rules are switched on, the code moves to a company repository behind SSO, and the CRM connection is replaced with a read-only integration.</p>
       </div>
       <p className="text-xs text-gray-500 dark:text-slate-400 mt-3">Platform names are examples, not endorsements. The same risks apply to apps generated with AI coding agents and published directly.</p>
+      <p className="text-xs font-semibold text-gray-600 dark:text-slate-300 mt-4">The guidance above is for organizations whose staff use these tools. If you run such a platform, see the platform operator view:</p>
+      <VibePlatformLink className="mt-2" />
     </div>
   );
 }

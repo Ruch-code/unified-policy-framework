@@ -5,6 +5,8 @@ import GdprRoles from "../../components/GdprRoles.jsx";
 import { withEvidence, appendToLevel } from "../../data/playbookEvidence.js";
 import { GDPR_L1, GDPR_L2, GDPR_L3, GDPR_L4_US, GDPR_NOTES, GDPR_EVIDENCE_TYPES } from "../../data/playbookAdditions/gdpr.js";
 import ReferenceTable from "../../components/playbook/ReferenceTable.jsx";
+import GdprDpdpaComparison from "../../components/playbook/GdprDpdpaComparison.jsx";
+import VibePlatformScenario from "../../components/playbook/VibePlatformScenario.jsx";
 
 const FRAMEWORK = {
   id: 'gdpr',
@@ -16,30 +18,40 @@ const FRAMEWORK = {
   color: 'navy',
   startupGaps: [
     {
+      itgc: 'Data Privacy / Governance',
+      templates: ['ropa-dpia'],
       gap: "Processing personal data with no ROPA or lawful-basis map",
       pushback: "We use a few email/CRM tools, a spreadsheet is overkill.",
       reality: "ROPA (Art. 30) is a legal requirement and you must map a lawful basis (Art. 6) per processing activity. Regulators and B2B customers ask for this.",
       leantip: "Build a minimal ROPA: each data flow's purpose, categories, lawful basis, recipients, retention. One shared sheet with ~15 rows is a compliant start that grows later."
     },
     {
+      itgc: 'Data Privacy / Governance',
+      templates: ['transfers-register', 'customer-dpa'],
       gap: "Storing EU data without a data-residency / transfer mechanism",
       pushback: "Everything's in US cloud regions, that's fine right?",
       reality: "Sending EU personal data outside the EEA needs a valid transfer mechanism (SCCs, adequacy, BCRs) and your processors need DPAs in place.",
       leantip: "Sign SCCs with processors, prefer EU-hosted regions for personal data, and map each third party's country. Document the transfer basis per processor."
     },
     {
+      itgc: 'Data Privacy / Governance',
+      templates: ['ropa-dpia'],
       gap: "Ignoring DPIA for high-risk processing",
       pushback: "A DPIA sounds like a bureaucratic template.",
       reality: "DPIA (Art. 35) is REQUIRED for profiling, large-scale processing, special categories, or public monitoring. Skipping it when required is a direct violation.",
       leantip: "Use SaaS DPIA templates (e.g., CNIL/ICO). Run one for you highest-risk processing recognizing triggers - 80% of the drafting is a structured commentary you already know."
     },
     {
+      itgc: 'Data Privacy / Governance',
+      templates: ['dsar'],
       gap: "No DSAR workflow, so rights requests go unanswered",
       pushback: "We've only had one request all year.",
       reality: "Data subject access requests (Art. 15-22) must be answered in 1 month (extendable 2). Missed/wrong DSARs are an easy, common enforcement trigger.",
       leantip: "Set up a DSAR@ inbox + a simple triage checklist, and locate data programmatically (search across DBs/tools). Mark the 1-month deadline in your ticketing system."
     },
     {
+      itgc: 'Data Privacy / Governance',
+      templates: ['data-management-policy'],
       gap: "Unlimited log/analytics retention and no deletion",
       pushback: "More data = more insights, and deleting is scary.",
       reality: "Storage limitation (Art. 5(1)(e)) and data minimization require defined retention and deletion. Hoarding data raises breach impact and risk.",
@@ -207,7 +219,7 @@ const FRAMEWORK = {
     { day: 60, label: 'DPIA Program & Breach Response Ready', color: 'green' }
   ],
   referenceUrl: 'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0679',
-  extraSections: [<GdprRoles key="gdpr-roles" />, <GdprAccountability key="gdpr-accountability" />]
+  extraSections: [<GdprRoles key="gdpr-roles" />, <GdprDpdpaComparison key="gdpr-dpdpa-comparison" />, <GdprAccountability key="gdpr-accountability" />, <VibePlatformScenario key="vibe-platform" jurisdiction="gdpr" />]
 };
 
 // Additive: new tasks are appended at the end of each level so saved progress keys do not move.

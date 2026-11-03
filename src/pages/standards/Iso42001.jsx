@@ -2,6 +2,7 @@ import AimsRoadmap from "../../components/aiAssurance/AimsRoadmap.jsx";
 import AiSecurityAudit from "../../components/aiAssurance/AiSecurityAudit.jsx";
 import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCheck.jsx";
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
+import { VibePlatformLink } from "../../components/playbook/VibePlatformScenario.jsx";
 
 const FRAMEWORK = {
   id: "iso-42001",
@@ -162,6 +163,7 @@ export default function Iso42001Page() {
       <div className="max-w-6xl mx-auto px-4">
         <AimsRoadmap />
         <AiSecurityAudit />
+        <VibePlatformLink className="my-8" />
       </div>
     </>
   );

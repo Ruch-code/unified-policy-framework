@@ -2904,6 +2904,135 @@
           ],
           "type": "document",
           "file": "data-use-agreement.docx"
+        },
+        {
+          "num": 169,
+          "slug": "dpdpa-consent-notice",
+          "name": "DPDPA Consent Notice",
+          "purpose": "Covers itemised data, purposes, withdrawal link, rights, grievance and Board complaint and english or Eighth Schedule languages.",
+          "fields": [
+            "Itemised data",
+            "Purposes",
+            "Withdrawal link",
+            "Rights",
+            "Grievance and Board complaint",
+            "English or Eighth Schedule languages"
+          ],
+          "frameworks": [
+            "DPDPA"
+          ],
+          "type": "document",
+          "file": "dpdpa-consent-notice.docx"
+        },
+        {
+          "num": 170,
+          "slug": "dpdpa-breach-intimation",
+          "name": "DPDPA Breach Intimation and Board Report",
+          "purpose": "Captures rule 7 intimation to Data Principals, initial Board intimation and 72-hour detailed report.",
+          "fields": [
+            "Rule 7 intimation to Data Principals",
+            "Initial Board intimation",
+            "72-hour detailed report"
+          ],
+          "frameworks": [
+            "DPDPA"
+          ],
+          "type": "record",
+          "file": "dpdpa-breach-intimation.docx"
+        },
+        {
+          "num": 171,
+          "slug": "dpdpa-grievance-log",
+          "name": "Data Principal Grievance Log",
+          "purpose": "Captures request, right, identity check, systems actioned and response within published period (max 90 days).",
+          "fields": [
+            "Request",
+            "Right",
+            "Identity check",
+            "Systems actioned",
+            "Response within published period (max 90 days)"
+          ],
+          "frameworks": [
+            "DPDPA"
+          ],
+          "type": "record",
+          "file": "dpdpa-grievance-log.xlsx"
+        },
+        {
+          "num": 172,
+          "slug": "dpdpa-nomination-form",
+          "name": "Nomination Form",
+          "purpose": "Captures nominee details, rights covered, verification and change or revocation.",
+          "fields": [
+            "Nominee details",
+            "Rights covered",
+            "Verification",
+            "Change or revocation"
+          ],
+          "frameworks": [
+            "DPDPA"
+          ],
+          "type": "record",
+          "file": "dpdpa-nomination-form.docx"
+        },
+        {
+          "num": 173,
+          "slug": "dpdpa-crossborder-register",
+          "name": "Cross-Border Restriction Register",
+          "purpose": "Captures transfer, destination, section 16 restriction check, rule 15 order, sector localisation and SDF specified data.",
+          "fields": [
+            "Transfer",
+            "Destination",
+            "Section 16 restriction check",
+            "Rule 15 order",
+            "Sector localisation",
+            "SDF specified data"
+          ],
+          "frameworks": [
+            "DPDPA"
+          ],
+          "type": "record",
+          "file": "dpdpa-crossborder-register.xlsx"
+        },
+        {
+          "num": 174,
+          "slug": "dpdpa-sdf-assessment",
+          "name": "Significant Data Fiduciary Assessment",
+          "purpose": "Covers section 10 factors, notification status, DPO, auditor, annual DPIA and audit, board report and algorithm checks.",
+          "fields": [
+            "Section 10 factors",
+            "Notification status",
+            "DPO",
+            "Auditor",
+            "Annual DPIA and audit",
+            "Board report",
+            "Algorithm checks"
+          ],
+          "frameworks": [
+            "DPDPA"
+          ],
+          "type": "document",
+          "file": "dpdpa-sdf-assessment.docx"
+        },
+        {
+          "num": 175,
+          "slug": "dpdpa-vendor-addendum",
+          "name": "Vendor DPDPA Addendum",
+          "purpose": "Covers instructions, rule 6 safeguards, rule 8 logs, breach notice, erasure, sub-processors and transfers.",
+          "fields": [
+            "Instructions",
+            "Rule 6 safeguards",
+            "Rule 8 logs",
+            "Breach notice",
+            "Erasure",
+            "Sub-processors",
+            "Transfers"
+          ],
+          "frameworks": [
+            "DPDPA"
+          ],
+          "type": "document",
+          "file": "dpdpa-vendor-addendum.docx"
         }
       ]
     },

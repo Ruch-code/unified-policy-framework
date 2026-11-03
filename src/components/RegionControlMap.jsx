@@ -2,7 +2,7 @@ import { useId, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { ITGC_DOMAINS, domainsFor } from '../data/itgcMatrix.js';
-import { GENERIC_ASSESSMENT, RISK_MANAGEMENT_ITEMS, PLAYBOOK_REUSE_ITEMS } from '../data/assessments.js';
+import { GENERIC_ASSESSMENT, RISK_MANAGEMENT_ITEMS, PLAYBOOK_REUSE_ITEMS, AI_PRIVACY_REUSE_ITEMS } from '../data/assessments.js';
 
 const DOMAIN_COLORS = {
   'Access Management': '#6366f1',
@@ -36,7 +36,7 @@ export default function RegionControlMap({ frameworks }) {
 
   const selectedControls = useMemo(() => {
     if (!selectedDomain) return [];
-    return [...GENERIC_ASSESSMENT, ...RISK_MANAGEMENT_ITEMS, ...PLAYBOOK_REUSE_ITEMS].filter(g => g.itgc === selectedDomain);
+    return [...GENERIC_ASSESSMENT, ...RISK_MANAGEMENT_ITEMS, ...PLAYBOOK_REUSE_ITEMS, ...AI_PRIVACY_REUSE_ITEMS].filter(g => g.itgc === selectedDomain);
   }, [selectedDomain]);
 
   return (
@@ -47,6 +47,7 @@ export default function RegionControlMap({ frameworks }) {
             🧩 Control Reuse Map
             <span className="text-[11px] font-medium text-gray-400">control once → satisfies many</span>
           </h4>
+          <Link to="/gdpr#gdpr-dpdpa-comparison" className="text-[11px] font-semibold text-indigo-700 dark:text-indigo-300 underline">GDPR and DPDPA compared</Link>
         </div>
         <span className="text-[11px] text-gray-400 hidden sm:inline">{names.length} frameworks · {ITGC_DOMAINS.length} ITGC domains</span>
         <button

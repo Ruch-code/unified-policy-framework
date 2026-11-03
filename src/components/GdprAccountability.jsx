@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import RelatedTemplates from './templates/RelatedTemplates.jsx';
 import { BookOpen, FileSearch, Scale, Globe2, ChevronDown, CheckCircle2, AlertTriangle, ListChecks } from 'lucide-react';
+import { VIBE_TITLE, VIBE_GDPR_STEPS } from '../data/vibePlatformScenario.js';
 
 /*
  * GDPR accountability documents explained simply: ROPA, DPIA, LIA, TIA and how they connect,
@@ -141,6 +142,12 @@ const SCENARIOS = [
       { k: 'Breach readiness', v: 'Notify the supervisory authority within 72 hours of awareness unless unlikely to cause risk (Art. 33); tell users without undue delay if high risk (Art. 34).' },
       { k: 'Outcome', v: 'DPIA signed by DPO and leadership, explicit consent flow tested, annual review scheduled.' },
     ],
+  },
+  {
+    title: VIBE_TITLE,
+    tag: 'Platform operator view',
+    tagCls: 'bg-violet-50 text-violet-800 border-violet-200 dark:bg-violet-900/30 dark:text-violet-200 dark:border-violet-800',
+    steps: VIBE_GDPR_STEPS,
   },
 ];
 
