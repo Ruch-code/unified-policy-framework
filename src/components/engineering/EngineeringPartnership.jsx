@@ -4,7 +4,7 @@ import RelatedTemplates from '../templates/RelatedTemplates.jsx';
 import {
   ENG_PRINCIPLE, ENG_SECTIONS, SECTION_META, CARD_FIELDS, CARD_EXAMPLES, TICKET_TEXT, AUTOMATION_GUIDE, FRICTION_TIPS,
   DESIGN_VS_OPERATING, BAD_GOOD, IDENTITY_COLUMNS, IDENTITY_ROWS, ACCESS_POINTS, ACCESS_EXCEPTIONS, LOG_EVENT_COLUMNS,
-  LOG_EVENTS, LOG_MIN_FIELDS, LOG_PROTECTION, LOG_QUESTIONS, LOG_REDACTION, CHANGE_COLUMNS, CHANGE_MATRIX, CHANGE_POINTS,
+  LOG_EVENTS, LOG_MIN_FIELDS, LOG_PROTECTION, LOG_QUESTIONS, LOG_REDACTION, CHANGE_COLUMNS, CHANGE_MATRIX, CHANGE_POINTS, CHANGE_TEST_DETAIL,
   PIPELINE_STAGES, CICD_POINTS, TRACE_COLUMNS, TRACE_CHAIN, SAMPLING_STEPS, ARCH_FIRST, BOUNDARY_COLUMNS, BOUNDARIES, SCENARIOS,
 } from '../../data/engineeringPartnership.js';
 
@@ -172,6 +172,16 @@ export default function EngineeringPartnership() {
 
       <Section id="eng-change" title="4. Change management" intro="One path to production for every kind of change, with controls scaled to the change type. Builds on the existing CHG controls in the risk assessment control library.">
         <Table label="Change controls by change type" headers={CHANGE_COLUMNS} rows={CHANGE_MATRIX} min={1200} />
+        <h3 className="mt-5 mb-2 text-sm font-bold text-navy-900 dark:text-text-dark-primary">Tests by change type</h3>
+        <div className="grid gap-3 md:grid-cols-2">
+          {CHANGE_TEST_DETAIL.map((c) => (
+            <div key={c.type} className="rounded-lg border border-surface-200 dark:border-surface-dark-200 p-3 text-sm text-navy-700 dark:text-text-dark-secondary">
+              <p className="font-semibold text-navy-900 dark:text-text-dark-primary mb-1">{c.type}</p>
+              <ul className="list-disc pl-5 space-y-1">{c.tests.map((t) => <li key={t}>{t}</li>)}</ul>
+              <p className="mt-2"><strong>Example:</strong> {c.example}</p>
+            </div>
+          ))}
+        </div>
         <div className="mt-4"><Points items={CHANGE_POINTS} /></div>
         <RelatedTemplates className="mt-4" slugs={['change-management-procedure', 'change-traceability-sample']} exclusive limit={2} />
       </Section>
