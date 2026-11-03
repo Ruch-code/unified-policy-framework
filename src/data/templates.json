@@ -4430,6 +4430,385 @@
           "file": "ai-customer-checklist.xlsx"
         }
       ]
+    },
+    {
+      "id": "iso-42001-library",
+      "name": "ISO 42001 Policy and Template Library",
+      "templates": [
+        {
+          "num": 300,
+          "slug": "ai-data-management",
+          "name": "AI Data Management Procedure",
+          "purpose": "How data for AI systems is approved, sourced, checked, traced and prepared.",
+          "fields": [
+            "Approving data use",
+            "Sourcing data",
+            "Checking quality",
+            "Tracing data",
+            "Preparing data"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "AI-Data-Management-Procedure-Template.docx"
+        },
+        {
+          "num": 301,
+          "slug": "ai-impact-report",
+          "name": "AI Impact Assessment Report",
+          "purpose": "Full report on effects of one AI system on people, groups and society.",
+          "fields": [
+            "System profile",
+            "Data and models",
+            "People affected",
+            "Assessment by topic",
+            "Benefits, harms and mitigations",
+            "Conclusion and approval"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "AI-Impact-Assessment-Report-Template.docx"
+        },
+        {
+          "num": 302,
+          "slug": "aims-management-review-record",
+          "name": "AIMS Management Review Record",
+          "purpose": "Agenda and minutes covering review inputs, decisions and actions.",
+          "fields": [
+            "Meeting details",
+            "Earlier actions",
+            "What has changed",
+            "Performance",
+            "Improvement",
+            "Outputs"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "AIMS-Management-Review-Template.docx"
+        },
+        {
+          "num": 303,
+          "slug": "ai-requirements",
+          "name": "AI Requirements Specification",
+          "purpose": "Stakeholder-informed, testable requirements with traceability.",
+          "fields": [
+            "System overview",
+            "Stakeholder input",
+            "Requirements",
+            "Privacy and social factors",
+            "Traceability",
+            "Change control"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "AI-Requirements-Specification-Template.docx"
+        },
+        {
+          "num": 304,
+          "slug": "ai-trustworthiness-report",
+          "name": "AI Trustworthiness and Performance Report",
+          "purpose": "Periodic report linking stakeholder feedback to measured results.",
+          "fields": [
+            "System overview",
+            "Trustworthiness in deployment",
+            "Stakeholder consultation",
+            "Measured improvements",
+            "Analysis",
+            "Governance"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "AI-Trustworthiness-Performance-Report-Template.docx"
+        },
+        {
+          "num": 305,
+          "slug": "ai-lifecycle",
+          "name": "AI System Lifecycle Process",
+          "purpose": "Stage-by-stage process from requirements to monitoring and logging.",
+          "fields": [
+            "Stages and gates",
+            "Design records",
+            "Verification and validation",
+            "Deployment",
+            "Operation and monitoring",
+            "Event logs"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "AI-System-Lifecycle-Process-Template.docx"
+        },
+        {
+          "num": 306,
+          "slug": "ai-resources",
+          "name": "AIMS Resources Process",
+          "purpose": "How data, tooling, computing and human resources are identified and recorded.",
+          "fields": [
+            "Data resources",
+            "Tooling resources",
+            "System and computing resources",
+            "Human resources"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "AIMS-Resources-Process-Template.docx"
+        },
+        {
+          "num": 307,
+          "slug": "ai-system-usage",
+          "name": "AI System Usage Process",
+          "purpose": "Rules for approving and using AI systems responsibly and as intended.",
+          "fields": [
+            "Approving use",
+            "Objectives",
+            "Intended use"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "AI-System-Usage-Process-Template.docx"
+        },
+        {
+          "num": 308,
+          "slug": "ai-technical-documentation",
+          "name": "AI Technical Documentation",
+          "purpose": "Technical documents for users, partners and supervisory authorities.",
+          "fields": [
+            "For users",
+            "For partners",
+            "For supervisory authorities"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "AI-Technical-Documentation-Template.docx"
+        },
+        {
+          "num": 309,
+          "slug": "ai-third-party",
+          "name": "AI Third-Party and Customer Relationships Process",
+          "purpose": "Allocates responsibilities and covers suppliers and customers.",
+          "fields": [
+            "Allocating responsibilities",
+            "Working with suppliers",
+            "Understanding customers"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "AI-Third-Party-Customer-Process-Template.docx"
+        },
+        {
+          "num": 310,
+          "slug": "secure-engineering",
+          "name": "Secure Engineering Principles for AI Systems",
+          "purpose": "Engineering principles applied when building AI systems.",
+          "fields": [
+            "Principles",
+            "Applying them",
+            "Exceptions"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "Secure-Engineering-Principles-Template.docx"
+        },
+        {
+          "num": 311,
+          "slug": "ai-incident-response",
+          "name": "AI Incident Response and Recovery Plan",
+          "purpose": "Handling harmful outputs, failures and misuse through to recovery.",
+          "fields": [
+            "Detect and triage",
+            "Contain",
+            "Investigate",
+            "Notify",
+            "Recover",
+            "Learn"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "AI-Incident-Response-Recovery-Template.docx"
+        },
+        {
+          "num": 312,
+          "slug": "adverse-impact-reporting",
+          "name": "Adverse Impact External Reporting Procedure",
+          "purpose": "How outside parties report harm and how reports are handled.",
+          "fields": [
+            "Reporting channel",
+            "Handling a report",
+            "Follow-up"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "Adverse-Impact-External-Reporting-Template.docx"
+        },
+        {
+          "num": 313,
+          "slug": "aims-audit-report",
+          "name": "AIMS Internal Audit Report",
+          "purpose": "Full report of audit scope, sampling, findings and conclusion.",
+          "fields": [
+            "Audit details",
+            "Method",
+            "Findings",
+            "Conclusion"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "AIMS-Internal-Audit-Report-Template.docx"
+        },
+        {
+          "num": 314,
+          "slug": "aims-reporting-mechanism",
+          "name": "AIMS Reporting Mechanism",
+          "purpose": "Confidential internal route for raising AI concerns.",
+          "fields": [
+            "How to report",
+            "Protection",
+            "Handling",
+            "Reporting to leadership"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "AIMS-Reporting-Mechanism-Template.docx"
+        },
+        {
+          "num": 315,
+          "slug": "executive-oversight",
+          "name": "Executive Oversight of AI Charter",
+          "purpose": "How executives direct and supervise AI governance.",
+          "fields": [
+            "Authority",
+            "Membership and cadence",
+            "Standing agenda",
+            "Escalation",
+            "Integration"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "document",
+          "file": "Executive-Oversight-of-AI-Template.docx"
+        },
+        {
+          "num": 316,
+          "slug": "compliance-obligations",
+          "name": "AI Compliance Obligation Tracker",
+          "purpose": "Tracks legal and contract obligations through to verified evidence.",
+          "fields": [
+            "Obligation ID",
+            "Source",
+            "Requirement in your words",
+            "System or process",
+            "How it is met",
+            "How it is checked",
+            "Evidence name",
+            "Evidence location",
+            "Owner",
+            "Status",
+            "Last reviewed"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "AI-Compliance-Obligation-Tracker-Template.xlsx"
+        },
+        {
+          "num": 317,
+          "slug": "nc-ca-tracker",
+          "name": "AIMS Nonconformity and Corrective Action Tracker",
+          "purpose": "Tracks nonconformities, actions and improvement opportunities.",
+          "fields": [
+            "ID",
+            "Date raised",
+            "Description",
+            "Source",
+            "Category",
+            "Impact",
+            "Root cause",
+            "Corrective action",
+            "Owner",
+            "Due date",
+            "Effectiveness check",
+            "Status",
+            "Improvement opportunity"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "AIMS-Nonconformity-Corrective-Action-Tracker-Template.xlsx"
+        },
+        {
+          "num": 318,
+          "slug": "soa-workbook",
+          "name": "AIMS Statement of Applicability Workbook",
+          "purpose": "Records every Annex A control with applicability and justification.",
+          "fields": [
+            "Domain",
+            "Reference",
+            "Short title",
+            "Implementation status",
+            "Reason included",
+            "Reason excluded",
+            "Risk reference"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "AIMS-Statement-of-Applicability-Template.xlsx"
+        },
+        {
+          "num": 319,
+          "slug": "audit-cycle-plan",
+          "name": "AIMS Audit Cycle Plan",
+          "purpose": "Plans internal audits so that the whole AIMS is covered across the cycle.",
+          "fields": [
+            "Audit ID",
+            "Area",
+            "Clauses and controls",
+            "Priority reason",
+            "Quarter",
+            "Auditor",
+            "Independence checked",
+            "Status",
+            "Report location"
+          ],
+          "frameworks": [
+            "ISO42001"
+          ],
+          "type": "record",
+          "file": "AIMS-Audit-Cycle-Plan-Template.xlsx"
+        }
+      ]
     }
   ]
 }

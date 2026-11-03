@@ -23,3 +23,11 @@ test('every template and policy has a built file and ITGC maps resolve', () => {
 test('no em dashes in the data', () => {
   assert.ok(!fs.readFileSync(new URL('../src/data/iso42001.js', import.meta.url), 'utf8').includes('—'));
 });
+
+test('library links resolve and files exist', async () => {
+  const { LIBRARY } = await import('../src/data/iso42001Library.js');
+  for (const d of LIBRARY) {
+    for (const id of d.mappedControls) assert.ok(CONTROLS.some((k) => k.id === id), `${d.id} ${id}`);
+    assert.ok(fs.existsSync(new URL(`../netlify/template-files/${d.filePath}`, import.meta.url)), d.filePath);
+  }
+});
