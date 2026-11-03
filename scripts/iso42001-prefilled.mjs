@@ -1,10 +1,9 @@
 // Fully pre-filled document bodies. Block types: t(title), h(heading), s(subheading), p(text), tb(table).
 const h = (x) => ({ k: 'h', x }), s = (x) => ({ k: 's', x }), p = (x) => ({ k: 'p', x }), tb = (...rows) => ({ k: 'tb', rows });
 const VH = tb(['Version', 'Date', 'Description', 'Author', 'Approved by'], ['1.0', '[Effective Date]', 'First issue', '[Policy Owner]', '[Approver]'], ['', '', '', '', ''], ['', '', '', '', '']);
-const CONTROL = tb(['Document owner', '[Policy Owner]'], ['Version', '1.0'], ['Effective date', '[Effective Date]'], ['Review date', '[Review Date]'], ['Approver', '[Approver]']);
 
 export const PREFILLED = {
-  'ai-data-management': { file: 'AI-Data-Management-Procedure-Template.docx', title: 'AI Data Management Procedure', blocks: [CONTROL,
+  'ai-data-management': { file: 'AI-Data-Management-Procedure-Template.docx', title: 'AI Data Management Procedure', blocks: [
     p('[Company Name] manages the data behind [AI System Name] so that it is lawful to use, fit for purpose and traceable from source to model. This procedure explains how that is done across five areas.'),
     p('Data for development and enhancement: we assess privacy, security, transparency, representativeness and accuracy before data is used to build or improve a system.'),
     p('Acquisition of data: we record what data we need, how much, where it comes from and what rights apply.'),
@@ -52,7 +51,7 @@ export const PREFILLED = {
     s('Encoding'), p('Categorical values are converted using methods such as one-hot or ordinal encoding, and the mapping is stored with the model version.'),
     h('ISO/IEC 42001 coverage'), p('Annex A: A.7.2, A.7.3, A.7.4, A.7.5, A.7.6. Related: A.4.3.'),
     h('Version history'), VH] },
-  'aims-management-review-record': { file: 'AIMS-Management-Review-Template.docx', title: 'AI Management System (AIMS) Management Review', blocks: [CONTROL,
+  'aims-management-review-record': { file: 'AIMS-Management-Review-Template.docx', title: 'AI Management System (AIMS) Management Review', blocks: [
     p('This record shows how top management of [Company Name] reviewed the AIMS to confirm that it remains suitable, adequate and effective. Example entries are shown and should be replaced with your own.'),
     h('Previous management review actions'), tb(['Action ID', 'Action description', 'Owner', 'Due date', 'Status'], ['MR-001', 'Add subgroup testing to the release gate', '[ML Engineering Lead]', '[Date]', 'Complete'], ['MR-002', 'Reassess the main model supplier', '[Procurement Lead]', '[Date]', 'In progress']),
     h('Changes in external and internal issues'), tb(['Context', 'Change description'], ['External', 'New AI transparency duties apply to [Region].'], ['Internal', 'A new team now owns [AI System Name].']),
