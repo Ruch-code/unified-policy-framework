@@ -1394,7 +1394,7 @@
         },
         {
           "q": "Tell me about a mistake in a program you owned, and what changed afterwards.",
-          "a": "[Replace with your own true story.] Use this shape: what I was responsible for, what went wrong, how and when I told people, how I fixed it, and what changed so it can't repeat.\n\nKeep it specific and proportionate, and avoid blaming others. The strongest part is the lasting change, such as a new check, a review step or an automated gate.",
+          "a": "Sample answer. Use it only if it matches your own experience.\n\nOn a SOC 2 engagement I was running, I marked evidence items as complete once the files were uploaded, before anyone had checked them. During review, we found that some files didn't cover the full sample the auditor needed, so the tracker showed more progress than we really had.\n\nI told the client lead as soon as I saw it, explained which items were affected, and rechecked them against the request. We collected what was missing before anything reached the auditor. Then I changed how we tracked work: uploaded items now read \"file uploaded, to be reviewed\" until someone checks them, and a partly evidenced sample stays in draft and isn't submitted. Since then, our status reflects reviewed evidence, not uploads.",
           "tags": [
             "Ownership",
             "Mistakes"
@@ -1439,7 +1439,7 @@
         },
         {
           "q": "Why does governance for autonomous software-building systems interest you?",
-          "a": "[Edit this draft so it is true to you.] What interests me is that these systems change the basic assumptions behind our controls. When an agent writes code, opens a pull request and runs commands, we have to ask who acted, on whose authority, what it could reach, and who approved the result.\n\nI like that this work is practical: identity boundaries, execution limits, human approval for high-impact actions, and evidence of what happened. It's the same discipline as access and change control, applied to something new, and the answers aren't settled yet.",
+          "a": "These systems change the assumptions behind our controls. Access and change management were built around a person making a change and another person reviewing it. When an agent writes code, opens a pull request and runs commands, we have to ask who acted, on whose authority, what it could reach, and who approved the result.\n\nI've come to this from both sides. I've worked on responsible AI risk assessments, and I've run SOC 2 and ISO 27001 programs with engineering teams at startups. What interests me is making the answers practical: identity boundaries, execution limits, human approval for high-impact actions, and evidence of what happened. The discipline is familiar, but the answers aren't settled, and I'd like to help work them out.",
           "tags": [
             "Motivation",
             "Agent Governance"
@@ -1454,7 +1454,7 @@
         },
         {
           "q": "How does your experience fit hands-on ownership of a program at this stage?",
-          "a": "[Edit this draft so it is true to you.] I've worked on both sides: audit and second-line risk work, and delivering compliance programs for startups. That taught me what auditors need, and what engineers will actually adopt.\n\nI've also worked on responsible AI assessments, and I build tools myself, so I'm comfortable reading how a system works before proposing a control. I want a role where I own the outcome, from the first risk conversation to working evidence.",
+          "a": "I've seen this work from several angles: IT audit, second-line risk in fintech, responsible AI assessments, and delivering SOC 2, ISO 27001 and HIPAA programs for startups on tight timelines. That taught me what auditors need, and what engineers will actually adopt.\n\nI also build things myself, including a unified compliance site and a retrieval-based knowledge tool, so I'm comfortable understanding how a system works before proposing a control. I've managed client relationships and a small team, and I like owning the outcome, from the first risk conversation to working evidence.",
           "tags": [
             "Motivation",
             "Ownership"
