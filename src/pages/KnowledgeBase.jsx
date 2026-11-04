@@ -131,11 +131,27 @@ export default function KnowledgeBase() {
                   </div>
                   <div className="border-l border-slate-200 pl-2.5 dark:border-[#334155]">
                     <p className="font-bold text-gray-800 text-xs dark:text-[#f8fafc]">{ph.name}</p>
-                    <p className="text-[11px] text-gray-500 mt-0.5 leading-snug dark:text-[#cbd5e1]">{ph.detail}</p>
+                    {ph.bullets ? (
+                      <ul className="list-disc pl-4 mt-0.5 space-y-0.5 text-[11px] text-gray-500 leading-snug dark:text-[#cbd5e1]">{ph.bullets.map(b => <li key={b}>{b}</li>)}</ul>
+                    ) : (
+                      <p className="text-[11px] text-gray-500 mt-0.5 leading-snug dark:text-[#cbd5e1]">{ph.detail}</p>
+                    )}
                   </div>
                 </div>
               ))}
             </div>
+            {fwObj.timeline.example && (
+              <div className="mt-4">
+                <p className="font-bold text-gray-800 text-xs dark:text-[#f8fafc]">{fwObj.timeline.example.title}</p>
+                <p className="text-[11px] text-gray-500 mt-0.5 dark:text-[#cbd5e1]">{fwObj.timeline.example.note}</p>
+                <div className="overflow-x-auto mt-2">
+                  <table className="w-full min-w-[30rem] text-[11px] text-gray-600 dark:text-[#cbd5e1]">
+                    <thead><tr className="text-left text-gray-800 dark:text-[#f8fafc]"><th scope="col" className="p-1.5">When</th><th scope="col" className="p-1.5">Phase</th><th scope="col" className="p-1.5">What happens</th></tr></thead>
+                    <tbody>{fwObj.timeline.example.rows.map(r => <tr key={r[0]} className="border-t border-slate-200 dark:border-[#334155]">{r.map(c => <td key={c} className="p-1.5 align-top">{c}</td>)}</tr>)}</tbody>
+                  </table>
+                </div>
+              </div>
+            )}
           </div>
         )}
         <h4 className="font-bold text-gray-800 text-sm mt-2">{fwObj.name} - policies & controls</h4>
