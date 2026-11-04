@@ -485,7 +485,8 @@ function FrameworkBody({ framework, extraSections }) {
 
               {unlocked && (
                 <div className="divide-y divide-gray-100">
-                  {week.tasks.map((task, i) => {
+                  {(() => {
+                    const renderTask = (task, i, tags = []) => {
                     const key = `w${week.week}-${i}`;
                     const done = !!progress[key];
                     const isExpanded = expandedTask === key;
@@ -510,6 +511,9 @@ function FrameworkBody({ framework, extraSections }) {
                                 </span>
                               )}
                             </div>
+                            {tags.length > 0 && (
+                              <div className="mt-1 flex flex-wrap gap-1">{tags.map(t => <span key={t} className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-gray-100 text-gray-700 dark:bg-slate-700 dark:text-slate-200">{t}</span>)}</div>
+                            )}
                             {typeof task === 'object' && !done && (
                               <div className="mt-2 space-y-1.5">
                                 <TaskDetail label="Control" value={task.alsoMapsTo ? `${task.control} (also maps to ${task.alsoMapsTo})` : task.control} color={colors.text} />
@@ -563,7 +567,29 @@ function FrameworkBody({ framework, extraSections }) {
                         </div>
                       </div>
                     );
-                  })}
+                    };
+                    if (!framework.groupLevel) return week.tasks.map((task, i) => renderTask(task, i));
+                    return framework.groupLevel(idx, week.tasks.length).map((g) => {
+                      const items = g.subs.flatMap(([, list]) => list);
+                      const finished = items.filter(({ i }) => progress[`w${week.week}-${i}`]).length;
+                      const hrs = items.reduce((sum, { i }) => sum + (week.tasks[i].hours || 0), 0);
+                      return (
+                        <details key={g.key} className="group/section">
+                          <summary className="flex flex-wrap items-center gap-2 px-6 py-3 cursor-pointer font-semibold text-sm text-gray-900 hover:bg-gray-50 dark:hover:bg-slate-800/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-violet-400">
+                            <ChevronRight className="w-4 h-4 shrink-0 transition-transform group-open/section:rotate-90" aria-hidden="true" />
+                            <span className="flex-1 min-w-0 break-words">{g.label}{g.addIfInScope ? ' (Add if in scope)' : ''}</span>
+                            <span className="text-xs font-medium text-gray-600 shrink-0">{finished}/{items.length} tasks, ~{hrs}h</span>
+                          </summary>
+                          {g.subs.map(([title, list]) => (
+                            <div key={title || 'all'}>
+                              {title && <h3 className="px-6 pt-3 pb-1 text-xs font-bold text-gray-600 dark:text-slate-300">{title}</h3>}
+                              <div className="divide-y divide-gray-100">{list.map(({ i, tags }) => renderTask(week.tasks[i], i, tags))}</div>
+                            </div>
+                          ))}
+                        </details>
+                      );
+                    });
+                  })()}
                 </div>
               )}
 

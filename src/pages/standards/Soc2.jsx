@@ -3,6 +3,8 @@ import { EngPartnershipLink } from "../../components/engineering/EngineeringPart
 import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCheck.jsx";
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 import soc2Template from "../../data/soc2-template.json";
+import Soc2ControlMatrix from "../../components/Soc2ControlMatrix.jsx";
+import { groupLevel } from "../../data/soc2Criteria.js";
 import TscControlMatrix from "../../components/TscControlMatrix.jsx";
 import Soc2TechnicalSection from "../../components/Soc2TechnicalSection.jsx";
 import { withEvidence, appendToLevel, extendTasks } from "../../data/playbookEvidence.js";
@@ -11,6 +13,7 @@ import { SOC2_L1_GOVERNANCE, SOC2_L3_TESTS, SOC2_EXTEND } from "../../data/playb
 const FRAMEWORK = {
   id: "soc2",
   extraGaps: SOC2_POLICY_GAPS,
+  groupLevel,
   name: "SOC 2 Type II",
   region: "Global",
   flag: "🌐",
@@ -1160,6 +1163,7 @@ export default function Soc2() {
       <RiskCrossCheckBlock frameworkId="soc2" />
       <Soc2TechnicalSection />
       <div className="max-w-6xl mx-auto px-4 my-8"><EngPartnershipLink set="soc2" /></div>
+      <Soc2ControlMatrix framework={FRAMEWORK_WITH_EVIDENCE} />
       <TscControlMatrix />
     </>
   );
