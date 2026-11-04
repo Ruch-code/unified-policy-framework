@@ -306,6 +306,16 @@ const moduleEntries = [
     mode: 'hash',
   },
   {
+    id: 'interview-senior-grc-engineering',
+    category: 'Policy & Control Modules',
+    label: 'Senior GRC Engineering interview: startup judgment and ownership',
+    desc: 'Interview questions on risk-based prioritization, tradeoffs, constructive pushback, ownership, startup execution and motivation.',
+    keywords: ['senior grc engineering', 'startup judgment', 'ownership', 'prioritization', 'tradeoffs', 'residual risk', 'constructive pushback', 'imperfect information', 'motivation', 'autonomous software'],
+    path: '/',
+    anchorId: 'interview-prep',
+    mode: 'hash',
+  },
+  {
     id: 'access-governance',
     category: 'Policy & Control Modules',
     label: 'Persona & Access Governance',

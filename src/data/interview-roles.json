@@ -1297,6 +1297,177 @@
           ]
         }
       ]
+    },
+    {
+      "id": "senior-grc-engineering",
+      "title": "Senior GRC Engineering",
+      "subtitle": "Senior | Startup Judgment, Prioritization, Tradeoffs, Pushback, Ownership, Motivation",
+      "icon": "Server",
+      "color": "teal",
+      "questions": [
+        {
+          "q": "You have ten open risks and one quarter. How do you decide what comes first?",
+          "a": "I'd first sort each item by why it exists: a legal obligation, a customer commitment, a certification goal or a customer preference. Legal duties and signed commitments are not optional, though how we meet them can be. A certification goal is a business choice with a date. A preference can be negotiated.\n\nThen I'd compare impact, likelihood, data sensitivity, exposure, deadline and implementation effort, using a simple shared score. Internet-facing access to sensitive customer data with a contract date goes ahead of an internal documentation gap, even if the gap is easier. I'd show the ranking and reasoning to the owners, so they can challenge it.",
+          "tags": [
+            "Prioritization",
+            "Risk"
+          ],
+          "example": "Expect: \"Two items tie. Now what?\" Say you'd take the one that reduces more exposure per unit of effort, and record why, or ask the accountable leader to decide.",
+          "pitfalls": [
+            {
+              "pitfall": "Treating every framework requirement as a legal duty.",
+              "reply": "\"That is a certification requirement, not a law. It matters, but it is a business decision we can sequence.\""
+            },
+            {
+              "pitfall": "Ranking by whatever is due or loudest.",
+              "reply": "\"The deadline is one input. I would also look at what happens if this risk actually occurs.\""
+            }
+          ]
+        },
+        {
+          "q": "A big customer asks for a control you don't have, and the deal closes this month. What do you do?",
+          "a": "I'd separate what the contract would actually require from what the questionnaire prefers. Then I'd check what we already do, and whether a compensating control meets the same objective.\n\nI'd give sales and leadership honest options: meet it now, commit to a dated plan, or offer an alternative. What I won't do is say a control exists when it doesn't. Whatever we commit to gets an owner and date, because a signed promise is now an obligation.",
+          "tags": [
+            "Prioritization",
+            "Customer Commitments"
+          ],
+          "example": "Expect: \"Sales wants you to just say yes.\" Say you'd help them answer quickly and accurately, including stating the planned date.",
+          "pitfalls": [
+            {
+              "pitfall": "Saying yes to save the deal.",
+              "reply": "\"I can't state that as implemented, but I can state what we have and when the rest will be ready.\""
+            }
+          ]
+        },
+        {
+          "q": "Engineering can't finish a control before launch. How do you handle the tradeoff?",
+          "a": "I'd start with what cannot be compromised, such as legal duties, protecting sensitive data, and the accuracy of what we tell customers and auditors. Inside that boundary, I'd look for a compensating control that reduces the same risk.\n\nThen I'd state the residual risk plainly and get the accountable decision-maker, who owns the business outcome, to accept it in writing. It needs a remediation plan with an owner, date and review point, so a temporary exception doesn't become permanent.",
+          "tags": [
+            "Tradeoffs",
+            "Residual Risk"
+          ],
+          "example": "Example: launch with a long-lived key replaced within 30 days, with restricted scope, rotation and alerting until then. Adjust the period to the risk.",
+          "pitfalls": [
+            {
+              "pitfall": "Accepting the risk yourself.",
+              "reply": "\"GRC can advise, but the risk belongs to the leader accountable for the outcome.\""
+            },
+            {
+              "pitfall": "Leaving out an expiry date.",
+              "reply": "\"Every exception gets an end date and a review.\""
+            }
+          ]
+        },
+        {
+          "q": "A founder wants to skip a control you consider important. How do you push back?",
+          "a": "I'd explain the concern in business terms: what could happen, how likely it is, and what it would cost. Then I'd bring options, usually the full control, a lighter version and accepting the risk, each with its effect on speed and exposure.\n\nCompliance shouldn't be a blanket veto, and it shouldn't be a rubber stamp. It's the founder's decision to make in most cases, and my job is to make sure it is informed and recorded. If the decision breaks a legal duty or requires a false statement, I'd escalate, and I wouldn't sign off.",
+          "tags": [
+            "Pushback",
+            "Escalation"
+          ],
+          "example": "Expect: \"Where would you escalate at a startup?\" Say to the agreed risk owner, CEO or board-level contact, in the open, and after telling the person first.",
+          "pitfalls": [
+            {
+              "pitfall": "Citing the standard as the only argument.",
+              "reply": "\"The standard is one reason, but here is what this means for our customers and for us.\""
+            },
+            {
+              "pitfall": "Dropping the concern after a verbal no.",
+              "reply": "\"That's your call. I'll record the decision and the risk accepted, and we can review it next quarter.\""
+            }
+          ]
+        },
+        {
+          "q": "You own a program that depends on teams that don't report to you. How do you keep it moving?",
+          "a": "Each item gets one named owner, a date and a clear definition of done. I agree dates with owners and don't simply assign them, and I raise dependencies early.\n\nProgress goes in one place that everyone can see, with a short regular update covering what's done, what's blocked and what decision is needed. I close the loop by checking the evidence, not by accepting that something is done. If a date slips, I'd ask early what's blocking it, then escalate with a specific request.",
+          "tags": [
+            "Ownership",
+            "Execution"
+          ],
+          "example": "Example: a weekly tracker with owner, date, status and blocker, plus a monthly summary for leadership.",
+          "pitfalls": [
+            {
+              "pitfall": "Tracking activity instead of outcomes.",
+              "reply": "\"Closed means the control works and the evidence is in place.\""
+            }
+          ]
+        },
+        {
+          "q": "Tell me about a mistake in a program you owned, and what changed afterwards.",
+          "a": "[Replace with your own true story.] Use this shape: what I was responsible for, what went wrong, how and when I told people, how I fixed it, and what changed so it can't repeat.\n\nKeep it specific and proportionate, and avoid blaming others. The strongest part is the lasting change, such as a new check, a review step or an automated gate.",
+          "tags": [
+            "Ownership",
+            "Mistakes"
+          ],
+          "example": "Expect: \"How did you tell your manager?\" Say early, with the facts, the impact and a proposed fix.",
+          "pitfalls": [
+            {
+              "pitfall": "Choosing a fake mistake.",
+              "reply": "\"This was a real error with a real cost, and here is what I changed.\""
+            }
+          ]
+        },
+        {
+          "q": "You're the first GRC hire and nothing exists yet. What do you do in your first 90 days?",
+          "a": "I'd start by learning the architecture, the data, the customer commitments and the legal duties, so the program fits what the company actually does. Then I'd build a useful baseline: an asset and AI system inventory, a risk register, core access and change controls, and a list of obligations.\n\nI'd reuse evidence that existing tools already produce, and keep processes light enough to survive. Then I'd review the baseline whenever the product changes, because a startup's risks move quickly.",
+          "tags": [
+            "Startup Execution",
+            "Baseline"
+          ],
+          "example": "Expect: \"What would you not do yet?\" Say a heavy policy library or tool rollout before knowing the real risks.",
+          "pitfalls": [
+            {
+              "pitfall": "Starting with a large framework checklist.",
+              "reply": "\"I'd begin with what could hurt us and what we've promised, then map that to frameworks.\""
+            }
+          ]
+        },
+        {
+          "q": "You have to make a call with incomplete information. How do you handle it?",
+          "a": "I'd separate what I've verified from what I'm assuming, and label them that way in anything I share. I'd work out which unknown would change the decision, and check that first.\n\nIf we have to act, I'd make the reversible choice, state the assumption and its owner, and set a date or trigger to revisit it. If someone asks about something I haven't checked, I'd say so. A confident wrong statement in a security questionnaire or audit does more harm than saying I'll confirm.",
+          "tags": [
+            "Startup Execution",
+            "Imperfect Information"
+          ],
+          "example": "Example: \"We believe logs are retained for a year, but that is based on configuration docs. I'll confirm from the live setting by Friday.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Presenting an assumption as fact.",
+              "reply": "\"That is my assumption so far, and here is how I'll verify it.\""
+            }
+          ]
+        },
+        {
+          "q": "Why does governance for autonomous software-building systems interest you?",
+          "a": "[Edit this draft so it is true to you.] What interests me is that these systems change the basic assumptions behind our controls. When an agent writes code, opens a pull request and runs commands, we have to ask who acted, on whose authority, what it could reach, and who approved the result.\n\nI like that this work is practical: identity boundaries, execution limits, human approval for high-impact actions, and evidence of what happened. It's the same discipline as access and change control, applied to something new, and the answers aren't settled yet.",
+          "tags": [
+            "Motivation",
+            "Agent Governance"
+          ],
+          "example": "Expect: \"What risk worries you most?\" Pick one, such as untrusted content steering an agent with broad permissions, and explain how you would limit it.",
+          "pitfalls": [
+            {
+              "pitfall": "Talking only about company growth.",
+              "reply": "\"The growth is exciting, but what draws me is the specific control problem in this work.\""
+            }
+          ]
+        },
+        {
+          "q": "How does your experience fit hands-on ownership of a program at this stage?",
+          "a": "[Edit this draft so it is true to you.] I've worked on both sides: audit and second-line risk work, and delivering compliance programs for startups. That taught me what auditors need, and what engineers will actually adopt.\n\nI've also worked on responsible AI assessments, and I build tools myself, so I'm comfortable reading how a system works before proposing a control. I want a role where I own the outcome, from the first risk conversation to working evidence.",
+          "tags": [
+            "Motivation",
+            "Ownership"
+          ],
+          "example": "Bring one specific program you delivered: the starting point, your part, the result and what you would do differently.",
+          "pitfalls": [
+            {
+              "pitfall": "Listing frameworks without outcomes.",
+              "reply": "\"Rather than list frameworks, let me show one program I took from nothing to audit-ready.\""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
