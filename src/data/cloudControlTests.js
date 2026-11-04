@@ -5,6 +5,7 @@
 // exc = common exceptions and remediation.
 
 import { ENG_CLOUD_TESTS } from './engineeringPartnership.js';
+import { STARTUP_CLOUD_TESTS } from './startupVariants.js';
 
 export const DOMAINS = [
   'Identity and Access',
@@ -284,7 +285,7 @@ export const CROSS = [
     pass: 'All three completed within 12 months', exc: 'Overdue: schedule and complete before period end.' },
 ];
 
-CROSS.push(...ENG_CLOUD_TESTS);
+CROSS.push(...ENG_CLOUD_TESTS, ...STARTUP_CLOUD_TESTS);
 
 export const CLOUDS = [
   { id: 'aws', label: 'AWS', rows: AWS },

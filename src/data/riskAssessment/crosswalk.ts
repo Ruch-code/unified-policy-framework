@@ -74,7 +74,7 @@ export const CROSSWALK: FrameworkCrossCheck[] = [
   },
   {
     id: 'hipaa', name: 'HIPAA Security Rule',
-    summary: 'Risk analysis and risk management are required implementation specifications, and are among the most cited findings in enforcement actions.',
+    summary: 'Risk analysis and risk management are required implementation specifications, and are among the most cited findings in enforcement actions. The annual assessment can serve as the risk analysis only if it covers all ePHI.',
     rows: [
       row('164.308(a)(1)(ii)(A)', 'Accurate and thorough assessment of risks and vulnerabilities to ePHI.', 'Cover every system that creates, receives, maintains or transmits ePHI.', ['RSK-2']),
       row('164.308(a)(1)(ii)(B)', 'Security measures sufficient to reduce risks and vulnerabilities to a reasonable and appropriate level.', 'Track treatment and residual risk with owners and dates.', ['RSK-3']),

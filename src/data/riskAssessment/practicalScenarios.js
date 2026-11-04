@@ -6,6 +6,17 @@ export const SCENARIO_TAGS = ['All', 'Vendor risk', 'Getting started', 'Governan
 
 export const PRACTICAL_SCENARIOS = [
   {
+    id: 'one-page-risk-policy', tag: 'Governance',
+    title: 'Our risk policy is one page',
+    symptoms: ['The policy mentions risk assessment but defines no method', 'Owners differ between policies'],
+    why: 'A policy with no method gives the assessment nothing to follow, and the auditor nothing to test against.',
+    steps: ['Add the methodology and scoring scale.', 'State risk appetite and treatment options.', 'Define the register fields.', 'Cover fraud risk (CC3.3).', 'Define change triggers (CC3.4).', 'Name an owner that matches the Roles policy.', 'Confirm the HIPAA risk analysis covers all ePHI, where HIPAA applies.'],
+    outputs: ['Updated Risk Management Policy', 'Register matching the policy fields'],
+    pitfalls: ['Adding a method the team does not follow'],
+    map: 'SOC 2 CC3.2, CC3.3, CC3.4 | HIPAA 164.308(a)(1)(ii)(A)',
+    templates: 'risk management policy risk register',
+  },
+  {
     id: 'too-many-vendors', tag: 'Vendor risk',
     title: 'We have too many vendors and do not know which ones to assess',
     symptoms: ['Finance or the SSO tool shows 100+ SaaS subscriptions', 'No vendor register, or one that is a list of names only', 'The auditor asks for vendor reviews and you cannot assess everything before fieldwork'],

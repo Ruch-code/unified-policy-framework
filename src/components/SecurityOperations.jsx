@@ -1,3 +1,4 @@
+import StartupNotes from './StartupNotes.jsx';
 import { EngPartnershipLink } from './engineering/EngineeringPartnership.jsx';
 import React, { useState } from 'react';
 import { toPlainDeep } from '../utils/xlsxExport.js';
@@ -445,6 +446,9 @@ export default function SecurityOperations({ isDark = false }) {
               </div>
             </div>
 
+            <StartupNotes id="patch" />
+            <StartupNotes id="logs" />
+            <StartupNotes id="ir" />
             <IrTriageGenerator />
           </div>
         </section>

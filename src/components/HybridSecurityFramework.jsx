@@ -1,3 +1,4 @@
+import StartupNotes from './StartupNotes.jsx';
 import React, { useState } from 'react';
 import { ShieldCheck, HardDrive, Smartphone, Cpu, Network, MapPin, LockKeyhole, Server, Wrench, ScrollText, FileJson, FileCode2, Terminal, ArrowRight, ArrowDown, RefreshCw } from 'lucide-react';
 import CodeBlock from './ui/CodeBlock.jsx';
@@ -174,6 +175,7 @@ export default function HybridSecurityFramework({ isDark = false }) {
             </div>
             <CodeBlock code={current.code} title={current.title} lang={current.lang} />
           </div>
+          <StartupNotes id="byod" />
         </section>
       </div>
     </div>
