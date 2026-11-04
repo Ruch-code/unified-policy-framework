@@ -1,3 +1,4 @@
+import StartupNotes from './StartupNotes.jsx';
 import { VibePlatformLink } from './playbook/VibePlatformScenario.jsx';
 import TprmDeepDive from './TprmDeepDive.jsx';
 import VendorClauseBuilder from './VendorClauseBuilder.jsx';
@@ -900,6 +901,7 @@ function LifecyclePanel() {
   return (
     <div id="panel-lifecycle" role="tabpanel" aria-labelledby="vtab-lifecycle" className="space-y-4">
       <p className={small}>The TPRM operating model: governance first, then eleven stages from intake to exit. Each stage opens into an operating procedure. Depth scales with the tier (Tiering tab).</p>
+      <StartupNotes id="vendor" />
       <ol className="flex flex-wrap gap-2 text-xs" aria-label="Lifecycle stages at a glance">
         {LIFECYCLE_STAGES.map((st) => <li key={st.id} className="px-2.5 py-1 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-200">{st.id}. {st.name}</li>)}
       </ol>

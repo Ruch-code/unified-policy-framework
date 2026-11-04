@@ -1,3 +1,4 @@
+import StartupNotes from './StartupNotes.jsx';
 import React from 'react';
 import { CheckCircle, AlertTriangle, Shield, Key, Zap, Cpu, Globe, Users, Database, Lock, SearchCheck, ClipboardList, ExternalLink, MessageSquareText, Download } from 'lucide-react';
 import ResponsiveTable from './ResponsiveTable';
@@ -505,6 +506,7 @@ export default function PasswordPolicies({ isDark = false }) {
           <h3 className="text-2xl font-bold text-navy-900 dark:text-text-dark-primary mb-6 flex items-center gap-3">
             <AlertTriangle className="w-6 h-6 text-amber-600 dark:text-amber-400" /> Recommendations by Use Case
           </h3>
+          <StartupNotes id="auth" />
           <div className="space-y-4">
             {passwordPolicyData.recommendations.map((rec, i) => (
               <div key={i} className={`grc-card p-6`}>

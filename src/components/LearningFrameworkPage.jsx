@@ -1,5 +1,6 @@
 import { useState, useEffect, Fragment } from 'react';
 import RelatedTemplates from './templates/RelatedTemplates.jsx';
+import { taskNotes } from '../data/startupVariants.js';
 import { VIBE_ITGC_GAPS, SOC1_ICFR_NOTE } from '../data/vibeItgcGaps.js';
 import { ENG_ITGC_GAPS } from '../data/engineeringPartnership.js';
 import { Link } from 'react-router-dom';
@@ -514,6 +515,9 @@ function FrameworkBody({ framework, extraSections }) {
                                 <TaskDetail label="Control" value={task.alsoMapsTo ? `${task.control} (also maps to ${task.alsoMapsTo})` : task.control} color={colors.text} />
                                 <TaskDetail label="How" value={task.how} color={colors.text} />
                                 <TaskDetail label="Check" value={task.check} color={colors.text} />
+                                {taskNotes(framework.id, task.title).length > 0 && (
+                                  <ul className="ml-5 list-disc pl-4 text-sm text-amber-800 dark:text-amber-200 space-y-0.5">{taskNotes(framework.id, task.title).map(n => <li key={n}>{n}</li>)}</ul>
+                                )}
                                 {task.evidence && <EvidenceDetail evidence={task.evidence} color={colors.text} />}
                                 <RelatedTemplates className="ml-5" slugs={task.templates} exclusive={!!task.templatesExclusive} text={[task.title, task.control, task.how, task.check, task.citation && (task.citation.ref || task.citation.section || task.citation.label)].filter(Boolean).join(' ')} />
                                 {task.citation && (
@@ -602,7 +606,7 @@ function FrameworkBody({ framework, extraSections }) {
           const isPrivacy = isHipaaFramework(framework) || /privacy|gdpr|dpdpa|ccpa|coppa|27701|lgpd|pdpa|pipl/i.test(framework.name);
           const gaps = framework.startupGaps && framework.startupGaps.length
             ? framework.startupGaps
-            : GENERIC_GAPS;
+            : [...GENERIC_GAPS, ...(framework.extraGaps || [])];
           return (
             <div className={`bg-white rounded-2xl border ${colors.border} p-6 mb-8`}>
               <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">

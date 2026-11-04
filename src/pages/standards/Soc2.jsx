@@ -1,3 +1,4 @@
+import { SOC2_POLICY_GAPS } from "../../data/startupVariants.js";
 import { EngPartnershipLink } from "../../components/engineering/EngineeringPartnership.jsx";
 import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCheck.jsx";
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
@@ -9,6 +10,7 @@ import { SOC2_L1_GOVERNANCE, SOC2_L3_TESTS, SOC2_EXTEND } from "../../data/playb
 
 const FRAMEWORK = {
   id: "soc2",
+  extraGaps: SOC2_POLICY_GAPS,
   name: "SOC 2 Type II",
   region: "Global",
   flag: "🌐",
