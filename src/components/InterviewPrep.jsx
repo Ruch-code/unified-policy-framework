@@ -55,6 +55,7 @@ export default function InterviewPrep({ isDark = false }) {
     'appsec': { primary: '#d946ef', light: '#fdf4ff', dark: '#701a75', text: '#d946ef', textDark: '#f0abfc' },
     'red-team': { primary: '#64748b', light: '#f8fafc', dark: '#0f172a', text: '#64748b', textDark: '#cbd5e1' },
     'engineering-partnership': { primary: '#0f766e', light: '#f0fdfa', dark: '#134e4a', text: '#0f766e', textDark: '#5eead4' },
+    'senior-grc-engineering': { primary: '#0f766e', light: '#f0fdfa', dark: '#134e4a', text: '#0f766e', textDark: '#5eead4' },
     'principal-architect': { primary: '#db2777', light: '#fdf2f8', dark: '#831843', text: '#db2777', textDark: '#f9a8d4' },
   };
 
@@ -76,6 +77,7 @@ export default function InterviewPrep({ isDark = false }) {
     'red-team': 'bg-slate-700',
     'principal-architect': 'bg-pink-600',
     'engineering-partnership': 'bg-teal-700',
+    'senior-grc-engineering': 'bg-teal-700',
   };
 
   return (
