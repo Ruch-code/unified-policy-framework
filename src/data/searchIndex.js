@@ -351,7 +351,7 @@ const moduleEntries = [
     category: 'Policy & Control Modules',
     label: 'ISO 42001 - AI Management Systems',
     desc: 'Control library for all 32 clause requirements and 38 Annex A controls, with SoA builder, coverage tracking, policies, templates, evidence checklist and crosswalks.',
-    keywords: ['iso 42001', '42001', 'ai governance', 'ai management system', 'aims', 'aism', 'ai risk', 'ai policy', 'statement of applicability', 'soa builder', 'annex a', 'control library', 'impact assessment', 'model card', 'ai bill of materials'],
+    keywords: ['c1 to c10', 'test steps', 'what good looks like', 'iso 42001', '42001', 'ai governance', 'ai management system', 'aims', 'aism', 'ai risk', 'ai policy', 'statement of applicability', 'soa builder', 'annex a', 'control library', 'impact assessment', 'model card', 'ai bill of materials'],
     path: '/iso/42001',
     mode: 'route',
     anchorId: null,

@@ -5,6 +5,7 @@ import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 import { VibePlatformLink } from "../../components/playbook/VibePlatformScenario.jsx";
 import Iso42001Library from "../../components/iso42001/Iso42001Library.jsx";
 import PolicyTemplateLibrary from "../../components/iso42001/PolicyTemplateLibrary.jsx";
+import Iso42001Levels from "../../components/iso42001/Iso42001Levels.jsx";
 import { ITGC_MAPPING } from "../../data/iso42001.js";
 
 const FRAMEWORK = {
@@ -204,6 +205,7 @@ export default function Iso42001Page() {
       <LearningFrameworkPage framework={FRAMEWORK} />
       <RiskCrossCheckBlock frameworkId="iso42001" />
       <div className="max-w-6xl mx-auto px-4">
+        <Iso42001Levels />
         <Iso42001Library />
         <PolicyTemplateLibrary />
         <AimsRoadmap />
