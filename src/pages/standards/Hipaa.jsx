@@ -1,3 +1,4 @@
+import HipaaRequirementLibrary from "../../components/HipaaRequirementLibrary.jsx";
 import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCheck.jsx";
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 import { buildCitation, classifyRoles } from "../../data/hipaaDomain.js";
@@ -861,6 +862,7 @@ export default function Hipaa() {
   return (
     <>
       <LearningFrameworkPage framework={FRAMEWORK_WITH_EVIDENCE} />
+      <HipaaRequirementLibrary />
       <HipaaCeVsBa />
       <RiskCrossCheckBlock frameworkId="hipaa" />
       <ReferenceTable id="hipaa-security-matrix" title="Security Rule implementation specifications: required or addressable"
