@@ -1,0 +1,44 @@
+import { card } from './card.js';
+
+export default {
+  id: 'C.8', name: 'Operation', type: 'clause',
+  items: [
+    card('8.1', 'Audit operational planning and control, including outsourced processes', 2,
+      'The organization must plan, run and control the processes needed to meet security requirements and carry out the actions from Clause 6, keeping enough records to show they ran as planned. Externally provided processes, products and services must also be controlled, which the 2022 edition stresses.',
+      'Define how core processes run day to day, such as access, change, backup and vulnerability management, with criteria and owners. List outsourced processes and services, including cloud hosting, payroll, managed SOC or outsourced development, and how each is controlled through contracts, reviews and monitoring.',
+      [
+        'Ask for the list of operational processes and the criteria they work to.',
+        'Sample records from two processes to confirm they ran as planned.',
+        'Obtain the list of externally provided processes and sample 2 to confirm controls such as contract terms, reviews and monitoring.',
+        'Check that planned changes were controlled and unintended changes were reviewed.',
+        'Interview: "Which important process is run by a supplier, and how do you know it is working?"',
+      ],
+      ['Minor', 'Clause 8.1 requires externally provided processes to be controlled. The outsourced managed detection service is not listed as an external process, and no performance review or report from it was retained in the period.'],
+      ['R: Operating procedures with criteria and owners', 'R: List of externally provided processes and their controls', 'S: Process records such as tickets or job logs, with timestamps'],
+      { templates: ['vendor-management-policy'], related: ['6.1.3', '6.3', 'A.5.19', 'A.5.22', 'A.5.37'], soc2: 'CC5.3, CC9.2' }),
+    card('8.2', 'Audit that risk assessments are run on schedule and after significant change', 2,
+      'The organization must perform its risk assessments at planned intervals and whenever significant changes are proposed or happen, using the 6.1.2 criteria, and keep the results.',
+      'Run the full assessment once a year and record triggers for an earlier review: new product, new cloud region, acquisition, major incident or a new critical supplier. Keep each dated assessment, and add short change assessments to the register rather than waiting a year.',
+      [
+        'Confirm the planned interval and check the last assessment happened on time.',
+        'List significant changes in the period and check each one triggered an assessment.',
+        'Confirm results are retained and dated, with earlier versions archived rather than overwritten.',
+        'Interview: "What was the last change that made you reassess risk?"',
+      ],
+      ['Minor', 'Clause 8.2 requires risk assessments when significant changes are proposed. The migration to a new cloud provider in Q2 was not risk assessed, and the register was last updated 11 months ago.'],
+      ['R: Dated risk assessments for the period', 'R: Change records linked to risk updates', 'R: Archived earlier versions of the register'],
+      { templates: ['risk-methodology'], related: ['6.1.2', '6.3', '8.3'], soc2: 'CC3.2, CC3.4' }),
+    card('8.3', 'Audit implementation of the risk treatment plan', 2,
+      'The organization must carry out its risk treatment plan and keep records of the results.',
+      'Track each treatment action as a ticket with an owner and due date, and close it with evidence, such as the new configuration or policy. Report progress at management review, and update residual risk once treatments are in place.',
+      [
+        'Sample 5 treatment actions and check their status against due dates.',
+        'For completed actions, inspect the evidence that the control now operates.',
+        'For overdue actions, check the reason and whether the risk owner accepted the delay.',
+        'Interview a risk owner: "Which treatment in your area is late, and what is covering the risk meanwhile?"',
+      ],
+      ['Minor', 'Clause 8.3 requires the treatment plan to be implemented. 6 of 12 treatment actions are past their due date by more than 90 days, with no updated plan or risk acceptance.'],
+      ['S: Ticket export of treatment actions with status, with timestamp', 'R: Evidence of implemented controls for sampled actions', 'R: Updated residual risk ratings'],
+      { templates: ['risk-methodology'], related: ['6.1.3', '8.2', '9.3.2'], soc2: 'CC3.2, CC5.1' }),
+  ],
+};
