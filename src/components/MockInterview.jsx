@@ -11,7 +11,8 @@ async function getFeedback(q, answer) {
   const c = new AbortController();
   const t = setTimeout(() => c.abort(), 15000);
   try {
-    const res = await fetch('/api/gemini', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ query }), signal: c.signal });
+    const res = await fetch('/api/gemini', { method: 'POST', headers: { 'Content-Type': 'application/json', ...(localStorage.getItem('compliance_token') ? { Authorization: `Bearer ${localStorage.getItem('compliance_token')}` } : {}) }, body: JSON.stringify({ query }), signal: c.signal });
+    if (res.status === 429) return 'You have reached the usage limit. Please try again later.';
     if (!res.ok) return '';
     return (await res.json()).answer || '';
   } catch { return ''; } finally { clearTimeout(t); }

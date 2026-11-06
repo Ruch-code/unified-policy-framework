@@ -461,10 +461,11 @@ export async function replyStructured(query, { context = [], history = [], useRe
   if (useRemote) {
     try {
       const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), 7000);
+      const timer = setTimeout(() => controller.abort(), 15000);
+      const token = (() => { try { return localStorage.getItem('compliance_token'); } catch { return null; } })();
       const res = await fetch('/api/gemini', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}) },
         body: JSON.stringify({ query: query.trim(), context, history, structured: true, system_prompt: buildSystemPrompt(query, context, history) }),
         signal: controller.signal,
       });
