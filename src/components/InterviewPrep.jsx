@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import interviewData from '../data/interview-roles.json';
+import MockInterview from './MockInterview.jsx';
 
 export default function InterviewPrep({ isDark = false }) {
   const [roles, setRoles] = useState([]);
@@ -92,6 +93,8 @@ export default function InterviewPrep({ isDark = false }) {
             Practice real scenarios with expert-level responses.
           </p>
         </div>
+
+        <MockInterview roles={roles.filter((r) => r.questions?.some((q) => q.q && q.a))} />
 
         {/* Role Tabs */}
         <div className="flex flex-wrap justify-center gap-2 mb-10" role="tablist" aria-label="Interview roles">
