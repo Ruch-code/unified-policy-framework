@@ -41,6 +41,7 @@ export default {
         'Challenge exclusions: test that the stated reason is true, for example that no software development is really outsourced.',
         'Confirm risk owners approved the treatment plan and accepted residual risk, with dates.',
         'Interview a risk owner: "What residual risk did you accept, and why was that acceptable?"',
+        "Interview the SoA owner: \"Which Annex A control did you exclude, and what would make you include it?\"",
       ],
       ['Major', 'Clause 6.1.3 requires a Statement of Applicability with justification for exclusions. The SoA excludes A.8.30 Outsourced development, but two sampled production changes were written by a contractor, and no risk owner approval of the treatment plan exists.'],
       ['R: Statement of Applicability with justification and status for all 93 controls', 'R: Risk treatment plan with owners and dates', 'R: Risk owner approvals of the plan and residual risk'],
