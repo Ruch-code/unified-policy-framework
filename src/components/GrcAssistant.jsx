@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
-import { Send, Sparkles, Loader2, AlertTriangle } from 'lucide-react';
+import { Send, Sparkles, Loader2, AlertTriangle, Mic, Square, Volume2, VolumeX } from 'lucide-react';
+import { useSpeechInput, speak, stopSpeaking, canListen, canSpeak, VOICE_NOTICE } from '../utils/voice.js';
 import { replyStructured } from '../data/grcAssistant.js';
 import { retrieve } from '../data/retrieval.js';
 import { FRAMEWORK_KB } from '../data/grcKnowledgeBase.js';
@@ -135,6 +136,8 @@ export default function GrcAssistant({ compact = false }) {
   const [history, setHistory] = useState([]);
   const [thinking, setThinking] = useState(false);
   const scrollRef = useRef(null);
+  const [voiceReplies, setVoiceReplies] = useState(false);
+  const voice = useSpeechInput({ onFinal: (t) => ask(t) });
 
   const ask = async (text) => {
     const value = (text ?? query).trim();
@@ -153,6 +156,7 @@ export default function GrcAssistant({ compact = false }) {
       );
       const answer = await replyStructured(value, { context, history: turns, useRemote: true });
       setHistory(h => [...h, { role: 'assistant', answer }]);
+      if (voiceReplies) speak([answer.summary, ...(answer.steps || []).slice(0, 3).map(s => s.title)].filter(Boolean).join('. '));
     } catch {
       setHistory(h => [...h, { role: 'assistant', answer: { summary: 'Something went wrong - please try again.', steps: [], discrepancies: [], quick_actions: [] } }]);
     }
@@ -228,14 +232,28 @@ export default function GrcAssistant({ compact = false }) {
       )}
 
       {/* Input - pinned, never participates in the scroll area */}
+      {voice.error && <p role="alert" className="mt-2 text-xs text-red-700 dark:text-red-300">{voice.error}</p>}
+      {canListen() && <p className="mt-2 text-[10px] text-slate-500 dark:text-[#94a3b8]">{VOICE_NOTICE}</p>}
       <form onSubmit={e => { e.preventDefault(); ask(); }} className="mt-3 flex items-center gap-2 shrink-0">
         <input
-          value={query}
+          value={voice.listening ? voice.transcript : query}
           onChange={e => setQuery(e.target.value)}
           placeholder="e.g. Common audit observations in SOC 2…"
           aria-label="Ask the GRC advisor"
           className="flex-1 px-4 py-2.5 border border-slate-300 dark:border-[#334155] rounded-xl text-sm text-slate-900 dark:text-[#f8fafc] placeholder:text-slate-400 dark:placeholder:text-[#64748b] focus:ring-2 focus:ring-indigo-500 focus:border-transparent focus-visible:outline-none"
         />
+        {canSpeak() && (
+          <button type="button" aria-pressed={voiceReplies} aria-label="Read answers aloud" onClick={() => { if (voiceReplies) stopSpeaking(); setVoiceReplies(!voiceReplies); }}
+            className="w-11 h-11 flex items-center justify-center rounded-xl border border-slate-300 dark:border-[#334155] text-slate-700 dark:text-[#cbd5e1] shrink-0">
+            {voiceReplies ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+          </button>
+        )}
+        {canListen() && (
+          <button type="button" aria-label={voice.listening ? 'Stop listening' : 'Ask by voice'} onClick={voice.listening ? voice.stop : voice.start}
+            className="w-11 h-11 flex items-center justify-center rounded-xl border border-slate-300 dark:border-[#334155] text-slate-700 dark:text-[#cbd5e1] shrink-0">
+            {voice.listening ? <Square className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
+          </button>
+        )}
         <button type="submit" disabled={thinking || !query.trim()}
           className="w-11 h-11 flex items-center justify-center rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-50 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
           aria-label="Send message">
