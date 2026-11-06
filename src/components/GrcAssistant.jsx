@@ -1,4 +1,6 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { LinkedText } from '../utils/controlLinks.jsx';
 import { Send, Sparkles, Loader2, AlertTriangle, Mic, Square, Volume2, VolumeX } from 'lucide-react';
 import { useSpeechInput, speak, stopSpeaking, canListen, canSpeak, VOICE_NOTICE } from '../utils/voice.js';
 import { replyStructured } from '../data/grcAssistant.js';
@@ -23,7 +25,15 @@ function AnswerView({ answer }) {
   return (
     <div className="text-sm text-slate-900 dark:text-[#f8fafc] space-y-3">
       {answer.summary && (
-        <p className={`${source === 'gemini-rag' ? 'whitespace-pre-wrap' : 'font-semibold'} text-slate-900 dark:text-white leading-relaxed`}>{answer.summary}</p>
+        <p className={`${source === 'gemini-rag' ? 'whitespace-pre-wrap' : 'font-semibold'} text-slate-900 dark:text-white leading-relaxed`}><LinkedText text={answer.summary} /></p>
+      )}
+
+      {source === 'local-rag-fallback' && (
+        <p className="text-xs text-amber-700 dark:text-amber-300">The AI service was unavailable, so this answer comes from OneLens content only.</p>
+      )}
+
+      {answer.related?.length > 0 && (
+        <p className="text-xs text-slate-600 dark:text-[#94a3b8]">On OneLens: {answer.related.map((x, i) => <span key={x.href + i}>{i > 0 && ', '}<Link className="underline" to={x.href}>{x.label}</Link></span>)}</p>
       )}
 
       {answer.sources?.length > 0 && (
@@ -135,9 +145,12 @@ function AnswerView({ answer }) {
   );
 }
 
+const CHAT_KEY = 'onelens-grc-assistant-chat';
+
 export default function GrcAssistant({ compact = false }) {
   const [query, setQuery] = useState('');
-  const [history, setHistory] = useState([]);
+  const [history, setHistory] = useState(() => { try { return JSON.parse(sessionStorage.getItem(CHAT_KEY)) || []; } catch { return []; } });
+  useEffect(() => { try { sessionStorage.setItem(CHAT_KEY, JSON.stringify(history.slice(-30))); } catch { /* storage unavailable */ } }, [history]);
   const [thinking, setThinking] = useState(false);
   const scrollRef = useRef(null);
   const [voiceReplies, setVoiceReplies] = useState(false);
@@ -158,7 +171,10 @@ export default function GrcAssistant({ compact = false }) {
           ? { role: 'user', content: m.text }
           : { role: 'assistant', content: m.answer?.summary || 'I answered earlier in this chat.' },
       );
-      const answer = await replyStructured(value, { context, history: turns, useRemote: true });
+      const reply = await replyStructured(value, { context, history: turns, useRemote: true });
+      const seen = new Set();
+      const related = context.filter(c => c.href && !seen.has(c.href) && seen.add(c.href)).slice(0, 3).map(c => ({ href: c.href, label: c.label }));
+      const answer = { ...reply, related };
       setHistory(h => [...h, { role: 'assistant', answer }]);
       if (voiceReplies) speak([answer.summary, ...(answer.steps || []).slice(0, 3).map(s => s.title)].filter(Boolean).join('. '));
     } catch {
@@ -218,6 +234,10 @@ export default function GrcAssistant({ compact = false }) {
           </div>
         )}
       </div>
+
+      {history.length > 0 && !thinking && (
+        <button type="button" onClick={() => { stopSpeaking(); setHistory([]); }} className="mt-2 self-start text-xs text-slate-600 dark:text-[#94a3b8] underline">New chat</button>
+      )}
 
       {/* Starter chips - shown only before the first exchange (no duplication with suggestions) */}
       {history.length === 0 && (

@@ -9,6 +9,9 @@ import {
   VENDOR_CLAUSE_CONDITIONAL,
 } from './grcKnowledgeBase.js';
 import { CONTROLS as ISO42001_CONTROLS } from './iso42001.js';
+import { ANNEX_A_CONTROLS as ISO27001_ANNEX_A } from './iso27001AnnexA.js';
+import { CONTROLS as SOC2_CONTROLS, MATRIX_SECTIONS as SOC2_SECTIONS } from './soc2Criteria.js';
+import { HIPAA_REQUIREMENTS } from './hipaaRequirements.js';
 
 const norm = (s = '') =>
   String(s).toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '').trim();
@@ -87,6 +90,37 @@ function buildCorpus() {
       label: `ISO/IEC 42001 ${k.id} ${k.title}`,
       text: `${k.type}. ${k.plainEnglishSummary} Guidance: ${k.implementationGuidance.join(' ')} Evidence: ${k.evidence.join('; ')}. Owner: ${k.ownerRole}. Common gaps: ${k.commonGaps.join(' ')}`,
       tags: [k.id.toLowerCase(), 'iso42001', '42001'],
+      href: `/iso/42001#${k.id}`,
+    });
+  });
+
+  ISO27001_ANNEX_A.forEach(k => {
+    docs.push({
+      source: 'iso27001',
+      label: `ISO/IEC 27001 ${k.id} ${k.title}`,
+      text: `Annex A control. ${k.purpose || ''}`,
+      tags: [k.id.toLowerCase(), 'iso27001', '27001'],
+      href: '/iso/27001',
+    });
+  });
+
+  SOC2_SECTIONS.forEach(s => s.subs.forEach(sub => {
+    docs.push({
+      source: 'soc2',
+      label: `SOC 2 ${sub.title}`,
+      text: sub.ids.map(id => `${SOC2_CONTROLS[id].name}: ${SOC2_CONTROLS[id].desc}`).join(' '),
+      tags: [sub.id.toLowerCase(), 'soc2', 'soc'],
+      href: '/soc2#soc2-controls-by-criteria',
+    });
+  }));
+
+  HIPAA_REQUIREMENTS.forEach(r => {
+    docs.push({
+      source: 'hipaa',
+      label: `HIPAA ${r.ruleArea}: ${r.name}`,
+      text: `${r.category}. ${r.summary} ${r.whatGoodLooksLike} Applies to: ${r.appliesTo}.${r.status ? ` ${r.status}.` : ''}`,
+      tags: ['hipaa'],
+      href: `/hipaa#${r.slug}`,
     });
   });
 
@@ -120,6 +154,7 @@ export function retrieve(query, k = 5) {
     source: r.doc.source,
     label: r.doc.label,
     snippet: r.doc.text.slice(0, 900),
+    href: r.doc.href,
     score: r.score,
   }));
 }
