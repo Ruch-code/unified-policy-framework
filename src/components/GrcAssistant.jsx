@@ -23,7 +23,11 @@ function AnswerView({ answer }) {
   return (
     <div className="text-sm text-slate-900 dark:text-[#f8fafc] space-y-3">
       {answer.summary && (
-        <p className="font-semibold text-slate-900 dark:text-white leading-relaxed">{answer.summary}</p>
+        <p className={`${source === 'gemini-rag' ? 'whitespace-pre-wrap' : 'font-semibold'} text-slate-900 dark:text-white leading-relaxed`}>{answer.summary}</p>
+      )}
+
+      {answer.sources?.length > 0 && (
+        <p className="text-xs text-slate-600 dark:text-[#94a3b8]">From the web: {answer.sources.map((x, i) => <span key={x.uri}>{i > 0 && ', '}<a className="underline" href={x.uri} target="_blank" rel="noopener noreferrer">{x.title}</a></span>)}</p>
       )}
 
       {/* Structured steps - Wise Advisor */}
