@@ -524,6 +524,7 @@ function FrameworkBody({ framework, extraSections }) {
                                 )}
                                 {task.evidence && <EvidenceDetail evidence={task.evidence} color={colors.text} />}
                                 <RelatedTemplates className="ml-5" slugs={task.templates} exclusive={!!task.templatesExclusive} text={[task.title, task.control, task.how, task.check, task.citation && (task.citation.ref || task.citation.section || task.citation.label)].filter(Boolean).join(' ')} />
+                                {Array.isArray(task.toBuild) && task.toBuild.length > 0 && <p className="ml-5 mt-1 text-xs text-gray-600 dark:text-slate-300">{task.toBuild.map((n) => `Template to build: ${n}`).join('; ')}</p>}
                                 {task.citation && (
                                   <CitationRow
                                     citation={{
@@ -568,8 +569,9 @@ function FrameworkBody({ framework, extraSections }) {
                       </div>
                     );
                     };
-                    if (!framework.groupLevel) return week.tasks.map((task, i) => renderTask(task, i));
-                    return framework.groupLevel(idx, week.tasks.length).map((g) => {
+                    const levelGroups = framework.groupLevel ? framework.groupLevel(idx, week.tasks.length) : null;
+                    if (!levelGroups) return week.tasks.map((task, i) => renderTask(task, i));
+                    return levelGroups.map((g) => {
                       const items = g.subs.flatMap(([, list]) => list);
                       const finished = items.filter(({ i }) => progress[`w${week.week}-${i}`]).length;
                       const hrs = items.reduce((sum, { i }) => sum + (week.tasks[i].hours || 0), 0);
@@ -700,7 +702,7 @@ function TaskDetail({ label, value, color }) {
         {label}
         <ChevronRight className={`w-3 h-3 transition-transform ${open ? 'rotate-90' : ''}`} />
       </button>
-      {open && <p className="text-gray-600 mt-1 ml-7 leading-relaxed">{value}</p>}
+      {open && <p className="text-gray-600 mt-1 ml-7 leading-relaxed whitespace-pre-line">{value}</p>}
     </div>
   );
 }
