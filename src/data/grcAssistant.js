@@ -461,7 +461,7 @@ export async function replyStructured(query, { context = [], history = [], useRe
   if (useRemote) {
     try {
       const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), 15000);
+      const timer = setTimeout(() => controller.abort(), 20000);
       const token = (() => { try { return localStorage.getItem('compliance_token'); } catch { return null; } })();
       const res = await fetch('/api/gemini', {
         method: 'POST',
@@ -486,6 +486,7 @@ export async function replyStructured(query, { context = [], history = [], useRe
             suggestions: local.suggestions,
             intents: local.intents,
             rawQuery: query,
+            sources: Array.isArray(structured.sources) ? structured.sources : [],
             built_from: 'gemini-rag',
           };
         }

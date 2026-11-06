@@ -20,7 +20,7 @@ async function overLimit(userId, context) {
   return false;
 }
 
-const STRUCTURED_FORMAT = 'Reply only with JSON using these keys: summary (string, 2 sentences at most), steps (array of 3 to 5 objects with title and description), discrepancies (array of strings), quick_actions (array of up to 4 short strings). Use the retrieved context first, and never fabricate citations.';
+const CONVERSATION_STYLE = 'Answer like an experienced GRC colleague talking to the user. First work out what they actually mean, then answer that directly in natural, plain sentences. Use short paragraphs, not headings or markdown. Keep it under 150 words unless they ask for detail, and it must sound good read aloud. Use the retrieved context first. Use Google Search only when the context is not enough or the question depends on recent information. If you are unsure, say so. Never fabricate citations.';
 
 export default async (req, context) => {
   try {
@@ -38,23 +38,25 @@ export default async (req, context) => {
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) return json({ message: 'Gemini API key not configured.' }, 500);
 
-    const body = {
-      contents: [{ role: 'user', parts: [{ text: `You are a GRC (Governance, Risk, Compliance) assistant. Answer the following question accurately, with concrete references to frameworks (SOC 2, ISO 27001, PCI-DSS, HIPAA, NIST CSF, GDPR, DPDPA, CCPA/CPRA, COPPA, LGPD, PDPA, PIPL, FedRAMP, CJIS) where relevant. If the question is about a specific framework, cite the relevant control, article, or requirement. Structure the answer with a short summary and 3-5 actionable bullets. Do not fabricate citations.` + (structured
-        ? `\n${STRUCTURED_FORMAT}\nRetrieved context: ${JSON.stringify(retrieved || []).slice(0, 8000)}\nRecent conversation: ${JSON.stringify(history || []).slice(0, 3000)}\nQuestion: `
-        : '\n') + query }] }],
-      ...(structured ? { generationConfig: { responseMimeType: 'application/json' } } : {}),
-    };
-
-    const res = await fetch(GEMINI_URL + '?key=' + apiKey, {
+    const base = structured
+      ? `${CONVERSATION_STYLE}\nRetrieved context: ${JSON.stringify(retrieved || []).slice(0, 8000)}\nRecent conversation: ${JSON.stringify(history || []).slice(0, 3000)}\nUser: ${query}`
+      : `You are a GRC (Governance, Risk, Compliance) assistant. Answer accurately and do not fabricate citations.\n${query}`;
+    const call = (tools) => fetch(GEMINI_URL + '?key=' + apiKey, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
+      body: JSON.stringify({ contents: [{ role: 'user', parts: [{ text: base }] }], ...(tools ? { tools: [{ google_search: {} }] } : {}) }),
     });
+    // Try with Google Search first, and fall back to the model alone if search is unavailable.
+    let res = await call(!!structured);
+    if (!res.ok && structured) res = await call(false);
     if (!res.ok) return json({ message: 'Gemini API error.' }, 502);
     const data = await res.json();
-    const answer = data?.candidates?.[0]?.content?.parts?.[0]?.text || 'Gemini returned an empty response.';
+    const cand = data?.candidates?.[0];
+    const answer = (cand?.content?.parts || []).map((p) => p.text || '').join('').trim();
+    if (!answer) return json({ message: 'Gemini returned an empty response.' }, 502);
     if (structured) {
-      try { return json({ structured: JSON.parse(answer) }); } catch { return json({ message: 'Unexpected Gemini response.' }, 502); }
+      const sources = (cand?.groundingMetadata?.groundingChunks || []).map((c) => c.web).filter((w) => w?.uri).slice(0, 4).map((w) => ({ title: w.title || 'Source', uri: w.uri }));
+      return json({ structured: { summary: answer, steps: [], discrepancies: [], quick_actions: [], sources } });
     }
     return json({ answer });
   } catch (e) {
