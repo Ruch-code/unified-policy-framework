@@ -6,6 +6,8 @@ import { withEvidence, appendToLevel } from "../../data/playbookEvidence.js";
 import { HIPAA_L2_SECURITY, HIPAA_L3_PRIVACY_BREACH, HIPAA_SECURITY_MATRIX, HIPAA_STATUS_NOTES } from "../../data/playbookAdditions/hipaa.js";
 import ReferenceTable from "../../components/playbook/ReferenceTable.jsx";
 import HipaaCeVsBa from "../../components/playbook/HipaaCeVsBa.jsx";
+import HipaaSoc2Crosswalk from "../../components/playbook/HipaaSoc2Crosswalk.jsx";
+import { CROSSWALK_LEVEL } from "../../data/hipaaSoc2Crosswalk.js";
 
 const FRAMEWORK = {
   id: "hipaa",
@@ -854,6 +856,15 @@ function withCitations(modules) {
 // Additive: new tasks are appended at the end of a level so saved progress keys do not move.
 appendToLevel(FRAMEWORK, 1, HIPAA_L2_SECURITY);
 appendToLevel(FRAMEWORK, 2, HIPAA_L3_PRIVACY_BREACH);
+// Additive: the SOC 2 to HIPAA crosswalk is a new final level, so earlier progress keys do not move.
+FRAMEWORK.modules.push({ week: FRAMEWORK.modules.length + 1, ...CROSSWALK_LEVEL });
+const CROSSWALK_LEVEL_INDEX = FRAMEWORK.modules.length - 1;
+// Group only the crosswalk level by overlap; every other level keeps its flat list (null).
+FRAMEWORK.groupLevel = (idx) => {
+  if (idx !== CROSSWALK_LEVEL_INDEX) return null;
+  let i = 0;
+  return CROSSWALK_LEVEL.days.map((d) => ({ key: d.label, label: d.label, subs: [[d.description, d.tasks.map(() => ({ i: i++, tags: [] }))]] }));
+};
 FRAMEWORK.modules = withCitations(FRAMEWORK.modules);
 const FRAMEWORK_WITH_EVIDENCE = withEvidence(FRAMEWORK);
 FRAMEWORK.roleAware = true;
@@ -862,6 +873,7 @@ export default function Hipaa() {
   return (
     <>
       <LearningFrameworkPage framework={FRAMEWORK_WITH_EVIDENCE} />
+      <HipaaSoc2Crosswalk />
       <HipaaRequirementLibrary />
       <HipaaCeVsBa />
       <RiskCrossCheckBlock frameworkId="hipaa" />
