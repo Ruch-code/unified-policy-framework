@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { ChevronRight, Search } from 'lucide-react';
 import { CONTROLS, MATRIX_SECTIONS, CONTROL_TASKS, SCOPE_NOTE, CATALOG_NOTE, SCOPE_SUMMARY, scopeBadges, sectionInScope, controlInScope, sectionIds } from '../data/soc2Criteria.js';
+import { CONTROL_TESTS, TEST_TYPES, RESULT_NOTE } from '../data/soc2Testing.js';
 
 const FILTERS = [['all', 'All'], ['type1', 'Type I scope'], ['type2', 'Type II scope']];
 const TEXT = 'text-navy-700 dark:text-text-dark-secondary';
@@ -14,6 +15,10 @@ function ControlRow({ id, taskTitle }) {
       <p className="font-semibold text-navy-900 dark:text-text-dark-primary break-words"><span className="font-mono">{id}</span> {c.name}</p>
       <p>{c.desc}</p>
       <div className="mt-1 flex flex-wrap gap-1">{scopeBadges(id).map((b) => <span key={b} className="px-1.5 py-0.5 rounded text-[11px] font-semibold bg-violet-100 text-violet-800 dark:bg-violet-900/40 dark:text-violet-200">{b}</span>)}</div>
+      {CONTROL_TESTS[id] && <div className="mt-2 grid gap-2 md:grid-cols-2 text-xs">
+        <div className={`rounded-lg border ${LINE} p-2`}><p className="font-semibold text-navy-900 dark:text-text-dark-primary">How an auditor tests it</p><p className="text-[11px] font-semibold text-violet-700 dark:text-violet-300">{CONTROL_TESTS[id].types.join(', ')}</p><p>{CONTROL_TESTS[id].how}</p></div>
+        <div className={`rounded-lg border ${LINE} p-2`}><p className="font-semibold text-navy-900 dark:text-text-dark-primary">What a clean result looks like</p><p>{CONTROL_TESTS[id].clean}</p></div>
+      </div>}
       <p className="mt-1 text-xs"><strong>Linked OneLens tasks:</strong> {links.length ? links.join('; ') : 'None linked yet'}</p>
     </li>
   );
@@ -44,6 +49,13 @@ export default function Soc2ControlMatrix({ framework }) {
           <tbody>{SCOPE_SUMMARY.map((r) => <tr key={r[0]} className={`border-t ${LINE}`}>{r.map((c) => <td key={c} className="p-2">{c}</td>)}</tr>)}</tbody>
         </table></div>
         <ul className={`list-disc pl-5 text-sm mb-4 ${TEXT}`}><li>Controls added by Confidentiality: 76</li><li>Controls added by Privacy: 77 to 99</li></ul>
+        <details className={`rounded-xl border ${LINE} mb-4`}>
+          <summary className="p-3 cursor-pointer font-semibold text-sm text-navy-900 dark:text-text-dark-primary">How auditors test SOC 2 controls</summary>
+          <div className="px-3 pb-3 overflow-x-auto"><table className={`w-full min-w-[28rem] text-sm ${TEXT}`}>
+            <thead><tr className="text-left text-navy-900 dark:text-text-dark-primary"><th scope="col" className="p-2">Test type</th><th scope="col" className="p-2">What it means</th></tr></thead>
+            <tbody>{TEST_TYPES.map(([t, d]) => <tr key={t} className={`border-t ${LINE}`}><td className="p-2 font-semibold">{t}</td><td className="p-2">{d}</td></tr>)}</tbody>
+          </table><p className={`text-sm mt-2 ${TEXT}`}>{RESULT_NOTE}</p></div>
+        </details>
         <div className="flex flex-wrap items-center gap-2 mb-3">
           {FILTERS.map(([k, l]) => <button key={k} type="button" aria-pressed={filter === k} onClick={() => setFilter(k)} className={`px-3 py-1.5 rounded-lg text-xs font-semibold border focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 ${filter === k ? 'bg-violet-600 text-white border-violet-600' : `${LINE} ${TEXT}`}`}>{l}</button>)}
           <span className="relative flex-1 min-w-[12rem]"><Search className="w-3.5 h-3.5 absolute left-2 top-2.5 text-gray-400" aria-hidden="true" />
