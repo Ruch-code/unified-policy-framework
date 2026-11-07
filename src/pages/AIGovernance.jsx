@@ -1,6 +1,7 @@
 import AimsRoadmap from '../components/aiAssurance/AimsRoadmap.jsx';
 import AiSecurityAudit from '../components/aiAssurance/AiSecurityAudit.jsx';
 import RaiCrosswalk from '../components/aiAssurance/RaiCrosswalk.jsx';
+import AiLifecycleCrosswalk from '../components/aiAssurance/AiLifecycleCrosswalk.jsx';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BrainCircuit, Scale, ShieldCheck, Workflow, FileText, Cpu, Sparkles, ArrowRight, AlertTriangle, CheckCircle2 } from 'lucide-react';
@@ -187,6 +188,7 @@ export default function AIGovernance({ isDark = false }) {
         </section>
 
         <RaiCrosswalk />
+        <AiLifecycleCrosswalk />
         <AimsRoadmap />
         <AiSecurityAudit />
 

@@ -1,5 +1,6 @@
 import AimsRoadmap from "../../components/aiAssurance/AimsRoadmap.jsx";
 import AiSecurityAudit from "../../components/aiAssurance/AiSecurityAudit.jsx";
+import AiLifecycleCrosswalk from "../../components/aiAssurance/AiLifecycleCrosswalk.jsx";
 import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCheck.jsx";
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 import { VibePlatformLink } from "../../components/playbook/VibePlatformScenario.jsx";
@@ -210,6 +211,7 @@ export default function Iso42001Page() {
         <Iso42001Library />
         <PolicyTemplateLibrary />
         <AimsRoadmap />
+        <AiLifecycleCrosswalk />
         <AiSecurityAudit />
         <VibePlatformLink className="my-8" />
       </div>
