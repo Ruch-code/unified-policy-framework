@@ -1,10 +1,8 @@
 import StartupNotes from './StartupNotes.jsx';
 import { EngPartnershipLink } from './engineering/EngineeringPartnership.jsx';
 import React, { useState } from 'react';
-import { toPlainDeep } from '../utils/xlsxExport.js';
-import { Radar, FileClock, Siren, ShieldAlert, CheckCircle2, Activity, Database, Clock, FileSearch, GitBranch, Repeat, Search, ShieldCheck, Shield, Download } from 'lucide-react';
+import { Radar, FileClock, Siren, ShieldAlert, CheckCircle2, Activity, Database, Clock, FileSearch, GitBranch, Repeat, Search, ShieldCheck, Shield } from 'lucide-react';
 import PriorityBadge from './ui/PriorityBadge.jsx';
-import CodeBlock from './ui/CodeBlock.jsx';
 import ResponsiveTable from './ResponsiveTable';
 
 const SEV_LABELS = { Critical: 'P0', High: 'P1', Medium: 'P2', Low: 'P3' };
@@ -115,47 +113,24 @@ function IrTriageGenerator() {
 
   const meta = IR_SEVERITIES.find(s => s.sev === sev) || IR_SEVERITIES[0];
 
-  const ticket = {
-    schema: 'grc.incident_ticket.v1',
-    ticket: {
-      id: `IR-${Date.now().toString(36).toUpperCase()}`,
-      created_utc: new Date().toISOString(),
-      severity: sev,
-      severity_label: meta.name,
-      slas: { respond_minutes: meta.respond, contain: meta.contain, review: meta.review },
-      classification: { summary, vector, data_classification: data },
-      priority: sev === 'P0' ? 'emergency' : sev === 'P1' ? 'high' : sev === 'P2' ? 'normal' : 'advisory',
-      response_plan: [
-        { step: 1, action: 'Acknowledge via on-call rotation (SLA clock starts now)' },
-        { step: 2, action: 'Assign incident commander + lead responder; open comms channels' },
-        { step: 3, action: 'Preserve & image affected systems; protect logs' },
-        { step: 4, action: 'Contain: isolate host, rotate creds, cut egress, block IOCs' },
-        { step: 5, action: `Root-cause via 5-Whys; write CAPA before closure (${meta.review})` },
-      ],
-      requires_notification: data !== 'none' || sev === 'P0' || sev === 'P1',
-      requires_capa: sev === 'P0' || sev === 'P1',
-    },
-  };
-  const json = JSON.stringify(toPlainDeep(ticket), null, 2);
-
-  const download = () => {
-    const blob = new Blob([json], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `incident-${sev.toLowerCase()}-ticket.json`;
-    a.click();
-    URL.revokeObjectURL(url);
-  };
+  const notify = data !== 'none' || sev === 'P0' || sev === 'P1';
+  const capa = sev === 'P0' || sev === 'P1';
+  const SLA_ROWS = [
+    ['Respond (acknowledge)', meta.respond],
+    ['Contain', meta.contain],
+    ['Post-incident review', meta.review],
+    ['Notification assessment needed', notify ? 'Yes' : 'No'],
+    ['Corrective action (CAPA) before closure', capa ? 'Required' : 'Recommended'],
+  ];
 
   const btn = (active) => `px-3 py-1.5 rounded-lg text-xs font-bold border transition ${active ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white dark:bg-slate-900/60 text-gray-700 dark:text-text-dark-secondary border-surface-300 dark:border-surface-dark-300 hover:border-indigo-400'}`;
 
   return (
     <div className="mt-6 rounded-xl border border-surface-200 dark:border-surface-dark-200 bg-white dark:bg-slate-900/60 p-5">
       <h4 className="font-bold text-navy-900 dark:text-text-dark-primary mb-1 flex items-center gap-2">
-        <Siren className="w-4 h-4 text-red-600 dark:text-red-400" /> IR ticket generator - triage JSON, copy &amp; paste into your SIEM webhook
+        <Siren className="w-4 h-4 text-red-600 dark:text-red-400" /> IR triage: SLA targets by severity
       </h4>
-      <p className="text-xs text-gray-600 dark:text-text-dark-secondary mb-4">Pick a severity and fill the summary - the ticket schema wires your SLA targets and response plan automatically.</p>
+      <p className="text-xs text-gray-600 dark:text-text-dark-secondary mb-4">Pick a severity and describe the incident to see the SLA targets that apply.</p>
 
       <div className="flex flex-wrap gap-2 mb-4">
         {IR_SEVERITIES.map(s => (
@@ -196,18 +171,23 @@ function IrTriageGenerator() {
         </div>
       </div>
 
-      <div className="relative">
-        <button
-          type="button"
-          onClick={download}
-          className="absolute top-3 right-3 z-10 inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors"
-        >
-          <Download className="w-3.5 h-3.5" /> .json
-        </button>
-        <CodeBlock code={json} title="incident-ticket.json" lang="json" />
+      <div className="overflow-x-auto rounded-lg border border-surface-200 dark:border-surface-dark-200">
+        <table className="w-full text-sm">
+          <caption className="sr-only">SLA targets for {sev}</caption>
+          <thead className="bg-surface-50 dark:bg-slate-800"><tr>
+            <th scope="col" className="text-left p-2 text-navy-900 dark:text-text-dark-primary">SLA ({sev} {meta.name})</th>
+            <th scope="col" className="text-left p-2 text-navy-900 dark:text-text-dark-primary">Target</th>
+          </tr></thead>
+          <tbody>{SLA_ROWS.map(([k, v]) => (
+            <tr key={k} className="border-t border-surface-200 dark:border-surface-dark-200">
+              <td className="p-2 text-gray-700 dark:text-text-dark-secondary">{k}</td>
+              <td className="p-2 font-semibold text-navy-900 dark:text-text-dark-primary">{v}</td>
+            </tr>
+          ))}</tbody>
+        </table>
       </div>
       <p className="mt-2 text-[11px] text-gray-500 dark:text-text-dark-muted">
-        SLA targets derive from your severity matrix above - keep this schema stable so the SOC webhook validator accepts it.
+        SLA targets come from the severity matrix above. The clock starts at acknowledgement.
       </p>
     </div>
   );
