@@ -9,6 +9,7 @@ import ForgotPassword from './pages/ForgotPassword.jsx';
 import AdminPanel from './pages/AdminPanel.jsx';
 import NewsletterEditor from './pages/NewsletterEditor.jsx';
 import KnowledgeBase from './pages/KnowledgeBase.jsx';
+import DomainPage from './pages/DomainPage.jsx';
 import Profile from './pages/Profile.jsx';
 import Templates from './pages/Templates.jsx';
 import TemplatePreview from './pages/TemplatePreview.jsx';
@@ -89,6 +90,8 @@ function App() {
           <Route path="admin" element={<RequireAuth admin><AdminPanel /></RequireAuth>} />
           <Route path="newsletter" element={<RequireAuth admin><NewsletterEditor /></RequireAuth>} />
           <Route path="knowledge" element={<RequireAuth><KnowledgeBase /></RequireAuth>} />
+          <Route path="domains" element={<Protected><DomainPage /></Protected>} />
+          <Route path="domains/:code" element={<Protected><DomainPage /></Protected>} />
           <Route path="ai-assurance" element={<Navigate to="/?section=ai-vendors#vendor-risk" replace />} />
           <Route path="profile" element={<RequireAuth><Profile /></RequireAuth>} />
 

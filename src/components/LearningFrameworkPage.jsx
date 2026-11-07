@@ -4,6 +4,9 @@ import { taskNotes } from '../data/startupVariants.js';
 import { Link } from 'react-router-dom';
 import { Clock, RefreshCw, ArrowRight, BookOpen, ExternalLink, Lock, CheckCircle, ChevronDown, ChevronRight, Zap, Shield, Award, Target, TrendingUp, AlertTriangle, Lightbulb, ClipboardList, Info } from 'lucide-react';
 import FindingsDatabase from './FindingsDatabase.jsx';
+import { resolveTaskDomains } from '../data/controlDomains.js';
+import { DomainPills, SafeguardTag } from './domains/DomainPill.jsx';
+import DomainToolbar, { useDomainFilters } from './domains/DomainToolbar.jsx';
 import PrivacyDocuments from './PrivacyDocuments.jsx';
 import { useHipaaRole, HipaaRoleProvider, HipaaRoleGate, HipaaRoleChip, HipaaScopeIntake, UnresolvedFlowsBanner } from './HipaaRoleGate.jsx';
 import { ROLE_OPTIONS } from '../data/hipaaDomain.js';
@@ -263,6 +266,36 @@ function FrameworkBody({ framework, extraSections }) {
   };
 
   const totalHours = data.weeks.reduce((sum, w) => sum + w.tasks.reduce((s, t) => s + (t.hours || 0), 0), 0);
+
+  // Control domains (additive): only on pages that set framework.domainFramework.
+  const domainFw = framework.domainFramework || null;
+  const domainFilters = useDomainFilters(`onelens:domain-filters:${framework.id}`);
+  const taskDomains = {};
+  if (domainFw) data.weeks.forEach((w) => w.tasks.forEach((t, i) => { taskDomains[`w${w.week}-${i}`] = resolveTaskDomains(t, domainFw === 'guess' ? null : domainFw); }));
+  const domainCounts = {};
+  const safeguardCounts = domainFw === 'HIPAA' ? {} : null;
+  Object.values(taskDomains).forEach((r) => {
+    r.domains.forEach((d) => { domainCounts[d.code] = (domainCounts[d.code] || 0) + 1; });
+    if (safeguardCounts) r.safeguards.forEach((g) => { safeguardCounts[g] = (safeguardCounts[g] || 0) + 1; });
+  });
+  const isVisible = (key) => {
+    if (!domainFw || !domainFilters.active) return true;
+    const r = taskDomains[key];
+    if (!r) return false;
+    if (domainFilters.domains.length && !r.domains.some((d) => domainFilters.domains.includes(d.code))) return false;
+    if (domainFilters.safeguards.length && !r.safeguards.some((g) => domainFilters.safeguards.includes(g))) return false;
+    return true;
+  };
+  const visibleStats = { total: 0, completed: 0, hours: 0 };
+  data.weeks.forEach((w) => w.tasks.forEach((t, i) => {
+    const k = `w${w.week}-${i}`;
+    if (!isVisible(k)) return;
+    visibleStats.total += 1;
+    if (progress[k]) visibleStats.completed += 1;
+    visibleStats.hours += (t && t.hours) || 0;
+  }));
+  const guessedCount = Object.values(taskDomains).filter((r) => r.guessed).length;
+  const filtering = !!domainFw && domainFilters.active;
   const levelHours = {};
   data.weeks.forEach(w => {
     levelHours[w.week] = w.tasks.reduce((s, t) => s + (t.hours || 0), 0);
@@ -366,8 +399,8 @@ function FrameworkBody({ framework, extraSections }) {
               </svg>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
                 <span className="text-4xl font-bold text-gray-900">{progressPercent}%</span>
-                <span className="text-sm text-gray-500">{completedTasks}/{totalTasks} complete</span>
-                <span className="text-xs text-gray-400 mt-1 flex items-center gap-1"><Clock className="w-3 h-3" /> ~{totalHours}h total</span>
+                <span className="text-sm text-gray-500">{filtering ? `${visibleStats.completed}/${visibleStats.total}` : `${completedTasks}/${totalTasks}`} complete</span>
+                <span className="text-xs text-gray-400 mt-1 flex items-center gap-1"><Clock className="w-3 h-3" /> ~{filtering ? visibleStats.hours : totalHours}h {filtering ? 'shown' : 'total'}</span>
               </div>
             </div>
 
@@ -429,6 +462,10 @@ function FrameworkBody({ framework, extraSections }) {
           </div>
         )}
 
+        {domainFw && (
+          <DomainToolbar counts={domainCounts} safeguardCounts={safeguardCounts} filters={domainFilters} visible={visibleStats} guessedCount={guessedCount} />
+        )}
+
         {/* Level Sections */}
         {data.weeks.map((week, idx) => {
           const unlocked = isWeekUnlocked(idx);
@@ -486,6 +523,8 @@ function FrameworkBody({ framework, extraSections }) {
                   {(() => {
                     const renderTask = (task, i, tags = []) => {
                     const key = `w${week.week}-${i}`;
+                    if (!isVisible(key)) return null;
+                    const dom = taskDomains[key];
                     const done = !!progress[key];
                     const isExpanded = expandedTask === key;
                     return (
@@ -500,6 +539,8 @@ function FrameworkBody({ framework, extraSections }) {
                           />
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2 flex-wrap">
+                              {dom && <DomainPills domains={dom.domains} guessed={dom.guessed} />}
+                              {dom && dom.safeguards.map((g) => <SafeguardTag key={g} category={g} />)}
                               <p className={`font-medium ${done ? 'text-gray-500' : 'text-gray-900'}`}>
                                 {typeof task === 'string' ? task : task.title}
                               </p>

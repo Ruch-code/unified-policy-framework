@@ -8,6 +8,7 @@ import { withEvidence, appendToLevel, extendTasks } from "../../data/playbookEvi
 import { LI_L1_CLAUSES, LI_EXTEND } from "../../data/playbookAdditions/iso27001.js";
 
 const FRAMEWORK = {
+  domainFramework: 'ISO 27001',
   id: "iso27001-li",
   name: "ISO/IEC 27001:2022 Lead Implementer",
   color: "purple",

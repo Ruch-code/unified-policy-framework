@@ -1,4 +1,5 @@
 import { FRAMEWORKS } from './registry.js';
+import { VISIBLE_DOMAINS, CONTROLS, FRAMEWORK_ORDER } from './controlDomains.js';
 import { GENERIC_ASSESSMENT, PRIVACY_ASSESSMENT_EXTRA } from './assessments.js';
 
 export const SEARCH_CATEGORIES = [
@@ -961,7 +962,23 @@ const TEMPLATE_ENTRIES = [
   },
 ];
 
+// ---------- control domain taxonomy (one entry per domain, opens the cross-framework view) ----------
+const TAXONOMY_ENTRIES = VISIBLE_DOMAINS.map((d) => {
+  const cs = CONTROLS.filter((c) => c.domain === d.code);
+  const per = FRAMEWORK_ORDER.map((f) => [f, cs.filter((c) => c.framework === f).length]).filter(([, n]) => n);
+  return {
+    id: `taxonomy-${d.code}`,
+    category: 'Control Domains & Mappings',
+    label: `${d.name} (${d.code})`,
+    desc: `${cs.length} controls across frameworks: ${per.map(([f, n]) => `${f} ${n}`).join(', ')}.`,
+    keywords: [d.code.toLowerCase(), ...d.name.toLowerCase().split(/[^a-z]+/).filter((w) => w.length > 2), ...cs.map((c) => c.id.toLowerCase())],
+    path: `/domains/${d.code}`,
+    mode: 'route',
+  };
+});
+
 const SEARCH_ENTRIES = [
+  ...TAXONOMY_ENTRIES,
   ...TEMPLATE_ENTRIES,
   ...frameworkEntries(),
   ...moduleEntries,
