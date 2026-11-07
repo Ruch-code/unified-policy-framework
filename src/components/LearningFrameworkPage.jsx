@@ -1,8 +1,6 @@
 import { useState, useEffect, Fragment } from 'react';
 import RelatedTemplates from './templates/RelatedTemplates.jsx';
 import { taskNotes } from '../data/startupVariants.js';
-import { VIBE_ITGC_GAPS, SOC1_ICFR_NOTE } from '../data/vibeItgcGaps.js';
-import { ENG_ITGC_GAPS } from '../data/engineeringPartnership.js';
 import { Link } from 'react-router-dom';
 import { Clock, RefreshCw, ArrowRight, BookOpen, ExternalLink, Lock, CheckCircle, ChevronDown, ChevronRight, Zap, Shield, Award, Target, TrendingUp, AlertTriangle, Lightbulb, ClipboardList, Info } from 'lucide-react';
 import FindingsDatabase from './FindingsDatabase.jsx';
@@ -50,7 +48,7 @@ const ITGC_DOMAINS = {
   Continuity: 'Business Continuity & Incident',
 };
 
-const ITGC_COLORS = {
+export const ITGC_COLORS = {
   'Access Management': 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800',
   'Change Management': 'bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-900/30 dark:text-purple-300 dark:border-purple-800',
   'IT Operations': 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-800',
@@ -60,9 +58,9 @@ const ITGC_COLORS = {
   'General / Cross-Cutting': 'bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:border-slate-600',
 };
 
-function itgcColor(domain) { return ITGC_COLORS[domain] || ITGC_COLORS['General / Cross-Cutting']; }
+export function itgcColor(domain) { return ITGC_COLORS[domain] || ITGC_COLORS['General / Cross-Cutting']; }
 
-const GENERIC_GAPS = [
+export const GENERIC_GAPS = [
   {
     itgc: 'Access Management',
     gap: 'No documented controls or evidence yet',
@@ -629,12 +627,10 @@ function FrameworkBody({ framework, extraSections }) {
           </div>
         </div>
 
-        {/* Startup Gaps & Pushback */}
+        {/* Startup Gaps & Pushback: now consolidated in the GRC Knowledge Base */}
         {(() => {
           const isPrivacy = isHipaaFramework(framework) || /privacy|gdpr|dpdpa|ccpa|coppa|27701|lgpd|pdpa|pipl/i.test(framework.name);
-          const gaps = framework.startupGaps && framework.startupGaps.length
-            ? framework.startupGaps
-            : [...GENERIC_GAPS, ...(framework.extraGaps || [])];
+          const here = typeof window !== 'undefined' ? window.location.pathname.replace(/^\/+|\/+$/g, '') : '';
           return (
             <div className={`bg-white rounded-2xl border ${colors.border} p-6 mb-8`}>
               <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
@@ -642,35 +638,11 @@ function FrameworkBody({ framework, extraSections }) {
                 Common Gaps & Startup Pushback (ITGC)
               </h2>
               <p className="text-gray-500 text-sm mb-4 max-w-2xl">
-                Common startup gaps mapped to <strong>IT General Control</strong> domains - what's typically missing, the pushback, the <strong>compensating controls</strong> already in place, and the <strong>policy</strong> that ties each control to this framework.
+                The gaps, founder pushback, compensating controls and policies for every framework now live together in the GRC Knowledge Base. Gaps common to all frameworks are shown once; gaps specific to {framework.name} carry a {framework.name} tag.
               </p>
-              <div className="flex flex-wrap gap-2 mb-6">
-                {Object.keys(ITGC_COLORS).map(d => (
-                  <span key={d} className={`text-[11px] font-semibold px-2.5 py-1 rounded-full border ${itgcColor(d)}`}>{d}</span>
-                ))}
-              </div>
-              <div className="grid md:grid-cols-2 gap-5">
-                {gaps.map((item, i) => (
-                  <GapCard key={i} item={item} colors={colors} controlMap={framework.itgcControlMap} />
-                ))}
-              </div>
-              <details className="mt-6 rounded-xl border border-violet-200 dark:border-violet-800">
-                <summary className="cursor-pointer p-4 font-semibold text-gray-900 dark:text-white">AI and vibe coding platforms: gaps across the ITGC domains</summary>
-                <div className="p-4 pt-0 grid md:grid-cols-2 gap-5">
-                  {VIBE_ITGC_GAPS.map((item, i) => <GapCard key={`vibe-${i}`} item={item} colors={colors} controlMap={framework.itgcControlMap} />)}
-                </div>
-              </details>
-              <details className="mt-4 rounded-xl border border-teal-200 dark:border-teal-800">
-                <summary className="cursor-pointer p-4 font-semibold text-gray-900 dark:text-white">Engineering partnership: gaps between GRC and engineering</summary>
-                <div className="p-4 pt-0 grid md:grid-cols-2 gap-5">
-                  {ENG_ITGC_GAPS.map((item, i) => <GapCard key={`eng-${i}`} item={item} colors={colors} controlMap={framework.itgcControlMap} />)}
-                </div>
-                <p className="px-4 pb-4 text-sm"><a className="underline text-teal-700 dark:text-teal-300" href="/#engineering-partnership">Open the Engineering &amp; Infrastructure Partnership module</a></p>
-              </details>
-              <div className="mt-4 rounded-xl border border-gray-200 dark:border-slate-700 p-4 text-sm text-gray-700 dark:text-slate-300">
-                <p className="font-semibold text-gray-900 dark:text-white mb-1">SOC 1 and ICFR: when ITGCs matter for financial reporting</p>
-                <p>{SOC1_ICFR_NOTE}</p>
-              </div>
+              <Link to={`/knowledge?topic=itgc-gaps${here ? `&gapfw=${encodeURIComponent(here)}` : ''}`} className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-white ${colors.bg} hover:opacity-90`}>
+                Open Common Gaps in the GRC Knowledge Base <ArrowRight className="w-4 h-4" />
+              </Link>
               {isPrivacy && framework.privacyStartupNotes && (
                 <div className={`mt-6 p-4 rounded-xl ${colors.bgLight} text-sm ${colors.text}`}>
                   {framework.privacyStartupNotes}
@@ -841,7 +813,7 @@ function CitationRow({ citation }) {
   );
 }
 
-function GapCard({ item, colors, controlMap }) {
+export function GapCard({ item, colors, controlMap }) {
   const [open, setOpen] = useState(false);
   const hasPushback = !!item.pushback;
   const dom = item.itgc || 'General / Cross-Cutting';
