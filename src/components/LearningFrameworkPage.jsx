@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Clock, RefreshCw, ArrowRight, BookOpen, ExternalLink, Lock, CheckCircle, ChevronDown, ChevronRight, Zap, Shield, Award, Target, TrendingUp, AlertTriangle, Lightbulb, ClipboardList, Info } from 'lucide-react';
 import FindingsDatabase from './FindingsDatabase.jsx';
 import { resolveTaskDomains } from '../data/controlDomains.js';
+import ReportTimeline from './ReportTimeline.jsx';
 import { DomainPills, SafeguardTag } from './domains/DomainPill.jsx';
 import DomainToolbar, { useDomainFilters } from './domains/DomainToolbar.jsx';
 import PrivacyDocuments from './PrivacyDocuments.jsx';
@@ -462,6 +463,8 @@ function FrameworkBody({ framework, extraSections }) {
             <p className="mt-2 text-xs">Each task has an "Evidence required" section. Entries marked as topic-based were assigned from the task's subject; tailor them to your systems.</p>
           </div>
         )}
+
+        <ReportTimeline framework={framework} />
 
         {domainFw && (
           <DomainToolbar counts={domainCounts} safeguardCounts={safeguardCounts} filters={domainFilters} visible={visibleStats} guessedCount={guessedCount} />
