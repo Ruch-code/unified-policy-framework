@@ -22,6 +22,7 @@ import CicdPipelineSecurity from '../components/CicdPipelineSecurity.jsx';
 import ChangeManagementTab from '../components/ChangeManagementTab.jsx';
 import BomTab from '../components/BomTab.jsx';
 import ItgcGapsKb from '../components/ItgcGapsKb.jsx';
+import EvidenceAutomationKb from '../components/EvidenceAutomationKb.jsx';
 
 const order = ['soc2', 'iso27001', 'iso42001', 'pci', 'hipaa', 'nist', 'gdpr', 'cis', 'hitrust', 'dpdpa', 'fedramp', 'cjis'];
 const EDP_TABS = [
@@ -49,6 +50,7 @@ const TABS = [
   { id: 'cicd', label: 'CI/CD Pipelines', icon: GitBranch },
   { id: 'bom', label: 'SBOM, AIBOM & ABOM', icon: Package },
   { id: 'gaps', label: 'Common Gaps (ITGC)', icon: ShieldAlert },
+  { id: 'evidence', label: 'Evidence Automation', icon: Package },
 ];
 
 function useCopy() {
@@ -90,6 +92,8 @@ export default function KnowledgeBase() {
       // Vendor topics now live in one place: Home, Vendor Risk Management.
       window.location.replace(t === 'ai-vendor-assurance' ? '/?section=ai-vendors#vendor-risk' : '/?section=contract-clauses#vendor-risk');
       return;
+    } else if (t === 'evidence-automation') {
+      setTab('evidence');
     } else if (t === 'itgc-gaps') {
       setTab('gaps');
     } else if (t === 'audit-observations') {
@@ -282,6 +286,7 @@ export default function KnowledgeBase() {
     change: <ChangeManagementTab onOpenTab={setTab} />,
     cicd: <CicdPipelineSecurity onOpenTab={setTab} />,
     bom: <BomTab onOpenTab={setTab} />,
+    evidence: <EvidenceAutomationKb />,
     gaps: <ItgcGapsKb initialFramework={new URLSearchParams(location.search).get('gapfw') || 'all'} />,
   };
 
