@@ -979,6 +979,7 @@ const TAXONOMY_ENTRIES = VISIBLE_DOMAINS.map((d) => {
 
 const SEARCH_ENTRIES = [
   ...TAXONOMY_ENTRIES,
+  { id: 'kb-evidence-automation', category: 'GRC Knowledge Base', label: 'Automating Evidence Collection', desc: 'What evidence can be pulled automatically, the maturity path to continuous control monitoring, and how to keep automated evidence audit-ready.', keywords: ['evidence', 'automation', 'automate', 'continuous control monitoring', 'ccm', 'api', 'population', 'completeness', 'accuracy', 'access review', 'uar'], path: '/knowledge?topic=evidence-automation', mode: 'route' },
   ...TEMPLATE_ENTRIES,
   ...frameworkEntries(),
   ...moduleEntries,
