@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import DomainPill from '../domains/DomainPill.jsx';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 import { SEED_REGISTER } from '../../data/riskAssessment/register';
 import { CONTROL_BY_ID } from '../../data/riskAssessment/controls';
@@ -76,6 +77,7 @@ export default function RiskTraceability() {
                           >
                             {cOpen ? <ChevronDown className="w-3.5 h-3.5 shrink-0 text-gray-500" /> : <ChevronRight className="w-3.5 h-3.5 shrink-0 text-gray-500" />}
                             <span className="font-mono text-[11px] text-indigo-700 dark:text-indigo-300 shrink-0 w-14">{id}</span>
+                            <DomainPill code={id.split('-')[0]} size="xs" controls={c ? [{ id, name: c.name }] : []} />
                             <span className="text-xs font-medium text-navy-900 dark:text-text-dark-primary flex-1">{c ? c.name : 'Unknown control'}</span>
                             <CiaBadges id={id} />
                           </button>

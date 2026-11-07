@@ -9,6 +9,7 @@ import Iso42001Levels from "../../components/iso42001/Iso42001Levels.jsx";
 import { ITGC_MAPPING } from "../../data/iso42001.js";
 
 const FRAMEWORK = {
+  domainFramework: 'ISO 42001',
   id: "iso-42001",
   name: "ISO/IEC 42001:2023 AI Management System",
   color: "indigo",

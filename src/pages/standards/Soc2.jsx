@@ -11,6 +11,7 @@ import { withEvidence, appendToLevel, extendTasks } from "../../data/playbookEvi
 import { SOC2_L1_GOVERNANCE, SOC2_L3_TESTS, SOC2_EXTEND } from "../../data/playbookAdditions/soc2.js";
 
 const FRAMEWORK = {
+  domainFramework: 'SOC 2',
   id: "soc2",
   extraGaps: SOC2_POLICY_GAPS,
   groupLevel,
