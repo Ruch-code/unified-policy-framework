@@ -56,7 +56,7 @@ function hipaaRefs(text) {
 }
 
 function soc2Refs(text) {
-  return [...String(text || '').matchAll(/\b(CC\d\.\d{1,2}|A1\.\d|C1\.\d|PI1\.\d|P\d\.\d)\b/g)].map((m) => m[1]);
+  return [...String(text || '').matchAll(/\b(CC\d(?:\.\d{1,2})?|A1(?:\.\d)?|C1(?:\.\d)?|PI1(?:\.\d)?|P\d(?:\.\d)?)\b/g)].map((m) => m[1]);
 }
 
 const startsAt = (cit, ref) => cit === ref || cit.startsWith(`${ref}.`) || cit.startsWith(`${ref}(`);
@@ -80,7 +80,16 @@ export function controlsForRefs(framework, refs) {
 
 // Keyword fallback for cards with no catalogue citation. Results are marked "guessed".
 const GUESS = [
-  [/certif|17021|audit|nonconform|corrective/i, 'CPL'],
+  [/system description|certif|17021|audit|nonconform|corrective|penalt|enforcement|violation|willful|attorney general|hitrust|nist|framework|applicability matrix/i, 'CPL'],
+  [/notify media|\bhhs\b|law enforcement delay/i, 'IRO'],
+  [/uptime|availability|capacity|auto-scal|load test|performance bench|health check|failover/i, 'CAP'],
+  [/lockout|session/i, 'IAC'],
+  [/\bscan|rescan/i, 'VPM'],
+  [/\bcde\b|segmentation|entry and exit point|connected systems/i, 'NET'],
+  [/organisational chart|organizational chart|covered entity|required vs addressable|safeguard categor/i, 'GOV'],
+  [/performance evaluation/i, 'HRS'],
+  [/service description|customer guidance/i, 'PRM'],
+  [/processing (accuracy|integrity)|reconcil|error handling|exception management/i, 'OPS'],
   [/risk/i, 'RSK'],
   [/incident|breach/i, 'IRO'],
   [/vendor|supplier|third.party|business associate|baa\b/i, 'TPM'],
@@ -112,13 +121,20 @@ export function resolveTaskDomains(task, framework) {
   if (framework === 'ISO 27001' || framework === 'ISO 42001') refs = isoRefs(text);
   else if (framework === 'HIPAA') refs = hipaaRefs(text);
   else if (framework === 'SOC 2') refs = soc2Refs(text);
-  const controls = framework ? controlsForRefs(framework, refs) : [];
+  let controls = framework ? controlsForRefs(framework, refs) : [];
+  let family = false;
+  if (!controls.length && framework === 'SOC 2' && refs.length) {
+    // No control has this exact primary criterion: use controls in the same criteria family (CC7.3 -> CC7.x).
+    const fams = [...new Set(refs.map((r) => r.replace(/\.\d+$/, '')))];
+    controls = CONTROLS.filter((c) => c.framework === 'SOC 2' && fams.some((f) => c.citation === f || c.citation.startsWith(`${f}.`)));
+    family = controls.length > 0;
+  }
   const safeguards = framework === 'HIPAA' ? [...new Set(refs.map(hipaaSafeguard).filter(Boolean))] : [];
   if (controls.length) {
     const by = new Map();
     controls.forEach((c) => { if (!by.has(c.domain)) by.set(c.domain, []); by.get(c.domain).push(c); });
     const domains = [...by.entries()].map(([code, cs]) => ({ code, controls: cs })).sort((a, b) => b.controls.length - a.controls.length);
-    return { domains, guessed: false, safeguards };
+    return { domains: family ? domains.slice(0, 2) : domains, guessed: family, safeguards };
   }
   const hay = `${task.title || ''} ${task.control || ''}`;
   const g = GUESS.find(([re]) => re.test(hay));

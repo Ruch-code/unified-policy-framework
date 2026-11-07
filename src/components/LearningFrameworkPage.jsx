@@ -268,7 +268,8 @@ function FrameworkBody({ framework, extraSections }) {
   const totalHours = data.weeks.reduce((sum, w) => sum + w.tasks.reduce((s, t) => s + (t.hours || 0), 0), 0);
 
   // Control domains (additive): only on pages that set framework.domainFramework.
-  const domainFw = framework.domainFramework || null;
+  // Pages without a catalogue framework get topic-based pills (marked as assigned by topic).
+  const domainFw = framework.domainFramework || 'guess';
   const domainFilters = useDomainFilters(`onelens:domain-filters:${framework.id}`);
   const taskDomains = {};
   if (domainFw) data.weeks.forEach((w) => w.tasks.forEach((t, i) => { taskDomains[`w${w.week}-${i}`] = resolveTaskDomains(t, domainFw === 'guess' ? null : domainFw); }));

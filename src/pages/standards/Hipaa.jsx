@@ -10,6 +10,7 @@ import HipaaSoc2Crosswalk from "../../components/playbook/HipaaSoc2Crosswalk.jsx
 import { CROSSWALK_LEVEL } from "../../data/hipaaSoc2Crosswalk.js";
 
 const FRAMEWORK = {
+  domainFramework: 'HIPAA',
   id: "hipaa",
   name: "HIPAA",
   color: "golden",

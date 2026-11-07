@@ -8,6 +8,7 @@ import { withEvidence, appendToLevel } from "../../data/playbookEvidence.js";
 import { LA_L3_CONTROLS } from "../../data/playbookAdditions/iso27001.js";
 
 const FRAMEWORK = {
+  domainFramework: 'ISO 27001',
   id: "iso-27001-la",
   name: "ISO/IEC 27001:2022 Lead Auditor Playbook",
   color: "navy",
