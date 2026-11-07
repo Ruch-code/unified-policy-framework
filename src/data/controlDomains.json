@@ -1,0 +1,3882 @@
+{
+ "_about": "Control domain taxonomy for OneLens. Edit freely. Domain codes follow a common GRC control taxonomy and are used here to group related requirements across frameworks.",
+ "helpText": "Domain codes follow a common GRC control taxonomy and are used here to group related requirements across frameworks.",
+ "domains": [
+  {
+   "code": "AAT",
+   "name": "Artificial & Autonomous Technology",
+   "family": "violet",
+   "colors": {
+    "light": {
+     "bg": "#ede9fe",
+     "fg": "#5b21b6",
+     "border": "#ddd6fe"
+    },
+    "dark": {
+     "bg": "#2e1065",
+     "fg": "#ddd6fe",
+     "border": "#5b21b6"
+    },
+    "contrast": {
+     "light": 7.57,
+     "dark": 10.97
+    }
+   }
+  },
+  {
+   "code": "AST",
+   "name": "Asset Management",
+   "family": "amber",
+   "colors": {
+    "light": {
+     "bg": "#fef3c7",
+     "fg": "#92400e",
+     "border": "#fde68a"
+    },
+    "dark": {
+     "bg": "#451a03",
+     "fg": "#fde68a",
+     "border": "#92400e"
+    },
+    "contrast": {
+     "light": 6.37,
+     "dark": 12.03
+    }
+   }
+  },
+  {
+   "code": "BCD",
+   "name": "Business Continuity & Disaster Recovery",
+   "family": "orange",
+   "colors": {
+    "light": {
+     "bg": "#ffedd5",
+     "fg": "#9a3412",
+     "border": "#fed7aa"
+    },
+    "dark": {
+     "bg": "#431407",
+     "fg": "#fed7aa",
+     "border": "#9a3412"
+    },
+    "contrast": {
+     "light": 6.38,
+     "dark": 11.56
+    }
+   }
+  },
+  {
+   "code": "CAP",
+   "name": "Capacity & Performance Planning",
+   "family": "lime",
+   "colors": {
+    "light": {
+     "bg": "#ecfccb",
+     "fg": "#3f6212",
+     "border": "#d9f99d"
+    },
+    "dark": {
+     "bg": "#1a2e05",
+     "fg": "#d9f99d",
+     "border": "#3f6212"
+    },
+    "contrast": {
+     "light": 6.52,
+     "dark": 12.52
+    }
+   }
+  },
+  {
+   "code": "CFG",
+   "name": "Configuration Management",
+   "family": "stone",
+   "colors": {
+    "light": {
+     "bg": "#f5f5f4",
+     "fg": "#292524",
+     "border": "#e7e5e4"
+    },
+    "dark": {
+     "bg": "#0c0a09",
+     "fg": "#e7e5e4",
+     "border": "#292524"
+    },
+    "contrast": {
+     "light": 13.9,
+     "dark": 15.73
+    }
+   }
+  },
+  {
+   "code": "CHG",
+   "name": "Change Management",
+   "family": "sky",
+   "colors": {
+    "light": {
+     "bg": "#e0f2fe",
+     "fg": "#075985",
+     "border": "#bae6fd"
+    },
+    "dark": {
+     "bg": "#082f49",
+     "fg": "#bae6fd",
+     "border": "#075985"
+    },
+    "contrast": {
+     "light": 6.59,
+     "dark": 10.46
+    }
+   }
+  },
+  {
+   "code": "CLD",
+   "name": "Cloud Security",
+   "family": "cyan",
+   "colors": {
+    "light": {
+     "bg": "#cffafe",
+     "fg": "#155e75",
+     "border": "#a5f3fc"
+    },
+    "dark": {
+     "bg": "#083344",
+     "fg": "#a5f3fc",
+     "border": "#155e75"
+    },
+    "contrast": {
+     "light": 6.49,
+     "dark": 10.74
+    }
+   }
+  },
+  {
+   "code": "CPL",
+   "name": "Compliance",
+   "family": "slate",
+   "colors": {
+    "light": {
+     "bg": "#f1f5f9",
+     "fg": "#1e293b",
+     "border": "#e2e8f0"
+    },
+    "dark": {
+     "bg": "#020617",
+     "fg": "#e2e8f0",
+     "border": "#1e293b"
+    },
+    "contrast": {
+     "light": 13.35,
+     "dark": 16.36
+    }
+   }
+  },
+  {
+   "code": "CRY",
+   "name": "Cryptographic Protections",
+   "family": "indigo",
+   "colors": {
+    "light": {
+     "bg": "#e0e7ff",
+     "fg": "#3730a3",
+     "border": "#c7d2fe"
+    },
+    "dark": {
+     "bg": "#1e1b4b",
+     "fg": "#c7d2fe",
+     "border": "#3730a3"
+    },
+    "contrast": {
+     "light": 8.06,
+     "dark": 10.72
+    }
+   }
+  },
+  {
+   "code": "DCH",
+   "name": "Data Classification & Handling",
+   "family": "yellow",
+   "colors": {
+    "light": {
+     "bg": "#fef9c3",
+     "fg": "#854d0e",
+     "border": "#fef08a"
+    },
+    "dark": {
+     "bg": "#422006",
+     "fg": "#fef08a",
+     "border": "#854d0e"
+    },
+    "contrast": {
+     "light": 6.38,
+     "dark": 12.52
+    }
+   }
+  },
+  {
+   "code": "END",
+   "name": "Endpoint Security",
+   "family": "teal",
+   "colors": {
+    "light": {
+     "bg": "#ccfbf1",
+     "fg": "#115e59",
+     "border": "#99f6e4"
+    },
+    "dark": {
+     "bg": "#042f2e",
+     "fg": "#99f6e4",
+     "border": "#115e59"
+    },
+    "contrast": {
+     "light": 6.73,
+     "dark": 11.48
+    }
+   }
+  },
+  {
+   "code": "GOV",
+   "name": "Security & Privacy Governance",
+   "family": "purple",
+   "colors": {
+    "light": {
+     "bg": "#f3e8ff",
+     "fg": "#6b21a8",
+     "border": "#e9d5ff"
+    },
+    "dark": {
+     "bg": "#3b0764",
+     "fg": "#e9d5ff",
+     "border": "#6b21a8"
+    },
+    "contrast": {
+     "light": 7.39,
+     "dark": 11.02
+    }
+   }
+  },
+  {
+   "code": "HRS",
+   "name": "Human Resources Security",
+   "family": "pink",
+   "colors": {
+    "light": {
+     "bg": "#fce7f3",
+     "fg": "#9d174d",
+     "border": "#fbcfe8"
+    },
+    "dark": {
+     "bg": "#500724",
+     "fg": "#fbcfe8",
+     "border": "#9d174d"
+    },
+    "contrast": {
+     "light": 6.71,
+     "dark": 10.88
+    }
+   }
+  },
+  {
+   "code": "IAC",
+   "name": "Identification & Authentication",
+   "family": "blue",
+   "colors": {
+    "light": {
+     "bg": "#dbeafe",
+     "fg": "#1e40af",
+     "border": "#bfdbfe"
+    },
+    "dark": {
+     "bg": "#172554",
+     "fg": "#bfdbfe",
+     "border": "#1e40af"
+    },
+    "contrast": {
+     "light": 7.15,
+     "dark": 10.34
+    }
+   }
+  },
+  {
+   "code": "IAO",
+   "name": "Information Assurance",
+   "family": "emerald",
+   "colors": {
+    "light": {
+     "bg": "#d1fae5",
+     "fg": "#065f46",
+     "border": "#a7f3d0"
+    },
+    "dark": {
+     "bg": "#022c22",
+     "fg": "#a7f3d0",
+     "border": "#065f46"
+    },
+    "contrast": {
+     "light": 6.78,
+     "dark": 11.81
+    }
+   }
+  },
+  {
+   "code": "IRO",
+   "name": "Incident Response",
+   "family": "red",
+   "colors": {
+    "light": {
+     "bg": "#fee2e2",
+     "fg": "#991b1b",
+     "border": "#fecaca"
+    },
+    "dark": {
+     "bg": "#450a0a",
+     "fg": "#fecaca",
+     "border": "#991b1b"
+    },
+    "contrast": {
+     "light": 6.8,
+     "dark": 11.16
+    }
+   }
+  },
+  {
+   "code": "MDM",
+   "name": "Mobile Device Management",
+   "family": "teal (darker)",
+   "colors": {
+    "light": {
+     "bg": "#99f6e4",
+     "fg": "#134e4a",
+     "border": "#115e59"
+    },
+    "dark": {
+     "bg": "#134e4a",
+     "fg": "#ccfbf1",
+     "border": "#115e59"
+    },
+    "contrast": {
+     "light": 7.52,
+     "dark": 8.41
+    }
+   }
+  },
+  {
+   "code": "MNT",
+   "name": "Maintenance",
+   "family": "zinc",
+   "colors": {
+    "light": {
+     "bg": "#f4f4f5",
+     "fg": "#27272a",
+     "border": "#e4e4e7"
+    },
+    "dark": {
+     "bg": "#09090b",
+     "fg": "#e4e4e7",
+     "border": "#27272a"
+    },
+    "contrast": {
+     "light": 13.55,
+     "dark": 15.68
+    }
+   }
+  },
+  {
+   "code": "MON",
+   "name": "Continuous Monitoring",
+   "family": "green",
+   "colors": {
+    "light": {
+     "bg": "#dcfce7",
+     "fg": "#166534",
+     "border": "#bbf7d0"
+    },
+    "dark": {
+     "bg": "#052e16",
+     "fg": "#bbf7d0",
+     "border": "#166534"
+    },
+    "contrast": {
+     "light": 6.49,
+     "dark": 12.3
+    }
+   }
+  },
+  {
+   "code": "NET",
+   "name": "Network Security",
+   "family": "blue (darker)",
+   "colors": {
+    "light": {
+     "bg": "#bfdbfe",
+     "fg": "#1e3a8a",
+     "border": "#1e40af"
+    },
+    "dark": {
+     "bg": "#1e3a8a",
+     "fg": "#dbeafe",
+     "border": "#1e40af"
+    },
+    "contrast": {
+     "light": 7.29,
+     "dark": 8.49
+    }
+   }
+  },
+  {
+   "code": "OPS",
+   "name": "Security Operations",
+   "family": "gray",
+   "colors": {
+    "light": {
+     "bg": "#f3f4f6",
+     "fg": "#1f2937",
+     "border": "#e5e7eb"
+    },
+    "dark": {
+     "bg": "#030712",
+     "fg": "#e5e7eb",
+     "border": "#1f2937"
+    },
+    "contrast": {
+     "light": 13.34,
+     "dark": 16.26
+    }
+   }
+  },
+  {
+   "code": "PES",
+   "name": "Physical & Environmental Security",
+   "family": "brown",
+   "colors": {
+    "light": {
+     "bg": "#f2e8df",
+     "fg": "#5c3a21",
+     "border": "#e3cfbd"
+    },
+    "dark": {
+     "bg": "#2b1a0e",
+     "fg": "#e3cfbd",
+     "border": "#5c3a21"
+    },
+    "contrast": {
+     "light": 8.35,
+     "dark": 11.08
+    }
+   }
+  },
+  {
+   "code": "PRI",
+   "name": "Privacy",
+   "family": "rose",
+   "colors": {
+    "light": {
+     "bg": "#ffe4e6",
+     "fg": "#9f1239",
+     "border": "#fecdd3"
+    },
+    "dark": {
+     "bg": "#4c0519",
+     "fg": "#fecdd3",
+     "border": "#9f1239"
+    },
+    "contrast": {
+     "light": 6.68,
+     "dark": 11.08
+    }
+   }
+  },
+  {
+   "code": "PRM",
+   "name": "Project & Resource Management",
+   "family": "neutral",
+   "colors": {
+    "light": {
+     "bg": "#f5f5f5",
+     "fg": "#262626",
+     "border": "#e5e5e5"
+    },
+    "dark": {
+     "bg": "#0a0a0a",
+     "fg": "#e5e5e5",
+     "border": "#262626"
+    },
+    "contrast": {
+     "light": 13.88,
+     "dark": 15.72
+    }
+   }
+  },
+  {
+   "code": "RSK",
+   "name": "Risk Management",
+   "family": "crimson",
+   "colors": {
+    "light": {
+     "bg": "#fde2e6",
+     "fg": "#8b1028",
+     "border": "#f9c2cb"
+    },
+    "dark": {
+     "bg": "#3d0612",
+     "fg": "#f9c2cb",
+     "border": "#8b1028"
+    },
+    "contrast": {
+     "light": 7.81,
+     "dark": 11.03
+    }
+   }
+  },
+  {
+   "code": "SAT",
+   "name": "Security Awareness & Training",
+   "family": "fuchsia",
+   "colors": {
+    "light": {
+     "bg": "#fae8ff",
+     "fg": "#86198f",
+     "border": "#f5d0fe"
+    },
+    "dark": {
+     "bg": "#4a044e",
+     "fg": "#f5d0fe",
+     "border": "#86198f"
+    },
+    "contrast": {
+     "light": 7.08,
+     "dark": 10.81
+    }
+   }
+  },
+  {
+   "code": "SEA",
+   "name": "Secure Engineering & Architecture",
+   "family": "cyan (darker)",
+   "colors": {
+    "light": {
+     "bg": "#a5f3fc",
+     "fg": "#164e63",
+     "border": "#155e75"
+    },
+    "dark": {
+     "bg": "#164e63",
+     "fg": "#cffafe",
+     "border": "#155e75"
+    },
+    "contrast": {
+     "light": 7.3,
+     "dark": 8.14
+    }
+   }
+  },
+  {
+   "code": "TDA",
+   "name": "Technology Development & Acquisition",
+   "family": "sky (darker)",
+   "colors": {
+    "light": {
+     "bg": "#bae6fd",
+     "fg": "#0c4a6e",
+     "border": "#075985"
+    },
+    "dark": {
+     "bg": "#0c4a6e",
+     "fg": "#e0f2fe",
+     "border": "#075985"
+    },
+    "contrast": {
+     "light": 7.13,
+     "dark": 8.24
+    }
+   }
+  },
+  {
+   "code": "THR",
+   "name": "Threat Management",
+   "family": "rose (darker)",
+   "colors": {
+    "light": {
+     "bg": "#fecdd3",
+     "fg": "#881337",
+     "border": "#9f1239"
+    },
+    "dark": {
+     "bg": "#881337",
+     "fg": "#ffe4e6",
+     "border": "#9f1239"
+    },
+    "contrast": {
+     "light": 6.78,
+     "dark": 7.97
+    }
+   }
+  },
+  {
+   "code": "TPM",
+   "name": "Third-Party Management",
+   "family": "orange (darker)",
+   "colors": {
+    "light": {
+     "bg": "#fed7aa",
+     "fg": "#7c2d12",
+     "border": "#9a3412"
+    },
+    "dark": {
+     "bg": "#7c2d12",
+     "fg": "#ffedd5",
+     "border": "#9a3412"
+    },
+    "contrast": {
+     "light": 6.92,
+     "dark": 8.18
+    }
+   }
+  },
+  {
+   "code": "VPM",
+   "name": "Vulnerability & Patch Management",
+   "family": "red (darker)",
+   "colors": {
+    "light": {
+     "bg": "#fecaca",
+     "fg": "#7f1d1d",
+     "border": "#991b1b"
+    },
+    "dark": {
+     "bg": "#7f1d1d",
+     "fg": "#fee2e2",
+     "border": "#991b1b"
+    },
+    "contrast": {
+     "light": 6.93,
+     "dark": 8.2
+    }
+   }
+  },
+  {
+   "code": "EMB",
+   "name": "Embedded Technology",
+   "family": "slate",
+   "colors": {
+    "light": {
+     "bg": "#e2e8f0",
+     "fg": "#0f172a",
+     "border": "#1e293b"
+    },
+    "dark": {
+     "bg": "#0f172a",
+     "fg": "#f1f5f9",
+     "border": "#1e293b"
+    },
+    "contrast": {
+     "light": 14.48,
+     "dark": 16.3
+    }
+   },
+   "hiddenWhenEmpty": true
+  },
+  {
+   "code": "WEB",
+   "name": "Web Security",
+   "family": "indigo",
+   "colors": {
+    "light": {
+     "bg": "#c7d2fe",
+     "fg": "#312e81",
+     "border": "#3730a3"
+    },
+    "dark": {
+     "bg": "#312e81",
+     "fg": "#e0e7ff",
+     "border": "#3730a3"
+    },
+    "contrast": {
+     "light": 7.66,
+     "dark": 9.27
+    }
+   },
+   "hiddenWhenEmpty": true
+  },
+  {
+   "code": "POL",
+   "name": "Policy",
+   "family": "zinc",
+   "colors": {
+    "light": {
+     "bg": "#e4e4e7",
+     "fg": "#18181b",
+     "border": "#27272a"
+    },
+    "dark": {
+     "bg": "#18181b",
+     "fg": "#f4f4f5",
+     "border": "#27272a"
+    },
+    "contrast": {
+     "light": 13.96,
+     "dark": 16.12
+    }
+   },
+   "siteOnly": true,
+   "note": "Used by the sample risk register; confirm label."
+  },
+  {
+   "code": "COM",
+   "name": "Communications",
+   "family": "green",
+   "colors": {
+    "light": {
+     "bg": "#bbf7d0",
+     "fg": "#14532d",
+     "border": "#166534"
+    },
+    "dark": {
+     "bg": "#14532d",
+     "fg": "#dcfce7",
+     "border": "#166534"
+    },
+    "contrast": {
+     "light": 7.52,
+     "dark": 8.3
+    }
+   },
+   "siteOnly": true,
+   "note": "Used by the sample risk register; confirm label."
+  }
+ ],
+ "hipaaSafeguards": [
+  {
+   "match": "164.308",
+   "category": "Administrative"
+  },
+  {
+   "match": "164.310",
+   "category": "Physical"
+  },
+  {
+   "match": "164.312",
+   "category": "Technical"
+  },
+  {
+   "match": "164.314",
+   "category": "Organizational / Documentation"
+  },
+  {
+   "match": "164.316",
+   "category": "Organizational / Documentation"
+  },
+  {
+   "range": [
+    400,
+    414
+   ],
+   "category": "Breach Notification"
+  },
+  {
+   "range": [
+    500,
+    534
+   ],
+   "category": "Privacy Rule"
+  }
+ ],
+ "controls": [
+  {
+   "id": "AAT-6",
+   "domain": "AAT",
+   "name": "AI system impact assessment",
+   "framework": "ISO 42001",
+   "citation": "C.8.4"
+  },
+  {
+   "id": "AST-1",
+   "domain": "AST",
+   "name": "Asset disposal procedures utilized",
+   "framework": "SOC 2",
+   "citation": "C1.2",
+   "moreMappings": 1
+  },
+  {
+   "id": "AST-2",
+   "domain": "AST",
+   "name": "Data retention procedures established",
+   "framework": "SOC 2",
+   "citation": "C1.1",
+   "moreMappings": 3
+  },
+  {
+   "id": "AST-3",
+   "domain": "AST",
+   "name": "Production inventory maintained",
+   "framework": "SOC 2",
+   "citation": "CC6.1"
+  },
+  {
+   "id": "AST-12",
+   "domain": "AST",
+   "name": "Device and media disposal policies implemented",
+   "framework": "HIPAA",
+   "citation": "164.310(d)(2)(i)"
+  },
+  {
+   "id": "AST-13",
+   "domain": "AST",
+   "name": "Device and media movement recorded",
+   "framework": "HIPAA",
+   "citation": "164.310(d)(2)(iii)"
+  },
+  {
+   "id": "AST-14",
+   "domain": "AST",
+   "name": "Media re-use procedures implemented",
+   "framework": "HIPAA",
+   "citation": "164.310(d)(2)(ii)"
+  },
+  {
+   "id": "AST-15",
+   "domain": "AST",
+   "name": "Media removal policies implemented",
+   "framework": "HIPAA",
+   "citation": "164.310(d)(1)"
+  },
+  {
+   "id": "AST-65",
+   "domain": "AST",
+   "name": "Determining the scope of the information security management system",
+   "framework": "ISO 27001",
+   "citation": "C.4.3"
+  },
+  {
+   "id": "AST-66",
+   "domain": "AST",
+   "name": "Inventory of information and other associated assets",
+   "framework": "ISO 27001",
+   "citation": "A.5.9"
+  },
+  {
+   "id": "AST-67",
+   "domain": "AST",
+   "name": "Return of assets",
+   "framework": "ISO 27001",
+   "citation": "A.5.11"
+  },
+  {
+   "id": "AST-68",
+   "domain": "AST",
+   "name": "Intellectual property rights",
+   "framework": "ISO 27001",
+   "citation": "A.5.32"
+  },
+  {
+   "id": "AST-69",
+   "domain": "AST",
+   "name": "Security of assets off-premises",
+   "framework": "ISO 27001",
+   "citation": "A.7.9"
+  },
+  {
+   "id": "AST-70",
+   "domain": "AST",
+   "name": "Storage media",
+   "framework": "ISO 27001",
+   "citation": "A.7.10"
+  },
+  {
+   "id": "AST-71",
+   "domain": "AST",
+   "name": "Secure disposal or re-use of equipment",
+   "framework": "ISO 27001",
+   "citation": "A.7.14"
+  },
+  {
+   "id": "AST-106",
+   "domain": "AST",
+   "name": "Determining the scope of the AI management system",
+   "framework": "ISO 42001",
+   "citation": "C.4.3"
+  },
+  {
+   "id": "BCD-1",
+   "domain": "BCD",
+   "name": "Continuity and Disaster Recovery plans established",
+   "framework": "SOC 2",
+   "citation": "A1.3",
+   "moreMappings": 1
+  },
+  {
+   "id": "BCD-2",
+   "domain": "BCD",
+   "name": "Continuity and Disaster Recovery plans tested",
+   "framework": "SOC 2",
+   "citation": "A1.3",
+   "moreMappings": 4
+  },
+  {
+   "id": "BCD-3",
+   "domain": "BCD",
+   "name": "Cybersecurity insurance maintained",
+   "framework": "SOC 2",
+   "citation": "CC9.1"
+  },
+  {
+   "id": "BCD-12",
+   "domain": "BCD",
+   "name": "Application and data criticality analyzed",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(7)(ii)(E)"
+  },
+  {
+   "id": "BCD-13",
+   "domain": "BCD",
+   "name": "Contingency operations established",
+   "framework": "HIPAA",
+   "citation": "164.310(a)(2)(i)"
+  },
+  {
+   "id": "BCD-14",
+   "domain": "BCD",
+   "name": "Contingency plan established",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(7)(i)"
+  },
+  {
+   "id": "BCD-15",
+   "domain": "BCD",
+   "name": "Contingency plan tested and revised",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(7)(ii)(D)"
+  },
+  {
+   "id": "BCD-16",
+   "domain": "BCD",
+   "name": "Data backed up and stored",
+   "framework": "HIPAA",
+   "citation": "164.310(d)(2)(iv)"
+  },
+  {
+   "id": "BCD-17",
+   "domain": "BCD",
+   "name": "Data backup plan implemented",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(7)(ii)(A)"
+  },
+  {
+   "id": "BCD-18",
+   "domain": "BCD",
+   "name": "Disaster recovery plan established",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(7)(ii)(B)"
+  },
+  {
+   "id": "BCD-19",
+   "domain": "BCD",
+   "name": "Emergency mode operation plan established",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(7)(ii)(C)"
+  },
+  {
+   "id": "BCD-68",
+   "domain": "BCD",
+   "name": "ICT readiness for business continuity",
+   "framework": "ISO 27001",
+   "citation": "A.5.30"
+  },
+  {
+   "id": "BCD-69",
+   "domain": "BCD",
+   "name": "Information backup",
+   "framework": "ISO 27001",
+   "citation": "A.8.13"
+  },
+  {
+   "id": "BCD-70",
+   "domain": "BCD",
+   "name": "Redundancy of information processing facilities",
+   "framework": "ISO 27001",
+   "citation": "A.8.14"
+  },
+  {
+   "id": "CAP-7",
+   "domain": "CAP",
+   "name": "Capacity management",
+   "framework": "ISO 27001",
+   "citation": "A.8.6"
+  },
+  {
+   "id": "CFG-1",
+   "domain": "CFG",
+   "name": "Configuration management system established",
+   "framework": "SOC 2",
+   "citation": "CC7.1",
+   "moreMappings": 1
+  },
+  {
+   "id": "CFG-44",
+   "domain": "CFG",
+   "name": "Configuration management",
+   "framework": "ISO 27001",
+   "citation": "A.8.9"
+  },
+  {
+   "id": "CHG-1",
+   "domain": "CHG",
+   "name": "Change management procedures enforced",
+   "framework": "SOC 2",
+   "citation": "CC8.1",
+   "moreMappings": 2
+  },
+  {
+   "id": "CHG-2",
+   "domain": "CHG",
+   "name": "Production deployment access restricted",
+   "framework": "SOC 2",
+   "citation": "CC6.1",
+   "moreMappings": 1
+  },
+  {
+   "id": "CHG-3",
+   "domain": "CHG",
+   "name": "Development lifecycle established",
+   "framework": "SOC 2",
+   "citation": "CC6.8",
+   "moreMappings": 5
+  },
+  {
+   "id": "CHG-37",
+   "domain": "CHG",
+   "name": "Planning of changes",
+   "framework": "ISO 27001",
+   "citation": "C.6.3"
+  },
+  {
+   "id": "CHG-38",
+   "domain": "CHG",
+   "name": "Installation of software on operational systems",
+   "framework": "ISO 27001",
+   "citation": "A.8.19"
+  },
+  {
+   "id": "CHG-39",
+   "domain": "CHG",
+   "name": "Change management",
+   "framework": "ISO 27001",
+   "citation": "A.8.32"
+  },
+  {
+   "id": "CHG-115",
+   "domain": "CHG",
+   "name": "AI objectives and planning",
+   "framework": "ISO 42001",
+   "citation": "C.6.2"
+  },
+  {
+   "id": "CLD-7",
+   "domain": "CLD",
+   "name": "Information security for use of cloud services",
+   "framework": "ISO 27001",
+   "citation": "A.5.23"
+  },
+  {
+   "id": "CPL-1",
+   "domain": "CPL",
+   "name": "SOC 2 System Description",
+   "framework": "SOC 2",
+   "citation": "System Description"
+  },
+  {
+   "id": "CPL-2",
+   "domain": "CPL",
+   "name": "Whistleblower policy established",
+   "framework": "Cross-framework",
+   "citation": ""
+  },
+  {
+   "id": "CPL-10",
+   "domain": "CPL",
+   "name": "Security controls evaluated",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(8)"
+  },
+  {
+   "id": "CPL-41",
+   "domain": "CPL",
+   "name": "Internal audit, general",
+   "framework": "ISO 27001",
+   "citation": "C.9.2.1"
+  },
+  {
+   "id": "CPL-42",
+   "domain": "CPL",
+   "name": "Internal audit programme",
+   "framework": "ISO 27001",
+   "citation": "C.9.2.2"
+  },
+  {
+   "id": "CPL-43",
+   "domain": "CPL",
+   "name": "Nonconformity and corrective action",
+   "framework": "ISO 27001",
+   "citation": "C.10.2"
+  },
+  {
+   "id": "CPL-44",
+   "domain": "CPL",
+   "name": "Legal, statutory, regulatory and contractual requirements",
+   "framework": "ISO 27001",
+   "citation": "A.5.31"
+  },
+  {
+   "id": "CPL-45",
+   "domain": "CPL",
+   "name": "Independent review of information security",
+   "framework": "ISO 27001",
+   "citation": "A.5.35"
+  },
+  {
+   "id": "CPL-46",
+   "domain": "CPL",
+   "name": "Compliance with policies, rules and standards for information security",
+   "framework": "ISO 27001",
+   "citation": "A.5.36"
+  },
+  {
+   "id": "CPL-47",
+   "domain": "CPL",
+   "name": "Protection of information systems during audit testing",
+   "framework": "ISO 27001",
+   "citation": "A.8.34"
+  },
+  {
+   "id": "CPL-60",
+   "domain": "CPL",
+   "name": "Monitoring, measurement, analysis",
+   "framework": "ISO 42001",
+   "citation": "C.9.1"
+  },
+  {
+   "id": "CPL-61",
+   "domain": "CPL",
+   "name": "Internal audit, general",
+   "framework": "ISO 42001",
+   "citation": "C.9.2.1"
+  },
+  {
+   "id": "CPL-62",
+   "domain": "CPL",
+   "name": "Continual improvement",
+   "framework": "ISO 42001",
+   "citation": "C.10.1"
+  },
+  {
+   "id": "CPL-63",
+   "domain": "CPL",
+   "name": "Nonconformity and corrective action",
+   "framework": "ISO 42001",
+   "citation": "C.10.2"
+  },
+  {
+   "id": "CPL-64",
+   "domain": "CPL",
+   "name": "AI policy",
+   "framework": "ISO 42001",
+   "citation": "A.2.2"
+  },
+  {
+   "id": "CPL-65",
+   "domain": "CPL",
+   "name": "Objectives for responsible development of AI system",
+   "framework": "ISO 42001",
+   "citation": "A.6.1.2"
+  },
+  {
+   "id": "CPL-66",
+   "domain": "CPL",
+   "name": "Processes for responsible design and development of AI systems",
+   "framework": "ISO 42001",
+   "citation": "A.6.1.3"
+  },
+  {
+   "id": "CPL-67",
+   "domain": "CPL",
+   "name": "External reporting",
+   "framework": "ISO 42001",
+   "citation": "A.8.3"
+  },
+  {
+   "id": "CPL-68",
+   "domain": "CPL",
+   "name": "Communication of incidents",
+   "framework": "ISO 42001",
+   "citation": "A.8.4"
+  },
+  {
+   "id": "CPL-69",
+   "domain": "CPL",
+   "name": "Information for interested parties",
+   "framework": "ISO 42001",
+   "citation": "A.8.5"
+  },
+  {
+   "id": "CPL-70",
+   "domain": "CPL",
+   "name": "Processes for responsible use of AI",
+   "framework": "ISO 42001",
+   "citation": "A.9.2"
+  },
+  {
+   "id": "CPL-71",
+   "domain": "CPL",
+   "name": "Objectives for responsible use of AI",
+   "framework": "ISO 42001",
+   "citation": "A.9.3"
+  },
+  {
+   "id": "CPL-72",
+   "domain": "CPL",
+   "name": "Intended use of the AI system",
+   "framework": "ISO 42001",
+   "citation": "A.9.4"
+  },
+  {
+   "id": "CPL-73",
+   "domain": "CPL",
+   "name": "Allocating responsibilities",
+   "framework": "ISO 42001",
+   "citation": "A.10.2"
+  },
+  {
+   "id": "CPL-74",
+   "domain": "CPL",
+   "name": "Suppliers",
+   "framework": "ISO 42001",
+   "citation": "A.10.3"
+  },
+  {
+   "id": "CPL-75",
+   "domain": "CPL",
+   "name": "Customers",
+   "framework": "ISO 42001",
+   "citation": "A.10.4"
+  },
+  {
+   "id": "CPL-357",
+   "domain": "CPL",
+   "name": "Whistleblower and workforce crime-victim disclosures permitted",
+   "framework": "HIPAA",
+   "citation": "164.502(j)"
+  },
+  {
+   "id": "CPL-358",
+   "domain": "CPL",
+   "name": "Disclosures required by law",
+   "framework": "HIPAA",
+   "citation": "164.512(a)"
+  },
+  {
+   "id": "CPL-359",
+   "domain": "CPL",
+   "name": "Disclosures for health oversight activities",
+   "framework": "HIPAA",
+   "citation": "164.512(d)"
+  },
+  {
+   "id": "CPL-360",
+   "domain": "CPL",
+   "name": "Disclosures for judicial and administrative proceedings",
+   "framework": "HIPAA",
+   "citation": "164.512(e)"
+  },
+  {
+   "id": "CPL-361",
+   "domain": "CPL",
+   "name": "Disclosures for law enforcement purposes",
+   "framework": "HIPAA",
+   "citation": "164.512(f)"
+  },
+  {
+   "id": "CPL-362",
+   "domain": "CPL",
+   "name": "Disclosures for specialized government functions",
+   "framework": "HIPAA",
+   "citation": "164.512(k)"
+  },
+  {
+   "id": "CPL-363",
+   "domain": "CPL",
+   "name": "Disclosures for workers' compensation",
+   "framework": "HIPAA",
+   "citation": "164.512(l)"
+  },
+  {
+   "id": "CRY-1",
+   "domain": "CRY",
+   "name": "Unique production database authentication enforced",
+   "framework": "SOC 2",
+   "citation": "CC6.1"
+  },
+  {
+   "id": "CRY-2",
+   "domain": "CRY",
+   "name": "Encryption key access restricted",
+   "framework": "SOC 2",
+   "citation": "CC6.1"
+  },
+  {
+   "id": "CRY-3",
+   "domain": "CRY",
+   "name": "Portable media encrypted",
+   "framework": "Cross-framework",
+   "citation": ""
+  },
+  {
+   "id": "CRY-4",
+   "domain": "CRY",
+   "name": "Data encryption utilized",
+   "framework": "SOC 2",
+   "citation": "PI1.4",
+   "moreMappings": 1
+  },
+  {
+   "id": "CRY-5",
+   "domain": "CRY",
+   "name": "Unique account authentication enforced",
+   "framework": "SOC 2",
+   "citation": "C1.1",
+   "moreMappings": 1
+  },
+  {
+   "id": "CRY-12",
+   "domain": "CRY",
+   "name": "Encryption and decryption controls implemented",
+   "framework": "HIPAA",
+   "citation": "164.312(a)(2)(iv)"
+  },
+  {
+   "id": "CRY-13",
+   "domain": "CRY",
+   "name": "Data transmission encrypted",
+   "framework": "HIPAA",
+   "citation": "164.312(e)(2)(ii)"
+  },
+  {
+   "id": "CRY-14",
+   "domain": "CRY",
+   "name": "Data transmission integrity maintained",
+   "framework": "HIPAA",
+   "citation": "164.312(e)(2)(i)"
+  },
+  {
+   "id": "CRY-15",
+   "domain": "CRY",
+   "name": "Data transmission secured",
+   "framework": "HIPAA",
+   "citation": "164.312(e)(1)"
+  },
+  {
+   "id": "CRY-91",
+   "domain": "CRY",
+   "name": "Information transfer",
+   "framework": "ISO 27001",
+   "citation": "A.5.14"
+  },
+  {
+   "id": "CRY-92",
+   "domain": "CRY",
+   "name": "Use of cryptography",
+   "framework": "ISO 27001",
+   "citation": "A.8.24"
+  },
+  {
+   "id": "DCH-1",
+   "domain": "DCH",
+   "name": "Customer data deleted upon leaving",
+   "framework": "SOC 2",
+   "citation": "CC6.5",
+   "moreMappings": 1
+  },
+  {
+   "id": "DCH-5",
+   "domain": "DCH",
+   "name": "Data classification policy established",
+   "framework": "SOC 2",
+   "citation": "CC6.1",
+   "moreMappings": 1
+  },
+  {
+   "id": "DCH-6",
+   "domain": "DCH",
+   "name": "Data deletion requests handled",
+   "framework": "SOC 2",
+   "citation": "P4.3"
+  },
+  {
+   "id": "DCH-7",
+   "domain": "DCH",
+   "name": "Personal information changes communicated",
+   "framework": "SOC 2",
+   "citation": "P5.2"
+  },
+  {
+   "id": "DCH-8",
+   "domain": "DCH",
+   "name": "Identity verification conducted",
+   "framework": "SOC 2",
+   "citation": "P6.7",
+   "moreMappings": 1
+  },
+  {
+   "id": "DCH-9",
+   "domain": "DCH",
+   "name": "Privacy inquiries handled",
+   "framework": "SOC 2",
+   "citation": "P4.3",
+   "moreMappings": 1
+  },
+  {
+   "id": "DCH-10",
+   "domain": "DCH",
+   "name": "Personal information securely disposed",
+   "framework": "SOC 2",
+   "citation": "P4.3"
+  },
+  {
+   "id": "DCH-11",
+   "domain": "DCH",
+   "name": "Production data segmented",
+   "framework": "SOC 2",
+   "citation": "C1.1"
+  },
+  {
+   "id": "DCH-21",
+   "domain": "DCH",
+   "name": "Data retention and time limit",
+   "framework": "HIPAA",
+   "citation": "164.316(b)(2)(i)"
+  },
+  {
+   "id": "DCH-106",
+   "domain": "DCH",
+   "name": "Acceptable use of information and other associated assets",
+   "framework": "ISO 27001",
+   "citation": "A.5.10"
+  },
+  {
+   "id": "DCH-107",
+   "domain": "DCH",
+   "name": "Classification of information",
+   "framework": "ISO 27001",
+   "citation": "A.5.12"
+  },
+  {
+   "id": "DCH-108",
+   "domain": "DCH",
+   "name": "Labelling of information",
+   "framework": "ISO 27001",
+   "citation": "A.5.13"
+  },
+  {
+   "id": "DCH-109",
+   "domain": "DCH",
+   "name": "Protection of records",
+   "framework": "ISO 27001",
+   "citation": "A.5.33"
+  },
+  {
+   "id": "DCH-110",
+   "domain": "DCH",
+   "name": "Information deletion",
+   "framework": "ISO 27001",
+   "citation": "A.8.10"
+  },
+  {
+   "id": "DCH-111",
+   "domain": "DCH",
+   "name": "Data masking",
+   "framework": "ISO 27001",
+   "citation": "A.8.11"
+  },
+  {
+   "id": "DCH-112",
+   "domain": "DCH",
+   "name": "Data leakage prevention",
+   "framework": "ISO 27001",
+   "citation": "A.8.12"
+  },
+  {
+   "id": "DCH-202",
+   "domain": "DCH",
+   "name": "Data resources",
+   "framework": "ISO 42001",
+   "citation": "A.4.3"
+  },
+  {
+   "id": "DCH-303",
+   "domain": "DCH",
+   "name": "Resource documentation",
+   "framework": "ISO 42001",
+   "citation": "A.4.2"
+  },
+  {
+   "id": "DCH-326",
+   "domain": "DCH",
+   "name": "De-identified information uses controlled",
+   "framework": "HIPAA",
+   "citation": "164.502(d)"
+  },
+  {
+   "id": "DCH-327",
+   "domain": "DCH",
+   "name": "De-identification methods applied",
+   "framework": "HIPAA",
+   "citation": "164.514(a)",
+   "moreMappings": 1
+  },
+  {
+   "id": "DCH-328",
+   "domain": "DCH",
+   "name": "Re-identification codes safeguarded",
+   "framework": "HIPAA",
+   "citation": "164.514(c)"
+  },
+  {
+   "id": "DCH-329",
+   "domain": "DCH",
+   "name": "Privacy documentation retained for six years",
+   "framework": "HIPAA",
+   "citation": "164.530(j)"
+  },
+  {
+   "id": "END-1",
+   "domain": "END",
+   "name": "Anti-malware technology utilized",
+   "framework": "SOC 2",
+   "citation": "CC6.8"
+  },
+  {
+   "id": "END-5",
+   "domain": "END",
+   "name": "Workstation security implemented",
+   "framework": "HIPAA",
+   "citation": "164.310(c)"
+  },
+  {
+   "id": "END-40",
+   "domain": "END",
+   "name": "User endpoint devices",
+   "framework": "ISO 27001",
+   "citation": "A.8.1"
+  },
+  {
+   "id": "END-41",
+   "domain": "END",
+   "name": "Protection against malware",
+   "framework": "ISO 27001",
+   "citation": "A.8.7"
+  },
+  {
+   "id": "GOV-1",
+   "domain": "GOV",
+   "name": "Board oversight briefings conducted",
+   "framework": "SOC 2",
+   "citation": "P8.1",
+   "moreMappings": 1
+  },
+  {
+   "id": "GOV-3",
+   "domain": "GOV",
+   "name": "Board expertise developed",
+   "framework": "SOC 2",
+   "citation": "CC1.2"
+  },
+  {
+   "id": "GOV-4",
+   "domain": "GOV",
+   "name": "Board meetings conducted",
+   "framework": "SOC 2",
+   "citation": "CC1.2"
+  },
+  {
+   "id": "GOV-5",
+   "domain": "GOV",
+   "name": "Backup processes established",
+   "framework": "SOC 2",
+   "citation": "A1.2",
+   "moreMappings": 2
+  },
+  {
+   "id": "GOV-6",
+   "domain": "GOV",
+   "name": "System changes externally communicated",
+   "framework": "SOC 2",
+   "citation": "CC2.3"
+  },
+  {
+   "id": "GOV-7",
+   "domain": "GOV",
+   "name": "Management roles and responsibilities defined",
+   "framework": "SOC 2",
+   "citation": "CC1.3",
+   "moreMappings": 1
+  },
+  {
+   "id": "GOV-8",
+   "domain": "GOV",
+   "name": "Organization structure documented",
+   "framework": "SOC 2",
+   "citation": "CC1.3"
+  },
+  {
+   "id": "GOV-10",
+   "domain": "GOV",
+   "name": "Roles and responsibilities specified",
+   "framework": "SOC 2",
+   "citation": "CC1.3",
+   "moreMappings": 4
+  },
+  {
+   "id": "GOV-11",
+   "domain": "GOV",
+   "name": "Security policies established and reviewed",
+   "framework": "SOC 2",
+   "citation": "CC5.1",
+   "moreMappings": 3
+  },
+  {
+   "id": "GOV-12",
+   "domain": "GOV",
+   "name": "Support system available",
+   "framework": "SOC 2",
+   "citation": "CC2.3"
+  },
+  {
+   "id": "GOV-13",
+   "domain": "GOV",
+   "name": "System changes communicated",
+   "framework": "SOC 2",
+   "citation": "CC2.2"
+  },
+  {
+   "id": "GOV-34",
+   "domain": "GOV",
+   "name": "HIPAA security officer",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(2)"
+  },
+  {
+   "id": "GOV-35",
+   "domain": "GOV",
+   "name": "Policies and procedures activity documented",
+   "framework": "HIPAA",
+   "citation": "164.316(b)(1)(ii)"
+  },
+  {
+   "id": "GOV-36",
+   "domain": "GOV",
+   "name": "Policies and procedures available",
+   "framework": "HIPAA",
+   "citation": "164.316(b)(2)(ii)"
+  },
+  {
+   "id": "GOV-37",
+   "domain": "GOV",
+   "name": "Policies and procedures created",
+   "framework": "HIPAA",
+   "citation": "164.316(a)"
+  },
+  {
+   "id": "GOV-38",
+   "domain": "GOV",
+   "name": "Policies and procedures documented",
+   "framework": "HIPAA",
+   "citation": "164.316(b)(1)(i)"
+  },
+  {
+   "id": "GOV-39",
+   "domain": "GOV",
+   "name": "Policies and procedures updated",
+   "framework": "HIPAA",
+   "citation": "164.316(b)(2)(iii)"
+  },
+  {
+   "id": "GOV-40",
+   "domain": "GOV",
+   "name": "Security violations managed",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(1)(i)"
+  },
+  {
+   "id": "GOV-41",
+   "domain": "GOV",
+   "name": "Security responsibility assigned",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(2)"
+  },
+  {
+   "id": "GOV-42",
+   "domain": "GOV",
+   "name": "Workstation security policies implemented",
+   "framework": "HIPAA",
+   "citation": "164.310(b)"
+  },
+  {
+   "id": "GOV-89",
+   "domain": "GOV",
+   "name": "Understanding the organization and its context",
+   "framework": "ISO 27001",
+   "citation": "C.4.1"
+  },
+  {
+   "id": "GOV-90",
+   "domain": "GOV",
+   "name": "Understanding the needs of interested parties",
+   "framework": "ISO 27001",
+   "citation": "C.4.2"
+  },
+  {
+   "id": "GOV-91",
+   "domain": "GOV",
+   "name": "Information security management system",
+   "framework": "ISO 27001",
+   "citation": "C.4.4"
+  },
+  {
+   "id": "GOV-92",
+   "domain": "GOV",
+   "name": "Leadership and commitment",
+   "framework": "ISO 27001",
+   "citation": "C.5.1"
+  },
+  {
+   "id": "GOV-93",
+   "domain": "GOV",
+   "name": "Policy",
+   "framework": "ISO 27001",
+   "citation": "C.5.2"
+  },
+  {
+   "id": "GOV-94",
+   "domain": "GOV",
+   "name": "Organizational roles, responsibilities and authorities",
+   "framework": "ISO 27001",
+   "citation": "C.5.3"
+  },
+  {
+   "id": "GOV-95",
+   "domain": "GOV",
+   "name": "Information security objectives and planning to achieve them",
+   "framework": "ISO 27001",
+   "citation": "C.6.2"
+  },
+  {
+   "id": "GOV-96",
+   "domain": "GOV",
+   "name": "Communication",
+   "framework": "ISO 27001",
+   "citation": "C.7.4"
+  },
+  {
+   "id": "GOV-97",
+   "domain": "GOV",
+   "name": "Documented information",
+   "framework": "ISO 27001",
+   "citation": "C.7.5.1"
+  },
+  {
+   "id": "GOV-98",
+   "domain": "GOV",
+   "name": "Creating and updating",
+   "framework": "ISO 27001",
+   "citation": "C.7.5.2"
+  },
+  {
+   "id": "GOV-99",
+   "domain": "GOV",
+   "name": "Control of documented information",
+   "framework": "ISO 27001",
+   "citation": "C.7.5.3"
+  },
+  {
+   "id": "GOV-100",
+   "domain": "GOV",
+   "name": "Monitoring, measurement, analysis and evaluation",
+   "framework": "ISO 27001",
+   "citation": "C.9.1"
+  },
+  {
+   "id": "GOV-101",
+   "domain": "GOV",
+   "name": "Management review, general",
+   "framework": "ISO 27001",
+   "citation": "C.9.3.1"
+  },
+  {
+   "id": "GOV-102",
+   "domain": "GOV",
+   "name": "Management review inputs",
+   "framework": "ISO 27001",
+   "citation": "C.9.3.2"
+  },
+  {
+   "id": "GOV-103",
+   "domain": "GOV",
+   "name": "Management review results",
+   "framework": "ISO 27001",
+   "citation": "C.9.3.3"
+  },
+  {
+   "id": "GOV-104",
+   "domain": "GOV",
+   "name": "Continual improvement",
+   "framework": "ISO 27001",
+   "citation": "C.10.1"
+  },
+  {
+   "id": "GOV-105",
+   "domain": "GOV",
+   "name": "Policies for information security",
+   "framework": "ISO 27001",
+   "citation": "A.5.1"
+  },
+  {
+   "id": "GOV-106",
+   "domain": "GOV",
+   "name": "Management responsibilities",
+   "framework": "ISO 27001",
+   "citation": "A.5.4"
+  },
+  {
+   "id": "GOV-107",
+   "domain": "GOV",
+   "name": "Contact with authorities",
+   "framework": "ISO 27001",
+   "citation": "A.5.5"
+  },
+  {
+   "id": "GOV-108",
+   "domain": "GOV",
+   "name": "Contact with special interest groups",
+   "framework": "ISO 27001",
+   "citation": "A.5.6"
+  },
+  {
+   "id": "GOV-109",
+   "domain": "GOV",
+   "name": "Documented operating procedures",
+   "framework": "ISO 27001",
+   "citation": "A.5.37"
+  },
+  {
+   "id": "GOV-243",
+   "domain": "GOV",
+   "name": "Understanding the organization and its context",
+   "framework": "ISO 42001",
+   "citation": "C.4.1"
+  },
+  {
+   "id": "GOV-244",
+   "domain": "GOV",
+   "name": "Understanding the needs and expectations of interested parties",
+   "framework": "ISO 42001",
+   "citation": "C.4.2"
+  },
+  {
+   "id": "GOV-245",
+   "domain": "GOV",
+   "name": "AI management system",
+   "framework": "ISO 42001",
+   "citation": "C.4.4"
+  },
+  {
+   "id": "GOV-246",
+   "domain": "GOV",
+   "name": "Leadership and commitment",
+   "framework": "ISO 42001",
+   "citation": "C.5.1"
+  },
+  {
+   "id": "GOV-247",
+   "domain": "GOV",
+   "name": "AI policy",
+   "framework": "ISO 42001",
+   "citation": "C.5.2"
+  },
+  {
+   "id": "GOV-248",
+   "domain": "GOV",
+   "name": "Roles, responsibilities and authorities",
+   "framework": "ISO 42001",
+   "citation": "C.5.3"
+  },
+  {
+   "id": "GOV-249",
+   "domain": "GOV",
+   "name": "AI system impact assessment",
+   "framework": "ISO 42001",
+   "citation": "C.6.1.4"
+  },
+  {
+   "id": "GOV-250",
+   "domain": "GOV",
+   "name": "Awareness",
+   "framework": "ISO 42001",
+   "citation": "C.7.3"
+  },
+  {
+   "id": "GOV-251",
+   "domain": "GOV",
+   "name": "Communication",
+   "framework": "ISO 42001",
+   "citation": "C.7.4"
+  },
+  {
+   "id": "GOV-252",
+   "domain": "GOV",
+   "name": "Documented information, general",
+   "framework": "ISO 42001",
+   "citation": "C.7.5.1"
+  },
+  {
+   "id": "GOV-253",
+   "domain": "GOV",
+   "name": "Creating and updating",
+   "framework": "ISO 42001",
+   "citation": "C.7.5.2"
+  },
+  {
+   "id": "GOV-254",
+   "domain": "GOV",
+   "name": "AI risk treatment",
+   "framework": "ISO 42001",
+   "citation": "C.8.3"
+  },
+  {
+   "id": "GOV-255",
+   "domain": "GOV",
+   "name": "Internal audit programme",
+   "framework": "ISO 42001",
+   "citation": "C.9.2.2"
+  },
+  {
+   "id": "GOV-256",
+   "domain": "GOV",
+   "name": "Management review, general",
+   "framework": "ISO 42001",
+   "citation": "C.9.3.1"
+  },
+  {
+   "id": "GOV-257",
+   "domain": "GOV",
+   "name": "Management review inputs",
+   "framework": "ISO 42001",
+   "citation": "C.9.3.2"
+  },
+  {
+   "id": "GOV-258",
+   "domain": "GOV",
+   "name": "Management review results",
+   "framework": "ISO 42001",
+   "citation": "C.9.3.3"
+  },
+  {
+   "id": "GOV-259",
+   "domain": "GOV",
+   "name": "Alignment with other organizational policies",
+   "framework": "ISO 42001",
+   "citation": "A.2.3"
+  },
+  {
+   "id": "GOV-260",
+   "domain": "GOV",
+   "name": "Review of the AI policy",
+   "framework": "ISO 42001",
+   "citation": "A.2.4"
+  },
+  {
+   "id": "GOV-261",
+   "domain": "GOV",
+   "name": "AI roles and responsibilities",
+   "framework": "ISO 42001",
+   "citation": "A.3.2"
+  },
+  {
+   "id": "GOV-262",
+   "domain": "GOV",
+   "name": "Reporting of concerns",
+   "framework": "ISO 42001",
+   "citation": "A.3.3"
+  },
+  {
+   "id": "GOV-263",
+   "domain": "GOV",
+   "name": "Tooling resources",
+   "framework": "ISO 42001",
+   "citation": "A.4.4"
+  },
+  {
+   "id": "GOV-264",
+   "domain": "GOV",
+   "name": "System and computing resources",
+   "framework": "ISO 42001",
+   "citation": "A.4.5"
+  },
+  {
+   "id": "GOV-3126",
+   "domain": "GOV",
+   "name": "Privacy official and contact designated",
+   "framework": "HIPAA",
+   "citation": "164.530(a)"
+  },
+  {
+   "id": "GOV-3127",
+   "domain": "GOV",
+   "name": "Privacy safeguards implemented",
+   "framework": "HIPAA",
+   "citation": "164.530(c)"
+  },
+  {
+   "id": "GOV-3128",
+   "domain": "GOV",
+   "name": "Privacy policies and procedures maintained and updated",
+   "framework": "HIPAA",
+   "citation": "164.530(i)"
+  },
+  {
+   "id": "HRS-1",
+   "domain": "HRS",
+   "name": "Employee background checks performed",
+   "framework": "SOC 2",
+   "citation": "CC1.1",
+   "moreMappings": 1
+  },
+  {
+   "id": "HRS-2",
+   "domain": "HRS",
+   "name": "Code of Conduct acknowledged by contractors",
+   "framework": "SOC 2",
+   "citation": "CC1.1"
+  },
+  {
+   "id": "HRS-3",
+   "domain": "HRS",
+   "name": "Code of Conduct acknowledged by employees and enforced",
+   "framework": "SOC 2",
+   "citation": "CC1.1",
+   "moreMappings": 1
+  },
+  {
+   "id": "HRS-4",
+   "domain": "HRS",
+   "name": "Confidentiality Agreement acknowledged by contractors",
+   "framework": "SOC 2",
+   "citation": "CC1.1"
+  },
+  {
+   "id": "HRS-5",
+   "domain": "HRS",
+   "name": "Confidentiality Agreement acknowledged by employees",
+   "framework": "SOC 2",
+   "citation": "CC1.1"
+  },
+  {
+   "id": "HRS-6",
+   "domain": "HRS",
+   "name": "Performance evaluations conducted",
+   "framework": "SOC 2",
+   "citation": "CC1.5",
+   "moreMappings": 2
+  },
+  {
+   "id": "HRS-17",
+   "domain": "HRS",
+   "name": "Sanction policy applied",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(1)(ii)(C)"
+  },
+  {
+   "id": "HRS-52",
+   "domain": "HRS",
+   "name": "Competence",
+   "framework": "ISO 27001",
+   "citation": "C.7.2"
+  },
+  {
+   "id": "HRS-53",
+   "domain": "HRS",
+   "name": "Awareness",
+   "framework": "ISO 27001",
+   "citation": "C.7.3"
+  },
+  {
+   "id": "HRS-54",
+   "domain": "HRS",
+   "name": "Information security roles and responsibilities",
+   "framework": "ISO 27001",
+   "citation": "A.5.2"
+  },
+  {
+   "id": "HRS-55",
+   "domain": "HRS",
+   "name": "Segregation of duties",
+   "framework": "ISO 27001",
+   "citation": "A.5.3"
+  },
+  {
+   "id": "HRS-56",
+   "domain": "HRS",
+   "name": "Screening",
+   "framework": "ISO 27001",
+   "citation": "A.6.1"
+  },
+  {
+   "id": "HRS-57",
+   "domain": "HRS",
+   "name": "Terms and conditions of employment",
+   "framework": "ISO 27001",
+   "citation": "A.6.2"
+  },
+  {
+   "id": "HRS-58",
+   "domain": "HRS",
+   "name": "Disciplinary process",
+   "framework": "ISO 27001",
+   "citation": "A.6.4"
+  },
+  {
+   "id": "HRS-59",
+   "domain": "HRS",
+   "name": "Responsibilities after termination or change of employment",
+   "framework": "ISO 27001",
+   "citation": "A.6.5"
+  },
+  {
+   "id": "HRS-60",
+   "domain": "HRS",
+   "name": "Confidentiality or non-disclosure agreements",
+   "framework": "ISO 27001",
+   "citation": "A.6.6"
+  },
+  {
+   "id": "HRS-87",
+   "domain": "HRS",
+   "name": "Resources",
+   "framework": "ISO 42001",
+   "citation": "C.7.1"
+  },
+  {
+   "id": "HRS-88",
+   "domain": "HRS",
+   "name": "Competence",
+   "framework": "ISO 42001",
+   "citation": "C.7.2"
+  },
+  {
+   "id": "HRS-89",
+   "domain": "HRS",
+   "name": "Human resources",
+   "framework": "ISO 42001",
+   "citation": "A.4.6"
+  },
+  {
+   "id": "HRS-146",
+   "domain": "HRS",
+   "name": "Sanctions for privacy violations applied",
+   "framework": "HIPAA",
+   "citation": "164.530(e)"
+  },
+  {
+   "id": "HRS-147",
+   "domain": "HRS",
+   "name": "No retaliation and no waiver of rights",
+   "framework": "HIPAA",
+   "citation": "164.530(g)",
+   "moreMappings": 1
+  },
+  {
+   "id": "IAC-1",
+   "domain": "IAC",
+   "name": "Production application access restricted",
+   "framework": "SOC 2",
+   "citation": "CC6.1"
+  },
+  {
+   "id": "IAC-2",
+   "domain": "IAC",
+   "name": "Access control procedures established",
+   "framework": "SOC 2",
+   "citation": "CC6.1",
+   "moreMappings": 3
+  },
+  {
+   "id": "IAC-3",
+   "domain": "IAC",
+   "name": "Production database access restricted",
+   "framework": "SOC 2",
+   "citation": "CC6.1"
+  },
+  {
+   "id": "IAC-4",
+   "domain": "IAC",
+   "name": "Firewall access restricted",
+   "framework": "SOC 2",
+   "citation": "CC6.1"
+  },
+  {
+   "id": "IAC-5",
+   "domain": "IAC",
+   "name": "Production OS access restricted",
+   "framework": "SOC 2",
+   "citation": "CC6.1"
+  },
+  {
+   "id": "IAC-6",
+   "domain": "IAC",
+   "name": "Production network access restricted",
+   "framework": "SOC 2",
+   "citation": "CC6.1",
+   "moreMappings": 1
+  },
+  {
+   "id": "IAC-7",
+   "domain": "IAC",
+   "name": "Access reviews conducted",
+   "framework": "SOC 2",
+   "citation": "CC6.2",
+   "moreMappings": 2
+  },
+  {
+   "id": "IAC-8",
+   "domain": "IAC",
+   "name": "Access revoked upon termination",
+   "framework": "SOC 2",
+   "citation": "CC6.5",
+   "moreMappings": 2
+  },
+  {
+   "id": "IAC-9",
+   "domain": "IAC",
+   "name": "Access requests required",
+   "framework": "SOC 2",
+   "citation": "CC6.3",
+   "moreMappings": 2
+  },
+  {
+   "id": "IAC-10",
+   "domain": "IAC",
+   "name": "Unique network system authentication enforced",
+   "framework": "SOC 2",
+   "citation": "CC6.1",
+   "moreMappings": 3
+  },
+  {
+   "id": "IAC-11",
+   "domain": "IAC",
+   "name": "Password policy enforced",
+   "framework": "SOC 2",
+   "citation": "CC6.1"
+  },
+  {
+   "id": "IAC-12",
+   "domain": "IAC",
+   "name": "Remote access MFA enforced",
+   "framework": "SOC 2",
+   "citation": "CC6.1",
+   "moreMappings": 1
+  },
+  {
+   "id": "IAC-13",
+   "domain": "IAC",
+   "name": "Remote access encrypted enforced",
+   "framework": "SOC 2",
+   "citation": "CC6.6",
+   "moreMappings": 1
+  },
+  {
+   "id": "IAC-24",
+   "domain": "IAC",
+   "name": "Access authorized",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(4)(ii)(B)"
+  },
+  {
+   "id": "IAC-25",
+   "domain": "IAC",
+   "name": "Access controls applied",
+   "framework": "HIPAA",
+   "citation": "164.312(a)(1)"
+  },
+  {
+   "id": "IAC-26",
+   "domain": "IAC",
+   "name": "Access established, reviewed and modified",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(4)(ii)(C)"
+  },
+  {
+   "id": "IAC-27",
+   "domain": "IAC",
+   "name": "Workforce authorized and/or supervised",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(3)(ii)(A)"
+  },
+  {
+   "id": "IAC-28",
+   "domain": "IAC",
+   "name": "Log-off automated",
+   "framework": "HIPAA",
+   "citation": "164.312(a)(2)(iii)"
+  },
+  {
+   "id": "IAC-29",
+   "domain": "IAC",
+   "name": "Emergency access procedures established",
+   "framework": "HIPAA",
+   "citation": "164.312(a)(2)(ii)"
+  },
+  {
+   "id": "IAC-30",
+   "domain": "IAC",
+   "name": "Termination procedures established",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(3)(ii)(C)"
+  },
+  {
+   "id": "IAC-31",
+   "domain": "IAC",
+   "name": "Information access managed",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(4)(i)"
+  },
+  {
+   "id": "IAC-32",
+   "domain": "IAC",
+   "name": "Person or entities authenticated",
+   "framework": "HIPAA",
+   "citation": "164.312(d)"
+  },
+  {
+   "id": "IAC-33",
+   "domain": "IAC",
+   "name": "Unique user identified",
+   "framework": "HIPAA",
+   "citation": "164.312(a)(2)(i)"
+  },
+  {
+   "id": "IAC-34",
+   "domain": "IAC",
+   "name": "Workforce clearance procedures implemented",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(3)(ii)(B)"
+  },
+  {
+   "id": "IAC-35",
+   "domain": "IAC",
+   "name": "Workforce security implemented",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(3)(i)"
+  },
+  {
+   "id": "IAC-197",
+   "domain": "IAC",
+   "name": "Access control",
+   "framework": "ISO 27001",
+   "citation": "A.5.15"
+  },
+  {
+   "id": "IAC-198",
+   "domain": "IAC",
+   "name": "Identity management",
+   "framework": "ISO 27001",
+   "citation": "A.5.16"
+  },
+  {
+   "id": "IAC-199",
+   "domain": "IAC",
+   "name": "Authentication information",
+   "framework": "ISO 27001",
+   "citation": "A.5.17"
+  },
+  {
+   "id": "IAC-200",
+   "domain": "IAC",
+   "name": "Access rights",
+   "framework": "ISO 27001",
+   "citation": "A.5.18"
+  },
+  {
+   "id": "IAC-201",
+   "domain": "IAC",
+   "name": "Privileged access rights",
+   "framework": "ISO 27001",
+   "citation": "A.8.2"
+  },
+  {
+   "id": "IAC-202",
+   "domain": "IAC",
+   "name": "Information access restriction",
+   "framework": "ISO 27001",
+   "citation": "A.8.3"
+  },
+  {
+   "id": "IAC-203",
+   "domain": "IAC",
+   "name": "Secure authentication",
+   "framework": "ISO 27001",
+   "citation": "A.8.5"
+  },
+  {
+   "id": "IAC-204",
+   "domain": "IAC",
+   "name": "Use of privileged utility programs",
+   "framework": "ISO 27001",
+   "citation": "A.8.18"
+  },
+  {
+   "id": "IAC-769",
+   "domain": "IAC",
+   "name": "Identity and authority of requesters verified",
+   "framework": "HIPAA",
+   "citation": "164.514(h)"
+  },
+  {
+   "id": "IAO-1",
+   "domain": "IAO",
+   "name": "Control self-assessments conducted",
+   "framework": "SOC 2",
+   "citation": "CC4.1",
+   "moreMappings": 3
+  },
+  {
+   "id": "IAO-2",
+   "domain": "IAO",
+   "name": "Penetration testing performed",
+   "framework": "Cross-framework",
+   "citation": ""
+  },
+  {
+   "id": "IRO-1",
+   "domain": "IRO",
+   "name": "Incident response plan tested",
+   "framework": "SOC 2",
+   "citation": "CC7.4",
+   "moreMappings": 1
+  },
+  {
+   "id": "IRO-2",
+   "domain": "IRO",
+   "name": "Incident response policies established",
+   "framework": "SOC 2",
+   "citation": "P6.3",
+   "moreMappings": 8
+  },
+  {
+   "id": "IRO-3",
+   "domain": "IRO",
+   "name": "Incident management procedures followed",
+   "framework": "SOC 2",
+   "citation": "P6.5",
+   "moreMappings": 7
+  },
+  {
+   "id": "IRO-4",
+   "domain": "IRO",
+   "name": "Private data shared upon request",
+   "framework": "SOC 2",
+   "citation": "P6.7"
+  },
+  {
+   "id": "IRO-12",
+   "domain": "IRO",
+   "name": "Additional breach information",
+   "framework": "HIPAA",
+   "citation": "164.404",
+   "moreMappings": 17
+  },
+  {
+   "id": "IRO-13",
+   "domain": "IRO",
+   "name": "Breach notice identification of individuals",
+   "framework": "HIPAA",
+   "citation": "164.410(c)(1)"
+  },
+  {
+   "id": "IRO-14",
+   "domain": "IRO",
+   "name": "Group health plan: incident reporting required in plan documents",
+   "framework": "HIPAA",
+   "citation": "164.314(b)(2)(iv)"
+  },
+  {
+   "id": "IRO-15",
+   "domain": "IRO",
+   "name": "Notification of breach",
+   "framework": "HIPAA",
+   "citation": "164.410(a)(1)",
+   "moreMappings": 1
+  },
+  {
+   "id": "IRO-16",
+   "domain": "IRO",
+   "name": "Security incidents identified and reported",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(6)(ii)"
+  },
+  {
+   "id": "IRO-17",
+   "domain": "IRO",
+   "name": "Security incident procedures implemented",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(6)(i)"
+  },
+  {
+   "id": "IRO-18",
+   "domain": "IRO",
+   "name": "Timeliness of breach notification",
+   "framework": "HIPAA",
+   "citation": "164.410(b)"
+  },
+  {
+   "id": "IRO-90",
+   "domain": "IRO",
+   "name": "Addressing information security within supplier agreements",
+   "framework": "ISO 27001",
+   "citation": "A.5.20",
+   "related": [
+    "TPM"
+   ]
+  },
+  {
+   "id": "IRO-91",
+   "domain": "IRO",
+   "name": "Information security incident management planning and preparation",
+   "framework": "ISO 27001",
+   "citation": "A.5.24"
+  },
+  {
+   "id": "IRO-92",
+   "domain": "IRO",
+   "name": "Assessment and decision on information security events",
+   "framework": "ISO 27001",
+   "citation": "A.5.25"
+  },
+  {
+   "id": "IRO-93",
+   "domain": "IRO",
+   "name": "Response to information security incidents",
+   "framework": "ISO 27001",
+   "citation": "A.5.26"
+  },
+  {
+   "id": "IRO-94",
+   "domain": "IRO",
+   "name": "Learning from information security incidents",
+   "framework": "ISO 27001",
+   "citation": "A.5.27"
+  },
+  {
+   "id": "IRO-95",
+   "domain": "IRO",
+   "name": "Collection of evidence",
+   "framework": "ISO 27001",
+   "citation": "A.5.28"
+  },
+  {
+   "id": "IRO-96",
+   "domain": "IRO",
+   "name": "Information security during disruption",
+   "framework": "ISO 27001",
+   "citation": "A.5.29"
+  },
+  {
+   "id": "IRO-97",
+   "domain": "IRO",
+   "name": "Information security event reporting",
+   "framework": "ISO 27001",
+   "citation": "A.6.8"
+  },
+  {
+   "id": "IRO-378",
+   "domain": "IRO",
+   "name": "Mitigation of harmful effects performed",
+   "framework": "HIPAA",
+   "citation": "164.530(f)"
+  },
+  {
+   "id": "MDM-1",
+   "domain": "MDM",
+   "name": "MDM system utilized",
+   "framework": "SOC 2",
+   "citation": "CC6.7"
+  },
+  {
+   "id": "MNT-2",
+   "domain": "MNT",
+   "name": "Maintenance records maintained",
+   "framework": "HIPAA",
+   "citation": "164.310(a)(2)(iv)"
+  },
+  {
+   "id": "MNT-21",
+   "domain": "MNT",
+   "name": "Equipment maintenance",
+   "framework": "ISO 27001",
+   "citation": "A.7.13"
+  },
+  {
+   "id": "MON-1",
+   "domain": "MON",
+   "name": "Intrusion detection system utilized",
+   "framework": "SOC 2",
+   "citation": "CC7.2",
+   "moreMappings": 2
+  },
+  {
+   "id": "MON-2",
+   "domain": "MON",
+   "name": "Log management utilized",
+   "framework": "SOC 2",
+   "citation": "CC7.2",
+   "moreMappings": 1
+  },
+  {
+   "id": "MON-4",
+   "domain": "MON",
+   "name": "Infrastructure performance monitored",
+   "framework": "SOC 2",
+   "citation": "PI1.3",
+   "moreMappings": 2
+  },
+  {
+   "id": "MON-8",
+   "domain": "MON",
+   "name": "Audit controls implemented",
+   "framework": "HIPAA",
+   "citation": "164.312(b)"
+  },
+  {
+   "id": "MON-9",
+   "domain": "MON",
+   "name": "Data integrity maintained",
+   "framework": "HIPAA",
+   "citation": "164.312(c)(1)"
+  },
+  {
+   "id": "MON-10",
+   "domain": "MON",
+   "name": "Mechanism to authenticate ePHI implemented",
+   "framework": "HIPAA",
+   "citation": "164.312(c)(2)"
+  },
+  {
+   "id": "MON-120",
+   "domain": "MON",
+   "name": "Logging",
+   "framework": "ISO 27001",
+   "citation": "A.8.15"
+  },
+  {
+   "id": "MON-121",
+   "domain": "MON",
+   "name": "Monitoring activities",
+   "framework": "ISO 27001",
+   "citation": "A.8.16"
+  },
+  {
+   "id": "NET-1",
+   "domain": "NET",
+   "name": "Data transmission encrypted",
+   "framework": "SOC 2",
+   "citation": "CC6.6",
+   "moreMappings": 1
+  },
+  {
+   "id": "NET-2",
+   "domain": "NET",
+   "name": "Network segmentation implemented",
+   "framework": "SOC 2",
+   "citation": "CC6.1"
+  },
+  {
+   "id": "NET-3",
+   "domain": "NET",
+   "name": "Network firewalls reviewed",
+   "framework": "SOC 2",
+   "citation": "CC6.6"
+  },
+  {
+   "id": "NET-4",
+   "domain": "NET",
+   "name": "Network firewalls utilized",
+   "framework": "SOC 2",
+   "citation": "CC6.6"
+  },
+  {
+   "id": "NET-5",
+   "domain": "NET",
+   "name": "Network and system hardening standards maintained",
+   "framework": "SOC 2",
+   "citation": "CC8.1",
+   "moreMappings": 1
+  },
+  {
+   "id": "NET-90",
+   "domain": "NET",
+   "name": "Remote working",
+   "framework": "ISO 27001",
+   "citation": "A.6.7"
+  },
+  {
+   "id": "NET-91",
+   "domain": "NET",
+   "name": "Networks security",
+   "framework": "ISO 27001",
+   "citation": "A.8.20"
+  },
+  {
+   "id": "NET-92",
+   "domain": "NET",
+   "name": "Security of network services",
+   "framework": "ISO 27001",
+   "citation": "A.8.21"
+  },
+  {
+   "id": "NET-93",
+   "domain": "NET",
+   "name": "Segregation of networks",
+   "framework": "ISO 27001",
+   "citation": "A.8.22"
+  },
+  {
+   "id": "NET-94",
+   "domain": "NET",
+   "name": "Web filtering",
+   "framework": "ISO 27001",
+   "citation": "A.8.23"
+  },
+  {
+   "id": "OPS-1",
+   "domain": "OPS",
+   "name": "Vulnerability and system monitoring procedures established",
+   "framework": "SOC 2",
+   "citation": "CC7.1",
+   "moreMappings": 1
+  },
+  {
+   "id": "OPS-7",
+   "domain": "OPS",
+   "name": "Operational planning and control",
+   "framework": "ISO 27001",
+   "citation": "C.8.1"
+  },
+  {
+   "id": "OPS-15",
+   "domain": "OPS",
+   "name": "Control of documented information",
+   "framework": "ISO 42001",
+   "citation": "C.7.5.3"
+  },
+  {
+   "id": "PES-1",
+   "domain": "PES",
+   "name": "Physical access processes established",
+   "framework": "Cross-framework",
+   "citation": ""
+  },
+  {
+   "id": "PES-2",
+   "domain": "PES",
+   "name": "Data center access reviewed",
+   "framework": "SOC 2",
+   "citation": "CC6.4"
+  },
+  {
+   "id": "PES-3",
+   "domain": "PES",
+   "name": "Visitor procedures enforced",
+   "framework": "SOC 2",
+   "citation": "CC6.4"
+  },
+  {
+   "id": "PES-16",
+   "domain": "PES",
+   "name": "Access control and validation procedures implemented",
+   "framework": "HIPAA",
+   "citation": "164.310(a)(2)(iii)"
+  },
+  {
+   "id": "PES-17",
+   "domain": "PES",
+   "name": "Facility access controls implemented",
+   "framework": "HIPAA",
+   "citation": "164.310(a)(1)"
+  },
+  {
+   "id": "PES-18",
+   "domain": "PES",
+   "name": "Facility security plan implemented",
+   "framework": "HIPAA",
+   "citation": "164.310(a)(2)(ii)"
+  },
+  {
+   "id": "PES-72",
+   "domain": "PES",
+   "name": "Physical security perimeters",
+   "framework": "ISO 27001",
+   "citation": "A.7.1"
+  },
+  {
+   "id": "PES-73",
+   "domain": "PES",
+   "name": "Physical entry",
+   "framework": "ISO 27001",
+   "citation": "A.7.2"
+  },
+  {
+   "id": "PES-74",
+   "domain": "PES",
+   "name": "Securing offices, rooms and facilities",
+   "framework": "ISO 27001",
+   "citation": "A.7.3"
+  },
+  {
+   "id": "PES-75",
+   "domain": "PES",
+   "name": "Physical security monitoring",
+   "framework": "ISO 27001",
+   "citation": "A.7.4"
+  },
+  {
+   "id": "PES-76",
+   "domain": "PES",
+   "name": "Protecting against physical and environmental threats",
+   "framework": "ISO 27001",
+   "citation": "A.7.5"
+  },
+  {
+   "id": "PES-77",
+   "domain": "PES",
+   "name": "Working in secure areas",
+   "framework": "ISO 27001",
+   "citation": "A.7.6"
+  },
+  {
+   "id": "PES-78",
+   "domain": "PES",
+   "name": "Clear desk and clear screen",
+   "framework": "ISO 27001",
+   "citation": "A.7.7"
+  },
+  {
+   "id": "PES-79",
+   "domain": "PES",
+   "name": "Equipment siting and protection",
+   "framework": "ISO 27001",
+   "citation": "A.7.8"
+  },
+  {
+   "id": "PES-80",
+   "domain": "PES",
+   "name": "Supporting utilities",
+   "framework": "ISO 27001",
+   "citation": "A.7.11"
+  },
+  {
+   "id": "PES-81",
+   "domain": "PES",
+   "name": "Cabling security",
+   "framework": "ISO 27001",
+   "citation": "A.7.12"
+  },
+  {
+   "id": "PRI-1",
+   "domain": "PRI",
+   "name": "Legal personal information tracked",
+   "framework": "SOC 2",
+   "citation": "P6.1"
+  },
+  {
+   "id": "PRI-2",
+   "domain": "PRI",
+   "name": "Personal data update mechanisms available",
+   "framework": "SOC 2",
+   "citation": "P7.1"
+  },
+  {
+   "id": "PRI-3",
+   "domain": "PRI",
+   "name": "Personal information collection changes communicated",
+   "framework": "SOC 2",
+   "citation": "P3.1",
+   "moreMappings": 1
+  },
+  {
+   "id": "PRI-4",
+   "domain": "PRI",
+   "name": "Personal information collection reviewed",
+   "framework": "SOC 2",
+   "citation": "P3.1"
+  },
+  {
+   "id": "PRI-5",
+   "domain": "PRI",
+   "name": "Personal information reliability verified",
+   "framework": "SOC 2",
+   "citation": "P3.1"
+  },
+  {
+   "id": "PRI-6",
+   "domain": "PRI",
+   "name": "Privacy policy maintained",
+   "framework": "SOC 2",
+   "citation": "P6.1",
+   "moreMappings": 3
+  },
+  {
+   "id": "PRI-7",
+   "domain": "PRI",
+   "name": "Privacy compliant procedures established",
+   "framework": "SOC 2",
+   "citation": "P8.1"
+  },
+  {
+   "id": "PRI-8",
+   "domain": "PRI",
+   "name": "Privacy data retained",
+   "framework": "SOC 2",
+   "citation": "P4.2"
+  },
+  {
+   "id": "PRI-9",
+   "domain": "PRI",
+   "name": "Explicit consent obtained",
+   "framework": "SOC 2",
+   "citation": "P2.1",
+   "moreMappings": 1
+  },
+  {
+   "id": "PRI-10",
+   "domain": "PRI",
+   "name": "User data collection consent obtained",
+   "framework": "SOC 2",
+   "citation": "P6.1",
+   "moreMappings": 1
+  },
+  {
+   "id": "PRI-11",
+   "domain": "PRI",
+   "name": "Privacy information purpose communicated",
+   "framework": "SOC 2",
+   "citation": "P6.1",
+   "moreMappings": 1
+  },
+  {
+   "id": "PRI-12",
+   "domain": "PRI",
+   "name": "Non-essential privacy information opt-out available",
+   "framework": "SOC 2",
+   "citation": "P2.1"
+  },
+  {
+   "id": "PRI-13",
+   "domain": "PRI",
+   "name": "Personal information policies and procedures established",
+   "framework": "SOC 2",
+   "citation": "P3.1",
+   "moreMappings": 1
+  },
+  {
+   "id": "PRI-14",
+   "domain": "PRI",
+   "name": "Privacy policy available",
+   "framework": "SOC 2",
+   "citation": "P1.1"
+  },
+  {
+   "id": "PRI-15",
+   "domain": "PRI",
+   "name": "Privacy policy established",
+   "framework": "SOC 2",
+   "citation": "P5.2",
+   "moreMappings": 3
+  },
+  {
+   "id": "PRI-16",
+   "domain": "PRI",
+   "name": "Privacy policy reviewed",
+   "framework": "SOC 2",
+   "citation": "P1.1"
+  },
+  {
+   "id": "PRI-17",
+   "domain": "PRI",
+   "name": "Third party privacy documentation reviewed",
+   "framework": "SOC 2",
+   "citation": "P6.2",
+   "moreMappings": 4
+  },
+  {
+   "id": "PRI-224",
+   "domain": "PRI",
+   "name": "Privacy and protection of PII",
+   "framework": "ISO 27001",
+   "citation": "A.5.34"
+  },
+  {
+   "id": "PRI-314",
+   "domain": "PRI",
+   "name": "Permitted uses and disclosures of PHI defined",
+   "framework": "HIPAA",
+   "citation": "164.502(a)(1)"
+  },
+  {
+   "id": "PRI-315",
+   "domain": "PRI",
+   "name": "Required disclosures of PHI honored",
+   "framework": "HIPAA",
+   "citation": "164.502(a)(2)"
+  },
+  {
+   "id": "PRI-316",
+   "domain": "PRI",
+   "name": "Genetic information not used for underwriting",
+   "framework": "HIPAA",
+   "citation": "164.502(a)(5)(i)"
+  },
+  {
+   "id": "PRI-317",
+   "domain": "PRI",
+   "name": "Sale of PHI prohibited without authorization",
+   "framework": "HIPAA",
+   "citation": "164.502(a)(5)(ii)",
+   "moreMappings": 1
+  },
+  {
+   "id": "PRI-318",
+   "domain": "PRI",
+   "name": "Reproductive health care use and disclosure prohibition",
+   "framework": "HIPAA",
+   "citation": "164.502(a)(5)(iii)"
+  },
+  {
+   "id": "PRI-319",
+   "domain": "PRI",
+   "name": "Minimum necessary standard applied",
+   "framework": "HIPAA",
+   "citation": "164.502(b)"
+  },
+  {
+   "id": "PRI-320",
+   "domain": "PRI",
+   "name": "Agreed-upon restrictions on PHI honored",
+   "framework": "HIPAA",
+   "citation": "164.502(c)"
+  },
+  {
+   "id": "PRI-321",
+   "domain": "PRI",
+   "name": "Deceased individuals' PHI protected",
+   "framework": "HIPAA",
+   "citation": "164.502(f)"
+  },
+  {
+   "id": "PRI-322",
+   "domain": "PRI",
+   "name": "Personal representatives recognized",
+   "framework": "HIPAA",
+   "citation": "164.502(g)"
+  },
+  {
+   "id": "PRI-323",
+   "domain": "PRI",
+   "name": "Uses and disclosures consistent with notice",
+   "framework": "HIPAA",
+   "citation": "164.502(i)"
+  },
+  {
+   "id": "PRI-324",
+   "domain": "PRI",
+   "name": "Group health plan documents amended for privacy",
+   "framework": "HIPAA",
+   "citation": "164.504(f)(1)",
+   "moreMappings": 2
+  },
+  {
+   "id": "PRI-325",
+   "domain": "PRI",
+   "name": "Multiple covered functions segregated",
+   "framework": "HIPAA",
+   "citation": "164.504(g)"
+  },
+  {
+   "id": "PRI-326",
+   "domain": "PRI",
+   "name": "Treatment, payment, and operations uses permitted",
+   "framework": "HIPAA",
+   "citation": "164.506(a)",
+   "moreMappings": 2
+  },
+  {
+   "id": "PRI-327",
+   "domain": "PRI",
+   "name": "Authorization obtained for non-permitted uses and disclosures",
+   "framework": "HIPAA",
+   "citation": "164.508(a)(1)"
+  },
+  {
+   "id": "PRI-328",
+   "domain": "PRI",
+   "name": "Authorization obtained for psychotherapy notes",
+   "framework": "HIPAA",
+   "citation": "164.508(a)(2)"
+  },
+  {
+   "id": "PRI-329",
+   "domain": "PRI",
+   "name": "Authorization obtained for marketing and sale of PHI",
+   "framework": "HIPAA",
+   "citation": "164.508(a)(3)",
+   "moreMappings": 1
+  },
+  {
+   "id": "PRI-330",
+   "domain": "PRI",
+   "name": "Authorizations meet validity and content requirements",
+   "framework": "HIPAA",
+   "citation": "164.508(b)(1)",
+   "moreMappings": 6
+  },
+  {
+   "id": "PRI-331",
+   "domain": "PRI",
+   "name": "Treatment and benefits not conditioned on authorization",
+   "framework": "HIPAA",
+   "citation": "164.508(b)(4)"
+  },
+  {
+   "id": "PRI-332",
+   "domain": "PRI",
+   "name": "Authorization revocation honored and documented",
+   "framework": "HIPAA",
+   "citation": "164.508(b)(5)",
+   "moreMappings": 1
+  },
+  {
+   "id": "PRI-333",
+   "domain": "PRI",
+   "name": "Attestation obtained for reproductive-health-related disclosures",
+   "framework": "HIPAA",
+   "citation": "164.509(a)",
+   "moreMappings": 3
+  },
+  {
+   "id": "PRI-334",
+   "domain": "PRI",
+   "name": "Facility directory uses with opportunity to object",
+   "framework": "HIPAA",
+   "citation": "164.510(a)"
+  },
+  {
+   "id": "PRI-335",
+   "domain": "PRI",
+   "name": "Disclosures for care involvement and notification",
+   "framework": "HIPAA",
+   "citation": "164.510(b)"
+  },
+  {
+   "id": "PRI-336",
+   "domain": "PRI",
+   "name": "Disclosures for public health activities",
+   "framework": "HIPAA",
+   "citation": "164.512(b)"
+  },
+  {
+   "id": "PRI-337",
+   "domain": "PRI",
+   "name": "Disclosures about victims of abuse, neglect, or domestic violence",
+   "framework": "HIPAA",
+   "citation": "164.512(c)"
+  },
+  {
+   "id": "PRI-338",
+   "domain": "PRI",
+   "name": "Disclosures about decedents to coroners and funeral directors",
+   "framework": "HIPAA",
+   "citation": "164.512(g)"
+  },
+  {
+   "id": "PRI-339",
+   "domain": "PRI",
+   "name": "Disclosures for cadaveric organ, eye, or tissue donation",
+   "framework": "HIPAA",
+   "citation": "164.512(h)"
+  },
+  {
+   "id": "PRI-340",
+   "domain": "PRI",
+   "name": "Disclosures for research purposes",
+   "framework": "HIPAA",
+   "citation": "164.512(i)"
+  },
+  {
+   "id": "PRI-341",
+   "domain": "PRI",
+   "name": "Disclosures to avert a serious threat to health or safety",
+   "framework": "HIPAA",
+   "citation": "164.512(j)"
+  },
+  {
+   "id": "PRI-342",
+   "domain": "PRI",
+   "name": "Minimum necessary policies and procedures implemented",
+   "framework": "HIPAA",
+   "citation": "164.514(d)"
+  },
+  {
+   "id": "PRI-343",
+   "domain": "PRI",
+   "name": "Limited data set and data use agreement required",
+   "framework": "HIPAA",
+   "citation": "164.514(e)"
+  },
+  {
+   "id": "PRI-344",
+   "domain": "PRI",
+   "name": "Fundraising communications controlled",
+   "framework": "HIPAA",
+   "citation": "164.514(f)"
+  },
+  {
+   "id": "PRI-345",
+   "domain": "PRI",
+   "name": "Underwriting PHI use restricted",
+   "framework": "HIPAA",
+   "citation": "164.514(g)"
+  },
+  {
+   "id": "PRI-346",
+   "domain": "PRI",
+   "name": "Notice of privacy practices content maintained",
+   "framework": "HIPAA",
+   "citation": "164.520(a)",
+   "moreMappings": 1
+  },
+  {
+   "id": "PRI-347",
+   "domain": "PRI",
+   "name": "Notice of privacy practices provided and documented",
+   "framework": "HIPAA",
+   "citation": "164.520(c)",
+   "moreMappings": 2
+  },
+  {
+   "id": "PRI-348",
+   "domain": "PRI",
+   "name": "Right to request restrictions on uses and disclosures",
+   "framework": "HIPAA",
+   "citation": "164.522(a)"
+  },
+  {
+   "id": "PRI-349",
+   "domain": "PRI",
+   "name": "Confidential communications accommodated",
+   "framework": "HIPAA",
+   "citation": "164.502(h)",
+   "moreMappings": 1
+  },
+  {
+   "id": "PRI-350",
+   "domain": "PRI",
+   "name": "Individual access to PHI provided",
+   "framework": "HIPAA",
+   "citation": "164.524(a)",
+   "moreMappings": 3
+  },
+  {
+   "id": "PRI-351",
+   "domain": "PRI",
+   "name": "Access denials and review handled",
+   "framework": "HIPAA",
+   "citation": "164.524(a)",
+   "moreMappings": 1
+  },
+  {
+   "id": "PRI-352",
+   "domain": "PRI",
+   "name": "Individual right to amend PHI supported",
+   "framework": "HIPAA",
+   "citation": "164.526(a)",
+   "moreMappings": 5
+  },
+  {
+   "id": "PRI-353",
+   "domain": "PRI",
+   "name": "Accounting of disclosures provided",
+   "framework": "HIPAA",
+   "citation": "164.528(a)",
+   "moreMappings": 3
+  },
+  {
+   "id": "PRI-354",
+   "domain": "PRI",
+   "name": "Privacy complaint process established",
+   "framework": "HIPAA",
+   "citation": "164.530(d)"
+  },
+  {
+   "id": "PRM-1",
+   "domain": "PRM",
+   "name": "Company commitments externally communicated",
+   "framework": "SOC 2",
+   "citation": "CC2.3",
+   "moreMappings": 1
+  },
+  {
+   "id": "PRM-2",
+   "domain": "PRM",
+   "name": "External support resources available",
+   "framework": "SOC 2",
+   "citation": "CC2.3",
+   "moreMappings": 1
+  },
+  {
+   "id": "PRM-3",
+   "domain": "PRM",
+   "name": "Service description communicated",
+   "framework": "SOC 2",
+   "citation": "CC2.3",
+   "moreMappings": 2
+  },
+  {
+   "id": "PRM-13",
+   "domain": "PRM",
+   "name": "Resources",
+   "framework": "ISO 27001",
+   "citation": "C.7.1"
+  },
+  {
+   "id": "PRM-14",
+   "domain": "PRM",
+   "name": "Information security in project management",
+   "framework": "ISO 27001",
+   "citation": "A.5.8"
+  },
+  {
+   "id": "PRM-21",
+   "domain": "PRM",
+   "name": "Planning of changes",
+   "framework": "ISO 42001",
+   "citation": "C.6.3"
+  },
+  {
+   "id": "RSK-1",
+   "domain": "RSK",
+   "name": "Risk assessment objectives specified",
+   "framework": "SOC 2",
+   "citation": "CC5.3",
+   "moreMappings": 1
+  },
+  {
+   "id": "RSK-2",
+   "domain": "RSK",
+   "name": "Risk assessments performed",
+   "framework": "SOC 2",
+   "citation": "A1.2",
+   "moreMappings": 5
+  },
+  {
+   "id": "RSK-3",
+   "domain": "RSK",
+   "name": "Risk management program established",
+   "framework": "SOC 2",
+   "citation": "A1.2",
+   "moreMappings": 8
+  },
+  {
+   "id": "RSK-8",
+   "domain": "RSK",
+   "name": "Information system activity reviewed",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(1)(ii)(D)"
+  },
+  {
+   "id": "RSK-9",
+   "domain": "RSK",
+   "name": "Risks analyzed",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(1)(ii)(A)"
+  },
+  {
+   "id": "RSK-10",
+   "domain": "RSK",
+   "name": "Risks managed",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(1)(ii)(B)"
+  },
+  {
+   "id": "RSK-35",
+   "domain": "RSK",
+   "name": "General actions to address risks and opportunities",
+   "framework": "ISO 27001",
+   "citation": "C.6.1.1"
+  },
+  {
+   "id": "RSK-36",
+   "domain": "RSK",
+   "name": "Information security risk assessment",
+   "framework": "ISO 27001",
+   "citation": "C.6.1.2"
+  },
+  {
+   "id": "RSK-37",
+   "domain": "RSK",
+   "name": "Information security risk treatment",
+   "framework": "ISO 27001",
+   "citation": "C.6.1.3"
+  },
+  {
+   "id": "RSK-38",
+   "domain": "RSK",
+   "name": "Information security risk assessment (operation)",
+   "framework": "ISO 27001",
+   "citation": "C.8.2"
+  },
+  {
+   "id": "RSK-39",
+   "domain": "RSK",
+   "name": "Information security risk treatment (operation)",
+   "framework": "ISO 27001",
+   "citation": "C.8.3"
+  },
+  {
+   "id": "RSK-78",
+   "domain": "RSK",
+   "name": "Actions to address risks and opportunities, general",
+   "framework": "ISO 42001",
+   "citation": "C.6.1.1"
+  },
+  {
+   "id": "RSK-79",
+   "domain": "RSK",
+   "name": "AI risk assessment",
+   "framework": "ISO 42001",
+   "citation": "C.6.1.2"
+  },
+  {
+   "id": "RSK-80",
+   "domain": "RSK",
+   "name": "AI risk treatment",
+   "framework": "ISO 42001",
+   "citation": "C.6.1.3"
+  },
+  {
+   "id": "RSK-81",
+   "domain": "RSK",
+   "name": "Operational planning and control",
+   "framework": "ISO 42001",
+   "citation": "C.8.1"
+  },
+  {
+   "id": "RSK-82",
+   "domain": "RSK",
+   "name": "AI risk assessment (operation)",
+   "framework": "ISO 42001",
+   "citation": "C.8.2"
+  },
+  {
+   "id": "RSK-83",
+   "domain": "RSK",
+   "name": "AI system impact assessment process",
+   "framework": "ISO 42001",
+   "citation": "A.5.2"
+  },
+  {
+   "id": "RSK-84",
+   "domain": "RSK",
+   "name": "Documentation of AI system impact assessments",
+   "framework": "ISO 42001",
+   "citation": "A.5.3"
+  },
+  {
+   "id": "RSK-85",
+   "domain": "RSK",
+   "name": "Assessing AI system impact on individuals or groups of individuals",
+   "framework": "ISO 42001",
+   "citation": "A.5.4"
+  },
+  {
+   "id": "RSK-86",
+   "domain": "RSK",
+   "name": "Assessing societal impacts of AI systems",
+   "framework": "ISO 42001",
+   "citation": "A.5.5"
+  },
+  {
+   "id": "SAT-1",
+   "domain": "SAT",
+   "name": "Security awareness training implemented",
+   "framework": "SOC 2",
+   "citation": "CC1.4",
+   "moreMappings": 1
+  },
+  {
+   "id": "SAT-4",
+   "domain": "SAT",
+   "name": "Log-ins monitored",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(5)(ii)(C)"
+  },
+  {
+   "id": "SAT-5",
+   "domain": "SAT",
+   "name": "Passwords managed",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(5)(ii)(D)"
+  },
+  {
+   "id": "SAT-6",
+   "domain": "SAT",
+   "name": "Malicious software protection implemented",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(5)(ii)(B)"
+  },
+  {
+   "id": "SAT-7",
+   "domain": "SAT",
+   "name": "Security awareness training implemented",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(5)(i)"
+  },
+  {
+   "id": "SAT-8",
+   "domain": "SAT",
+   "name": "Security reminders updated",
+   "framework": "HIPAA",
+   "citation": "164.308(a)(5)(ii)(A)"
+  },
+  {
+   "id": "SAT-44",
+   "domain": "SAT",
+   "name": "Information security awareness, education and training",
+   "framework": "ISO 27001",
+   "citation": "A.6.3"
+  },
+  {
+   "id": "SAT-131",
+   "domain": "SAT",
+   "name": "Workforce privacy training conducted",
+   "framework": "HIPAA",
+   "citation": "164.530(b)"
+  },
+  {
+   "id": "SEA-5",
+   "domain": "SEA",
+   "name": "Group health plan: safeguards required in plan documents",
+   "framework": "HIPAA",
+   "citation": "164.314(b)(2)(i)"
+  },
+  {
+   "id": "SEA-54",
+   "domain": "SEA",
+   "name": "Clock synchronization",
+   "framework": "ISO 27001",
+   "citation": "A.8.17"
+  },
+  {
+   "id": "SEA-55",
+   "domain": "SEA",
+   "name": "Application security requirements",
+   "framework": "ISO 27001",
+   "citation": "A.8.26"
+  },
+  {
+   "id": "SEA-56",
+   "domain": "SEA",
+   "name": "Secure system architecture and engineering principles",
+   "framework": "ISO 27001",
+   "citation": "A.8.27"
+  },
+  {
+   "id": "TDA-37",
+   "domain": "TDA",
+   "name": "Access to source code",
+   "framework": "ISO 27001",
+   "citation": "A.8.4"
+  },
+  {
+   "id": "TDA-38",
+   "domain": "TDA",
+   "name": "Secure development life cycle",
+   "framework": "ISO 27001",
+   "citation": "A.8.25"
+  },
+  {
+   "id": "TDA-39",
+   "domain": "TDA",
+   "name": "Secure coding",
+   "framework": "ISO 27001",
+   "citation": "A.8.28"
+  },
+  {
+   "id": "TDA-40",
+   "domain": "TDA",
+   "name": "Security testing in development and acceptance",
+   "framework": "ISO 27001",
+   "citation": "A.8.29"
+  },
+  {
+   "id": "TDA-41",
+   "domain": "TDA",
+   "name": "Separation of development, test and production environments",
+   "framework": "ISO 27001",
+   "citation": "A.8.31"
+  },
+  {
+   "id": "TDA-42",
+   "domain": "TDA",
+   "name": "Test information",
+   "framework": "ISO 27001",
+   "citation": "A.8.33"
+  },
+  {
+   "id": "TDA-193",
+   "domain": "TDA",
+   "name": "AI system requirements and specification",
+   "framework": "ISO 42001",
+   "citation": "A.6.2.2"
+  },
+  {
+   "id": "TDA-194",
+   "domain": "TDA",
+   "name": "Documentation of AI system design and development",
+   "framework": "ISO 42001",
+   "citation": "A.6.2.3"
+  },
+  {
+   "id": "TDA-195",
+   "domain": "TDA",
+   "name": "AI system verification and validation",
+   "framework": "ISO 42001",
+   "citation": "A.6.2.4"
+  },
+  {
+   "id": "TDA-196",
+   "domain": "TDA",
+   "name": "AI system deployment",
+   "framework": "ISO 42001",
+   "citation": "A.6.2.5"
+  },
+  {
+   "id": "TDA-197",
+   "domain": "TDA",
+   "name": "AI system operation and monitoring",
+   "framework": "ISO 42001",
+   "citation": "A.6.2.6"
+  },
+  {
+   "id": "TDA-198",
+   "domain": "TDA",
+   "name": "AI system technical documentation",
+   "framework": "ISO 42001",
+   "citation": "A.6.2.7"
+  },
+  {
+   "id": "TDA-199",
+   "domain": "TDA",
+   "name": "AI system recording of event logs",
+   "framework": "ISO 42001",
+   "citation": "A.6.2.8"
+  },
+  {
+   "id": "TDA-200",
+   "domain": "TDA",
+   "name": "Data for development and enhancement",
+   "framework": "ISO 42001",
+   "citation": "A.7.2"
+  },
+  {
+   "id": "TDA-201",
+   "domain": "TDA",
+   "name": "Acquisition of data",
+   "framework": "ISO 42001",
+   "citation": "A.7.3"
+  },
+  {
+   "id": "TDA-202",
+   "domain": "TDA",
+   "name": "Quality of data for AI systems",
+   "framework": "ISO 42001",
+   "citation": "A.7.4"
+  },
+  {
+   "id": "TDA-203",
+   "domain": "TDA",
+   "name": "Data provenance",
+   "framework": "ISO 42001",
+   "citation": "A.7.5"
+  },
+  {
+   "id": "TDA-204",
+   "domain": "TDA",
+   "name": "Data preparation",
+   "framework": "ISO 42001",
+   "citation": "A.7.6"
+  },
+  {
+   "id": "TDA-205",
+   "domain": "TDA",
+   "name": "System documentation and information",
+   "framework": "ISO 42001",
+   "citation": "A.8.2"
+  },
+  {
+   "id": "THR-13",
+   "domain": "THR",
+   "name": "Threat intelligence",
+   "framework": "ISO 27001",
+   "citation": "A.5.7"
+  },
+  {
+   "id": "TPM-1",
+   "domain": "TPM",
+   "name": "Third-party agreements established",
+   "framework": "SOC 2",
+   "citation": "CC9.2",
+   "moreMappings": 5
+  },
+  {
+   "id": "TPM-2",
+   "domain": "TPM",
+   "name": "Vendor management program established",
+   "framework": "SOC 2",
+   "citation": "CC3.2",
+   "moreMappings": 6
+  },
+  {
+   "id": "TPM-9",
+   "domain": "TPM",
+   "name": "Business associate agreements required",
+   "framework": "HIPAA",
+   "citation": "164.314(a)(1)"
+  },
+  {
+   "id": "TPM-10",
+   "domain": "TPM",
+   "name": "Business associate agreements comply",
+   "framework": "HIPAA",
+   "citation": "164.314(a)(2)(i)"
+  },
+  {
+   "id": "TPM-11",
+   "domain": "TPM",
+   "name": "Business associate security incidents reported",
+   "framework": "HIPAA",
+   "citation": "164.314(a)(2)(i)"
+  },
+  {
+   "id": "TPM-12",
+   "domain": "TPM",
+   "name": "Business associate contracts with subcontractors established",
+   "framework": "HIPAA",
+   "citation": "164.308(b)(2)"
+  },
+  {
+   "id": "TPM-13",
+   "domain": "TPM",
+   "name": "Business associate agreements with subcontractors obtained",
+   "framework": "HIPAA",
+   "citation": "164.314(a)(2)(iii)"
+  },
+  {
+   "id": "TPM-14",
+   "domain": "TPM",
+   "name": "Business associate contracts with vendors established",
+   "framework": "HIPAA",
+   "citation": "164.308(b)(1)"
+  },
+  {
+   "id": "TPM-15",
+   "domain": "TPM",
+   "name": "Group health plan information protected",
+   "framework": "HIPAA",
+   "citation": "164.314(b)(2)(iii)"
+  },
+  {
+   "id": "TPM-16",
+   "domain": "TPM",
+   "name": "Subcontractor agreements enforced",
+   "framework": "HIPAA",
+   "citation": "164.314(a)(2)(i)"
+  },
+  {
+   "id": "TPM-17",
+   "domain": "TPM",
+   "name": "Business associate agreements documented",
+   "framework": "HIPAA",
+   "citation": "164.308(b)(3)"
+  },
+  {
+   "id": "TPM-53",
+   "domain": "TPM",
+   "name": "Information security in supplier relationships",
+   "framework": "ISO 27001",
+   "citation": "A.5.19"
+  },
+  {
+   "id": "TPM-54",
+   "domain": "TPM",
+   "name": "Managing information security in the ICT supply chain",
+   "framework": "ISO 27001",
+   "citation": "A.5.21"
+  },
+  {
+   "id": "TPM-55",
+   "domain": "TPM",
+   "name": "Monitoring, review and change management of supplier services",
+   "framework": "ISO 27001",
+   "citation": "A.5.22"
+  },
+  {
+   "id": "TPM-56",
+   "domain": "TPM",
+   "name": "Outsourced development",
+   "framework": "ISO 27001",
+   "citation": "A.8.30"
+  },
+  {
+   "id": "TPM-237",
+   "domain": "TPM",
+   "name": "Satisfactory assurances obtained for PHI disclosures to associates",
+   "framework": "HIPAA",
+   "citation": "164.502(e)"
+  },
+  {
+   "id": "TPM-239",
+   "domain": "TPM",
+   "name": "Other arrangements with governmental associates documented",
+   "framework": "HIPAA",
+   "citation": "164.504(e)(3)"
+  },
+  {
+   "id": "VPM-1",
+   "domain": "VPM",
+   "name": "Service infrastructure maintained",
+   "framework": "SOC 2",
+   "citation": "CC6.6",
+   "moreMappings": 4
+  },
+  {
+   "id": "VPM-2",
+   "domain": "VPM",
+   "name": "Vulnerabilities scanned and remediated",
+   "framework": "SOC 2",
+   "citation": "CC2.1",
+   "moreMappings": 5
+  },
+  {
+   "id": "VPM-75",
+   "domain": "VPM",
+   "name": "Management of technical vulnerabilities",
+   "framework": "ISO 27001",
+   "citation": "A.8.8"
+  }
+ ]
+}
