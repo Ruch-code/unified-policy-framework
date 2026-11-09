@@ -2,10 +2,9 @@ import StartupNotes from './StartupNotes.jsx';
 import React, { useState } from 'react';
 import { ShieldCheck, HardDrive, Smartphone, Cpu, Network, MapPin, LockKeyhole, Server, Wrench, ScrollText, FileJson, FileCode2, Terminal, ArrowRight, ArrowDown, RefreshCw } from 'lucide-react';
 import CodeBlock from './ui/CodeBlock.jsx';
+import { BREACH_INTRO, BREACH_SCENARIOS, ROLE_ACCESS, ROLE_NOTE } from '../data/hipaaBreachScenarios.js';
 const scenariosData = [];
 
-const agentPs1 = `# Device Health Agent - placeholder
-Write-Host "Device health check placeholder"`;
 const agentSh = `#!/bin/bash
 # Device Health Agent - placeholder
 echo "Device health check placeholder"`;
@@ -29,7 +28,6 @@ const DOMAINS = [
 ];
 
 const DELIVERABLES = [
-  { id: 'powerShell', label: 'Windows agent', icon: Terminal, title: 'device-health-agent.ps1', lang: 'powershell', code: agentPs1, desc: 'Placeholder, not a deployable file. Intended artifact: Endpoint health agent (PowerShell): BitLocker, TPM, EDR service + definitions, MDM enrollment, patch baseline, network posture, DLP flag - emits one compliance JSON and POSTs it to the SOC webhook. Deploy as a SYSTEM scheduled task every 15 minutes.' },
   { id: 'bash', label: 'macOS · Linux agent', icon: Terminal, title: 'device-health-agent.sh', lang: 'bash', code: agentSh, desc: 'Placeholder, not a deployable file. Intended artifact: The same schema on Unix: FileVault / LUKS at rest, EDR (launchd/systemd), SIP, MDM marker (Jamf/Kandji/Mosyle/Fleet), managed-preferences DLP check. Root-run via LaunchAgent or systemd timer.' },
   { id: 'intune', label: 'Intune OMA-URI', icon: FileJson, title: 'intune-oma-uri.xml', lang: 'xml', code: intuneXml, desc: 'Placeholder, not a deployable file. Intended artifact: Windows enforcement profile: BitLocker + removable-media crypto (OMA-URI CSP), Defender for Endpoint onboarding, clipboard isolation, device-health handshake - all via documented Microsoft CSPs, no custom workload.' },
   { id: 'jamf', label: 'Jamf / macOS profile', icon: FileJson, title: 'jamf-filevault-profile.xml', lang: 'xml', code: jamfXml, desc: 'Placeholder, not a deployable file. Intended artifact: macOS configuration profile: FileVault 2 with institutional recovery key escrow, application firewall, screensaver lock, EDR payload key, and the DLP clipboard-isolation payload.' },
@@ -54,7 +52,7 @@ function EnforcementLoop() {
     <div className="rounded-2xl border border-surface-300 dark:border-surface-dark-300 bg-white dark:bg-slate-900/60 p-6">
       <h3 className="grc-section-title mb-5 text-lg"><ArrowRight className="w-5 h-5 text-indigo-600" /> The enforcement loop</h3>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-        <Row title="Endpoint agent" sub="PowerShell / Bash, every 15 min" tone="bg-indigo-600" />
+        <Row title="Endpoint agent" sub="Bash, every 15 min" tone="bg-indigo-600" />
         <Row title="SOC webhook" sub="schema validate → posture decision" tone="bg-violet-600" />
         <Row title="Quarantine + token-strip" sub="ZTNA isolate, revoke sessions" tone="bg-rose-600" />
       </div>
@@ -68,7 +66,7 @@ function EnforcementLoop() {
 }
 
 export default function HybridSecurityFramework({ isDark = false }) {
-  const [active, setActive] = useState('powerShell');
+  const [active, setActive] = useState('bash');
   const current = DELIVERABLES.find(d => d.id === active) || DELIVERABLES[0];
 
   return (
@@ -130,6 +128,40 @@ export default function HybridSecurityFramework({ isDark = false }) {
               </div>
             ))}
           </div>
+        </section>
+
+        {/* HIPAA: breach scenarios and who can see ePHI */}
+        <section id="hipaa-breach-scenarios" className="mt-10 mb-10 scroll-mt-24">
+          <h3 className="grc-section-title mb-2 text-lg">HIPAA: data breach scenarios</h3>
+          <p className="text-sm text-navy-600 dark:text-text-dark-secondary mb-4 max-w-4xl">{BREACH_INTRO}</p>
+          <div className="overflow-x-auto rounded-xl border border-surface-300 dark:border-surface-dark-300" tabIndex={0} role="region" aria-label="HIPAA breach scenarios">
+            <table className="w-full text-sm min-w-[1000px]">
+              <thead className="bg-surface-100 dark:bg-slate-800"><tr>
+                {['Scenario', 'What happened', 'Breach of unsecured PHI?', 'Controls that prevent or limit it', 'Notification steps'].map((h) => <th key={h} scope="col" className="text-left p-2 font-semibold text-navy-900 dark:text-text-dark-primary">{h}</th>)}
+              </tr></thead>
+              <tbody>{BREACH_SCENARIOS.map((r) => (
+                <tr key={r[0]} className="border-t border-surface-200 dark:border-surface-dark-200 align-top">
+                  {r.map((c, j) => <td key={j} className={`p-2 ${j === 0 ? 'font-semibold text-navy-900 dark:text-text-dark-primary' : 'text-navy-700 dark:text-text-dark-secondary'}`}>{c}</td>)}
+                </tr>
+              ))}</tbody>
+            </table>
+          </div>
+
+          <h3 className="grc-section-title mt-8 mb-2 text-lg">Who can see ePHI: same data, different access</h3>
+          <p className="text-sm text-navy-600 dark:text-text-dark-secondary mb-4 max-w-4xl">The same patient data must not be open to every team. Customer support and infrastructure teams work without seeing ePHI by default; access follows the minimum necessary standard.</p>
+          <div className="overflow-x-auto rounded-xl border border-surface-300 dark:border-surface-dark-300" tabIndex={0} role="region" aria-label="Role access to ePHI">
+            <table className="w-full text-sm min-w-[1000px]">
+              <thead className="bg-surface-100 dark:bg-slate-800"><tr>
+                {['Team', 'Can they see ePHI?', 'What they see instead', 'How it is enforced', 'HIPAA citation'].map((h) => <th key={h} scope="col" className="text-left p-2 font-semibold text-navy-900 dark:text-text-dark-primary">{h}</th>)}
+              </tr></thead>
+              <tbody>{ROLE_ACCESS.map((r) => (
+                <tr key={r[0]} className="border-t border-surface-200 dark:border-surface-dark-200 align-top">
+                  {r.map((c, j) => <td key={j} className={`p-2 ${j === 0 ? 'font-semibold text-navy-900 dark:text-text-dark-primary' : j === 4 ? 'font-mono text-xs text-navy-700 dark:text-text-dark-secondary' : 'text-navy-700 dark:text-text-dark-secondary'}`}>{c}</td>)}
+                </tr>
+              ))}</tbody>
+            </table>
+          </div>
+          <p className="mt-2 text-xs text-navy-500 dark:text-text-dark-muted">{ROLE_NOTE}</p>
         </section>
 
         {/* Deliverables */}
