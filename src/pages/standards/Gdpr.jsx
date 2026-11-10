@@ -7,6 +7,7 @@ import { GDPR_L1, GDPR_L2, GDPR_L3, GDPR_L4_US, GDPR_NOTES, GDPR_EVIDENCE_TYPES 
 import ReferenceTable from "../../components/playbook/ReferenceTable.jsx";
 import GdprDpdpaComparison from "../../components/playbook/GdprDpdpaComparison.jsx";
 import VibePlatformScenario from "../../components/playbook/VibePlatformScenario.jsx";
+import ProcessorPrivacy from "../../components/ProcessorPrivacy.jsx";
 
 const FRAMEWORK = {
   id: 'gdpr',
@@ -233,6 +234,7 @@ export default function Gdpr() {
   return (
     <>
       <LearningFrameworkPage framework={FRAMEWORK_WITH_EVIDENCE} />
+      <ProcessorPrivacy />
       <RiskCrossCheckBlock frameworkId="gdpr" />
       <ReferenceTable id="gdpr-applicability-notes" title="Articles with no direct organizational control"
         intro="These articles are covered by a short applicability note rather than a task. Core evidence types for GDPR are listed below."
