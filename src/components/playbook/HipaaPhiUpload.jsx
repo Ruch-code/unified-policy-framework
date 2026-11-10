@@ -1,4 +1,5 @@
 import { UPLOAD_INTRO, UPLOAD_FLOW, EMAIL_INTRO, EMAIL_STEPS, EMAIL_REPLY } from '../../data/hipaaPhiUpload.js';
+import { ROLE_ACCESS, ROLE_NOTE } from '../../data/hipaaBreachScenarios.js';
 
 const LINE = 'border-gray-200 dark:border-slate-700';
 const TXT = 'text-gray-700 dark:text-slate-300';
@@ -27,6 +28,24 @@ export default function HipaaPhiUpload() {
           ))}</tbody>
         </table>
       </div>
+
+      <p className={`mt-3 text-sm ${TXT}`}>Step 4 in detail: <a href="#who-can-see-ephi" className="underline text-sky-700 dark:text-sky-300">who can see ePHI, team by team</a>.</p>
+
+      <h3 id="who-can-see-ephi" className={`text-xl font-bold mt-10 mb-2 scroll-mt-24 ${H}`}>Who Can See ePHI: Same Data, Different Access</h3>
+      <p className={`text-sm mb-4 max-w-3xl ${TXT}`}>The PHI doctors upload must not be open to every team. Customer support and infrastructure work without seeing ePHI by default, under the minimum necessary standard.</p>
+      <div className={`overflow-x-auto rounded-xl border ${LINE}`} tabIndex={0} role="region" aria-label="Who can see ePHI">
+        <table className="w-full text-sm min-w-[1000px]">
+          <thead className="bg-gray-50 dark:bg-slate-800"><tr>
+            {['Team', 'Can they see ePHI?', 'What they see instead', 'How it is enforced', 'HIPAA citation'].map((h) => <th key={h} scope="col" className={`text-left p-2 font-semibold ${H}`}>{h}</th>)}
+          </tr></thead>
+          <tbody>{ROLE_ACCESS.map((r) => (
+            <tr key={r[0]} className={`border-t ${LINE} align-top`}>
+              {r.map((c, j) => <td key={j} className={`p-2 ${j === 0 ? `font-semibold ${H}` : j === 4 ? `font-mono text-xs ${TXT}` : TXT}`}>{c}</td>)}
+            </tr>
+          ))}</tbody>
+        </table>
+      </div>
+      <p className="mt-2 text-xs text-gray-500 dark:text-slate-400">{ROLE_NOTE}</p>
 
       <h3 className={`text-xl font-bold mt-10 mb-2 ${H}`}>A Breach Report Arrives by Email: How to Handle It</h3>
       <p className={`text-sm mb-4 max-w-3xl ${TXT}`}>{EMAIL_INTRO}</p>
