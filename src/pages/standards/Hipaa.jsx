@@ -7,6 +7,7 @@ import { HIPAA_L2_SECURITY, HIPAA_L3_PRIVACY_BREACH, HIPAA_SECURITY_MATRIX, HIPA
 import ReferenceTable from "../../components/playbook/ReferenceTable.jsx";
 import HipaaCeVsBa from "../../components/playbook/HipaaCeVsBa.jsx";
 import HipaaSoc2Crosswalk from "../../components/playbook/HipaaSoc2Crosswalk.jsx";
+import HipaaPhiUpload from "../../components/playbook/HipaaPhiUpload.jsx";
 import { CROSSWALK_LEVEL } from "../../data/hipaaSoc2Crosswalk.js";
 
 const FRAMEWORK = {
@@ -874,6 +875,7 @@ export default function Hipaa() {
   return (
     <>
       <LearningFrameworkPage framework={FRAMEWORK_WITH_EVIDENCE} />
+      <HipaaPhiUpload />
       <HipaaSoc2Crosswalk />
       <HipaaRequirementLibrary />
       <HipaaCeVsBa />
