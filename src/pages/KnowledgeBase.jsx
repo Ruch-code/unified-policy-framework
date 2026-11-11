@@ -23,6 +23,7 @@ import ChangeManagementTab from '../components/ChangeManagementTab.jsx';
 import BomTab from '../components/BomTab.jsx';
 import ItgcGapsKb from '../components/ItgcGapsKb.jsx';
 import EvidenceAutomationKb from '../components/EvidenceAutomationKb.jsx';
+import SystemDesignKb from '../components/SystemDesignKb.jsx';
 
 const order = ['soc2', 'iso27001', 'iso42001', 'pci', 'hipaa', 'nist', 'gdpr', 'cis', 'hitrust', 'dpdpa', 'fedramp', 'cjis'];
 const EDP_TABS = [
@@ -51,6 +52,7 @@ const TABS = [
   { id: 'bom', label: 'SBOM, AIBOM & ABOM', icon: Package },
   { id: 'gaps', label: 'Common Gaps (ITGC)', icon: ShieldAlert },
   { id: 'evidence', label: 'Evidence Automation', icon: Package },
+  { id: 'sysdesign', label: 'System Design for GRC', icon: Network },
 ];
 
 function useCopy() {
@@ -92,6 +94,8 @@ export default function KnowledgeBase() {
       // Vendor topics now live in one place: Home, Vendor Risk Management.
       window.location.replace(t === 'ai-vendor-assurance' ? '/?section=ai-vendors#vendor-risk' : '/?section=contract-clauses#vendor-risk');
       return;
+    } else if (t === 'system-design') {
+      setTab('sysdesign');
     } else if (t === 'evidence-automation') {
       setTab('evidence');
     } else if (t === 'itgc-gaps') {
@@ -287,6 +291,7 @@ export default function KnowledgeBase() {
     cicd: <CicdPipelineSecurity onOpenTab={setTab} />,
     bom: <BomTab onOpenTab={setTab} />,
     evidence: <EvidenceAutomationKb />,
+    sysdesign: <SystemDesignKb />,
     gaps: <ItgcGapsKb initialFramework={new URLSearchParams(location.search).get('gapfw') || 'all'} />,
   };
 
