@@ -13,6 +13,6 @@ test('every row is complete with a consistent column count', () => {
 });
 test('requested items are all covered', () => {
   const text = (JSON.stringify(tables) + A.AS_INTRO).toLowerCase();
-  for (const t of ['coso', 'nist cybersecurity framework', 'iso/iec 27002', 'isae 3402', 'hitrust', 'crbf', 'solvency', 'hyperproof', 'veza', 'scrut', 'auditboard', 'servicenow', 'jira', 'confluence', 'kanban', 'least privilege', 'segregation of duties', 'application controls']) assert.ok(text.includes(t), t);
+  for (const t of ['coso', 'nist cybersecurity framework', 'iso/iec 27002', 'isae 3402', 'hitrust', 'crbf', 'solvency', 'hyperproof', 'veza', 'scrut', 'auditboard', 'workiva', 'servicenow', 'jira', 'confluence', 'kanban', 'least privilege', 'segregation of duties', 'application controls']) assert.ok(text.includes(t), t);
 });
 test('no em dashes', () => assert.ok(!JSON.stringify(tables).includes('—')));
