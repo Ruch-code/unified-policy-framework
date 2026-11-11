@@ -11,6 +11,7 @@ import NewsletterEditor from './pages/NewsletterEditor.jsx';
 import KnowledgeBase from './pages/KnowledgeBase.jsx';
 import DomainPage from './pages/DomainPage.jsx';
 import { TermsPage, PrivacyPage } from './pages/Legal.jsx';
+import GrcMaturity from './pages/GrcMaturity.jsx';
 import Profile from './pages/Profile.jsx';
 import Templates from './pages/Templates.jsx';
 import TemplatePreview from './pages/TemplatePreview.jsx';
@@ -98,6 +99,7 @@ function App() {
           <Route path="admin" element={<RequireAuth admin><AdminPanel /></RequireAuth>} />
           <Route path="newsletter" element={<RequireAuth admin><NewsletterEditor /></RequireAuth>} />
           <Route path="knowledge" element={<RequireAuth><KnowledgeBase /></RequireAuth>} />
+          <Route path="grc-maturity" element={<GrcMaturity />} />
           <Route path="terms" element={<TermsPage />} />
           <Route path="privacy" element={<PrivacyPage />} />
           <Route path="domains" element={<Protected><DomainPage /></Protected>} />

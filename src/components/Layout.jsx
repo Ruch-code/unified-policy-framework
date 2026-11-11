@@ -367,6 +367,17 @@ export default function Layout() {
             <ChevronDown className="w-4 h-4 text-slate-400 dark:text-slate-500 flex-shrink-0" />
           </Link>
           <Link
+            to="/grc-maturity"
+            onClick={() => setGrcKbOpen(false)}
+            className="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
+            role="menuitem"
+          >
+            <div className="flex-1 min-w-0 text-left">
+              <span className="font-medium text-sm truncate text-slate-900 dark:text-white">GRC Maturity Model</span>
+              <p className="text-xs text-slate-500 dark:text-slate-400 truncate">Documentation, integration, influence</p>
+            </div>
+          </Link>
+          <Link
             to="/"
             onClick={() => setGrcKbOpen(false)}
             className="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors
@@ -655,6 +666,7 @@ export default function Layout() {
           <DonateButton />
           <VisitorCounter />
           <nav aria-label="Legal" className="flex gap-4 text-xs">
+            <Link to="/grc-maturity" className="underline text-gray-300 hover:text-white">GRC Maturity Model</Link>
             <Link to="/terms" className="underline text-gray-300 hover:text-white">Terms of Use</Link>
             <Link to="/privacy" className="underline text-gray-300 hover:text-white">Privacy Policy</Link>
           </nav>
