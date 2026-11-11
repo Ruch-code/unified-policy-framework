@@ -16,6 +16,18 @@ const box = (filled) => function Box({ className = '' }) {
 function Spinner({ className = '' }) {
   return <span role="status" aria-label="Loading" className={`inline-block rounded-full border-2 border-current border-t-transparent animate-spin ${className}`} />;
 }
+
+// A few icons carry meaning or identity (theme switch, assistant, brand marks), so they stay as real SVG icons.
+const svg = (children, { filled = false } = {}) => function SvgIcon({ className = '', size, strokeWidth = 2 }) {
+  const hasSize = /(^|\s)(w|h|size)-/.test(className);
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"
+      width={hasSize ? undefined : size || 16} height={hasSize ? undefined : size || 16}
+      fill={filled ? 'currentColor' : 'none'} stroke={filled ? 'none' : 'currentColor'}
+      strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round"
+      className={`inline-block shrink-0 ${className}`}>{children}</svg>
+  );
+};
 const none = function NoIcon() { return null; };
 
 export const Activity = none;
@@ -34,7 +46,7 @@ export const BarChart2 = none;
 export const BarChart3 = none;
 export const BookOpen = none;
 export const BookOpenCheck = none;
-export const Bot = none;
+export const Bot = svg(<><rect x="4" y="8" width="16" height="12" rx="2" /><path d="M12 4v4M9 13v2M15 13v2M2 14h2M20 14h2" /></>);
 export const Box = none;
 export const Brain = none;
 export const BrainCircuit = none;
@@ -108,7 +120,7 @@ export const Layout = none;
 export const Library = none;
 export const Lightbulb = none;
 export const Link2 = none;
-export const Linkedin = label('in');
+export const Linkedin = svg(<path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3zM9.5 9.75h3.8v1.6h.05c.53-1 1.84-2.05 3.78-2.05 4.04 0 4.79 2.66 4.79 6.12v5.33h-4v-4.73c0-1.13-.02-2.58-1.57-2.58-1.57 0-1.81 1.23-1.81 2.5v4.81h-4z" />, { filled: true });
 export const List = none;
 export const ListChecks = none;
 export const Loader2 = Spinner;
@@ -119,7 +131,7 @@ export const Mail = none;
 export const MapPin = none;
 export const Megaphone = none;
 export const Menu = glyph('≡');
-export const MessageSquare = none;
+export const MessageSquare = svg(<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />);
 export const MessageSquareText = none;
 export const MessagesSquare = none;
 export const Mic = label('Mic');
@@ -127,7 +139,7 @@ export const Microscope = none;
 export const Minus = glyph('−');
 export const MinusCircle = glyph('−');
 export const Monitor = none;
-export const Moon = label('Dark');
+export const Moon = svg(<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />);
 export const Network = none;
 export const Package = none;
 export const Palette = none;
@@ -144,7 +156,7 @@ export const RotateCcw = glyph('↺');
 export const Route = none;
 export const Scale = none;
 export const ScrollText = none;
-export const Search = none;
+export const Search = svg(<><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" /></>);
 export const SearchCheck = none;
 export const Send = glyph('→');
 export const Server = none;
@@ -162,7 +174,7 @@ export const Smartphone = none;
 export const Sparkles = none;
 export const Square = box(false);
 export const Star = none;
-export const Sun = label('Light');
+export const Sun = svg(<><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" /></>);
 export const Tag = none;
 export const Target = none;
 export const Terminal = none;

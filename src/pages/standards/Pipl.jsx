@@ -5,7 +5,7 @@ const FRAMEWORK = {
   name: "PIPL (China)",
   region: "China",
   color: "red",
-  flag: "",
+  flag: "cn",
   flagAnimation: "bounce",
   basePath: "/pipl",
   referenceUrl:

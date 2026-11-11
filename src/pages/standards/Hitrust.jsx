@@ -5,7 +5,7 @@ const FRAMEWORK = {
   name: "HITRUST CSF v11.x Certification",
   color: "red",
   region: "United States",
-  flag: "",
+  flag: "us",
   flagAnimation: "pulse",
   basePath: "/hitrust",
   referenceUrl: "https://hitrustalliance.net/hitrust-csf/",

@@ -5,7 +5,7 @@ const FRAMEWORK = {
     name: 'CERT-In (Indian Computer Emergency Response Team)',
     shortName: 'CERT-In',
     region: 'India',
-  flag: "",
+  flag: "in",
   flagAnimation: "pulse",
   basePath: "/cert-in",
     color: 'beige',

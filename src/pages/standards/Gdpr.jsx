@@ -13,7 +13,7 @@ const FRAMEWORK = {
   id: 'gdpr',
   name: 'GDPR (EU 2016/679)',
   region: 'European Union',
-  flag: "",
+  flag: "eu",
   flagAnimation: "pulse",
   basePath: "/gdpr",
   color: 'navy',

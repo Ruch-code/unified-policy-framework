@@ -4,7 +4,7 @@ const FRAMEWORK = {
   id: 'sebi',
   name: 'SEBI (Securities and Exchange Board of India)',
   region: 'India',
-  flag: "",
+  flag: "in",
   flagAnimation: "pulse",
   basePath: "/sebi",
   color: 'golden',

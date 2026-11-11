@@ -4,7 +4,7 @@ const FRAMEWORK = {
   id: 'cippe-us',
   name: 'CIPPE/US - Critical Infrastructure Protection (US)',
   region: 'United States',
-  flag: "",
+  flag: "us",
   flagAnimation: "bounce",
   basePath: "/cippe/us",
   color: 'blue',

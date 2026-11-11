@@ -8,7 +8,7 @@ const FRAMEWORK = {
   name: "Medical Device Software: FDA 510(k), ISO 13485 and IEC 62304",
   color: "green",
   region: "United States and international",
-  flag: "",
+  flag: "us",
   flagAnimation: "float",
   basePath: "/medical-devices",
   referenceUrl: "https://www.fda.gov/medical-devices/premarket-submissions-selecting-and-preparing-correct-submission/premarket-notification-510k",

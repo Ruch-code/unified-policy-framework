@@ -28,6 +28,7 @@ export default function ChatWidget() {
         className="fixed bottom-5 right-5 z-50 px-4 h-11 rounded bg-[#344c67] text-white text-sm font-semibold hover:bg-[#2a3d53] transition-colors flex items-center justify-center"
         aria-label="Open GRC assistant"
       >
+        <MessageSquare className="w-4 h-4 mr-2" />
         Ask the GRC assistant
       </button>
 

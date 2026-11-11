@@ -9,7 +9,7 @@ const FRAMEWORK = {
   id: 'dpdpa',
   name: 'DPDP Act 2023 (India)',
   region: 'India',
-  flag: "",
+  flag: "in",
   flagAnimation: "pulse",
   basePath: "/dpdpa",
   color: 'green',

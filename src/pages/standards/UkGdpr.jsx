@@ -5,7 +5,7 @@ const FRAMEWORK = {
   name: "UK GDPR & Data Protection Act 2018 Compliance",
   color: "red",
   region: "United Kingdom",
-  flag: "",
+  flag: "gb",
   flagAnimation: "float",
   basePath: "/uk-gdpr",
   referenceUrl: "https://www.legislation.gov.uk/euri/2016/679/contents",
