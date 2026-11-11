@@ -979,6 +979,7 @@ const TAXONOMY_ENTRIES = VISIBLE_DOMAINS.map((d) => {
 
 const SEARCH_ENTRIES = [
   ...TAXONOMY_ENTRIES,
+  { id: 'kb-system-design', category: 'GRC Knowledge Base', label: 'System Design for GRC', desc: '53 system design concepts explained with everyday examples, why each matters for audits, and the related controls.', keywords: ['system design', 'rate limiting', 'caching', 'load balancing', 'reverse proxy', 'api gateway', 'docker', 'kubernetes', 'circuit breaker', 'idempotency', 'message queue', 'pub/sub', 'saga', 'dead letter queue', 'websockets', 'sharding', 'replication', 'cap theorem', 'eventual consistency', 'race condition', 'deadlock', 'feature flags', 'blue-green', 'canary', 'cdn', 'autoscaling'], path: '/knowledge?topic=system-design', mode: 'route' },
   { id: 'kb-evidence-automation', category: 'GRC Knowledge Base', label: 'Automating Evidence Collection', desc: 'What evidence can be pulled automatically, the maturity path to continuous control monitoring, and how to keep automated evidence audit-ready.', keywords: ['evidence', 'automation', 'automate', 'continuous control monitoring', 'ccm', 'api', 'population', 'completeness', 'accuracy', 'access review', 'uar'], path: '/knowledge?topic=evidence-automation', mode: 'route' },
   ...TEMPLATE_ENTRIES,
   ...frameworkEntries(),
