@@ -25,6 +25,7 @@ import ItgcGapsKb from '../components/ItgcGapsKb.jsx';
 import EvidenceAutomationKb from '../components/EvidenceAutomationKb.jsx';
 import SystemDesignKb from '../components/SystemDesignKb.jsx';
 import { OtherFrameworksKb, GrcToolingKb } from '../components/OtherFrameworksKb.jsx';
+import ZeroTrustShadowIt from '../components/ZeroTrustShadowIt.jsx';
 
 const order = ['soc2', 'iso27001', 'iso42001', 'pci', 'hipaa', 'nist', 'gdpr', 'cis', 'hitrust', 'dpdpa', 'fedramp', 'cjis'];
 const EDP_TABS = [
@@ -55,6 +56,7 @@ const TABS = [
   { id: 'evidence', label: 'Evidence Automation', icon: Package },
   { id: 'sysdesign', label: 'System Design for GRC', icon: Network },
   { id: 'otherfw', label: 'Other Frameworks', icon: BookOpenCheck },
+  { id: 'zerotrust', label: 'Zero Trust and Shadow IT', icon: BookOpenCheck },
   { id: 'tooling', label: 'GRC Tooling', icon: Package },
 ];
 
@@ -97,6 +99,8 @@ export default function KnowledgeBase() {
       // Vendor topics now live in one place: Home, Vendor Risk Management.
       window.location.replace(t === 'ai-vendor-assurance' ? '/?section=ai-vendors#vendor-risk' : '/?section=contract-clauses#vendor-risk');
       return;
+    } else if (t === 'zero-trust' || t === 'shadow-it') {
+      setTab('zerotrust');
     } else if (t === 'other-frameworks') {
       setTab('otherfw');
     } else if (t === 'grc-tooling') {
@@ -300,6 +304,7 @@ export default function KnowledgeBase() {
     evidence: <EvidenceAutomationKb />,
     sysdesign: <SystemDesignKb />,
     otherfw: <OtherFrameworksKb />,
+    zerotrust: <ZeroTrustShadowIt />,
     tooling: <GrcToolingKb />,
     gaps: <ItgcGapsKb initialFramework={new URLSearchParams(location.search).get('gapfw') || 'all'} />,
   };
