@@ -22,6 +22,7 @@ import Iso31000 from './pages/standards/Iso31000.jsx';
 import Iso27701 from './pages/standards/Iso27701.jsx';
 import PciDss from './pages/standards/PciDss.jsx';
 import Sox404 from './pages/standards/Sox404.jsx';
+import MedicalDevices from './pages/standards/MedicalDevices.jsx';
 import Soc2 from './pages/standards/Soc2.jsx';
 import Hipaa from './pages/standards/Hipaa.jsx';
 import Nist from './pages/standards/Nist.jsx';
@@ -107,6 +108,7 @@ function App() {
           <Route path="iso-27701" element={<Protected><Iso27701 /></Protected>} />
           <Route path="pci-dss" element={<Protected><PciDss /></Protected>} />
           <Route path="sox" element={<Protected><Sox404 /></Protected>} />
+          <Route path="medical-devices" element={<Protected><MedicalDevices /></Protected>} />
           <Route path="soc2" element={<Protected><Soc2 /></Protected>} />
           <Route path="hipaa" element={<Protected><Hipaa /></Protected>} />
           <Route path="nist" element={<Protected><Nist /></Protected>} />
