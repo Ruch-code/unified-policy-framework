@@ -8,6 +8,7 @@ import { CartProvider } from './context/CartContext.jsx';
 import './index.css';
 import { enableGreenClickCursor } from './utils/green-cursor.js';
 import { enableCursorDot } from './utils/cursor-dot.js';
+import { initMobileTables } from './utils/mobileTables.js';
 
 enableGreenClickCursor();
 try { enableCursorDot(); } catch { /* decorative only */ }
@@ -29,3 +30,4 @@ export const BUILD_TIME = 'Tue Sep 15 06:40:33 IST 2026';
 window.__BUILD_ID__ = '1789443952842711000';
 // cache bust 1789792121
 // cache bust 1789880088
+initMobileTables();

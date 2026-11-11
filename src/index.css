@@ -702,3 +702,29 @@ html:not(.dark) body { background-color: #f4f2ed; }
 /* No movement on hover: colour changes are fine, lifting or scaling is not. */
 [class*="hover\:scale"]:hover, [class*="hover\:-translate"]:hover, [class*="hover\:translate"]:hover { transform: none !important; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+/* Mobile: show data tables as stacked cards instead of scrolling sideways */
+@media (max-width: 640px) {
+  table.stack-table { min-width: 0 !important; width: 100% !important; }
+  table.stack-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  table.stack-table, table.stack-table tbody, table.stack-table tr, table.stack-table td, table.stack-table tbody th { display: block; width: 100%; box-sizing: border-box; }
+  table.stack-table tbody tr { border-top: 1px solid rgb(229 231 235); padding: 0.5rem 0; }
+  .dark table.stack-table tbody tr { border-top-color: rgb(51 65 85); }
+  table.stack-table tbody td, table.stack-table tbody th { padding: 0.25rem 0.75rem !important; text-align: left; white-space: normal !important; word-break: break-word; }
+  table.stack-table tbody td[data-label]:not([data-label=""])::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: rgb(107 114 128);
+    margin-bottom: 0.1rem;
+  }
+  .dark table.stack-table tbody td[data-label]::before { color: rgb(148 163 184); }
+  /* Scroll wrappers no longer need to scroll */
+  .overflow-x-auto:has(> table.stack-table) { overflow-x: visible; }
+  html, body { overflow-x: hidden; }
+  img, svg, video, iframe { max-width: 100%; }
+  pre, code { white-space: pre-wrap; word-break: break-word; }
+}
