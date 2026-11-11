@@ -46,7 +46,7 @@ export const VENDOR_INCIDENT_STORIES = [
     id: 'composite-payroll-dark',
     kind: COMPOSITE,
     sector: 'Payroll and HR technology',
-    tier: 'Tier 1: Critical/High Risk',
+    tier: 'Tier 1: Critical',
     accent: '#ef4444',
     title: 'Payroll went dark on a Tuesday morning',
     teaser:
@@ -74,7 +74,7 @@ export const VENDOR_INCIDENT_STORIES = [
     id: 'composite-analytics-tag',
     kind: COMPOSITE,
     sector: 'Web and marketing technology',
-    tier: 'Tier 2: Medium Risk',
+    tier: 'Tier 3: Medium',
     accent: '#f59e0b',
     title: 'A four line change to our analytics tag nearly cost the quarter',
     teaser:
@@ -102,7 +102,7 @@ export const VENDOR_INCIDENT_STORIES = [
     id: 'composite-helpdesk-mfa',
     kind: COMPOSITE,
     sector: 'Identity and support tooling',
-    tier: 'Tier 1: Critical/High Risk',
+    tier: 'Tier 1: Critical',
     accent: '#ef4444',
     title: 'Somebody called the helpdesk until somebody said yes',
     teaser:
@@ -130,7 +130,7 @@ export const VENDOR_INCIDENT_STORIES = [
     id: 'composite-sftp-permission',
     kind: COMPOSITE,
     sector: 'Finance and procurement',
-    tier: 'Tier 1: Critical/High Risk',
+    tier: 'Tier 1: Critical',
     accent: '#ef4444',
     title: 'The folder the vendor was only supposed to read',
     teaser:
@@ -158,7 +158,7 @@ export const VENDOR_INCIDENT_STORIES = [
     id: 'composite-ci-secret',
     kind: COMPOSITE,
     sector: 'Engineering and development',
-    tier: 'Tier 2: Medium Risk',
+    tier: 'Tier 3: Medium',
     accent: '#557395',
     title: 'A debug log in a ticket held a live key',
     teaser:
@@ -186,7 +186,7 @@ export const VENDOR_INCIDENT_STORIES = [
     id: 'composite-region-outage',
     kind: COMPOSITE,
     sector: 'Infrastructure and hosting',
-    tier: 'Tier 1: Critical/High Risk',
+    tier: 'Tier 1: Critical',
     accent: '#ef4444',
     title: 'One region, one vendor, no failover',
     teaser:
@@ -214,7 +214,7 @@ export const VENDOR_INCIDENT_STORIES = [
     id: 'composite-misdirected-pack',
     kind: COMPOSITE,
     sector: 'Governance and compliance',
-    tier: 'Tier 2: Medium Risk',
+    tier: 'Tier 3: Medium',
     accent: '#557395',
     title: 'The compliance pack went to the wrong company',
     teaser:
@@ -242,7 +242,7 @@ export const VENDOR_INCIDENT_STORIES = [
     id: 'composite-webhook-deprecation',
     kind: COMPOSITE,
     sector: 'Payments and fraud',
-    tier: 'Tier 1: Critical/High Risk',
+    tier: 'Tier 1: Critical',
     accent: '#ef4444',
     title: 'The webhook that stopped firing and nobody noticed for 19 days',
     teaser:
@@ -271,7 +271,7 @@ export const VENDOR_INCIDENT_STORIES = [
     id: 'real-moveit-2023',
     kind: REAL,
     sector: 'Managed file transfer',
-    tier: 'Tier 1: Critical/High Risk',
+    tier: 'Tier 1: Critical',
     accent: '#ef4444',
     title: 'MOVEit: one zero day, thousands of downstream victims',
     teaser:
@@ -303,7 +303,7 @@ export const VENDOR_INCIDENT_STORIES = [
     id: 'real-codecov-2021',
     kind: REAL,
     sector: 'CI/CD and code coverage',
-    tier: 'Tier 1: Critical/High Risk',
+    tier: 'Tier 1: Critical',
     accent: '#f59e0b',
     title: 'Codecov: the uploader itself was the vulnerability',
     teaser:
@@ -334,7 +334,7 @@ export const VENDOR_INCIDENT_STORIES = [
     id: 'real-3cx-2023',
     kind: REAL,
     sector: 'Customer communications and VoIP',
-    tier: 'Tier 1: Critical/High Risk',
+    tier: 'Tier 1: Critical',
     accent: '#ef4444',
     title: '3CX: when the vendor is the supply chain',
     teaser:
@@ -365,7 +365,7 @@ export const VENDOR_INCIDENT_STORIES = [
     id: 'real-capitalone-2019',
     kind: REAL,
     sector: 'Banking and financial services',
-    tier: 'Tier 1: Critical/High Risk',
+    tier: 'Tier 1: Critical',
     accent: '#ef4444',
     title: 'Capital One: a firewall rule and a free metadata service',
     teaser:
@@ -396,7 +396,7 @@ export const VENDOR_INCIDENT_STORIES = [
     id: 'real-solarwinds-2020',
     kind: REAL,
     sector: 'Infrastructure monitoring',
-    tier: 'Tier 1: Critical/High Risk',
+    tier: 'Tier 1: Critical',
     accent: '#ef4444',
     title: 'SolarWinds: the update channel itself was the attack surface',
     teaser:
@@ -427,7 +427,7 @@ export const VENDOR_INCIDENT_STORIES = [
     id: 'real-circleci-2023',
     kind: REAL,
     sector: 'CI/CD pipelines',
-    tier: 'Tier 1: Critical/High Risk',
+    tier: 'Tier 1: Critical',
     accent: '#f59e0b',
     title: 'CircleCI: social engineering, then everything you had',
     teaser:
@@ -458,7 +458,7 @@ export const VENDOR_INCIDENT_STORIES = [
     id: 'real-okta-2023',
     kind: REAL,
     sector: 'Identity provider',
-    tier: 'Tier 1: Critical/High Risk',
+    tier: 'Tier 1: Critical',
     accent: '#ef4444',
     title: 'Okta: the file you attached to your support ticket',
     teaser:
