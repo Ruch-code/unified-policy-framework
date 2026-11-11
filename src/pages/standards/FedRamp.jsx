@@ -4,7 +4,7 @@ const fedrampFramework = {
   id: "fedramp",
   name: "FedRAMP (Federal Risk & Authorization Mgmt Program)",
   region: "United States (Federal)",
-  flag: "",
+  flag: "us",
   flagAnimation: "pulse",
   basePath: "/fedramp",
   color: "navy",

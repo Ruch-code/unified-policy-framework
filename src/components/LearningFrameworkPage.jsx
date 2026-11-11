@@ -6,6 +6,7 @@ import { Clock, RefreshCw, ArrowRight, BookOpen, ExternalLink, Lock, CheckCircle
 import FindingsDatabase from './FindingsDatabase.jsx';
 import { resolveTaskDomains } from '../data/controlDomains.js';
 import ReportTimeline from './ReportTimeline.jsx';
+import Flag from './ui/Flag.jsx';
 import { DomainPills, SafeguardTag } from './domains/DomainPill.jsx';
 import DomainToolbar, { useDomainFilters } from './domains/DomainToolbar.jsx';
 import PrivacyDocuments from './PrivacyDocuments.jsx';
@@ -344,11 +345,7 @@ function FrameworkBody({ framework, extraSections }) {
               </a>
             </div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2 flex items-center gap-3 flex-wrap">
-              {framework.flag && (
-                <span className={`text-3xl inline-block ${framework.flagAnimation === 'bounce' ? 'flag-bounce' : framework.flagAnimation === 'pulse' ? 'flag-pulse' : 'flag-float'}`} aria-label={framework.name}>
-                  {framework.flag}
-                </span>
-              )}
+              {framework.flag && <Flag code={framework.flag} height={28} label={framework.region || framework.name} />}
               {framework.name}
               {framework.region && (
                 <span className={`text-xs font-semibold px-3 py-1 rounded-full inline-flex items-center ${

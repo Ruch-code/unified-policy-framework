@@ -7,7 +7,7 @@ const FRAMEWORK = {
   name: "SOX 404: Internal Control over Financial Reporting",
   color: "blue",
   region: "United States",
-  flag: "",
+  flag: "us",
   flagAnimation: "float",
   basePath: "/sox",
   referenceUrl: "https://pcaobus.org/oversight/standards/auditing-standards/details/AS2201",

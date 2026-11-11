@@ -5,7 +5,7 @@ const FRAMEWORK = {
   name: "NIST SP 800-171 Rev. 2 / CMMC 2.0 Level 2",
   color: "blue",
   region: "United States",
-  flag: "",
+  flag: "us",
   flagAnimation: "float",
   basePath: "/cmmc",
   referenceUrl: "https://csrc.nist.gov/pubs/sp/800/171/r2/final",

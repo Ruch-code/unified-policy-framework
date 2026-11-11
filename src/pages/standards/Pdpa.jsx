@@ -5,7 +5,7 @@ const FRAMEWORK = {
   name: "PDPA (Singapore)",
   region: "Singapore",
   color: "red",
-  flag: "",
+  flag: "sg",
   flagAnimation: "bounce",
   basePath: "/pdpa",
   referenceUrl:

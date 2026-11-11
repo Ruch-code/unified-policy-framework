@@ -4,7 +4,7 @@ const FRAMEWORK = {
   id: "coppa",
   name: "COPPA (Children Online Privacy)",
   region: "United States",
-  flag: "",
+  flag: "us",
   flagAnimation: "bounce",
   basePath: "/coppa",
   color: "green",

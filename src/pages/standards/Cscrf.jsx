@@ -5,7 +5,7 @@ const FRAMEWORK = {
     name: 'CSCRF (India Cyber Security)',
     shortName: 'CSCRF',
     region: 'India',
-  flag: "",
+  flag: "in",
   flagAnimation: "pulse",
   basePath: "/cscrf",
     color: 'golden',

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import Flag from './ui/Flag.jsx';
 import { downloadXlsx } from '../utils/xlsxExport.js';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, CheckCircle2, Circle, Server, FileText, Wrench, Clock, Download, ExternalLink, AlertTriangle, Info, Shield } from 'lucide-react';
@@ -234,7 +235,7 @@ export default function AssessmentPage({ framework }) {
       </Link>
 
       <div className="flex items-center gap-3 mb-1">
-        {framework.flag && <span className="text-3xl">{framework.flag}</span>}
+        {framework.flag && <Flag code={framework.flag} height={28} />}
         <h1 className="text-3xl font-bold text-gray-900">{framework.name}</h1>
       </div>
       <p className="text-gray-500 text-sm mb-6 max-w-3xl">

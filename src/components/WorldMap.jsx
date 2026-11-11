@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import Flag, { flagSrc, flagImgHtml } from './ui/Flag.jsx';
 import Globe from 'react-globe.gl';
 import { feature } from 'topojson-client';
 import wCountries from 'world-countries';
@@ -93,7 +94,15 @@ export default function WorldMap({ height = 560, dark = false }) {
       const span = document.createElement('span');
       span.className = 'waving-flag';
       span.style.background = d.color;
-      span.textContent = d.flag;
+      if (d.flag) {
+        const img = document.createElement('img');
+        img.src = flagSrc(d.flag);
+        img.alt = '';
+        img.style.height = '16px';
+        img.style.width = 'auto';
+        img.style.borderRadius = '2px';
+        span.appendChild(img);
+      }
       const tick = document.createElement('span');
       tick.className = 'tick';
       tick.style.background = d.color;
@@ -195,7 +204,7 @@ export default function WorldMap({ height = 560, dark = false }) {
           if (p.region === 'Other') return `<div style="padding:8px 12px;background:#0f172a;color:#e2e8f0;border-radius:8px;font-size:13px">${p.name}</div>`;
           return `
             <div style="background:#0f172a;color:#fff;border-radius:10px;padding:10px 14px;min-width:190px;box-shadow:0 8px 24px rgba(0,0,0,.4)">
-              <div style="font-weight:700;font-size:15px">${p.flag} ${p.name}</div>
+              <div style="font-weight:700;font-size:15px">${flagImgHtml(p.flag)}${p.name}</div>
               <div style="color:#a5b4fc;font-size:12px;margin-top:2px">${p.region} · ${p.sub}</div>
               <div style="color:#cbd5e1;font-size:12px;margin-top:4px">${p.timezone}</div>
               <div style="color:#34d399;font-size:11px;margin-top:6px">Tap to see regulations</div>
@@ -231,7 +240,7 @@ export default function WorldMap({ height = 560, dark = false }) {
         {hovered && hovered.properties && hovered.properties.region !== 'Other' && (
           <div className="border-t border-white/10 pt-2 mt-1 flex items-center gap-2 text-xs">
             <MapPin className="w-3.5 h-3.5 text-orange-400" />
-            <span>{hovered.properties.flag} {hovered.properties.name}</span>
+            <span className="inline-flex items-center gap-1.5"><Flag code={hovered.properties.flag} height={12} />{hovered.properties.name}</span>
             <span className="text-indigo-300">{hovered.properties.region}</span>
           </div>
         )}
@@ -259,7 +268,7 @@ export default function WorldMap({ height = 560, dark = false }) {
             <div className="p-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <span className="text-4xl waving-flag inline-block">{selected.flag}</span>
+                  <Flag code={selected.flag} height={32} label={selected.name} />
                   <div>
                     <h3 className="text-xl font-bold text-gray-900">{selected.name}</h3>
                     <p className="text-xs text-gray-500">{selected.region} · {selected.subCategory}</p>
@@ -288,7 +297,7 @@ export default function WorldMap({ height = 560, dark = false }) {
         <div className="absolute bottom-4 left-4 bg-white rounded-2xl shadow-xl p-4 max-w-xs w-72 z-40">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="text-2xl waving-flag inline-block">{activeReg.flag || ''}</span>
+              <Flag code={activeReg.flag} height={24} label={activeReg.country} />
               <div>
                 <div className="font-bold text-gray-900 text-sm">{activeReg.region} <span className="text-gray-400 font-normal">/ {activeReg.sub}</span></div>
                 <div className="text-xs text-gray-500">{activeReg.country} · {activeReg.timezone}</div>
@@ -303,7 +312,7 @@ export default function WorldMap({ height = 560, dark = false }) {
             {regsFor(activeReg.region, activeReg.sub).map(r => (
               <Link key={r.id} to={r.path} className="flex items-center gap-2 text-sm font-medium text-white px-3 py-2 rounded-lg hover:opacity-90 transition"
                 style={{ background: r.color }}>
-                <span>{r.flag}</span> {r.name}
+                <Flag code={r.flag} height={14} /> {r.name}
                 <ChevronRight className="w-4 h-4 ml-auto" />
               </Link>
             ))}

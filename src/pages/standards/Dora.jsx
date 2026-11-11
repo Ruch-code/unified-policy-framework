@@ -6,7 +6,7 @@ const FRAMEWORK = {
   name: "DORA (Digital Operational Resilience Act) - EU 2022/2554",
   color: "purple",
   region: "European Union",
-  flag: "",
+  flag: "eu",
   flagAnimation: "pulse",
   basePath: "/dora",
   referenceUrl: "https://eur-lex.europa.eu/eli/reg/2022/2554/oj",
