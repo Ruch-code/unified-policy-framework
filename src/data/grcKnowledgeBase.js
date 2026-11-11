@@ -6,7 +6,7 @@ export const FRAMEWORK_KB = {
   soc2: {
     id: 'soc2',
     name: 'SOC 2',
-    color: '#6366f1',
+    color: '#557395',
     desc: 'Trust Services Criteria (TSC) - an attestation report clients and buyers rely on for service organisations.',
     policies: [
       { area: 'Access Management', controls: [
@@ -498,7 +498,7 @@ export const FRAMEWORK_KB = {
   gdpr: {
     id: 'gdpr',
     name: 'GDPR',
-    color: '#8b5cf6',
+    color: '#557395',
     desc: 'EU regulation for personal data - lawful basis, rights, DPAs, transfer rules, breach notification.',
     policies: [
       { area: 'Records of Processing (ROPA)', controls: [
@@ -1226,7 +1226,7 @@ export const DISCREPANCY_MATRIX = [
       reconcile: 'For every vendor decide carve-out vs carve-in explicitly; document the complementary user entity controls (CUECs) for carve-out, or require the vendor evidence for carve-in. The choice drives who provides the evidence to the auditor.',
     },
     {
-      topic: 'BYOD vs corporate endpoint security ⚡',
+      topic: 'BYOD vs corporate endpoint security ',
       conflict: `BYOD devices access CJI/PII/personal data on personal hardware; corporate endpoint security (EDR, MDM, disk encryption) is mandatory on corporate devices but cannot be enforced on personal devices without a mobile device management (MDM) profile. This creates a two-tier security model where sensitive data is accessible from uncontrolled endpoints.
 
       Regulatory pressure: CJIS 5.6 requires encryption + audit logging on all CJI-accessing devices; HIPAA 164.312(a) requires access controls on all ePHI-accessing workstations; PCI-DSS 8.1/9.9 requires physical + logical security on CDE-touching endpoints; FedRAMP CM-8/CM-11 requires asset inventory + media protection on all devices in the authorization boundary.`,

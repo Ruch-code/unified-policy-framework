@@ -5,7 +5,7 @@ const FRAMEWORK = {
   name: "PCI-DSS v4.0",
   color: "beige",
   region: "Global",
-  flag: "🌐",
+  flag: "",
   flagAnimation: "float",
   basePath: "/pci-dss",
   startupGaps: [

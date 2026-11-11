@@ -6,7 +6,7 @@ const FRAMEWORK = {
     name: 'ISO 31000:2018 Risk Management',
     shortName: 'ISO 31000',
     region: 'Global',
-  flag: "🌐",
+  flag: "",
   flagAnimation: "float",
   basePath: "/iso-31000",
     color: 'navy',

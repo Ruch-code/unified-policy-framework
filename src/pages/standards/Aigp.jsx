@@ -5,7 +5,7 @@ const FRAMEWORK = {
   id: 'aigp',
   name: 'IAPP AIGP - AI Governance Professional',
   region: 'Global',
-  flag: "🌐",
+  flag: "",
   flagAnimation: "float",
   basePath: '/aigp',
   color: 'purple',

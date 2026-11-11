@@ -16,7 +16,7 @@ const FRAMEWORK = {
   name: "HIPAA",
   color: "golden",
   region: "United States",
-  flag: "🇺🇸",
+  flag: "",
   flagAnimation: "bounce",
   basePath: "/hipaa",
   startupGaps: [

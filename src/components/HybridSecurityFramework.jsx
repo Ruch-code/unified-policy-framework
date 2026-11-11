@@ -51,7 +51,7 @@ function EnforcementLoop() {
   return (
     <div className="rounded-2xl border border-surface-300 dark:border-surface-dark-300 bg-white dark:bg-slate-900/60 p-6">
       <h3 className="grc-section-title mb-5 text-lg"><ArrowRight className="w-5 h-5 text-indigo-600" /> The enforcement loop</h3>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <Row title="Endpoint agent" sub="Bash, every 15 min" tone="bg-indigo-600" />
         <Row title="SOC webhook" sub="schema validate → posture decision" tone="bg-violet-600" />
         <Row title="Quarantine + token-strip" sub="ZTNA isolate, revoke sessions" tone="bg-rose-600" />
@@ -90,7 +90,7 @@ export default function HybridSecurityFramework({ isDark = false }) {
         {/* 6 domains */}
         <section className="mb-10">
           <h3 className="grc-section-title mb-5 text-lg">Six enforcement domains</h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-4">
             {DOMAINS.map(d => (
               <div key={d.title} className="rounded-xl border border-surface-300 dark:border-surface-dark-300 bg-white dark:bg-slate-900/60 p-5">
                 <span className={`inline-flex w-10 h-10 rounded-xl ${d.tone} text-white items-center justify-center mb-3`}>
@@ -111,7 +111,7 @@ export default function HybridSecurityFramework({ isDark = false }) {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
             {SCENARIOS.map(s => (
               <div key={s.id} className="rounded-xl border border-surface-300 dark:border-surface-dark-300 bg-white dark:bg-slate-900/60 overflow-hidden">
-                <div className="px-5 py-3 bg-gradient-to-r from-slate-700 to-slate-800 flex items-center justify-between">
+                <div className="px-5 py-3 bg-slate-700 flex items-center justify-between">
                   <h4 className="font-bold text-white">{s.title}</h4>
                   <span className="text-xs font-black text-white/70">SCENARIO {s.id}</span>
                 </div>

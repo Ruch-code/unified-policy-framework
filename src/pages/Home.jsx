@@ -22,6 +22,7 @@ import EngineeringPartnership, { EngPartnershipLink } from '../components/engine
 import { useAuth } from '../context/AuthContext.jsx';
 import { useState, useEffect } from 'react';
 import { Lock, AlertCircle, Shield, AlertTriangle, Building, Users, ShieldCheck, Globe, Lock as LockIcon, Briefcase, GraduationCap, MessageSquare, Star, ArrowRight, Key, Server, Database, ClipboardCheck, ChevronRight, Menu, X, FileText } from 'lucide-react';
+import Skeleton from '../components/ui/Skeleton.jsx';
 
 function useDark() {
   const [dark, setDark] = useState(() => document.documentElement.classList.contains('dark'));
@@ -36,7 +37,7 @@ function LockedSection({ title, description, children, icon: Icon, showLoginProm
     <div className="min-h-[40vh] flex items-center justify-center p-6">
       <div className="text-center text-gray-500 dark:text-text-dark-secondary">
         <div className="w-8 h-8 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-        <p className="text-sm text-gray-500 dark:text-text-dark-secondary">Loading...</p>
+        <Skeleton lines={3} />
       </div>
     </div>
   );
@@ -45,7 +46,7 @@ function LockedSection({ title, description, children, icon: Icon, showLoginProm
   return (
     <div className="bg-surface-100 dark:bg-surface-dark-100 rounded-2xl border border-surface-300 dark:border-surface-dark-300">
       {showLoginPrompt && (
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-t-2xl px-6 py-6 md:p-8 text-center">
+        <div className="bg-indigo-600 rounded-t-2xl px-6 py-6 md:p-8 text-center">
           <div className="max-w-2xl mx-auto">
             <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center mx-auto mb-4">
               <Lock className="w-8 h-8 text-white" />
@@ -256,43 +257,43 @@ const REGIONS = [
 const INDUSTRIES = [
   {
     name: 'Financial Services',
-    icon: '🏦',
+    icon: '',
     frameworks: ['PCI-DSS', 'SOC 2', 'RBI', 'SEBI', 'ISO 27001 LA', 'ISO 27001 LI', 'CIS Controls v8', 'DORA', 'NIS2', 'ISO 22301'],
     policyFocus: 'Data at rest/in transit, fraud monitoring, access control, audit trails, vendor risk, operational resilience',
   },
   {
     name: 'Healthcare',
-    icon: '🏥',
+    icon: '',
     frameworks: ['HIPAA', 'HITRUST CSF', 'NIST CSF 2.0', 'SOC 2', 'ISO 27001 LI', 'CIS Controls v8', 'ISO 22301'],
     policyFocus: 'PHI handling, BAAs, encryption, breach notification, business continuity',
   },
   {
     name: 'Technology / SaaS',
-    icon: '💻',
+    icon: '',
     frameworks: ['SOC 2', 'ISO 27001 LA', 'ISO 27001 LI', 'CCPA / CPRA', 'GDPR', 'ISO 27701', 'CIS Controls v8', 'LGPD', 'PDPA', 'PIPL', 'ISO 42001', 'ISO 27017', 'ISO 27018'],
     policyFocus: 'Trust services criteria, DPIA, ROPA, encryption, SDLC security, incident response, AI governance, cloud security',
   },
   {
     name: 'E-commerce / Retail',
-    icon: '🛒',
+    icon: '',
     frameworks: ['PCI-DSS', 'CCPA / CPRA', 'GDPR', 'COPPA', 'ISO 27701', 'DPDPA', 'LGPD', 'PDPA', 'PIPL'],
     policyFocus: 'Payment security, consent management, children privacy, data minimization',
   },
   {
     name: 'Cloud / Infrastructure',
-    icon: '☁️',
+    icon: '',
     frameworks: ['ISO 27001 LA', 'SOC 2', 'NIST CSF 2.0', 'CERT-In', 'ISO 31000', 'CIS Controls v8', 'ISO 27017', 'ISO 27018', 'ISO 22301'],
     policyFocus: 'Multi-cloud controls (AWS/Azure/GCP/Alibaba), logging, encryption keys, availability, cloud PII protection',
   },
   {
     name: 'Telecom / Data Centre',
-    icon: '📡',
+    icon: '',
     frameworks: ['CERT-In', 'CSCRF', 'ISO 27001 LI', 'ISO 31000', 'GDPR', 'CIS Controls v8', 'NIS2', 'ISO 22301'],
     policyFocus: 'Traffic logging, 180-day retention, incident reporting (6-hr), SIM security, network resilience',
   },
   {
     name: 'Defense / Government Contractors',
-    icon: '🛡️',
+    icon: '',
     frameworks: ['CMMC 2.0', 'NIST 800-171', 'NIST CSF 2.0', 'FedRAMP', 'ISO 27001 LA', 'ISO 27001 LI'],
     policyFocus: 'CUI protection, DFARS compliance, supply chain risk, continuous monitoring, assessment readiness',
   },
@@ -305,7 +306,7 @@ function TabPanel({ isDark, activeTab }) {
   const Icon = tab.icon;
 
   return (
-    <div id={`panel-${activeTab}`} className="space-y-6 animate-in fade-in duration-300 scroll-mt-24" role="tabpanel" aria-labelledby={`tab-${activeTab}`}>
+    <div id={`panel-${activeTab}`} className="space-y-6 duration-300 scroll-mt-24" role="tabpanel" aria-labelledby={`tab-${activeTab}`}>
       {/* Globe + CertAdvisor - only on first tab */}
       {activeTab === 'regional' && (
         <>
@@ -377,7 +378,7 @@ function TabPanel({ isDark, activeTab }) {
                 <span className={`inline-block px-3 py-1 rounded-full text-sm font-semibold ${region.tag} mb-4`}>
                   {region.name}
                 </span>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
                   {region.frameworks.map(fw => (
                     <Link
                       key={fw.path}
@@ -502,14 +503,14 @@ function TabPanel({ isDark, activeTab }) {
 
       {/* Unified control matrix teaser - only on last tab or regional */}
       {(activeTab === 'regional' || activeTab === 'access-governance') && (
-        <div className="mt-10 bg-gradient-to-r from-indigo-50 dark:from-indigo-900/20 to-amber-50 dark:to-amber-900/20 rounded-2xl p-8">
+        <div className="mt-10 bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl p-8">
           <h3 className="text-2xl font-bold text-navy-900 dark:text-text-dark-primary mb-2">How to unify into one policy set</h3>
           <p className="text-gray-700 dark:text-text-dark-secondary mb-4 max-w-3xl">
             Rather than maintaining separate policies per standard, map overlapping controls into a single baseline.
             Most frameworks share common controls - access management, encryption, incident response, logging,
             risk assessment, and vendor management - expressed differently.
           </p>
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-2 gap-4">
             {[
               { t: 'Map overlaps', d: 'Identify controls shared across frameworks (e.g., encryption appears in ISO 27001, HIPAA, PCI-DSS, SOC 2, GDPR).' },
               { t: 'Build one baseline', d: 'Create a single policy + technical control baseline satisfying the strictest overlapping requirement.' },
@@ -638,7 +639,7 @@ export default function Home() {
               <Menu className="w-5 h-5" />
             </button>
             {mobileTabsOpen && (
-              <div className="mt-2 rounded-xl bg-surface-100 dark:bg-surface-dark-100 border border-surface-300 dark:border-surface-dark-300 overflow-hidden animate-in fade-in duration-200" role="listbox">
+              <div className="mt-2 rounded-xl bg-surface-100 dark:bg-surface-dark-100 border border-surface-300 dark:border-surface-dark-300 overflow-hidden duration-200" role="listbox">
                 {TABS.map(tab => (
                   <button
                     key={tab.id}

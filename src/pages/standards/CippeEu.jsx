@@ -4,7 +4,7 @@ const FRAMEWORK = {
   id: 'cippe-eu',
   name: 'CIPPE/EU - Critical Infrastructure (EU)',
   region: 'European Union',
-  flag: "🇪🇺",
+  flag: "",
   flagAnimation: "pulse",
   basePath: "/cippe/eu",
   color: 'purple',

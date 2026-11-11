@@ -126,7 +126,7 @@ export default function FindingsDatabase({ color }) {
                 </div>
               </button>
               {open && (
-                <div className="p-4 pt-0 grid md:grid-cols-3 gap-3 bg-white">
+                <div className="p-4 pt-0 grid md:grid-cols-2 gap-3 bg-white">
                   <div className="rounded-lg bg-blue-50 dark:bg-blue-900/30 border border-blue-100 dark:border-blue-800 p-3">
                     <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-700 dark:text-blue-300 uppercase tracking-wide"><TrendingUp className="w-3.5 h-3.5" /> Root cause</span>
                     <p className="text-sm text-gray-700 mt-1">{f.rootCause}</p>

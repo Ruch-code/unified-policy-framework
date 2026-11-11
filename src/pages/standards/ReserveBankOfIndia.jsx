@@ -4,7 +4,7 @@ const FRAMEWORK = {
   id: 'rbi',
   name: 'RBI Cyber Security Framework',
   region: 'India',
-  flag: "🇮🇳",
+  flag: "",
   flagAnimation: "pulse",
   basePath: "/rbi",
   color: 'navy',

@@ -7,7 +7,7 @@ const FRAMEWORK = {
   name: "EU AI Act (Regulation (EU) 2024/1689)",
   color: "purple",
   region: "European Union",
-  flag: "🇪🇺",
+  flag: "",
   flagAnimation: "pulse",
   basePath: "/eu-ai-act",
   referenceUrl: "https://eur-lex.europa.eu/eli/reg/2024/1689/oj",

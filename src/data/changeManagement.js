@@ -174,7 +174,7 @@ export const CHANGE_TYPES = [
 ];
 
 export const VELOCITY = {
-  intro: 'Fast-moving teams ship many changes a day. Peer review on every change can become a bottleneck, or be skipped quietly. The answer is not to drop the control, but to make review cheaper and add compensating controls where review genuinely cannot happen.',
+  intro: 'Fast-moving teams ship many changes a day. Peer review on every change can become a bottleneck, or be skipped quietly. The better answer is to make review cheaper and add compensating controls where review genuinely cannot happen.',
   preventive: [
     { t: 'Small pull requests', d: 'Set a soft size limit. Small changes get reviewed in minutes instead of waiting days.' },
     { t: 'Risk-based review depth', d: 'Every change gets a non-author approval, but sensitive paths (auth, payments, IAM, encryption, data access) require code owners or security. Low-risk paths get a lighter review.' },

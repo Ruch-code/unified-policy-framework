@@ -435,7 +435,7 @@ export default function AssessmentPage({ framework }) {
                       <div className="mt-2 flex flex-wrap items-center gap-2 text-xs">
                         <span className="inline-flex items-center gap-1 text-gray-500"><Wrench className="w-3.5 h-3.5 text-indigo-500" /> Tools: <span className="font-medium text-gray-700">{it.tool}</span></span>
                         {it.password && (
-                          <span className="inline-flex items-center gap-1 text-gray-500">🔑 <span className="font-medium text-gray-700">{it.password}</span></span>
+                          <span className="inline-flex items-center gap-1 text-gray-500"><span className="font-medium text-gray-700">{it.password}</span></span>
                         )}
                         {it.hours && (
                           <span className="inline-flex items-center gap-1 text-gray-400 ml-auto"><Clock className="w-3.5 h-3.5" /> ~{it.hours}h</span>

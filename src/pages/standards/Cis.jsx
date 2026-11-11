@@ -5,7 +5,7 @@ const FRAMEWORK = {
   name: "CIS Controls v8",
   region: "Global",
   color: "navy",
-  flag: "🌐",
+  flag: "",
   flagAnimation: "float",
   basePath: "/cis",
   referenceUrl: "https://www.cisecurity.org/controls",

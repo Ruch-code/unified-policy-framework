@@ -42,8 +42,8 @@ function AnswerView({ answer }) {
 
       {/* Structured steps - Wise Advisor */}
       {steps.length > 0 && (
-        <div className="rounded-xl bg-indigo-50 border border-indigo-200 p-4 dark:bg-[#1e1b4b] dark:border-[#3730a3] dark:hover:bg-[#312e81]">
-          <h5 className="text-xs font-bold uppercase tracking-wide text-indigo-800 dark:text-[#c4b5fd] mb-2 flex items-center gap-1.5">
+        <div className="rounded-xl bg-indigo-50 border border-indigo-200 p-4 dark:bg-[#141e2b] dark:border-[#3730a3] dark:hover:bg-[#1f2e40]">
+          <h5 className="text-xs font-bold uppercase tracking-wide text-indigo-800 dark:text-[#9fb2cb] mb-2 flex items-center gap-1.5">
             <Sparkles className="w-3.5 h-3.5" /> Wise Advisor - what to do next
           </h5>
           <ol className="space-y-2.5">
@@ -191,7 +191,7 @@ export default function GrcAssistant({ compact = false }) {
       {/* Scrolling chat area - single scroll context, header/input pinned outside */}
       <div ref={scrollRef} role="log" aria-live="polite" className="flex-1 min-h-0 overflow-y-auto pr-1 space-y-3" style={{ minHeight: compact ? 0 : 420 }}>
         <div className="text-center py-6">
-          <span className="inline-flex items-center gap-2 text-[#7c3aed] bg-indigo-50 px-3 py-1.5 rounded-full font-semibold text-sm dark:bg-[#1e1b4b] dark:border-[#3730a3] dark:hover:bg-[#312e81] dark:text-[#c4b5fd] border dark:border-[#3730a3]">
+          <span className="inline-flex items-center gap-2 text-[#415d7d] bg-indigo-50 px-3 py-1.5 rounded-full font-semibold text-sm dark:bg-[#141e2b] dark:border-[#3730a3] dark:hover:bg-[#1f2e40] dark:text-[#9fb2cb] border dark:border-[#3730a3]">
             <Sparkles className="w-4 h-4" /> GRC Knowledge Assistant
           </span>
           <p className="text-xs text-slate-600 dark:text-[#94a3b8] mt-2 max-w-md mx-auto">
@@ -226,7 +226,7 @@ export default function GrcAssistant({ compact = false }) {
             <div className="flex flex-wrap gap-1.5">
               {suggestions.slice(0, 4).map((s, j) => (
                 <button key={j} onClick={() => ask(s)}
-                  className="text-xs font-semibold text-[#6d28d9] bg-indigo-50 hover:bg-indigo-100 px-2.5 py-1.5 rounded-full border border-indigo-200 transition text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:bg-[#1e1b4b] dark:border-[#3730a3] dark:hover:bg-[#312e81] dark:text-[#c4b5fd]">
+                  className="text-xs font-semibold text-[#344c67] bg-indigo-50 hover:bg-indigo-100 px-2.5 py-1.5 rounded-full border border-indigo-200 transition text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:bg-[#141e2b] dark:border-[#3730a3] dark:hover:bg-[#1f2e40] dark:text-[#9fb2cb]">
                   {s}
                 </button>
               ))}
@@ -246,7 +246,7 @@ export default function GrcAssistant({ compact = false }) {
             {STARTERS.map((s, i) => (
               <button key={i} onClick={() => ask(s)}
                 className={`shrink-0 text-xs px-2.5 py-1.5 rounded-full border transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${
-                  history.length ? 'text-slate-600 dark:text-[#94a3b8] border-slate-300 dark:border-[#334155] hover:bg-slate-100 dark:hover:bg-[#1e293b]' : 'text-[#6d28d9] bg-indigo-50 border-indigo-200 hover:bg-indigo-100 dark:bg-[#1e1b4b] dark:border-[#3730a3] dark:hover:bg-[#312e81] dark:text-[#c4b5fd]'
+                  history.length ? 'text-slate-600 dark:text-[#94a3b8] border-slate-300 dark:border-[#334155] hover:bg-slate-100 dark:hover:bg-[#1e293b]' : 'text-[#344c67] bg-indigo-50 border-indigo-200 hover:bg-indigo-100 dark:bg-[#141e2b] dark:border-[#3730a3] dark:hover:bg-[#1f2e40] dark:text-[#9fb2cb]'
                 }`}>
                 {s}
               </button>

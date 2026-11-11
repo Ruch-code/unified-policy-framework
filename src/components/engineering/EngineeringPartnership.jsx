@@ -47,7 +47,7 @@ const Points = ({ items }) => (
 function Meta({ id }) {
   const m = SECTION_META[id];
   return (
-    <dl className="grid sm:grid-cols-3 gap-2 mb-4 text-xs">
+    <dl className="grid sm:grid-cols-2 gap-2 mb-4 text-xs">
       {[['Owner', m.owner], ['Evidence source', m.evidence], ['Exception path', m.exception]].map(([k, v]) => (
         <div key={k} className="rounded-lg bg-teal-50 dark:bg-teal-900/20 border border-teal-200 dark:border-teal-800 p-2">
           <dt className="font-bold uppercase tracking-wide text-teal-800 dark:text-teal-200">{k}</dt>
@@ -160,7 +160,7 @@ export default function EngineeringPartnership() {
       <Section id="eng-logging" title="3. Logging and audit trails" intro="Logs are evidence only if they answer investigation questions. Define the events first, then the fields, then the protection.">
         <Table label="Log event catalogue" headers={LOG_EVENT_COLUMNS} rows={LOG_EVENTS} min={1300} />
         <p className="text-xs text-gray-500 dark:text-slate-400 mt-2">Retention uses the tiers in the existing <a className={A} href="#regional" onClick={() => setTimeout(() => document.getElementById('secops-logging')?.scrollIntoView({ behavior: 'smooth' }), 300)}>Logging, Monitoring &amp; SIEM Retention</a> table (Security Operations). This page sets no separate figures.</p>
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-2 gap-4">
           <div><h3 className={H3}>Minimum fields</h3><Ul items={LOG_MIN_FIELDS} /></div>
           <div><h3 className={H3}>Access and integrity</h3><Ul items={LOG_PROTECTION} /></div>
           <div><h3 className={H3}>Investigation questions</h3><Ul items={LOG_QUESTIONS} /></div>

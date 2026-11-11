@@ -6,16 +6,16 @@ const FLAG_MAP = {
   'PCI-DSS': { type: 'nerdy', label: 'Global' },
   'SOC 2': { type: 'nerdy', label: 'Global' },
   'CIS': { type: 'nerdy', label: 'Global' },
-  'HIPAA': { flag: '🇺🇸', anim: 'bounce', label: 'United States' },
-  'HITRUST': { flag: '🇺🇸', anim: 'bounce', label: 'United States' },
-  'NIST': { flag: '🇺🇸', anim: 'bounce', label: 'United States' },
-  'GDPR': { flag: '🇪🇺', anim: 'pulse', label: 'European Union' },
-  'CCPA': { flag: '🇺🇸', anim: 'bounce', label: 'United States' },
-  'COPPA': { flag: '🇺🇸', anim: 'bounce', label: 'United States' },
-  'DPDPA': { flag: '🇮🇳', anim: 'pulse', label: 'India' },
-  'LGPD': { flag: '🇧🇷', anim: 'bounce', label: 'Brazil' },
-  'PDPA': { flag: '🇸🇬', anim: 'bounce', label: 'Singapore' },
-  'PIPL': { flag: '🇨🇳', anim: 'bounce', label: 'China' },
+  'HIPAA': { flag: '', anim: 'bounce', label: 'United States' },
+  'HITRUST': { flag: '', anim: 'bounce', label: 'United States' },
+  'NIST': { flag: '', anim: 'bounce', label: 'United States' },
+  'GDPR': { flag: '', anim: 'pulse', label: 'European Union' },
+  'CCPA': { flag: '', anim: 'bounce', label: 'United States' },
+  'COPPA': { flag: '', anim: 'bounce', label: 'United States' },
+  'DPDPA': { flag: '', anim: 'pulse', label: 'India' },
+  'LGPD': { flag: '', anim: 'bounce', label: 'Brazil' },
+  'PDPA': { flag: '', anim: 'bounce', label: 'Singapore' },
+  'PIPL': { flag: '', anim: 'bounce', label: 'China' },
 };
 
 function NerdyGlobe() {
@@ -27,10 +27,10 @@ function NerdyGlobe() {
           <span className="brain-left" />
           <span className="brain-right" />
         </span>
-        <span className="brain-label">🧠</span>
+        <span className="brain-label"></span>
       </div>
       {/* Globe body */}
-      <div className="nerdy-globe-body">🌍</div>
+      <div className="nerdy-globe-body"></div>
       {/* Glasses */}
       <div className="nerdy-glasses">
         <span className="nerdy-lens" />
@@ -47,7 +47,13 @@ function NerdyGlobe() {
   );
 }
 
-export default function NavHoverIcon({ name, children }) {
+// Hover pop-ups and animated flags were removed in the design cleanup; the nav item renders as is.
+export default function NavHoverIcon({ children }) {
+  return children;
+}
+
+// eslint-disable-next-line no-unused-vars
+function LegacyNavHoverIcon({ name, children }) {
   const [hovered, setHovered] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const info = FLAG_MAP[name];

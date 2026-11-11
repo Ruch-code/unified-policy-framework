@@ -5,7 +5,7 @@ const FRAMEWORK = {
   name: "ISO/IEC 27017:2015 Cloud Security Controls",
   color: "cyan",
   region: "Global",
-  flag: "☁️",
+  flag: "",
   flagAnimation: "float",
   basePath: "/iso/27017",
   referenceUrl: "https://www.iso.org/standard/43757",

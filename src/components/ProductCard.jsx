@@ -30,7 +30,7 @@ export default function ProductCard({ product }) {
           <img
             src={product.images[0]}
             alt={product.name}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            className="w-full h-full object-cover transition-transform duration-300"
             loading="lazy"
           />
           {discount > 0 && (
@@ -49,7 +49,7 @@ export default function ProductCard({ product }) {
               e.stopPropagation();
               setWishlisted(!wishlisted);
             }}
-            className="absolute bottom-2 right-2 p-2 rounded-full bg-white/80 backdrop-blur-sm hover:bg-white transition-colors"
+            className="absolute bottom-2 right-2 p-2 rounded-full bg-white hover:bg-white transition-colors"
             aria-label={wishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
           >
             <Heart
@@ -76,7 +76,7 @@ export default function ProductCard({ product }) {
                   key={i}
                   className={`text-yellow-400`}
                 >
-                  ★
+                  
                 </span>
               ))}
               <span className="text-sm text-gray-500 ml-1">({product.ratings.count})</span>

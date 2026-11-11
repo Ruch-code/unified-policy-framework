@@ -48,7 +48,7 @@ export default function AiSecurityAudit() {
         </button>
       </div>
 
-      <ol className="grid gap-3 md:grid-cols-3 mb-6">
+      <ol className="grid gap-3 md:grid-cols-2 mb-6">
         {AUDIT_PHASES.map((p) => (
           <li key={p.phase} className="rounded-xl border border-surface-200 dark:border-surface-dark-200 bg-surface-50 dark:bg-slate-900/80 p-4">
             <h3 className="font-bold text-sm text-gray-900 dark:text-text-dark-primary">{p.phase}</h3>
@@ -78,7 +78,7 @@ export default function AiSecurityAudit() {
                 <span className="hidden sm:inline text-[11px] text-gray-500 dark:text-text-dark-muted shrink-0">{t.owasp}</span>
               </button>
               {isOpen && (
-                <div className="px-3 pb-3 grid gap-3 md:grid-cols-3 text-xs text-gray-700 dark:text-text-dark-secondary">
+                <div className="px-3 pb-3 grid gap-3 md:grid-cols-2 text-xs text-gray-700 dark:text-text-dark-secondary">
                   <div><p className="font-semibold text-gray-900 dark:text-text-dark-primary mb-1">How to test</p><p>{t.method}</p><p className="mt-2"><strong>Pass when:</strong> {t.passCriteria}</p></div>
                   <div><p className="font-semibold text-gray-900 dark:text-text-dark-primary mb-1">Mappings</p><p><strong>OWASP:</strong> {t.owasp}</p><p><strong>ATLAS:</strong> {t.atlas}</p><p>{t.mappings.join('; ')}</p></div>
                   <div><p className="font-semibold text-gray-900 dark:text-text-dark-primary mb-1">Evidence</p><ul className="list-disc pl-4">{t.evidence.map((e) => <li key={e}>{e}</li>)}</ul></div>

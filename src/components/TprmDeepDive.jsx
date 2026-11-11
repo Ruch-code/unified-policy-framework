@@ -32,7 +32,7 @@ function ItemList({ caption, items, ordered, check }) {
       <Tag className={`text-xs text-navy-700 dark:text-text-dark-secondary space-y-1 ${ordered ? 'list-decimal pl-5' : check ? '' : 'list-disc pl-5'}`}>
         {items.map((it) => (
           <li key={it} className={check ? 'flex items-start gap-2' : ''}>
-            {check && <span aria-hidden="true" className="text-red-600 dark:text-red-300 shrink-0">⚑</span>}
+            {check && <span aria-hidden="true" className="text-red-600 dark:text-red-300 shrink-0"></span>}
             <span>{it}</span>
           </li>
         ))}

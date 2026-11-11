@@ -87,7 +87,7 @@ const PROVIDERS = [
   {
     name: 'AWS',
     icon: Cloud,
-    tone: 'from-orange-500 to-amber-600',
+    tone: 'bg-orange-500',
     checks: [
       'CIS-hardened AMI baseline (Amazon Linux 2/2023, CIS benchmark) with immutable-image builds',
       'Amazon Inspector (deep + network reachability) scanning every EBS-backed instance; weekly cadence',
@@ -101,7 +101,7 @@ const PROVIDERS = [
   {
     name: 'Azure',
     icon: Cloud,
-    tone: 'from-sky-500 to-blue-600',
+    tone: 'bg-sky-500',
     checks: [
       'Azure Marketplace CIS VMs or custom hardened images; VM Image Builder for golden images',
       'Microsoft Defender for Servers (Plan 2) - vulnerability + just-in-time VM access',
@@ -115,7 +115,7 @@ const PROVIDERS = [
   {
     name: 'Google Cloud',
     icon: Cloud,
-    tone: 'from-red-500 to-rose-600',
+    tone: 'bg-red-500',
     checks: [
       'CIS Google Compute hardened OS images + Organization Policy (guest attributes, OS Login)',
       'OS Config Manager enforces guest policies, patch compliance, and inventory across fleets',
@@ -129,7 +129,7 @@ const PROVIDERS = [
   {
     name: 'Alibaba Cloud',
     icon: Cloud,
-    tone: 'from-amber-500 to-yellow-600',
+    tone: 'bg-amber-500',
     checks: [
       'CIS Alibaba Cloud Linux / Ubuntu hardened ECS images with baseline verification',
       'Security Center (Anti-Bot + vulnerability audit) discovers host CVEs over weekly agent scans',
@@ -243,7 +243,7 @@ export default function Soc2TechnicalSection() {
           <div className="grid md:grid-cols-2 gap-5">
             {PROVIDERS.map(provider => (
               <div key={provider.name} className="rounded-xl border border-gray-200 dark:border-slate-700/60 bg-white dark:bg-slate-900/60 overflow-hidden">
-                <div className={`px-4 py-3 bg-gradient-to-r ${provider.tone} flex items-center gap-2`}>
+                <div className={`px-4 py-3 ${provider.tone} flex items-center gap-2`}>
                   <provider.icon className="w-4 h-4 text-white" />
                   <h4 className="font-bold text-white text-sm">{provider.name} - host hardening</h4>
                 </div>

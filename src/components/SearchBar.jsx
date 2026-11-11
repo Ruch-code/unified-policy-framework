@@ -85,11 +85,11 @@ function Highlight({ text = '', terms = [] }) {
 
 function getIcon(category) {
   switch (category) {
-    case 'Frameworks & Standards': return '🏛️';
-    case 'Policy & Control Modules': return '📘';
-    case 'Persona Requirements': return '👤';
-    case 'Control Domains & Mappings': return '🧩';
-    default: return '🔍';
+    case 'Frameworks & Standards': return '';
+    case 'Policy & Control Modules': return '';
+    case 'Persona Requirements': return '';
+    case 'Control Domains & Mappings': return '';
+    default: return '';
   }
 }
 
@@ -276,7 +276,7 @@ export default function SearchBar({ isDark = false }) {
   // at every width the desktop bar is visible.
   const dropdownStyles = `
     absolute top-full left-0 right-0 mt-2 z-[100] w-full min-w-[22rem] lg:min-w-[26rem] max-w-[calc(100vw-2rem)] max-h-[28rem] overflow-y-auto overflow-x-hidden
-    rounded-2xl shadow-2xl shadow-slate-950/50 dark:shadow-slate-950/60 border animate-in fade-in slide-in-from-top-2 duration-200 p-2
+    rounded-2xl shadow-2xl shadow-slate-950/50 dark:shadow-slate-950/60 border duration-200 p-2
     ${isDark
       ? 'bg-slate-900 dark:bg-indigo-600 border-slate-700'
       : 'bg-white border-slate-200 dark:border-slate-700'
@@ -285,8 +285,8 @@ export default function SearchBar({ isDark = false }) {
 
   const mobileOverlayStyles = `
     fixed inset-0 z-[90]
-    ${isDark ? 'bg-slate-950/95 backdrop-blur-xl' : 'bg-white/95 backdrop-blur-xl'}
-    animate-in fade-in duration-200
+    ${isDark ? 'bg-slate-950' : 'bg-white'}
+    duration-200
   `;
 
   function renderSectionLabel(category) {
@@ -505,7 +505,7 @@ export default function SearchBar({ isDark = false }) {
       {isMobile && isMobileOpen && (
         <div id="mobile-search-overlay" ref={mobileOverlayRef} className={mobileOverlayStyles} role="dialog" aria-modal="true" aria-label="Search frameworks">
           <div className="relative h-full flex flex-col">
-            <div className="p-4 md:p-6 border-b border-slate-200/80 dark:border-slate-700/80 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl">
+            <div className="p-4 md:p-6 border-b border-slate-200/80 dark:border-slate-700/80 bg-white dark:bg-slate-900">
               <div className="relative max-w-2xl mx-auto">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
                 <input

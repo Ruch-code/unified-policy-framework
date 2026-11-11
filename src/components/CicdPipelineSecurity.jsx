@@ -359,7 +359,7 @@ export default function CicdPipelineSecurity({ onOpenTab }) {
                 <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
               </button>
               {isOpen && (
-                <div className="px-4 pb-4 grid lg:grid-cols-3 gap-3">
+                <div className="px-4 pb-4 grid lg:grid-cols-2 gap-3">
                   <div className="lg:col-span-3 rounded-lg p-3 bg-slate-50 border border-slate-200 dark:bg-slate-800/60 dark:border-slate-700">
                     <p className="text-[11px] font-bold uppercase tracking-wide text-slate-600 dark:text-slate-300 mb-2 flex items-center gap-1.5"><Target className="w-3.5 h-3.5" /> What the checks are</p>
                     <div className="grid md:grid-cols-2 gap-2">

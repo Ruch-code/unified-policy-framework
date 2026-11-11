@@ -191,7 +191,7 @@ function dateStamp(iso) {
  */
 export function drawPoster(canvas, story, opts = {}) {
   const { logo = null, issueLabel = '', scale = 2 } = opts;
-  const accent = story.accent || '#6366f1';
+  const accent = story.accent || '#557395';
 
   canvas.width = W * scale;
   canvas.height = H * scale;

@@ -69,7 +69,7 @@ function SecretsBeyondCode() {
       </div>
       <div className="rounded-xl border border-gray-200 dark:border-slate-700 p-4" role="tabpanel">
         <p className="font-bold text-gray-900 dark:text-white flex items-center gap-2 mb-3"><EnvIcon className="w-4 h-4 text-indigo-600 dark:text-indigo-300" /> {env.name}</p>
-        <div className="grid md:grid-cols-3 gap-3 text-sm">
+        <div className="grid md:grid-cols-2 gap-3 text-sm">
           <div className="rounded-lg p-3 bg-amber-50 border border-amber-200 dark:bg-amber-900/30 dark:border-amber-800">
             <p className="text-[11px] font-bold uppercase tracking-wide text-amber-800 dark:text-amber-300 mb-1 flex items-center gap-1.5"><Search className="w-3.5 h-3.5" /> Where secrets hide</p>
             <ul className="space-y-1 text-gray-700 dark:text-slate-200">{env.hide.map(li)}</ul>
@@ -86,7 +86,7 @@ function SecretsBeyondCode() {
         </div>
       </div>
       <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">Cloud secrets runbook</h4>
-      <ol className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2">
+      <ol className="grid sm:grid-cols-2 lg:grid-cols-2 gap-2">
         {CLOUD_RUNBOOK.map((r, i) => (
           <li key={r.step} className="rounded-lg p-3 border border-gray-200 dark:border-slate-700 text-sm">
             <p className="font-semibold text-gray-900 dark:text-white flex items-center gap-2">
@@ -144,7 +144,7 @@ function SecretsScanningTab() {
       {/* 2. What counts as a secret */}
       <div className="bg-white border border-gray-200 rounded-2xl p-6 dark:bg-[#1e293b] dark:border-[#334155]">
         <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">What counts as a secret</h3>
-        <div className="grid md:grid-cols-3 gap-3">
+        <div className="grid md:grid-cols-2 gap-3">
           {SECRET_TYPES.map((s) => (
             <div key={s.name} className="bg-blue-50 border border-blue-200 rounded-xl p-4 dark:bg-blue-900/20 dark:border-blue-800">
               <h4 className="font-bold text-blue-900 dark:text-blue-200 mb-1">{s.name}</h4>
@@ -182,7 +182,7 @@ function SecretsScanningTab() {
       {/* 4. How detection works */}
       <div className="bg-white border border-gray-200 rounded-2xl p-6 dark:bg-[#1e293b] dark:border-[#334155]">
         <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">How detection works</h3>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-4 mb-6">
           <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-4 dark:bg-indigo-900/20 dark:border-indigo-800">
             <h4 className="font-bold text-indigo-900 dark:text-indigo-200 mb-2">Pattern / regex</h4>
             <p className="text-sm text-indigo-800 dark:text-indigo-300">Provider-specific formats with fixed prefixes and lengths. High precision but misses generic secrets.</p>
@@ -373,7 +373,7 @@ function SecretsScanningTab() {
       {/* 11. Roadmap by size */}
       <div className="bg-white border border-gray-200 rounded-2xl p-6 dark:bg-[#1e293b] dark:border-[#334155]">
         <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Implementation roadmap by size</h3>
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-2 gap-4">
           {ROADMAP.map((r) => (
             <div key={r.size} className="bg-blue-50 border border-blue-200 rounded-xl p-4 dark:bg-blue-900/20 dark:border-blue-800">
               <h4 className="font-bold text-blue-900 dark:text-blue-200 mb-1">{r.size}</h4>

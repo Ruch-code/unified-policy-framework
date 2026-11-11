@@ -5,7 +5,7 @@ const FRAMEWORK = {
   id: 'nist',
   name: 'NIST CSF 2.0',
   region: 'United States',
-  flag: "🇺🇸",
+  flag: "",
   flagAnimation: "bounce",
   basePath: "/nist",
   color: 'navy',

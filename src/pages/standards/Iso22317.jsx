@@ -6,7 +6,7 @@ const FRAMEWORK = {
   name: "ISO 22317:2021 Business Impact Analysis Playbook",
   color: "emerald",
   region: "Global",
-  flag: "🌐",
+  flag: "",
   flagAnimation: "float",
   basePath: "/iso-22317",
   referenceUrl: "https://www.iso.org/standard/74883.html",

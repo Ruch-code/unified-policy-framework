@@ -89,7 +89,7 @@ function PhaseSection({ phase, items, isDark, progress, handleToggle, expandedTa
           </div>
           <div className="flex items-center gap-3 pr-16 shrink-0 ml-auto">
             <div className={progressBadgeClass}>
-              {completed}/{total} {pct >= 80 ? '✓' : ''}
+              {completed}/{total} {pct >= 80 ? '' : ''}
             </div>
             {phaseItems.length > 0 && (
               <div className={hoursBadgeClass}>

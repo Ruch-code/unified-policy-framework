@@ -187,7 +187,7 @@ export default function WhatsNewPage() {
         {/* Header */}
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-xl bg-indigo-600 flex items-center justify-center">
               <Sparkles className="w-6 h-6 text-white" />
             </div>
             <div>
@@ -295,7 +295,7 @@ export default function WhatsNewPage() {
                 </button>
 
                 {expandedVersions.has(version.version) && (
-                  <div className="px-6 pb-6 border-t border-slate-200 dark:border-slate-700/50 animate-in slide-in-from-top-2 duration-200">
+                  <div className="px-6 pb-6 border-t border-slate-200 dark:border-slate-700/50 duration-200">
                     <div className="space-y-4 mt-4">
                       {version.changes.map((change, i) => (
                         <div key={`${version.version}-${i}`} className="flex gap-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/30 border border-slate-200 dark:border-slate-700/50">

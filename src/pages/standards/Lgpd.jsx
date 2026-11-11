@@ -5,7 +5,7 @@ const FRAMEWORK = {
   name: "LGPD (Lei Geral de Proteção de Dados)",
   region: "Brazil",
   color: "green",
-  flag: "🇧🇷",
+  flag: "",
   flagAnimation: "bounce",
   basePath: "/lgpd",
   referenceUrl:

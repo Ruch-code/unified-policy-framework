@@ -234,14 +234,14 @@ export default function Layout() {
         {isOpen && (
           <div
             ref={dropdownRef}
-            className="absolute top-full left-0 mt-2 z-[100] min-w-[280px] max-w-[360px] rounded-xl shadow-2xl shadow-slate-950/50 dark:shadow-slate-950/60 border animate-in fade-in slide-in-from-top-2 duration-200
-              bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl
+            className="absolute top-full left-0 mt-2 z-[100] min-w-[280px] max-w-[360px] rounded-xl shadow-2xl shadow-slate-950/50 dark:shadow-slate-950/60 border duration-200
+              bg-white dark:bg-slate-900
               border-slate-200 dark:border-slate-700/80"
             onMouseEnter={() => setIsOpen(true)}
             onMouseLeave={() => setIsOpen(false)}
             role="menu"
           >
-            <div className="p-3 border-b border-slate-200/80 dark:border-slate-700/80 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm">
+            <div className="p-3 border-b border-slate-200/80 dark:border-slate-700/80 bg-white dark:bg-slate-900">
               <h4 className="font-semibold text-slate-900 dark:text-white flex items-center gap-2">
                 <Icon className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
                 {region.label}
@@ -287,7 +287,7 @@ export default function Layout() {
       >
         <defs>
           <linearGradient id="lensGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#7c3aed"/>
+            <stop offset="0%" stopColor="#415d7d"/>
             <stop offset="100%" stopColor="#0ea5e9"/>
           </linearGradient>
         </defs>
@@ -332,7 +332,7 @@ export default function Layout() {
       <div
         ref={dropdownRef}
         data-grc-kb-dropdown
-        className="absolute right-0 top-full mt-2 z-[110] w-80 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-xl shadow-2xl shadow-slate-950/40 animate-in fade-in slide-in-from-top-2 duration-200"
+        className="absolute right-0 top-full mt-2 z-[110] w-80 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-xl shadow-2xl shadow-slate-950/40 duration-200"
         role="menu"
       >
         <div className="p-4">
@@ -552,7 +552,7 @@ export default function Layout() {
                         aria-expanded={openRegions.includes(region.id)}
                         aria-controls={`mobile-region-${region.id}`}
                         className={region.highlight
-                          ? 'w-full px-4 py-3 flex items-center justify-between text-sm font-semibold rounded-lg transition-colors text-left text-white bg-gradient-to-r from-fuchsia-600 to-violet-600 hover:from-fuchsia-500 hover:to-violet-500 shadow-md shadow-fuchsia-500/20'
+                          ? 'w-full px-4 py-3 flex items-center justify-between text-sm font-semibold rounded-lg transition-colors text-left text-white bg-fuchsia-600 hover:bg-fuchsia-500 shadow-md shadow-fuchsia-500/20'
                           : 'w-full px-4 py-3 flex items-center justify-between text-sm font-medium text-gray-900 dark:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-700/60 rounded-lg transition-colors text-left'}
                       >
                         <span className="flex items-center gap-2">
@@ -639,12 +639,16 @@ export default function Layout() {
         </ErrorBoundary>
       </main>
 
-      <footer className="bg-gray-900 dark:bg-indigo-600 text-gray-400 py-8">
+      <footer className="bg-gray-900 dark:bg-slate-950 text-gray-400 py-8">
         <div className="container text-center flex flex-col items-center gap-3">
           <p className="text-sm font-bold text-white">Made by Ruchi Kandpal</p>
           <span className="text-sm text-gray-300"><LinkedInStory /></span>
           <DonateButton />
           <VisitorCounter />
+          <nav aria-label="Legal" className="flex gap-4 text-xs">
+            <Link to="/terms" className="underline text-gray-300 hover:text-white">Terms of Use</Link>
+            <Link to="/privacy" className="underline text-gray-300 hover:text-white">Privacy Policy</Link>
+          </nav>
         </div>
       </footer>
 

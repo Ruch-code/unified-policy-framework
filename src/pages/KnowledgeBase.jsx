@@ -127,7 +127,7 @@ export default function KnowledgeBase() {
           <div className="bg-white border border-gray-200 rounded-2xl p-4 dark:bg-[#1e293b] dark:border-[#334155]">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <h4 className="flex items-center gap-2 font-bold text-gray-900 text-sm dark:text-[#f8fafc]"><CalendarDays className="w-4 h-4 text-indigo-600" /> Readiness timeline - from preparation to re-issuance</h4>
-              <span className="text-[11px] font-bold uppercase tracking-wide text-indigo-700 bg-indigo-50 border border-indigo-100 rounded-full px-2.5 py-0.5 dark:bg-[#312e81]/40 dark:border-[#4338ca] dark:text-[#c7d2fe]">{fwObj.timeline.kind}</span>
+              <span className="text-[11px] font-bold uppercase tracking-wide text-indigo-700 bg-indigo-50 border border-indigo-100 rounded-full px-2.5 py-0.5 dark:bg-[#1f2e40]/40 dark:border-[#4338ca] dark:text-[#c6d2e2]">{fwObj.timeline.kind}</span>
             </div>
             <p className="text-xs text-gray-600 mt-1.5 dark:text-[#cbd5e1]">Total readiness: <span className="font-semibold text-gray-800 dark:text-[#f8fafc]">{fwObj.timeline.total}</span></p>
             <div className="mt-3 grid md:grid-cols-2 gap-2">
@@ -198,7 +198,7 @@ export default function KnowledgeBase() {
                 );
               })}
             </ul>
-            {p.note && <p className="mt-2 text-xs text-amber-700 bg-amber-50 border border-amber-100 rounded-lg px-3 py-2 dark:bg-[#451a03]/40 dark:border-[#78350f] dark:text-[#fcd34d]">💡 {p.note}</p>}
+            {p.note && <p className="mt-2 text-xs text-amber-700 bg-amber-50 border border-amber-100 rounded-lg px-3 py-2 dark:bg-[#451a03]/40 dark:border-[#78350f] dark:text-[#fcd34d]">{p.note}</p>}
           </div>
         ))}
       </div>
@@ -239,7 +239,7 @@ export default function KnowledgeBase() {
                       <p className="text-sm text-gray-700 mt-1 dark:text-slate-200">{reb.pushback}</p>
                       <p className="text-xs text-gray-500 mt-1.5 dark:text-slate-400"><span className="font-semibold">Evidence to prepare:</span> {reb.evidence}</p>
                       {reb.replyToAuditor && (
-                        <div className="mt-3 border-l-2 border-emerald-500 pl-3">
+                        <div className="mt-3 border-l-2 border-gray-300 dark:border-slate-600 pl-3">
                           <p className="font-bold text-emerald-800 text-xs uppercase tracking-wide dark:text-emerald-300">Your reply to the auditor</p>
                           <p className="text-sm text-gray-600 mt-1 italic dark:text-slate-300">“{reb.replyToAuditor}”</p>
                         </div>
@@ -267,8 +267,8 @@ export default function KnowledgeBase() {
         {DISCREPANCY_MATRIX.map(row => (
           <div key={row.topic} className="bg-white border border-gray-200 rounded-2xl p-4 dark:bg-[#1e293b] dark:border-[#334155]">
             <h4 className="font-bold text-gray-900 text-sm dark:text-[#f8fafc]">{row.topic}</h4>
-            <p className="text-sm text-red-700 bg-red-50 border border-red-100 rounded-xl px-3 py-2 mt-2 dark:bg-[#450a0a]/40 dark:border-[#7f1d1d] dark:text-[#fca5a5]">⚡ {row.conflict}</p>
-            <p className="text-sm text-emerald-800 bg-emerald-50 border border-emerald-100 rounded-xl px-3 py-2 mt-2 dark:bg-[#022c22]/40 dark:border-[#065f46] dark:text-[#6ee7b7]">✓ Reconcile: {row.reconcile}</p>
+            <p className="text-sm text-red-700 bg-red-50 border border-red-100 rounded-xl px-3 py-2 mt-2 dark:bg-[#450a0a]/40 dark:border-[#7f1d1d] dark:text-[#fca5a5]">{row.conflict}</p>
+            <p className="text-sm text-emerald-800 bg-emerald-50 border border-emerald-100 rounded-xl px-3 py-2 mt-2 dark:bg-[#022c22]/40 dark:border-[#065f46] dark:text-[#6ee7b7]">Reconcile: {row.reconcile}</p>
           </div>
         ))}
         <div className="bg-indigo-50 border border-indigo-100 rounded-2xl p-4 text-sm text-indigo-900 dark:bg-indigo-900/30 dark:border-indigo-800 dark:text-indigo-200">

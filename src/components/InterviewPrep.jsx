@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import interviewData from '../data/interview-roles.json';
 import MockInterview from './MockInterview.jsx';
+import Skeleton from './ui/Skeleton.jsx';
 
 export default function InterviewPrep({ isDark = false }) {
   const [roles, setRoles] = useState([]);
@@ -20,7 +21,7 @@ export default function InterviewPrep({ isDark = false }) {
     return (
       <div className="py-16 bg-surface-50 dark:bg-dark-bg">
         <div className="max-w-5xl mx-auto px-4 text-center">
-          <p className="text-text-dark-muted dark:text-text-dark-muted">Loading interview data...</p>
+          <Skeleton lines={4} label="Loading interview data" />
         </div>
       </div>
     );
@@ -32,15 +33,15 @@ export default function InterviewPrep({ isDark = false }) {
     return (
       <div className="py-16 bg-surface-50 dark:bg-dark-bg">
         <div className="max-w-5xl mx-auto px-4 text-center">
-          <p className="text-text-dark-muted dark:text-text-dark-muted">Loading interview data...</p>
+          <Skeleton lines={4} label="Loading interview data" />
         </div>
       </div>
     );
   }
 
   const roleColors = {
-    'grc-analyst': { primary: '#4f46e5', light: '#eef0fa', dark: '#312e81', text: '#4f46e5', textDark: '#c7d2fe' },
-    'privacy-engineer': { primary: '#7c3aed', light: '#f5f3ff', dark: '#5b21b6', text: '#7c3aed', textDark: '#d8b4fe' },
+    'grc-analyst': { primary: '#415d7d', light: '#eef0fa', dark: '#1f2e40', text: '#415d7d', textDark: '#c6d2e2' },
+    'privacy-engineer': { primary: '#415d7d', light: '#f1f4f8', dark: '#2a3d53', text: '#415d7d', textDark: '#d8b4fe' },
     'security-engineer': { primary: '#ef4444', light: '#fef2f2', dark: '#991b1b', text: '#ef4444', textDark: '#fca5a5' },
     'ciso': { primary: '#f59e0b', light: '#fffbeb', dark: '#78350f', text: '#f59e0b', textDark: '#fcd34d' },
     'behavioral': { primary: '#0d9488', light: '#f0fdfa', dark: '#134e4a', text: '#0d9488', textDark: '#5eead4' },
@@ -48,7 +49,7 @@ export default function InterviewPrep({ isDark = false }) {
     'dpo': { primary: '#3b82f6', light: '#eff6ff', dark: '#1e3a8a', text: '#3b82f6', textDark: '#bfdbfe' },
     'tprm': { primary: '#0ea5e9', light: '#f0f9ff', dark: '#0c4a6e', text: '#0ea5e9', textDark: '#7dd3fc' },
     'vendor-risk': { primary: '#0ea5e9', light: '#f0f9ff', dark: '#0c4a6e', text: '#0ea5e9', textDark: '#7dd3fc' },
-    'ai-governance': { primary: '#8b5cf6', light: '#f5f3ff', dark: '#5b21b6', text: '#8b5cf6', textDark: '#d8b4fe' },
+    'ai-governance': { primary: '#557395', light: '#f1f4f8', dark: '#2a3d53', text: '#557395', textDark: '#d8b4fe' },
     'soc-lead': { primary: '#f43f5e', light: '#fff1f2', dark: '#881337', text: '#f43f5e', textDark: '#fda4af' },
     'sox-audit': { primary: '#14b8a6', light: '#f0fdfa', dark: '#134e4a', text: '#14b8a6', textDark: '#5eead4' },
     'bc-dr': { primary: '#f97316', light: '#fff7ed', dark: '#7c2d12', text: '#f97316', textDark: '#fdba74' },
@@ -135,7 +136,7 @@ export default function InterviewPrep({ isDark = false }) {
               >
                 <div className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center
                   bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400">
-                  <span className="w-5 h-5">💬</span>
+                  <span className="w-5 h-5"></span>
                 </div>
                 <div className="flex-1">
                   <h3 className="grc-card-title font-semibold text-lg mb-1">{q.q}</h3>
@@ -159,7 +160,7 @@ export default function InterviewPrep({ isDark = false }) {
               </button>
 
               {expandedQ === i && (
-                <div className="border-t border-surface-300 dark:border-surface-dark-300 p-6 animate-in slide-in-from-top-2 duration-200 bg-surface-50 dark:bg-dark-bg">
+                <div className="border-t border-surface-300 dark:border-surface-dark-300 p-6 duration-200 bg-surface-50 dark:bg-dark-bg">
                   <div className="prose prose-gray max-w-none text-navy-700 dark:text-text-dark-secondary">
                     <p className="whitespace-pre-wrap">{q.a}</p>
                   </div>
@@ -168,7 +169,7 @@ export default function InterviewPrep({ isDark = false }) {
                     border border-emerald-200 dark:border-alert-success
                     text-emerald-800 dark:text-alert-success">
                     <div className="flex items-start gap-3">
-                      <span className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5">✓</span>
+                      <span className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5"></span>
                       <div className="flex-1 min-w-0">
                         <h5 className="font-bold mb-1">Interviewer Follow-up Tip</h5>
                         <div>

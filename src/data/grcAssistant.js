@@ -342,7 +342,7 @@ export function askGrcAssistant(query) {
       why: 'One policy area often maps to controls across many frameworks - map once, satisfy many.',
       bullets: areas.map(a => {
         const mapStr = Object.entries(a.map).map(([k, v]) => `${k}: ${v}`).join(' | ');
-        return `• ${a.area} - ${mapStr}\n   ⚠ ${a.discrepancy}`;
+        return `• ${a.area} - ${mapStr}\n   ${a.discrepancy}`;
       }),
     });
     if (!fws.length) {

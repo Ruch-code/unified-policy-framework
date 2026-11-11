@@ -1,11 +1,11 @@
 export const FINDINGS_DOMAINS = [
-  { id: 'access', label: 'Access Control', color: '#6366f1', ref: 'HITRUST 04' },
+  { id: 'access', label: 'Access Control', color: '#557395', ref: 'HITRUST 04' },
   { id: 'operations', label: 'Operations Security', color: '#0ea5e9', ref: 'HITRUST 07' },
   { id: 'governance', label: 'Governance', color: '#10b981', ref: 'HITRUST 01' },
   { id: 'privacy', label: 'Privacy of Info', color: '#ec4899', ref: 'HITRUST 12' },
   { id: 'incident', label: 'Incident Mgmt', color: '#ef4444', ref: 'HITRUST 11' },
   { id: 'continuity', label: 'Business Continuity', color: '#f59e0b', ref: 'HITRUST 14' },
-  { id: 'supplier', label: 'Supplier Relationships', color: '#8b5cf6', ref: 'HITRUST 10' },
+  { id: 'supplier', label: 'Supplier Relationships', color: '#557395', ref: 'HITRUST 10' },
 ];
 
 const domInfo = (id) => FINDINGS_DOMAINS.find(d => d.id === id) || { id, label: id, color: '#64748b' };

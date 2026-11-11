@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Send, Download } from 'lucide-react';
 import { useAuth } from '../context/AuthContext.jsx';
 import ResponsiveTable from '../components/ResponsiveTable';
+import Skeleton from '../components/ui/Skeleton.jsx';
 
 const STATUS_META = {
   pending: { label: 'Pending', cls: 'bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800' },
@@ -57,13 +58,13 @@ export default function AdminPanel() {
       <h1 className="text-2xl font-bold text-gray-900 mb-1">Admin - User Access Control</h1>
       <p className="text-gray-500 text-sm mb-6">Review access requests, approve accounts, and manage users. Signed in as {user.email}.</p>
 
-      <Link to="/newsletter" className="inline-flex items-center gap-2 mb-4 bg-[#7c3aed] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-[#6d28d9] transition">
+      <Link to="/newsletter" className="inline-flex items-center gap-2 mb-4 bg-[#415d7d] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-[#344c67] transition">
         <Send className="w-4 h-4" /> Send Newsletter
       </Link>
 
       {msg && <div className="mb-4 p-3 rounded-lg bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-sm border border-emerald-200 dark:border-emerald-800">{msg}</div>}
       {err && <div className="mb-4 p-3 rounded-lg bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 text-sm border border-red-200 dark:border-red-800">{err}</div>}
-      {loading && <p className="text-gray-500 text-sm">Loading users…</p>}
+      {loading && <Skeleton lines={4} label="Loading users" />}
 
       {/* Pending approvals */}
       <h2 className="text-lg font-bold text-gray-800 mt-6 mb-3">Pending approvals ({pending.length})</h2>

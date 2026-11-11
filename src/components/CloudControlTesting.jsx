@@ -72,7 +72,7 @@ export default function CloudControlTesting() {
   };
 
   return (
-    <section id="cloud-control-testing" aria-labelledby="cct-title" className="scroll-mt-24 rounded-2xl border border-sky-300 dark:border-sky-900/50 bg-gradient-to-r from-sky-50 to-indigo-50 dark:from-sky-950/40 dark:to-indigo-950/40 p-4 sm:p-6 md:p-8 overflow-hidden">
+    <section id="cloud-control-testing" aria-labelledby="cct-title" className="scroll-mt-24 rounded-2xl border border-sky-300 dark:border-sky-900/50 bg-sky-50 dark:bg-sky-950/40 p-4 sm:p-6 md:p-8 overflow-hidden">
       <style>{PRINT_CSS}</style>
       <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-6">
         <span className="inline-flex w-12 h-12 rounded-xl bg-sky-600 text-white items-center justify-center shrink-0">

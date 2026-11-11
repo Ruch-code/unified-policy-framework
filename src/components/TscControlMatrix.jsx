@@ -575,7 +575,7 @@ export default function TscControlMatrix() {
                   </span>
                 </div>
                 <p className={`text-sm ${c.title} mb-3 max-w-3xl`}>{cat.intro}</p>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-2">
                   {cat.series.map(s => (
                     <details key={`${cat.category}-${s.ref}`} className={`group rounded-lg border ${c.box} overflow-hidden`}>
                       <summary className="p-3 flex items-center justify-between gap-2 cursor-pointer list-none hover:bg-slate-50 dark:hover:bg-slate-800/50">

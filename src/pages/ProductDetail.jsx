@@ -236,7 +236,7 @@ export default function ProductDetail() {
             </button>
           </div>
 
-          <div className="grid grid-cols-3 gap-4 pt-4 border-t border-gray-100">
+          <div className="grid grid-cols-2 gap-4 pt-4 border-t border-gray-100">
             <div className="flex flex-col items-center gap-2 text-center p-4 bg-gray-50 rounded-lg">
               <Truck className="w-6 h-6 text-primary-600" />
               <span className="text-sm font-medium text-gray-900">Free Shipping</span>

@@ -241,7 +241,7 @@ export default function SecurityOperations({ isDark = false }) {
             <div className="grid md:grid-cols-2 gap-5 mb-8">
               {VULN_PROVIDERS.map(p => (
                 <div key={p.name} className="rounded-xl border border-surface-200 dark:border-surface-dark-200 bg-white dark:bg-slate-900/60 overflow-hidden">
-                  <div className="px-4 py-3 bg-gradient-to-r from-indigo-600 to-violet-600 flex items-center gap-2">
+                  <div className="px-4 py-3 bg-indigo-600 flex items-center gap-2">
                     <ShieldCheck className="w-4 h-4 text-white" />
                     <h4 className="font-bold text-white text-sm">{p.name}</h4>
                   </div>
@@ -397,7 +397,7 @@ export default function SecurityOperations({ isDark = false }) {
               <h4 className="font-bold text-navy-900 dark:text-text-dark-primary mb-3 flex items-center gap-2">
                 <FileSearch className="w-4 h-4 text-red-600 dark:text-red-400" /> RCA - 5-Whys → Corrective & Preventive Action (CAPA)
               </h4>
-              <div className="grid md:grid-cols-3 gap-5">
+              <div className="grid md:grid-cols-2 gap-5">
                 <div>
                   <h5 className="text-sm font-semibold text-gray-800 dark:text-white flex items-center gap-1.5 mb-2"><Clock className="w-4 h-4 text-indigo-500" /> Reconstruct</h5>
                   <p className="text-xs text-gray-600 dark:text-text-dark-secondary leading-relaxed">
@@ -408,7 +408,7 @@ export default function SecurityOperations({ isDark = false }) {
                 <div>
                   <h5 className="text-sm font-semibold text-gray-800 dark:text-white flex items-center gap-1.5 mb-2"><GitBranch className="w-4 h-4 text-indigo-500" /> 5-Whys</h5>
                   <p className="text-xs text-gray-600 dark:text-text-dark-secondary leading-relaxed">
-                    Ask "why" five times from the observed failure to the process/design root cause - not who did it, but what allowed it.
+                    Ask "why" five times from the observed failure to the process/design root cause. Focus on what allowed the failure rather than who caused it.
                     Stop when the answer is a control gap someone can fix.
                   </p>
                 </div>

@@ -180,7 +180,7 @@ function EvidenceTab({ role }) {
 }
 
 const AuditorTab = () => (
-  <div className="grid gap-4 md:grid-cols-3 text-xs">
+  <div className="grid gap-4 md:grid-cols-2 text-xs">
     <Bullets title="Stage 1 expectations" items={AUDITOR_VIEW.stage1} /><Bullets title="Stage 2 expectations" items={AUDITOR_VIEW.stage2} /><Bullets title="Common nonconformities" items={AUDITOR_VIEW.nonconformities} />
     <div className="md:col-span-3"><Bullets title="Sample questions (from the control library)" items={['4.3', '6.1.3', '8.2', '9.2.2', 'A.6.2.8', 'A.10.3'].map((id) => `${id}: ${CONTROLS.find((k) => k.id === id).auditorQuestions[0]}`)} /></div>
   </div>

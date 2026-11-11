@@ -396,7 +396,7 @@ function ToolsGrid({ tools }) {
         {tools.map((g) => (
           <div key={g.group}>
             <p className="text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">{g.group}</p>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-3">
               {g.items.map((item) => (
                 <div key={item.name} className="rounded-xl border border-gray-100 bg-gray-50 p-3">
                   <p className="text-sm font-semibold text-gray-800">{item.name}</p>
@@ -441,7 +441,7 @@ function DocLinks({ links }) {
   return (
     <div className="mt-6 flex flex-wrap gap-2">
       {links.map((l) => (
-        <a key={l.url} href={l.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-xs font-medium text-[#7c3aed] hover:text-[#5b21b6] underline underline-offset-2">
+        <a key={l.url} href={l.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-xs font-medium text-[#415d7d] hover:text-[#2a3d53] underline underline-offset-2">
           <ExternalLink className="w-3.5 h-3.5" />
           {l.label}
         </a>

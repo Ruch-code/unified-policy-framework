@@ -38,7 +38,7 @@ export function useDomainFilters(storeKey) {
 function Chip({ pressed, onClick, children, style }) {
   return (
     <button type="button" aria-pressed={pressed} onClick={onClick} style={pressed ? style : undefined}
-      className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-xs font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 ${pressed ? 'ring-2 ring-offset-1 ring-gray-500 dark:ring-slate-300 dark:ring-offset-slate-900' : 'bg-white text-gray-700 border-gray-300 dark:bg-slate-800 dark:text-slate-200 dark:border-slate-600'}`}>
+      className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-xs font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 ${pressed ? 'bg-stone-800 text-white border-stone-800 dark:bg-slate-100 dark:text-slate-900 dark:border-slate-100' : 'bg-white text-gray-700 border-gray-300 dark:bg-slate-800 dark:text-slate-200 dark:border-slate-600'}`}>
       {children}
     </button>
   );
@@ -95,7 +95,7 @@ export default function DomainToolbar({ counts, safeguardCounts, filters, visibl
     <div className="mb-6 rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-4">
       <details className="mb-3">
         <summary className="cursor-pointer text-sm font-semibold text-gray-900 dark:text-white">Domains on this page ({codes.length})</summary>
-        <ul className="mt-2 grid sm:grid-cols-2 lg:grid-cols-3 gap-1.5">
+        <ul className="mt-2 grid sm:grid-cols-2 lg:grid-cols-2 gap-1.5">
           {[...codes].sort((a, b) => counts[b] - counts[a]).map((c) => (
             <li key={c} className="flex items-center justify-between gap-2 text-sm text-gray-700 dark:text-slate-300">
               <DomainPill code={c} />

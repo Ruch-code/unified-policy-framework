@@ -12,7 +12,7 @@ const PILLARS = [
     id: 'iso42001',
     title: 'ISO/IEC 42001:2023',
     sub: 'AI Management System (AIMS)',
-    accent: 'from-violet-600 to-purple-600',
+    accent: 'bg-violet-600',
     desc: 'The certifiable management-system backbone: AI policy, AI risk assessment, impact assessment, and lifecycle controls mapped to Annex A. Clause 10 turns findings into corrective action.',
     links: [
       { label: 'ISO 42001 deep-dive (KB)', to: '/knowledge?fw=iso42001' },
@@ -24,7 +24,7 @@ const PILLARS = [
     id: 'eu-ai-act',
     title: 'EU AI Act',
     sub: 'Reg. (EU) 2024/1689',
-    accent: 'from-blue-600 to-indigo-600',
+    accent: 'bg-blue-600',
     desc: 'Risk-tiered obligations: prohibited practices (Art. 5), high-risk conformity (Arts. 6–49), transparency (Art. 50), GPAI (Arts. 51–56), post-market monitoring (Art. 72) and incident reporting (Art. 73). Extraterritorial reach.',
     links: [
       { label: 'AIGP standard page', to: '/aigp' },
@@ -36,7 +36,7 @@ const PILLARS = [
     id: 'nist-ai-rmf',
     title: 'NIST AI RMF 1.0',
     sub: 'Govern · Map · Measure · Manage',
-    accent: 'from-emerald-600 to-teal-600',
+    accent: 'bg-emerald-600',
     desc: 'The voluntary, risk-based operating system for trustworthy AI. Govern sets the function, Map the context, Measure the metrics (bias, security, robustness), Manage the treatment. Profiles tailor it to your risk appetite.',
     links: [
       { label: 'AIGP standard page', to: '/aigp' },
@@ -93,10 +93,10 @@ export default function AIGovernance({ isDark = false }) {
         </div>
 
         {/* Framework pillars */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
           {PILLARS.map(p => (
             <div key={p.id} className="group flex flex-col rounded-2xl border border-surface-300 dark:border-surface-dark-300 bg-white dark:bg-slate-900/60 overflow-hidden">
-              <div className={`px-5 py-4 bg-gradient-to-r ${p.accent} flex items-center justify-between`}>
+              <div className={`px-5 py-4 ${p.accent} flex items-center justify-between`}>
                 <h2 className="text-lg font-extrabold text-white">{p.title}</h2>
                 <ShieldCheck className="w-5 h-5 text-white/80" aria-hidden="true" />
               </div>

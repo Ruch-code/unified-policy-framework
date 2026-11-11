@@ -133,7 +133,7 @@ export default function Iso27001ThemeScoping() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-5 mb-6">
+        <div className="grid md:grid-cols-2 gap-5 mb-6">
           <Picker label="Work model" options={WORK} value={w} onChange={setW} />
           <Picker label="Device model" options={DEVICE} value={d} onChange={setD} />
           <Picker label="Company size" options={SIZE} value={s} onChange={setS} />
@@ -153,7 +153,7 @@ export default function Iso27001ThemeScoping() {
           {items.map(it => {
             const st = STATUS[it.st];
             return (
-              <div key={it.c} className={`rounded-xl border-l-4 ${theme.ring} border border-gray-200 dark:border-slate-700 p-4 bg-slate-50 dark:bg-slate-800/60`}>
+              <div key={it.c} className={`rounded-xl ${theme.ring} border border-gray-200 dark:border-slate-700 p-4 bg-slate-50 dark:bg-slate-800/60`}>
                 <div className="flex flex-wrap items-center gap-2 mb-1">
                   <span className={`text-[11px] font-bold px-2 py-0.5 rounded ${theme.badge}`}>{it.c}</span>
                   <h4 className="font-bold text-sm text-gray-900 dark:text-white">{it.t}</h4>
@@ -168,7 +168,7 @@ export default function Iso27001ThemeScoping() {
         </div>
 
         <h3 className="font-bold text-gray-900 dark:text-white mt-8 mb-3">Worked examples</h3>
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-2 gap-4">
           {EXAMPLES.map(ex => (
             <div key={ex.title} className="rounded-xl border border-gray-200 dark:border-slate-700 p-4 bg-white dark:bg-slate-900">
               <p className="font-bold text-sm text-gray-900 dark:text-white mb-2">{ex.title}</p>

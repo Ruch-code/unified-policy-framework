@@ -390,7 +390,7 @@ function AiVendorAssuranceTab() {
       {/* Implementation Roadmap by Size */}
       <div className="bg-white border border-gray-200 rounded-2xl p-6 dark:bg-[#1e293b] dark:border-[#334155]">
         <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Implementation Roadmap by Size</h3>
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-2 gap-4">
           {ROADMAP.map((r) => (
             <div key={r.size} className="bg-blue-50 border border-blue-200 rounded-xl p-4 dark:bg-blue-900/20 dark:border-blue-800">
               <h4 className="font-bold text-blue-900 dark:text-blue-200 mb-1">{r.size}</h4>

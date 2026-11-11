@@ -172,7 +172,7 @@ export default function BomTab({ onOpenTab }) {
 
       <div className="bg-white rounded-2xl border border-gray-200 dark:border-slate-700 p-5">
         <h4 className="font-bold text-gray-900 dark:text-white mb-2">Lifecycle that works for all three</h4>
-        <ol className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2 text-sm">
+        <ol className="grid sm:grid-cols-2 lg:grid-cols-2 gap-2 text-sm">
           {[
             ['Generate', 'Automatically at build or release, from the actual artifact, model registry or agent configuration.'],
             ['Sign and store', 'Sign it, store it next to the release, and keep every version.'],

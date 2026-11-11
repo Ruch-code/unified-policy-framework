@@ -4,7 +4,7 @@ const FRAMEWORK = {
   id: "ccpa-cpra",
   name: "CCPA / CPRA (California)",
   region: "United States",
-  flag: "🇺🇸",
+  flag: "",
   flagAnimation: "bounce",
   basePath: "/ccpa",
   color: "golden",

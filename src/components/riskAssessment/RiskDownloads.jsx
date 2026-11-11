@@ -92,7 +92,7 @@ export default function RiskDownloads() {
     <section id="ra-downloads" className={sectionCls}>
       <h3 className={h3Cls}>9. Downloadables</h3>
       <p className={leadCls}>Generic templates with placeholder roles. Adapt them to your organisation before use.</p>
-      <div className="grid gap-3 md:grid-cols-3">
+      <div className="grid gap-3 md:grid-cols-2">
         {ITEMS.map((it) => {
           const Icon = it.icon;
           return (

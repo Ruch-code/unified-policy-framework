@@ -165,7 +165,7 @@ function DocCard({ d, open, onToggle }) {
       {open && (
         <>
         <RelatedTemplates className="mx-4 mb-3" text={`${d.name} ${d.full} ${d.art}`} />
-        <div className="px-4 pb-4 grid md:grid-cols-3 gap-3 text-sm">
+        <div className="px-4 pb-4 grid md:grid-cols-2 gap-3 text-sm">
           <div className="rounded-lg p-3 bg-amber-50 border border-amber-200 dark:bg-amber-900/30 dark:border-amber-800">
             <p className="text-[11px] font-bold uppercase tracking-wide text-amber-800 dark:text-amber-300 mb-1">When you need it</p>
             <ul className="space-y-1 text-gray-700 dark:text-slate-200">{d.when.map(x => <li key={x} className="flex gap-2"><span>-</span>{x}</li>)}</ul>

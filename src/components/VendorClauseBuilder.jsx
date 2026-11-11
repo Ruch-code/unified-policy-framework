@@ -15,16 +15,16 @@ export default function VendorClauseBuilder() {
   return (
     <div className="space-y-4">
       <div className="bg-white border border-gray-200 rounded-2xl p-4 dark:bg-[#1e293b] dark:border-[#334155]">
-        <h4 className="flex items-center gap-2 font-bold text-gray-900 text-sm mb-2 dark:text-[#f8fafc]"><FileSignature className="w-4 h-4 text-[#7c3aed]" /> Clause builder: pick the frameworks your vendor must comply with</h4>
+        <h4 className="flex items-center gap-2 font-bold text-gray-900 text-sm mb-2 dark:text-[#f8fafc]"><FileSignature className="w-4 h-4 text-[#415d7d]" /> Clause builder: pick the frameworks your vendor must comply with</h4>
         <div className="flex flex-wrap gap-2">
           {Object.entries(VENDOR_CLAUSE_CONDITIONAL).map(([id, c]) => (
             <button key={id} type="button" onClick={() => setSel((s) => ({ ...s, [id]: !s[id] }))}
-              className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition ${sel[id] ? 'bg-[#7c3aed] text-white border-[#7c3aed]' : 'bg-white text-gray-600 border-gray-200 hover:border-gray-300 dark:bg-[#1e293b] dark:text-[#cbd5e1] dark:border-[#334155]'}`}>
+              className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition ${sel[id] ? 'bg-[#415d7d] text-white border-[#415d7d]' : 'bg-white text-gray-600 border-gray-200 hover:border-gray-300 dark:bg-[#1e293b] dark:text-[#cbd5e1] dark:border-[#334155]'}`}>
               {c.label}
             </button>
           ))}
         </div>
-        <button type="button" onClick={copy} className="mt-4 inline-flex items-center gap-2 bg-[#7c3aed] text-white px-4 py-2.5 rounded-xl text-sm font-bold hover:bg-[#6d28d9] transition">
+        <button type="button" onClick={copy} className="mt-4 inline-flex items-center gap-2 bg-[#415d7d] text-white px-4 py-2.5 rounded-xl text-sm font-bold hover:bg-[#344c67] transition">
           {copied ? <><Check className="w-4 h-4" /> Copied to clipboard</> : <><Copy className="w-4 h-4" /> Copy full clause set</>}
         </button>
       </div>

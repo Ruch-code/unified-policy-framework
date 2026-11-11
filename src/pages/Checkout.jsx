@@ -145,7 +145,7 @@ function CheckoutForm() {
                     required
                   />
                 </div>
-                <div className="grid md:grid-cols-3 gap-4">
+                <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">City</label>
                     <input
@@ -381,7 +381,7 @@ function CheckoutForm() {
           )}
         </form>
 
-        <div className="mt-8 grid grid-cols-3 gap-4 text-center">
+        <div className="mt-8 grid grid-cols-2 gap-4 text-center">
           <div className="p-4 bg-gray-50 rounded-lg">
             <Truck className="w-6 h-6 text-primary-600 mx-auto mb-2" />
             <p className="text-sm font-medium text-gray-900">Fast Shipping</p>

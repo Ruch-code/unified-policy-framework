@@ -55,7 +55,7 @@ export const PROFILE_QUESTIONS = [
 export const CERT_CATALOG = {
   'SOC 2': {
     type: 'Attestation (report), not a certification',
-    color: '#6366f1',
+    color: '#557395',
     timeline: 'Type I 3–6 mo · Type II 9–15 mo',
     cost: '$50K–$150K year 1 (all-in)',
     costINR: '₹40L–₹1.2Cr year 1 (all-in)',
@@ -147,7 +147,7 @@ export const CERT_CATALOG = {
   },
   'GDPR / DPDPA / LGPD / PDPA / PIPL': {
     type: 'Regional privacy law (mandatory where applicable)',
-    color: '#8b5cf6',
+    color: '#557395',
     timeline: 'Ongoing compliance',
     cost: 'Varies by scope',
     costINR: 'Varies by scope',

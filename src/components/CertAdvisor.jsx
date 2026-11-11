@@ -192,7 +192,7 @@ export default function CertAdvisor() {
           )}
 
           {/* Priority legend */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
             {PRIORITY_META.map(pm => (
               <div key={pm.level} className={`rounded-xl border p-3 ${pm.level === 1 ? 'bg-red-50 dark:bg-red-900/30 border-red-200 dark:border-red-800' : pm.level === 2 ? 'bg-amber-50 dark:bg-amber-900/30 border-amber-200 dark:border-amber-800' : 'bg-blue-50 dark:bg-blue-900/30 border-blue-200 dark:border-blue-800'}`}>
                 <span className={`text-xs font-bold uppercase tracking-wide ${pm.level === 1 ? 'text-red-700 dark:text-red-300' : pm.level === 2 ? 'text-amber-700 dark:text-amber-300' : 'text-blue-700 dark:text-blue-300'}`}>{pm.label}</span>
@@ -270,7 +270,7 @@ export default function CertAdvisor() {
                   <div className="px-4 py-3 bg-white flex flex-wrap gap-4 text-xs text-gray-600">
                     <span className="inline-flex items-center gap-1.5 font-semibold"><Clock className="w-3.5 h-3.5 text-gray-400" /> {c.timeline}</span>
                     <span className="inline-flex items-center gap-1.5 font-semibold"><DollarSign className="w-3.5 h-3.5 text-gray-400" /> {currency === 'INR' ? c.costINR : c.cost}</span>
-                    {c.note && <span className="text-gray-500 italic">💡 {c.note}</span>}
+                    {c.note && <span className="text-gray-500 italic">{c.note}</span>}
                   </div>
                 </div>
               );
@@ -278,7 +278,7 @@ export default function CertAdvisor() {
           </div>
 
           <div className="mt-6 p-4 rounded-xl bg-gray-50 border border-gray-100">
-            <h4 className="text-sm font-bold text-gray-800 mb-1">💡 Multi-framework insight</h4>
+            <h4 className="text-sm font-bold text-gray-800 mb-1">Multi-framework insight</h4>
             <p className="text-xs text-gray-600">Most frameworks share <strong>60–80% of the same underlying controls</strong>. Build one strong baseline (SOC 2 or ISO 27001) first - adding a second framework is mostly a gap-fill exercise, not a ground-up build. That overlap is why pursuing frameworks in priority order is dramatically more efficient.</p>
           </div>
 

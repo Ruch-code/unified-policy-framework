@@ -4,7 +4,7 @@ const FRAMEWORK = {
   id: "iso27701",
   name: "ISO/IEC 27701:2019 Privacy Information Management",
   region: "Global",
-  flag: "🌐",
+  flag: "",
   flagAnimation: "float",
   basePath: "/iso-27701",
   color: "purple",
