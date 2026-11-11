@@ -255,7 +255,7 @@ export default function Products() {
 
           {products.length === 0 ? (
             <div className="text-center py-16">
-              <div className="text-6xl mb-4">🔍</div>
+              <div className="text-6xl mb-4"></div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">No products found</h3>
               <p className="text-gray-500 mb-6">Try adjusting your filters or search terms</p>
               <button onClick={clearFilters} className="btn btn-primary">
@@ -264,7 +264,7 @@ export default function Products() {
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6">
                 {products.map((product) => (
                   <ProductCard key={product._id} product={product} />
                 ))}

@@ -63,7 +63,7 @@ const AI_PRIVACY_RISKS = {
   },
   'AI Agents': {
     icon: Zap,
-    color: '#8b5cf6',
+    color: '#557395',
     risks: [
       { 
         title: 'Autonomous Data Processing',
@@ -194,7 +194,7 @@ export default function AIPrivacyRisks({ isDark = false }) {
         </div>
 
         {/* Risk Cards */}
-        <div id={`ai-panel-${activeCategory}`} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" role="tabpanel" aria-labelledby={`ai-tab-${activeCategory}`}>
+        <div id={`ai-panel-${activeCategory}`} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6" role="tabpanel" aria-labelledby={`ai-tab-${activeCategory}`}>
           {AI_PRIVACY_RISKS[activeCategory].risks.map((risk, i) => {
             const catColor = AI_PRIVACY_RISKS[activeCategory].color;
             const sevStyle = severityStyles[risk.severity];
@@ -202,7 +202,7 @@ export default function AIPrivacyRisks({ isDark = false }) {
             return (
               <div
                 key={i}
-                className="grc-card relative hover:-translate-y-1"
+                className="grc-card relative"
               >
                 {/* Severity Badge */}
                 <div className="absolute top-4 right-4 z-10">

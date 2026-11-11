@@ -405,7 +405,7 @@ export default function PasswordPolicies({ isDark = false }) {
             <h4 className="font-bold text-navy-900 dark:text-text-dark-primary text-lg mb-4 flex items-center gap-2">
               <SearchCheck className="w-5 h-5 text-indigo-600 dark:text-indigo-400" /> Evidence to collect - with the system clock visible
             </h4>
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-2 gap-4">
               {auditTechnique.evidence.map(ev => {
                 const t = TINT[ev.tint] || TINT.indigo;
                 return (
@@ -477,7 +477,7 @@ export default function PasswordPolicies({ isDark = false }) {
           <h3 className="text-2xl font-bold text-navy-900 dark:text-text-dark-primary mb-6 flex items-center gap-3">
             <Shield className="w-6 h-6 text-indigo-600 dark:text-indigo-400" /> SSO / MFA / Passwordless Alternatives
           </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
             {passwordPolicyData.alternatives.map((alt) => (
               <div key={alt.name} className={`grc-card group p-6`}>
                 <div className="flex items-center gap-3 mb-4">

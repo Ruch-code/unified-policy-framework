@@ -6,13 +6,13 @@ import { GENERIC_ASSESSMENT, RISK_MANAGEMENT_ITEMS, PLAYBOOK_REUSE_ITEMS, AI_PRI
 import { ENG_REUSE_ITEMS } from '../data/engineeringPartnership.js';
 
 const DOMAIN_COLORS = {
-  'Access Management': '#6366f1',
+  'Access Management': '#557395',
   'Change Management': '#0ea5e9',
   'IT Operations': '#f59e0b',
   'Program / System Development': '#10b981',
   'Data Privacy / Governance': '#ec4899',
   'Business Continuity & Incident': '#ef4444',
-  'General / Cross-Cutting': '#8b5cf6',
+  'General / Cross-Cutting': '#557395',
   'Risk Management': '#14b8a6',
 };
 
@@ -45,7 +45,7 @@ export default function RegionControlMap({ frameworks }) {
       <div className="flex items-center justify-between flex-wrap gap-2 mb-4">
         <div>
           <h4 className="text-sm font-bold text-[#1e293b] flex items-center gap-2">
-            🧩 Control Reuse Map
+            Control Reuse Map
             <span className="text-[11px] font-medium text-gray-400">control once → satisfies many</span>
           </h4>
           <Link to="/gdpr#gdpr-dpdpa-comparison" className="text-[11px] font-semibold text-indigo-700 dark:text-indigo-300 underline">GDPR and DPDPA compared</Link>
@@ -73,7 +73,7 @@ export default function RegionControlMap({ frameworks }) {
       {sharedAll.length > 0 && (
         <div className="mb-4 rounded-xl border border-emerald-200 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-900/30 p-3">
           <div className="text-[11px] font-semibold text-emerald-700 dark:text-emerald-300 uppercase tracking-wide mb-1.5">
-            ✅ Unified baseline - shared by all {names.length} frameworks
+            Unified baseline - shared by all {names.length} frameworks
           </div>
           <div className="flex flex-wrap gap-1.5">
             {sharedAll.map(d => (
@@ -165,7 +165,7 @@ export default function RegionControlMap({ frameworks }) {
             <ul className="space-y-1.5">
               {selectedControls.map(c => (
                 <li key={c.id} className="flex items-start gap-2 text-xs text-gray-700">
-                  <span className="text-emerald-600 dark:text-emerald-300 mt-0.5">✓</span>
+                  <span className="text-emerald-600 dark:text-emerald-300 mt-0.5"></span>
                   <div>
                     <span className="font-medium">{c.control}</span>
                     <div className="text-gray-500"><span className="text-indigo-500">Tools:</span> {c.tool}</div>
@@ -182,7 +182,7 @@ export default function RegionControlMap({ frameworks }) {
 
       {sharedSome.length > 0 && (
         <p className="mt-3 text-[11px] text-gray-400">
-          🔗 Partially shared ({names.length ? 'some frameworks' : ''}):{' '}
+          Partially shared ({names.length ? 'some frameworks' : ''}):{' '}
           {sharedSome.map(d => d.domain).join(', ')} - click a row to see who shares it and the recommended tools.
         </p>
       )}

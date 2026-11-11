@@ -12,7 +12,7 @@ export function MethodologySection() {
       <h3 className={h3Cls}>1. Methodology</h3>
       <p className={leadCls}>Aligned to: {METHOD_ALIGNMENT.join('; ')}.</p>
 
-      <ol className="grid gap-3 md:grid-cols-3">
+      <ol className="grid gap-3 md:grid-cols-2">
         {METHOD_STEPS.map((s) => (
           <li key={s.step} className="rounded-xl border border-surface-200 dark:border-surface-dark-200 p-4 bg-surface-50 dark:bg-slate-900/40">
             <div className="flex items-center gap-2 mb-1">

@@ -105,7 +105,7 @@ export default function GdprRoles() {
           <p className="font-bold text-gray-900 dark:text-white">{role.name}</p>
           <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-50 text-blue-800 border border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800">GDPR: {role.gdpr}</span>
         </div>
-        <div className="grid md:grid-cols-3 gap-3 text-sm">
+        <div className="grid md:grid-cols-2 gap-3 text-sm">
           <div className="rounded-lg p-3 bg-slate-50 border border-slate-200 dark:bg-slate-800/60 dark:border-slate-700">
             <p className="text-[11px] font-bold uppercase tracking-wide text-slate-600 dark:text-slate-300 mb-1">What it means</p>
             <p className="text-gray-700 dark:text-slate-200">{role.def}</p>

@@ -404,14 +404,14 @@ export default function AccessRequirements({ isDark = false }) {
           </div>
           <ResponsiveTable
             data={[
-              { req: 'Background check pre-access', fte: '✓ Full', contractor: '✓ Per MSA', intern: '✓ Basic', prod: '✓ + Annual re-check' },
-              { req: 'Unique IdP identity', fte: '✓', contractor: '✓ (separate)', intern: '✓ (separate)', prod: '✓' },
-              { req: 'MFA (phishing-resistant)', fte: '✓ Privileged', contractor: '✓ Privileged', intern: '✓ Standard', prod: '✓ Mandatory (FIDO2)' },
-              { req: 'RBAC / Least privilege', fte: '✓', contractor: '✓ Project-scoped', intern: '✓ Sandbox only', prod: '✓ JIT + ZSP' },
-              { req: 'Automated provisioning', fte: '✓ HR→IdP', contractor: '✓ VMS→IdP', intern: '✓ ATS→IdP', prod: '✓ PAM/PIM' },
+              { req: 'Background check pre-access', fte: 'Yes: Full', contractor: 'Yes: Per MSA', intern: 'Yes: Basic', prod: 'Yes + Annual re-check' },
+              { req: 'Unique IdP identity', fte: 'Yes', contractor: 'Yes (separate)', intern: 'Yes (separate)', prod: 'Yes' },
+              { req: 'MFA (phishing-resistant)', fte: 'Yes: Privileged', contractor: 'Yes: Privileged', intern: 'Yes: Standard', prod: 'Yes: Mandatory (FIDO2)' },
+              { req: 'RBAC / Least privilege', fte: 'Yes', contractor: 'Yes: Project-scoped', intern: 'Yes: Sandbox only', prod: 'Yes: JIT + ZSP' },
+              { req: 'Automated provisioning', fte: 'Yes: HR→IdP', contractor: 'Yes: VMS→IdP', intern: 'Yes: ATS→IdP', prod: 'Yes: PAM/PIM' },
               { req: 'Access review frequency', fte: 'Quarterly', contractor: 'Monthly', intern: 'Weekly (mentor)', prod: 'Per session + Monthly' },
-              { req: 'Production write access', fte: 'CAB + JIT (8h)', contractor: 'Exception only (4h)', intern: '✗ Never', prod: 'JIT + Recording' },
-              { req: 'Session recording', fte: 'Privileged only', contractor: 'All prod', intern: 'N/A', prod: '✓ Full (video+keys)' },
+              { req: 'Production write access', fte: 'CAB + JIT (8h)', contractor: 'Exception only (4h)', intern: 'No: Never', prod: 'JIT + Recording' },
+              { req: 'Session recording', fte: 'Privileged only', contractor: 'All prod', intern: 'N/A', prod: 'Yes: Full (video+keys)' },
               { req: 'Offboarding SLA', fte: '< 4 hours', contractor: 'Immediate', intern: 'Program end', prod: 'Immediate + key rotation' },
               { req: 'Device compliance', fte: 'MDM/EDR', contractor: 'MDM/EDR or VDI', intern: 'Client VDI only', prod: 'PAW/Bastion only' },
             ]}

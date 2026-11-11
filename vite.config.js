@@ -1,8 +1,13 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
+import { fileURLToPath } from 'node:url'
 
 export default defineConfig({
   plugins: [react()],
+  resolve: {
+    // Icons go through the site's own icon layer (src/ui/icons.jsx) instead of the icon library.
+    alias: [{ find: /^lucide-react$/, replacement: fileURLToPath(new URL('./src/ui/icons.jsx', import.meta.url)) }],
+  },
   server: {
     port: 5173,
     proxy: {
@@ -19,7 +24,6 @@ export default defineConfig({
       output: {
         manualChunks: {
           'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-          'vendor-lucide': ['lucide-react'],
           'vendor-three': ['three', 'topojson-client'],
           'iso-data': [
             'src/data/iso27001.js',

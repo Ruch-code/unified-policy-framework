@@ -5,7 +5,7 @@ const FRAMEWORK = {
   name: "ISO/IEC 27018:2019 Cloud PII Protection",
   color: "teal",
   region: "Global",
-  flag: "🔒",
+  flag: "",
   flagAnimation: "pulse",
   basePath: "/iso/27018",
   referenceUrl: "https://www.iso.org/standard/76559",

@@ -78,7 +78,7 @@ export default function AssemblingAvatar({ src, alt, size = 128, replayKey = 0 }
         ))}
         {!reduce && (
           <span aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]">
-            <span className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-white/40 to-transparent"
+            <span className="absolute inset-y-0 w-1/3 bg-transparent"
               style={{ animation: 'avatar-glint 900ms ease-out 2300ms both' }} />
           </span>
         )}

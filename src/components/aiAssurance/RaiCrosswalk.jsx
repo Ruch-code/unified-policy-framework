@@ -191,7 +191,7 @@ export default function RaiCrosswalk() {
 
       {tab === 'Assessment method' && (
         <div className="space-y-4">
-          <div className="grid md:grid-cols-3 gap-3">
+          <div className="grid md:grid-cols-2 gap-3">
             <div className="md:col-span-2 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-4">
               <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-sm">AI type (one primary, any secondary)</h3>
               <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300">{AI_TYPES.map(([c, n, d]) => <li key={c}><span className="font-bold">{c}. {n}:</span> {d}</li>)}</ul>

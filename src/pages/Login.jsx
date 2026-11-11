@@ -220,7 +220,7 @@ export default function Login() {
               onClick={() => setShowAbout(true)}
               aria-haspopup="dialog"
             >
-              <span className="inline-flex items-center gap-2 text-[#7c3aed] text-sm font-semibold group-hover:underline transition">
+              <span className="inline-flex items-center gap-2 text-[#415d7d] text-sm font-semibold group-hover:underline transition">
                 <UserRound className="w-4 h-4" /> About the author
               </span>
             </button>

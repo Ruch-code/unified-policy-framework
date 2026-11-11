@@ -17,7 +17,7 @@ function FrameworkRows({ fw }) {
               <span className="text-xs text-navy-900 dark:text-text-dark-primary">{r.requirement}</span>
             </button>
             {isOpen && (
-              <div className="px-3 pb-3 grid gap-3 md:grid-cols-3 text-xs text-navy-700 dark:text-text-dark-secondary">
+              <div className="px-3 pb-3 grid gap-3 md:grid-cols-2 text-xs text-navy-700 dark:text-text-dark-secondary">
                 <div>
                   <p className="font-semibold text-navy-900 dark:text-text-dark-primary mb-1">What to do</p>
                   <p>{r.whatToDo}</p>

@@ -121,7 +121,7 @@ export default function EuAiActOverview() {
       </div>
 
       <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><CalendarDays className="w-4 h-4 text-violet-600 dark:text-violet-300" /> Timeline after the Digital Omnibus</h3>
-      <ol className="relative border-l-2 border-violet-200 dark:border-violet-800 ml-2 space-y-3 mb-6">
+      <ol className="relative border-l-2 border-gray-300 dark:border-slate-600 ml-2 space-y-3 mb-6">
         {TIMELINE.map(e => (
           <li key={e.d} className="relative pl-4">
             <span className={`absolute -left-[7px] mt-1.5 w-3 h-3 rounded-full ${e.key ? 'bg-amber-500' : 'bg-violet-500'}`} />

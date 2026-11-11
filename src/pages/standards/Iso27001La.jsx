@@ -13,7 +13,7 @@ const FRAMEWORK = {
   name: "ISO/IEC 27001:2022 Lead Auditor Playbook",
   color: "navy",
   region: "Global",
-  flag: "🌐",
+  flag: "",
   flagAnimation: "float",
   basePath: "/iso/27001/la",
   referenceUrl: "https://www.iso.org/standard/27001",

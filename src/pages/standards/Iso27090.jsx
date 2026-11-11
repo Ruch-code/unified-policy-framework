@@ -23,7 +23,7 @@ function Iso27090Overview() {
       <p className="text-gray-600 text-sm mb-4 max-w-3xl">
         Full title: <strong>Cybersecurity, Artificial intelligence (AI), Addressing security threats and compromises to AI systems.</strong> First edition, published October 2026 by ISO/IEC JTC 1/SC 27 (56 pages). It applies to any organization that develops or uses AI systems.
       </p>
-      <div className="grid md:grid-cols-3 gap-3 mb-5">
+      <div className="grid md:grid-cols-2 gap-3 mb-5">
         <div className="rounded-xl p-3 bg-amber-50 border border-amber-200 dark:bg-amber-900/30 dark:border-amber-800">
           <p className="text-xs font-bold uppercase tracking-wide text-amber-800 dark:text-amber-300">Guidance, not certifiable</p>
           <p className="text-sm text-gray-700 dark:text-slate-200 mt-1">There is no certificate against ISO 27090. Use it as a control source inside an ISO 27001 ISMS or an ISO 42001 AIMS.</p>
@@ -45,7 +45,7 @@ function Iso27090Overview() {
         <li><strong>Annex A</strong> maps attacks to the AI life cycle and assets, <strong>Annex B</strong> covers AI-specific versions of conventional attacks, and <strong>Annex C</strong> covers federated machine learning. All annexes are informative.</li>
       </ul>
       <h3 className="font-bold text-gray-900 dark:text-white text-sm mb-2">The nine threat types in Clause 6</h3>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-2">
         {THREATS.map((t, i) => (
           <div key={t.name} className="rounded-lg p-3 border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60">
             <p className="text-sm font-semibold text-gray-900 dark:text-white">{i + 1}. {t.name}</p>
@@ -68,7 +68,7 @@ const FRAMEWORK = {
   name: "ISO/IEC 27090:2026 AI Security Threats & Compromises",
   color: "purple",
   region: "Global",
-  flag: "🛡️",
+  flag: "",
   flagAnimation: "float",
   basePath: "/iso/27090",
   referenceUrl: "https://www.iso.org/search.html?q=ISO%2FIEC%2027090",

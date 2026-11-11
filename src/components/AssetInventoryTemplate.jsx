@@ -98,7 +98,7 @@ export default function AssetInventoryTemplate() {
   const download = () => downloadXlsx(buildSheets(), 'asset-inventory-template');
 
   return (
-    <section id="asset-inventory" className="scroll-mt-24 rounded-2xl border border-emerald-300 dark:border-emerald-900/50 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950/40 dark:to-teal-950/40 p-6 md:p-8">
+    <section id="asset-inventory" className="scroll-mt-24 rounded-2xl border border-emerald-300 dark:border-emerald-900/50 bg-emerald-50 dark:bg-emerald-950/40 p-6 md:p-8">
       <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
         <span className="inline-flex w-12 h-12 rounded-xl bg-emerald-600 text-white items-center justify-center shrink-0">
           <Server className="w-6 h-6" />

@@ -17,7 +17,7 @@ const FRAMEWORK = {
   groupLevel,
   name: "SOC 2 Type II",
   region: "Global",
-  flag: "🌐",
+  flag: "",
   flagAnimation: "float",
   basePath: "/soc2",
   color: "green",
@@ -133,7 +133,7 @@ const FRAMEWORK = {
               links: [
                 {
                   href: "/soc2-system-description-template.docx",
-                  text: "📥 Download AICPA SOC 2 System Description Template (Word)",
+                  text: "Download AICPA SOC 2 System Description Template (Word)",
                   download: true
                 }
               ]

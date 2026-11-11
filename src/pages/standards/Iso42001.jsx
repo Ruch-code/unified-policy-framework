@@ -15,7 +15,7 @@ const FRAMEWORK = {
   name: "ISO/IEC 42001:2023 AI Management System",
   color: "indigo",
   region: "Global",
-  flag: "🤖",
+  flag: "",
   flagAnimation: "pulse",
   basePath: "/iso/42001",
   referenceUrl: "https://www.iso.org/standard/81230",

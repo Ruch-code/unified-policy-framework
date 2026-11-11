@@ -94,14 +94,14 @@ export default function UseCaseFlashCards({ isDark = false }) {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
           {/* Industry Cards */}
           {industryCards.map((card, i) => (
             <div
               key={i}
               className={`group rounded-2xl border overflow-hidden shadow-lg transition-all duration-500 ${
                 isDark ? 'bg-slate-900 dark:bg-indigo-600 border-slate-700' : 'bg-white border-gray-200'
-              } hover:${isDark ? 'border-indigo-500' : 'hover:border-[#7c3aed]'} ${isDark ? 'hover:bg-slate-800' : 'hover:bg-gray-100 dark:hover:bg-slate-800'}`}
+              } hover:${isDark ? 'border-indigo-500' : 'hover:border-[#415d7d]'} ${isDark ? 'hover:bg-slate-800' : 'hover:bg-gray-100 dark:hover:bg-slate-800'}`}
             >
               <div className="p-6 flex flex-col min-h-[300px]">
                 <div className="flex items-start gap-3 mb-4">
@@ -138,7 +138,7 @@ export default function UseCaseFlashCards({ isDark = false }) {
               key={i + industryCards.length}
               className={`group rounded-2xl border overflow-hidden shadow-lg transition-all duration-500 ${
                 isDark ? 'bg-slate-900 dark:bg-indigo-600 border-slate-700' : 'bg-white border-gray-200'
-              } hover:${isDark ? 'border-indigo-500' : 'hover:border-[#7c3aed]'} ${isDark ? 'hover:bg-slate-800' : 'hover:bg-gray-100 dark:hover:bg-slate-800'}`}
+              } hover:${isDark ? 'border-indigo-500' : 'hover:border-[#415d7d]'} ${isDark ? 'hover:bg-slate-800' : 'hover:bg-gray-100 dark:hover:bg-slate-800'}`}
             >
               <div className="p-6 flex flex-col min-h-[280px]">
                 <div className="flex items-start gap-3 mb-4">

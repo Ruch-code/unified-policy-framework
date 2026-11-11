@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import colors from 'tailwindcss/colors';
+
 export default {
   darkMode: 'class',
   content: [
@@ -23,21 +25,12 @@ export default {
           950: '#080f1e',
         },
         indigo: {
-          50: '#eef0fa',
-          100: '#e0e4f5',
-          200: '#c5cceb',
-          300: '#9aa0d8',
-          400: '#6f78c0',
-          500: '#4f46e5',
-          600: '#4338ca',
-          700: '#3730a3',
-          800: '#312e81',
-          900: '#2e2b6b',
-          950: '#1e1a4b',
+          50: '#f1f4f8', 100: '#e3e9f1', 200: '#c6d2e2', 300: '#9fb2cb', 400: '#7590b0', 500: '#557395',
+          600: '#415d7d', 700: '#344c67', 800: '#2a3d53', 900: '#1f2e40', 950: '#141e2b',
         },
         surface: {
-          50: '#f8fafc',
-          100: '#ffffff',
+          50: '#f4f2ed',
+          100: '#fcfbf8',
           200: '#f1f5f9',
           300: '#e2e8f0',
           400: '#cbd5e1',
@@ -65,10 +58,29 @@ export default {
           300: '#475569',
         },
         'indigo-dark': {
-          400: '#818cf8',
-          500: '#6366f1',
-          600: '#4f46e5',
+          400: '#9fb2cb',
+          500: '#7590b0',
+          600: '#557395',
         },
+        // Restrained palette: purple, neon and extra hues map onto a small set of families.
+        violet: {
+          50: '#f1f4f8', 100: '#e3e9f1', 200: '#c6d2e2', 300: '#9fb2cb', 400: '#7590b0', 500: '#557395',
+          600: '#415d7d', 700: '#344c67', 800: '#2a3d53', 900: '#1f2e40', 950: '#141e2b',
+        },
+        purple: {
+          50: '#f1f4f8', 100: '#e3e9f1', 200: '#c6d2e2', 300: '#9fb2cb', 400: '#7590b0', 500: '#557395',
+          600: '#415d7d', 700: '#344c67', 800: '#2a3d53', 900: '#1f2e40', 950: '#141e2b',
+        },
+        fuchsia: {
+          50: '#f1f4f8', 100: '#e3e9f1', 200: '#c6d2e2', 300: '#9fb2cb', 400: '#7590b0', 500: '#557395',
+          600: '#415d7d', 700: '#344c67', 800: '#2a3d53', 900: '#1f2e40', 950: '#141e2b',
+        },
+        pink: colors.rose,
+        lime: colors.green,
+        cyan: colors.teal,
+        emerald: colors.green,
+        yellow: colors.amber,
+        sky: colors.blue,
         'text-dark': {
           primary: '#f8fafc',
           secondary: '#cbd5e1',
@@ -90,35 +102,31 @@ export default {
         },
       },
       borderRadius: {
-        'std': '8px',
-        'std-lg': '12px',
-        'std-sm': '6px',
-        'std-xl': '16px',
+        // Crisp corners everywhere; only pills and avatars stay round.
+        'sm': '2px', DEFAULT: '3px', 'md': '3px', 'lg': '4px', 'xl': '4px', '2xl': '4px', '3xl': '4px',
+        'std': '4px',
+        'std-lg': '4px',
+        'std-sm': '3px',
+        'std-xl': '4px',
         'pill': '9999px',
       },
       boxShadow: {
-        'card': '0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06)',
-        'card-hover': '0 4px 12px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06)',
-        'card-dark': '0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3)',
-        'card-hover-dark': '0 8px 24px rgba(0,0,0,0.4), 0 4px 8px rgba(0,0,0,0.3)',
-        'fab': '0 4px 14px rgba(99, 102, 241, 0.35)',
-        'fab-hover': '0 6px 20px rgba(99, 102, 241, 0.45)',
-        'fab-dark': '0 4px 14px rgba(99, 102, 241, 0.4)',
-        'fab-hover-dark': '0 6px 20px rgba(99, 102, 241, 0.5)',
-        'dropdown': '0 8px 24px rgba(0,0,0,0.12)',
-        'dropdown-dark': '0 8px 24px rgba(0,0,0,0.5)',
-        'modal': '0 16px 48px rgba(0,0,0,0.15)',
-        'modal-dark': '0 16px 48px rgba(0,0,0,0.6)',
-        'ring-indigo': '0 0 0 2px rgba(99, 102, 241, 0.5)',
+        sm: 'none', DEFAULT: 'none', md: 'none', lg: 'none', xl: 'none', '2xl': 'none', inner: 'none',
+        card: 'none', 'card-hover': 'none', 'card-dark': 'none', 'card-hover-dark': 'none',
+        fab: 'none', 'fab-hover': 'none', 'fab-dark': 'none', 'fab-hover-dark': 'none',
+        dropdown: 'none', 'dropdown-dark': 'none', modal: 'none', 'modal-dark': 'none',
+        'ring-indigo': '0 0 0 2px rgba(85, 115, 149, 0.5)',
       },
+      dropShadow: { sm: '0 0 #0000', DEFAULT: '0 0 #0000', md: '0 0 #0000', lg: '0 0 #0000', xl: '0 0 #0000', '2xl': '0 0 #0000' },
       transitionDuration: {
         'fast': '150ms',
         'normal': '200ms',
         'slow': '300ms',
       },
       fontFamily: {
-        'sans': ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-        'mono': ['JetBrains Mono', 'Fira Code', 'Consolas', 'monospace'],
+        'sans': ['"IBM Plex Sans"', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+        'serif': ['"IBM Plex Serif"', 'Georgia', 'serif'],
+        'mono': ['"IBM Plex Mono"', 'Consolas', 'monospace'],
       },
       fontSize: {
         'display': ['4.5rem', { lineHeight: '1.1', letterSpacing: '-0.02em' }],

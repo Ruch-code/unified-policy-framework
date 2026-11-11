@@ -11,7 +11,7 @@ const CSS = `
 }
 .cd-dot {
   width: 8px; height: 8px; margin: -4px 0 0 -4px;
-  background: #6366f1; box-shadow: 0 0 10px rgba(99,102,241,.7);
+  background: #557395; box-shadow: 0 0 10px rgba(99,102,241,.7);
   transition: opacity .2s ease, background-color .15s ease, box-shadow .15s ease, width .15s ease, height .15s ease, margin .15s ease;
 }
 .cd-ring {
@@ -23,7 +23,7 @@ const CSS = `
 .cd-hover .cd-ring { width: 48px; height: 48px; margin: -24px 0 0 -24px; border-color: rgba(99,102,241,.8); }
 .cd-down .cd-dot { transition-duration: 0s; background: #22c55e; box-shadow: 0 0 14px rgba(34,197,94,.9); width: 12px; height: 12px; margin: -6px 0 0 -6px; }
 .cd-down .cd-ring { transition-duration: 0s; border-color: rgba(34,197,94,.85); width: 26px; height: 26px; margin: -13px 0 0 -13px; }
-html.dark .cd-dot { background: #818cf8; }
+html.dark .cd-dot { background: #9fb2cb; }
 html.dark .cd-ring { border-color: rgba(129,140,248,.6); }
 html.dark .cd-down .cd-dot { background: #4ade80; }
 html.dark .cd-down .cd-ring { border-color: rgba(74,222,128,.85); }

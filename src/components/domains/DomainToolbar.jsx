@@ -95,7 +95,7 @@ export default function DomainToolbar({ counts, safeguardCounts, filters, visibl
     <div className="mb-6 rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-4">
       <details className="mb-3">
         <summary className="cursor-pointer text-sm font-semibold text-gray-900 dark:text-white">Domains on this page ({codes.length})</summary>
-        <ul className="mt-2 grid sm:grid-cols-2 lg:grid-cols-3 gap-1.5">
+        <ul className="mt-2 grid sm:grid-cols-2 lg:grid-cols-2 gap-1.5">
           {[...codes].sort((a, b) => counts[b] - counts[a]).map((c) => (
             <li key={c} className="flex items-center justify-between gap-2 text-sm text-gray-700 dark:text-slate-300">
               <DomainPill code={c} />

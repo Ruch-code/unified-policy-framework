@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { TrendingUp, TrendingDown, RefreshCw } from 'lucide-react';
+import Skeleton, { SkeletonLine } from './ui/Skeleton.jsx';
 
 const ORDER = ['SENSEX', 'NIFTY 50', 'NIFTY BANK', 'INDIA VIX'];
 const ACCENT = {
@@ -59,7 +60,7 @@ export default function MarketTicker({ refreshMs = 60000, compact = false }) {
     return (
       <div className="w-full overflow-hidden">
         <div className="flex items-center gap-2 overflow-x-auto py-1 scrollbar-none">
-          {loading && rows.length === 0 && <span className="text-xs text-gray-400">Loading market…</span>}
+          {loading && rows.length === 0 && <SkeletonLine className="w-40 inline-block" />}
           {error && rows.length === 0 && <span className="text-xs text-amber-600 dark:text-amber-300">Market feed unavailable</span>}
           {rows.length === 0 && !loading && !error && <span className="text-xs text-gray-400">No live data</span>}
           {rows.map((r) => {
@@ -94,7 +95,7 @@ export default function MarketTicker({ refreshMs = 60000, compact = false }) {
       <div className="flex items-center justify-between px-4 py-2 border-b border-gray-100 dark:border-slate-700">
         <div className="flex items-center gap-2">
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+            <span className=" absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
           </span>
           <span className="text-xs font-bold tracking-wide text-gray-700 dark:text-slate-200 uppercase">
@@ -105,7 +106,7 @@ export default function MarketTicker({ refreshMs = 60000, compact = false }) {
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-gray-100 dark:divide-slate-700">
         {loading && rows.length === 0 && (
-          <div className="col-span-full py-8 text-center text-sm text-gray-400 dark:text-slate-400">Loading live indices…</div>
+          <div className="col-span-full"><Skeleton lines={2} label="Loading live indices" /></div>
         )}
         {error && rows.length === 0 && (
           <div className="col-span-full py-8 text-center text-sm text-amber-600 dark:text-amber-400">

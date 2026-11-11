@@ -15,14 +15,14 @@ wCountries.forEach(c => {
 
 const REGION_FILL = {
   'Americas': { cap: '#f97316', side: '#c2410c', tile: 'Americas' },
-  'EMEA': { cap: '#8b5cf6', side: '#6d28d9', tile: 'EMEA' },
+  'EMEA': { cap: '#557395', side: '#344c67', tile: 'EMEA' },
   'Asia': { cap: '#ec4899', side: '#be185d', tile: 'Asia' },
   'Oceania': { cap: '#22c55e', side: '#15803d', tile: 'Oceania' },
 };
 
 const SUB_FILL = {
   'North America': '#fb923c', 'South America': '#f97316', 'Latin America & Caribbean': '#fdba74',
-  'European Union': '#a78bfa', 'United Kingdom': '#8b5cf6', 'EMEA - Europe': '#c4b5fd', 'Middle East & Africa': '#6d28d9',
+  'European Union': '#9fb2cb', 'United Kingdom': '#557395', 'EMEA - Europe': '#9fb2cb', 'Middle East & Africa': '#344c67',
   'North Asia': '#f472b6', 'Central Asia': '#f9a8d4', 'East Asia': '#be185d', 'South Asia': '#ec4899', 'South East Asia': '#db2777',
   'Oceania': '#4ade80',
 };
@@ -49,7 +49,7 @@ export default function WorldMap({ height = 560, dark = false }) {
         const a2 = numToAlpha2[String(f.id)] || '';
         const region = getRegionForCountry(a2);
         const sub = getSubForCountry(a2);
-        const meta = COUNTRY_META[a2] || { flag: '🌐', timezone: '-' };
+        const meta = COUNTRY_META[a2] || { flag: '', timezone: '-' };
         return {
           properties: {
             ...f.properties,
@@ -162,14 +162,14 @@ export default function WorldMap({ height = 560, dark = false }) {
   const flagged = hovered && hovered.properties && hovered.properties.region !== 'Other';
 
   return (
-    <div className="relative w-full rounded-3xl bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900" style={{ touchAction: 'none' }}>
+    <div className="relative w-full rounded-3xl bg-slate-900" style={{ touchAction: 'none' }}>
       <Globe
         ref={globeRef}
         width="100%"
         height={height}
         backgroundColor={dark ? '#0b1120' : 'rgba(0,0,0,0)'}
         showAtmosphere
-        atmosphereColor={dark ? '#818cf8' : '#4f46e5'}
+        atmosphereColor={dark ? '#9fb2cb' : '#415d7d'}
         atmosphereAltitude={0.18}
         showGraticules
         showGlobe
@@ -179,7 +179,7 @@ export default function WorldMap({ height = 560, dark = false }) {
         polygonSideColor={f => {
           if (dark) {
             const sub = f.properties.sub;
-            const neon = { 'North America': '#ef4444', 'South America': '#f59e0b', 'Latin America & Caribbean': '#fbbf24', 'European Union': '#818cf8', 'United Kingdom': '#a78bfa', 'EMEA - Europe': '#c0c0c0', 'Middle East & Africa': '#1e3a8a', 'North Asia': '#f472b6', 'Central Asia': '#fbbf24', 'East Asia': '#dc2626', 'South Asia': '#f472b6', 'South East Asia': '#fb923c', 'Oceania': '#4ade80' };
+            const neon = { 'North America': '#ef4444', 'South America': '#f59e0b', 'Latin America & Caribbean': '#fbbf24', 'European Union': '#9fb2cb', 'United Kingdom': '#9fb2cb', 'EMEA - Europe': '#c0c0c0', 'Middle East & Africa': '#1e3a8a', 'North Asia': '#f472b6', 'Central Asia': '#fbbf24', 'East Asia': '#dc2626', 'South Asia': '#f472b6', 'South East Asia': '#fb923c', 'Oceania': '#4ade80' };
             return neon[sub] || '#f59e0b';
           }
           const c = SUB_FILL[f.properties.sub] || (REGION_FILL[f.properties.region] && REGION_FILL[f.properties.region].side);
@@ -197,7 +197,7 @@ export default function WorldMap({ height = 560, dark = false }) {
             <div style="background:#0f172a;color:#fff;border-radius:10px;padding:10px 14px;min-width:190px;box-shadow:0 8px 24px rgba(0,0,0,.4)">
               <div style="font-weight:700;font-size:15px">${p.flag} ${p.name}</div>
               <div style="color:#a5b4fc;font-size:12px;margin-top:2px">${p.region} · ${p.sub}</div>
-              <div style="color:#cbd5e1;font-size:12px;margin-top:4px">🕐 ${p.timezone}</div>
+              <div style="color:#cbd5e1;font-size:12px;margin-top:4px">${p.timezone}</div>
               <div style="color:#34d399;font-size:11px;margin-top:6px">Tap to see regulations</div>
             </div>`;
         }}
@@ -221,7 +221,7 @@ export default function WorldMap({ height = 560, dark = false }) {
       />
 
       {/* Lat / Lng / Timezone readout */}
-      <div className="absolute top-4 left-4 bg-black/50 backdrop-blur rounded-2xl px-4 py-3 text-white text-sm space-y-1.5">
+      <div className="absolute top-4 left-4 bg-black rounded-2xl px-4 py-3 text-white text-sm space-y-1.5">
         <div className="flex items-center gap-2 font-semibold text-indigo-200"><Compass className="w-4 h-4" /> View Center</div>
         <div className="grid grid-cols-2 gap-x-4 text-xs">
           <span className="text-gray-400">Latitude</span><span className="font-mono text-emerald-300">{pov.lat.toFixed(2)}°</span>
@@ -238,7 +238,7 @@ export default function WorldMap({ height = 560, dark = false }) {
       </div>
 
       {/* Region legend */}
-      <div className="absolute bottom-4 right-4 bg-black/50 backdrop-blur rounded-2xl px-4 py-3 text-white">
+      <div className="absolute bottom-4 right-4 bg-black rounded-2xl px-4 py-3 text-white">
         <div className="text-xs font-semibold text-gray-300 mb-2 uppercase tracking-wide">Regions & Time Zones</div>
         <div className="space-y-1.5">
           {REGION_GROUPS.map(g => (
@@ -285,10 +285,10 @@ export default function WorldMap({ height = 560, dark = false }) {
 
       {/* Hover popup panel (bottom-left) with available regs */}
       {activeReg && !selected && (
-        <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur rounded-2xl shadow-xl p-4 max-w-xs w-72 z-40">
+        <div className="absolute bottom-4 left-4 bg-white rounded-2xl shadow-xl p-4 max-w-xs w-72 z-40">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="text-2xl waving-flag inline-block">{activeReg.flag || '🌐'}</span>
+              <span className="text-2xl waving-flag inline-block">{activeReg.flag || ''}</span>
               <div>
                 <div className="font-bold text-gray-900 text-sm">{activeReg.region} <span className="text-gray-400 font-normal">/ {activeReg.sub}</span></div>
                 <div className="text-xs text-gray-500">{activeReg.country} · {activeReg.timezone}</div>

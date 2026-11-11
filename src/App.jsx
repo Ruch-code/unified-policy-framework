@@ -10,6 +10,7 @@ import AdminPanel from './pages/AdminPanel.jsx';
 import NewsletterEditor from './pages/NewsletterEditor.jsx';
 import KnowledgeBase from './pages/KnowledgeBase.jsx';
 import DomainPage from './pages/DomainPage.jsx';
+import { TermsPage, PrivacyPage } from './pages/Legal.jsx';
 import Profile from './pages/Profile.jsx';
 import Templates from './pages/Templates.jsx';
 import TemplatePreview from './pages/TemplatePreview.jsx';
@@ -63,7 +64,7 @@ function AssessRoute() {
   if (!fw) return (
     <div className="container px-4 py-16 text-center">
       <h1 className="text-3xl font-bold text-gray-900 mb-3">Framework not found</h1>
-      <a href="/" className="text-[#7c3aed] hover:underline">Back to Home</a>
+      <a href="/" className="text-[#415d7d] hover:underline">Back to Home</a>
     </div>
   );
   return <AssessmentPage framework={fw} />;
@@ -90,6 +91,8 @@ function App() {
           <Route path="admin" element={<RequireAuth admin><AdminPanel /></RequireAuth>} />
           <Route path="newsletter" element={<RequireAuth admin><NewsletterEditor /></RequireAuth>} />
           <Route path="knowledge" element={<RequireAuth><KnowledgeBase /></RequireAuth>} />
+          <Route path="terms" element={<TermsPage />} />
+          <Route path="privacy" element={<PrivacyPage />} />
           <Route path="domains" element={<Protected><DomainPage /></Protected>} />
           <Route path="domains/:code" element={<Protected><DomainPage /></Protected>} />
           <Route path="ai-assurance" element={<Navigate to="/?section=ai-vendors#vendor-risk" replace />} />

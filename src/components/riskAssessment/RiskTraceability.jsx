@@ -10,7 +10,7 @@ function ControlDetail({ id }) {
   const c = CONTROL_BY_ID[id];
   if (!c) return <p className="text-xs text-red-700 dark:text-red-300">Control {id} is not in the catalogue.</p>;
   return (
-    <div className="grid gap-3 md:grid-cols-3 text-xs text-navy-700 dark:text-text-dark-secondary">
+    <div className="grid gap-3 md:grid-cols-2 text-xs text-navy-700 dark:text-text-dark-secondary">
       <div>
         <p className="mb-1">{c.description}</p>
         <p><strong>SOC 2:</strong> {c.soc2.join(', ')}</p>

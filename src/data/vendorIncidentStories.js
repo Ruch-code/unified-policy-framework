@@ -146,7 +146,7 @@ export const VENDOR_INCIDENT_STORIES = [
     impact:
       'No confirmed misuse. Total cost was four weeks of verification effort across procurement, finance and legal, plus a notification conversation with suppliers that took longer to explain than the technical work. We also had to treat every supplier bank change from the prior year as unverified.',
     lesson:
-      'Service accounts now live in a secrets manager with a named owner and an expiry date, and we added a standing quarterly permission review that a person is accountable for. The uncomfortable lesson is not that the account existed, it is that fourteen months passed with no signal at all.',
+      'Service accounts now live in a secrets manager with a named owner and an expiry date, and we added a standing quarterly permission review that a person is accountable for. The uncomfortable lesson is that fourteen months passed with no signal at all.',
     stats: [
       { k: 'Suppliers', v: '1,100' },
       { k: 'Exposure', v: '14 months' },
@@ -159,7 +159,7 @@ export const VENDOR_INCIDENT_STORIES = [
     kind: COMPOSITE,
     sector: 'Engineering and development',
     tier: 'Tier 2: Medium Risk',
-    accent: '#8b5cf6',
+    accent: '#557395',
     title: 'A debug log in a ticket held a live key',
     teaser:
       'An engineer pasted a log excerpt into our internal tracker to unblock a webhook. Somewhere in the environment dump was a base64 encoded CI token with deploy rights to staging and read access to forty one repositories. Our internal auditor found it three weeks later by grepping. Six hours to rotate. No evidence anyone used it, which is a claim nobody can fully prove.',
@@ -215,7 +215,7 @@ export const VENDOR_INCIDENT_STORIES = [
     kind: COMPOSITE,
     sector: 'Governance and compliance',
     tier: 'Tier 2: Medium Risk',
-    accent: '#8b5cf6',
+    accent: '#557395',
     title: 'The compliance pack went to the wrong company',
     teaser:
       'A coordinator sent a due diligence pack to a supplier contact who had left two years earlier. The address auto forwarded to a similarly named firm in an unrelated sector. Forty one pages containing an architecture diagram, a penetration test summary and one internal memo naming a finding we had not patched. Deleted on request within three hours.',
@@ -275,7 +275,7 @@ export const VENDOR_INCIDENT_STORIES = [
     accent: '#ef4444',
     title: 'MOVEit: one zero day, thousands of downstream victims',
     teaser:
-      'A single SQL injection in MOVEit Transfer, tracked as CVE-2023-34362, let the Cl0p ransomware crew mass exploit thousands of organisations that never installed the product themselves. Counts moved weekly for months and passed 2,700 organisations and around 95 million individuals. The lesson is not the bug, it is the length of the supply chain hiding behind one file transfer tool.',
+      'A single SQL injection in MOVEit Transfer, tracked as CVE-2023-34362, let the Cl0p ransomware crew mass exploit thousands of organisations that never installed the product themselves. Counts moved weekly for months and passed 2,700 organisations and around 95 million individuals. The lesson is the length of the supply chain hiding behind one file transfer tool.',
     when:
       'Exploitation observed from late May 2023, with Cl0p listing victims on 9 June 2023. Disclosure followed as CVE-2023-34362.',
     rootCause:
@@ -313,7 +313,7 @@ export const VENDOR_INCIDENT_STORIES = [
     rootCause:
       'The attacker first exploited a vulnerability in a zlib dependency inside the bash uploader to gain shell access, then modified the uploader repository to append exfiltration of environment variables to the report submission. Because the uploader is copied into customer build environments, the malicious change executed with the permissions of every pipeline that ran it. Any pipeline that had run since the modification was potentially affected.',
     usersImpacted:
-      'Codecov disclosed to roughly half a million customers, estimating about 1 percent were affected. Most were small projects with no security function. What matters is not the count, it is that anyone running CI on Linux with environment secrets was in scope.',
+      'Codecov disclosed to roughly half a million customers, estimating about 1 percent were affected. Most were small projects with no security function. What matters is that anyone running CI on Linux with environment secrets was in scope.',
     dataAffected:
       'Continuous integration environment variables, which in practice means repository credentials, cloud provider keys, database connection strings and API tokens. Codecov stated the data was sent to a third party IP address, and no evidence of use was found in their investigation.',
     impact:
@@ -431,7 +431,7 @@ export const VENDOR_INCIDENT_STORIES = [
     accent: '#f59e0b',
     title: 'CircleCI: social engineering, then everything you had',
     teaser:
-      'Attackers social engineered a CircleCI employee in January 2023, stole a session, rotated secrets and exfiltrated before the intrusion was contained. The company advised every customer who had run a job since 4 January to treat their secrets as burned. This is what a pipeline vendor holds: not code, but the keys to every system your code reaches.',
+      'Attackers social engineered a CircleCI employee in January 2023, stole a session, rotated secrets and exfiltrated before the intrusion was contained. The company advised every customer who had run a job since 4 January to treat their secrets as burned. This is what a pipeline vendor holds: the keys to every system your code reaches.',
     when:
       'Intrusion on 4 January 2023. CircleCI issued a security alert on 4 January and rotated secrets from 4 to 11 January.',
     rootCause:

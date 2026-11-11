@@ -411,7 +411,7 @@ export default function StatementOfApplicability() {
                     <ThemeIcon className={`w-4 h-4 ${c.title}`} />
                     <h4 className={`text-sm font-bold uppercase tracking-wide ${c.title}`}>{th.theme}</h4>
                   </div>
-                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-2">
                     {fams.map(f => {
                       const m = SEL_META[f.sel] || SEL_META.selected;
                       const MIcon = m.Icon;
@@ -591,7 +591,7 @@ export default function StatementOfApplicability() {
           <h3 className="grc-card-title font-bold text-lg mb-4 flex items-center gap-2">
             <ListChecks className="w-5 h-5 text-indigo-600 dark:text-indigo-400 grc-card-icon" /> What the SoA must capture, per control
           </h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-2">
             {SOA_FIELDS.map((f, i) => (
               <div key={f} className={`flex items-start gap-2 rounded-lg border px-3 py-2 text-sm ${COLORS.indigo.box}`}>
                 <CheckCircle className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />

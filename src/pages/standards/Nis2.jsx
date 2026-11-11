@@ -6,7 +6,7 @@ const FRAMEWORK = {
   name: "NIS2 Directive (EU 2022/2555) Compliance",
   color: "blue",
   region: "European Union",
-  flag: "🇪🇺",
+  flag: "",
   flagAnimation: "float",
   basePath: "/nis2",
   referenceUrl: "https://eur-lex.europa.eu/eli/dir/2022/2555/oj",

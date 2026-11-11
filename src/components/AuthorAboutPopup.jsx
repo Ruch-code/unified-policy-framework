@@ -10,10 +10,10 @@ export default function AuthorAboutPopup({ open, onClose }) {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4" onClick={onClose}>
+    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 p-4" onClick={onClose}>
       <div className="w-full max-w-md bg-white rounded-3xl overflow-hidden shadow-2xl relative max-h-[85vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
         {/* Header cover */}
-        <div className="h-28 bg-gradient-to-br from-[#7c3aed] via-[#a855f7] to-[#6366f1] relative">
+        <div className="h-28 bg-[#415d7d] relative">
           <button onClick={onClose} className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition" aria-label="Close">
             <X className="w-4 h-4" />
           </button>
@@ -30,7 +30,7 @@ export default function AuthorAboutPopup({ open, onClose }) {
                 <AssemblingAvatar src={AUTHOR.photo} alt={AUTHOR.name} size={128} replayKey={replay} />
               </button>
             ) : (
-              <div className="w-full h-full rounded-xl bg-gradient-to-br from-[#7c3aed] to-[#6366f1] flex items-center justify-center text-white text-4xl font-bold">
+              <div className="w-full h-full rounded-xl bg-[#415d7d] flex items-center justify-center text-white text-4xl font-bold">
                 {AUTHOR.name.split(' ').map(n => n[0]).join('')}
               </div>
             )}
@@ -40,7 +40,7 @@ export default function AuthorAboutPopup({ open, onClose }) {
         {/* Name & role */}
         <div className="text-center px-6 pb-4">
           <h2 className="text-2xl font-extrabold text-gray-900">{AUTHOR.name}</h2>
-          <p className="text-[#7c3aed] font-semibold text-sm mt-0.5">{AUTHOR.role}</p>
+          <p className="text-[#415d7d] font-semibold text-sm mt-0.5">{AUTHOR.role}</p>
         </div>
 
         {/* Tabs */}
@@ -51,7 +51,7 @@ export default function AuthorAboutPopup({ open, onClose }) {
             { id: 'connect', label: 'Connect' },
           ].map(t => (
             <button key={t.id} onClick={() => setTab(t.id)}
-              className={`px-4 py-1.5 rounded-full text-sm font-semibold transition ${tab === t.id ? 'bg-[#7c3aed] text-white shadow' : 'bg-gray-100 text-gray-600 hover:bg-gray-200 dark:hover:bg-slate-700'}`}>
+              className={`px-4 py-1.5 rounded-full text-sm font-semibold transition ${tab === t.id ? 'bg-[#415d7d] text-white shadow' : 'bg-gray-100 text-gray-600 hover:bg-gray-200 dark:hover:bg-slate-700'}`}>
               {t.label}
             </button>
           ))}
@@ -79,7 +79,7 @@ export default function AuthorAboutPopup({ open, onClose }) {
             <div className="space-y-3">
               <p>Have feedback, or need help applying a framework to your company? I'd love to hear from you.</p>
               {AUTHOR.email && (
-                <a href={`mailto:${AUTHOR.email}`} className="flex items-center gap-2 w-full bg-[#7c3aed] text-white font-semibold px-4 py-2.5 rounded-xl justify-center hover:bg-[#6d28d9] transition">
+                <a href={`mailto:${AUTHOR.email}`} className="flex items-center gap-2 w-full bg-[#415d7d] text-white font-semibold px-4 py-2.5 rounded-xl justify-center hover:bg-[#344c67] transition">
                   <Mail className="w-4 h-4" /> {AUTHOR.email}
                 </a>
               )}

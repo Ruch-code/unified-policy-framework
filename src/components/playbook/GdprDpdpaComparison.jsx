@@ -37,7 +37,7 @@ export default function GdprDpdpaComparison() {
       <Table label="GDPR and DPDPA differences" headers={['Topic', 'GDPR', 'DPDPA', 'Action needed', 'Citation']} rows={DIFFERENCES} min={980} />
 
       <h3 className="font-semibold text-gray-900 dark:text-white mt-6 mb-2">Already GDPR compliant? Getting to DPDPA</h3>
-      <div className="grid md:grid-cols-3 gap-3">
+      <div className="grid md:grid-cols-2 gap-3">
         {list('Reusable as is', READINESS.reuse, 'bg-emerald-50 border-emerald-200 dark:bg-emerald-900/20 dark:border-emerald-800')}
         {list('Reusable with changes', READINESS.adapt, 'bg-amber-50 border-amber-200 dark:bg-amber-900/20 dark:border-amber-800')}
         {list('New work', READINESS.build, 'bg-rose-50 border-rose-200 dark:bg-rose-900/20 dark:border-rose-800')}
@@ -51,7 +51,7 @@ export default function GdprDpdpaComparison() {
       </div>
 
       <h3 className="font-semibold text-gray-900 dark:text-white mt-6 mb-2">DPDP Rules commencement</h3>
-      <ol className="grid sm:grid-cols-3 gap-3">
+      <ol className="grid sm:grid-cols-2 gap-3">
         {DPDP_COMMENCEMENT.map(c => (
           <li key={c.date} className="rounded-xl border border-gray-200 dark:border-slate-700 p-3 text-sm">
             <p className="font-bold text-gray-900 dark:text-white">{c.date}</p>

@@ -120,7 +120,7 @@ export default function AiVendorBreachScenario() {
 
       <div className="space-y-2">
         <Section id="timeline" Icon={Clock} title="Timeline: the first 72 hours and beyond" open={open.includes('timeline')} onToggle={toggle}>
-          <ol className="relative border-l-2 border-rose-200 dark:border-rose-800 ml-2 space-y-3">
+          <ol className="relative border-l-2 border-gray-300 dark:border-slate-600 ml-2 space-y-3">
             {TIMELINE.map(e => (
               <li key={e.t} className="relative pl-4">
                 <span className="absolute -left-[7px] mt-1.5 w-3 h-3 rounded-full bg-rose-500" />

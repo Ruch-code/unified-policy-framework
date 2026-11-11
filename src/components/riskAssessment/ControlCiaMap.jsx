@@ -27,7 +27,7 @@ export default function ControlCiaMap() {
     <div id="ra-cia" className="mt-6 scroll-mt-24">
       <h4 className="font-semibold text-sm text-navy-900 dark:text-text-dark-primary mb-1">CIA mapping for every control</h4>
       <p className="text-xs text-navy-600 dark:text-text-dark-secondary mb-3">Filled circle = primary protection; outlined = supporting. Governance controls support all three indirectly. Use this to check that each risk's CIA impact is covered by at least one primary control.</p>
-      <div className="grid grid-cols-3 gap-2 mb-3">
+      <div className="grid grid-cols-2 gap-2 mb-3">
         {['C', 'I', 'A'].map(k => <button key={k} type="button" aria-pressed={f === k} onClick={() => setF(f === k ? 'All' : k)} className={`rounded-xl p-3 text-left border ${f === k ? 'ring-2 ring-offset-1 ring-indigo-400' : ''} ${S_CLS[TONE[k]]}`}>
           <span className="block text-2xl font-bold">{count(k)}</span><span className="text-xs font-semibold">{LABEL[k]} (primary)</span></button>)}
       </div>

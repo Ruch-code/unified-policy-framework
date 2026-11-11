@@ -64,7 +64,7 @@ export default function AnnexACatalog({ soaState, onDecide, compact = false }) {
         </p>
       </div>
 
-      <dl className="grid grid-cols-3 gap-3">
+      <dl className="grid grid-cols-2 gap-3">
         {[
           { label: 'Necessary (your decision)', value: decided.necessary, tone: 'text-emerald-700 dark:text-emerald-300' },
           { label: 'Excluded with justification', value: decided.notNecessary, tone: 'text-slate-600' },

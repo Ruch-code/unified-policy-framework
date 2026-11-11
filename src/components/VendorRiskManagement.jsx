@@ -27,7 +27,7 @@ import {
 const VENDOR_RISK_SECTORS = {
   'Financial Services': {
     icon: Building,
-    color: '#4f46e5',
+    color: '#415d7d',
     description: 'Banks, fintechs, payment processors, and insurers - strict regulatory oversight (Basel III, Dodd-Frank, SOX) demands vendor classification, continuous monitoring, and contractual flow-down of security obligations.',
     risks: ['Data breaches', 'Regulatory fines', 'Operational resilience', 'Concentration risk'],
     controls: ['Vendor tiering', 'SOC 2 Type II req', 'Right to audit', 'BCP testing', '4th party mapping'],
@@ -46,7 +46,7 @@ const VENDOR_RISK_SECTORS = {
   },
   'Technology & SaaS': {
     icon: Globe,
-    color: '#7c3aed',
+    color: '#415d7d',
     description: 'Cloud providers, SaaS platforms, AI/ML services, and dev tools - GDPR Art. 28, CCPA, and modern DPAs require DPA/SCC, sub-processor registries, and AI data usage restrictions.',
     risks: ['Data residency', 'AI training on customer data', 'Sub-processor sprawl', 'Encryption gaps'],
     controls: ['DPA/SCC mandatory', 'Subprocessor registry', 'AI data usage restrictions', 'Continuous monitoring'],
@@ -74,7 +74,7 @@ const VENDOR_RISK_SECTORS = {
   },
   Manufacturing: {
     icon: Layers,
-    color: '#8b5cf6',
+    color: '#557395',
     description: 'Industrial, automotive, aerospace, defense - NIST 800-171, CMMC, and ITAR require supply chain risk management, counterfeit detection, and export-controlled data protection.',
     risks: ['IP theft', 'Supply chain disruption', 'Counterfeit parts', 'Nth-tier visibility'],
     controls: ['CMMC assessment', 'ITAR compliance', 'Nth-tier mapping', 'Counterfeit detection'],
@@ -459,14 +459,14 @@ function getColorStyles(color) {
     '#f59e0b': { bg: 'bg-amber-50 dark:bg-amber-900/30', icon: 'text-amber-600 dark:text-amber-300', dot: 'bg-amber-500', trigger: 'bg-amber-500' },
     '#eab308': { bg: 'bg-yellow-50 dark:bg-yellow-900/30', icon: 'text-yellow-600 dark:text-yellow-300', dot: 'bg-yellow-500', trigger: 'bg-yellow-500' },
     '#10b981': { bg: 'bg-emerald-50 dark:bg-emerald-900/30', icon: 'text-emerald-600 dark:text-emerald-300', dot: 'bg-emerald-500', trigger: 'bg-emerald-500' },
-    '#4f46e5': { bg: 'bg-indigo-50 dark:bg-indigo-900/30', icon: 'text-indigo-600', dot: 'bg-indigo-500', trigger: 'bg-indigo-500' },
-    '#8b5cf6': { bg: 'bg-violet-50 dark:bg-violet-900/30', icon: 'text-violet-600 dark:text-violet-300', dot: 'bg-violet-500', trigger: 'bg-violet-500' },
+    '#415d7d': { bg: 'bg-indigo-50 dark:bg-indigo-900/30', icon: 'text-indigo-600', dot: 'bg-indigo-500', trigger: 'bg-indigo-500' },
+    '#557395': { bg: 'bg-violet-50 dark:bg-violet-900/30', icon: 'text-violet-600 dark:text-violet-300', dot: 'bg-violet-500', trigger: 'bg-violet-500' },
     '#84cc16': { bg: 'bg-lime-50 dark:bg-lime-900/30', icon: 'text-lime-600 dark:text-lime-300', dot: 'bg-lime-500', trigger: 'bg-lime-500' },
     '#dc2626': { bg: 'bg-red-50 dark:bg-red-900/30', icon: 'text-red-600 dark:text-red-300', dot: 'bg-red-500', trigger: 'bg-red-500' },
     '#059669': { bg: 'bg-emerald-50 dark:bg-emerald-900/30', icon: 'text-emerald-600 dark:text-emerald-300', dot: 'bg-emerald-500', trigger: 'bg-emerald-500' },
-    '#7c3aed': { bg: 'bg-violet-50 dark:bg-violet-900/30', icon: 'text-violet-600 dark:text-violet-300', dot: 'bg-violet-500', trigger: 'bg-violet-500' },
+    '#415d7d': { bg: 'bg-violet-50 dark:bg-violet-900/30', icon: 'text-violet-600 dark:text-violet-300', dot: 'bg-violet-500', trigger: 'bg-violet-500' },
   };
-  return colors[color] || colors['#4f46e5'];
+  return colors[color] || colors['#415d7d'];
 }
 
 // Tab label to URL slug (?section=...) for every Vendor Risk tab.
@@ -600,13 +600,13 @@ export default function VendorRiskManagement({ isDark = false }) {
         {/* Tab Panels */}
         <div role="tabpanel" aria-label="Vendor risk module content">
           {activeTab === 'Sectors' && (
-            <div id="panel-sectors" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" role="tabpanel" aria-labelledby="vtab-sectors">
+            <div id="panel-sectors" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6" role="tabpanel" aria-labelledby="vtab-sectors">
               {Object.entries(VENDOR_RISK_SECTORS).map(([sector, data]) => {
                 const c = getColorStyles(data.color);
                 const Icon = data.icon;
                 return (
                   <div key={sector} className={`group relative rounded-2xl border ${c.box} overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-indigo-300 dark:hover:border-indigo-600/50`}>
-                    <div className={`absolute top-0 left-0 right-0 h-1 ${c.dot} transition-transform duration-300 group-hover:scale-x-100 origin-left`} style={{ transform: 'scaleX(0)' }} />
+                    <div className={`absolute top-0 left-0 right-0 h-1 ${c.dot} transition-transform duration-300 origin-left`} style={{ transform: 'scaleX(0)' }} />
                     <div className="p-6">
                       <div className="flex items-center gap-3 mb-4">
                         <div className={`w-12 h-12 rounded-xl ${c.bg} flex items-center justify-center`}>

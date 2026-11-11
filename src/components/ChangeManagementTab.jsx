@@ -64,7 +64,7 @@ export default function ChangeManagementTab({ onOpenTab }) {
             </li>
           ))}
         </ol>
-        <div className="grid md:grid-cols-3 gap-3 text-sm">
+        <div className="grid md:grid-cols-2 gap-3 text-sm">
           <div className="rounded-lg p-3 bg-slate-50 border border-slate-200 dark:bg-slate-800/60 dark:border-slate-700">
             <p className="text-[11px] font-bold uppercase tracking-wide text-slate-600 dark:text-slate-300 mb-1">What happens</p>
             <p className="text-gray-700 dark:text-slate-200">{st.what}</p>

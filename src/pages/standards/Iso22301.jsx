@@ -5,7 +5,7 @@ const FRAMEWORK = {
   name: "ISO 22301:2019 Business Continuity Management",
   color: "orange",
   region: "Global",
-  flag: "🔄",
+  flag: "",
   flagAnimation: "float",
   basePath: "/iso/22301",
   referenceUrl: "https://www.iso.org/standard/75106",

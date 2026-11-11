@@ -282,7 +282,7 @@ export default function UserAccessReview({ isDark = false }) {
           <p className="text-navy-600 dark:text-text-dark-secondary mb-6 max-w-4xl">
             {uarData.scope.description}
           </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
             {uarData.scope.categories.map((cat, i) => (
               <div key={i} className={`grc-card p-6`}>
                 <div className="flex items-center gap-3 mb-4">
@@ -311,7 +311,7 @@ export default function UserAccessReview({ isDark = false }) {
           <h3 className="text-2xl font-bold text-navy-900 dark:text-text-dark-primary mb-6 flex items-center gap-3">
             <Users className="w-6 h-6 text-purple-600 dark:text-purple-400" /> User Types That Must Be Reviewed
           </h3>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-6">
             {uarData.userTypes.categories.map((cat, i) => (
               <div key={i} className={`grc-card p-6`}>
                 <div className="flex items-center gap-3 mb-4">
@@ -365,7 +365,7 @@ export default function UserAccessReview({ isDark = false }) {
                   <h5 className="grc-card-title font-bold">{tier.tier}</h5>
                 </div>
                 <p className="text-sm text-navy-600 dark:text-text-dark-secondary mb-3"><span className="font-semibold">Scope:</span> {tier.desc}</p>
-                <p className="text-sm font-semibold px-3 py-2 rounded-lg mb-3 bg-indigo-50 text-indigo-700 border border-indigo-100 dark:bg-[#312e81]/40 dark:border-[#4338ca] dark:text-[#c7d2fe]">
+                <p className="text-sm font-semibold px-3 py-2 rounded-lg mb-3 bg-indigo-50 text-indigo-700 border border-indigo-100 dark:bg-[#1f2e40]/40 dark:border-[#4338ca] dark:text-[#c6d2e2]">
                   <span className="font-semibold">Frequency:</span> {tier.frequency}
                 </p>
                 <p className="text-xs text-navy-500 dark:text-text-dark-muted"><span className="font-semibold text-navy-600 dark:text-text-dark-muted">Examples:</span> {tier.examples}</p>

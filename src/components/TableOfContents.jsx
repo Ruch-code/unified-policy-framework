@@ -144,8 +144,8 @@ export default function TableOfContents({
       ref={tocRef}
       className={`fixed lg:sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto transition-all duration-300
         ${isDark
-          ? 'bg-surface-dark-100/95 backdrop-blur-sm border border-surface-dark-300 text-text-dark-primary'
-          : 'bg-surface-100/95 backdrop-blur-sm border border-surface-300 text-navy-900'
+          ? 'bg-surface-dark-100/95 border border-surface-dark-300 text-text-dark-primary'
+          : 'bg-surface-100 border border-surface-300 text-navy-900'
         }
         rounded-xl shadow-xl p-4 w-72 ${className}`}
       role="navigation"
@@ -226,7 +226,7 @@ function ToCItemLink({
   };
 
   return (
-    <div className="animate-in fade-in slide-in-from-left-2 duration-200" style={{ marginLeft: `${(item.level - 2) * 12}px`, animationDelay: `${index * 30}ms` }}>
+    <div className=" duration-200" style={{ marginLeft: `${(item.level - 2) * 12}px`, animationDelay: `${index * 30}ms` }}>
       <button
         onClick={handleClick}
         onKeyDown={handleKeyDown}
@@ -258,7 +258,7 @@ function ToCItemLink({
       </button>
 
       {children.length > 0 && showChildren && (
-        <div className="mt-1 ml-2 border-l border-surface-300 dark:border-surface-dark-300 pl-2 space-y-1 animate-in fade-in slide-in-from-top-2 duration-200">
+        <div className="mt-1 ml-2 border-l border-surface-300 dark:border-surface-dark-300 pl-2 space-y-1 duration-200">
           {children.map((child, childIndex) => (
             <ToCItemLink
               key={child.id}

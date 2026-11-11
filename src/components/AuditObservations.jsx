@@ -182,7 +182,7 @@ export default function AuditObservations() {
         <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${showGuide ? 'rotate-180' : ''}`} />
       </button>
       {showGuide && (
-        <div className="grid md:grid-cols-3 gap-3 mb-5">
+        <div className="grid md:grid-cols-2 gap-3 mb-5">
           {[
             { k: 'pushback', t: 'Push back when', items: EXCEPTION_GUIDE.pushback },
             { k: 'exception', t: 'It is an exception when', items: EXCEPTION_GUIDE.exception },

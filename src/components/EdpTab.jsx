@@ -22,9 +22,8 @@ function EdpTab() {
           Endpoint & Data Protection covers DLP (Data Loss Prevention), MDM (Mobile Device Management), and BYOD (Bring Your Own Device) - critical for securing AI systems and data in hybrid environments.
         </p>
         
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
           <div className={["bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-xl p-6", "dark:bg-blue-900/20", "dark:border-blue-800"].join(' ')}>
-            <div className="text-3xl mb-3">🛡️</div>
             <h3 className="font-bold text-blue-900 dark:text-blue-200 mb-2">MDM / UEM</h3>
             <p className="text-sm text-blue-700 dark:text-blue-300 mb-3">Mobile Device Management & Unified Endpoint Management</p>
             <ul className="space-y-1 text-sm text-blue-800 dark:text-blue-200">
@@ -37,7 +36,6 @@ function EdpTab() {
             </ul>
           </div>
           <div className={["bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-xl p-6", "dark:bg-purple-900/20", "dark:border-purple-800"].join(' ')}>
-            <div className="text-3xl mb-3">🔐</div>
             <h3 className="font-bold text-purple-900 dark:text-purple-300 mb-2">DLP</h3>
             <p className="text-sm text-purple-700 dark:text-purple-300 mb-3">Data Loss / Leakage Prevention</p>
             <ul className="space-y-1 text-sm text-purple-800 dark:text-purple-300">
@@ -50,7 +48,6 @@ function EdpTab() {
             </ul>
           </div>
           <div className={["bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-xl p-6", "dark:bg-green-900/20", "dark:border-green-800"].join(' ')}>
-            <div className="text-3xl mb-3">📱</div>
             <h3 className="font-bold text-green-900 dark:text-green-300 mb-2">BYOD</h3>
             <p className="text-sm text-green-700 dark:text-green-300 mb-3">Bring Your Own Device</p>
             <ul className="space-y-1 text-sm text-green-800 dark:text-green-300">
@@ -152,7 +149,7 @@ function EdpTab() {
 
         <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-8 dark:bg-gray-800 dark:border-gray-700">
           <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Implementation Roadmap by Size</h3>
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-2 gap-4">
             <div className="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-xl p-4">
               <h4 className="font-bold text-blue-900 dark:text-blue-300 mb-2">Small (1-50)</h4>
               <p className="text-sm text-blue-800 dark:text-blue-300 mb-2">30/60/90 days</p>

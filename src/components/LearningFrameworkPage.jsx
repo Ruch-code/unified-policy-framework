@@ -24,7 +24,7 @@ const STORAGE_PREFIX = 'compliance-learning-';
 
 const COLOR_MAP = {
   navy: { bg: 'bg-slate-800', bgLight: 'bg-slate-50 dark:bg-slate-800/60', text: 'text-slate-800 dark:text-slate-100', border: 'border-slate-200 dark:border-slate-700', badge: 'bg-slate-800', ring: 'slate', hex: '#1e293b' },
-  purple: { bg: 'bg-violet-600', bgLight: 'bg-violet-50 dark:bg-violet-900/30', text: 'text-violet-700 dark:text-violet-300', border: 'border-violet-200 dark:border-violet-800', badge: 'bg-violet-600', ring: 'violet', hex: '#7c3aed' },
+  purple: { bg: 'bg-violet-600', bgLight: 'bg-violet-50 dark:bg-violet-900/30', text: 'text-violet-700 dark:text-violet-300', border: 'border-violet-200 dark:border-violet-800', badge: 'bg-violet-600', ring: 'violet', hex: '#415d7d' },
   green: { bg: 'bg-emerald-600', bgLight: 'bg-emerald-50 dark:bg-emerald-900/30', text: 'text-emerald-700 dark:text-emerald-300', border: 'border-emerald-200 dark:border-emerald-800', badge: 'bg-emerald-600', ring: 'emerald', hex: '#059669' },
   beige: { bg: 'bg-amber-700', bgLight: 'bg-amber-50 dark:bg-amber-900/30', text: 'text-amber-800 dark:text-amber-300', border: 'border-amber-200 dark:border-amber-800', badge: 'bg-amber-700', ring: 'amber', hex: '#b45309' },
   golden: { bg: 'bg-yellow-600', bgLight: 'bg-yellow-50 dark:bg-yellow-900/30', text: 'text-yellow-700 dark:text-yellow-300', border: 'border-yellow-200 dark:border-yellow-800', badge: 'bg-yellow-600', ring: 'yellow', hex: '#ca8a04' },
@@ -338,7 +338,7 @@ function FrameworkBody({ framework, extraSections }) {
               <Link to="/" className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-slate-200 inline-block transition-colors">
                 ← Back to Home
               </Link>
-              <a href="https://inspiring-ganache-fdd3be.netlify.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-[#7c3aed] hover:text-[#5b21b6] transition-colors">
+              <a href="https://inspiring-ganache-fdd3be.netlify.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-[#415d7d] hover:text-[#2a3d53] transition-colors">
                 ISO 42001 companion site (external)
                 <ExternalLink className="w-4 h-4" />
               </a>
@@ -354,9 +354,9 @@ function FrameworkBody({ framework, extraSections }) {
                 <span className={`text-xs font-semibold px-3 py-1 rounded-full inline-flex items-center ${
                   framework.region === 'Global' ? 'bg-gray-200 dark:bg-slate-700 text-gray-700' :
                   framework.region === 'United States' ? 'bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300' :
-                  framework.region === 'European Union' ? 'bg-gradient-to-r from-blue-100 to-yellow-100 text-blue-700 dark:text-blue-300' :
-                  framework.region === 'India' ? 'bg-gradient-to-r from-orange-100 to-green-100 text-orange-700 dark:text-orange-300' :
-                  framework.region === 'Brazil' ? 'bg-gradient-to-r from-green-100 to-yellow-100 text-green-700 dark:text-green-300' :
+                  framework.region === 'European Union' ? 'bg-blue-100 text-blue-700 dark:text-blue-300' :
+                  framework.region === 'India' ? 'bg-orange-100 text-orange-700 dark:text-orange-300' :
+                  framework.region === 'Brazil' ? 'bg-green-100 text-green-700 dark:text-green-300' :
                   framework.region === 'Singapore' ? 'bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-300' :
                   framework.region === 'China' ? 'bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-300' :
                   framework.region === 'Asia-Pacific' ? 'bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-300' :
@@ -498,7 +498,7 @@ function FrameworkBody({ framework, extraSections }) {
                 </div>
                 <div className="flex items-center gap-3 pr-16 shrink-0 ml-auto">
                   <div className={`text-right px-3 py-1 rounded-full text-sm font-medium ${weekStats[week.week]?.pct >= 80 ? 'bg-white/30 text-white' : 'bg-white/10 text-white/70'}`}>
-                    {weekStats[week.week]?.completed || 0}/{week.tasks.length} {weekStats[week.week]?.pct >= 80 ? '✓' : ''}
+                    {weekStats[week.week]?.completed || 0}/{week.tasks.length} {weekStats[week.week]?.pct >= 80 ? '' : ''}
                   </div>
                   {levelHours[week.week] > 0 && (
                     <div className="text-right px-3 py-1 rounded-full text-xs font-medium bg-white/10 text-white/80">
@@ -518,7 +518,7 @@ function FrameworkBody({ framework, extraSections }) {
 
               {unlocked && justUnlocked && (
                 <div className={`px-6 py-3 text-center text-sm font-medium ${colors.bgLight} ${colors.text}`}>
-                  🎉 Level {idx + 1} unlocked! Start working through the controls below.
+                  Level {idx + 1} unlocked! Start working through the controls below.
                 </div>
               )}
 
@@ -641,7 +641,7 @@ function FrameworkBody({ framework, extraSections }) {
               {/* Level Complete Banner */}
               {unlocked && weekStats[week.week]?.pct >= 100 && (
                 <div className={`px-6 py-4 text-center text-sm font-medium bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 border-t border-green-200 dark:border-green-800`}>
-                  ✓ Level {idx + 1} complete! {idx < data.weeks.length - 1 ? `Continue with Level ${idx + 2}.` : 'All levels complete. You are audit-ready - this is not a certification, and nobody has validated your organization.'}
+                  Level {idx + 1} complete! {idx < data.weeks.length - 1 ? `Continue with Level ${idx + 2}.` : 'All levels complete. You are audit-ready - this is not a certification, and nobody has validated your organization.'}
                 </div>
               )}
             </div>
@@ -655,9 +655,9 @@ function FrameworkBody({ framework, extraSections }) {
 
         {/* ISO 42001 Link */}
         <div className={`bg-white rounded-2xl border ${colors.border} p-6 mb-8`}>
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-gradient-to-r from-[#ede9fe] to-[#fef3c7] dark:from-[#2d1b69] dark:to-[#3a2a17] rounded-xl">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-[#e3e9f1] dark:bg-[#1f2e40] rounded-xl">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-[#7c3aed] flex items-center justify-center">
+              <div className="w-12 h-12 rounded-xl bg-[#415d7d] flex items-center justify-center">
                 <BookOpen className="w-6 h-6 text-white" />
               </div>
               <div>
@@ -665,7 +665,7 @@ function FrameworkBody({ framework, extraSections }) {
                 <p className="text-gray-600 dark:text-text-dark-secondary text-sm">Extend your compliance expertise to AI governance with the world's first AI management system standard</p>
               </div>
             </div>
-            <a href="https://inspiring-ganache-fdd3be.netlify.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#7c3aed] text-white px-5 py-2.5 rounded-lg hover:bg-[#6d28d9] transition font-medium whitespace-nowrap">
+            <a href="https://inspiring-ganache-fdd3be.netlify.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#415d7d] text-white px-5 py-2.5 rounded-lg hover:bg-[#344c67] transition font-medium whitespace-nowrap">
               <ExternalLink className="w-4 h-4" />
               ISO 42001 companion site (external)
             </a>

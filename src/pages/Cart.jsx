@@ -12,7 +12,7 @@ export default function Cart() {
   if (cart.items.length === 0) {
     return (
       <div className="container py-16 text-center">
-        <div className="text-6xl mb-4">🛒</div>
+        <div className="text-6xl mb-4"></div>
         <h1 className="text-2xl font-bold text-gray-900 mb-2">Your cart is empty</h1>
         <p className="text-gray-500 mb-8">Looks like you haven't added any products yet.</p>
         <Link to="/products" className="btn btn-primary inline-flex">
@@ -26,7 +26,7 @@ export default function Cart() {
     <div className="container py-8">
       <h1 className="text-2xl font-bold text-gray-900 mb-6">Shopping Cart ({itemCount} items)</h1>
 
-      <div className="grid lg:grid-cols-3 gap-8">
+      <div className="grid lg:grid-cols-2 gap-8">
         <div className="lg:col-span-2 space-y-4">
           {cart.items.map((item) => (
             <div key={item.product._id} className="card flex gap-4 p-4">
