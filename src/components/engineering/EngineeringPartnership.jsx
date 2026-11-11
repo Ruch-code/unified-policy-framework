@@ -7,6 +7,7 @@ import {
   LOG_EVENTS, LOG_MIN_FIELDS, LOG_PROTECTION, LOG_QUESTIONS, LOG_REDACTION, CHANGE_COLUMNS, CHANGE_MATRIX, CHANGE_POINTS, CHANGE_TEST_DETAIL,
   PIPELINE_STAGES, CICD_POINTS, TRACE_COLUMNS, TRACE_CHAIN, SAMPLING_STEPS, ARCH_FIRST, BOUNDARY_COLUMNS, BOUNDARIES, SCENARIOS,
 } from '../../data/engineeringPartnership.js';
+import * as CM from '../../data/changeManagementControls.js';
 
 const TH = 'text-left p-2 font-semibold text-gray-900 dark:text-white align-bottom';
 const TD = 'p-2 text-gray-700 dark:text-slate-300 align-top';
@@ -183,6 +184,19 @@ export default function EngineeringPartnership() {
           ))}
         </div>
         <div className="mt-4"><Points items={CHANGE_POINTS} /></div>
+        <h3 id="eng-change-environments" className={H3}>Environments a change passes through</h3>
+        <Table label="Environments" headers={CM.ENV_COLUMNS} rows={CM.ENVIRONMENTS} min={1500} />
+        <h3 className={H3}>Promotion path and gates</h3>
+        <Table label="Promotion path" headers={['From', 'To', 'Gate to pass']} rows={CM.PROMOTION_PATH} min={700} />
+        <h3 className={H3}>Environment separation controls</h3>
+        <Table label="Environment separation controls" headers={CM.SEPARATION_COLUMNS} rows={CM.SEPARATION_CONTROLS} min={1000} />
+        <h3 id="eng-change-stages" className={H3}>Controls by lifecycle stage</h3>
+        <Table label="Change controls by lifecycle stage" headers={CM.STAGE_COLUMNS} rows={CM.STAGES} min={1400} />
+        <h3 className={H3}>{CM.WORKED_EXAMPLE_TITLE}</h3>
+        <Table label="Change management worked example" headers={CM.WORKED_COLUMNS} rows={CM.WORKED_EXAMPLE} min={1100} />
+        <h3 className={H3}>What auditors sample</h3>
+        <Table label="Auditor sampling" headers={CM.SAMPLING_COLUMNS} rows={CM.AUDITOR_SAMPLING} min={900} />
+        <p className="mt-2 text-xs text-gray-500 dark:text-slate-400">{CM.CM_NOTE}</p>
         <RelatedTemplates className="mt-4" slugs={['change-management-procedure', 'change-traceability-sample']} exclusive limit={2} />
       </Section>
 
