@@ -77,12 +77,7 @@ export default function AuthorAboutPopup({ open, onClose }) {
 
           {tab === 'connect' && (
             <div className="space-y-3">
-              <p>Have feedback, or need help applying a framework to your company? I'd love to hear from you.</p>
-              {AUTHOR.email && (
-                <a href={`mailto:${AUTHOR.email}`} className="flex items-center gap-2 w-full bg-[#7c3aed] text-white font-semibold px-4 py-2.5 rounded-xl justify-center hover:bg-[#6d28d9] transition">
-                  <Mail className="w-4 h-4" /> {AUTHOR.email}
-                </a>
-              )}
+              <p>Have feedback, or need help applying a framework to your company? Connect with me through the LinkedIn link at the bottom of the page.</p>
             </div>
           )}
         </div>
