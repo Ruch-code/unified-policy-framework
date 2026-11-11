@@ -4,7 +4,7 @@ import TprmDeepDive from './TprmDeepDive.jsx';
 import VendorClauseBuilder from './VendorClauseBuilder.jsx';
 import VendorQuestionnaires from './VendorQuestionnaires.jsx';
 import AiVendorAssuranceTab from './AiVendorAssuranceTab.jsx';
-import { Governance, LifecycleOps, TemplateStrip, TieringModel, Assurance, SubProcessorOps, MonitoringOps, IssueOps, LegalTable, SectorGuide, Fold, L, Note } from './tprm/TprmBlocks.jsx';
+import { Governance, LifecycleOps, TemplateStrip, TieringModel, TierFrequencyGuide, Assurance, SubProcessorOps, MonitoringOps, IssueOps, LegalTable, SectorGuide, Fold, L, Note } from './tprm/TprmBlocks.jsx';
 import { QUESTIONNAIRE_VALIDATION } from '../data/tprm/operatingModel.js';
 import React, { useState, Suspense, lazy, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -209,10 +209,10 @@ const TIERING_QUESTIONS = [
 
 // Tiering results
 const TIERING_RESULTS = [
-  { min: 6, max: 12, tier: 4, label: 'Tier 4: Commodity/Non-critical', frequency: 'Biennial or Contract-driven', evidence: ['Contract terms', 'Spend records'], cadence: 'Biennial', clauses: ['Standard terms', 'Data protection'] },
-  { min: 13, max: 20, tier: 3, label: 'Tier 3: Low Risk', frequency: 'Annual Self-assessment', evidence: ['Self-assessment questionnaire', 'Contract review'], cadence: 'Annual', clauses: ['Standard DPA', 'Right to audit'] },
-  { min: 21, max: 30, tier: 2, label: 'Tier 2: Medium Risk', frequency: 'Semi-annual + Annual Onsite', evidence: ['SOC 2 Type II', 'Annual self-assessment', 'Onsite visit report'], cadence: 'Semi-annual', clauses: ['DPA/BAA', 'Right to audit', 'Breach SLA 24h', 'Sub-processor approval'] },
-  { min: 31, max: 36, tier: 1, label: 'Tier 1: Critical/High Risk', frequency: 'Continuous + Quarterly Deep Dive', evidence: ['SOC 2 Type II', 'ISO 27001 + SoA', 'Pen test', 'Continuous monitoring', 'Quarterly review'], cadence: 'Quarterly', clauses: ['DPA/BAA', 'Right to audit', 'Breach SLA 4-24h', 'Sub-processor approval', 'Right to audit onsite', 'Cyber insurance', 'Exit assistance'] },
+  { min: 6, max: 12, tier: 4, label: 'Tier 4: Low', frequency: 'No periodic assessment; check at onboarding and renewal', evidence: ['Contract terms', 'Spend records'], cadence: 'Biennial', clauses: ['Standard terms', 'Data protection'] },
+  { min: 13, max: 20, tier: 3, label: 'Tier 3: Medium', frequency: 'Every two years, or at renewal if sooner', evidence: ['Self-assessment questionnaire', 'Contract review'], cadence: 'Annual', clauses: ['Standard DPA', 'Right to audit'] },
+  { min: 21, max: 30, tier: 2, label: 'Tier 2: High', frequency: 'Annual full reassessment', evidence: ['SOC 2 Type II', 'Annual self-assessment', 'Onsite visit report'], cadence: 'Semi-annual', clauses: ['DPA/BAA', 'Right to audit', 'Breach SLA 24h', 'Sub-processor approval'] },
+  { min: 31, max: 36, tier: 1, label: 'Tier 1: Critical', frequency: 'Annual full reassessment + quarterly review', evidence: ['SOC 2 Type II', 'ISO 27001 + SoA', 'Pen test', 'Continuous monitoring', 'Quarterly review'], cadence: 'Quarterly', clauses: ['DPA/BAA', 'Right to audit', 'Breach SLA 4-24h', 'Sub-processor approval', 'Right to audit onsite', 'Cyber insurance', 'Exit assistance'] },
 ];
 
 // Due Diligence Evidence Matrix by Tier
@@ -447,10 +447,10 @@ const UPDATED_REGIONAL_LAWS = {
 };
 
 const REVIEW_FREQUENCY = [
-  { tier: 'Tier 1: Critical/High Risk', frequency: 'Continuous + Quarterly Deep Dive', color: '#ef4444', triggers: ['SOC 2 changes', 'Breach notification', 'M&A', 'Regulatory action', 'Service changes'] },
-  { tier: 'Tier 2: Medium Risk', frequency: 'Semi-annual + Annual Onsite', color: '#f59e0b', triggers: ['Contract renewal', 'Control failures', 'Regulatory changes', 'Sub-processor changes'] },
-  { tier: 'Tier 3: Low Risk', frequency: 'Annual Self-assessment', color: '#eab308', triggers: ['Contract renewal', 'Major incidents', 'Regulatory updates'] },
-  { tier: 'Tier 4: Commodity/Non-critical', frequency: 'Biennial or Contract-driven', color: '#10b981', triggers: ['Contract renewal only'] },
+  { tier: 'Tier 1: Critical', frequency: 'Annual full reassessment + quarterly review', color: '#ef4444', triggers: ['Breach notification', 'SOC 2 exceptions or scope change', 'M&A or insolvency', 'Regulatory action', 'Service or sub-processor change'] },
+  { tier: 'Tier 2: High', frequency: 'Annual full reassessment', color: '#f59e0b', triggers: ['Contract renewal', 'Control failures', 'Regulatory changes', 'Sub-processor changes'] },
+  { tier: 'Tier 3: Medium', frequency: 'Every two years, or at renewal if sooner', color: '#eab308', triggers: ['Contract renewal', 'Major incidents', 'New data or access', 'Regulatory updates'] },
+  { tier: 'Tier 4: Low', frequency: 'No periodic assessment; check at onboarding and renewal', color: '#10b981', triggers: ['Starts handling your data', 'Gets system access', 'Becomes hard to replace', 'Adds AI features', 'Incident or ownership change'] },
 ];
 
 function getColorStyles(color) {
@@ -816,6 +816,7 @@ export default function VendorRiskManagement({ isDark = false }) {
 
           {activeTab === 'Review Frequency' && (
             <div id="panel-review-frequency" className="space-y-4" role="tabpanel" aria-labelledby="vtab-review-frequency">
+              <TierFrequencyGuide />
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                 {REVIEW_FREQUENCY.map((tier, i) => {
                   const c = getColorStyles(tier.color);
@@ -917,6 +918,7 @@ function TieringPanel() {
     <div id="panel-tiering" role="tabpanel" aria-labelledby="vtab-tiering" className="space-y-4">
       <p className={small}>Inherent risk is scored before controls, per service. Due diligence then gives a residual risk, which is what gets approved (Lifecycle, stage 5). Weights and cutoffs are examples to calibrate, not a standard.</p>
       <TieringModel />
+      <TierFrequencyGuide />
       <TemplateStrip files={['tprm-risk-assessment.xlsx']} title="Risk assessment template" />
     </div>
   );

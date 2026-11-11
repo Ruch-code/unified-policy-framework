@@ -213,3 +213,15 @@ export function SectorGuide({ sector }) {
   const rows = M.SECTOR_GUIDE[sector]; if (!rows) return null;
   return <T caption="Scope, obligation, controls, evidence and caveats" min={760} headers={['Who may be in scope', 'Obligation or expectation', 'Control implications', 'Evidence', 'Caveats']} rows={rows} />;
 }
+
+/* ---------- Assessment frequency and example vendors by tier ---------- */
+export function TierFrequencyGuide() {
+  return (
+    <div id="tier-frequency" className="space-y-4 scroll-mt-24">
+      <T caption="How often to assess each tier" headers={['Tier', 'Full reassessment', 'Monitoring between assessments', 'Evidence expected']} rows={M.TIER_FREQUENCY} min={900} />
+      <T caption="When a Low vendor needs an assessment" headers={['Trigger', 'What to do']} rows={M.LOW_TIER_TRIGGERS} />
+      <T caption="Example vendors by tier" headers={['Tier', 'Example vendor and service', 'Why it sits in this tier']} rows={M.VENDOR_EXAMPLES} min={760} />
+      <Note>{M.TIER_EXAMPLE_NOTE}</Note>
+    </div>
+  );
+}

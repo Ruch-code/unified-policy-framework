@@ -102,10 +102,10 @@ export const DIMENSIONS = [
   { id: 'conc', name: 'Concentration and fourth-party dependency', weight: 7, scale: ['Independent', 'Some shared providers', 'Key fourth party known and resilient', 'Shares a critical provider or region with other key services', 'Single point of failure across several critical services'] },
 ];
 export const TIER_CUTOFFS = [
-  { tier: 1, label: 'Tier 1: Critical', min: 3.6, desc: 'Deep due diligence, executive approval of residual risk, tested exit plan, continuous monitoring.' },
+  { tier: 1, label: 'Tier 1: Critical', min: 3.6, desc: 'Deep due diligence, executive approval of residual risk, tested exit plan, continuous monitoring; full reassessment every year with quarterly reviews.' },
   { tier: 2, label: 'Tier 2: High', min: 2.8, desc: 'Full due diligence with independent assurance; annual reassessment.' },
-  { tier: 3, label: 'Tier 3: Moderate', min: 2.0, desc: 'Questionnaire plus targeted evidence; reassessment every two years or at renewal.' },
-  { tier: 4, label: 'Tier 4: Low', min: 0, desc: 'Inventory, standard terms, no questionnaire unless facts change.' },
+  { tier: 3, label: 'Tier 3: Medium', min: 2.0, desc: 'Questionnaire plus targeted evidence; reassessment every two years or at renewal.' },
+  { tier: 4, label: 'Tier 4: Low', min: 0, desc: 'Inventory and standard terms; intake check at onboarding, fact check at renewal, reassess on any trigger.' },
 ];
 export const OVERRIDES = [
   'Floor at Tier 2: any special category, payment card or health data, or any privileged access to production.',
@@ -312,10 +312,10 @@ export const NTH_LIMITS = 'Full visibility of every nth party is not realistic. 
 
 // ---------------- Monitoring, issues, KRIs ----------------
 export const CADENCE = [
-  ['Tier 1', 'Annual full reassessment; quarterly check of findings, incidents and service performance', 'Continuous where available (notices, status, news)'],
-  ['Tier 2', 'Annual reassessment', 'Event-driven triggers'],
-  ['Tier 3', 'Every two years or at renewal', 'Event-driven triggers'],
-  ['Tier 4', 'At renewal', 'Re-tier if data or access changes'],
+  ['Tier 1: Critical', 'Annual full reassessment; quarterly check of findings, incidents and service performance', 'Continuous where available (notices, status, news)'],
+  ['Tier 2: High', 'Annual reassessment', 'Event-driven triggers'],
+  ['Tier 3: Medium', 'Every two years, or at renewal if sooner', 'Event-driven triggers'],
+  ['Tier 4: Low', 'No periodic assessment; intake check at onboarding and fact check at renewal', 'Re-tier if data, access or dependency changes'],
 ];
 export const MON_SOURCES = [
   ['Assurance reports and certificates', 'Independent, but point-in-time and scope-limited'],
@@ -388,3 +388,42 @@ export const LAW_CORRECTIONS = [
   'Japan: replaced unclear "CSL" with the Basic Act on Cybersecurity.',
   'PCI: PA-DSS retired; replaced by the PCI Software Security Framework.',
 ];
+
+// ---------------- Assessment frequency and example vendors by tier (single source) ----------------
+// Typical practice; calibrate to your own policy and regulator expectations.
+// [tier, full reassessment, ongoing monitoring between assessments, evidence expected]
+export const TIER_FREQUENCY = [
+  ['Critical (Tier 1)', 'Full reassessment every year, plus a quarterly review of open findings, incidents and service performance.', 'Continuous where available: breach and sub-processor notices, status pages, security news; exit plan tested yearly.', 'SOC 2 Type II or ISO 27001 with SoA, penetration test summary, BCP and DR test results, financial health check.'],
+  ['High (Tier 2)', 'Full reassessment every year.', 'Event triggers; assurance report expiry tracked.', 'SOC 2 Type II or ISO 27001, security questionnaire, data processing terms.'],
+  ['Medium (Tier 3)', 'Reassessment every two years, or at contract renewal if that comes first.', 'Event triggers; yearly check that certificates have not expired.', 'Short questionnaire plus targeted evidence such as a certificate or policy.'],
+  ['Low (Tier 4)', 'No periodic assessment. A short intake check at onboarding and a fact check at each renewal.', 'Re-tier immediately when a trigger below occurs.', 'Inventory record, standard contract terms, confirmation of no data or system access.'],
+];
+
+// When does a Low vendor need an assessment? [trigger, what to do]
+export const LOW_TIER_TRIGGERS = [
+  ['Onboarding', 'Complete the intake questions to confirm the vendor really has no data, no system access and is easy to replace. If any answer changes, it is not Low.'],
+  ['Contract renewal', 'Reconfirm the facts behind the Low rating: still no data, no access, spend below threshold, alternatives available.'],
+  ['Starts handling your data', 'Any personal, confidential or customer data, including attachments in emails or uploads. Re-tier, usually to Medium or higher.'],
+  ['Gets access to your systems', 'SSO accounts, API keys, integrations, VPN or on-site network access. Re-tier and assess.'],
+  ['Becomes hard to replace', 'Single source for a business process, or spend crosses your threshold.'],
+  ['Adds AI features on your content', 'The service starts sending your data to AI models or uses it for training. Re-tier and review terms.'],
+  ['Security incident or ownership change', 'A breach, acquisition, insolvency or move of processing offshore. Check whether the facts behind the tier still hold.'],
+];
+
+// [tier, example vendor and service, why it sits in this tier]
+export const VENDOR_EXAMPLES = [
+  ['Critical', 'Cloud infrastructure provider hosting production, for example AWS, Microsoft Azure or Google Cloud', 'Hosts the application and all customer data; an outage stops the service; no quick substitute; holds privileged infrastructure.'],
+  ['Critical', 'Payment processor, for example Stripe or Adyen', 'Revenue stops if it fails; handles cardholder data (PCI DSS scope); switching takes months.'],
+  ['Critical', 'Identity provider, for example Okta or Microsoft Entra ID', 'Controls access to every other system; a compromise exposes everything; difficult to replace quickly.'],
+  ['High', 'Customer support platform, for example Zendesk or Freshdesk', 'Holds customer personal data and ticket attachments that may include sensitive information; replaceable within weeks.'],
+  ['High', 'Payroll and HR system, for example Workday or Gusto', 'Employee personal data, bank details and salaries; regulated data; disruption delays pay but has manual fallbacks.'],
+  ['High', 'Managed security or IT provider with admin access', 'Privileged access to production or the corporate network, even though it holds little data itself.'],
+  ['Medium', 'Project and work tracking tool, for example Jira or Asana', 'Internal confidential information and limited personal data; accessed through SSO; an outage slows work but does not stop the service.'],
+  ['Medium', 'Marketing email platform, for example Mailchimp or HubSpot', 'Customer names and email addresses (low-sensitivity personal data); no access to internal systems; several alternatives.'],
+  ['Medium', 'E-signature service, for example DocuSign', 'Contracts with confidential terms; limited personal data; easy to switch.'],
+  ['Low', 'Office supplies or furniture vendor', 'No data, no system access, many alternatives, low spend.'],
+  ['Low', 'Event venue or catering company', 'Only a contact name and booking details; no system access; easily replaced.'],
+  ['Low', 'Stock image or font library', 'Downloads only; no company data shared; no integration.'],
+];
+
+export const TIER_EXAMPLE_NOTE = 'The tier depends on what the vendor does for you, not on the brand. The same product can be Critical for one company and Medium for another, depending on the data shared, the access granted and how hard it is to replace. Vendors are named only to make the examples concrete.';
