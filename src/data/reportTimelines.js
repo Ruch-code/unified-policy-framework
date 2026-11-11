@@ -49,6 +49,19 @@ export const TIMELINE_TYPES = {
       P('Auditor opinion and 10-K filing', '60, 75 or 90 days after year end, by filer status', 'Auditor issues its ICFR opinion where required; the company files the 10-K.', '10-K with ICFR reports'),
     ],
   },
+  meddevice: {
+    title: 'Medical device software: design to 510(k) clearance',
+    note: 'Shown for a US 510(k). ISO 13485 certification for other markets follows the ISO certification route (Stage 1, Stage 2, certificate). FDA timings are review goals, not guarantees.',
+    phases: [
+      P('Classification and route', 'Weeks 1 to 4', 'Confirm the software is a device, find the product code and predicate, choose 510(k), De Novo or PMA.', 'Regulatory assessment'),
+      P('Pre-Submission (optional)', 'About 70 to 75 days to a meeting', 'Get FDA feedback on predicate and testing plans.', 'Pre-Submission feedback'),
+      P('Quality system and design controls', 'Throughout development', 'ISO 13485 QMS, design history file, risk management and software lifecycle.', 'QMS, design history file'),
+      P('Verification, validation and cybersecurity', 'Before submission', 'Software testing to the safety class, validation, threat model, SBOM and penetration test.', 'Test reports, cybersecurity file'),
+      P('eSTAR submission and technical screening', 'About 15 days after submission', 'FDA checks the eSTAR is complete.', 'Accepted for review'),
+      P('Substantive review', 'FDA goal of 90 review days, excluding holds', 'Review of substantial equivalence; any additional information request pauses the clock.', 'Questions or decision'),
+      P('Clearance and post-market', 'After the decision', 'Clearance letter, registration and listing, UDI, complaint handling and vulnerability management.', 'Clearance letter, post-market records'),
+    ],
+  },
   hitrust: {
     title: 'HITRUST validated assessment: readiness to certification',
     note: 'Applies to e1, i1 and r2 validated assessments. Timing is relative to the start of fieldwork.',
@@ -165,6 +178,7 @@ export const TIMELINE_TYPES = {
 export const FRAMEWORK_TIMELINE = {
   soc2: 'soc2',
   'sox-404': 'sox',
+  'medical-device-software': 'meddevice',
   hipaa: 'hipaa',
   'iso-27001-la': 'iso', 'iso27001-li': 'iso', 'iso-42001': 'iso', 'iso-22301': 'iso', iso27701: 'iso', 'iso-27017': 'iso', 'iso-27018': 'iso',
   hitrust: 'hitrust',

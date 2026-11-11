@@ -251,6 +251,7 @@ const REGIONS = [
       { path: '/cjis', name: 'CJIS', desc: 'FBI Criminal Justice Information Services policy' },
       { path: '/nist', name: 'NIST', desc: 'NIST CSF / SP 800-53' },
       { path: '/hipaa', name: 'HIPAA', desc: 'US health data protection' },
+      { path: '/medical-devices', name: 'Medical Device Software', desc: 'FDA 510(k), ISO 13485, IEC 62304' },
       { path: '/ccpa', name: 'CCPA/CPRA', desc: 'California consumer privacy' },
     ],
   },

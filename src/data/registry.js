@@ -36,6 +36,7 @@ import { FRAMEWORK as Dora } from '../pages/standards/Dora';
 import { FRAMEWORK as Nist800171Cmmc } from '../pages/standards/Nist800171Cmmc';
 import { FRAMEWORK as UkGdpr } from '../pages/standards/UkGdpr';
 import { FRAMEWORK as Sox404 } from '../pages/standards/Sox404.jsx';
+import { FRAMEWORK as MedicalDevices } from '../pages/standards/MedicalDevices.jsx';
 
 export const FRAMEWORKS = {
   [Iso27001La.id]: Iso27001La,
@@ -75,6 +76,7 @@ export const FRAMEWORKS = {
   [Nist800171Cmmc.id]: Nist800171Cmmc,
   [UkGdpr.id]: UkGdpr,
   [Sox404.id]: Sox404,
+  [MedicalDevices.id]: MedicalDevices,
 };
 
 export function getFramework(id) {

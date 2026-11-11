@@ -11,6 +11,7 @@ export const PLAYBOOK_CATALOG = [
   { id: 'iso22317', name: 'ISO 22317 Business Impact Analysis', path: '/iso-22317', tags: ['enterprise', 'established'] },
   { id: 'nist', name: 'NIST CSF 2.0', path: '/nist', tags: ['us', 'enterprise', 'saas'] },
   { id: 'hipaa', name: 'HIPAA', path: '/hipaa', tags: ['healthtech', 'phi', 'us'] },
+  { id: 'medical-device-software', name: 'Medical Device Software', path: '/medical-devices', tags: ['healthtech', 'medtech', 'samd', 'fda', 'us', 'eu'] },
   { id: 'hitrust', name: 'HITRUST CSF', path: '/hitrust', tags: ['healthtech', 'phi', 'us'] },
   { id: 'coppa', name: 'COPPA', path: '/coppa', tags: ['ecommerce', 'consumer'] },
   { id: 'ccpa', name: 'CCPA / CPRA', path: '/ccpa', tags: ['us', 'ecommerce', 'pii'] },
