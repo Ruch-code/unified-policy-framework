@@ -36,6 +36,19 @@ export const TIMELINE_TYPES = {
       P('Surveillance and recertification', 'Years 1 and 2, then year 3', 'Annual surveillance audits, then a full recertification audit before expiry.', 'Surveillance reports, renewed certificate'),
     ],
   },
+  sox: {
+    title: 'SOX 404: fiscal year to auditor opinion',
+    note: 'Timing is shown against the company\'s fiscal year. The auditor\'s opinion on ICFR applies to accelerated and large accelerated filers; other registrants still file management\'s assessment.',
+    phases: [
+      P('Planning and scoping', 'First quarter', 'Confirm filer status, set materiality, scope significant accounts, processes, systems and service organisations.', 'Scoping memo, test plan'),
+      P('Documentation and walkthroughs', 'First to second quarter', 'Update narratives and the risk and control matrix; walk through each process.', 'RCM, walkthrough evidence'),
+      P('Interim testing', 'Second to third quarter', 'Test key controls and ITGCs on year-to-date samples; review SOC 1 reports.', 'Test workpapers'),
+      P('Remediation', 'Third to fourth quarter', 'Fix deficiencies early enough for the new controls to be retested before year end.', 'Remediation and retest evidence'),
+      P('Rollforward and year-end testing', 'Fourth quarter and after year end', 'Cover the remaining period and test year-end controls.', 'Year-end workpapers'),
+      P('Deficiency evaluation and management assessment', 'After year-end testing', 'Classify deficiencies and conclude on ICFR effectiveness; brief the audit committee.', 'Management report on ICFR'),
+      P('Auditor opinion and 10-K filing', '60, 75 or 90 days after year end, by filer status', 'Auditor issues its ICFR opinion where required; the company files the 10-K.', '10-K with ICFR reports'),
+    ],
+  },
   hitrust: {
     title: 'HITRUST validated assessment: readiness to certification',
     note: 'Applies to e1, i1 and r2 validated assessments. Timing is relative to the start of fieldwork.',
@@ -151,6 +164,7 @@ export const TIMELINE_TYPES = {
 // Framework id -> timeline type.
 export const FRAMEWORK_TIMELINE = {
   soc2: 'soc2',
+  'sox-404': 'sox',
   hipaa: 'hipaa',
   'iso-27001-la': 'iso', 'iso27001-li': 'iso', 'iso-42001': 'iso', 'iso-22301': 'iso', iso27701: 'iso', 'iso-27017': 'iso', 'iso-27018': 'iso',
   hitrust: 'hitrust',

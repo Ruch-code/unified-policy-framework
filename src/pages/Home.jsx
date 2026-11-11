@@ -194,6 +194,7 @@ const REGIONS = [
       { path: '/iso-27701', name: 'ISO 27701', desc: 'Privacy Information Management (PIMS)' },
       { path: '/pci-dss', name: 'PCI-DSS', desc: 'Payment card data security' },
       { path: '/soc2', name: 'SOC 2', desc: 'Trust services (TSC) for service orgs' },
+      { path: '/sox', name: 'SOX 404', desc: 'Internal control over financial reporting (ICFR)' },
       { path: '/cis', name: 'CIS Controls v8', desc: 'CIS 18 Controls & Implementation Groups' },
       { path: '/cmmc', name: 'CMMC 2.0', desc: 'NIST 800-171 / DoD cyber maturity' },
     ],

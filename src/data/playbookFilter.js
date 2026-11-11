@@ -3,6 +3,7 @@
 // platform's playbook catalog so playbooks can be filtered + highlighted in real-time.
 
 export const PLAYBOOK_CATALOG = [
+  { id: 'sox-404', name: 'SOX 404', path: '/sox', tags: ['public company', 'ipo', 'fintech', 'enterprise', 'finance', 'icfr', 'audit'] },
   { id: 'pci-dss', name: 'PCI-DSS v4.0', path: '/pci-dss', tags: ['fintech', 'ecommerce', 'card', 'payments', 'enterprise'] },
   { id: 'soc2', name: 'SOC 2 Type II', path: '/soc2', tags: ['saas', 'fintech', 'healthtech', 'enterprise', 'global'] },
   { id: 'iso27001', name: 'ISO/IEC 27001:2022 Lead Implementer', path: '/iso/27001/li', tags: ['saas', 'fintech', 'healthtech', 'enterprise', 'global', 'starter'] },
