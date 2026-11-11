@@ -38,7 +38,7 @@ export function useDomainFilters(storeKey) {
 function Chip({ pressed, onClick, children, style }) {
   return (
     <button type="button" aria-pressed={pressed} onClick={onClick} style={pressed ? style : undefined}
-      className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-xs font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 ${pressed ? 'ring-2 ring-offset-1 ring-gray-500 dark:ring-slate-300 dark:ring-offset-slate-900' : 'bg-white text-gray-700 border-gray-300 dark:bg-slate-800 dark:text-slate-200 dark:border-slate-600'}`}>
+      className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-xs font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 ${pressed ? 'bg-stone-800 text-white border-stone-800 dark:bg-slate-100 dark:text-slate-900 dark:border-slate-100' : 'bg-white text-gray-700 border-gray-300 dark:bg-slate-800 dark:text-slate-200 dark:border-slate-600'}`}>
       {children}
     </button>
   );
