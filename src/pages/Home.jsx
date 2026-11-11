@@ -12,6 +12,7 @@ import PasswordPolicies from '../components/PasswordPolicies.jsx';
 import AccessRequirements from '../components/AccessRequirements.jsx';
 import UserAccessReview from '../components/UserAccessReview.jsx';
 import AccessReviewByDesign from '../components/AccessReviewByDesign.jsx';
+import AccessSod from '../components/AccessSod.jsx';
 import SecurityOperations from '../components/SecurityOperations.jsx';
 import HybridSecurityFramework from '../components/HybridSecurityFramework.jsx';
 import AssetInventoryTemplate from '../components/AssetInventoryTemplate.jsx';
@@ -482,6 +483,9 @@ function TabPanel({ isDark, activeTab }) {
             <UserAccessReview isDark={isDark} />
             <ErrorBoundary>
               <AccessReviewByDesign />
+            </ErrorBoundary>
+            <ErrorBoundary>
+              <AccessSod />
             </ErrorBoundary>
             <CcDownloads groups={['access']} title="Contact-centre access review checklist" />
             <EngPartnershipLink className="mt-6" only={['eng-access']} />
