@@ -54,6 +54,11 @@ import Iso22317 from './pages/standards/Iso22317.jsx';
 import Iso27018 from './pages/standards/Iso27018';
 import Iso22301 from './pages/standards/Iso22301';
 import Nis2 from './pages/standards/Nis2';
+import Coso2013 from './pages/standards/Coso2013.jsx';
+import Iso27002 from './pages/standards/Iso27002.jsx';
+import Isae3402 from './pages/standards/Isae3402.jsx';
+import Crbf9702 from './pages/standards/Crbf9702.jsx';
+import SolvencyII from './pages/standards/SolvencyII.jsx';
 import Dora from './pages/standards/Dora';
 import Nist800171Cmmc from './pages/standards/Nist800171Cmmc';
 import UkGdpr from './pages/standards/UkGdpr';
@@ -137,6 +142,11 @@ function App() {
           <Route path="iso/27018" element={<Protected><Iso27018 /></Protected>} />
           <Route path="iso/22301" element={<Protected><Iso22301 /></Protected>} />
           <Route path="nis2" element={<Protected><Nis2 /></Protected>} />
+          <Route path="coso" element={<Protected><Coso2013 /></Protected>} />
+          <Route path="iso/27002" element={<Protected><Iso27002 /></Protected>} />
+          <Route path="isae-3402" element={<Protected><Isae3402 /></Protected>} />
+          <Route path="crbf-97-02" element={<Protected><Crbf9702 /></Protected>} />
+          <Route path="solvency-ii" element={<Protected><SolvencyII /></Protected>} />
           <Route path="dora" element={<Protected><Dora /></Protected>} />
           <Route path="cmmc" element={<Protected><Nist800171Cmmc /></Protected>} />
           <Route path="uk-gdpr" element={<Protected><UkGdpr /></Protected>} />
