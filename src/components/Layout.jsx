@@ -663,7 +663,7 @@ export default function Layout() {
 
       <NewsletterPopup open={newsletterOpen} onClose={() => setNewsletterOpen(false)} />
       {!user && <InspectorCursor />}
-      <ChatWidget />
+      {user && <ChatWidget />}
     </div>
   );
 }
