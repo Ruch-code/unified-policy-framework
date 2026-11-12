@@ -10,6 +10,14 @@ const FRAMEWORK = {
   flag: "us",
   flagAnimation: "float",
   basePath: "/sox",
+  intro: {
+    heading: "What SOX optimization means in IT audit",
+    paragraphs: [
+      "The Sarbanes-Oxley Act of 2002 was enacted in response to a series of financial scandals. It requires public companies to establish and maintain effective internal controls over financial reporting (ICFR). In IT audit, SOX optimization is the process of improving how effective and efficient those controls are.",
+      "IT systems and processes play a critical role in financial reporting, which makes IT audits an essential part of SOX compliance. SOX optimization in IT audit means assessing the design and operating effectiveness of IT controls related to financial reporting, and finding opportunities to make them more effective and efficient.",
+      "IT auditors use a range of techniques to optimize SOX compliance, including risk assessments, control testing, process walkthroughs and gap analysis. Optimized IT controls reduce the risk of financial misstatements and of non-compliance with SOX, both of which can carry significant legal and financial consequences.",
+    ],
+  },
   referenceUrl: "https://pcaobus.org/oversight/standards/auditing-standards/details/AS2201",
   milestones: [
     { day: 7, label: "Scope and materiality agreed" },

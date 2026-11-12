@@ -366,6 +366,14 @@ function FrameworkBody({ framework, extraSections }) {
             <p className="text-gray-600 text-lg max-w-2xl">
               Compliance playbook - all levels are open, so you can read every level in any order. Learn the controls, how to implement them, and how to verify.
             </p>
+            {framework.intro && (
+              <section id="framework-intro" className={`bg-white rounded-2xl border ${colors.border} p-6 mt-5 max-w-3xl`}>
+                <h2 className="text-xl font-bold text-gray-900 mb-3">{framework.intro.heading}</h2>
+                <div className="space-y-3 text-gray-700">
+                  {framework.intro.paragraphs.map((t) => <p key={t.slice(0, 40)}>{t}</p>)}
+                </div>
+              </section>
+            )}
           </div>
           <div className="flex flex-wrap gap-3">
             {framework.basePath && (
