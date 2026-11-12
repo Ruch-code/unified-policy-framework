@@ -43,3 +43,46 @@ export const UAR_COMPLETENESS = [
 ];
 
 export const UAR_ONE_PLACE = 'A tool that captures the decision, the revocation and the timestamp automatically, all in one place, removes most of this matching work. It saves the most time for companies that go through SOC 2 or ISO 27001 audits every year, because the same trail has to be produced again each cycle.';
+
+// How evidence collection works during access reviews.
+export const UAR_EVIDENCE_INTRO = 'Evidence collection is still mostly manual, with a few parts that tools handle well.';
+
+// { title, verdict, points }
+export const UAR_EVIDENCE_COLLECTION = [
+  {
+    title: 'Access approvals',
+    verdict: 'Mostly handled by tools',
+    points: [
+      'If requests go through a ticketing system such as Jira or ServiceNow, the approval, the approver and the timestamp are already recorded.',
+      'The evidence is an export of those tickets.',
+      'The gap is access granted outside the process, for example over chat or directly by an admin, which leaves no record.',
+    ],
+  },
+  {
+    title: 'Periodic reviews',
+    verdict: 'Partly handled by tools',
+    points: [
+      'Compliance platforms and IGA tools can pull the user list, send it to reviewers and record the sign-off with a date.',
+      'This works well for systems that are integrated.',
+      'Systems that are not connected, such as internal admin panels, databases and smaller SaaS tools, go back to exports and spreadsheets.',
+    ],
+  },
+  {
+    title: 'Revoked permissions',
+    verdict: 'Mostly manual',
+    points: [
+      'Most tools record that a reviewer marked access for removal, but not that it was actually removed.',
+      'Someone still has to raise the ticket, remove the access and capture proof from the system, usually a screenshot or a fresh user list showing the account is gone.',
+      'Linking that proof back to the original review decision is manual almost everywhere, unless an IGA tool does the deprovisioning itself.',
+    ],
+  },
+  {
+    title: 'What stays manual',
+    verdict: 'Closing the loop',
+    points: [
+      'Tools handle collection reasonably well for connected systems.',
+      'The manual work is proving that every decision led to an action, on time, for every system in scope.',
+      'This is also where auditors find most exceptions.',
+    ],
+  },
+];

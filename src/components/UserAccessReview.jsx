@@ -1,7 +1,7 @@
 import React from 'react';
 import { CheckCircle, AlertTriangle, Shield, Server, Database, Globe, Users, Key, Lock, Building2, Cpu, Smartphone, Layers, Network, HardDrive, Cloud } from 'lucide-react';
 import ResponsiveTable from './ResponsiveTable';
-import { UAR_AI_INTRO, UAR_AI_USES, UAR_AI_SAFEGUARDS, UAR_PRACTICE_INTRO, UAR_PRACTICE_BY_SIZE, UAR_EVIDENCE_TRAIL, UAR_COMPLETENESS, UAR_ONE_PLACE } from '../data/uarAiAssist.js';
+import { UAR_AI_INTRO, UAR_AI_USES, UAR_AI_SAFEGUARDS, UAR_PRACTICE_INTRO, UAR_PRACTICE_BY_SIZE, UAR_EVIDENCE_TRAIL, UAR_COMPLETENESS, UAR_ONE_PLACE, UAR_EVIDENCE_INTRO, UAR_EVIDENCE_COLLECTION } from '../data/uarAiAssist.js';
 
 const uarData = {
   scope: {
@@ -422,6 +422,22 @@ export default function UserAccessReview({ isDark = false }) {
             </table>
           </div>
           <p className="text-sm text-navy-600 dark:text-text-dark-secondary max-w-3xl mt-5">{UAR_ONE_PLACE}</p>
+        </section>
+
+        {/* How evidence collection works */}
+        <section id="uar-evidence" className="mt-16">
+          <h3 className="text-2xl font-bold text-navy-900 dark:text-text-dark-primary mb-3">How Evidence Collection Works</h3>
+          <p className="text-sm text-navy-600 dark:text-text-dark-secondary max-w-3xl mb-5">{UAR_EVIDENCE_INTRO}</p>
+          <div className="space-y-5 max-w-3xl">
+            {UAR_EVIDENCE_COLLECTION.map((g) => (
+              <div key={g.title}>
+                <h4 className="font-bold text-navy-900 dark:text-text-dark-primary">{g.title} <span className="font-normal text-sm text-navy-600 dark:text-text-dark-secondary">({g.verdict})</span></h4>
+                <ul className="mt-1.5 list-disc pl-5 space-y-1 text-sm text-navy-600 dark:text-text-dark-secondary">
+                  {g.points.map((pt) => <li key={pt}>{pt}</li>)}
+                </ul>
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* Where AI helps */}
