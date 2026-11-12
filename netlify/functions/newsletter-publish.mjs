@@ -23,7 +23,7 @@ export default async (req) => {
         <h1 style="color:#6d28d9;margin:0 0 12px">${title}</h1>
         <div style="color:#333;line-height:1.7;white-space:pre-wrap">${body}</div>
         <hr style="border:none;border-top:1px solid #eee;margin:24px 0" />
-        <p style="color:#999;font-size:12px">You're receiving this because you subscribed to the Unified Compliance newsletter.</p>
+        <p style="color:#999;font-size:12px">You're receiving this because you subscribed to the OneLens newsletter.</p>
         <a href="${UNSUB_URL}?email=%EMAIL%" style="color:#999;font-size:12px">Unsubscribe</a>
       </div>`;
 
@@ -55,7 +55,7 @@ export default async (req) => {
     }
 
     // LinkedIn share URL — pre-filled with the newsletter post text + site link.
-    const shareText = `${title} — Read the latest from the Unified Compliance newsletter.`;
+    const shareText = `${title}: read the latest from the OneLens newsletter.`;
     const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(SITE)}&text=${encodeURIComponent(shareText)}`;
 
     return json({

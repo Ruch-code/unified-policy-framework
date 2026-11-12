@@ -10,7 +10,8 @@ import AdminPanel from './pages/AdminPanel.jsx';
 import NewsletterEditor from './pages/NewsletterEditor.jsx';
 import KnowledgeBase from './pages/KnowledgeBase.jsx';
 import DomainPage from './pages/DomainPage.jsx';
-import { TermsPage, PrivacyPage } from './pages/Legal.jsx';
+import { TermsPage, PrivacyPage, CookiePage, LicensesPage } from './pages/Legal.jsx';
+import DataRequest from './pages/DataRequest.jsx';
 import GrcMaturity from './pages/GrcMaturity.jsx';
 import Profile from './pages/Profile.jsx';
 import Templates from './pages/Templates.jsx';
@@ -101,6 +102,9 @@ function App() {
           <Route path="knowledge" element={<RequireAuth><KnowledgeBase /></RequireAuth>} />
           <Route path="grc-maturity" element={<GrcMaturity />} />
           <Route path="terms" element={<TermsPage />} />
+          <Route path="cookies" element={<CookiePage />} />
+          <Route path="licenses" element={<LicensesPage />} />
+          <Route path="data-request" element={<DataRequest />} />
           <Route path="privacy" element={<PrivacyPage />} />
           <Route path="domains" element={<Protected><DomainPage /></Protected>} />
           <Route path="domains/:code" element={<Protected><DomainPage /></Protected>} />

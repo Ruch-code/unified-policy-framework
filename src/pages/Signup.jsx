@@ -46,6 +46,10 @@ export default function Signup() {
             <input type="email" required value={email} onChange={e => setEmail(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" />
           </div>
+          <label className="flex gap-2 items-start text-xs text-gray-600">
+            <input type="checkbox" required className="mt-0.5" />
+            <span>I am 18 or older and agree to the <Link to="/terms" className="underline">Terms of Use</Link>. My name and email will be used to create and manage my account, as described in the <Link to="/privacy" className="underline">Privacy Policy</Link>.</span>
+          </label>
           <p className="text-xs text-gray-500 bg-gray-50 p-3 rounded-lg">On approval you'll receive a temporary password which you can change after your first sign-in (or via the reset link).</p>
           <button disabled={loading}
             className="w-full bg-indigo-600 text-white py-2.5 rounded-lg font-semibold hover:bg-indigo-700 disabled:opacity-50 transition">
