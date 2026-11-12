@@ -1,5 +1,6 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
+import { DISCLAIMER } from '../data/legal.js';
 import { Menu, X, Linkedin, User as UserIcon, ShieldCheck, LogOut, BookOpenCheck, Sun, Moon, Search, ChevronDown, Globe, Building2, Shield, Users, Briefcase, Key, ClipboardCheck, Sparkles, ExternalLink } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import VisitorCounter from './VisitorCounter.jsx';
@@ -665,11 +666,15 @@ export default function Layout() {
           <span className="text-sm text-gray-300"><LinkedInStory /></span>
           <DonateButton />
           <VisitorCounter />
-          <nav aria-label="Legal" className="flex gap-4 text-xs">
+          <nav aria-label="Legal" className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs">
             <Link to="/grc-maturity" className="underline text-gray-300 hover:text-white">GRC Maturity Model</Link>
             <Link to="/terms" className="underline text-gray-300 hover:text-white">Terms of Use</Link>
             <Link to="/privacy" className="underline text-gray-300 hover:text-white">Privacy Policy</Link>
+            <Link to="/cookies" className="underline text-gray-300 hover:text-white">Cookie Policy</Link>
+            <Link to="/data-request" className="underline text-gray-300 hover:text-white">Your data</Link>
+            <Link to="/licenses" className="underline text-gray-300 hover:text-white">Licences</Link>
           </nav>
+          <p className="text-xs text-gray-400 max-w-2xl">{DISCLAIMER}</p>
         </div>
       </footer>
 

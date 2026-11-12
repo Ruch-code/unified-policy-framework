@@ -71,6 +71,7 @@ export default function NewsletterPopup({ open, onClose }) {
                 placeholder="you@company.com"
                 className="w-full px-4 py-2.5 border border-gray-300 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
               />
+              <p className="mt-2 text-[11px] text-gray-500 dark:text-slate-400">By subscribing you confirm you are 18 or older and agree to receive the newsletter by email. Unsubscribe any time. See the <a href="/privacy" className="underline">Privacy Policy</a>.</p>
               {status === 'error' && <p className="mt-1.5 text-xs text-red-600 dark:text-red-300">{msg}</p>}
               <button type="submit" disabled={status === 'loading'}
                 className="mt-3 w-full flex items-center justify-center gap-2 bg-indigo-600 text-white py-2.5 rounded-xl font-semibold hover:bg-indigo-700 disabled:opacity-60 transition">
