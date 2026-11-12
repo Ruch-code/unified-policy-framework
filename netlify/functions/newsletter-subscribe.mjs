@@ -30,13 +30,13 @@ export default async (req) => {
         await resend.emails.send({
           from: getFrom(),
           to: [normalized],
-          subject: "You're subscribed! 👋",
+          subject: "You are subscribed to the OneLens newsletter",
           html: `
             <div style="font-family:Arial,sans-serif;max-width:560px;margin:auto;padding:24px">
-              <h2 style="color:#6d28d9;margin:0 0 8px">Welcome to the Unified Compliance newsletter!</h2>
+              <h2 style="color:#344c67;margin:0 0 8px">Welcome to the OneLens newsletter</h2>
               <p style="color:#333">Thanks for subscribing. You'll get practical, no-jargon guidance on certifications, security compliance, privacy, and how to choose what matters for your business.</p>
               <p style="color:#333">In the meantime, try the <strong>Certification Advisor</strong> to see your tailored upskill roadmap:</p>
-              <a href="${SITE}" style="display:inline-block;margin-top:12px;background:#6d28d9;color:#fff;text-decoration:none;padding:10px 18px;border-radius:8px;font-weight:600">Open the site</a>
+              <a href="${SITE}" style="display:inline-block;margin-top:12px;background:#344c67;color:#fff;text-decoration:none;padding:10px 18px;border-radius:3px;font-weight:600">Open the site</a>
               <p style="color:#999;font-size:12px;margin-top:24px">You can unsubscribe anytime using the link in any email.</p>
             </div>`,
         });
