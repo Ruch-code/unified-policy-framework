@@ -16,3 +16,30 @@ export const UAR_AI_SAFEGUARDS = [
   ['Unflagged does not mean reviewed', 'Reviewers still certify all access in scope. AI sets the order of attention; it does not shrink the population.'],
   ['Keep the audit trail', 'Store what was flagged, the reason given, the decision and the removal ticket, so an auditor can re-perform the review.'],
 ];
+
+// How access reviews run in practice, and where the time goes.
+export const UAR_PRACTICE_INTRO = 'How a review is run depends mostly on the size of the organisation and the tools it has. In all cases, collecting the evidence often takes as long as the review itself.';
+
+// [organisation, how the review is run, where it slows down]
+export const UAR_PRACTICE_BY_SIZE = [
+  ['Larger organisations', 'An identity governance and administration (IGA) tool such as SailPoint or Saviynt runs formal access certification campaigns. Reviewers certify access inside the tool.', 'Role and entitlement data must be kept accurate, and applications that are not connected to the tool still need manual reviews.'],
+  ['Small and mid-size companies', 'User lists are exported into spreadsheets, emailed to managers, and then chased for sign-off.', 'Follow-ups. A compliance platform helps track which reviews are due and done, but the review itself still depends on reminders.'],
+];
+
+// [evidence, where it usually lives, the problem]
+export const UAR_EVIDENCE_TRAIL = [
+  ['Reviewer decision and sign-off', 'A spreadsheet, email or compliance platform', 'Kept apart from the action taken on it.'],
+  ['Access removal request', 'A ticket in the service desk', 'Not linked to the review line that triggered it.'],
+  ['Proof that access was revoked', 'Screenshots from each system', 'Collected separately, system by system, after the fact.'],
+  ['The full trace per flagged user', 'Assembled by hand', 'Everything has to be matched up so the auditor can follow each flagged user from review to removal.'],
+];
+
+// [what auditors check, what they want to see, what happens when it is missing]
+export const UAR_COMPLETENESS = [
+  ['Source of the user list', 'The list was pulled directly from the system, with the query or export screen, date and record count.', 'The population cannot be relied on, so the auditor asks for it to be re-pulled or tests more.'],
+  ['Every user reviewed', 'Each account on the list has a decision: keep, change or remove.', 'Unreviewed accounts are raised as an exception.'],
+  ['Timeliness', 'The review was completed within the period the policy sets, for example each quarter.', 'A late review is an exception, even if the access was appropriate.'],
+  ['Follow-through', 'Access marked for removal was removed promptly, with a timestamp.', 'More back and forth during fieldwork to prove removal, or a finding.'],
+];
+
+export const UAR_ONE_PLACE = 'A tool that captures the decision, the revocation and the timestamp automatically, all in one place, removes most of this matching work. It saves the most time for companies that go through SOC 2 or ISO 27001 audits every year, because the same trail has to be produced again each cycle.';
