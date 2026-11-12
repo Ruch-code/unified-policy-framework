@@ -2,9 +2,12 @@ import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { X, MessageSquare } from 'lucide-react';
 import GrcAssistant from './GrcAssistant.jsx';
+import InterviewCoach from './InterviewCoach.jsx';
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
+  const [mode, setMode] = useState(() => { try { return localStorage.getItem('compliance_chat_mode') || 'ask'; } catch { return 'ask'; } });
+  const pick = (m) => { setMode(m); try { localStorage.setItem('compliance_chat_mode', m); } catch {} };
 
   useEffect(() => {
     const key = 'compliance_chat_widget_open';
@@ -36,7 +39,7 @@ export default function ChatWidget() {
         <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
           <div className="absolute inset-0 bg-black/40" onClick={toggle} />
           <div className="relative w-full max-w-lg sm:max-w-md bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden"
-               style={{ height: 'min(70vh, 560px)' }}>
+               style={{ height: 'min(80vh, 640px)' }}>
             <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 bg-[#415d7d] text-white shrink-0">
               <div className="flex items-center gap-2">
                 <MessageSquare className="w-4 h-4" />
@@ -47,8 +50,14 @@ export default function ChatWidget() {
                 <X className="w-4 h-4" />
               </button>
             </div>
+            <div role="tablist" aria-label="Assistant mode" className="flex shrink-0 border-b border-gray-200 text-sm">
+              {[['ask', 'Ask a question'], ['interview', 'Interview practice']].map(([id, label]) => (
+                <button key={id} role="tab" aria-selected={mode === id} onClick={() => pick(id)}
+                  className={`flex-1 py-2 font-semibold ${mode === id ? 'text-[#344c67] border-b-2 border-[#344c67]' : 'text-gray-500'}`}>{label}</button>
+              ))}
+            </div>
             <div className="flex-1 min-h-0">
-              <GrcAssistant compact />
+              {mode === 'interview' ? <InterviewCoach /> : <GrcAssistant compact />}
             </div>
           </div>
         </div>,

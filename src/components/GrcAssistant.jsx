@@ -166,7 +166,7 @@ export default function GrcAssistant({ compact = false }) {
       // Local RAG retrieval - top control mappings from the playbook index.
       const context = retrieve(value, 5);
       // Last 5 turns, for conversational continuity (kept out of the answer body).
-      const turns = history.slice(-5).map(m =>
+      const turns = history.slice(-10).map(m =>
         m.role === 'user'
           ? { role: 'user', content: m.text }
           : { role: 'assistant', content: m.answer?.summary || 'I answered earlier in this chat.' },
