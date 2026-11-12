@@ -1,6 +1,7 @@
 import React from 'react';
 import { CheckCircle, AlertTriangle, Shield, Server, Database, Globe, Users, Key, Lock, Building2, Cpu, Smartphone, Layers, Network, HardDrive, Cloud } from 'lucide-react';
 import ResponsiveTable from './ResponsiveTable';
+import { UAR_AI_INTRO, UAR_AI_USES, UAR_AI_SAFEGUARDS } from '../data/uarAiAssist.js';
 
 const uarData = {
   scope: {
@@ -393,6 +394,25 @@ export default function UserAccessReview({ isDark = false }) {
                 </ul>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* Where AI helps */}
+        <section id="uar-ai" className="mt-16">
+          <h3 className="text-2xl font-bold text-navy-900 dark:text-text-dark-primary mb-3">Where AI Helps in Access Reviews</h3>
+          <p className="text-sm text-navy-600 dark:text-text-dark-secondary max-w-3xl mb-5">{UAR_AI_INTRO}</p>
+          <div className="overflow-x-auto rounded border border-gray-200 dark:border-slate-700" tabIndex={0} role="region" aria-label="AI in access reviews">
+            <table className="w-full text-sm" style={{ minWidth: 1000 }}>
+              <thead className="bg-gray-50 dark:bg-slate-800"><tr>{['Use', 'How AI helps', 'Example flag', 'What the reviewer still does'].map((h) => <th key={h} scope="col" className="text-left p-3 font-semibold text-navy-900 dark:text-text-dark-primary">{h}</th>)}</tr></thead>
+              <tbody>{UAR_AI_USES.map((r) => <tr key={r[0]} className="border-t border-gray-200 dark:border-slate-700">{r.map((c, j) => <td key={j} className={j === 0 ? 'p-3 align-top text-navy-600 dark:text-text-dark-secondary font-semibold' : 'p-3 align-top text-navy-600 dark:text-text-dark-secondary'}>{c}</td>)}</tr>)}</tbody>
+            </table>
+          </div>
+          <h4 className="font-bold text-navy-900 dark:text-text-dark-primary mt-6 mb-2">Safeguards</h4>
+          <div className="overflow-x-auto rounded border border-gray-200 dark:border-slate-700" tabIndex={0} role="region" aria-label="AI safeguards">
+            <table className="w-full text-sm" style={{ minWidth: 600 }}>
+              <thead className="bg-gray-50 dark:bg-slate-800"><tr>{['Safeguard', 'Why it matters'].map((h) => <th key={h} scope="col" className="text-left p-3 font-semibold text-navy-900 dark:text-text-dark-primary">{h}</th>)}</tr></thead>
+              <tbody>{UAR_AI_SAFEGUARDS.map((r) => <tr key={r[0]} className="border-t border-gray-200 dark:border-slate-700">{r.map((c, j) => <td key={j} className={j === 0 ? 'p-3 align-top text-navy-600 dark:text-text-dark-secondary font-semibold' : 'p-3 align-top text-navy-600 dark:text-text-dark-secondary'}>{c}</td>)}</tr>)}</tbody>
+            </table>
           </div>
         </section>
       </div>
