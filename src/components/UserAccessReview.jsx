@@ -1,7 +1,7 @@
 import React from 'react';
 import { CheckCircle, AlertTriangle, Shield, Server, Database, Globe, Users, Key, Lock, Building2, Cpu, Smartphone, Layers, Network, HardDrive, Cloud } from 'lucide-react';
 import ResponsiveTable from './ResponsiveTable';
-import { UAR_AI_INTRO, UAR_AI_USES, UAR_AI_SAFEGUARDS } from '../data/uarAiAssist.js';
+import { UAR_AI_INTRO, UAR_AI_USES, UAR_AI_SAFEGUARDS, UAR_PRACTICE_INTRO, UAR_PRACTICE_BY_SIZE, UAR_EVIDENCE_TRAIL, UAR_COMPLETENESS, UAR_ONE_PLACE } from '../data/uarAiAssist.js';
 
 const uarData = {
   scope: {
@@ -395,6 +395,33 @@ export default function UserAccessReview({ isDark = false }) {
               </div>
             ))}
           </div>
+        </section>
+
+        {/* How reviews run in practice */}
+        <section id="uar-practice" className="mt-16">
+          <h3 className="text-2xl font-bold text-navy-900 dark:text-text-dark-primary mb-3">How Access Reviews Run in Practice</h3>
+          <p className="text-sm text-navy-600 dark:text-text-dark-secondary max-w-3xl mb-5">{UAR_PRACTICE_INTRO}</p>
+          <div className="overflow-x-auto rounded border border-gray-200 dark:border-slate-700" tabIndex={0} role="region" aria-label="How reviews are run by organisation size">
+            <table className="w-full text-sm" style={{ minWidth: 800 }}>
+              <thead className="bg-gray-50 dark:bg-slate-800"><tr>{['Organisation', 'How the review is run', 'Where it slows down'].map((h) => <th key={h} scope="col" className="text-left p-3 font-semibold text-navy-900 dark:text-text-dark-primary">{h}</th>)}</tr></thead>
+              <tbody>{UAR_PRACTICE_BY_SIZE.map((r) => <tr key={r[0]} className="border-t border-gray-200 dark:border-slate-700">{r.map((c, j) => <td key={j} className={j === 0 ? 'p-3 align-top text-navy-600 dark:text-text-dark-secondary font-semibold' : 'p-3 align-top text-navy-600 dark:text-text-dark-secondary'}>{c}</td>)}</tr>)}</tbody>
+            </table>
+          </div>
+          <h4 className="font-bold text-navy-900 dark:text-text-dark-primary mt-6 mb-2">Where the evidence ends up</h4>
+          <div className="overflow-x-auto rounded border border-gray-200 dark:border-slate-700" tabIndex={0} role="region" aria-label="Evidence trail">
+            <table className="w-full text-sm" style={{ minWidth: 800 }}>
+              <thead className="bg-gray-50 dark:bg-slate-800"><tr>{['Evidence', 'Where it usually lives', 'The problem'].map((h) => <th key={h} scope="col" className="text-left p-3 font-semibold text-navy-900 dark:text-text-dark-primary">{h}</th>)}</tr></thead>
+              <tbody>{UAR_EVIDENCE_TRAIL.map((r) => <tr key={r[0]} className="border-t border-gray-200 dark:border-slate-700">{r.map((c, j) => <td key={j} className={j === 0 ? 'p-3 align-top text-navy-600 dark:text-text-dark-secondary font-semibold' : 'p-3 align-top text-navy-600 dark:text-text-dark-secondary'}>{c}</td>)}</tr>)}</tbody>
+            </table>
+          </div>
+          <h4 className="font-bold text-navy-900 dark:text-text-dark-primary mt-6 mb-2">What auditors check for completeness</h4>
+          <div className="overflow-x-auto rounded border border-gray-200 dark:border-slate-700" tabIndex={0} role="region" aria-label="Completeness checks">
+            <table className="w-full text-sm" style={{ minWidth: 900 }}>
+              <thead className="bg-gray-50 dark:bg-slate-800"><tr>{['What auditors check', 'What they want to see', 'What happens when it is missing'].map((h) => <th key={h} scope="col" className="text-left p-3 font-semibold text-navy-900 dark:text-text-dark-primary">{h}</th>)}</tr></thead>
+              <tbody>{UAR_COMPLETENESS.map((r) => <tr key={r[0]} className="border-t border-gray-200 dark:border-slate-700">{r.map((c, j) => <td key={j} className={j === 0 ? 'p-3 align-top text-navy-600 dark:text-text-dark-secondary font-semibold' : 'p-3 align-top text-navy-600 dark:text-text-dark-secondary'}>{c}</td>)}</tr>)}</tbody>
+            </table>
+          </div>
+          <p className="text-sm text-navy-600 dark:text-text-dark-secondary max-w-3xl mt-5">{UAR_ONE_PLACE}</p>
         </section>
 
         {/* Where AI helps */}
