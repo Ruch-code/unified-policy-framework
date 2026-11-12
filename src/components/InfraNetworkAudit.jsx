@@ -39,6 +39,11 @@ export default function InfraNetworkAudit() {
       <Rows label="Traffic checks" headers={['Check', 'What it confirms']} rows={D.TRAFFIC_CHECKS} />
       <Sub>Common ports</Sub>
       <Rows label="Common ports" headers={['Port', 'Service', 'Audit view']} rows={D.PORTS} min={700} />
+      <Sub>Insecure ports and their secure replacements</Sub>
+      <Rows label="Insecure ports" headers={['Port', 'Service', 'Why it is insecure', 'Secure alternative']} rows={D.INSECURE_PORTS} min={900} />
+      <Sub>Secure ports</Sub>
+      <Rows label="Secure ports" headers={['Port', 'Service', 'What it protects', 'What to verify']} rows={D.SECURE_PORTS} min={900} />
+      <p className={`text-sm max-w-3xl ${TXT}`}>{D.PORT_NOTE}</p>
 
       <Sub>Email security</Sub>
       <Rows label="Email security" headers={['Control', 'What it does', 'What good looks like']} rows={D.EMAIL_SECURITY} min={900} />

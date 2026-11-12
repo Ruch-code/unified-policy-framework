@@ -196,3 +196,35 @@ export const QUANT = [
   ['ARO', 'Annualised Rate of Occurrence = expected number of events per year'],
   ['ALE', 'Annualised Loss Expectancy = SLE x ARO. Compare with the yearly cost of a control to justify spend.'],
 ];
+
+export const INSECURE_PORTS = [
+  ['20 / 21', 'FTP', 'Sends files and credentials in plaintext', 'SFTP (22) or FTPS (990)'],
+  ['23', 'Telnet', 'Plaintext remote login, credentials sniffable', 'SSH (22)'],
+  ['25', 'SMTP (no TLS)', 'Plaintext mail, open relay and spoofing risk', 'SMTP with STARTTLS (25 / 587) or SMTPS (465)'],
+  ['53', 'DNS', 'Unencrypted; abused for tunnelling and amplification DDoS', 'Restrict to approved resolvers; DNS over TLS (853) or HTTPS (443)'],
+  ['69', 'TFTP', 'No authentication at all', 'SFTP (22)'],
+  ['80', 'HTTP', 'Plaintext web traffic, session hijacking', 'HTTPS (443) with redirect and HSTS'],
+  ['110', 'POP3', 'Plaintext mailbox login', 'POP3S (995)'],
+  ['137-139, 445', 'NetBIOS / SMB', 'Ransomware and worm target (for example WannaCry); never internet-facing', 'Block at perimeter; SMBv3 with encryption internally, SMBv1 disabled'],
+  ['143', 'IMAP', 'Plaintext mailbox login', 'IMAPS (993)'],
+  ['161 / 162', 'SNMP v1 / v2c', 'Community strings sent in plaintext', 'SNMPv3 with authentication and encryption'],
+  ['389', 'LDAP', 'Directory binds in plaintext', 'LDAPS (636) or LDAP with StartTLS'],
+  ['1433 / 3306 / 5432', 'Databases (SQL Server, MySQL, PostgreSQL)', 'Should never be reachable from the internet', 'Private network only, TLS enforced'],
+  ['3389', 'RDP', 'Brute force and exploit target when exposed', 'VPN or bastion with MFA; Network Level Authentication'],
+  ['8080', 'HTTP alternate', 'Often a forgotten proxy, admin or test server', 'Close or move behind HTTPS'],
+];
+
+export const SECURE_PORTS = [
+  ['22', 'SSH / SFTP', 'Encrypted shell and file transfer', 'Key-based auth, no root login, restrict source IPs'],
+  ['443', 'HTTPS', 'TLS-encrypted web traffic', 'TLS 1.2 or higher, weak ciphers disabled'],
+  ['465 / 587', 'SMTPS / SMTP submission', 'Authenticated, encrypted mail sending', 'Enforce authentication and TLS'],
+  ['636', 'LDAPS', 'Encrypted directory queries', 'Valid certificates'],
+  ['853', 'DNS over TLS', 'Encrypted DNS lookups', 'Approved resolvers only'],
+  ['989 / 990', 'FTPS', 'FTP over TLS', 'Prefer SFTP where possible'],
+  ['993', 'IMAPS', 'Encrypted mailbox access', 'MFA on mailbox'],
+  ['995', 'POP3S', 'Encrypted mailbox download', 'MFA on mailbox'],
+  ['500 / 4500 (UDP)', 'IPsec VPN (IKE / NAT-T)', 'Encrypted site-to-site or remote access', 'Strong ciphers, MFA for users'],
+];
+
+export const PORT_NOTE =
+  'A port is not secure on its own: an encrypted port is only as safe as its TLS version, authentication and who can reach it. Audit rule: insecure ports should be closed or justified with a documented exception, and every open port should map to a business need.';
