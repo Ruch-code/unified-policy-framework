@@ -26,6 +26,7 @@ import EvidenceAutomationKb from '../components/EvidenceAutomationKb.jsx';
 import SystemDesignKb from '../components/SystemDesignKb.jsx';
 import { OtherFrameworksKb, GrcToolingKb } from '../components/OtherFrameworksKb.jsx';
 import ZeroTrustShadowIt from '../components/ZeroTrustShadowIt.jsx';
+import InfraNetworkAudit from '../components/InfraNetworkAudit.jsx';
 
 const order = ['soc2', 'iso27001', 'iso42001', 'pci', 'hipaa', 'nist', 'gdpr', 'cis', 'hitrust', 'dpdpa', 'fedramp', 'cjis'];
 const EDP_TABS = [
@@ -57,6 +58,7 @@ const TABS = [
   { id: 'sysdesign', label: 'System Design for GRC', icon: Network },
   { id: 'otherfw', label: 'Other Frameworks', icon: BookOpenCheck },
   { id: 'zerotrust', label: 'Zero Trust and Shadow IT', icon: BookOpenCheck },
+  { id: 'infranet', label: 'Infra & Network Audit', icon: Network },
   { id: 'tooling', label: 'GRC Tooling', icon: Package },
 ];
 
@@ -101,6 +103,8 @@ export default function KnowledgeBase() {
       return;
     } else if (t === 'zero-trust' || t === 'shadow-it') {
       setTab('zerotrust');
+    } else if (t === 'infra-network' || t === 'network-security') {
+      setTab('infranet');
     } else if (t === 'other-frameworks') {
       setTab('otherfw');
     } else if (t === 'grc-tooling') {
@@ -305,6 +309,7 @@ export default function KnowledgeBase() {
     sysdesign: <SystemDesignKb />,
     otherfw: <OtherFrameworksKb />,
     zerotrust: <ZeroTrustShadowIt />,
+    infranet: <InfraNetworkAudit />,
     tooling: <GrcToolingKb />,
     gaps: <ItgcGapsKb initialFramework={new URLSearchParams(location.search).get('gapfw') || 'all'} />,
   };
