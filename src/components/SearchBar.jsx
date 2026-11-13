@@ -83,6 +83,14 @@ function Highlight({ text = '', terms = [] }) {
   );
 }
 
+const RECENT_KEY = 'onelens_recent_searches';
+function readRecent() { try { return JSON.parse(localStorage.getItem(RECENT_KEY)) || []; } catch { return []; } }
+function rememberSearch(q) {
+  const v = String(q || '').trim();
+  if (v.length < 2) return;
+  try { localStorage.setItem(RECENT_KEY, JSON.stringify([v, ...readRecent().filter((x) => x.toLowerCase() !== v.toLowerCase())].slice(0, 5))); } catch { /* storage unavailable */ }
+}
+
 function getIcon(category) {
   switch (category) {
     case 'Frameworks & Standards': return '';
@@ -148,6 +156,22 @@ export default function SearchBar({ isDark = false }) {
     setSelectedIndex(-1);
   };
 
+  // Global shortcuts: "/" or Ctrl/Cmd+K focus the search box.
+  useEffect(() => {
+    const onKey = (e) => {
+      const tag = (e.target?.tagName || '').toLowerCase();
+      const typing = tag === 'input' || tag === 'textarea' || tag === 'select' || e.target?.isContentEditable;
+      if ((e.key === 'k' && (e.ctrlKey || e.metaKey)) || (e.key === '/' && !typing)) {
+        e.preventDefault();
+        const el = inputRef.current;
+        if (el && el.offsetParent !== null) { el.focus(); setIsOpen(true); }
+        else { setIsMobileOpen(true); setIsOpen(true); setTimeout(() => inputRef.current?.focus(), 50); }
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+
   // Click outside / Escape
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -207,6 +231,7 @@ export default function SearchBar({ isDark = false }) {
   const handleSelect = (item) => {
     closeAll();
     if (!item) return;
+    rememberSearch(query);
     if (item.mode === 'external') {
       window.open(item.path, '_blank', 'noopener,noreferrer');
       return;
@@ -353,6 +378,16 @@ export default function SearchBar({ isDark = false }) {
     if (!query) {
       return (
         <div className="p-4">
+          {readRecent().length > 0 && (
+            <div className="mb-4">
+              <span className={`block mb-2 text-xs font-semibold uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Recent searches</span>
+              <div className="flex flex-wrap gap-2">
+                {readRecent().map((r) => (
+                  <button key={r} type="button" onClick={() => handleSuggestion(r)} className="px-3 py-1.5 rounded-full text-xs font-medium border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200">{r}</button>
+                ))}
+              </div>
+            </div>
+          )}
           <div className="flex items-center justify-between mb-3">
             <span className={`inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
               <Sparkles className="w-3.5 h-3.5" /> Suggested Searches
@@ -375,7 +410,7 @@ export default function SearchBar({ isDark = false }) {
             ))}
           </div>
           <p className={`mt-4 text-xs ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>
-            Search frameworks, policies, personas, cloud providers, and control domains - e.g. “azure”, “contractors”, “background checks”.
+            Search frameworks, control IDs, rules, sections and interview questions, e.g. “Rule 7”, “A.8.15”, “CC7.2”, “DPO”. Press / or Ctrl+K from anywhere.
           </p>
         </div>
       );
@@ -464,7 +499,7 @@ export default function SearchBar({ isDark = false }) {
             value={query}
             onChange={handleChange}
             onFocus={handleFocus}
-            placeholder="Search frameworks, policies, keywords…"
+            placeholder="Search rules, controls, frameworks ( / )"
             className={inputStyles}
             autoComplete="off"
             autoCapitalize="off"
@@ -514,7 +549,7 @@ export default function SearchBar({ isDark = false }) {
                   value={query}
                   onChange={handleChange}
                   onFocus={handleFocus}
-                  placeholder="Search frameworks, policies, keywords…"
+                  placeholder="Search rules, controls, frameworks ( / )"
                   className={`
                     w-full pl-12 pr-12 py-3.5 rounded-xl text-base
                     transition-all duration-200 ease-in-out truncate

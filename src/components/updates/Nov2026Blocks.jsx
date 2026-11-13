@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as U from '../../data/nov2026Updates.js';
 import { H, TXT, LINE, CARD, Pending, Sources, BlockTitle, Rows, NewBadge, Verified } from './UpdateBits.jsx';
+import QuickRefCard from '../QuickRefCard.jsx';
 
 // ---------- 1. DPDPA ----------
 
@@ -50,12 +51,23 @@ export function DpdpaUpdates() {
       {/* 1b. Core rules */}
       <div>
         <BlockTitle>Core Data Fiduciary Rules</BlockTitle>
-        <div className="mt-3"><Rows label="Core Data Fiduciary Rules" min={1200} headers={['Rule', 'Act section', 'Obligation', 'Evidence an auditor would ask for', 'ISO 27001:2022 / SOC 2 / GDPR mapping']} rows={U.DPDPA_CORE_RULES} /></div>
+        <div className="mt-3 grid gap-4 lg:grid-cols-2">
+          {U.DPDPA_RULE_CARDS.map((c) => {
+            const row = U.DPDPA_CORE_RULES.find((r) => r[0].startsWith(c.rule));
+            return (
+              <QuickRefCard key={c.id} id={c.id} isNew breadcrumb={['Regional Frameworks', 'India', 'DPDPA', c.rule]}
+                title={`${c.rule}: ${c.title}`} what={`${c.what} (${c.section})`} facts={c.facts} evidence={c.evidence} maps={c.maps}
+                source={U.SRC.rules} verified={U.LAST_VERIFIED}>
+                {row && <p>{row[2]}</p>}
+              </QuickRefCard>
+            );
+          })}
+        </div>
         <p className="mt-2"><Sources keys={['rules', 'act']} /></p>
       </div>
 
       {/* 1c. Grievance */}
-      <div>
+      <div id="dpdpa-grievance" className="scroll-mt-24">
         <BlockTitle>Grievance Redressal and Contact Point</BlockTitle>
         <dl className="mt-3 space-y-3 text-sm">
           {U.DPDPA_GRIEVANCE.map((g) => (
@@ -224,8 +236,8 @@ export function Nov2026Questions() {
     <section id="interview-nov2026" className={CARD}>
       <BlockTitle as="h2">Current topics: DPDPA, agentic AI, vendors and continuity</BlockTitle>
       <div className="mt-4 space-y-3">
-        {U.NOV2026_QUESTIONS.map((x) => (
-          <details key={x.q} className={`border ${LINE} rounded`}>
+        {U.NOV2026_QUESTIONS.map((x, i) => (
+          <details key={x.q} id={`iq-nov-${i}`} className={`border ${LINE} rounded scroll-mt-24`}>
             <summary className={`cursor-pointer p-3 text-sm font-semibold ${H}`}>{x.q}</summary>
             <div className="px-3 pb-3">
               <p className={`text-sm ${TXT}`}>{x.a}</p>

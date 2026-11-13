@@ -1,4 +1,5 @@
 import OnThisPage from '../components/OnThisPage.jsx';
+import { revealTarget } from '../components/SiteHelpers.jsx';
 import { DpdpaUpdates, AiPrivacyUpdates, AiAgentPersona, VendorUpdates, IrUpdates, CisoContinuity, Nov2026Questions } from '../components/updates/Nov2026Blocks.jsx';
 import { Link } from 'react-router-dom';
 import GlobeExplorer from '../components/GlobeExplorer.jsx';
@@ -598,21 +599,8 @@ export default function Home() {
       if (!id) return;
       let tries = 0;
       const attempt = () => {
-        const el = document.getElementById(`panel-${id}`) || document.getElementById(id);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          const start = performance.now();
-          const flash = (now) => {
-            const p = Math.min(1, (now - start) / 1500);
-            const a = 0.55 * (1 - p);
-            el.style.boxShadow = `0 0 0 3px rgba(99,102,241,${a.toFixed(3)}), 0 0 28px rgba(99,102,241,${(a * 0.4).toFixed(3)})`;
-            if (p < 1) requestAnimationFrame(flash);
-            else el.style.boxShadow = '';
-          };
-          requestAnimationFrame(flash);
-        } else if (tries++ < 15) {
-          setTimeout(attempt, 100);
-        }
+        if (revealTarget(id) || revealTarget(`panel-${id}`)) return;
+        if (tries++ < 15) setTimeout(attempt, 100);
       };
       attempt();
     };
@@ -631,6 +619,15 @@ export default function Home() {
           <p className="text-gray-600 dark:text-text-dark-secondary max-w-3xl">
             Centralized framework mapping, risk matrices, vendor governance, interview prep, and access controls - organized in discoverable modules.
           </p>
+          <p className="mt-2 text-sm text-gray-600 dark:text-text-dark-secondary">Press <kbd className="px-1 border border-gray-300 dark:border-slate-600 rounded">/</kbd> to search, or open the <Link to="/cheat-sheets" className="underline">Cheat Sheets</Link>.</p>
+          <div className="mt-4 border border-gray-200 dark:border-slate-700 rounded px-4 py-3 bg-white dark:bg-[#1e293b]" aria-label="What's new">
+            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-slate-400">What's new</p>
+            <ul className="mt-1 grid gap-1 md:grid-cols-3 text-sm">
+              <li><a href="#regional" onClick={(e) => { e.preventDefault(); setActiveTab('regional'); setTimeout(() => window.dispatchEvent(new CustomEvent('compliance:scroll-to-section', { detail: { id: 'dpdpa-updates' } })), 150); }} className="underline text-gray-900 dark:text-white">DPDPA phased rollout and core rules</a></li>
+              <li><Link to="/cheat-sheets" className="underline text-gray-900 dark:text-white">Cheat sheets: breach deadlines, DPO, retention</Link></li>
+              <li><a href="#ai-privacy" onClick={(e) => { e.preventDefault(); setActiveTab('ai-privacy'); setTimeout(() => window.dispatchEvent(new CustomEvent('compliance:scroll-to-section', { detail: { id: 'ai-updates' } })), 150); }} className="underline text-gray-900 dark:text-white">Agentic AI controls and AI pipeline privacy</a></li>
+            </ul>
+          </div>
         </div>
 
         <div className="lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-8">

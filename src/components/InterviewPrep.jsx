@@ -9,6 +9,23 @@ export default function InterviewPrep({ isDark = false }) {
   const [activeRole, setActiveRole] = useState('grc-analyst');
   const [expandedQ, setExpandedQ] = useState(null);
   const [expandedTip, setExpandedTip] = useState(null);
+  const [flash, setFlash] = useState(false);
+  const [card, setCard] = useState(0);
+  const [flipped, setFlipped] = useState(false);
+
+  // Search results deep-link to a question: id format iq--<roleId>--<index>.
+  useEffect(() => {
+    const open = (e) => {
+      const id = e?.detail?.id || '';
+      const m = /^iq--(.+)--(\d+)$/.exec(id);
+      if (!m) return;
+      setFlash(false); setActiveRole(m[1]); setExpandedQ(Number(m[2]));
+    };
+    window.addEventListener('compliance:scroll-to-section', open);
+    const m = /^#?iq--(.+)--(\d+)$/.exec(decodeURIComponent(window.location.hash || ''));
+    if (m) { setActiveRole(m[1]); setExpandedQ(Number(m[2])); }
+    return () => window.removeEventListener('compliance:scroll-to-section', open);
+  }, []);
 
   // Data is bundled with the app. The old fetch('interview-roles.json') used a relative URL that
   // resolved to index.html on Netlify, so the section never loaded.
@@ -123,12 +140,36 @@ export default function InterviewPrep({ isDark = false }) {
           })}
         </div>
 
+        <div className="max-w-3xl mx-auto mb-4 flex justify-end">
+          <button type="button" aria-pressed={flash} onClick={() => { setFlash(!flash); setCard(0); setFlipped(false); }}
+            className="px-3 py-1.5 rounded border border-gray-300 dark:border-slate-600 text-sm font-semibold text-gray-900 dark:text-white">
+            {flash ? 'Show list' : 'Flashcard mode'}
+          </button>
+        </div>
+
+        {flash && role?.questions?.length > 0 && (() => {
+          const q = role.questions[Math.min(card, role.questions.length - 1)];
+          return (
+            <div className="max-w-3xl mx-auto grc-card p-6" aria-live="polite">
+              <p className="text-xs text-gray-500 dark:text-slate-400">Card {card + 1} of {role.questions.length}</p>
+              <h3 className="grc-card-title font-semibold text-lg mt-2">{q.q}</h3>
+              {flipped && <p className="mt-4 whitespace-pre-wrap text-navy-700 dark:text-text-dark-secondary">{q.a}</p>}
+              <div className="mt-5 flex flex-wrap gap-2">
+                <button type="button" onClick={() => setFlipped(!flipped)} className="px-3 py-1.5 rounded bg-[#344c67] text-white text-sm font-semibold">{flipped ? 'Hide answer' : 'Flip to answer'}</button>
+                <button type="button" disabled={card === 0} onClick={() => { setCard(card - 1); setFlipped(false); }} className="px-3 py-1.5 rounded border border-gray-300 dark:border-slate-600 text-sm disabled:opacity-40">Previous</button>
+                <button type="button" disabled={card >= role.questions.length - 1} onClick={() => { setCard(card + 1); setFlipped(false); }} className="px-3 py-1.5 rounded border border-gray-300 dark:border-slate-600 text-sm disabled:opacity-40">Next</button>
+              </div>
+            </div>
+          );
+        })()}
+
         {/* Questions */}
-        <div className="space-y-6 max-w-3xl mx-auto" role="tabpanel" aria-labelledby={`tab-${activeRole}`}>
+        {!flash && <div className="space-y-6 max-w-3xl mx-auto" role="tabpanel" aria-labelledby={`tab-${activeRole}`}>
           {role?.questions?.map((q, i) => (
             <div
               key={q.id || i}
-              className="grc-card"
+              id={`iq--${activeRole}--${i}`}
+              className="grc-card scroll-mt-24"
             >
               <button
                 onClick={() => setExpandedQ(expandedQ === i ? null : i)}
@@ -227,7 +268,7 @@ export default function InterviewPrep({ isDark = false }) {
               )}
             </div>
           ))}
-        </div>
+        </div>}
       </div>
     </div>
   );

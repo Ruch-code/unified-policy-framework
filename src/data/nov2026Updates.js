@@ -203,3 +203,31 @@ export const NOV2026_QUESTIONS = [
   { q: 'Security architect versus security engineer: how do scope and access differ?', a: 'The architect works across systems: setting patterns, reviewing designs and deciding trade-offs, usually with read access and design authority rather than standing production rights. The engineer builds and runs controls within systems: deploying tools, writing detections, fixing findings, often with just-in-time privileged access. Both should follow least privilege, and their access should be reviewed against these different needs.', section: 'Persona and Access Governance' },
   { q: 'How would you keep a security programme running if the CISO left suddenly?', a: 'Situation: the CISO leaves with audits and filings pending. Task: keep governance and obligations on track. Action: confirm the named interim or vCISO, check that the risk register and exception log live in a governed system, brief the board through someone already known to it, and list regulatory deadlines such as annual filings. Result: no missed obligations, and a documented handover that reduces key-person risk next time.', section: 'Security programme continuity (Risk Assessment and Treatment)' },
 ];
+
+// Quick-reference cards for the core DPDPA rules (same facts as DPDPA_CORE_RULES, fixed card layout).
+export const DPDPA_RULE_CARDS = [
+  { id: 'dpdpa-rule-6', rule: 'Rule 6', section: 's.8(5)', title: 'Reasonable security safeguards', what: 'Protect personal data with appropriate technical and organisational measures.',
+    facts: ['Applies from 13 May 2027 to every Data Fiduciary', 'Encryption, masking, obfuscation or tokenisation; access control; access logging and monitoring', 'Logs and relevant personal data kept at least 1 year', 'Security obligations written into Data Processor contracts', 'Regulator: Data Protection Board of India'],
+    evidence: 'Encryption standard, access reviews, log retention configuration, backup tests, processor contract clauses.',
+    maps: { 'ISO 27001': ['A.8.24', 'A.5.15', 'A.8.15', 'A.8.16', 'A.8.13', 'A.5.20'], 'SOC 2': ['CC6.1', 'CC7.2', 'A1.2'], GDPR: ['Art. 28', 'Art. 32'] } },
+  { id: 'dpdpa-rule-7', rule: 'Rule 7', section: 's.8(6)', title: 'Personal data breach intimation', what: 'Tell affected people and the Board about every personal data breach.',
+    facts: ['Applies from 13 May 2027 to every Data Fiduciary', 'No risk threshold: every personal data breach is reported', 'Without delay: each affected Data Principal and an initial intimation to the Board', 'Within 72 hours of becoming aware: detailed report to the Board (extendable on request)', 'Regulator: Data Protection Board of India'],
+    evidence: 'Incident response plan, breach register, notification templates, evidence of the 72-hour clock.',
+    maps: { 'ISO 27001': ['A.5.24', 'A.5.25', 'A.5.26', 'A.5.27', 'A.5.28', 'A.6.8'], 'SOC 2': ['CC7.3', 'CC7.4', 'CC7.5'], GDPR: ['Art. 33', 'Art. 34'] } },
+  { id: 'dpdpa-rule-8', rule: 'Rule 8', section: 's.8(7), 8(8)', title: 'Erasure and retention', what: 'Erase personal data once the purpose is no longer served.',
+    facts: ['Applies from 13 May 2027', 'Third Schedule classes (large e-commerce, online gaming, social media intermediaries): erase after the inactivity period', 'Notify the Data Principal at least 48 hours before erasure', 'Keep processing logs at least 1 year'],
+    evidence: 'Retention schedule, deletion jobs, 48-hour notice template, deletion logs.',
+    maps: { 'ISO 27001': ['A.8.10', 'A.5.33'], 'SOC 2': ['CC6.5', 'P4.2'], GDPR: ['Art. 5(1)(e)', 'Art. 17'] } },
+  { id: 'dpdpa-rule-9', rule: 'Rule 9', section: 's.8(9)', title: 'Contact details for questions', what: 'Publish who Data Principals can contact about processing.',
+    facts: ['Applies from 13 May 2027 to every Data Fiduciary', 'DPO (if any) or a contact person, shown prominently on the website or app', 'Included in every response to a Data Principal'],
+    evidence: 'Privacy notice, response templates.',
+    maps: { 'ISO 27001': ['A.5.34'], 'SOC 2': ['P1.1'], GDPR: ['Art. 13(1)(b)'] } },
+  { id: 'dpdpa-rule-14', rule: 'Rule 14', section: 's.11 to 13', title: 'Data Principal rights and grievances', what: 'Make rights easy to exercise and resolve grievances on time.',
+    facts: ['Applies from 13 May 2027', 'Publish how to request access, correction, erasure, grievance and nomination', 'Respond to grievances within 90 days at most', 'Data Principals must use your grievance route before going to the Board'],
+    evidence: 'Rights request tracker with an SLA clock.',
+    maps: { 'ISO 27001': ['A.5.34'], 'SOC 2': ['P5.1', 'P8.1'], GDPR: ['Art. 12 to 22'] } },
+  { id: 'dpdpa-rule-13', rule: 'Rule 13', section: 's.10', title: 'Significant Data Fiduciary obligations', what: 'Extra duties for fiduciaries the Government notifies as significant.',
+    facts: ['Applies from 13 May 2027, only to notified SDFs', 'Annual DPIA and audit, with significant observations reported to the Board', 'Due diligence on algorithmic software', 'Data localisation measures where notified'],
+    evidence: 'DPIA report, independent audit report, algorithm due diligence records.',
+    maps: { 'ISO 27001': ['Clause 9.2', 'A.5.35'], 'SOC 2': ['CC4.1'], GDPR: ['Art. 35'] } },
+];
