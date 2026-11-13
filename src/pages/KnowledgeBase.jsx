@@ -5,7 +5,7 @@ import AuditEvidenceChecklist from '../components/AuditEvidenceChecklist.jsx';
 import IsoImplementationTracker from '../components/IsoImplementationTracker.jsx';
 import { AuditorRequestList, TabletopExercise } from '../components/AuditInPractice.jsx';
 import {
-  BookOpenCheck, SearchCheck, FileSignature, Radar, MessageSquareText,
+  BookOpenCheck, SearchCheck, FileSignature, Radar,
   CheckCircle, Copy, Check, ScrollText, ShieldAlert, Clock, CalendarDays, FileText, Timer,
   Shield, ShieldCheck, GitBranch, GitPullRequest, Package, Smartphone, HardDrive, Cloud, Globe, Network, Users, Layers, Zap, Cpu, Key,
 } from 'lucide-react';
@@ -18,7 +18,6 @@ import {
   thirdPartyTools, roadmaps, pushbacks, frameworkMapping, sizeProfiles,
   LICENSING_NOTE,
 } from '../data/edp.ts';
-import GrcAssistant from '../components/GrcAssistant.jsx';
 import EdpTab from '../components/EdpTab.jsx';
 import SecretsScanningTab from '../components/SecretsScanningTab.jsx';
 import AuditObservations from '../components/AuditObservations.jsx';
@@ -52,7 +51,6 @@ const TABS = [
   { id: 'audit', label: 'Audit & Rebuttals', icon: ShieldAlert, group: 'Start here', desc: 'Common audit observations for the selected framework and how to respond.' },
   { id: 'evidence-checklist', label: 'Audit Evidence Checklist', icon: ShieldAlert, group: 'Start here', desc: 'What auditors ask for under SOC 2, ISO 27001, HIPAA and GDPR, plus a typical readiness plan and roles.' },
   { id: 'gaps', label: 'Common Gaps (ITGC)', icon: ShieldAlert, group: 'Start here', desc: 'Typical startup gaps by ITGC domain, the pushback, compensating controls and a worked audit example.' },
-  { id: 'assistant', label: 'GRC Assistant', icon: MessageSquareText, group: 'Start here', desc: 'Ask a question and get an answer grounded in this site.' },
   { id: 'auditor-requests', label: 'Auditor Request List', icon: ShieldAlert, group: 'Audit in practice', desc: 'What a SOC 2 Type 2 auditor asks for, how to respond to each request with an example, and the follow-ups to expect.' },
   { id: 'tabletop', label: 'Tabletop Exercise (IR and DR)', icon: ShieldAlert, group: 'Audit in practice', desc: 'A template for a combined incident response and disaster recovery tabletop, with a worked scenario, model responses and findings.' },
   { id: 'radar', label: 'Discrepancy Radar', icon: Radar, group: 'Frameworks', desc: 'Where frameworks disagree, and how to reconcile them.' },
@@ -70,7 +68,7 @@ const TABS = [
   { id: 'tooling', label: 'GRC Tooling', icon: Package, group: 'Evidence and tooling', desc: 'GRC tools by category, what evidence they produce and what to watch for.' },
 ];
 const TAB_GROUPS = [...new Set(TABS.map((t) => t.group))];
-const FW_TABS = ['policies', 'audit', 'assistant'];
+const FW_TABS = ['policies', 'audit'];
 
 
 function useCopy() {
@@ -139,6 +137,9 @@ export default function KnowledgeBase() {
       setTab('gaps');
     } else if (t === 'audit-observations') {
       setTab('audit');
+    } else if (t === 'assistant') {
+      // Old links: the assistant now lives only in the site-wide chatbot.
+      setTab(TABS.find((x) => x.group === 'Start here').id);
     } else if (p && FRAMEWORK_KB[p]) {
       setFw(p);
     }
@@ -317,11 +318,6 @@ export default function KnowledgeBase() {
         </div>
       </div>
     ),
-    assistant: (
-      <div className="bg-white border border-gray-200 rounded-2xl p-4">
-        <GrcAssistant />
-      </div>
-    ),
     edp: <EdpTab />,
     secrets: <SecretsScanningTab />,
     change: <ChangeManagementTab onOpenTab={setTab} />,
@@ -346,7 +342,7 @@ export default function KnowledgeBase() {
         <h1 className="text-3xl font-extrabold text-gray-900">GRC Knowledge Base</h1>
         <p className="text-gray-600 mt-2 max-w-3xl">
           Map policies to frameworks to controls, see common audit observations and how to push back, generate vendor
-          contract clauses, reconcile cross-framework conflicts - and ask the assistant any question.
+          contract clauses, reconcile cross-framework conflicts. Questions go to the chatbot at the bottom right.
         </p>
       </div>
 
@@ -418,14 +414,14 @@ export default function KnowledgeBase() {
           )}
 
       {/* Framework description context under Audit/Assistant */}
-      {(tab === 'audit' || tab === 'assistant') && fwObj && (
+      {tab === 'audit' && fwObj && (
         <div className="mb-4 text-xs text-gray-500">
           Viewing <span className="font-semibold" style={{ color: fwObj.color }}>{fwObj.name}</span> - {fwObj.desc}
         </div>
       )}
 
           <OnThisPage containerRef={kbContentRef} watch={tab} />
-          <div ref={kbContentRef}>{tabContent[tab]}</div>
+          <div ref={kbContentRef}>{tabContent[tab] ?? tabContent[TABS[0].id]}</div>
         </div>
       </div>
     </div>
