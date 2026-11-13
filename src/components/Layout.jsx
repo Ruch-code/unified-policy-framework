@@ -556,6 +556,13 @@ export default function Layout() {
                     Cheat Sheets
                   </Link>
                   <Link
+                    to="/unified-framework"
+                    onClick={() => { setMobileMenuOpen(false); setGrcKbOpen(false); }}
+                    className="block px-3 py-2.5 text-sm text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-800/50 rounded-lg transition-colors"
+                  >
+                    Unified Control Framework
+                  </Link>
+                  <Link
                     to="/knowledge"
                     onClick={() => { setMobileMenuOpen(false); setGrcKbOpen(false); }}
                     className="block px-3 py-2.5 text-sm text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-800/50 rounded-lg transition-colors"
@@ -679,6 +686,7 @@ export default function Layout() {
           <VisitorCounter />
           <nav aria-label="Legal" className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs">
             <Link to="/cheat-sheets" className="underline text-gray-300 hover:text-white">Cheat Sheets</Link>
+            <Link to="/unified-framework" className="underline text-gray-300 hover:text-white">Unified Control Framework</Link>
             <Link to="/grc-maturity" className="underline text-gray-300 hover:text-white">GRC Maturity Model</Link>
             <Link to="/terms" className="underline text-gray-300 hover:text-white">Terms of Use</Link>
             <Link to="/privacy" className="underline text-gray-300 hover:text-white">Privacy Policy</Link>
