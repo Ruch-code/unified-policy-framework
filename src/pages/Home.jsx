@@ -4,6 +4,7 @@ import RegionControlMap from '../components/RegionControlMap.jsx';
 import CertAdvisor from '../components/CertAdvisor.jsx';
 import ErrorBoundary from '../components/ErrorBoundary.jsx';
 import AIPrivacyRisks from '../components/AIPrivacyRisks.jsx';
+import AiRiskRegister from '../components/AiRiskRegister.jsx';
 import RiskAssessmentModule from '../components/riskAssessment/RiskAssessmentModule.jsx';
 import { WHAT_CAN_GO_WRONG as RISK_WHAT_CAN_GO_WRONG } from '../data/riskAssessment/methodology';
 import VendorRiskManagement from '../components/VendorRiskManagement.jsx';
@@ -411,6 +412,7 @@ function TabPanel({ isDark, activeTab }) {
           showLoginPrompt={false}
         >
           <AIPrivacyRisks isDark={isDark} />
+          <AiRiskRegister />
         </LockedSection>
       )}
 
