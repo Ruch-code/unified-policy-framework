@@ -186,7 +186,7 @@ export const FRAMEWORK_TIMELINE = {
   fedramp: 'fedramp',
   'nist-800-171-cmmc': 'cmmc',
   gdpr: 'privacy', 'uk-gdpr': 'privacy', 'ccpa-cpra': 'privacy', lgpd: 'privacy', pdpa: 'privacy', pipl: 'privacy', dpdpa: 'privacy', coppa: 'privacy',
-  dora: 'regulatory', nis2: 'regulatory', rbi: 'regulatory', sebi: 'regulatory', cscrf: 'regulatory', 'cert-in': 'regulatory', 'eu-ai-act': 'regulatory',
+  dora: 'regulatory', nis2: 'regulatory', rbi: 'regulatory', sebi: 'regulatory', cscrf: 'regulatory', irdai: 'regulatory', 'cert-in': 'regulatory', 'eu-ai-act': 'regulatory',
   nist: 'assessment', cis: 'assessment', iso31000: 'assessment', 'iso-31000': 'assessment', 'iso-22317': 'assessment', 'iso-27090': 'assessment',
   aigp: 'exam', 'cippe-eu': 'exam', 'cippe-us': 'exam',
 };

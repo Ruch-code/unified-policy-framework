@@ -37,6 +37,7 @@ const STANDARDS = [
   { path: '/ccpa', label: 'CCPA' },
   { path: '/coppa', label: 'COPPA' },
   { path: '/dpdpa', label: 'DPDPA' },
+  { path: '/irdai', label: 'IRDAI' },
   { path: '/lgpd', label: 'LGPD' },
   { path: '/pdpa', label: 'PDPA' },
   { path: '/pipl', label: 'PIPL' },
@@ -128,9 +129,10 @@ const MEGA_MENU_REGIONS = [
     frameworks: [
       { path: '/dpdpa', label: 'DPDPA', desc: 'Digital Personal Data Protection Act, 2023' },
       { path: '/sebi', label: 'SEBI', desc: 'Securities and Exchange Board of India' },
-      { path: '/rbi', label: 'RBI', desc: 'Reserve Bank of India cyber and IT directions' },
+      { path: '/rbi', label: 'RBI', desc: 'RBI cyber framework and IT Governance Master Direction' },
       { path: '/cert-in', label: 'CERT-In', desc: 'Incident reporting directions' },
-      { path: '/cscrf', label: 'CSCRF', desc: 'Cyber Security and Cyber Resilience Framework' },
+      { path: '/cscrf', label: 'CSCRF', desc: 'SEBI Cybersecurity and Cyber Resilience Framework, with CERT-In directions' },
+      { path: '/irdai', label: 'IRDAI', desc: 'Insurance information and cyber security guidelines' },
     ],
   },
 ];
