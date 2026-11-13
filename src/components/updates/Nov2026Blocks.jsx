@@ -45,7 +45,7 @@ export function DpdpaUpdates() {
           </li>
         ))}
       </ol>
-      <p className={`text-xs ${TXT}`}>{U.DPDPA_PORTAL_NOTE.text}{U.DPDPA_PORTAL_NOTE.verify && <Pending />}</p>
+      <p className={`text-xs ${TXT}`}>{U.DPDPA_PORTAL_NOTE.text}{U.DPDPA_PORTAL_NOTE.verify && <Pending />} <Sources keys={U.DPDPA_PORTAL_NOTE.src} /></p>
 
       {/* 1b. Core rules */}
       <div>

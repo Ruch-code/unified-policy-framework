@@ -9,7 +9,9 @@ export const SRC = {
   act: { label: 'Digital Personal Data Protection Act, 2023 (MeitY)', url: 'https://www.meity.gov.in/' },
   rules: { label: 'DPDP Rules, 2025, Gazette G.S.R. 846(E) (MeitY)', url: 'https://www.meity.gov.in/' },
   board: { label: 'Board notification G.S.R. 844(E) (MeitY)', url: 'https://www.meity.gov.in/' },
-  pib: { label: 'Press Information Bureau', url: 'https://pib.gov.in/' },
+  pib: { label: 'PIB release, 17 Nov 2025', url: 'https://www.pib.gov.in/PressReleasePage.aspx?PRID=2190655' },
+  pibDoc: { label: 'PIB backgrounder: DPDP Rules, 2025 Notified', url: 'https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/nov/doc20251117695301.pdf' },
+  kerala: { label: 'India Data Law tracker (Kerala High Court, 7 Oct 2026)', url: 'https://indiadatalaw.org/is-the-board-operational/' },
   tsmcSec: { label: 'TSMC filings on SEC EDGAR (Form 6-K)', url: 'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001046179&type=6-K' },
   tsmcNews: { label: 'Cyber Security News, 13 Nov 2026', url: 'https://cybersecuritynews.com/tsmc-data-breach/' },
   m365a: { label: 'BleepingComputer', url: 'https://www.bleepingcomputer.com/news/microsoft/massive-microsoft-365-outage-disrupts-outlook-teams-copilot-worldwide/' },
@@ -24,10 +26,10 @@ export const DPDPA_PHASES = [
   {
     date: '13 Nov 2025', target: '2025-11-13', phase: 'Phase 1', status: 'In force',
     points: [
-      { text: 'DPDP Rules, 2025 notified in the Gazette as G.S.R. 846(E).', src: ['rules'], note: 'PIB summaries give 14 Nov 2025; the Gazette date is used here. Law firm commentary also differs by one day on the later phase dates, so confirm exact dates against the Gazette.' },
+      { text: 'DPDP Rules, 2025 notified in the Gazette as G.S.R. 846(E).', src: ['rules'], note: 'The Gazette notification G.S.R. 846(E) is dated 13 Nov 2025. The PIB release of 17 Nov 2025 says the Rules were notified on 14 Nov 2025, and some law firms count the later phases from 14 Nov. The Gazette date is used here.' },
       { text: 'Rules 1, 2 and 17 to 21 apply immediately.', src: ['rules'] },
       { text: 'The Data Protection Board of India is established under Section 18 by G.S.R. 844(E), with its head office in the National Capital Region.', src: ['board', 'act'] },
-      { text: 'The Rules set up a digital-first Board with four members, online complaints, and appeals to the Appellate Tribunal (TDSAT).', src: ['rules', 'act'] },
+      { text: 'The Rules set up a fully digital Board with four members, online complaints through a portal and app, and appeals to the Appellate Tribunal (TDSAT).', src: ['rules', 'pib'] },
       { text: 'The SPDI Rules 2011 and Section 43A of the IT Act stay in force until 13 May 2027.', src: ['rules', 'pib'] },
     ],
   },
@@ -36,7 +38,7 @@ export const DPDPA_PHASES = [
     points: [
       { text: 'Rule 4 applies: registration and obligations of Consent Managers, with Section 6(9) and Section 27(1)(d).', src: ['rules', 'act'] },
       { text: 'Consent Managers are interoperable consent platforms registered with the Board.', src: ['rules'] },
-      { text: 'Eligibility under the First Schedule, as reported by secondary sources: a company incorporated in India, net worth of at least two crore rupees, and consent records kept for at least seven years.', src: ['rules'], verify: true },
+      { text: 'Eligibility under the First Schedule: a company incorporated in India with a net worth of at least two crore rupees, a platform certified against standards the Board publishes, and consent records kept for at least seven years.', src: ['rules', 'pib'] },
     ],
   },
   {
@@ -49,7 +51,7 @@ export const DPDPA_PHASES = [
   },
 ];
 export const DPDPA_COUNTDOWN_TARGET = '2027-05-13T00:00:00+05:30';
-export const DPDPA_PORTAL_NOTE = { text: 'Board portal: dpbi.gov.in reported live in November 2026; some sources cite dpdpa-grievance.gov.in. The confirmed address will be linked once MeitY or PIB confirms it.', verify: true };
+export const DPDPA_PORTAL_NOTE = { text: 'Board portal: the Rules say the Board will publish particulars on its website, and PIB says complaints will go through a dedicated portal and app. No official address has been confirmed by MeitY or PIB; dpbi.gov.in and dpdpa-grievance.gov.in are unconfirmed. In October 2026 the Government told the Kerala High Court the Board was not yet functional.', verify: true, src: ['pib', 'kerala'] };
 
 // 1b. Core Data Fiduciary rules: [rule, section, obligation, evidence, mapping]
 export const DPDPA_CORE_RULES = [
@@ -186,7 +188,7 @@ export const CISO_CONTINUITY = {
     'Make sure someone besides the CISO has briefed the board in the last 12 months.',
     'Name an interim CISO or vCISO in advance.',
   ],
-  regulatory: { text: 'Example: the NYDFS 23 NYCRR Part 500 annual compliance filing is still due during a leadership change. NYDFS lists 15 April as the annual deadline.', verify: true, src: ['nydfs'] },
+  regulatory: { text: 'Example: the NYDFS 23 NYCRR Part 500 annual certification of compliance, or acknowledgment of noncompliance, is still due by 15 April each year (covering the previous calendar year) during a leadership change.', src: ['nydfs'] },
 };
 
 // 7. Interview questions: { q, a, section }
