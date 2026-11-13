@@ -1,8 +1,15 @@
 import { FRAMEWORKS } from './registry.js';
 import { VISIBLE_DOMAINS, CONTROLS, FRAMEWORK_ORDER } from './controlDomains.js';
 import { GENERIC_ASSESSMENT, PRIVACY_ASSESSMENT_EXTRA } from './assessments.js';
+import { ANNEX_A_CONTROLS } from './iso27001AnnexA.js';
+import { TSC_SERIES } from './tscCriteria.js';
+import { DPDPA_RULE_CARDS, NOV2026_QUESTIONS } from './nov2026Updates.js';
+import { CHEAT_SHEETS } from './cheatSheets.js';
+import interviewData from './interview-roles.json';
 
 export const SEARCH_CATEGORIES = [
+  'Rules',
+  'Controls',
   'Frameworks & Standards',
   'Policy & Control Modules',
   'Persona Requirements',
@@ -10,6 +17,10 @@ export const SEARCH_CATEGORIES = [
 ];
 
 export const SUGGESTIONS = [
+  'Rule 7',
+  'DPO',
+  'A.8.15',
+  'Breach notice',
   'Passwords',
   'Contractors',
   'Azure',
@@ -91,6 +102,15 @@ const ALIASES = {
   retention: ['retention', 'log retention', 'hot', 'warm', 'cold', '181 days', '180 days', 'cert-in'],
   byod: ['byod', 'bring your own device', 'mdm', 'mam', 'device compliance'],
   hybrid: ['hybrid', 'remote', 'on-the-go', 'workforce', 'field', 'on site'],
+  dpdp: ['dpdp', 'dpdpa', 'india privacy law', 'digital personal data protection'],
+  dpdpa: ['dpdp', 'dpdpa', 'india privacy law', 'digital personal data protection'],
+  'india privacy law': ['dpdp', 'dpdpa', 'digital personal data protection'],
+  'india privacy': ['dpdp', 'dpdpa', 'digital personal data protection'],
+  'breach notice': ['breach notification', 'breach intimation', 'rule 7', 'art. 33', 'breach notification rule', '72 hours'],
+  'breach notification': ['breach notification', 'breach intimation', 'rule 7', 'art. 33', 'breach notification rule', '72 hours'],
+  dpo: ['dpo', 'data protection officer', 'grievance', 'privacy officer', 'contact person', 'encarregado'],
+  'data protection officer': ['dpo', 'data protection officer', 'grievance', 'privacy officer'],
+  'cheat sheet': ['cheat sheet', 'cheat sheets', 'one-page table'],
 };
 
 // ---------- hard-coded result boosts for the most common queries ----------
@@ -977,8 +997,55 @@ const TAXONOMY_ENTRIES = VISIBLE_DOMAINS.map((d) => {
   };
 });
 
+
+// ---------- control, rule, interview and cheat sheet entries ----------
+const CONTROL_ENTRIES = [
+  ...ANNEX_A_CONTROLS.map((c) => ({
+    id: `ctl-iso-${c.id}`, category: 'Controls', label: `${c.id} ${c.title}`, desc: `ISO 27001:2022 Annex A, ${c.theme}. ${c.purpose || ''}`,
+    keywords: [c.id, c.id.replace(/^A\./, ''), 'annex a', 'iso 27001', c.title], path: '/knowledge?topic=iso-tracker', mode: 'route',
+  })),
+  ...TSC_SERIES.flatMap((ser) => (ser.criteria || []).map((cr) => ({
+    id: `ctl-tsc-${cr.ref}`, category: 'Controls', label: `${cr.ref} ${cr.title}`, desc: `SOC 2 Trust Services Criteria, ${ser.ref} series.`,
+    keywords: [cr.ref, cr.ref.toLowerCase(), 'soc 2', 'tsc', ser.ref], path: '/soc2', mode: 'route',
+  }))),
+];
+
+const RULE_ENTRIES = [
+  ...DPDPA_RULE_CARDS.map((c) => ({
+    id: `rule-${c.id}`, category: 'Rules', label: `DPDPA ${c.rule}: ${c.title}`, desc: `${c.what} ${c.facts.join('. ')}`,
+    keywords: [c.rule, c.rule.toLowerCase(), 'dpdpa', 'dpdp', c.section, ...c.facts], path: '/', mode: 'hash', anchorId: c.id, tab: 'regional',
+  })),
+  { id: 'rule-gdpr-33', category: 'Rules', label: 'GDPR Art. 33 and 34: breach notification', desc: 'Supervisory authority within 72 hours unless the breach is unlikely to result in a risk; individuals without undue delay if high risk.', keywords: ['art. 33', 'art 33', 'article 33', 'art. 34', 'gdpr', 'breach notification', 'breach notice', '72 hours'], path: '/cheat-sheets#breach-deadlines', mode: 'route' },
+  { id: 'rule-hipaa-breach', category: 'Rules', label: 'HIPAA Breach Notification Rule', desc: 'Individuals within 60 days of discovery; HHS within 60 days for 500 or more; media for more than 500 in a state.', keywords: ['hipaa', 'breach notification rule', 'breach notice', 'breach notification', '60 days', 'hhs', '164.404'], path: '/cheat-sheets#breach-deadlines', mode: 'route' },
+  { id: 'rule-certin-6h', category: 'Rules', label: 'CERT-In Directions: 6-hour incident reporting', desc: 'Report listed cyber incidents to CERT-In within 6 hours; keep ICT logs 180 days in India.', keywords: ['cert-in', 'certin', '6 hours', 'incident reporting', 'breach notice', 'breach notification', '180 days'], path: '/cheat-sheets#breach-deadlines', mode: 'route' },
+  { id: 'rule-sec-8k', category: 'Rules', label: 'SEC Form 8-K Item 1.05: material cyber incidents', desc: 'Disclose within 4 business days of determining an incident is material.', keywords: ['sec', '8-k', 'item 1.05', 'material incident', 'breach notice', 'breach notification'], path: '/cheat-sheets#breach-deadlines', mode: 'route' },
+  { id: 'rule-nydfs-500-17', category: 'Rules', label: 'NYDFS 500.17: 72-hour notice and annual certification', desc: 'Notify within 72 hours of determining a cybersecurity incident; annual certification by 15 April.', keywords: ['nydfs', '500.17', 'part 500', '72 hours', 'breach notice', 'breach notification', 'april 15'], path: '/cheat-sheets#breach-deadlines', mode: 'route' },
+  { id: 'rule-dpo-dpdpa', category: 'Rules', label: 'DPDPA: who needs a DPO, and the grievance contact', desc: 'Only Significant Data Fiduciaries appoint a DPO; everyone else publishes a contact person and runs a grievance mechanism.', keywords: ['dpo', 'data protection officer', 'grievance', 's.10', 's.8(9)', 'dpdpa', 'contact person'], path: '/', mode: 'hash', anchorId: 'dpdpa-grievance', tab: 'regional' },
+  { id: 'rule-dpo-all', category: 'Rules', label: 'DPO and grievance requirements by law', desc: 'DPDPA, GDPR, HIPAA, CCPA and LGPD compared.', keywords: ['dpo', 'data protection officer', 'privacy officer', 'encarregado', 'article 37', 'art. 37', 'grievance'], path: '/cheat-sheets#dpo-requirements', mode: 'route' },
+];
+
+const INTERVIEW_ENTRIES = [
+  ...(interviewData.roles || []).flatMap((role) => (role.questions || []).map((q, i) => ({
+    id: `iq-${role.id}-${i}`, category: 'Interview Questions', label: q.q, desc: `${role.title}. ${String(q.a || '').slice(0, 160)}`,
+    keywords: [...(q.tags || []), role.title], bodyText: q.a, path: '/', mode: 'hash', anchorId: `iq--${role.id}--${i}`, tab: 'interview-prep',
+  }))),
+  ...NOV2026_QUESTIONS.map((q, i) => ({
+    id: `iq-nov-${i}`, category: 'Interview Questions', label: q.q, desc: q.a.slice(0, 160), keywords: [q.section], bodyText: q.a,
+    path: '/', mode: 'hash', anchorId: `iq-nov-${i}`, tab: 'interview-prep',
+  })),
+];
+
+const CHEAT_ENTRIES = CHEAT_SHEETS.map((c) => ({
+  id: `cs-${c.id}`, category: 'Cheat Sheets', label: `Cheat sheet: ${c.title}`, desc: c.intro, keywords: ['cheat sheet', ...c.columns, ...c.rows.map((r) => r[0])], bodyText: c.rows.map((r) => r.join(' ')).join(' '),
+  path: `/cheat-sheets#${c.id}`, mode: 'route',
+}));
+
 const SEARCH_ENTRIES = [
   ...TAXONOMY_ENTRIES,
+  ...RULE_ENTRIES,
+  ...CHEAT_ENTRIES,
+  ...CONTROL_ENTRIES,
+  ...INTERVIEW_ENTRIES,
   { id: 'kb-other-frameworks', category: 'GRC Knowledge Base', label: 'Other Frameworks: COSO, ISO 27002, ISAE 3402, CRBF, Solvency II', desc: 'Frameworks without their own playbook, what they require and how they connect to the playbooks on this site.', keywords: ['coso', 'iso 27002', '27002', 'isae 3402', 'isae', 'crbf', '97-02', 'arrete 2014', 'solvency', 'solvency ii', 'orsa', 'nist csf', 'hitrust'], path: '/knowledge?topic=other-frameworks', mode: 'route' },
   { id: 'kb-grc-tooling', category: 'GRC Knowledge Base', label: 'GRC Tooling: Hyperproof, Scrut, AuditBoard, Workiva, Veza, ServiceNow, Jira, Confluence, Kanban', desc: 'What each GRC tool is used for, the evidence it produces and what auditors check.', keywords: ['hyperproof', 'scrut', 'auditboard', 'workiva', 'veza', 'servicenow', 'jira', 'confluence', 'kanban', 'grc platform', 'tooling'], path: '/knowledge?topic=grc-tooling', mode: 'route' },
   { id: 'home-access-sod', category: 'Policy & Control Modules', label: 'Least Privilege, Application Access and Segregation of Duties', desc: 'Least privilege principles, which applications are in scope and what each needs, and strategies to prevent SoD conflicts.', keywords: ['least privilege', 'segregation of duties', 'sod', 'toxic combination', 'application access', 'access scoping', 'user access review', 'uar', 'jit', 'privileged access'], path: '/#access-governance', mode: 'route' },

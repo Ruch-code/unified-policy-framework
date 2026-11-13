@@ -728,3 +728,23 @@ html:not(.dark) body { background-color: #f4f2ed; }
   img, svg, video, iframe { max-width: 100%; }
   pre, code { white-space: pre-wrap; word-break: break-word; }
 }
+
+/* Deep-link target highlight (search results and shared links) */
+.target-flash { outline: 3px solid #557395; outline-offset: 4px; transition: outline-color 1.5s ease-out; }
+@media (prefers-reduced-motion: reduce) { .target-flash { transition: none; } }
+
+/* Print: cheat sheets print one sheet cleanly */
+@media print {
+  header, nav, footer, .no-print, [data-chat-widget] { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+  .cheat-sheet { border: 0 !important; box-shadow: none !important; page-break-after: always; }
+  body[data-print-sheet] .cheat-sheet { display: none !important; }
+  body[data-print-sheet="breach-deadlines"] #breach-deadlines,
+  body[data-print-sheet="dpdpa-rules"] #dpdpa-rules,
+  body[data-print-sheet="dpo-requirements"] #dpo-requirements,
+  body[data-print-sheet="retention"] #retention,
+  body[data-print-sheet="soc2-iso"] #soc2-iso { display: block !important; }
+  .overflow-x-auto { overflow: visible !important; }
+  table { min-width: 0 !important; width: 100% !important; font-size: 10pt; }
+  a { color: #000 !important; }
+}

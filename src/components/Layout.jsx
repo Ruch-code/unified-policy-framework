@@ -11,6 +11,7 @@ import ChatWidget from './ChatWidget.jsx';
 import DonateButton from './DonateButton.jsx';
 import LinkedInStory from './LinkedInStory.jsx';
 import SearchBar from './SearchBar.jsx';
+import SiteHelpers from './SiteHelpers.jsx';
 import ErrorBoundary from './ErrorBoundary.jsx';
 import { FEATURES } from '../config/features.js';
 
@@ -439,6 +440,7 @@ export default function Layout() {
 
           {/* Right: Utility Controls - non-shrinking */}
           <div className="flex items-center gap-2 shrink-0">
+            <Link to="/cheat-sheets" className="hidden md:inline-flex items-center h-9 px-3 rounded-lg border border-slate-200 dark:border-slate-700 text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Cheat Sheets</Link>
             {/* Theme Toggle - ALWAYS visible on header */}
             <button
               onClick={toggleDark}
@@ -546,6 +548,13 @@ export default function Layout() {
                   <BookOpenCheck className="w-4 h-4" /> GRC KB
                 </h3>
                 <div className="space-y-2">
+                  <Link
+                    to="/cheat-sheets"
+                    onClick={() => { setMobileMenuOpen(false); setGrcKbOpen(false); }}
+                    className="block px-3 py-2.5 text-sm text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-800/50 rounded-lg transition-colors"
+                  >
+                    Cheat Sheets
+                  </Link>
                   <Link
                     to="/knowledge"
                     onClick={() => { setMobileMenuOpen(false); setGrcKbOpen(false); }}
@@ -669,6 +678,7 @@ export default function Layout() {
           <DonateButton />
           <VisitorCounter />
           <nav aria-label="Legal" className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs">
+            <Link to="/cheat-sheets" className="underline text-gray-300 hover:text-white">Cheat Sheets</Link>
             <Link to="/grc-maturity" className="underline text-gray-300 hover:text-white">GRC Maturity Model</Link>
             <Link to="/terms" className="underline text-gray-300 hover:text-white">Terms of Use</Link>
             <Link to="/privacy" className="underline text-gray-300 hover:text-white">Privacy Policy</Link>
@@ -682,6 +692,7 @@ export default function Layout() {
 
       <NewsletterPopup open={newsletterOpen} onClose={() => setNewsletterOpen(false)} />
       {!user && <InspectorCursor />}
+      <SiteHelpers />
       {user && <ChatWidget />}
     </div>
   );

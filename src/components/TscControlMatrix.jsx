@@ -496,6 +496,8 @@ const SCOPE_META = {
   optional: { label: 'Category-specific', Icon: MinusCircle, cls: 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900/20 dark:text-amber-300 dark:border-amber-800' },
 };
 
+export { TSC_MATRIX };
+
 export default function TscControlMatrix() {
   const [scopeFilter, setScopeFilter] = useState('all');
 
