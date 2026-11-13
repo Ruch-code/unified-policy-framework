@@ -94,6 +94,8 @@ export const FileSpreadsheet = none;
 export const FileText = none;
 export const FileWarning = none;
 export const Filter = none;
+export const FunnelOutline = svg(<path d="M3 5h18l-7 8v6l-4-2v-4L3 5z" />);
+export const FunnelFilled = svg(<path d="M3 5h18l-7 8v6l-4-2v-4L3 5z" />, { filled: true });
 export const Fingerprint = none;
 export const FlaskConical = none;
 export const Folder = none;
