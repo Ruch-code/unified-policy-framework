@@ -1,5 +1,6 @@
 import { useState, useEffect, Fragment } from 'react';
 import RelatedTemplates from './templates/RelatedTemplates.jsx';
+import OnThisPage from './OnThisPage.jsx';
 import { taskNotes } from '../data/startupVariants.js';
 import { Link } from 'react-router-dom';
 import { Clock, RefreshCw, ArrowRight, BookOpen, ExternalLink, Lock, CheckCircle, ChevronDown, ChevronRight, Zap, Shield, Award, Target, TrendingUp, AlertTriangle, Lightbulb, ClipboardList, Info } from 'lucide-react';
@@ -374,6 +375,7 @@ function FrameworkBody({ framework, extraSections }) {
                 </div>
               </section>
             )}
+            <div className="mt-5 max-w-3xl"><OnThisPage scope="main" watch={framework.id} /></div>
           </div>
           <div className="flex flex-wrap gap-3">
             {framework.basePath && (

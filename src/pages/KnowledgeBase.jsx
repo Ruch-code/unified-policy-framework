@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import OnThisPage from '../components/OnThisPage.jsx';
 import {
   BookOpenCheck, SearchCheck, FileSignature, Radar, MessageSquareText,
   CheckCircle, Copy, Check, ScrollText, ShieldAlert, Clock, CalendarDays, FileText, Timer,
@@ -79,6 +80,7 @@ export default function KnowledgeBase() {
   const [fw, setFw] = useState('soc2');
   const [tab, setTab] = useState('policies');
   const [navFilter, setNavFilter] = useState('');
+  const kbContentRef = useRef(null);
   const activeTab = TABS.find((t) => t.id === tab) || TABS[0];
   const [edpTab, setEdpTab] = useState('overview');
   const { copied, copy } = useCopy();
@@ -403,7 +405,8 @@ export default function KnowledgeBase() {
         </div>
       )}
 
-          {tabContent[tab]}
+          <OnThisPage containerRef={kbContentRef} watch={tab} />
+          <div ref={kbContentRef}>{tabContent[tab]}</div>
         </div>
       </div>
     </div>

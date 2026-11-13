@@ -1,3 +1,4 @@
+import OnThisPage from '../components/OnThisPage.jsx';
 import { Link } from 'react-router-dom';
 import GlobeExplorer from '../components/GlobeExplorer.jsx';
 import RegionControlMap from '../components/RegionControlMap.jsx';
@@ -22,7 +23,7 @@ import ContactCenterThreatModel from '../components/ccThreat/ContactCenterThreat
 import CcDownloads from '../components/ccThreat/CcDownloads.jsx';
 import EngineeringPartnership, { EngPartnershipLink } from '../components/engineering/EngineeringPartnership.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Lock, AlertCircle, Shield, AlertTriangle, Building, Users, ShieldCheck, Globe, Lock as LockIcon, Briefcase, GraduationCap, MessageSquare, Star, ArrowRight, Key, Server, Database, ClipboardCheck, ChevronRight, Menu, X, FileText } from 'lucide-react';
 import Skeleton from '../components/ui/Skeleton.jsx';
 
@@ -81,6 +82,7 @@ function LockedSection({ title, description, children, icon: Icon, showLoginProm
 const TABS = [
   {
     id: 'regional',
+    group: 'Frameworks and regulation',
     label: 'Regional Frameworks',
     icon: Globe,
     description: 'By Region Framework Cards & Control Reuse Map - ISO 27001, GDPR, DPDPA, FedRAMP, CJIS, and 20+ regulations across 8 global regions',
@@ -94,6 +96,7 @@ const TABS = [
   },
   {
     id: 'ai-privacy',
+    group: 'Risk',
     label: 'AI Privacy Risk Matrix',
     icon: Shield,
     description: '12 critical privacy risks across Model Training, RAG Systems, AI Agents, and Industry Use Cases - mapped to GDPR, AI Act, HIPAA, CCPA with actionable controls',
@@ -107,6 +110,7 @@ const TABS = [
   },
   {
     id: 'risk-assessment',
+    group: 'Risk',
     label: 'Risk Assessment & Treatment',
     icon: AlertTriangle,
     description: 'End-to-end risk methodology, 5 x 5 scoring rubric, treatment and approval workflow, sample register, 100+ scenario library and risk to control to test to evidence traceability, mapped to SOC 2 CC3 and CC9, ISO 27001, ISO 42001, NIST, HIPAA, GDPR, DPDPA, EU AI Act, NIS2 and DORA.',
@@ -114,6 +118,7 @@ const TABS = [
   },
   {
     id: 'vendor-risk',
+    group: 'Third parties',
     label: 'Vendor Risk Management',
     icon: Users,
     description: 'Complete vendor risk lifecycle across 7 sectors, 13 jurisdictions, sub-processor governance, nth-party visibility, and 4-tier review frequency automation',
@@ -127,6 +132,7 @@ const TABS = [
   },
   {
     id: 'interview-prep',
+    group: 'Career',
     label: 'Interview Preparation Hub',
     icon: Briefcase,
     description: 'Role-specific interview questions with conversational answers for GRC, Privacy, Security, and Risk roles. Practice real interview scenarios with expert-level responses.',
@@ -140,6 +146,7 @@ const TABS = [
   },
   {
     id: 'password-policies',
+    group: 'Access',
     label: 'Password Policies & Auth',
     icon: Key,
     description: 'Entra ID (Azure AD) password policies, custom banned lists, passwordless options, and SSO/MFA alternatives (Okta, Ping, Auth0, AWS, Google, Keycloak, PAM) with framework-mapped best practices per use case.',
@@ -153,6 +160,7 @@ const TABS = [
   },
   {
     id: 'access-governance',
+    group: 'Access',
     label: 'Persona & Access Governance',
     icon: ClipboardCheck,
     description: 'FTE, Contractors, Interns, Production Access - pre-hire checks, provisioning, governance, offboarding, JIT controls, and User Access Review coverage/frequency mapped to SOC 2, ISO 27001, PCI, HIPAA, NIST, CIS, FedRAMP, GDPR, DPDPA, CJIS.',
@@ -165,6 +173,7 @@ const TABS = [
     ],
   },  {
     id: 'engineering-partnership',
+    group: 'Engineering',
     label: 'Engineering & Infrastructure Partnership',
     icon: Server,
     description: 'Turning risk into controls engineers can build and prove: control delivery cards, identity inventory, log event catalogue, change controls by type, CI/CD traceability, cloud and AI agent execution boundaries, and worked scenarios.',
@@ -177,6 +186,8 @@ const TABS = [
     ],
   },
 ];
+const HOME_GROUPS = ['Frameworks and regulation', 'Risk', 'Third parties', 'Access', 'Engineering', 'Career'];
+
 
 const REGIONS = [
   {
@@ -548,6 +559,7 @@ export default function Home() {
     return 'regional';
   });
   const [mobileTabsOpen, setMobileTabsOpen] = useState(false);
+  const panelRef = useRef(null);
 
   // Update URL hash when tab changes (for deep linking)
   useEffect(() => {
@@ -600,84 +612,46 @@ export default function Home() {
         {/* Page Header */}
         <div className="mb-8">
           <h1 className="text-3xl md:text-4xl font-extrabold text-navy-900 dark:text-text-dark-primary mb-3">
-            Unified Compliance & GRC Platform
+            OneLens: GRC Reference
           </h1>
           <p className="text-gray-600 dark:text-text-dark-secondary max-w-3xl">
             Centralized framework mapping, risk matrices, vendor governance, interview prep, and access controls - organized in discoverable modules.
           </p>
         </div>
 
-        {/* Tab Navigation */}
-        <div className="mb-6">
-          {/* Desktop Tabs */}
-          <div className="hidden lg:flex flex-wrap gap-2 mb-4" role="tablist" aria-label="GRC Modules">
-            {TABS.map((tab, index) => {
-              const Icon = tab.icon;
-              const isActive = activeTab === tab.id;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  role="tab"
-                  aria-selected={isActive}
-                  aria-controls={`panel-${tab.id}`}
-                  id={`tab-${tab.id}`}
-                  className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200
-                    ${isActive
-                      ? 'bg-indigo-600 text-white shadow-lg'
-                      : 'bg-surface-100 dark:bg-surface-dark-100 text-navy-700 dark:text-text-dark-secondary hover:bg-surface-200 dark:hover:bg-surface-dark-200'
-                    }`}
-                >
-                  <Icon className="w-4 h-4" />
-                  {tab.label}
-                </button>
-              );
-            })}
-          </div>
+        <div className="lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-8">
+          <nav aria-label="GRC modules" className="mb-5 lg:mb-0">
+            <label className="lg:hidden block text-xs font-semibold text-gray-600 dark:text-slate-300">Module
+              <select value={activeTab} onChange={(e) => setActiveTab(e.target.value)} className="mt-1 w-full px-3 py-2 border border-gray-300 dark:border-slate-700 rounded text-sm bg-white dark:bg-slate-900">
+                {HOME_GROUPS.map((g) => <optgroup key={g} label={g}>{TABS.filter((t) => t.group === g).map((t) => <option key={t.id} value={t.id}>{t.label}</option>)}</optgroup>)}
+              </select>
+            </label>
+            <div className="hidden lg:block sticky top-20" role="tablist" aria-orientation="vertical" aria-label="GRC modules">
+              {HOME_GROUPS.map((g) => (
+                <div key={g} className="mb-4">
+                  <p className="px-2 mb-1 text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-400">{g}</p>
+                  {TABS.filter((t) => t.group === g).map((t) => (
+                    <button key={t.id} type="button" role="tab" id={`tab-${t.id}`} aria-selected={activeTab === t.id} aria-controls={`panel-${t.id}`} onClick={() => setActiveTab(t.id)}
+                      className={`w-full text-left px-2 py-1.5 rounded text-sm ${activeTab === t.id ? 'bg-[#1e293b] text-white font-semibold' : 'text-gray-700 hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-slate-800'}`}>
+                      {t.label}
+                    </button>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </nav>
 
-          {/* Mobile Tab Selector */}
-          <div className="lg:hidden">
-            <button
-              onClick={() => setMobileTabsOpen(!mobileTabsOpen)}
-              className="w-full flex items-center justify-between px-4 py-3 rounded-xl bg-surface-100 dark:bg-surface-dark-100 border border-surface-300 dark:border-surface-dark-300 text-navy-900 dark:text-text-dark-primary font-medium"
-              aria-haspopup="listbox"
-              aria-expanded={mobileTabsOpen}
-            >
-              <span>{TABS.find(t => t.id === activeTab)?.label}</span>
-              <Menu className="w-5 h-5" />
-            </button>
-            {mobileTabsOpen && (
-              <div className="mt-2 rounded-xl bg-surface-100 dark:bg-surface-dark-100 border border-surface-300 dark:border-surface-dark-300 overflow-hidden duration-200" role="listbox">
-                {TABS.map(tab => (
-                  <button
-                    key={tab.id}
-                    onClick={() => { setActiveTab(tab.id); setMobileTabsOpen(false); }}
-                    role="option"
-                    aria-selected={activeTab === tab.id}
-                    className={`w-full flex items-center gap-3 px-4 py-3 text-left text-sm font-medium transition-colors
-                      ${activeTab === tab.id
-                        ? 'bg-indigo-600 text-white'
-                        : 'text-navy-700 dark:text-text-dark-secondary hover:bg-surface-200 dark:hover:bg-surface-dark-200'
-                      }`}
-                  >
-                    <tab.icon className="w-4 h-4 flex-shrink-0" />
-                    {tab.label}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* Tab Description */}
-          <div className="mb-4 p-4 rounded-xl bg-surface-100 dark:bg-surface-dark-100 border border-surface-300 dark:border-surface-dark-300">
-            <p className="text-sm text-gray-600 dark:text-text-dark-secondary">
-              {TABS.find(t => t.id === activeTab)?.description}
-            </p>
-          </div>
-        </div>
-
+          <div className="min-w-0" ref={panelRef}>
+            <div className="mb-4">
+              <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-400">{TABS.find((t) => t.id === activeTab)?.group}</p>
+              <h2 className="text-xl font-bold text-navy-900 dark:text-text-dark-primary">{TABS.find((t) => t.id === activeTab)?.label}</h2>
+              <p className="text-sm text-gray-600 dark:text-text-dark-secondary mt-1 max-w-3xl">{TABS.find((t) => t.id === activeTab)?.description}</p>
+            </div>
+            <OnThisPage containerRef={panelRef} watch={activeTab} />
         {/* Tab Panels */}
         <TabPanel isDark={isDark} activeTab={activeTab} />
+          </div>
+        </div>
       </div>
     </section>
   );
