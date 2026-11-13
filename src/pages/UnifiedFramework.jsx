@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { UCF_COLUMNS, UCF_CONTROLS, UCF_FRAMEWORKS, UCF_SLA_COLUMNS, UCF_SLAS, UCF_VERIFIED } from '../data/unifiedControls.js';
-import PreviewGrid from '../components/PreviewGrid.jsx';
+import UcfGrid from '../components/UcfGrid.jsx';
 import { buildStyledXlsx, toCsv } from '../utils/styledXlsx.js';
 
 const H = 'text-gray-900 dark:text-white';
@@ -12,6 +12,8 @@ const covered = (r) => UCF_FRAMEWORKS.filter((f) => r[f] !== 'Not mapped').lengt
 const MAP_COLUMNS = [...UCF_COLUMNS.slice(0, 8), 'Frameworks covered', ...UCF_COLUMNS.slice(8)];
 const MAP_ROWS = UCF_CONTROLS.map((r) => MAP_COLUMNS.map((k) => (k === 'Frameworks covered' ? `${covered(r)} of ${UCF_FRAMEWORKS.length}` : r[k])));
 const SLA_ROWS = UCF_SLAS;
+// The framework picker strip is switched off; all frameworks are shown and exported. Set to true to restore it.
+const SHOW_FRAMEWORK_PICKER = false;
 const WIDTH = {  'UCF ID': 10, Domain: 18, Control: 28, 'Control activity': 44, 'Reusable evidence': 40, 'Strictest SLA or timeline': 40, 'Frameworks covered': 12 };
 
 export default function UnifiedFramework() {
@@ -46,7 +48,7 @@ export default function UnifiedFramework() {
         <h1 className={`text-3xl font-serif font-bold ${H}`}>Unified Control Framework</h1>
         <p className={`mt-1 text-sm ${TXT} max-w-3xl`}>
           One control, one set of evidence, mapped across {UCF_FRAMEWORKS.join(', ')}. Collect the evidence once and reuse it for every framework in the row. SOC 2 evidence detail lives on the SOC 2 page.
-          The table below is a live preview of the export: the header is frozen and bold, every column can be filtered and sorted.
+          Use the funnel in a column header to filter, click a header to sort, and switch between the compact and detailed views. Exports always contain every framework column.
         </p>
         <p className="mt-1 text-[11px] text-gray-500 dark:text-slate-400">Last verified: {UCF_VERIFIED}. Mappings are indicative; check the official text and your audit scope before reusing evidence.</p>
       </header>
@@ -63,7 +65,7 @@ export default function UnifiedFramework() {
         </div>
       </div>
 
-      {tab === 'map' && (
+      {SHOW_FRAMEWORK_PICKER && tab === 'map' && (
         <fieldset className={`border ${LINE} rounded p-3`}>
           <legend className={`px-1 text-xs font-semibold ${H}`}>Frameworks shown (applies to preview and export)</legend>
           <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm">
@@ -74,12 +76,12 @@ export default function UnifiedFramework() {
         </fieldset>
       )}
 
-      {tab === 'map' && <PreviewGrid key="map" id="ucf-map" columns={MAP_COLUMNS} rows={MAP_ROWS} hidden={hidden} widths={WIDTH} />}
-      {tab === 'sla' && <PreviewGrid key="sla" id="ucf-sla" columns={UCF_SLA_COLUMNS} rows={SLA_ROWS} widths={WIDTH} />}
+      {tab === 'map' && <UcfGrid key="map" id="ucf-map" columns={MAP_COLUMNS} rows={MAP_ROWS} widths={WIDTH} frameworks={UCF_FRAMEWORKS} />}
+      {tab === 'sla' && <UcfGrid key="sla" id="ucf-sla" columns={UCF_SLA_COLUMNS} rows={SLA_ROWS} widths={WIDTH} />}
 
       <p className="text-xs text-gray-500 dark:text-slate-400">
         Excel export has three sheets (Control mapping, Framework SLAs, About), each with a bold frozen header row and filters switched on.
-        Framework columns you untick are left out of the export.
+        Exports always include every framework column and every row.
       </p>
     </div>
   );
