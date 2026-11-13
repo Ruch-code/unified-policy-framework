@@ -1,4 +1,5 @@
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
+import IndiaRegReference from "../../components/playbook/IndiaRegReference.jsx";
 
 const FRAMEWORK = {
     id: 'cscrf',
@@ -172,7 +173,12 @@ const FRAMEWORK = {
 };
 
 export default function Cscrf() {
-  return <LearningFrameworkPage framework={FRAMEWORK} />;
+  return (
+    <>
+      <LearningFrameworkPage framework={FRAMEWORK} />
+      <IndiaRegReference which="cscrf" />
+    </>
+  );
 }
 
 export { FRAMEWORK };
