@@ -1,7 +1,7 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 import { DISCLAIMER } from '../data/legal.js';
-import { Menu, X, Linkedin, User as UserIcon, ShieldCheck, LogOut, BookOpenCheck, Sun, Moon, Search, ChevronDown, Globe, Building2, Shield, Users, Briefcase, Key, ClipboardCheck, Sparkles, ExternalLink, Table2 } from 'lucide-react';
+import { Menu, X, Linkedin, User as UserIcon, ShieldCheck, LogOut, BookOpenCheck, Sun, Moon, Search, ChevronDown, Globe, Building2, Shield, Users, Briefcase, Key, ClipboardCheck, Sparkles, ExternalLink, Table2, LayersNav } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import VisitorCounter from './VisitorCounter.jsx';
 import NavHoverIcon from './NavHoverIcon.jsx';
@@ -441,9 +441,14 @@ export default function Layout() {
           {/* Right: Utility Controls - non-shrinking */}
           <div className="flex items-center gap-2 shrink-0">
             {user && (
+              <>
               <Link to="/cheat-sheets" aria-label="Cheat Sheets" title="Cheat Sheets" className="hidden sm:inline-flex items-center justify-center h-9 w-9 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">
                 <Table2 className="w-4 h-4" aria-hidden="true" />
               </Link>
+              <Link to="/unified-framework" aria-label="Unified Control Framework" title="Unified Control Framework" className="hidden sm:inline-flex items-center justify-center h-9 w-9 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">
+                <LayersNav className="w-4 h-4" aria-hidden="true" />
+              </Link>
+              </>
             )}
             {/* Theme Toggle - ALWAYS visible on header */}
             <button
@@ -561,6 +566,7 @@ export default function Layout() {
                     Cheat Sheets
                   </Link>
                   )}
+                  {user && (
                   <Link
                     to="/unified-framework"
                     onClick={() => { setMobileMenuOpen(false); setGrcKbOpen(false); }}
@@ -568,6 +574,7 @@ export default function Layout() {
                   >
                     Unified Control Framework
                   </Link>
+                  )}
                   <Link
                     to="/knowledge"
                     onClick={() => { setMobileMenuOpen(false); setGrcKbOpen(false); }}
@@ -691,7 +698,6 @@ export default function Layout() {
           <DonateButton />
           <VisitorCounter />
           <nav aria-label="Legal" className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs">
-            <Link to="/unified-framework" className="underline text-gray-300 hover:text-white">Unified Control Framework</Link>
             <Link to="/grc-maturity" className="underline text-gray-300 hover:text-white">GRC Maturity Model</Link>
             <Link to="/terms" className="underline text-gray-300 hover:text-white">Terms of Use</Link>
             <Link to="/privacy" className="underline text-gray-300 hover:text-white">Privacy Policy</Link>

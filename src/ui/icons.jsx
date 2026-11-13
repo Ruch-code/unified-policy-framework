@@ -116,6 +116,7 @@ export const Key = none;
 export const KeyRound = none;
 export const Landmark = none;
 export const Layers = none;
+export const LayersNav = svg(<><path d="M12 3l9 5-9 5-9-5 9-5z" /><path d="M3 13l9 5 9-5" /></>);
 export const Layout = none;
 export const Library = none;
 export const Lightbulb = none;

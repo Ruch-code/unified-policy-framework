@@ -105,7 +105,7 @@ function App() {
           <Route path="knowledge" element={<RequireAuth><KnowledgeBase /></RequireAuth>} />
           <Route path="grc-maturity" element={<GrcMaturity />} />
           <Route path="cheat-sheets" element={<Protected><CheatSheets /></Protected>} />
-          <Route path="unified-framework" element={<UnifiedFramework />} />
+          <Route path="unified-framework" element={<Protected><UnifiedFramework /></Protected>} />
           <Route path="terms" element={<TermsPage />} />
           <Route path="cookies" element={<CookiePage />} />
           <Route path="licenses" element={<LicensesPage />} />
