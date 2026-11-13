@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
+import ControlMappingCard from '../components/ControlMappingCard.jsx';
 import OnThisPage from '../components/OnThisPage.jsx';
 import AuditEvidenceChecklist from '../components/AuditEvidenceChecklist.jsx';
 import IsoImplementationTracker from '../components/IsoImplementationTracker.jsx';
@@ -10,7 +11,7 @@ import {
   Shield, ShieldCheck, GitBranch, GitPullRequest, Package, Smartphone, HardDrive, Cloud, Globe, Network, Users, Layers, Zap, Cpu, Key,
 } from 'lucide-react';
 import {
-  FRAMEWORK_KB, UNIFIED_POLICY_MAP, DISCREPANCY_MATRIX,
+  FRAMEWORK_KB, DISCREPANCY_MATRIX,
   GRC_RESPONSE_PLAYBOOK,
 } from '../data/grcKnowledgeBase.js';
 import {
@@ -154,23 +155,7 @@ export default function KnowledgeBase() {
           <h4 className="flex items-center gap-2 font-bold text-indigo-900 text-sm dark:text-indigo-300">
             <SearchCheck className="w-4 h-4" /> How this policy area maps across frameworks
           </h4>
-          <div className="mt-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-            <p className="text-sm text-gray-700 dark:text-slate-300 min-w-0 break-words">Cross-framework control mapping (SOC 2, ISO 27001, PCI DSS, HIPAA, NIST CSF, CIS, GDPR, DPDPA, FedRAMP, CJIS, ISO 42001)</p>
-            <a href="/OneLens_Control_Mapping.xlsx" download className="shrink-0 self-start sm:self-auto inline-flex items-center justify-center px-3 py-1.5 rounded-lg border border-indigo-300 bg-white text-sm font-semibold text-indigo-800 dark:bg-slate-900 dark:border-indigo-700 dark:text-indigo-200">Download Excel</a>
-          </div>
-          <details className="mt-3">
-            <summary className="cursor-pointer text-sm font-medium text-indigo-800 dark:text-indigo-300">View mapping inline</summary>
-          <div className="mt-3 space-y-4 break-words">
-            {UNIFIED_POLICY_MAP.map(a => (
-              <div key={a.area} className="space-y-1">
-                <span className="block font-bold text-blue-600 dark:text-blue-400">{a.area}</span>
-                <span className="block text-sm text-gray-600 dark:text-slate-400">
-                  {Object.entries(a.map).map(([k, v]) => `${k} (${v})`).join(' · ')}
-                </span>
-              </div>
-            ))}
-          </div>
-          </details>
+          <ControlMappingCard />
         </div>
         {fwObj.timeline && (
           <div className="bg-white border border-gray-200 rounded-2xl p-4 dark:bg-[#1e293b] dark:border-[#334155]">
