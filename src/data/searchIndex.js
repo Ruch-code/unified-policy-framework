@@ -5,6 +5,7 @@ import { ANNEX_A_CONTROLS } from './iso27001AnnexA.js';
 import { TSC_SERIES } from './tscCriteria.js';
 import { DPDPA_RULE_CARDS, NOV2026_QUESTIONS } from './nov2026Updates.js';
 import { CHEAT_SHEETS } from './cheatSheets.js';
+import { UCF_CONTROLS } from './unifiedControls.js';
 import interviewData from './interview-roles.json';
 
 export const SEARCH_CATEGORIES = [
@@ -111,6 +112,7 @@ const ALIASES = {
   dpo: ['dpo', 'data protection officer', 'grievance', 'privacy officer', 'contact person', 'encarregado'],
   'data protection officer': ['dpo', 'data protection officer', 'grievance', 'privacy officer'],
   'cheat sheet': ['cheat sheet', 'cheat sheets', 'one-page table'],
+  crosswalk: ['crosswalk', 'mapping', 'unified control framework', 'common controls'],
 };
 
 // ---------- hard-coded result boosts for the most common queries ----------
@@ -1040,10 +1042,17 @@ const CHEAT_ENTRIES = CHEAT_SHEETS.map((c) => ({
   path: `/cheat-sheets#${c.id}`, mode: 'route',
 }));
 
+const UCF_ENTRIES = [
+  { id: 'ucf-page', category: 'Cheat Sheets', label: 'Unified Control Framework: one control, evidence reused across frameworks', desc: 'SOC 2, ISO 27001, ISO 42001, HIPAA, GDPR, DPDPA, PCI DSS and NIST CSF mapped per control, with SLAs and timelines. Export to Excel.', keywords: ['unified control framework', 'ucf', 'unified policy framework', 'crosswalk', 'control mapping', 'evidence reuse', 'common controls', 'sla', 'timelines'], path: '/unified-framework', mode: 'route' },
+  { id: 'soc2-evidence-detail', category: 'Cheat Sheets', label: 'SOC 2 evidence, control by control', desc: 'Specific evidence per SOC 2 Security control: what to provide, what it must show, sampling and frequency. Export to Excel.', keywords: ['soc 2 evidence', 'soc2 evidence', 'evidence request', 'pbc', 'host vulnerability scan', 'vulnerability scan report', 'termination checklist', 'access review evidence'], path: '/soc2#soc2-evidence-detail', mode: 'route' },
+  ...UCF_CONTROLS.map((r) => ({ id: `ucf-${r['UCF ID']}`, category: 'Controls', label: `${r['UCF ID']} ${r.Control} (unified)`, desc: `${r['Control activity']} Evidence: ${r['Reusable evidence']}.`, keywords: [r['UCF ID'], r.Control, r.Domain, 'unified', 'crosswalk'], path: '/unified-framework', mode: 'route' })),
+];
+
 const SEARCH_ENTRIES = [
   ...TAXONOMY_ENTRIES,
   ...RULE_ENTRIES,
   ...CHEAT_ENTRIES,
+  ...UCF_ENTRIES,
   ...CONTROL_ENTRIES,
   ...INTERVIEW_ENTRIES,
   { id: 'kb-other-frameworks', category: 'GRC Knowledge Base', label: 'Other Frameworks: COSO, ISO 27002, ISAE 3402, CRBF, Solvency II', desc: 'Frameworks without their own playbook, what they require and how they connect to the playbooks on this site.', keywords: ['coso', 'iso 27002', '27002', 'isae 3402', 'isae', 'crbf', '97-02', 'arrete 2014', 'solvency', 'solvency ii', 'orsa', 'nist csf', 'hitrust'], path: '/knowledge?topic=other-frameworks', mode: 'route' },

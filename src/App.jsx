@@ -14,6 +14,7 @@ import { TermsPage, PrivacyPage, CookiePage, LicensesPage } from './pages/Legal.
 import DataRequest from './pages/DataRequest.jsx';
 import GrcMaturity from './pages/GrcMaturity.jsx';
 import CheatSheets from './pages/CheatSheets.jsx';
+import UnifiedFramework from './pages/UnifiedFramework.jsx';
 import Profile from './pages/Profile.jsx';
 import Templates from './pages/Templates.jsx';
 import TemplatePreview from './pages/TemplatePreview.jsx';
@@ -104,6 +105,7 @@ function App() {
           <Route path="knowledge" element={<RequireAuth><KnowledgeBase /></RequireAuth>} />
           <Route path="grc-maturity" element={<GrcMaturity />} />
           <Route path="cheat-sheets" element={<CheatSheets />} />
+          <Route path="unified-framework" element={<UnifiedFramework />} />
           <Route path="terms" element={<TermsPage />} />
           <Route path="cookies" element={<CookiePage />} />
           <Route path="licenses" element={<LicensesPage />} />
