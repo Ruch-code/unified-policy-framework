@@ -7,7 +7,7 @@ const H = 'text-gray-900 dark:text-white';
 const TXT = 'text-gray-700 dark:text-slate-300';
 const LINE = 'border-gray-200 dark:border-slate-700';
 const BTN = `px-3 py-1.5 border ${LINE} rounded text-sm ${H} bg-white dark:bg-slate-900`;
-const WIDTHS = { Ref: 8, 'SOC 2 criteria': 16, 'UCF ID': 9, 'Control description': 44, 'Specific evidence to provide': 52, 'What the evidence must show': 34, 'Population or sample': 22, 'Control frequency': 12, 'Test method': 14, 'What the sample report showed': 34 };
+const WIDTHS = { Ref: 8, 'SOC 2 criteria': 16, 'UCF ID': 9, 'Control description': 44, 'Specific evidence to provide': 52, 'What the evidence must show': 34, 'Population or sample': 22, 'Control frequency': 12 };
 
 const save = (blob, name) => { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000); };
 
