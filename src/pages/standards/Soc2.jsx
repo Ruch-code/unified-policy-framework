@@ -1,3 +1,4 @@
+import EvidenceChecklistLink from "../../components/EvidenceChecklistLink.jsx";
 import { SOC2_POLICY_GAPS } from "../../data/startupVariants.js";
 import { EngPartnershipLink } from "../../components/engineering/EngineeringPartnership.jsx";
 import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCheck.jsx";
@@ -1166,6 +1167,7 @@ export default function Soc2() {
       <div className="max-w-6xl mx-auto px-4 my-8"><EngPartnershipLink set="soc2" /></div>
       <Soc2ControlMatrix framework={FRAMEWORK_WITH_EVIDENCE} />
       <TscControlMatrix />
+      <EvidenceChecklistLink framework="SOC 2" />
     </>
   );
 }

@@ -1,3 +1,4 @@
+import EvidenceChecklistLink from "../../components/EvidenceChecklistLink.jsx";
 import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCheck.jsx";
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 import GdprAccountability from "../../components/GdprAccountability.jsx";
@@ -235,6 +236,7 @@ export default function Gdpr() {
     <>
       <LearningFrameworkPage framework={FRAMEWORK_WITH_EVIDENCE} />
       <ProcessorPrivacy />
+      <EvidenceChecklistLink framework="GDPR" />
       <RiskCrossCheckBlock frameworkId="gdpr" />
       <ReferenceTable id="gdpr-applicability-notes" title="Articles with no direct organizational control"
         intro="These articles are covered by a short applicability note rather than a task. Core evidence types for GDPR are listed below."

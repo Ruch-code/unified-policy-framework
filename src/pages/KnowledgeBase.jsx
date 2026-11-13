@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import OnThisPage from '../components/OnThisPage.jsx';
+import AuditEvidenceChecklist from '../components/AuditEvidenceChecklist.jsx';
 import {
   BookOpenCheck, SearchCheck, FileSignature, Radar, MessageSquareText,
   CheckCircle, Copy, Check, ScrollText, ShieldAlert, Clock, CalendarDays, FileText, Timer,
@@ -47,6 +48,7 @@ const EDP_TABS = [
 const TABS = [
   { id: 'policies', label: 'Policies → Controls', icon: BookOpenCheck, group: 'Start here', desc: 'How each policy area maps to frameworks and controls, with readiness timelines.' },
   { id: 'audit', label: 'Audit & Rebuttals', icon: ShieldAlert, group: 'Start here', desc: 'Common audit observations for the selected framework and how to respond.' },
+  { id: 'evidence-checklist', label: 'Audit Evidence Checklist', icon: ShieldAlert, group: 'Start here', desc: 'What auditors ask for under SOC 2, ISO 27001, HIPAA and GDPR, plus a typical readiness plan and roles.' },
   { id: 'gaps', label: 'Common Gaps (ITGC)', icon: ShieldAlert, group: 'Start here', desc: 'Typical startup gaps by ITGC domain, the pushback, compensating controls and a worked audit example.' },
   { id: 'assistant', label: 'GRC Assistant', icon: MessageSquareText, group: 'Start here', desc: 'Ask a question and get an answer grounded in this site.' },
   { id: 'radar', label: 'Discrepancy Radar', icon: Radar, group: 'Frameworks', desc: 'Where frameworks disagree, and how to reconcile them.' },
@@ -120,6 +122,8 @@ export default function KnowledgeBase() {
       setTab('sysdesign');
     } else if (t === 'evidence-automation') {
       setTab('evidence');
+    } else if (t === 'evidence-checklist' || t === 'audit-readiness') {
+      setTab('evidence-checklist');
     } else if (t === 'itgc-gaps') {
       setTab('gaps');
     } else if (t === 'audit-observations') {
@@ -315,6 +319,7 @@ export default function KnowledgeBase() {
     evidence: <EvidenceAutomationKb />,
     sysdesign: <SystemDesignKb />,
     otherfw: <OtherFrameworksKb />,
+    'evidence-checklist': <AuditEvidenceChecklist />,
     zerotrust: <ZeroTrustShadowIt />,
     infranet: <InfraNetworkAudit />,
     tooling: <GrcToolingKb />,
