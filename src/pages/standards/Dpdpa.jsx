@@ -1,3 +1,4 @@
+import { DpdpaUpdates } from "../../components/updates/Nov2026Blocks.jsx";
 import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCheck.jsx";
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 import DpdpRoles from "../../components/DpdpRoles.jsx";
@@ -278,6 +279,7 @@ export default function Dpdpa() {
   return (
     <>
       <LearningFrameworkPage framework={FRAMEWORK} />
+      <div className="max-w-6xl mx-auto px-4 my-8"><DpdpaUpdates /></div>
       <RiskCrossCheckBlock frameworkId="dpdpa" />
     </>
   );
