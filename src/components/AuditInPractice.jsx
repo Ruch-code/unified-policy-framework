@@ -25,7 +25,7 @@ export function AuditorRequestList() {
   const [q, setQ] = useState('');
   const rows = useMemo(() => {
     const term = q.trim().toLowerCase();
-    return A.ARL_ITEMS.filter((r) => (area === 'All' || r[0] === area) && (type === 'All' || r[3] === type) && (!term || r.join(' ').toLowerCase().includes(term)));
+    return A.ARL_ITEMS.map((r, i) => [...r, A.ARL_SCOPING[i]]).filter((r) => (area === 'All' || r[0] === area) && (type === 'All' || r[3] === type) && (!term || r.join(' ').toLowerCase().includes(term)));
   }, [area, type, q]);
   const SEL = `px-3 py-1.5 border ${LINE} rounded text-sm bg-white dark:bg-slate-900`;
 
@@ -35,6 +35,10 @@ export function AuditorRequestList() {
       <Sub>The four kinds of request</Sub>
       <Rows label="Kinds of request" headers={['Evidence type', 'What it means', 'How to respond well']} rows={A.ARL_TYPE_GUIDE} />
 
+      <Sub>When a request does not apply</Sub>
+      <p className={`text-sm max-w-3xl mb-3 ${TXT}`}>{A.ARL_SCOPING_INTRO}</p>
+      <Rows label="Scoping reasons" headers={['Reason', 'What it means', 'What to provide']} rows={A.ARL_SCOPING_REASONS} />
+
       <Sub>Requests, responses and follow-ups</Sub>
       <div className="flex flex-wrap items-center gap-2">
         <label className="text-xs font-semibold text-gray-600 dark:text-slate-300">Area <select value={area} onChange={(e) => setArea(e.target.value)} className={`ml-1 ${SEL}`}>{areas.map((a) => <option key={a}>{a}</option>)}</select></label>
@@ -42,8 +46,8 @@ export function AuditorRequestList() {
         <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search requests" aria-label="Search requests" className={`ml-auto w-full sm:w-56 ${SEL}`} />
       </div>
       <p className="mt-2 mb-2 text-xs text-gray-500 dark:text-slate-400">{rows.length} of {A.ARL_ITEMS.length} requests shown</p>
-      <Rows label="Auditor requests" min={1500}
-        headers={['Area', 'Control tested', 'What the auditor asked for', 'Evidence type', 'How to respond, with an example', 'Follow-up to expect']} rows={rows} />
+      <Rows label="Auditor requests" min={1800}
+        headers={['Area', 'Control tested', 'What the auditor asked for', 'Evidence type', 'How to respond, with an example', 'Follow-up to expect', 'When it may not apply (scoping)']} rows={rows} />
 
       <Sub>Lessons from the first pass</Sub>
       <Rows label="Lessons" headers={['Lesson', 'Why it matters']} rows={A.ARL_LESSONS} min={600} />
