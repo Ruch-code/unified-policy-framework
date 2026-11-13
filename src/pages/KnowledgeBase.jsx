@@ -2,6 +2,7 @@ import { useLocation } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import OnThisPage from '../components/OnThisPage.jsx';
 import AuditEvidenceChecklist from '../components/AuditEvidenceChecklist.jsx';
+import { AuditorRequestList, TabletopExercise } from '../components/AuditInPractice.jsx';
 import {
   BookOpenCheck, SearchCheck, FileSignature, Radar, MessageSquareText,
   CheckCircle, Copy, Check, ScrollText, ShieldAlert, Clock, CalendarDays, FileText, Timer,
@@ -51,6 +52,8 @@ const TABS = [
   { id: 'evidence-checklist', label: 'Audit Evidence Checklist', icon: ShieldAlert, group: 'Start here', desc: 'What auditors ask for under SOC 2, ISO 27001, HIPAA and GDPR, plus a typical readiness plan and roles.' },
   { id: 'gaps', label: 'Common Gaps (ITGC)', icon: ShieldAlert, group: 'Start here', desc: 'Typical startup gaps by ITGC domain, the pushback, compensating controls and a worked audit example.' },
   { id: 'assistant', label: 'GRC Assistant', icon: MessageSquareText, group: 'Start here', desc: 'Ask a question and get an answer grounded in this site.' },
+  { id: 'auditor-requests', label: 'Auditor Request List', icon: ShieldAlert, group: 'Audit in practice', desc: 'What a SOC 2 Type 2 auditor asks for, how to respond to each request with an example, and the follow-ups to expect.' },
+  { id: 'tabletop', label: 'Tabletop Exercise (IR and DR)', icon: ShieldAlert, group: 'Audit in practice', desc: 'A template for a combined incident response and disaster recovery tabletop, with a worked scenario, model responses and findings.' },
   { id: 'radar', label: 'Discrepancy Radar', icon: Radar, group: 'Frameworks', desc: 'Where frameworks disagree, and how to reconcile them.' },
   { id: 'otherfw', label: 'Other Frameworks', icon: BookOpenCheck, group: 'Frameworks', desc: 'COSO, ISO 27002, ISAE 3402, CRBF 97-02, Solvency II, NIST CSF and HITRUST at a glance.' },
   { id: 'change', label: 'Change Management', icon: GitPullRequest, group: 'Engineering and change', desc: 'Change control expectations, evidence and common exceptions.' },
@@ -124,6 +127,10 @@ export default function KnowledgeBase() {
       setTab('evidence');
     } else if (t === 'evidence-checklist' || t === 'audit-readiness') {
       setTab('evidence-checklist');
+    } else if (t === 'auditor-requests' || t === 'drl') {
+      setTab('auditor-requests');
+    } else if (t === 'tabletop' || t === 'ttx') {
+      setTab('tabletop');
     } else if (t === 'itgc-gaps') {
       setTab('gaps');
     } else if (t === 'audit-observations') {
@@ -320,6 +327,8 @@ export default function KnowledgeBase() {
     sysdesign: <SystemDesignKb />,
     otherfw: <OtherFrameworksKb />,
     'evidence-checklist': <AuditEvidenceChecklist />,
+    'auditor-requests': <AuditorRequestList />,
+    tabletop: <TabletopExercise />,
     zerotrust: <ZeroTrustShadowIt />,
     infranet: <InfraNetworkAudit />,
     tooling: <GrcToolingKb />,
