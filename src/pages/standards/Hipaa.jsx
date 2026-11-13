@@ -1,3 +1,4 @@
+import EvidenceChecklistLink from "../../components/EvidenceChecklistLink.jsx";
 import HipaaRequirementLibrary from "../../components/HipaaRequirementLibrary.jsx";
 import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCheck.jsx";
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
@@ -876,6 +877,7 @@ export default function Hipaa() {
     <>
       <LearningFrameworkPage framework={FRAMEWORK_WITH_EVIDENCE} />
       <HipaaPhiUpload />
+      <EvidenceChecklistLink framework="HIPAA" />
       <HipaaSoc2Crosswalk />
       <HipaaRequirementLibrary />
       <HipaaCeVsBa />
