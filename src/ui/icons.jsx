@@ -157,6 +157,7 @@ export const Route = none;
 export const Scale = none;
 export const ScrollText = none;
 export const Search = svg(<><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" /></>);
+export const Table2 = svg(<><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M3 10h18M3 15h18M9 4v16" /></>);
 export const SearchCheck = none;
 export const Send = glyph('→');
 export const Server = none;
