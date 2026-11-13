@@ -7,6 +7,7 @@ import soc2Template from "../../data/soc2-template.json";
 import Soc2ControlMatrix from "../../components/Soc2ControlMatrix.jsx";
 import { groupLevel } from "../../data/soc2Criteria.js";
 import TscControlMatrix from "../../components/TscControlMatrix.jsx";
+import Soc2EvidenceDetail from "../../components/Soc2EvidenceDetail.jsx";
 import Soc2TechnicalSection from "../../components/Soc2TechnicalSection.jsx";
 import { withEvidence, appendToLevel, extendTasks } from "../../data/playbookEvidence.js";
 import { SOC2_L1_GOVERNANCE, SOC2_L3_TESTS, SOC2_EXTEND } from "../../data/playbookAdditions/soc2.js";
@@ -1167,6 +1168,7 @@ export default function Soc2() {
       <div className="max-w-6xl mx-auto px-4 my-8"><EngPartnershipLink set="soc2" /></div>
       <Soc2ControlMatrix framework={FRAMEWORK_WITH_EVIDENCE} />
       <TscControlMatrix />
+      <Soc2EvidenceDetail />
       <EvidenceChecklistLink framework="SOC 2" />
     </>
   );

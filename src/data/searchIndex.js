@@ -1044,6 +1044,7 @@ const CHEAT_ENTRIES = CHEAT_SHEETS.map((c) => ({
 
 const UCF_ENTRIES = [
   { id: 'ucf-page', category: 'Cheat Sheets', label: 'Unified Control Framework: one control, evidence reused across frameworks', desc: 'SOC 2, ISO 27001, ISO 42001, HIPAA, GDPR, DPDPA, PCI DSS and NIST CSF mapped per control, with SLAs and timelines. Export to Excel.', keywords: ['unified control framework', 'ucf', 'unified policy framework', 'crosswalk', 'control mapping', 'evidence reuse', 'common controls', 'sla', 'timelines'], path: '/unified-framework', mode: 'route' },
+  { id: 'soc2-evidence-detail', category: 'Cheat Sheets', label: 'SOC 2 evidence, control by control', desc: 'Specific evidence per SOC 2 Security control: what to provide, what it must show, sampling and frequency. Export to Excel.', keywords: ['soc 2 evidence', 'soc2 evidence', 'evidence request', 'pbc', 'host vulnerability scan', 'vulnerability scan report', 'termination checklist', 'access review evidence'], path: '/soc2#soc2-evidence-detail', mode: 'route' },
   ...UCF_CONTROLS.map((r) => ({ id: `ucf-${r['UCF ID']}`, category: 'Controls', label: `${r['UCF ID']} ${r.Control} (unified)`, desc: `${r['Control activity']} Evidence: ${r['Reusable evidence']}.`, keywords: [r['UCF ID'], r.Control, r.Domain, 'unified', 'crosswalk'], path: '/unified-framework', mode: 'route' })),
 ];
 
