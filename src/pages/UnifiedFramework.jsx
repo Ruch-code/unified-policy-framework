@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { UCF_COLUMNS, UCF_CONTROLS, UCF_FRAMEWORKS, UCF_SLA_COLUMNS, UCF_SLAS, UCF_VERIFIED } from '../data/unifiedControls.js';
+import { SOC2_EVIDENCE, SOC2_EVIDENCE_COLUMNS } from '../data/soc2Evidence.js';
 import { buildStyledXlsx, toCsv } from '../utils/styledXlsx.js';
 
 const H = 'text-gray-900 dark:text-white';
@@ -11,7 +12,7 @@ const covered = (r) => UCF_FRAMEWORKS.filter((f) => r[f] !== 'Not mapped').lengt
 const MAP_COLUMNS = [...UCF_COLUMNS.slice(0, 8), 'Frameworks covered', ...UCF_COLUMNS.slice(8)];
 const MAP_ROWS = UCF_CONTROLS.map((r) => MAP_COLUMNS.map((k) => (k === 'Frameworks covered' ? `${covered(r)} of ${UCF_FRAMEWORKS.length}` : r[k])));
 const SLA_ROWS = UCF_SLAS;
-const WIDTH = { 'UCF ID': 10, Domain: 18, Control: 28, 'Control activity': 44, 'Reusable evidence': 40, 'Strictest SLA or timeline': 40, 'Frameworks covered': 12 };
+const WIDTH = { 'SOC 2 criteria': 16, 'Control description': 48, 'Evidence the auditor inspects': 44, 'Population or sample': 24, 'What the sample report showed': 36,  'UCF ID': 10, Domain: 18, Control: 28, 'Control activity': 44, 'Reusable evidence': 40, 'Strictest SLA or timeline': 40, 'Frameworks covered': 12 };
 
 function Grid({ id, columns, rows, hidden }) {
   const [filters, setFilters] = useState({});
@@ -76,6 +77,7 @@ export default function UnifiedFramework() {
     try {
       const blob = await buildStyledXlsx([
         { name: 'Control mapping', columns: mapCols, rows: mapRows, widths: mapCols.map((c) => WIDTH[c] || 18) },
+        { name: 'SOC 2 evidence', columns: SOC2_EVIDENCE_COLUMNS, rows: SOC2_EVIDENCE, widths: SOC2_EVIDENCE_COLUMNS.map((c) => WIDTH[c] || 14) },
         { name: 'Framework SLAs', columns: UCF_SLA_COLUMNS, rows: SLA_ROWS, widths: [16, 34, 46, 22, 46] },
         { name: 'About', columns: ['Item', 'Detail'], rows: [['Last verified', UCF_VERIFIED], ['Source', 'OneLens by Ruchi, Unified Control Framework'], ['Note', 'Mappings are indicative. Confirm against the official text and your audit scope before reusing evidence.']], widths: [18, 90] },
       ]);
@@ -83,7 +85,7 @@ export default function UnifiedFramework() {
     } finally { setBusy(false); }
   };
   const exportCsv = () => {
-    const [cols, rows, name] = tab === 'map' ? [mapCols, mapRows, 'Unified_Control_Framework.csv'] : [UCF_SLA_COLUMNS, SLA_ROWS, 'Framework_SLAs.csv'];
+    const [cols, rows, name] = { map: [mapCols, mapRows, 'Unified_Control_Framework.csv'], soc2: [SOC2_EVIDENCE_COLUMNS, SOC2_EVIDENCE, 'SOC2_Evidence.csv'], sla: [UCF_SLA_COLUMNS, SLA_ROWS, 'Framework_SLAs.csv'] }[tab];
     save(new Blob([`﻿${toCsv(cols, rows)}`], { type: 'text/csv;charset=utf-8' }), name);
   };
 
@@ -100,7 +102,7 @@ export default function UnifiedFramework() {
 
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div role="tablist" className="flex gap-2">
-          {[['map', `Control mapping (${MAP_ROWS.length})`], ['sla', `Framework SLAs and timelines (${SLA_ROWS.length})`]].map(([k, l]) => (
+          {[['map', `Control mapping (${MAP_ROWS.length})`], ['soc2', `SOC 2 evidence (${SOC2_EVIDENCE.length})`], ['sla', `Framework SLAs and timelines (${SLA_ROWS.length})`]].map(([k, l]) => (
             <button key={k} role="tab" aria-selected={tab === k} type="button" onClick={() => setTab(k)} className={`${BTN} ${tab === k ? 'font-bold border-gray-900 dark:border-white' : ''}`}>{l}</button>
           ))}
         </div>
@@ -121,12 +123,19 @@ export default function UnifiedFramework() {
         </fieldset>
       )}
 
-      {tab === 'map'
-        ? <Grid key="map" id="ucf-map" columns={MAP_COLUMNS} rows={MAP_ROWS} hidden={hidden} />
-        : <Grid key="sla" id="ucf-sla" columns={UCF_SLA_COLUMNS} rows={SLA_ROWS} />}
+      {tab === 'soc2' && (
+        <p className={`text-sm ${TXT} max-w-4xl`}>
+          SOC 2 Security (Common Criteria CC1 to CC9) at the level an auditor tests it: each control, the exact evidence inspected, whether it is sampled, and how often it runs.
+          Built from an anonymised SOC 2 Type II report (3-month window, cloud-hosted SaaS, hosting provider carved out). Where one control covers several criteria, one piece of evidence answers all of them.
+          The UCF ID links each row back to the Control mapping tab.
+        </p>
+      )}
+      {tab === 'map' && <Grid key="map" id="ucf-map" columns={MAP_COLUMNS} rows={MAP_ROWS} hidden={hidden} />}
+      {tab === 'soc2' && <Grid key="soc2" id="ucf-soc2" columns={SOC2_EVIDENCE_COLUMNS} rows={SOC2_EVIDENCE} />}
+      {tab === 'sla' && <Grid key="sla" id="ucf-sla" columns={UCF_SLA_COLUMNS} rows={SLA_ROWS} />}
 
       <p className="text-xs text-gray-500 dark:text-slate-400">
-        Excel export has three sheets (Control mapping, Framework SLAs, About), each with a bold frozen header row and filters switched on.
+        Excel export has four sheets (Control mapping, SOC 2 evidence, Framework SLAs, About), each with a bold frozen header row and filters switched on.
         Framework columns you untick are left out of the export.
       </p>
     </div>
