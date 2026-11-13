@@ -1,4 +1,5 @@
 import OnThisPage from '../components/OnThisPage.jsx';
+import { DpdpaUpdates, AiPrivacyUpdates, AiAgentPersona, VendorUpdates, IrUpdates, CisoContinuity, Nov2026Questions } from '../components/updates/Nov2026Blocks.jsx';
 import { Link } from 'react-router-dom';
 import GlobeExplorer from '../components/GlobeExplorer.jsx';
 import RegionControlMap from '../components/RegionControlMap.jsx';
@@ -353,7 +354,14 @@ function TabPanel({ isDark, activeTab }) {
       {/* Tab Content */}
       {activeTab === 'regional' && (
         <ErrorBoundary>
+          <DpdpaUpdates />
+        </ErrorBoundary>
+      )}
+
+      {activeTab === 'regional' && (
+        <ErrorBoundary>
           <SecurityOperations isDark={isDark} />
+          <div className="mt-6"><IrUpdates /></div>
         </ErrorBoundary>
       )}
 
@@ -425,6 +433,7 @@ function TabPanel({ isDark, activeTab }) {
         >
           <AIPrivacyRisks isDark={isDark} />
           <AiRiskRegister />
+          <div className="mt-8"><AiPrivacyUpdates /></div>
         </LockedSection>
       )}
 
@@ -437,6 +446,7 @@ function TabPanel({ isDark, activeTab }) {
         >
           <ErrorBoundary>
             <RiskAssessmentModule isDark={isDark} />
+            <div className="mt-8"><CisoContinuity /></div>
           </ErrorBoundary>
           <ErrorBoundary>
             <ContactCenterThreatModel />
@@ -452,6 +462,7 @@ function TabPanel({ isDark, activeTab }) {
           showLoginPrompt={false}
         >
           <VendorRiskManagement isDark={isDark} />
+          <div className="mt-8"><VendorUpdates /></div>
           <CcDownloads groups={['vendor']} title="Contact-centre vendor governance templates" />
         </LockedSection>
       )}
@@ -464,6 +475,7 @@ function TabPanel({ isDark, activeTab }) {
           showLoginPrompt={false}
         >
           <InterviewPrep isDark={isDark} />
+          <div className="mt-8"><Nov2026Questions /></div>
           <CcDownloads groups={['interview']} title="Contact-centre threat modelling interview Q&As" />
         </LockedSection>
       )}
@@ -488,6 +500,7 @@ function TabPanel({ isDark, activeTab }) {
             showLoginPrompt={false}
           >
             <AccessRequirements isDark={isDark} />
+            <div className="mt-8"><AiAgentPersona /></div>
           </LockedSection>
           <LockedSection
             title="User Access Review - Coverage, Users & Frequency"

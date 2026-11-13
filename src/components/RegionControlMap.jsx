@@ -2,7 +2,7 @@ import { useId, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { ITGC_DOMAINS, domainsFor } from '../data/itgcMatrix.js';
-import { GENERIC_ASSESSMENT, RISK_MANAGEMENT_ITEMS, PLAYBOOK_REUSE_ITEMS, AI_PRIVACY_REUSE_ITEMS } from '../data/assessments.js';
+import { GENERIC_ASSESSMENT, RISK_MANAGEMENT_ITEMS, PLAYBOOK_REUSE_ITEMS, AI_PRIVACY_REUSE_ITEMS, DPDPA_REUSE_ITEMS } from '../data/assessments.js';
 import { ENG_REUSE_ITEMS } from '../data/engineeringPartnership.js';
 
 const DOMAIN_COLORS = {
@@ -37,7 +37,7 @@ export default function RegionControlMap({ frameworks }) {
 
   const selectedControls = useMemo(() => {
     if (!selectedDomain) return [];
-    return [...GENERIC_ASSESSMENT, ...RISK_MANAGEMENT_ITEMS, ...PLAYBOOK_REUSE_ITEMS, ...AI_PRIVACY_REUSE_ITEMS, ...ENG_REUSE_ITEMS].filter(g => g.itgc === selectedDomain);
+    return [...GENERIC_ASSESSMENT, ...RISK_MANAGEMENT_ITEMS, ...PLAYBOOK_REUSE_ITEMS, ...AI_PRIVACY_REUSE_ITEMS, ...DPDPA_REUSE_ITEMS, ...ENG_REUSE_ITEMS].filter(g => g.itgc === selectedDomain);
   }, [selectedDomain]);
 
   return (
