@@ -20,6 +20,7 @@ export const PLAYBOOK_CATALOG = [
   { id: 'rbi', name: 'RBI Cyber Security Framework', path: '/rbi', tags: ['fintech', 'india', 'payments'] },
   { id: 'sebi', name: 'SEBI', path: '/sebi', tags: ['fintech', 'india'] },
   { id: 'cscrf', name: 'CSCRF (India Cyber Security)', path: '/cscrf', tags: ['india', 'fintech'] },
+  { id: 'irdai', name: 'IRDAI Information and Cyber Security', path: '/irdai', tags: ['india', 'insurance', 'insurtech', 'fintech'] },
   { id: 'cert-in', name: 'CERT-In', path: '/cert-in', tags: ['india'] },
   { id: 'lgpd', name: 'LGPD (Brazil)', path: '/lgpd', tags: ['pii', 'global'] },
   { id: 'pdpa', name: 'PDPA (Singapore)', path: '/pdpa', tags: ['asia', 'pii'] },
@@ -32,7 +33,7 @@ const GEO_RULES = {
   us: ['us', 'nist', 'fedramp', 'ccpa'],
   emea: ['emea', 'gdpr', 'iso27701'],
   global: ['global', 'gdpr', 'iso27701'],
-  india: ['india', 'dpdpa', 'rbi', 'cscrf'],
+  india: ['india', 'dpdpa', 'rbi', 'cscrf', 'irdai'],
   asia: ['asia', 'pdpa', 'pipl', 'dpdpa'],
 };
 
