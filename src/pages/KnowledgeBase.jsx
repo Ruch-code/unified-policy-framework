@@ -44,23 +44,26 @@ const EDP_TABS = [
   { id: 'checklist', label: 'Checklist & Downloads', icon: Timer },
 ];
 const TABS = [
-  { id: 'policies', label: 'Policies → Controls', icon: BookOpenCheck },
-  { id: 'audit', label: 'Audit & Rebuttals', icon: ShieldAlert },
-  { id: 'radar', label: 'Discrepancy Radar', icon: Radar },
-  { id: 'assistant', label: 'GRC Assistant', icon: MessageSquareText },
-  { id: 'edp', label: 'Endpoint & Data Protection', icon: Smartphone },
-  { id: 'secrets', label: 'Secrets Scanning', icon: Key },
-  { id: 'change', label: 'Change Management', icon: GitPullRequest },
-  { id: 'cicd', label: 'CI/CD Pipelines', icon: GitBranch },
-  { id: 'bom', label: 'SBOM, AIBOM & ABOM', icon: Package },
-  { id: 'gaps', label: 'Common Gaps (ITGC)', icon: ShieldAlert },
-  { id: 'evidence', label: 'Evidence Automation', icon: Package },
-  { id: 'sysdesign', label: 'System Design for GRC', icon: Network },
-  { id: 'otherfw', label: 'Other Frameworks', icon: BookOpenCheck },
-  { id: 'zerotrust', label: 'Zero Trust and Shadow IT', icon: BookOpenCheck },
-  { id: 'infranet', label: 'Infra & Network Audit', icon: Network },
-  { id: 'tooling', label: 'GRC Tooling', icon: Package },
+  { id: 'policies', label: 'Policies → Controls', icon: BookOpenCheck, group: 'Start here', desc: 'How each policy area maps to frameworks and controls, with readiness timelines.' },
+  { id: 'audit', label: 'Audit & Rebuttals', icon: ShieldAlert, group: 'Start here', desc: 'Common audit observations for the selected framework and how to respond.' },
+  { id: 'gaps', label: 'Common Gaps (ITGC)', icon: ShieldAlert, group: 'Start here', desc: 'Typical startup gaps by ITGC domain, the pushback, compensating controls and a worked audit example.' },
+  { id: 'assistant', label: 'GRC Assistant', icon: MessageSquareText, group: 'Start here', desc: 'Ask a question and get an answer grounded in this site.' },
+  { id: 'radar', label: 'Discrepancy Radar', icon: Radar, group: 'Frameworks', desc: 'Where frameworks disagree, and how to reconcile them.' },
+  { id: 'otherfw', label: 'Other Frameworks', icon: BookOpenCheck, group: 'Frameworks', desc: 'COSO, ISO 27002, ISAE 3402, CRBF 97-02, Solvency II, NIST CSF and HITRUST at a glance.' },
+  { id: 'change', label: 'Change Management', icon: GitPullRequest, group: 'Engineering and change', desc: 'Change control expectations, evidence and common exceptions.' },
+  { id: 'cicd', label: 'CI/CD Pipelines', icon: GitBranch, group: 'Engineering and change', desc: 'Pipeline controls auditors test, from branch protection to deployment approvals.' },
+  { id: 'secrets', label: 'Secrets Scanning', icon: Key, group: 'Engineering and change', desc: 'Finding and handling secrets in code and pipelines.' },
+  { id: 'bom', label: 'SBOM, AIBOM & ABOM', icon: Package, group: 'Engineering and change', desc: 'Software, AI and agent bills of materials and why they matter.' },
+  { id: 'sysdesign', label: 'System Design for GRC', icon: Network, group: 'Engineering and change', desc: '53 system design concepts explained for GRC work, with examples.' },
+  { id: 'zerotrust', label: 'Zero Trust and Shadow IT', icon: BookOpenCheck, group: 'Security architecture', desc: 'Zero trust principles and shadow IT, with practical examples.' },
+  { id: 'infranet', label: 'Infra & Network Audit', icon: Network, group: 'Security architecture', desc: 'Infrastructure and network audit areas and evidence.' },
+  { id: 'edp', label: 'Endpoint & Data Protection', icon: Smartphone, group: 'Security architecture', desc: 'MDM, DLP, BYOD, ecosystems, mapping, roadmap, evidence and checklists.' },
+  { id: 'evidence', label: 'Evidence Automation', icon: Package, group: 'Evidence and tooling', desc: 'Automating evidence collection and keeping it audit-ready.' },
+  { id: 'tooling', label: 'GRC Tooling', icon: Package, group: 'Evidence and tooling', desc: 'GRC tools by category, what evidence they produce and what to watch for.' },
 ];
+const TAB_GROUPS = [...new Set(TABS.map((t) => t.group))];
+const FW_TABS = ['policies', 'audit', 'assistant'];
+
 
 function useCopy() {
   const [copied, setCopied] = useState(null);
@@ -75,6 +78,8 @@ function useCopy() {
 export default function KnowledgeBase() {
   const [fw, setFw] = useState('soc2');
   const [tab, setTab] = useState('policies');
+  const [navFilter, setNavFilter] = useState('');
+  const activeTab = TABS.find((t) => t.id === tab) || TABS[0];
   const [edpTab, setEdpTab] = useState('overview');
   const { copied, copy } = useCopy();
 
@@ -324,8 +329,50 @@ export default function KnowledgeBase() {
         </p>
       </div>
 
-      {/* Framework selector */}
-      <div className="flex flex-wrap gap-2 mb-6">
+      <div className="lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-8">
+        {/* Topic navigation: grouped sidebar on large screens, grouped menu on small screens */}
+        <nav aria-label="Knowledge Base topics" className="mb-5 lg:mb-0">
+          <label className="lg:hidden block text-xs font-semibold text-gray-600 dark:text-slate-300">Topic
+            <select value={tab} onChange={(e) => setTab(e.target.value)} className="mt-1 w-full px-3 py-2 border border-gray-300 dark:border-slate-700 rounded text-sm bg-white dark:bg-slate-900">
+              {TAB_GROUPS.map((g) => <optgroup key={g} label={g}>{TABS.filter((t) => t.group === g).map((t) => <option key={t.id} value={t.id}>{t.label}</option>)}</optgroup>)}
+            </select>
+          </label>
+          <div className="hidden lg:block sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto pr-1">
+            <input type="search" value={navFilter} onChange={(e) => setNavFilter(e.target.value)} placeholder="Filter topics" aria-label="Filter topics"
+              className="w-full mb-3 px-3 py-1.5 border border-gray-300 dark:border-slate-700 rounded text-sm bg-white dark:bg-slate-900" />
+            {TAB_GROUPS.map((g) => {
+              const items = TABS.filter((t) => t.group === g && (!navFilter || `${t.label} ${t.desc}`.toLowerCase().includes(navFilter.toLowerCase())));
+              if (!items.length) return null;
+              return (
+                <div key={g} className="mb-4">
+                  <p className="px-2 mb-1 text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-400">{g}</p>
+                  <ul>
+                    {items.map((t) => (
+                      <li key={t.id}>
+                        <button type="button" onClick={() => setTab(t.id)} aria-current={tab === t.id ? 'page' : undefined}
+                          className={`w-full text-left px-2 py-1.5 rounded text-sm ${tab === t.id ? 'bg-[#1e293b] text-white font-semibold' : 'text-gray-700 hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-slate-800'}`}>
+                          {t.label}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
+        </nav>
+
+        <div className="min-w-0">
+          <div className="mb-4">
+            <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-400">{activeTab.group}</p>
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white">{activeTab.label}</h2>
+            <p className="text-sm text-gray-600 dark:text-slate-300 mt-1 max-w-3xl">{activeTab.desc}</p>
+          </div>
+
+          {FW_TABS.includes(tab) && (
+            <div className="mb-5">
+              <p className="text-xs font-semibold text-gray-600 dark:text-slate-300 mb-2">Framework</p>
+      <div className="flex flex-wrap gap-2">
         {order
           .filter(id => FRAMEWORK_KB[id])
           .map(id => {
@@ -346,15 +393,8 @@ export default function KnowledgeBase() {
           })}
       </div>
 
-      {/* Tabs */}
-      <div className="flex flex-wrap gap-2 mb-5">
-        {TABS.map(t => (
-          <button key={t.id} onClick={() => setTab(t.id)}
-            className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold transition ${tab === t.id ? 'bg-[#1e293b] text-white' : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200 dark:bg-[#1e293b] dark:text-[#cbd5e1] dark:border-[#334155] dark:hover:border-[#475569]'}`}>
-            <t.icon className="w-4 h-4" /> {t.label}
-          </button>
-        ))}
-      </div>
+            </div>
+          )}
 
       {/* Framework description context under Audit/Assistant */}
       {(tab === 'audit' || tab === 'assistant') && fwObj && (
@@ -363,7 +403,9 @@ export default function KnowledgeBase() {
         </div>
       )}
 
-      {tabContent[tab]}
+          {tabContent[tab]}
+        </div>
+      </div>
     </div>
   );
 }
