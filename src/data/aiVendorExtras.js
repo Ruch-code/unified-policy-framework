@@ -143,9 +143,9 @@ export const AI_PLAN = {
 };
 
 export const AI_CASE_AIR_CANADA = {
-  title: 'Case: Moffatt v. Air Canada (2024)',
-  role: 'Own deployed chatbot. Air Canada was the deployer.',
-  happened: 'The airline\'s website chatbot gave a customer incorrect information about bereavement fares. British Columbia\'s Civil Resolution Tribunal held Air Canada responsible for the misleading information on its website and rejected the argument that the chatbot was a separate entity responsible for its own actions (2024 BCCRT 149).',
+  title: 'Case: an airline chatbot tribunal decision (2024)',
+  role: 'Own deployed chatbot. The airline was the deployer.',
+  happened: 'The airline\'s website chatbot gave a customer incorrect information about bereavement fares. British Columbia\'s Civil Resolution Tribunal held the airline responsible for the misleading information on its website and rejected the argument that the chatbot was a separate entity responsible for its own actions.',
   proves: 'Deploying an AI interface does not move customer-facing responsibility to the system or the vendor. The decision did not establish the model architecture or vendor involvement.',
   controls: ['Test policy answers against authoritative sources before go-live and after changes', 'Audit exceptions and wrong answers', 'Provide a clear human escalation path', 'Track and close corrections, and update the source content'],
 };

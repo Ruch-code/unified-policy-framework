@@ -225,7 +225,7 @@ export function AiVendorExtras() {
         <Note>{AI.AI_REDTEAM.note}</Note>
       </Block>
       <Block id="ai-vendor-air-canada" title={AI.AI_CASE_AIR_CANADA.title} intro={AI.AI_CASE_AIR_CANADA.role}>
-        <RefTable label="Air Canada chatbot case" columns={['Item', 'Detail']} rows={[['What happened', AI.AI_CASE_AIR_CANADA.happened], ['What the case proves', AI.AI_CASE_AIR_CANADA.proves]]} />
+        <RefTable label="Airline chatbot case" columns={['Item', 'Detail']} rows={[['What happened', AI.AI_CASE_AIR_CANADA.happened], ['What the case proves', AI.AI_CASE_AIR_CANADA.proves]]} />
         <Sub>TPRM controls to take away</Sub>
         <Bullets items={AI.AI_CASE_AIR_CANADA.controls} />
       </Block>
