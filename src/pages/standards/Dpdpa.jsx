@@ -5,6 +5,7 @@ import DpdpRoles from "../../components/DpdpRoles.jsx";
 import GdprDpdpaComparison from "../../components/playbook/GdprDpdpaComparison.jsx";
 import VibePlatformScenario from "../../components/playbook/VibePlatformScenario.jsx";
 import { appendToLevel } from "../../data/playbookEvidence.js";
+import { IndiaUsScenarios } from '../../components/kb/TopicExtras.jsx';
 
 const FRAMEWORK = {
   id: 'dpdpa',
@@ -280,6 +281,7 @@ export default function Dpdpa() {
     <>
       <LearningFrameworkPage framework={FRAMEWORK} />
       <div className="max-w-6xl mx-auto px-4 my-8"><DpdpaUpdates /></div>
+      <IndiaUsScenarios />
       <RiskCrossCheckBlock frameworkId="dpdpa" />
     </>
   );

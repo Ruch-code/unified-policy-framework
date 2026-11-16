@@ -1,4 +1,5 @@
 import React from 'react';
+import { EncryptionBlock } from './kb/TopicExtras.jsx';
 import {
   Shield, Lock, Smartphone, Globe, Cloud, Users,
   FileText, Search, Zap, Cpu, HardDrive, Network,
@@ -216,6 +217,7 @@ function EdpTab() {
           </div>
         </div>
       </div>
+      <div className="mt-6"><EncryptionBlock /></div>
     </div>
   );
 }

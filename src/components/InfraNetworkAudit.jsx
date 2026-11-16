@@ -1,4 +1,5 @@
 import * as D from '../data/infraNetworkAudit.js';
+import { CloudModelsBlock } from './kb/TopicExtras.jsx';
 
 const LINE = 'border-gray-200 dark:border-slate-700';
 const TXT = 'text-gray-700 dark:text-slate-300';
@@ -79,6 +80,7 @@ export default function InfraNetworkAudit() {
       <Rows label="Quantitative risk" headers={['Measure', 'Formula']} rows={D.QUANT} />
 
       <p className="text-xs text-gray-500 dark:text-slate-400">Guidance is general. Confirm review frequencies and SLAs against the framework and contracts in scope.</p>
+      <CloudModelsBlock />
     </div>
   );
 }

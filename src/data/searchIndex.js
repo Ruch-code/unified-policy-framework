@@ -1048,11 +1048,31 @@ const UCF_ENTRIES = [
   ...UCF_CONTROLS.map((r) => ({ id: `ucf-${r['UCF ID']}`, category: 'Controls', label: `${r['UCF ID']} ${r.Control} (unified)`, desc: `${r['Control activity']} Evidence: ${r['Reusable evidence']}.`, keywords: [r['UCF ID'], r.Control, r.Domain, 'unified', 'crosswalk'], path: '/unified-framework', mode: 'route' })),
 ];
 
+// Reference additions placed in their sections (see src/components/kb/TopicExtras.jsx)
+const TOPIC_ENTRIES = [
+  ['hotfix-cosmetic', 'Hotfix vs cosmetic changes: SaaS examples and audit evidence', 'Emergency, cosmetic, standard and normal changes with the evidence auditors ask for.', ['hotfix', 'emergency change', 'cosmetic change', 'change evidence', 'retrospective approval'], '/knowledge?topic=change-management#cm-hotfix-cosmetic'],
+  ['release-vuln', 'Going to production with a known vulnerability', 'When to block, conditionally approve or release, and the risk acceptance evidence needed.', ['vulnerability exception', 'risk acceptance', 'release with vulnerability', 'kev', 'go no-go'], '/knowledge?topic=change-management#cm-release-with-vuln'],
+  ['microservices', 'Microservices: controls and audit evidence', 'Service inventory, service-to-service auth, logging and change control across many services.', ['microservices', 'monolith', 'service mesh', 'mtls'], '/knowledge?topic=system-design#sd-microservices'],
+  ['cloud-models', 'IaaS vs PaaS vs SaaS with examples', 'Who manages what in each cloud model, and what to ask the provider for.', ['iaas', 'paas', 'saas', 'shared responsibility', 'cloud models'], '/knowledge?topic=infra-network#infra-cloud-models'],
+  ['encryption', 'Encryption: symmetric vs asymmetric, AES-256 and TLS 1.3', 'How each works, with TLS handshake and envelope encryption flow charts.', ['encryption', 'tls 1.3', 'aes-256', 'symmetric', 'asymmetric', 'kms', 'envelope encryption'], '/knowledge?topic=endpoint-data-protection#edp-encryption'],
+  ['soc123', 'SOC 1 vs SOC 2 vs SOC 3', 'Purpose, criteria, audience and examples for each SOC report.', ['soc 1', 'soc 3', 'soc 1 vs soc 2', 'ssae 18'], '/soc2#soc1-soc2-soc3'],
+  ['hipaa-control-set', 'HIPAA control set: Business Associate vs Covered Entity', '50 HIPAA controls filtered by BA or CE, with citation and evidence expected.', ['business associate', 'covered entity', 'hipaa controls', 'ba vs ce'], '/hipaa#hipaa-control-set'],
+  ['india-us', 'Indian company serving the US: HIPAA or DPDPA?', 'Scenarios for Indian companies handling US health data, with the DPDPA outsourcing exemption.', ['india us', 'hipaa india', 'dpdpa exemption', 'section 17', 'rcm', 'offshore'], '/hipaa#india-us-hipaa-dpdpa'],
+  ['dpa-checks', 'What to check in a DPA, and which teams own it', 'GDPR Art. 28 and DPDPA processor clauses, plus the teams responsible for vendor review.', ['dpa', 'data processing agreement', 'article 28', 'sub-processor', 'teams responsible'], '/?section=contract-clauses#vendor-risk'],
+  ['baa', 'What a BAA covers', 'Required Business Associate Agreement terms under 45 CFR 164.504(e).', ['baa', 'business associate agreement', '164.504'], '/?section=contract-clauses#vendor-risk'],
+  ['ai-vendor-risk', 'AI vendor risk assessment: supply chain, tiers, evidence, RACI', 'Enterprise position, blind spots, eight gates, contract clauses, red-team tests and the Air Canada chatbot case.', ['ai vendor risk', 'ai tprm', 'air canada chatbot', 'fourth party', 'ai contract clauses', 'agent permission'], '/?section=ai-vendors#vendor-risk'],
+  ['agent-frameworks', 'AI agent frameworks: LangChain, AutoGen, CrewAI, LlamaIndex, Semantic Kernel', 'What each emphasises, typical flow and the GRC questions to ask.', ['langchain', 'autogen', 'crewai', 'llamaindex', 'semantic kernel', 'agent frameworks'], '/?tab=ai-privacy#ai-agent-frameworks'],
+];
+const TOPIC_SEARCH = TOPIC_ENTRIES.map(([id, label, desc, keywords, path]) => (path.startsWith('/?tab=')
+  ? { id: `topic-${id}`, category: 'Cheat Sheets', label, desc, keywords, path: '/', anchorId: path.slice(6).split('#')[0], mode: 'hash' }
+  : { id: `topic-${id}`, category: 'Cheat Sheets', label, desc, keywords, path, mode: 'route' }));
+
 const SEARCH_ENTRIES = [
   ...TAXONOMY_ENTRIES,
   ...RULE_ENTRIES,
   ...CHEAT_ENTRIES,
   ...UCF_ENTRIES,
+  ...TOPIC_SEARCH,
   ...CONTROL_ENTRIES,
   ...INTERVIEW_ENTRIES,
   { id: 'kb-other-frameworks', category: 'GRC Knowledge Base', label: 'Other Frameworks: COSO, ISO 27002, ISAE 3402, CRBF, Solvency II', desc: 'Frameworks without their own playbook, what they require and how they connect to the playbooks on this site.', keywords: ['coso', 'iso 27002', '27002', 'isae 3402', 'isae', 'crbf', '97-02', 'arrete 2014', 'solvency', 'solvency ii', 'orsa', 'nist csf', 'hitrust'], path: '/knowledge?topic=other-frameworks', mode: 'route' },

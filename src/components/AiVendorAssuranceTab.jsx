@@ -18,6 +18,7 @@ import {
   PLATFORM_ROLES, PLATFORM_DATA_FLOWS, PLATFORM_ISOLATION_CHECKS, PLATFORM_EVIDENCE_TO_PROVIDE, GOVERNANCE_STEPS, GOVERNANCE_RULE,
 } from '../data/aiVendorAssurance.ts';
 import RelatedTemplates from './templates/RelatedTemplates.jsx';
+import { AiVendorExtras } from './kb/TopicExtras.jsx';
 
 function useCopy() {
   const [copied, setCopied] = useState(null);
@@ -445,6 +446,7 @@ function AiVendorAssuranceTab() {
       <div className="mt-6">
         <AiVendorBreachScenario />
       </div>
+      <AiVendorExtras />
     </div>
   );
 }

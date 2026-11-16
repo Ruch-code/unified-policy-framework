@@ -9,6 +9,7 @@ import { QUESTIONNAIRE_VALIDATION } from '../data/tprm/operatingModel.js';
 import React, { useState, Suspense, lazy, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
+import { DpaBaaBlock } from './kb/TopicExtras.jsx';
 
 // Loaded on demand. The incident corpus is editorial copy that is meant to stay
 // behind sign in, and a static import would fold all of it into the bundle that
@@ -869,7 +870,7 @@ export default function VendorRiskManagement({ isDark = false }) {
         {activeTab === 'Tiering' && <TieringPanel />}
         {activeTab === 'Questionnaires' && <div className="space-y-4"><VendorQuestionnaires /><Fold title="Validating questionnaire answers" defaultOpen><L items={QUESTIONNAIRE_VALIDATION} /></Fold><TemplateStrip files={['tprm-intake-dataflow.xlsx', 'tprm-evidence-request.xlsx']} /></div>}
         {activeTab === 'SOC 2 Review' && <Soc2ReviewPanel />}
-        {activeTab === 'Contract Clauses' && <ContractClausesPanel />}
+        {activeTab === 'Contract Clauses' && <><ContractClausesPanel /><div className="mt-4 space-y-4"><DpaBaaBlock /></div></>}
         {activeTab === 'AI Vendors' && <AiVendorsPanel />}
         {activeTab === 'Issue Management' && <IssuePanel />}
         {activeTab === deepDiveTab && (
