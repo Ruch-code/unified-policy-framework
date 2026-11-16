@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { GitPullRequest, ChevronDown, Layers, Gauge, ShieldCheck, ShieldAlert, ClipboardCheck, BarChart3, Users, ArrowRight, Info } from 'lucide-react';
-import { SDLC_STAGES, CHANGE_TYPES, VELOCITY, SCENARIOS, KPIS, MAPPING, EVIDENCE } from '../data/changeManagement.js';
+import { SDLC_STAGES, CHANGE_TYPES, VELOCITY, SCENARIOS, KPIS, EVIDENCE } from '../data/changeManagement.js';
 import { ChangeExtras } from './kb/TopicExtras.jsx';
+import MappingWorkbookCard from './mappings/MappingWorkbookCard.jsx';
+import CM_MAPPING from '../data/mappings/changeManagement.json';
 
 const RISK_CLS = {
   Low: 'bg-emerald-50 text-emerald-800 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-800',
@@ -187,11 +189,7 @@ export default function ChangeManagementTab({ onOpenTab }) {
           </div>
         </Card>
         <Card id="cm-mapping" Icon={Layers} title="Framework mapping">
-          <div className="space-y-2 text-sm">
-            {MAPPING.map(m => (
-              <div key={m.f}><p className="font-semibold text-gray-900 dark:text-white">{m.f}</p><p className="text-gray-700 dark:text-slate-200">{m.c}</p></div>
-            ))}
-          </div>
+          <MappingWorkbookCard bare data={CM_MAPPING} intro="Download the control-by-control mapping for change management across SOC 2, ISO 27001:2022, PCI DSS v4, ITGC / SOX, NIST CSF 2.0 and NIST SP 800-53 Rev 5." />
         </Card>
       </div>
 

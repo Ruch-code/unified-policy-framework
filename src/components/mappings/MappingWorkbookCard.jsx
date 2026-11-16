@@ -64,11 +64,12 @@ function PreviewModal({ data, onClose }) {
 }
 
 /** Compact card: one line of context, a static .xlsx download and an in-page preview built from the same data. */
-export default function MappingWorkbookCard({ data, intro, title = 'Framework mapping', className = '' }) {
+export default function MappingWorkbookCard({ data, intro, title = 'Framework mapping', className = '', bare = false }) {
   const [open, setOpen] = useState(false);
+  // bare: render only the body, for use inside a section's own card.
   return (
-    <div className={`bg-white border border-gray-200 rounded-2xl p-6 mb-8 dark:bg-gray-800 dark:border-gray-700 ${className}`}>
-      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{title}</h3>
+    <div className={bare ? className : `bg-white border border-gray-200 rounded-2xl p-6 mb-8 dark:bg-gray-800 dark:border-gray-700 ${className}`}>
+      {!bare && <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{title}</h3>}
       <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm">{intro}</p>
       <div className="flex flex-wrap items-center gap-2">
         <a href={BASE + data.fileName} download={data.fileName}
@@ -83,5 +84,29 @@ export default function MappingWorkbookCard({ data, intro, title = 'Framework ma
       </div>
       {open && <PreviewModal data={data} onClose={() => setOpen(false)} />}
     </div>
+  );
+}
+
+/** One row per mapping workbook, for "All templates" style listings. */
+export function MappingWorkbookList({ items }) {
+  const [open, setOpen] = useState(null);
+  return (
+    <section className="rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-900/60 p-4 sm:px-5 mb-6" aria-labelledby="mapping-workbooks">
+      <h2 id="mapping-workbooks" className="text-base sm:text-lg font-bold text-navy-900 dark:text-text-dark-primary">Framework mapping workbooks</h2>
+      <p className="mt-1 text-sm text-navy-600 dark:text-text-dark-secondary">Control-by-control mappings, one reference per row. Free to download, no sign-up needed.</p>
+      <ul className="mt-3 space-y-2">
+        {items.map(({ data, where }) => (
+          <li key={data.fileName} className="flex flex-wrap items-center gap-2 text-sm">
+            <a href={BASE + data.fileName} download={data.fileName} className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-700 px-2.5 py-1.5 text-xs font-semibold text-white hover:bg-emerald-800" aria-label={`Download ${data.fileName}`}>
+              <FileSpreadsheet className="h-4 w-4" aria-hidden="true" /> Download .xlsx
+            </a>
+            <button type="button" onClick={() => setOpen(data)} className="btn btn-secondary inline-flex items-center gap-1 px-2.5 py-1.5 text-xs"><Eye className="h-4 w-4" aria-hidden="true" /> Preview</button>
+            <span className="font-semibold text-gray-900 dark:text-white">{data.title}</span>
+            <span className="text-xs text-gray-500 dark:text-gray-400">{where}</span>
+          </li>
+        ))}
+      </ul>
+      {open && <PreviewModal data={open} onClose={() => setOpen(null)} />}
+    </section>
   );
 }

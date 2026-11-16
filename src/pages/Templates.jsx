@@ -1,4 +1,6 @@
 import { useMemo, useState } from 'react';
+import { MappingWorkbookList } from '../components/mappings/MappingWorkbookCard.jsx';
+import { ALL_MAPPINGS } from '../data/mappings/index.js';
 import { Link } from 'react-router-dom';
 import { ChevronDown, Search, FolderDown, Loader2 } from 'lucide-react';
 import data from '../data/templates.json';
@@ -81,6 +83,8 @@ export default function Templates() {
         <p className="mt-2 text-navy-600 dark:text-text-dark-secondary">Generic, audit-ready templates mapped to SOC 2, ISO 27001:2022, HIPAA and GDPR.</p>
         <p className="mt-1 text-sm text-navy-600 dark:text-text-dark-secondary">Policies and documents download as Word. Logs, records and trackers download as Excel so you can add rows, filter and sort.</p>
       </header>
+
+      <MappingWorkbookList items={ALL_MAPPINGS} />
 
       <div className="flex flex-col gap-3 mb-6">
         <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by framework">
