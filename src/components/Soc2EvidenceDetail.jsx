@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import { RefTable } from './kb/TopicExtras.jsx';
 import PreviewGrid from './PreviewGrid.jsx';
 import { SOC2_EVIDENCE, SOC2_EVIDENCE_COLUMNS } from '../data/soc2Evidence.js';
 import { buildStyledXlsx, toCsv } from '../utils/styledXlsx.js';
@@ -11,8 +12,17 @@ const WIDTHS = { Ref: 8, 'SOC 2 criteria': 16, 'UCF ID': 9, 'Control description
 
 const save = (blob, name) => { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000); };
 
-export default function Soc2EvidenceDetail() {
+// Group key: the first Common Criteria series a row maps to (CC1 to CC9).
+const groupOf = (row) => (String(row[1]).match(/CC\d/) || ['Other'])[0];
+const GROUPS = [...new Set(SOC2_EVIDENCE.map(groupOf))].sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+
+export default function Soc2EvidenceDetail({ grouped = false }) {
   const [busy, setBusy] = useState(false);
+  const [q, setQ] = useState('');
+  const shown = useMemo(() => {
+    const t = q.trim().toLowerCase();
+    return t ? SOC2_EVIDENCE.filter((r) => r.join(' ').toLowerCase().includes(t)) : SOC2_EVIDENCE;
+  }, [q]);
   const exportXlsx = async () => {
     setBusy(true);
     try {
@@ -35,7 +45,28 @@ export default function Soc2EvidenceDetail() {
           <button type="button" className={BTN} onClick={() => save(new Blob([`﻿${toCsv(SOC2_EVIDENCE_COLUMNS, SOC2_EVIDENCE)}`], { type: 'text/csv;charset=utf-8' }), 'SOC2_Evidence_Detail.csv')}>Export CSV</button>
         </div>
       </div>
-      <PreviewGrid id="soc2-evidence-grid" columns={SOC2_EVIDENCE_COLUMNS} rows={SOC2_EVIDENCE} widths={WIDTHS} />
+      {grouped ? (
+        <div>
+          <div className="flex flex-wrap items-center gap-2 mb-3">
+            <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search evidence, criteria or control" aria-label="Search evidence" className="ui-input border rounded-lg px-2 py-1.5 text-sm w-full sm:w-72" />
+            <span className={`text-xs ${TXT}`} aria-live="polite">{shown.length} of {SOC2_EVIDENCE.length} rows</span>
+          </div>
+          <div id="soc2-evidence-grid" className="space-y-2">
+            {GROUPS.map((g) => {
+              const rows = shown.filter((r) => groupOf(r) === g);
+              if (!rows.length) return null;
+              return (
+                <details key={g} open={!!q.trim()} className={`rounded-xl border ${LINE}`}>
+                  <summary className={`cursor-pointer px-3 py-2 font-semibold text-sm ${H}`}>{g} <span className={`font-normal ${TXT}`}>({rows.length} controls)</span></summary>
+                  <div className="p-3 pt-0"><RefTable label={`${g} evidence`} columns={SOC2_EVIDENCE_COLUMNS} rows={rows} /></div>
+                </details>
+              );
+            })}
+          </div>
+        </div>
+      ) : (
+        <PreviewGrid id="soc2-evidence-grid" columns={SOC2_EVIDENCE_COLUMNS} rows={SOC2_EVIDENCE} widths={WIDTHS} />
+      )}
     </section>
   );
 }

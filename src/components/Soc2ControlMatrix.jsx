@@ -43,12 +43,17 @@ export default function Soc2ControlMatrix({ framework }) {
       <div className={`rounded-2xl border ${LINE} bg-white dark:bg-slate-900/60 p-4 md:p-6`}>
         <h2 className="grc-section-title mb-2">SOC 2 Controls by Criteria</h2>
         <p className={`text-sm mb-3 ${TEXT}`}>{CATALOG_NOTE}</p>
+        <details className={`rounded-xl border ${LINE} mb-4`}>
+          <summary className="p-3 cursor-pointer font-semibold text-sm text-navy-900 dark:text-text-dark-primary">About Type I and Type II scope</summary>
+          <div className="px-3 pb-3">
         <p className={`text-sm mb-3 ${TEXT}`}>{SCOPE_NOTE}</p>
         <div className="overflow-x-auto mb-2"><table className={`w-full min-w-[34rem] text-sm ${TEXT}`}>
           <thead><tr className="text-left text-navy-900 dark:text-text-dark-primary">{['Report', 'Timing', 'Categories', 'Criteria', 'Controls'].map((h) => <th key={h} scope="col" className="p-2">{h}</th>)}</tr></thead>
           <tbody>{SCOPE_SUMMARY.map((r) => <tr key={r[0]} className={`border-t ${LINE}`}>{r.map((c) => <td key={c} className="p-2">{c}</td>)}</tr>)}</tbody>
         </table></div>
-        <ul className={`list-disc pl-5 text-sm mb-4 ${TEXT}`}><li>Controls added by Confidentiality: 76</li><li>Controls added by Privacy: 77 to 99</li></ul>
+        <ul className={`list-disc pl-5 text-sm mb-1 ${TEXT}`}><li>Controls added by Confidentiality: #76 (1 control)</li><li>Controls added by Privacy: #77 to #99 (23 controls)</li></ul>
+          </div>
+        </details>
         <details className={`rounded-xl border ${LINE} mb-4`}>
           <summary className="p-3 cursor-pointer font-semibold text-sm text-navy-900 dark:text-text-dark-primary">How auditors test SOC 2 controls</summary>
           <div className="px-3 pb-3 overflow-x-auto"><table className={`w-full min-w-[28rem] text-sm ${TEXT}`}>

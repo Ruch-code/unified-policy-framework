@@ -492,10 +492,10 @@ function FrameworkBody({ framework, extraSections }) {
         <ReportTimeline framework={framework} />
 
         {domainFw && (
-          <DomainToolbar counts={domainCounts} safeguardCounts={safeguardCounts} filters={domainFilters} visible={visibleStats} guessedCount={guessedCount} />
+          <DomainToolbar counts={domainCounts} safeguardCounts={safeguardCounts} filters={domainFilters} visible={visibleStats} guessedCount={guessedCount} topN={compact ? 8 : 0} />
         )}
 
-        {compact && (
+        {compact && framework.conventions === 'soa' && (
           <div id="evidence-soa-conventions" className={`bg-white rounded-2xl border ${colors.border} p-6 mb-8 scroll-mt-24`}>
             <h2 className="text-xl font-bold text-gray-900 mb-4">Evidence &amp; SoA conventions</h2>
             <div className="grid md:grid-cols-2 gap-4 text-sm">
@@ -511,6 +511,15 @@ function FrameworkBody({ framework, extraSections }) {
             </div>
           </div>
         )}
+
+        {compact && framework.conventions !== 'soa' && (
+          <div id="evidence-conventions" className="mb-6 rounded-xl border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/20 p-4 text-sm text-amber-900 dark:text-amber-100 scroll-mt-24">
+            <p className="font-semibold mb-1">Evidence handling conventions</p>
+            <ul className="list-disc pl-5 space-y-0.5">{EVIDENCE_CONVENTIONS.map(c => <li key={c}>{c}</li>)}</ul>
+            <p className="mt-2 text-xs">Each task has an "Evidence required" section. Entries marked as topic-based were assigned from the task's subject; tailor them to your systems.</p>
+          </div>
+        )}
+        {compact && framework.afterConventions}
 
         {/* Level Sections */}
         {data.weeks.map((week, idx) => {
@@ -534,10 +543,12 @@ function FrameworkBody({ framework, extraSections }) {
                   )}
                   <div className="min-w-0">
                     <h2 className="text-lg sm:text-xl font-bold leading-snug text-white flex flex-wrap items-center gap-x-2 gap-y-1.5">
-                      Level {idx + 1}: {Meta.label}
-                      <span className="text-[11px] sm:text-xs font-medium text-white bg-white/25 ring-1 ring-white/30 px-2.5 py-0.5 rounded-full max-w-full whitespace-normal">{week.title}</span>
+                      {compact
+                        ? <>Level {idx + 1}: {Meta.label}. {String(week.title).replace(/^L\d\s+\S+\s*[\u2013\u2014-]\s*/, '')}</>
+                        : <>Level {idx + 1}: {Meta.label}
+                          <span className="text-[11px] sm:text-xs font-medium text-white bg-white/25 ring-1 ring-white/30 px-2.5 py-0.5 rounded-full max-w-full whitespace-normal">{week.title}</span></>}
                     </h2>
-                    <p className="text-sm text-white/90 mt-0.5">{Meta.desc} - {week.description}</p>
+                    <p className="text-sm text-white/90 mt-0.5">{Meta.desc}{compact ? '. ' : ' - '}{week.description}</p>
                   </div>
                 </div>
                 <div className={`flex items-center gap-3 ${compact ? '' : 'pr-16'} shrink-0 ml-auto`}>

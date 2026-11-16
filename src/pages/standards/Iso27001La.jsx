@@ -253,6 +253,7 @@ function AllTemplates({ framework }) {
 const FRAMEWORK_WITH_EVIDENCE = {
   ...BASE_WITH_EVIDENCE,
   compactLayout: true,
+  conventions: 'soa',
   hide42001Block: true,
   jumpSections: JUMP_SECTIONS,
   // Rendered by the playbook page after the levels and before Common Gaps, in the agreed order.
