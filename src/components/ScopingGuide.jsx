@@ -263,12 +263,9 @@ function ScopingGuide({ isDark = false }) {
     : 'bg-white text-slate-700 border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-700 focus:border-indigo-500');
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div id="scoping-guide-section" className="container mx-auto px-4 py-8 scroll-mt-24">
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-2">
-          <a href="/" className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-slate-200 mb-2 inline-block transition-colors">
-            ← Back to Home
-          </a>
           <h1 className="text-3xl md:text-4xl font-extrabold text-navy-900 dark:text-text-dark-primary mb-2">
             ISO 27001:2022 ISMS Scoping, Step by Step
           </h1>
@@ -278,8 +275,10 @@ function ScopingGuide({ isDark = false }) {
           </span>
         </div>
         <p className="text-gray-600 dark:text-text-dark-secondary max-w-3xl">
-          The Scoping walkthrough is where the SoA is actually shaped. Learn how scoping works under Clause 4.3, 
-          then walk the decision tree, then build the SoA.
+          The Scoping walkthrough is where the SoA is actually shaped. Understand what scoping means under Clause 4.3,
+          then walk the decision tree, then build the SoA. Each answer directs which Annex A controls stay{' '}
+          <em>in scope</em>, which become <em>exclusions with written rationale</em>,
+          and which flip back in when the answer changes.
         </p>
       </div>
 

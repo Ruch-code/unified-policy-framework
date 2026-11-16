@@ -7,6 +7,10 @@ import ScopingGuide from "../../components/ScopingGuide";
 import { withEvidence, appendToLevel } from "../../data/playbookEvidence.js";
 import { LA_L3_CONTROLS } from "../../data/playbookAdditions/iso27001.js";
 import { Iso27001AuditorSampling } from '../../components/Iso27001EvidenceLibrary.jsx';
+import TemplateDownloadButton from '../../components/templates/TemplateDownloadButton.jsx';
+import { relatedTemplateItems } from '../../components/templates/RelatedTemplates.jsx';
+import { useAuth } from '../../context/AuthContext.jsx';
+import { Link } from 'react-router-dom';
 
 const FRAMEWORK = {
   domainFramework: 'ISO 27001',
@@ -27,11 +31,11 @@ const FRAMEWORK = {
     {
       week: 1,
       title: "ISO 27001 Structure & Audit Fundamentals",
-      days: "Days 1–7",
+      days: "Days 1-7",
       description: "Master the standard's architecture, control families, and core audit concepts before planning any engagement.",
       tasks: [
         {
-          title: "Map ISO 27001:2022 clause structure (Clauses 4–10)",
+          title: "Map ISO 27001:2022 clause structure (Clauses 4-10)",
           control: "Understand the Plan-Do-Check-Act cycle across clauses: Context (4), Leadership (5), Planning (6), Support (7), Operation (8), Performance Evaluation (9), Improvement (10).",
           how: "Create a one-page clause map that links each clause to the organization's ISMS scope. Identify which departments or processes each clause touches.",
           check: "Verify you can explain how Clause 6 (risk assessment) feeds into Clause 8 (controls) and how Clause 9 (monitoring) closes the loop back to Clause 10 (improvement).",
@@ -62,6 +66,8 @@ const FRAMEWORK = {
         },
         {
           title: "Learn audit terminology: NC, OFI, major/minor findings",
+          templates: ["corrective-action-log"],
+          templatesExclusive: true,
           control: "A non-conformity (NC) is a failure to meet a requirement. A major NC causes or risks total ISMS breakdown. A minor NC is an isolated lapse. An opportunity for improvement (OFI) is a finding that does not breach the standard but could strengthen the ISMS.",
           how: "Study at least ten real-world audit finding examples. Classify each as major NC, minor NC, or OFI and write a one-sentence justification for each classification.",
           check: "Test your classification by comparing your assessments against a senior auditor's evaluation. Ensure you can articulate why a finding is major rather than minor based on scope and impact.",
@@ -71,7 +77,7 @@ const FRAMEWORK = {
     {
       week: 2,
       title: "Audit Planning & Document Review",
-      days: "Days 8–14",
+      days: "Days 8-14",
       description: "Build the skills to scope an audit, define criteria, review documentation, and construct effective checklists and sampling strategies.",
       tasks: [
         {
@@ -96,7 +102,7 @@ const FRAMEWORK = {
           title: "Build targeted audit checklists",
             control: "A well-constructed checklist maps specific audit questions to ISO 27001 clauses and Annex A controls, ensuring complete coverage during fieldwork.",
           how: "Develop a checklist organized by clause that includes open-ended questions for each control objective, space for evidence references, and a severity rating column.",
-          check: "Confirm every clause (4–10) and every selected Annex A control is addressed. Validate that questions are specific enough to elicit actionable evidence rather than generic responses.",
+          check: "Confirm every clause (4-10) and every selected Annex A control is addressed. Validate that questions are specific enough to elicit actionable evidence rather than generic responses.",
         },
         {
           title: "Apply appropriate sampling methods",
@@ -109,7 +115,7 @@ const FRAMEWORK = {
     {
       week: 3,
       title: "Fieldwork: Interviews, Evidence & Findings",
-      days: "Days 15–21",
+      days: "Days 15-21",
       description: "Execute the audit on-site with strong opening and closing meetings, precise questioning, rigorous evidence handling, and disciplined daily debriefs.",
       tasks: [
         {
@@ -147,7 +153,7 @@ const FRAMEWORK = {
     {
       week: 4,
       title: "Reporting, Corrective Actions & Exam Readiness",
-      days: "Days 22–28",
+      days: "Days 22-28",
       description: "Write authoritative audit reports, evaluate root causes and corrective actions, and prepare for IRCA or PECB Lead Auditor certification exams.",
       tasks: [
         {
@@ -187,18 +193,86 @@ const FRAMEWORK = {
 
 // Additive: Annex A audit tasks appended to the fieldwork level so saved progress keys do not move.
 appendToLevel(FRAMEWORK, 2, { tasks: LA_L3_CONTROLS });
-const FRAMEWORK_WITH_EVIDENCE = withEvidence(FRAMEWORK);
+const BASE_WITH_EVIDENCE = withEvidence(FRAMEWORK);
+
+// Section list for the sticky "Jump to a section" nav, in page order.
+const JUMP_SECTIONS = [
+  ['progress', 'Progress and timeline'],
+  ['evidence-soa-conventions', 'Evidence & SoA conventions'],
+  ['level-1', 'Playbook levels 1 to 4'],
+  ['scoping-guide-section', 'Scoping guide'],
+  ['iso27001-scope', 'Scoping walkthrough (decision tree)'],
+  ['risk-assessment-crosscheck', 'Risk assessment clauses'],
+  ['iso27001-soa', 'Statement of Applicability'],
+  ['soa-scenarios', 'SoA Scenarios'],
+  ['iso-auditor-sampling', 'What the auditor samples'],
+  ['common-gaps', 'Common Gaps & Startup Pushback'],
+  ['all-templates', 'All templates'],
+  ['engineering-partnership-links', 'Engineering partnership'],
+];
+
+// Every template the playbook tasks offer, de-duplicated and grouped by file type.
+function AllTemplates({ framework }) {
+  const { user } = useAuth() || {};
+  if (!user) return null;
+  const seen = new Map();
+  framework.weeks.forEach((w) => w.tasks.forEach((t) => {
+    if (!t || typeof t !== 'object') return;
+    const text = [t.title, t.control, t.how, t.check, t.citation && (t.citation.ref || t.citation.section || t.citation.label)].filter(Boolean).join(' ');
+    relatedTemplateItems({ text, slugs: t.templates, exclusive: !!t.templatesExclusive }).forEach((tpl) => { if (!seen.has(tpl.slug)) seen.set(tpl.slug, tpl); });
+  }));
+  const all = [...seen.values()].sort((a, b) => a.name.localeCompare(b.name));
+  const groups = [
+    ['Policies and documents (.docx)', all.filter((t) => /\.docx$/i.test(t.file || ''))],
+    ['Registers and logs (.xlsx)', all.filter((t) => /\.xlsx$/i.test(t.file || ''))],
+    ['Other files', all.filter((t) => !/\.(docx|xlsx)$/i.test(t.file || ''))],
+  ].filter(([, l]) => l.length);
+  return (
+    <section id="all-templates" className="max-w-6xl mx-auto px-4 my-10 scroll-mt-24">
+      <h2 className="text-2xl font-bold text-gray-900 dark:text-white">All templates</h2>
+      <p className="mt-1 text-sm text-gray-700 dark:text-slate-300">Every template offered in the playbook tasks above, listed once. {all.length} templates.</p>
+      <div className="mt-4 grid gap-4 md:grid-cols-2">
+        {groups.map(([label, list]) => (
+          <div key={label} className="rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-[#1e293b] p-4">
+            <h3 className="font-semibold text-gray-900 dark:text-white">{label}</h3>
+            <ul className="mt-2 space-y-1.5">
+              {list.map((t) => (
+                <li key={t.slug} className="flex flex-wrap items-center gap-2 text-sm">
+                  <TemplateDownloadButton template={t} compact />
+                  <Link to={`/templates/${t.slug}`} className="ui-link break-words">{t.name}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+const FRAMEWORK_WITH_EVIDENCE = {
+  ...BASE_WITH_EVIDENCE,
+  compactLayout: true,
+  conventions: 'soa',
+  hide42001Block: true,
+  jumpSections: JUMP_SECTIONS,
+  // Rendered by the playbook page after the levels and before Common Gaps, in the agreed order.
+  extraSections: [
+    <ScopingGuide key="scoping" />,
+    <ScopeWalkthrough key="walkthrough" />,
+    <RiskCrossCheckBlock key="risk" frameworkId="iso27001" />,
+    <StatementOfApplicability key="soa" fieldsShownElsewhere />,
+    <Iso27001AuditorSampling key="sampling" />,
+  ],
+};
 
 export default function Iso27001La() {
   return (
     <>
       <LearningFrameworkPage framework={FRAMEWORK_WITH_EVIDENCE} />
-      <RiskCrossCheckBlock frameworkId="iso27001" />
-      <ScopingGuide />
-      <ScopeWalkthrough />
-      <StatementOfApplicability />
-      <Iso27001AuditorSampling />
-      <div className="max-w-6xl mx-auto px-4 my-8"><EngPartnershipLink set="iso27001" /></div>
+      <AllTemplates framework={FRAMEWORK_WITH_EVIDENCE} />
+      <div id="engineering-partnership-links" className="max-w-6xl mx-auto px-4 my-8 scroll-mt-24"><EngPartnershipLink set="iso27001" /></div>
+      <p className="max-w-6xl mx-auto px-4 mb-10 text-xs text-gray-600 dark:text-slate-400">Guidance only. Refer to ISO/IEC 27001:2022 for authoritative requirements.</p>
     </>
   );
 }

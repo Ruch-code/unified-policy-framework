@@ -6,15 +6,15 @@ import {
 
 const TSC_MATRIX = [
   {
-    category: 'Security - Common Criteria (CC1–CC9)',
+    category: 'Security, Common Criteria (CC1-CC9)',
     icon: ShieldCheck,
     intro:
-      'The common criteria define whether controls exist and operate to achieve the entity\'s security objectives. CC1–CC5 are the 17 COSO (2013) internal-control principles; CC6–CC9 are the supplemental control-activity criteria AICPA added on top. Every SOC 2 report - whichever categories you pursue - must be built on these criteria, so every CC series is always in scope.',
+      'The common criteria define whether controls exist and operate to achieve the entity\'s security objectives. CC1-CC5 are the 17 COSO (2013) internal-control principles; CC6-CC9 are the supplemental control-activity criteria AICPA added on top. Every SOC 2 report, whichever categories you pursue, must be built on these criteria, so every CC series is always in scope.',
     color: 'indigo',
     scope: 'core',
     series: [
       {
-        ref: 'CC1', title: 'Control Environment', note: 'COSO Principles 1–5',
+        ref: 'CC1', title: 'Control Environment', note: 'COSO Principles 1-5',
         criteria: [
           { ref: 'CC1.1', title: 'Commitment to integrity and ethical values' },
           { ref: 'CC1.2', title: 'Board independence and oversight of internal control' },
@@ -24,7 +24,7 @@ const TSC_MATRIX = [
         ],
         checks: [
           'Verify formal (even lightweight) security governance: a named owner, policy approval path, and an escalation line to the board / investors with oversight.',
-          'Confirm the founding team models integrity - ethics expectations and a no-blame security-reporting culture in writing.',
+          'Confirm the founding team models integrity, ethics expectations and a no-blame security-reporting culture in writing.',
           'Check that security duties and accountability are assigned to named people (RACI / role chart), not implied.',
         ],
         questions: [
@@ -33,7 +33,7 @@ const TSC_MATRIX = [
         ],
       },
       {
-        ref: 'CC2', title: 'Communication & Information', note: 'COSO Principles 13–15',
+        ref: 'CC2', title: 'Communication & Information', note: 'COSO Principles 13-15',
         criteria: [
           { ref: 'CC2.1', title: 'Obtains and uses quality information to support internal control' },
           { ref: 'CC2.2', title: 'Communicates internal-control objectives and responsibilities internally' },
@@ -45,12 +45,12 @@ const TSC_MATRIX = [
           'Verify external communication expectations are documented (support SLAs, breach-notification contacts, customer audit rights).',
         ],
         questions: [
-          'Ask a new hire to find the information-security policy - how long does it take?',
+          'Ask a new hire to find the information-security policy, how long does it take?',
           'When the policy set changes, how is that communicated to the team?',
         ],
       },
       {
-        ref: 'CC3', title: 'Risk Assessment', note: 'COSO Principles 6–9',
+        ref: 'CC3', title: 'Risk Assessment', note: 'COSO Principles 6-9',
         criteria: [
           { ref: 'CC3.1', title: 'Specifies objectives with sufficient clarity' },
           { ref: 'CC3.2', title: 'Identifies and analyzes risks to the objectives' },
@@ -60,7 +60,7 @@ const TSC_MATRIX = [
         checks: [
           'Confirm a risk assessment exists (threat + vulnerability analysis) covering the systems and data in scope, with owners and scores.',
           'Check that security objectives map to concrete commitments (e.g., protect customer data → access control, encryption, monitoring).',
-          'Verify the assessment is refreshed on significant change - new cloud region, new product line, new sub-processor, new regulation.',
+          'Verify the assessment is refreshed on significant change, new cloud region, new product line, new sub-processor, new regulation.',
           'Confirm fraud / insider-abuse risk was at least considered in the risk analysis.',
         ],
         questions: [
@@ -69,13 +69,13 @@ const TSC_MATRIX = [
         ],
       },
       {
-        ref: 'CC4', title: 'Monitoring of Controls', note: 'COSO Principles 16–17',
+        ref: 'CC4', title: 'Monitoring of Controls', note: 'COSO Principles 16-17',
         criteria: [
           { ref: 'CC4.1', title: 'Ongoing and separate evaluations of control operation' },
           { ref: 'CC4.2', title: 'Timely evaluation and communication of deficiencies' },
         ],
         checks: [
-          'Confirm controls are monitored over time (recurring checks, automated alerts, quarterly control reviews) - not just designed once.',
+          'Confirm controls are monitored over time (recurring checks, automated alerts, quarterly control reviews), not just designed once.',
           'Check for a defined process to log, escalate, and fix control failures (deficiency register with owners and deadlines).',
           'Verify monitoring results feed back into control design and the risk register.',
         ],
@@ -85,14 +85,14 @@ const TSC_MATRIX = [
         ],
       },
       {
-        ref: 'CC5', title: 'Control Activities', note: 'COSO Principles 10–12',
+        ref: 'CC5', title: 'Control Activities', note: 'COSO Principles 10-12',
         criteria: [
           { ref: 'CC5.1', title: 'Selects and develops control activities that mitigate risk' },
           { ref: 'CC5.2', title: 'Develops general control activities over technology' },
           { ref: 'CC5.3', title: 'Deploys controls through policies and procedures' },
         ],
         checks: [
-          'Confirm each significant risk has documented control activities - policy → procedure → tool.',
+          'Confirm each significant risk has documented control activities, policy → procedure → tool.',
           'Check that technology controls (access, change, operations) are deliberately designed rather than accidental.',
           'Verify policies are enforced by procedures people actually follow, not documents on a shelf.',
         ],
@@ -106,7 +106,7 @@ const TSC_MATRIX = [
         criteria: [
           { ref: 'CC6.1', title: 'Logical access security software, infrastructure, and architectures' },
           { ref: 'CC6.2', title: 'Users identified and authenticated before access' },
-          { ref: 'CC6.3', title: 'User access authorized - least privilege, roles, segregation' },
+          { ref: 'CC6.3', title: 'User access authorized, least privilege, roles, segregation' },
           { ref: 'CC6.4', title: 'Physical access restricted to facilities and protected assets' },
           { ref: 'CC6.5', title: 'Access to offline backups restricted and cut off when assets retire' },
           { ref: 'CC6.6', title: 'Encryption and protective measures at rest, in transit, during processing' },
@@ -132,7 +132,7 @@ const TSC_MATRIX = [
           { ref: 'CC7.1', title: 'System components monitored for anomalies, vulnerabilities, and breaches' },
           { ref: 'CC7.2', title: 'Security incidents detected, investigated, and responded to' },
           { ref: 'CC7.3', title: 'Security events evaluated for impact on commitments' },
-          { ref: 'CC7.4', title: 'Incident response - contain, remediate, communicate to stakeholders' },
+          { ref: 'CC7.4', title: 'Incident response, contain, remediate, communicate to stakeholders' },
           { ref: 'CC7.5', title: 'Recovery and continuity activities identified and implemented' },
         ],
         checks: [
@@ -142,7 +142,7 @@ const TSC_MATRIX = [
           'Confirm recovery / continuity activities exist and are rehearsed (restore test or failover drill).',
         ],
         questions: [
-          'Walk me through a suspected breach tonight - who gets paged, what is preserved, who decides on notification?',
+          'Walk me through a suspected breach tonight, who gets paged, what is preserved, who decides on notification?',
           'Which security-relevant event could happen today without setting off any alert?',
         ],
       },
@@ -158,7 +158,7 @@ const TSC_MATRIX = [
         ],
         questions: [
           'Can a developer push to production with no approval and no record?',
-          'Show me a recent emergency change - was it reviewed after the fact, and by whom?',
+          'Show me a recent emergency change, was it reviewed after the fact, and by whom?',
         ],
       },
       {
@@ -168,7 +168,7 @@ const TSC_MATRIX = [
           { ref: 'CC9.2', title: 'Assesses and manages risks from vendors, business partners, and third parties' },
         ],
         checks: [
-          'Confirm risks are mitigated with tangible activities (not just accepted) - controls mapped back to the register.',
+          'Confirm risks are mitigated with tangible activities (not just accepted), controls mapped back to the register.',
           'Check vendor and third-party categories are identified (SaaS, cloud, sub-processors, contractors) with DPAs / BAA and risk-based assessment.',
           'Verify third-party risk views are refreshed when the vendor portfolio changes.',
         ],
@@ -208,31 +208,33 @@ const TSC_MATRIX = [
     ],
   },
   {
-    category: 'Processing Integrity (PI1–PI9)',
+    category: 'Processing Integrity (PI1.1-PI1.5)',
     icon: Database,
     intro:
-      'Evaluates whether processing is complete, accurate, timely, and authorized end-to-end: input, processing, transmission, output, and storage. In scope only when the report includes Processing Integrity - typical for SaaS, payments, reconciliation, and data-transform products.',
+      'Evaluates whether processing is complete, accurate, timely, and authorized end-to-end: input, processing, transmission, output, and storage. In scope only when the report includes Processing Integrity, typical for SaaS, payments, reconciliation, and data-transform products.',
     color: 'cyan',
     scope: 'optional',
     series: [
       {
-        ref: 'PI1.1', title: 'Accurate, complete, timely processing', note: 'Over the provision of services',
+        ref: 'PI1.1', title: 'Quality information about processing', note: 'Over the provision of services',
         criteria: [
-          { ref: 'PI1.1', title: 'Information about processing obtained, generated, used, and communicated accurately, completely, timely' },
+          { ref: 'PI1.1', title: 'Obtains or generates, uses and communicates relevant, quality information about processing objectives, including definitions of data processed and product and service specifications' },
         ],
         checks: [
           'Identify which processing is in scope (billing, reconciliations, transformations) and document expected vs actual output.',
           'Confirm processing integrity commitments are known to the people who run the processing.',
+          'Confirm customers/users are told what processing integrity they can rely on (SLA, commitments).',
+          'Check the system is available to authorized users per those commitments.',
         ],
         questions: [
           'What does “complete and accurate” mean for your most important processing job?',
+          'Where do you commit to processing integrity for customers, contract, status page, docs?',
         ],
       },
       {
-        ref: 'PI2', title: 'Input and Processing Controls', note: 'Over the provision of services',
+        ref: 'PI1.2', title: 'System inputs', note: 'Over the provision of services',
         criteria: [
-          { ref: 'PI2.1', title: 'Inputs complete, accurate, appropriate, and authorized' },
-          { ref: 'PI2.2', title: 'Processing complete, accurate, appropriate, and authorized' },
+          { ref: 'PI1.2', title: 'Policies and procedures over system inputs, including controls over completeness and accuracy' },
         ],
         checks: [
           'Confirm input validation and authorization at system boundaries (schema / range checks, authenticated input paths).',
@@ -243,35 +245,44 @@ const TSC_MATRIX = [
         ],
       },
       {
-        ref: 'PI3.1', title: 'Transmission Integrity', note: 'Over the provision of services',
+        ref: 'PI1.3', title: 'System processing', note: 'Over the provision of services',
         criteria: [
-          { ref: 'PI3.1', title: 'Data integrity maintained during transmission; deviations detected and corrected' },
+          { ref: 'PI1.3', title: 'Policies and procedures over system processing so products, services and reporting meet objectives' },
         ],
         checks: [
-          'Verify integrity controls during data movement (TLS, checksums / hashing, message validation).',
-          'Check that transmission failures or corruption are detected and logged, not silently dropped.',
+          'Confirm systems are configured and built to reduce deviation (idempotency, schema constraints, validation by design).',
+          'Check for monitoring that flags deviation-prone paths (unhandled edge cases, schema drift).',
+          'Confirm processing-deviation monitoring (failed jobs, reconciliation breaks, data-quality alerts) is in place.',
+          'Check deviations are investigated with root cause and communicated to affected parties.',
+          'Verify a remediation process converts deviations into fixes with owners and deadlines.',
+          'Check there is evidence deviations were actually corrected, not just acknowledged.',
         ],
         questions: [
-          'If a batch transfer silently corrupted 1% of records, how would you find out?',
+          'What in your pipeline is most likely to deviate, and what stops it?',
+          'Who owns the error queue, and how fast do breaks get investigated?',
+          'Show me a processing deviation that was truly fixed, what was the root cause?',
         ],
       },
       {
-        ref: 'PI4.1', title: 'Output Integrity', note: 'Over the provision of services',
+        ref: 'PI1.4', title: 'System outputs', note: 'Over the provision of services',
         criteria: [
-          { ref: 'PI4.1', title: 'Outputs complete, accurate, appropriate, and authorized' },
+          { ref: 'PI1.4', title: 'Output is made available or delivered completely, accurately and on time, in line with specifications' },
         ],
         checks: [
           'Confirm outputs (reports, statements, exports) are verified as complete and accurate before release.',
           'Check output distribution is authorized and logged.',
+          'Verify integrity controls during data movement (TLS, checksums / hashing, message validation).',
+          'Check that transmission failures or corruption are detected and logged, not silently dropped.',
         ],
         questions: [
-          'What happened the last time an output went out inaccurate - how was it caught?',
+          'What happened the last time an output went out inaccurate, how was it caught?',
+          'If a batch transfer silently corrupted 1% of records, how would you find out?',
         ],
       },
       {
-        ref: 'PI5.1', title: 'Storage & Retrieval Integrity', note: 'Over the provision of services',
+        ref: 'PI1.5', title: 'Storage of inputs, items in processing and outputs', note: 'Over the provision of services',
         criteria: [
-          { ref: 'PI5.1', title: 'Data integrity maintained during storage, retrieval, and maintenance' },
+          { ref: 'PI1.5', title: 'Inputs, items in processing and outputs are stored completely, accurately and on time, in line with system specifications' },
         ],
         checks: [
           'Verify data-at-rest integrity (encryption, checksums on durable stores, integrity monitoring).',
@@ -281,65 +292,13 @@ const TSC_MATRIX = [
           'What guarantees that data written today is still intact and unmodified next year?',
         ],
       },
-      {
-        ref: 'PI6.1', title: 'Commitments & Availability of Processing', note: 'Over the provision of services',
-        criteria: [
-          { ref: 'PI6.1', title: 'Processing-integrity commitments communicated and system available to users' },
-        ],
-        checks: [
-          'Confirm customers/users are told what processing integrity they can rely on (SLA, commitments).',
-          'Check the system is available to authorized users per those commitments.',
-        ],
-        questions: [
-          'Where do you commit to processing integrity for customers - contract, status page, docs?',
-        ],
-      },
-      {
-        ref: 'PI7.1', title: 'Minimize Processing Deviations', note: 'Over the provision of services',
-        criteria: [
-          { ref: 'PI7.1', title: 'Design and configuration minimize processing deviations' },
-        ],
-        checks: [
-          'Confirm systems are configured and built to reduce deviation (idempotency, schema constraints, validation by design).',
-          'Check for monitoring that flags deviation-prone paths (unhandled edge cases, schema drift).',
-        ],
-        questions: [
-          'What in your pipeline is most likely to deviate, and what stops it?',
-        ],
-      },
-      {
-        ref: 'PI8.1', title: 'Deviation Detection & Response', note: 'Over the provision of services',
-        criteria: [
-          { ref: 'PI8.1', title: 'Processing deviations detected, investigated, and communicated' },
-        ],
-        checks: [
-          'Confirm processing-deviation monitoring (failed jobs, reconciliation breaks, data-quality alerts) is in place.',
-          'Check deviations are investigated with root cause and communicated to affected parties.',
-        ],
-        questions: [
-          'Who owns the error queue, and how fast do breaks get investigated?',
-        ],
-      },
-      {
-        ref: 'PI9.1', title: 'Corrective Action', note: 'Over the provision of services',
-        criteria: [
-          { ref: 'PI9.1', title: 'Corrective action addresses processing deviations and root causes' },
-        ],
-        checks: [
-          'Verify a remediation process converts deviations into fixes with owners and deadlines.',
-          'Check there is evidence deviations were actually corrected, not just acknowledged.',
-        ],
-        questions: [
-          'Show me a processing deviation that was truly fixed - what was the root cause?',
-        ],
-      },
     ],
   },
   {
     category: 'Confidentiality (C1)',
     icon: Lock,
     intro:
-      'Evaluates whether confidential information is identified, maintained, restricted, and securely disposed throughout its lifecycle. Requires CC + C1. In scope only when the report includes Confidentiality - common when the company processes non-public data under NDA (pricing, source code, roadmap, trade secrets).',
+      'Evaluates whether confidential information is identified, maintained, restricted, and securely disposed throughout its lifecycle. Requires CC + C1. In scope only when the report includes Confidentiality, common when the company processes non-public data under NDA (pricing, source code, roadmap, trade secrets).',
     color: 'amber',
     scope: 'optional',
     series: [
@@ -362,10 +321,10 @@ const TSC_MATRIX = [
     ],
   },
   {
-    category: 'Privacy (P1–P8)',
+    category: 'Privacy (P1-P8)',
     icon: EyeOff,
     intro:
-      'Evaluates how personal information is collected, used, retained, disclosed, and disposed - notice, choice and consent, access, and breach notification. Aligns with GDPR / DPDPA-style obligations. Requires CC + the P supplemental criteria; in scope only when the report includes Privacy (AICPA expects it whenever the entity processes personal information).',
+      'Evaluates how personal information is collected, used, retained, disclosed, and disposed, notice, choice and consent, access, and breach notification. Aligns with GDPR / DPDPA-style obligations. Requires CC + the P supplemental criteria; in scope only when the report includes Privacy (AICPA expects it whenever the entity processes personal information).',
     color: 'purple',
     scope: 'optional',
     series: [
@@ -454,7 +413,7 @@ const TSC_MATRIX = [
         ],
         questions: [
           'Which sub-processors hold personal data, and do all of them commit to breach notification?',
-          'Can you show the last disclosure you recorded - authorized or not?',
+          'Can you show the last disclosure you recorded, authorized or not?',
         ],
       },
       {
@@ -476,7 +435,7 @@ const TSC_MATRIX = [
           'Check privacy compliance is monitored (recurring reviews, findings → corrective action) and deficiencies are fixed in a timely manner.',
         ],
         questions: [
-          'Show me the last privacy complaint and how it was resolved - how long did it take?',
+          'Show me the last privacy complaint and how it was resolved, how long did it take?',
         ],
       },
     ],
@@ -498,7 +457,22 @@ const SCOPE_META = {
 
 export { TSC_MATRIX };
 
-export default function TscControlMatrix() {
+export function TscStackNote() {
+  return (
+        <div className="grc-card p-5 mb-8 flex items-start gap-3">
+          <Info className="w-5 h-5 text-emerald-600 dark:text-emerald-400 grc-card-icon shrink-0 mt-0.5" />
+          <p className="text-sm text-gray-600 dark:text-text-dark-secondary leading-relaxed">
+            <strong className="text-gray-800 dark:text-text-dark-primary">How the categories stack:</strong> the Security category is the
+            Common Criteria (CC1-CC9) and is <strong>always in scope</strong> - there is no SOC 2 report without it. Each additional category you
+            report on adds its own supplemental series on top of the Common Criteria: Availability adds <strong>A1</strong>, Processing Integrity adds{' '}
+            <strong>PI1.1-PI1.5</strong>, Confidentiality adds <strong>C1</strong>, and Privacy adds <strong>P1-P8</strong>. An auditor tests the common criteria
+            against the principal system objectives, then each supplemental series against its own category commitments.
+          </p>
+        </div>
+  );
+}
+
+export default function TscControlMatrix({ hideStackNote = false }) {
   const [scopeFilter, setScopeFilter] = useState('all');
 
   const totalSeries = TSC_MATRIX.reduce((s, c) => s + c.series.length, 0);
@@ -547,17 +521,7 @@ export default function TscControlMatrix() {
           ))}
         </div>
 
-        {/* How scoping works strip */}
-        <div className="grc-card p-5 mb-8 flex items-start gap-3">
-          <Info className="w-5 h-5 text-emerald-600 dark:text-emerald-400 grc-card-icon shrink-0 mt-0.5" />
-          <p className="text-sm text-gray-600 dark:text-text-dark-secondary leading-relaxed">
-            <strong className="text-gray-800 dark:text-text-dark-primary">How the categories stack:</strong> the Security category is the
-            Common Criteria (CC1–CC9) and is <strong>always in scope</strong> - there is no SOC 2 report without it. Each additional category you
-            report on adds its own supplemental series on top of the Common Criteria: Availability adds <strong>A1</strong>, Processing Integrity adds{' '}
-            <strong>PI1–PI9</strong>, Confidentiality adds <strong>C1</strong>, and Privacy adds <strong>P1–P8</strong>. An auditor tests the common criteria
-            against the principal system objectives, then each supplemental series against its own category commitments.
-          </p>
-        </div>
+        {!hideStackNote && <TscStackNote />}
 
         {/* Category matrix */}
         <div className="space-y-6">

@@ -48,8 +48,9 @@ function Chip({ pressed, onClick, children, style }) {
  * counts: { [code]: n } for domains on this page. safeguardCounts: { [category]: n } or null.
  * visible: { total, completed, hours } for the filtered set.
  */
-export default function DomainToolbar({ counts, safeguardCounts, filters, visible, guessedCount }) {
+export default function DomainToolbar({ counts, safeguardCounts, filters, visible, guessedCount, topN = 0 }) {
   const [sortAz, setSortAz] = useState(false);
+  const [showAll, setShowAll] = useState(false);
   const [sheet, setSheet] = useState(false);
   const codes = Object.keys(counts).sort((a, b) => (sortAz ? DOMAIN_BY_CODE[a].name.localeCompare(DOMAIN_BY_CODE[b].name) : counts[b] - counts[a] || DOMAIN_BY_CODE[a].name.localeCompare(DOMAIN_BY_CODE[b].name)));
   const n = filters.domains.length + filters.safeguards.length;
@@ -64,11 +65,21 @@ export default function DomainToolbar({ counts, safeguardCounts, filters, visibl
           </button>
         </div>
         <div role="group" aria-labelledby="domain-filter-label" className="flex flex-wrap gap-1.5">
-          {codes.map((c) => (
-            <Chip key={c} pressed={filters.domains.includes(c)} onClick={() => filters.toggle('domains', c)} style={pillStyle(c)}>
-              {DOMAIN_BY_CODE[c].name} ({counts[c]})
-            </Chip>
-          ))}
+          {(() => {
+            // Optionally show only the largest domains, plus any that are selected, until "Show all" is used.
+            const top = new Set([...codes].sort((a, b) => counts[b] - counts[a]).slice(0, topN));
+            const list = !topN || showAll ? codes : codes.filter((c) => top.has(c) || filters.domains.includes(c));
+            return list.map((c) => (
+              <Chip key={c} pressed={filters.domains.includes(c)} onClick={() => filters.toggle('domains', c)} style={pillStyle(c)}>
+                {DOMAIN_BY_CODE[c].name} ({counts[c]})
+              </Chip>
+            ));
+          })()}
+          {topN > 0 && codes.length > topN && (
+            <button type="button" aria-expanded={showAll} onClick={() => setShowAll((v) => !v)} className="text-xs ui-link px-1">
+              {showAll ? `Show top ${topN}` : `Show all ${codes.length}`}
+            </button>
+          )}
         </div>
       </div>
       {safeguardCounts && (

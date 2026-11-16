@@ -179,12 +179,15 @@ export function Iso27001AuditorSampling() {
     <section id="iso-auditor-sampling" className="max-w-6xl mx-auto px-4 my-10 scroll-mt-24">
       <h2 className={`text-2xl font-serif font-bold ${H}`}>What the auditor samples, by category</h2>
       <p className={`mt-1 text-sm ${TXT}`}>A quick cross-reference. Each row opens the matching category in the evidence library on the Lead Implementer page.</p>
-      <div className={`mt-3 border ${LINE} rounded-lg divide-y divide-gray-200 dark:divide-slate-700 bg-white dark:bg-[#1e293b]`}>
+      <div className="mt-3 grid gap-2 md:grid-cols-2">
         {DATA.categories.map((c, i) => (
-          <div key={c} className="p-3 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
-            <Link to={`/iso/27001/li?cat=${DATA.category_slugs[i]}`} className={`sm:w-72 shrink-0 font-semibold ui-link`}>{c}</Link>
-            <p className={`text-sm ${TXT}`}>{DATA.la_sampling[i]}</p>
-          </div>
+          <details key={c} className={`border ${LINE} rounded-lg bg-white dark:bg-[#1e293b]`}>
+            <summary className={`cursor-pointer px-3 py-2 text-sm font-semibold ${H}`}>{c}</summary>
+            <div className="px-3 pb-3 text-sm">
+              <p className={TXT}>{DATA.la_sampling[i]}</p>
+              <Link to={`/iso/27001/li?cat=${DATA.category_slugs[i]}`} className="mt-1 inline-block text-xs ui-link">Open this category in the evidence library</Link>
+            </div>
+          </details>
         ))}
       </div>
       <p className={`mt-3 text-xs ${MUTED}`}>{FOOT}</p>

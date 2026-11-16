@@ -79,6 +79,7 @@ function SizeProfileTabs({ isDark = false, activeSize, onSizeChange }) {
                     <li key={i}>{challenge}</li>
                   ))}
                 </ul>
+                <p className="mt-3 text-sm text-navy-600 dark:text-text-dark-secondary">General audit pitfalls are covered in the Level 4 task <a href="#level-4" className="ui-link">Identify and avoid common audit pitfalls</a>.</p>
               </>
             )}
           </div>

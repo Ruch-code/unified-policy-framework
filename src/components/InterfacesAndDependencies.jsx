@@ -23,10 +23,8 @@ function InterfacesAndDependencies({ isDark = false }) {
             <li>Payroll and HR providers</li>
             <li>Customers' integrations and APIs</li>
           </ul>
-        </div>
 
-        <div className="grc-card p-6 mt-8">
-          <h3 className="text-xl font-bold text-navy-900 dark:text-text-dark-primary mb-4 flex items-center gap-2">
+          <h3 className="mt-8 text-xl font-bold text-navy-900 dark:text-text-dark-primary mb-4 flex items-center gap-2">
             <span className="w-8 h-8 rounded-xl bg-amber-600 text-white flex items-center justify-center">
               <FileText className="w-5 h-5" />
             </span>
