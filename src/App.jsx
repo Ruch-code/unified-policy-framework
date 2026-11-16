@@ -7,7 +7,9 @@ import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
 import ForgotPassword from './pages/ForgotPassword.jsx';
 import AdminPanel from './pages/AdminPanel.jsx';
-import NewsletterEditor from './pages/NewsletterEditor.jsx';
+import NewsletterEditor from './pages/NewsletterEditor.jsx'; // original simple editor, kept; replaced on the route by NewsletterAdmin
+import NewsletterAdmin from './pages/NewsletterAdmin.jsx';
+import { NewsletterHome, NewsletterIssue, NewsletterStatus } from './pages/NewsletterPublic.jsx';
 import KnowledgeBase from './pages/KnowledgeBase.jsx';
 import DomainPage from './pages/DomainPage.jsx';
 import { TermsPage, PrivacyPage, CookiePage, LicensesPage } from './pages/Legal.jsx';
@@ -101,7 +103,11 @@ function App() {
           <Route path="signup" element={<Signup />} />
           <Route path="forgot" element={<ForgotPassword />} />
           <Route path="admin" element={<RequireAuth admin><AdminPanel /></RequireAuth>} />
-          <Route path="newsletter" element={<RequireAuth admin><NewsletterEditor /></RequireAuth>} />
+          <Route path="newsletter" element={<NewsletterHome />} />
+          <Route path="newsletter/status" element={<NewsletterStatus />} />
+          <Route path="newsletter/:slug" element={<NewsletterIssue />} />
+          <Route path="admin/newsletter" element={<RequireAuth admin><NewsletterAdmin /></RequireAuth>} />
+          <Route path="admin/newsletter-classic" element={<RequireAuth admin><NewsletterEditor /></RequireAuth>} />
           <Route path="knowledge" element={<RequireAuth><KnowledgeBase /></RequireAuth>} />
           <Route path="grc-maturity" element={<GrcMaturity />} />
           <Route path="cheat-sheets" element={<Protected><CheatSheets /></Protected>} />

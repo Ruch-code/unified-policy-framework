@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from 'react';
 import VisitorCounter from './VisitorCounter.jsx';
 import NavHoverIcon from './NavHoverIcon.jsx';
 import NewsletterPopup from './NewsletterPopup.jsx';
+import SubscribeForm from './newsletter/SubscribeForm.jsx';
 import InspectorCursor from './InspectorCursor.jsx';
 import ChatWidget from './ChatWidget.jsx';
 import DonateButton from './DonateButton.jsx';
@@ -697,8 +698,14 @@ export default function Layout() {
           <span className="text-sm text-gray-300"><LinkedInStory /></span>
           <DonateButton />
           <VisitorCounter />
+          <div className="w-full max-w-md text-left px-4">
+            <p className="text-sm font-semibold text-white">Newsletter</p>
+            <p className="text-xs text-gray-300">One practical GRC note every two weeks. <Link to="/newsletter" className="underline">Past issues</Link></p>
+            <SubscribeForm compact dark source="footer" />
+          </div>
           <nav aria-label="Legal" className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs">
             <Link to="/grc-maturity" className="underline text-gray-300 hover:text-white">GRC Maturity Model</Link>
+            <Link to="/newsletter" className="underline text-gray-300 hover:text-white">Newsletter</Link>
             <Link to="/terms" className="underline text-gray-300 hover:text-white">Terms of Use</Link>
             <Link to="/privacy" className="underline text-gray-300 hover:text-white">Privacy Policy</Link>
             <Link to="/cookies" className="underline text-gray-300 hover:text-white">Cookie Policy</Link>

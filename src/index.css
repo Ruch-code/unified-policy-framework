@@ -748,3 +748,14 @@ html:not(.dark) body { background-color: #f4f2ed; }
   table { min-width: 0 !important; width: 100% !important; font-size: 10pt; }
   a { color: #000 !important; }
 }
+
+/* Newsletter issue body and editor preview (rendered from Markdown) */
+.nl-body h1 { font-size: 1.5rem; font-weight: 700; margin: 1.25rem 0 0.5rem; }
+.nl-body h2 { font-size: 1.25rem; font-weight: 700; margin: 1.25rem 0 0.5rem; }
+.nl-body h3 { font-size: 1.05rem; font-weight: 700; margin: 1rem 0 0.4rem; }
+.nl-body p { margin: 0 0 0.75rem; line-height: 1.65; }
+.nl-body ul { list-style: disc; padding-left: 1.25rem; margin: 0 0 0.75rem; }
+.nl-body ol { list-style: decimal; padding-left: 1.25rem; margin: 0 0 0.75rem; }
+.nl-body li { margin: 0 0 0.25rem; line-height: 1.6; }
+.nl-body a { text-decoration: underline; overflow-wrap: anywhere; }
+.nl-body code { font-size: 0.9em; }

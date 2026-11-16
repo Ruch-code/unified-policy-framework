@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import ControlMappingCard from '../components/ControlMappingCard.jsx';
+import SubscribeForm from '../components/newsletter/SubscribeForm.jsx';
 import OnThisPage from '../components/OnThisPage.jsx';
 import AuditEvidenceChecklist from '../components/AuditEvidenceChecklist.jsx';
 import IsoImplementationTracker from '../components/IsoImplementationTracker.jsx';
@@ -414,6 +415,10 @@ export default function KnowledgeBase() {
 
           <OnThisPage containerRef={kbContentRef} watch={tab} />
           <div ref={kbContentRef}>{tabContent[tab] ?? tabContent[TABS[0].id]}</div>
+          <div className="mt-8 border border-gray-200 dark:border-slate-700 rounded-lg p-4 bg-white dark:bg-[#1e293b]">
+            <p className="text-sm font-semibold text-gray-900 dark:text-white">Get the OneLens newsletter</p>
+            <SubscribeForm source="knowledge" />
+          </div>
         </div>
       </div>
     </div>
