@@ -6,8 +6,8 @@ const H = 'text-gray-900 dark:text-white';
 const TXT = 'text-gray-700 dark:text-slate-300';
 const MUTED = 'text-gray-500 dark:text-slate-400';
 const LINE = 'border-gray-200 dark:border-slate-700';
-const FIELD = `px-2 py-1.5 border ${LINE} rounded-lg text-sm bg-white text-gray-900 dark:bg-slate-900 dark:text-white min-w-0`;
-const BTN = `px-3 py-1.5 border ${LINE} rounded-lg text-sm font-semibold ${H} bg-white dark:bg-slate-900`;
+const FIELD = 'ui-input px-2 py-1.5 border rounded-lg text-sm min-w-0';
+const BTN = 'btn btn-secondary px-3 py-1.5 rounded-lg text-sm';
 const COLS = ['Control ID', 'Control Name', 'Requirement Category', 'HIPAA Citation', 'Required / Addressable', 'Applies To', 'Control Description', 'Evidence Expected', 'Mapped Frameworks'];
 
 const applies = (c) => (c.appliesTo.length === 2 ? 'BA + CE' : c.appliesTo[0] === 'BA' ? 'BA' : 'CE only');
@@ -92,7 +92,7 @@ export default function HipaaControlSet() {
       <div className="no-print mt-4 flex flex-wrap items-center gap-2" role="group" aria-label="Control set">
         {[['BA', 'Business Associate'], ['CE', 'Covered Entity (+ Business Associate)']].map(([k, l]) => (
           <button key={k} type="button" aria-pressed={set === k} onClick={() => setSet(k)}
-            className={`px-3 py-1.5 rounded-full text-sm font-semibold border ${set === k ? 'bg-gray-900 text-white border-gray-900 dark:bg-white dark:text-slate-900 dark:border-white' : `${LINE} ${TXT} bg-white dark:bg-slate-900`}`}>{l}</button>
+            className="btn btn-secondary px-3 py-1.5 rounded-full text-sm">{l}</button>
         ))}
       </div>
       <p className={`mt-2 text-sm ${TXT}`} aria-live="polite">

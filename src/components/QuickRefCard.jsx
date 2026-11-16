@@ -24,7 +24,7 @@ export default function QuickRefCard({ id, breadcrumb = [], title, what, facts =
       <div className="mt-1 flex items-start justify-between gap-2">
         <h4 id={`${id}-title`} className={`font-bold ${H}`}>
           {title}
-          {isNew && <span className="inline-block align-middle ml-2 px-1.5 py-0.5 rounded text-[10px] font-semibold uppercase bg-[#344c67] text-white">New</span>}
+          {isNew && <span className="inline-block align-middle ml-2 px-1.5 py-0.5 rounded text-[10px] font-semibold uppercase badge badge-new">New</span>}
         </h4>
         <div className="flex gap-1 shrink-0">
           <button type="button" onClick={async () => { if (await copyText(`${window.location.origin}${window.location.pathname}${window.location.search}#${id}`)) flash('link'); }} className={`px-2 py-0.5 border ${LINE} rounded text-[11px] ${H}`} aria-label={`Copy link to ${title}`}>{copied === 'link' ? 'Copied' : 'Copy link'}</button>

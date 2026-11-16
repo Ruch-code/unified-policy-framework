@@ -7,9 +7,9 @@ const H = 'text-gray-900 dark:text-white';
 const TXT = 'text-gray-700 dark:text-slate-300';
 const MUTED = 'text-gray-500 dark:text-slate-400';
 const LINE = 'border-gray-200 dark:border-slate-700';
-const PRIMARY = 'inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold bg-indigo-700 text-white hover:bg-indigo-800 dark:bg-indigo-500 dark:hover:bg-indigo-400 dark:text-slate-950';
-const SECONDARY = `inline-flex items-center justify-center px-3 py-1.5 rounded-lg text-sm font-semibold border ${LINE} bg-white text-gray-900 hover:bg-gray-50 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800`;
-const FIELD = `px-2 py-1.5 border ${LINE} rounded text-sm bg-white dark:bg-slate-900 ${H} min-w-0`;
+const PRIMARY = 'btn btn-primary px-3 py-1.5 rounded-lg text-sm';
+const SECONDARY = 'btn btn-secondary px-3 py-1.5 rounded-lg text-sm';
+const FIELD = 'ui-input px-2 py-1.5 border rounded text-sm min-w-0';
 const BAR = ['border-l-sky-500', 'border-l-emerald-500', 'border-l-amber-500', 'border-l-rose-500', 'border-l-teal-500', 'border-l-orange-500', 'border-l-blue-500', 'border-l-lime-500'];
 
 function DownloadLink({ className = PRIMARY }) {

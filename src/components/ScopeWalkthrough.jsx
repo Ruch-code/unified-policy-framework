@@ -375,7 +375,7 @@ export default function ScopeWalkthrough() {
             </span>
             <button
               onClick={anyCollapsed ? expandAll : collapseAll}
-              className="ml-auto inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full border border-slate-300 text-gray-700 dark:border-slate-600 dark:text-text-dark-secondary hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+              className="btn btn-secondary ml-auto text-xs px-3 py-1.5 rounded-full"
             >
               {anyCollapsed ? <><Plus className="w-3.5 h-3.5" /> Expand all</> : <><Minus className="w-3.5 h-3.5" /> Minimize all</>}
             </button>

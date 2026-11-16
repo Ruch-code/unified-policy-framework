@@ -44,7 +44,7 @@ export default function GlobeExplorer({ isDark = false }) {
           onClick={() => setCollapsed(c => !c)}
           aria-expanded={!collapsed}
           aria-controls="globe-explorer-content"
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-600 dark:text-text-dark-secondary bg-slate-100 dark:bg-surface-dark-200 hover:bg-slate-200 dark:hover:bg-surface-dark-300 transition-colors"
+          className="btn btn-secondary px-3 py-1.5 rounded-lg text-xs"
         >
           <ChevronDown className={`w-4 h-4 transition-transform ${collapsed ? '' : 'rotate-180'}`} />
           {collapsed ? 'Show map' : 'Collapse'}

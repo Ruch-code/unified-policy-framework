@@ -213,12 +213,12 @@ export default function KnowledgeBase() {
                     {isObj && (c.freq || c.policy || c.sla) && (
                       <div className="flex flex-wrap gap-1.5 mt-1.5 ml-5">
                         {c.freq && (
-                          <span className="inline-flex items-center gap-1 text-[11px] font-medium text-indigo-700 bg-indigo-50 border border-indigo-100 rounded-full px-2 py-0.5 dark:text-indigo-300 dark:bg-indigo-900/40 dark:border-indigo-800">
+                          <span className="badge badge-primary text-[11px] font-medium px-2 py-0.5">
                             <CalendarDays className="w-3 h-3" /> Frequency: {c.freq}
                           </span>
                         )}
                         {c.policy && (
-                          <span className="inline-flex items-center gap-1 text-[11px] font-medium text-gray-700 bg-gray-50 border border-gray-200 rounded-full px-2 py-0.5 dark:text-slate-300 dark:bg-slate-800 dark:border-slate-700">
+                          <span className="badge badge-neutral text-[11px] font-medium px-2 py-0.5">
                             <FileText className="w-3 h-3" /> Policy: {c.policy}
                           </span>
                         )}
@@ -360,7 +360,7 @@ export default function KnowledgeBase() {
                     {items.map((t) => (
                       <li key={t.id}>
                         <button type="button" onClick={() => setTab(t.id)} aria-current={tab === t.id ? 'page' : undefined}
-                          className={`w-full text-left px-2 py-1.5 rounded text-sm ${tab === t.id ? 'bg-[#1e293b] text-white font-semibold' : 'text-gray-700 hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-slate-800'}`}>
+                          className={`btn btn-ghost w-full !justify-start text-left px-2 py-1.5 rounded text-sm ${tab === t.id ? 'is-selected' : '!font-normal'}`}>
                           {t.label}
                         </button>
                       </li>
@@ -395,8 +395,8 @@ export default function KnowledgeBase() {
             }
             return (
               <button key={id} onClick={() => setFw(id)}
-                className={`px-3 py-1.5 rounded-full text-sm font-semibold border transition ${fw === id ? 'text-white border-transparent' : 'bg-white text-gray-600 border-gray-200 hover:border-gray-300 dark:bg-[#1e293b] dark:text-[#cbd5e1] dark:border-[#334155] dark:hover:border-[#475569]'}`}
-                style={fw === id ? { background: k.color } : undefined}>
+                aria-pressed={fw === id}
+                className="btn btn-secondary px-3 py-1.5 rounded-full text-sm">
                 {k.name}
               </button>
             );
