@@ -1,3 +1,5 @@
+import MappingWorkbookCard from './mappings/MappingWorkbookCard.jsx';
+import EDP_MAPPING from '../data/mappings/edp.json';
 import React from 'react';
 import { EncryptionBlock } from './kb/TopicExtras.jsx';
 import {
@@ -129,24 +131,7 @@ function EdpTab() {
           <p className="text-xs text-gray-500 mt-3 dark:text-gray-400">Note: Licensing guidance uses "typically requires" phrasing. Verify with your reseller or vendor portal before purchasing.</p>
         </div>
 
-        <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-8 dark:bg-gray-800 dark:border-gray-700">
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Framework Mapping</h3>
-          <p className="text-gray-600 dark:text-gray-300 mb-4">EDP controls map to these frameworks (ISO 27001:2022 numbering):</p>
-          <div className="grid md:grid-cols-2 gap-4 text-sm">
-            <div className="bg-blue-50 rounded-lg p-4 dark:bg-blue-900/20 dark:border-blue-800">
-              <h4 className="font-bold text-blue-900 dark:text-blue-300 mb-2">ISO 27001:2022</h4>
-              <p className="text-blue-800 dark:text-blue-300">A.5.10, A.5.12, A.5.13, A.5.14, A.5.15, A.5.23, A.5.34, A.6.7, A.7.9, A.7.10, A.8.1, A.8.5, A.8.7, A.8.9, A.8.10, A.8.11, A.8.12, A.8.19, A.8.24</p>
-            </div>
-            <div className="bg-purple-50 rounded-lg p-4 dark:bg-purple-900/20 dark:border-purple-800">
-              <h4 className="font-bold text-purple-900 dark:text-purple-300 mb-2">SOC 2 / HIPAA / PCI</h4>
-              <p className="text-purple-800 dark:text-purple-300">SOC 2: CC6.1, CC6.6, CC6.7, CC6.8, CC7.2<br/>HIPAA: 164.310(d), 164.312(a)(2)(iv), 164.312(e)<br/>PCI DSS v4: Req 3, 4, 5, 12.3</p>
-            </div>
-            <div className="bg-green-50 rounded-lg p-4 dark:bg-green-900/20 dark:border-green-800">
-              <h4 className="font-bold text-green-900 dark:text-green-300 mb-2">CIS / NIST / GDPR</h4>
-              <p className="text-green-800 dark:text-green-300">CIS v8: 1, 2, 3, 4, 10, 13<br/>NIST 800-53: AC-19, AC-20, CM-8, MP-7, SC-7, SI-4<br/>GDPR: Art 32 | DPDP Act: reasonable safeguards</p>
-            </div>
-          </div>
-        </div>
+        <MappingWorkbookCard data={EDP_MAPPING} intro="Download the control-by-control mapping for endpoint and data protection across ISO 27001:2022, SOC 2, HIPAA, PCI DSS v4, CIS v8, NIST SP 800-53 Rev 5, GDPR and DPDP Act." />
 
         <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-8 dark:bg-gray-800 dark:border-gray-700">
           <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Implementation Roadmap by Size</h3>
