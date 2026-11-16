@@ -1,5 +1,12 @@
 import { Copy, FileText, Shield, CheckCircle, Calendar, CalendarDays, Lock, UserCheck, Building2, Users, Briefcase, GraduationCap, ArrowRight, ChevronRight, AlertTriangle } from 'lucide-react';
 
+const TEMPLATE_ID = 'scope-statement-template-text';
+const copyTemplate = async (e) => {
+  const el = document.getElementById(TEMPLATE_ID);
+  const btn = e.currentTarget;
+  try { await navigator.clipboard.writeText(el ? el.innerText.trim() : ''); btn.dataset.copied = '1'; btn.lastChild.textContent = ' Copied'; setTimeout(() => { btn.lastChild.textContent = ' Copy Template'; }, 1500); } catch { /* clipboard blocked */ }
+};
+
 function ScopeStatementTemplate({ isDark = false }) {
   return (
     <section className="py-8" id="scope-statement-template">
@@ -14,7 +21,7 @@ function ScopeStatementTemplate({ isDark = false }) {
           <p className="text-navy-600 dark:text-text-dark-secondary mb-4">
             Copy and fill in. Include in all exports:
           </p>
-          <div className="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl p-4 font-mono text-sm whitespace-pre-wrap text-slate-700 dark:text-slate-300">
+          <div id={TEMPLATE_ID} className="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl p-4 font-mono text-sm whitespace-pre-wrap text-slate-700 dark:text-slate-300">
 The Information Security Management System of [Legal entity name] applies to the [design, development, operation, support] of [product or service name], delivered from [locations or 'a remote-first workforce'] and hosted on [cloud provider and regions]. It covers [teams or functions], the supporting information assets, systems and processes, in accordance with the Statement of Applicability version [x.y] dated [date].
           </div>
           <p className="mt-4 text-sm text-navy-600 dark:text-text-dark-secondary">
@@ -28,31 +35,12 @@ The Information Security Management System of [Legal entity name] applies to the
               <FileText className="w-5 h-5" />
               Copy to Clipboard
             </h3>
-            <button className="mt-2 inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium bg-indigo-600 text-white hover:bg-indigo-700 transition-colors">
-              <Copy className="w-4 h-4" /> Copy Template
+            <button type="button" onClick={copyTemplate} className="btn btn-primary mt-2 px-3 py-1.5 rounded-lg text-sm">
+              <Copy className="w-4 h-4" /><span> Copy Template</span>
             </button>
           </div>
         </div>
 
-        <div className="grc-card p-6">
-          <h2 className="text-xl font-bold text-navy-900 dark:text-text-dark-primary mb-4 flex items-center gap-2">
-            <span className="w-8 h-8 rounded-xl bg-rose-600 text-white flex items-center justify-center">
-              <AlertTriangle className="w-5 h-5" />
-            </span>
-            Exclusion Rationale Examples
-          </h2>
-          <p className="text-navy-600 dark:text-text-dark-secondary mb-4">
-            Bare "N/A" is never acceptable. Six examples:
-          </p>
-          <ul className="space-y-3 text-sm text-navy-600 dark:text-text-dark-secondary list-disc list-inside">
-            <li><strong>A.7.1 to A.7.4 excluded:</strong> fully remote, no controlled premises; co-working landlord operates entry control and CCTV; re-validated at each management review.</li>
-            <li><strong>A.7.11, A.7.12 excluded:</strong> all production hosted on AWS multi-AZ; utilities and cabling covered by provider SOC 2 and ISO 27001 reports reviewed annually under A.5.23.</li>
-            <li><strong>A.8.30 retained even with in-house development only:</strong> implementation note "no external development currently"; never silently excluded.</li>
-            <li><strong>Business unit carve-out (large enterprise):</strong> Retail division out of scope; interface controlled by network segregation (A.8.22) and a documented data-sharing agreement.</li>
-            <li><strong>A.8.25-8.29 excluded:</strong> no software development; written rationale "no software development"; supplier controls A.5.19-5.23 retained.</li>
-            <li><strong>A.7.11, A.7.12 excluded:</strong> all production hosted on AWS multi-AZ; utilities and cabling covered by provider SOC 2 and ISO 27001 reports reviewed annually under A.5.23.</li>
-          </ul>
-        </div>
       </div>
     </section>
   );

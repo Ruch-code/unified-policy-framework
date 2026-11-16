@@ -1,6 +1,7 @@
 import { useState, useEffect, Fragment } from 'react';
 import RelatedTemplates from './templates/RelatedTemplates.jsx';
 import OnThisPage from './OnThisPage.jsx';
+import { SOA_FIELDS } from './StatementOfApplicability.jsx';
 import { taskNotes } from '../data/startupVariants.js';
 import { Link } from 'react-router-dom';
 import { Clock, RefreshCw, ArrowRight, BookOpen, ExternalLink, Lock, CheckCircle, ChevronDown, ChevronRight, Zap, Shield, Award, Target, TrendingUp, AlertTriangle, Lightbulb, ClipboardList, Info } from 'lucide-react';
@@ -229,6 +230,10 @@ function InnerGateScope({ children }) {
 }
 
 function FrameworkBody({ framework, extraSections }) {
+  const compact = !!framework.compactLayout;
+  const [openLevels, setOpenLevels] = useState({ 0: true });
+  const levelOpen = (idx) => !compact || !!openLevels[idx];
+  const toggleLevel = (idx) => setOpenLevels((o) => ({ ...o, [idx]: !o[idx] }));
   const LEVELS = framework.levelMeta ? framework.levelMeta.map((m, i) => ({ ...LEVEL_META[i], ...m })) : LEVEL_META;
   const data = normalizeFramework(framework);
   const extensionNodes = extraSections ?? framework.extraSections;
@@ -375,7 +380,7 @@ function FrameworkBody({ framework, extraSections }) {
                 </div>
               </section>
             )}
-            <div className="mt-5 max-w-3xl"><OnThisPage scope="main" watch={framework.id} /></div>
+            {!framework.compactLayout && <div className="mt-5 max-w-3xl"><OnThisPage scope="main" watch={framework.id} /></div>}
           </div>
           <div className="flex flex-wrap gap-3">
             {framework.basePath && (
@@ -393,12 +398,25 @@ function FrameworkBody({ framework, extraSections }) {
           </div>
         </div>
 
+        {compact && Array.isArray(framework.jumpSections) && (
+          <nav aria-label="Jump to a section" className="sticky top-16 z-30 mb-6 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2">
+            <details>
+              <summary className="cursor-pointer text-sm font-semibold text-gray-900 dark:text-white">Jump to a section ({framework.jumpSections.length})</summary>
+              <ol className="mt-2 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-1 text-sm list-decimal pl-5">
+                {framework.jumpSections.map(([id, label]) => (
+                  <li key={id}><a href={`#${id}`} onClick={(e) => { e.preventDefault(); document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); e.currentTarget.closest('details')?.removeAttribute('open'); }} className="ui-link">{label}</a></li>
+                ))}
+              </ol>
+            </details>
+          </nav>
+        )}
+
         {framework.timelineNote && (
           <p className="mb-6 rounded-xl border border-violet-200 dark:border-violet-800 bg-violet-50/60 dark:bg-violet-900/20 p-3 text-sm text-gray-700 dark:text-slate-200">{framework.timelineNote}</p>
         )}
 
         {/* Progress Dashboard */}
-        <div className={`bg-white rounded-2xl border ${colors.border} p-6 mb-8`}>
+        <div id="progress" className={`bg-white rounded-2xl border ${colors.border} ${compact ? 'p-4 mb-4 scroll-mt-24' : 'p-6 mb-8'}`}>
           <div className="flex flex-col md:flex-row items-center gap-8">
             {/* Progress Ring */}
             <div className="relative shrink-0">
@@ -440,8 +458,8 @@ function FrameworkBody({ framework, extraSections }) {
 
         {/* Timeline */}
         {data.milestones && data.milestones.length > 0 && (
-          <div className={`bg-white rounded-2xl border ${colors.border} p-6 mb-8`}>
-            <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+          <div className={`bg-white rounded-2xl border ${colors.border} ${compact ? 'p-4 mb-4' : 'p-6 mb-8'}`}>
+            <h2 className={`text-xl font-bold text-gray-900 ${compact ? 'mb-3' : 'mb-6'} flex items-center gap-2`}>
               <Clock className="w-5 h-5" style={{ color: colors.hex }} />
               Implementation Timeline
             </h2>
@@ -463,7 +481,7 @@ function FrameworkBody({ framework, extraSections }) {
           </div>
         )}
 
-        {data.weeks.some(w => w.tasks.some(t => t && t.evidence)) && (
+        {!compact && data.weeks.some(w => w.tasks.some(t => t && t.evidence)) && (
           <div className="mb-6 rounded-xl border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/20 p-4 text-sm text-amber-900 dark:text-amber-100">
             <p className="font-semibold mb-1">Evidence handling conventions</p>
             <ul className="list-disc pl-5 space-y-0.5">{EVIDENCE_CONVENTIONS.map(c => <li key={c}>{c}</li>)}</ul>
@@ -477,6 +495,23 @@ function FrameworkBody({ framework, extraSections }) {
           <DomainToolbar counts={domainCounts} safeguardCounts={safeguardCounts} filters={domainFilters} visible={visibleStats} guessedCount={guessedCount} />
         )}
 
+        {compact && (
+          <div id="evidence-soa-conventions" className={`bg-white rounded-2xl border ${colors.border} p-6 mb-8 scroll-mt-24`}>
+            <h2 className="text-xl font-bold text-gray-900 mb-4">Evidence &amp; SoA conventions</h2>
+            <div className="grid md:grid-cols-2 gap-4 text-sm">
+              <div className="rounded-xl border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/20 p-4 text-amber-900 dark:text-amber-100">
+                <p className="font-semibold mb-1">Evidence handling conventions</p>
+                <ul className="list-disc pl-5 space-y-0.5">{EVIDENCE_CONVENTIONS.map(c => <li key={c}>{c}</li>)}</ul>
+                <p className="mt-2 text-xs">Each task has an "Evidence required" section. Entries marked as topic-based were assigned from the task's subject; tailor them to your systems.</p>
+              </div>
+              <div className="rounded-xl border border-gray-200 dark:border-slate-700 p-4">
+                <p className="font-semibold mb-1 text-gray-900">What the SoA must capture, per control</p>
+                <ul className="list-disc pl-5 space-y-0.5 text-gray-700">{SOA_FIELDS.map((f, i) => <li key={f}>{f}{i === 8 ? ' (trace)' : ''}</li>)}</ul>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Level Sections */}
         {data.weeks.map((week, idx) => {
           const unlocked = isWeekUnlocked(idx);
@@ -487,8 +522,10 @@ function FrameworkBody({ framework, extraSections }) {
 
           return (
             <div key={week.week} className={`mb-8 rounded-2xl border overflow-hidden transition-all ${unlocked ? 'bg-white border-gray-200 shadow-sm' : 'bg-gray-50 border-gray-200 opacity-60 dark:bg-slate-800/50 dark:border-slate-700 dark:opacity-90'}`}>
-              {/* Level Header */}
-              <div className={`px-5 sm:px-6 py-5 flex flex-wrap items-center justify-between gap-x-4 gap-y-3 ${unlocked ? colors.bg : 'bg-gray-400 dark:bg-gray-700'}`}>
+              {/* Level Header (a toggle on compact pages) */}
+              <div id={`level-${idx + 1}`} role={compact ? 'button' : undefined} tabIndex={compact ? 0 : undefined} aria-expanded={compact ? levelOpen(idx) : undefined}
+                onClick={compact ? () => toggleLevel(idx) : undefined} onKeyDown={compact ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleLevel(idx); } } : undefined}
+                className={`scroll-mt-24 px-5 sm:px-6 py-5 flex flex-wrap items-center justify-between gap-x-4 gap-y-3 ${compact ? 'cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2' : ''} ${unlocked ? colors.bg : 'bg-gray-400 dark:bg-gray-700'}`}>
                 <div className="flex items-start gap-3 min-w-0 flex-1 basis-[240px]">
                   {unlocked ? (
                     <Icon className="w-6 h-6 text-white shrink-0 mt-0.5" />
@@ -503,7 +540,8 @@ function FrameworkBody({ framework, extraSections }) {
                     <p className="text-sm text-white/90 mt-0.5">{Meta.desc} - {week.description}</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 pr-16 shrink-0 ml-auto">
+                <div className={`flex items-center gap-3 ${compact ? '' : 'pr-16'} shrink-0 ml-auto`}>
+                  {compact && <span aria-hidden="true" className="text-white text-lg">{levelOpen(idx) ? '▾' : '▸'}</span>}
                   <div className={`text-right px-3 py-1 rounded-full text-sm font-medium ${weekStats[week.week]?.pct >= 80 ? 'bg-white/30 text-white' : 'bg-white/10 text-white/70'}`}>
                     {weekStats[week.week]?.completed || 0}/{week.tasks.length} {weekStats[week.week]?.pct >= 80 ? '' : ''}
                   </div>
@@ -516,20 +554,20 @@ function FrameworkBody({ framework, extraSections }) {
               </div>
 
               {/* Level Content */}
-              {!unlocked && (
+              {levelOpen(idx) && !unlocked && (
                 <div className="px-6 py-8 text-center">
                   <Lock className="w-10 h-10 text-gray-500 mx-auto mb-3 dark:text-slate-300" />
                   <p className="text-gray-600 dark:text-slate-300 text-sm">Complete <strong>{LEVELS[idx - 1]?.label || 'previous level'}</strong> ({weekStats[data.weeks[idx - 1]?.week]?.pct || 0}% / 80%) to unlock this level</p>
                 </div>
               )}
 
-              {unlocked && justUnlocked && (
+              {levelOpen(idx) && unlocked && justUnlocked && (
                 <div className={`px-6 py-3 text-center text-sm font-medium ${colors.bgLight} ${colors.text}`}>
                   Level {idx + 1} unlocked! Start working through the controls below.
                 </div>
               )}
 
-              {unlocked && (
+              {levelOpen(idx) && unlocked && (
                 <div className="divide-y divide-gray-100">
                   {(() => {
                     const renderTask = (task, i, tags = []) => {
@@ -573,7 +611,7 @@ function FrameworkBody({ framework, extraSections }) {
                                   <ul className="ml-5 list-disc pl-4 text-sm text-amber-800 dark:text-amber-200 space-y-0.5">{taskNotes(framework.id, task.title).map(n => <li key={n}>{n}</li>)}</ul>
                                 )}
                                 {task.evidence && <EvidenceDetail evidence={task.evidence} color={colors.text} />}
-                                <RelatedTemplates className="ml-5" slugs={task.templates} exclusive={!!task.templatesExclusive} text={[task.title, task.control, task.how, task.check, task.citation && (task.citation.ref || task.citation.section || task.citation.label)].filter(Boolean).join(' ')} />
+                                <RelatedTemplates className="ml-5" chips={compact} slugs={task.templates} exclusive={!!task.templatesExclusive} text={[task.title, task.control, task.how, task.check, task.citation && (task.citation.ref || task.citation.section || task.citation.label)].filter(Boolean).join(' ')} />
                                 {Array.isArray(task.toBuild) && task.toBuild.length > 0 && <p className="ml-5 mt-1 text-xs text-gray-600 dark:text-slate-300">{task.toBuild.map((n) => `Template to build: ${n}`).join('; ')}</p>}
                                 {task.citation && (
                                   <CitationRow
@@ -646,7 +684,7 @@ function FrameworkBody({ framework, extraSections }) {
               )}
 
               {/* Level Complete Banner */}
-              {unlocked && weekStats[week.week]?.pct >= 100 && (
+              {levelOpen(idx) && unlocked && weekStats[week.week]?.pct >= 100 && (
                 <div className={`px-6 py-4 text-center text-sm font-medium bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 border-t border-green-200 dark:border-green-800`}>
                   Level {idx + 1} complete! {idx < data.weeks.length - 1 ? `Continue with Level ${idx + 2}.` : 'All levels complete. You are audit-ready - this is not a certification, and nobody has validated your organization.'}
                 </div>
@@ -660,8 +698,8 @@ function FrameworkBody({ framework, extraSections }) {
           <Fragment key={`extra-${i}`}>{node}</Fragment>
         ))}
 
-        {/* ISO 42001 Link */}
-        <div className={`bg-white rounded-2xl border ${colors.border} p-6 mb-8`}>
+        {/* ISO 42001 Link (not shown where the page header already links to the companion site) */}
+        {!framework.hide42001Block && <div className={`bg-white rounded-2xl border ${colors.border} p-6 mb-8`}>
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-[#e3e9f1] dark:bg-[#1f2e40] rounded-xl">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-xl bg-[#415d7d] flex items-center justify-center">
@@ -677,14 +715,14 @@ function FrameworkBody({ framework, extraSections }) {
               ISO 42001 companion site (external)
             </a>
           </div>
-        </div>
+        </div>}
 
         {/* Startup Gaps & Pushback: now consolidated in the GRC Knowledge Base */}
         {(() => {
           const isPrivacy = isHipaaFramework(framework) || /privacy|gdpr|dpdpa|ccpa|coppa|27701|lgpd|pdpa|pipl/i.test(framework.name);
           const here = typeof window !== 'undefined' ? window.location.pathname.replace(/^\/+|\/+$/g, '') : '';
           return (
-            <div className={`bg-white rounded-2xl border ${colors.border} p-6 mb-8`}>
+            <div id="common-gaps" className={`bg-white rounded-2xl border ${colors.border} p-6 mb-8 scroll-mt-24`}>
               <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
                 <span className="w-8 h-8 rounded-lg bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300 flex items-center justify-center"><TrendingUp className="w-4 h-4" /></span>
                 Common Gaps & Startup Pushback (ITGC)
