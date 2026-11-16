@@ -1,5 +1,7 @@
 import { useMemo, useState } from 'react';
 import { AEC_INTRO, AEC_FRAMEWORKS, AEC_ITEMS, AEC_PLAN_INTRO, AEC_PLAN, AEC_RACI_NOTE } from '../data/auditEvidenceChecklist.js';
+// Area and Control stay visible while the framework columns scroll sideways.
+const FROZEN = ['sticky left-0 w-28 min-w-[7rem] max-w-[7rem]', 'sticky left-28 w-48 min-w-[12rem] max-w-[12rem] border-r border-gray-200 dark:border-slate-700'];
 
 const H = 'text-gray-900 dark:text-white';
 const TXT = 'text-gray-700 dark:text-slate-300';
@@ -30,16 +32,16 @@ export default function AuditEvidenceChecklist() {
             className={`ml-auto w-full sm:w-56 px-3 py-1.5 border ${LINE} rounded text-sm bg-white dark:bg-slate-900`} />
         </div>
         <p className="mt-2 text-xs text-gray-500 dark:text-slate-400">{rows.length} of {AEC_ITEMS.length} items shown</p>
-        <div className={`mt-2 overflow-x-auto rounded border ${LINE}`} tabIndex={0} role="region" aria-label="Audit evidence checklist">
+        <div className={`mt-2 overflow-auto max-h-[75vh] rounded border ${LINE}`} tabIndex={0} role="region" aria-label="Audit evidence checklist">
           <table className="w-full text-sm" style={{ minWidth: 1100 }}>
             <thead className="bg-gray-50 dark:bg-slate-800">
-              <tr>{['Area', 'Control', 'Evidence auditors usually accept', ...AEC_FRAMEWORKS].map((h) => <th key={h} scope="col" className={`text-left p-2.5 font-semibold ${H}`}>{h}</th>)}</tr>
+              <tr>{['Area', 'Control', 'Evidence auditors usually accept', ...AEC_FRAMEWORKS].map((h, i) => <th key={h} scope="col" className={`sticky top-0 ${i < 2 ? 'z-30' : 'z-20'} text-left p-2.5 font-semibold bg-gray-50 dark:bg-slate-800 ${H} ${FROZEN[i] || ''}`}>{h}</th>)}</tr>
             </thead>
             <tbody>
               {rows.map((r) => (
                 <tr key={`${r[0]}-${r[1]}`} className={`border-t ${LINE} align-top`}>
-                  <td className={`p-2.5 text-xs uppercase tracking-wide text-gray-500 dark:text-slate-400`}>{r[0]}</td>
-                  <td className={`p-2.5 font-semibold ${H}`}>{r[1]}</td>
+                  <td className={`p-2.5 text-xs uppercase tracking-wide text-gray-500 dark:text-slate-400 bg-white dark:bg-slate-900 z-10 ${FROZEN[0]}`}>{r[0]}</td>
+                  <td className={`p-2.5 font-semibold bg-white dark:bg-slate-900 z-10 ${H} ${FROZEN[1]}`}>{r[1]}</td>
                   <td className={`p-2.5 ${TXT}`}>{r[2]}</td>
                   {r.slice(3).map((v, i) => <td key={i} className="p-2.5"><Mark v={v} /></td>)}
                 </tr>
