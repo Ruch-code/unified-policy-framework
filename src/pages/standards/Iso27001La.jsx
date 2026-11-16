@@ -6,6 +6,7 @@ import ScopeWalkthrough from "../../components/ScopeWalkthrough.jsx";
 import ScopingGuide from "../../components/ScopingGuide";
 import { withEvidence, appendToLevel } from "../../data/playbookEvidence.js";
 import { LA_L3_CONTROLS } from "../../data/playbookAdditions/iso27001.js";
+import { Iso27001AuditorSampling } from '../../components/Iso27001EvidenceLibrary.jsx';
 
 const FRAMEWORK = {
   domainFramework: 'ISO 27001',
@@ -196,6 +197,7 @@ export default function Iso27001La() {
       <ScopingGuide />
       <ScopeWalkthrough />
       <StatementOfApplicability />
+      <Iso27001AuditorSampling />
       <div className="max-w-6xl mx-auto px-4 my-8"><EngPartnershipLink set="iso27001" /></div>
     </>
   );

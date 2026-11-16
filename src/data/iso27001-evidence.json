@@ -1,0 +1,2377 @@
+{
+ "categories": [
+  "Context of the Organization (Clause 4)",
+  "Leadership (Clause 5)",
+  "Planning (Clause 6)",
+  "Support (Clause 7)",
+  "Operation (Clause 8)",
+  "Performance Evaluation (Clause 9)",
+  "Improvement (Clause 10)",
+  "Annex A Organizational (A.5.1 to A.5.37)",
+  "Annex A People (A.6.1 to A.6.8)",
+  "Annex A Physical (A.7.1 to A.7.14)",
+  "Annex A Technological (A.8.1 to A.8.34)"
+ ],
+ "core_documents": {
+  "isms": [
+   "00 Master list of documents",
+   "01 ISMS scope",
+   "02 ISMS policy",
+   "03 Roles, responsibilities and authorities",
+   "04 Risk assessment and risk treatment process",
+   "05 Procedure for control of documented information",
+   "06 Information security communication plan",
+   "07 Procedure for internal audits",
+   "08 Procedure for management review",
+   "09 Procedure for corrective action and continual improvement",
+   "10 Information security objectives plan",
+   "11 Statement of Applicability",
+   "12 Relevant laws, regulations and contractual requirements"
+  ],
+  "policies": [
+   "Information Security Policy (AUP)",
+   "Access Control",
+   "Asset Management",
+   "Business Continuity and Disaster Recovery Plan",
+   "Code of Conduct",
+   "Cryptography",
+   "AI Acceptable Use",
+   "Data Management",
+   "Human Resource Security",
+   "Incident Response Plan",
+   "Information Security Roles and Responsibilities",
+   "Operations Security",
+   "Physical Security",
+   "Risk Management",
+   "Secure Development",
+   "Third-Party Management"
+  ]
+ },
+ "physical_note": "For cloud-only organisations these are largely inherited from the cloud provider. Evidence is the provider's ISO 27001 certificate plus the SoA justification.",
+ "items": [
+  {
+   "id": "4.1",
+   "title": "Understanding the organization and its context",
+   "category": "Context of the Organization (Clause 4)",
+   "type": "Clause",
+   "requirement_summary": "Identify the internal and external issues that affect what the ISMS needs to achieve.",
+   "evidence": [
+    "ISMS scope document (internal and external issues)"
+   ],
+   "evidence_types": [
+    "Procedure"
+   ],
+   "auditor_sampling": "Reads the scope and checks that issues, interested parties and boundaries match how the organisation really works.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "4.2",
+   "title": "Understanding the needs and expectations of interested parties",
+   "category": "Context of the Organization (Clause 4)",
+   "type": "Clause",
+   "requirement_summary": "Identify who has a stake in information security and which of their requirements the ISMS will address.",
+   "evidence": [
+    "ISMS scope document (interested parties and their requirements)"
+   ],
+   "evidence_types": [
+    "Procedure"
+   ],
+   "auditor_sampling": "Reads the scope and checks that issues, interested parties and boundaries match how the organisation really works.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "4.3",
+   "title": "Determining the scope of the ISMS",
+   "category": "Context of the Organization (Clause 4)",
+   "type": "Clause",
+   "requirement_summary": "Define the boundaries of the ISMS, including locations, systems, interfaces and any exclusions.",
+   "evidence": [
+    "ISMS scope document (boundaries, locations, systems, exclusions)"
+   ],
+   "evidence_types": [
+    "Procedure",
+    "Contract"
+   ],
+   "auditor_sampling": "Reads the scope and checks that issues, interested parties and boundaries match how the organisation really works.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "4.4",
+   "title": "Information security management system",
+   "category": "Context of the Organization (Clause 4)",
+   "type": "Clause",
+   "requirement_summary": "Establish, run, maintain and keep improving the ISMS and the processes it needs.",
+   "evidence": [
+    "ISMS scope",
+    "ISMS policy"
+   ],
+   "evidence_types": [
+    "Policy"
+   ],
+   "auditor_sampling": "Reads the scope and checks that issues, interested parties and boundaries match how the organisation really works.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "5.1",
+   "title": "Leadership and commitment",
+   "category": "Leadership (Clause 5)",
+   "type": "Clause",
+   "requirement_summary": "Top management shows active ownership of the ISMS, provides resources and supports the people running it.",
+   "evidence": [
+    "ISMS policy",
+    "Roles, responsibilities and authorities",
+    "Information Security Policy signed by leadership"
+   ],
+   "evidence_types": [
+    "Policy"
+   ],
+   "auditor_sampling": "Interviews leadership and checks the policy is approved, communicated and acknowledged by staff.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "5.2",
+   "title": "Policy",
+   "category": "Leadership (Clause 5)",
+   "type": "Clause",
+   "requirement_summary": "Leadership sets an information security policy that fits the organisation, includes objectives and is communicated to staff.",
+   "evidence": [
+    "ISMS policy",
+    "Objectives plan",
+    "Full policy set",
+    "Personnel acknowledgement records for every policy (automated test: personnel agree to each policy)"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Procedure",
+    "Record",
+    "Automated test"
+   ],
+   "auditor_sampling": "Interviews leadership and checks the policy is approved, communicated and acknowledged by staff.",
+   "frequency": "Ongoing",
+   "inherited": false
+  },
+  {
+   "id": "5.3",
+   "title": "Organizational roles, responsibilities and authorities",
+   "category": "Leadership (Clause 5)",
+   "type": "Clause",
+   "requirement_summary": "Security roles are assigned, communicated and understood, including who reports on ISMS performance.",
+   "evidence": [
+    "Roles, responsibilities and authorities document"
+   ],
+   "evidence_types": [
+    "Procedure"
+   ],
+   "auditor_sampling": "Interviews leadership and checks the policy is approved, communicated and acknowledged by staff.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "6.1.1",
+   "title": "Actions to address risks and opportunities: general",
+   "category": "Planning (Clause 6)",
+   "type": "Clause",
+   "requirement_summary": "Plan how the ISMS will deal with risks and opportunities so it achieves its intended outcomes.",
+   "evidence": [
+    "Risk assessment and treatment process",
+    "Corrective action procedure",
+    "Objectives plan",
+    "Annual risk assessment completed (automated test)"
+   ],
+   "evidence_types": [
+    "Procedure",
+    "Automated test",
+    "Report"
+   ],
+   "auditor_sampling": "Walks through the risk method, picks risks from the register and traces them to treatments and the Statement of Applicability.",
+   "frequency": "Ongoing",
+   "inherited": false
+  },
+  {
+   "id": "6.1.2",
+   "title": "Information security risk assessment",
+   "category": "Planning (Clause 6)",
+   "type": "Clause",
+   "requirement_summary": "Use a defined, repeatable method to identify, analyse and evaluate information security risks.",
+   "evidence": [
+    "Risk assessment process",
+    "Risk Management Policy",
+    "Annual risk assessment record and risk register"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Procedure",
+    "Record",
+    "Report"
+   ],
+   "auditor_sampling": "Walks through the risk method, picks risks from the register and traces them to treatments and the Statement of Applicability.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "6.1.3",
+   "title": "Information security risk treatment",
+   "category": "Planning (Clause 6)",
+   "type": "Clause",
+   "requirement_summary": "Choose treatment options, select controls, produce a Statement of Applicability and get risk owners to approve the plan.",
+   "evidence": [
+    "Risk treatment process",
+    "Statement of Applicability",
+    "Operations Security Policy",
+    "Risk treatment plan from the annual assessment"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Procedure",
+    "Report"
+   ],
+   "auditor_sampling": "Walks through the risk method, picks risks from the register and traces them to treatments and the Statement of Applicability.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "6.2",
+   "title": "Information security objectives and planning to achieve them",
+   "category": "Planning (Clause 6)",
+   "type": "Clause",
+   "requirement_summary": "Set measurable security objectives and plan who does what, by when, and how results are judged.",
+   "evidence": [
+    "Information security objectives plan with KPIs, owners and target dates"
+   ],
+   "evidence_types": [
+    "Procedure"
+   ],
+   "auditor_sampling": "Walks through the risk method, picks risks from the register and traces them to treatments and the Statement of Applicability.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "6.3",
+   "title": "Planning of changes",
+   "category": "Planning (Clause 6)",
+   "type": "Clause",
+   "requirement_summary": "Make changes to the ISMS in a planned and controlled way.",
+   "evidence": [
+    "Information Security, Operations Security and Risk Management policies",
+    "Sample ISMS change ticket showing request, impact review and approval"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Record"
+   ],
+   "auditor_sampling": "Walks through the risk method, picks risks from the register and traces them to treatments and the Statement of Applicability.",
+   "frequency": "Per event",
+   "inherited": false
+  },
+  {
+   "id": "7.1",
+   "title": "Resources",
+   "category": "Support (Clause 7)",
+   "type": "Clause",
+   "requirement_summary": "Provide the people, budget and tools the ISMS needs.",
+   "evidence": [
+    "ISMS policy",
+    "Roles document (resource allocation)"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Procedure"
+   ],
+   "auditor_sampling": "Samples staff for training and competence records and checks documents are version-controlled and approved.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "7.2",
+   "title": "Competence",
+   "category": "Support (Clause 7)",
+   "type": "Clause",
+   "requirement_summary": "Make sure people doing security work are competent and keep evidence of it.",
+   "evidence": [
+    "Roles document",
+    "HR Security Policy",
+    "Security leadership qualifications and certifications",
+    "Security training records",
+    "Sample annual performance evaluations",
+    "Candidate competency evaluation procedure"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Procedure",
+    "Record",
+    "Training"
+   ],
+   "auditor_sampling": "Samples staff for training and competence records and checks documents are version-controlled and approved.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "7.3",
+   "title": "Awareness",
+   "category": "Support (Clause 7)",
+   "type": "Clause",
+   "requirement_summary": "Staff know the policy, how they contribute, and what happens if they do not follow it.",
+   "evidence": [
+    "Communication plan",
+    "Security awareness training completion records",
+    "Information Security Policy acknowledgement"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Procedure",
+    "Record",
+    "Training"
+   ],
+   "auditor_sampling": "Samples staff for training and competence records and checks documents are version-controlled and approved.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "7.4",
+   "title": "Communication",
+   "category": "Support (Clause 7)",
+   "type": "Clause",
+   "requirement_summary": "Decide what to communicate about security, when, to whom, how and by whom.",
+   "evidence": [
+    "Communication plan (what, when, with whom, how, by whom)"
+   ],
+   "evidence_types": [
+    "Procedure"
+   ],
+   "auditor_sampling": "Samples staff for training and competence records and checks documents are version-controlled and approved.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "7.5",
+   "title": "Documented information",
+   "category": "Support (Clause 7)",
+   "type": "Clause",
+   "requirement_summary": "Create, approve, control and protect the documents and records the ISMS needs.",
+   "evidence": [
+    "Procedure for control of documented information",
+    "Master list of documents with versions, owners and approval dates"
+   ],
+   "evidence_types": [
+    "Procedure",
+    "Record"
+   ],
+   "auditor_sampling": "Samples staff for training and competence records and checks documents are version-controlled and approved.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "8.1",
+   "title": "Operational planning and control",
+   "category": "Operation (Clause 8)",
+   "type": "Clause",
+   "requirement_summary": "Plan, run and control the processes needed to meet security requirements, including outsourced ones.",
+   "evidence": [
+    "Master list of documents",
+    "ISMS policy",
+    "Objectives plan",
+    "Risk Management Policy"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Procedure",
+    "Record"
+   ],
+   "auditor_sampling": "Checks the latest risk assessment is dated and complete, and that treatment actions are moving.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "8.2",
+   "title": "Information security risk assessment",
+   "category": "Operation (Clause 8)",
+   "type": "Clause",
+   "requirement_summary": "Carry out risk assessments at planned intervals and when significant changes happen, and keep the results.",
+   "evidence": [
+    "Dated annual risk assessment record"
+   ],
+   "evidence_types": [
+    "Record",
+    "Report"
+   ],
+   "auditor_sampling": "Checks the latest risk assessment is dated and complete, and that treatment actions are moving.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "8.3",
+   "title": "Information security risk treatment",
+   "category": "Operation (Clause 8)",
+   "type": "Clause",
+   "requirement_summary": "Put the risk treatment plan into practice and keep the results.",
+   "evidence": [
+    "Risk Management Policy",
+    "Treatment plan status"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Procedure"
+   ],
+   "auditor_sampling": "Checks the latest risk assessment is dated and complete, and that treatment actions are moving.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "9.1",
+   "title": "Monitoring, measurement, analysis and evaluation",
+   "category": "Performance Evaluation (Clause 9)",
+   "type": "Clause",
+   "requirement_summary": "Decide what to measure, how and when, and evaluate ISMS performance and effectiveness.",
+   "evidence": [
+    "Objectives plan with measured results",
+    "KPI tracking",
+    "Sample performance evaluations"
+   ],
+   "evidence_types": [
+    "Procedure",
+    "Record"
+   ],
+   "auditor_sampling": "Reads the internal audit report and management review minutes and checks every required input was covered.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "9.2",
+   "title": "Internal audit",
+   "category": "Performance Evaluation (Clause 9)",
+   "type": "Clause",
+   "requirement_summary": "Run a planned internal audit programme with objective, independent auditors and report results to management.",
+   "evidence": [
+    "Internal audit procedure",
+    "Audit programme and schedule",
+    "Internal audit report",
+    "Auditor independence evidence"
+   ],
+   "evidence_types": [
+    "Procedure",
+    "Report"
+   ],
+   "auditor_sampling": "Reads the internal audit report and management review minutes and checks every required input was covered.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "9.3",
+   "title": "Management review",
+   "category": "Performance Evaluation (Clause 9)",
+   "type": "Clause",
+   "requirement_summary": "Top management reviews the ISMS at planned intervals using defined inputs and records decisions.",
+   "evidence": [
+    "Management review procedure",
+    "Objectives plan as input",
+    "Management review deck and signed minutes covering all required inputs and outputs"
+   ],
+   "evidence_types": [
+    "Procedure",
+    "Record"
+   ],
+   "auditor_sampling": "Reads the internal audit report and management review minutes and checks every required input was covered.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "10.1",
+   "title": "Continual improvement",
+   "category": "Improvement (Clause 10)",
+   "type": "Clause",
+   "requirement_summary": "Keep improving how suitable, adequate and effective the ISMS is.",
+   "evidence": [
+    "Corrective action and continual improvement procedure",
+    "Nonconformity and corrective action tracker"
+   ],
+   "evidence_types": [
+    "Procedure",
+    "Record"
+   ],
+   "auditor_sampling": "Picks nonconformities from the tracker and checks root cause, action and effectiveness review.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "10.2",
+   "title": "Nonconformity and corrective action",
+   "category": "Improvement (Clause 10)",
+   "type": "Clause",
+   "requirement_summary": "React to nonconformities, find root causes, fix them and check the fix worked.",
+   "evidence": [
+    "Corrective action and continual improvement procedure",
+    "Tracker with root cause, action, owner, due date and effectiveness check"
+   ],
+   "evidence_types": [
+    "Procedure",
+    "Record"
+   ],
+   "auditor_sampling": "Picks nonconformities from the tracker and checks root cause, action and effectiveness review.",
+   "frequency": "Per event",
+   "inherited": false
+  },
+  {
+   "id": "A.5.1",
+   "title": "Policies for information security",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Approve, publish and periodically review security policies, and make sure staff acknowledge them.",
+   "evidence": [
+    "Full policy set",
+    "Personnel acknowledgement records for each policy"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Record"
+   ],
+   "auditor_sampling": "Reads the policy and samples records or agreements from the period to confirm the control runs.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.5.2",
+   "title": "Information security roles and responsibilities",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Define and assign security roles and responsibilities.",
+   "evidence": [
+    "Roles document",
+    "Roles and responsibilities policy",
+    "Risk Management Policy"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Procedure"
+   ],
+   "auditor_sampling": "Reads the policy or procedure and asks a control owner to explain how it works in practice.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.5.3",
+   "title": "Segregation of duties",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Split conflicting duties so one person cannot both make and approve a risky change or transaction.",
+   "evidence": [
+    "Access Control and HR Security policies",
+    "Org charts (current and prior year)",
+    "Application changes reviewed",
+    "Code changes approved or exception justified (automated tests)"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Automated test"
+   ],
+   "auditor_sampling": "Checks the policy, then reviews automated test results or settings for the audit period and may pick a sample to confirm.",
+   "frequency": "Ongoing",
+   "inherited": false
+  },
+  {
+   "id": "A.5.4",
+   "title": "Management responsibilities",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Managers make sure their staff follow security policies and procedures.",
+   "evidence": [
+    "InfoSec, HR Security and Roles policies",
+    "Training records",
+    "Policy acknowledgements"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Record",
+    "Training"
+   ],
+   "auditor_sampling": "Reads the policy and samples records or agreements from the period to confirm the control runs.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.5.5",
+   "title": "Contact with authorities",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Keep contacts with relevant authorities, such as regulators and law enforcement, ready for incidents.",
+   "evidence": [
+    "Incident Response Plan (authority contact list)"
+   ],
+   "evidence_types": [
+    "Procedure",
+    "Record"
+   ],
+   "auditor_sampling": "Reads the policy and samples records or agreements from the period to confirm the control runs.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.5.6",
+   "title": "Contact with special interest groups",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Stay connected with security groups and forums to keep knowledge current.",
+   "evidence": [
+    "HR Security and Roles policies",
+    "Security association membership screenshots",
+    "Security newsletter or advisory subscription evidence"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Screenshot/Config"
+   ],
+   "auditor_sampling": "Reads the policy or procedure and asks a control owner to explain how it works in practice.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.5.7",
+   "title": "Threat intelligence",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Collect and analyse information about threats and use it to adjust controls.",
+   "evidence": [
+    "Operations Security and Roles policies",
+    "Vulnerability identification and prioritisation process",
+    "Vulnerability management procedure",
+    "Association membership and threat feed subscriptions"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Procedure"
+   ],
+   "auditor_sampling": "Reads the policy or procedure and asks a control owner to explain how it works in practice.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.5.8",
+   "title": "Information security in project management",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Build security into projects and changes from the start.",
+   "evidence": [
+    "Risk Management Policy",
+    "Security impact considered in merge requests (automated test)"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Automated test"
+   ],
+   "auditor_sampling": "Checks the policy, then reviews automated test results or settings for the audit period and may pick a sample to confirm.",
+   "frequency": "Ongoing",
+   "inherited": false
+  },
+  {
+   "id": "A.5.9",
+   "title": "Inventory of information and other associated assets",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Keep an inventory of information and assets with named owners.",
+   "evidence": [
+    "Asset Management Policy",
+    "Data inventory map",
+    "Inventory items have owners, descriptions, and user-data flags (automated tests)"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Automated test"
+   ],
+   "auditor_sampling": "Checks the policy, then reviews automated test results or settings for the audit period and may pick a sample to confirm.",
+   "frequency": "Ongoing",
+   "inherited": false
+  },
+  {
+   "id": "A.5.10",
+   "title": "Acceptable use of information and other associated assets",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Set and communicate rules for acceptable use of information and assets.",
+   "evidence": [
+    "Asset Management, AI Acceptable Use, Data Management and InfoSec policies"
+   ],
+   "evidence_types": [
+    "Policy"
+   ],
+   "auditor_sampling": "Reads the policy or procedure and asks a control owner to explain how it works in practice.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.5.11",
+   "title": "Return of assets",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Get company assets back when people leave or change roles.",
+   "evidence": [
+    "Asset Management, HR Security and InfoSec policies",
+    "Offboarding and exit interview procedure",
+    "Sample employee exit record"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Procedure",
+    "Record"
+   ],
+   "auditor_sampling": "Reads the policy and samples records or agreements from the period to confirm the control runs.",
+   "frequency": "Per event",
+   "inherited": false
+  },
+  {
+   "id": "A.5.12",
+   "title": "Classification of information",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Classify information by sensitivity and business need.",
+   "evidence": [
+    "Data Management Policy (classification levels)"
+   ],
+   "evidence_types": [
+    "Policy"
+   ],
+   "auditor_sampling": "Reads the policy or procedure and asks a control owner to explain how it works in practice.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.5.13",
+   "title": "Labelling of information",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Label information according to its classification.",
+   "evidence": [
+    "Data Management Policy (labelling rules)"
+   ],
+   "evidence_types": [
+    "Policy"
+   ],
+   "auditor_sampling": "Reads the policy or procedure and asks a control owner to explain how it works in practice.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.5.14",
+   "title": "Information transfer",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Protect information when it is shared inside or outside the organisation, through rules and agreements.",
+   "evidence": [
+    "Third-Party Management Policy",
+    "Standard terms of use",
+    "MSA template",
+    "Executed MSA and NDA",
+    "Cloud provider service agreement"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Contract"
+   ],
+   "auditor_sampling": "Reads the policy and samples records or agreements from the period to confirm the control runs.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.5.15",
+   "title": "Access control",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Set and enforce rules for who can access information and systems.",
+   "evidence": [
+    "Access Control and Physical Security policies",
+    "Sample access request tickets (one per year in period)",
+    "Accounts deprovisioned when personnel leave, for each in-scope system (cloud, identity provider, source control, CRM, background check tool, AI tools, video conferencing) (automated tests)"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Record",
+    "Automated test"
+   ],
+   "auditor_sampling": "Samples joiners and leavers in the period and checks access was approved and removed on time in each system.",
+   "frequency": "Per event",
+   "inherited": false
+  },
+  {
+   "id": "A.5.16",
+   "title": "Identity management",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Manage the full life cycle of identities, from creation to removal.",
+   "evidence": [
+    "Access Control Policy",
+    "Access request tickets",
+    "Deprovisioning tests per system",
+    "Cloud accounts reviewed (automated test)"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Record",
+    "Automated test"
+   ],
+   "auditor_sampling": "Checks the policy, then reviews automated test results or settings for the audit period and may pick a sample to confirm.",
+   "frequency": "Per event",
+   "inherited": false
+  },
+  {
+   "id": "A.5.17",
+   "title": "Authentication information",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Control how passwords and other authentication secrets are issued and protected.",
+   "evidence": [
+    "Access Control and InfoSec policies",
+    "Password policy configured for infrastructure (automated test)"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Automated test",
+    "Screenshot/Config"
+   ],
+   "auditor_sampling": "Checks the policy, then reviews automated test results or settings for the audit period and may pick a sample to confirm.",
+   "frequency": "Ongoing",
+   "inherited": false
+  },
+  {
+   "id": "A.5.18",
+   "title": "Access rights",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Grant, review, change and remove access rights in line with policy.",
+   "evidence": [
+    "Access Control Policy",
+    "Access request tickets",
+    "Quarterly user access reviews (spreadsheets and tickets)",
+    "Planned access review evidence",
+    "Onboarding/offboarding checklists",
+    "Termination checklist",
+    "Accounts linked to users per system",
+    "Deprovisioning tests",
+    "Offboarding completed within SLA (automated test)"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Procedure",
+    "Record",
+    "Automated test"
+   ],
+   "auditor_sampling": "Asks for each quarterly access review and samples removals to confirm they were actioned.",
+   "frequency": "Quarterly",
+   "inherited": false
+  },
+  {
+   "id": "A.5.19",
+   "title": "Information security in supplier relationships",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Manage security risks that come from suppliers.",
+   "evidence": [
+    "Third-Party Management Policy",
+    "Vendor list maintained",
+    "Vendors assigned risk levels",
+    "Security assessments completed for relevant vendors (automated tests)"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Record",
+    "Automated test",
+    "Report"
+   ],
+   "auditor_sampling": "Samples vendors from the list and checks each has a risk level and a completed assessment.",
+   "frequency": "Ongoing",
+   "inherited": false
+  },
+  {
+   "id": "A.5.20",
+   "title": "Addressing information security within supplier agreements",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Put the security requirements suppliers must meet into agreements.",
+   "evidence": [
+    "Third-Party Management Policy",
+    "Cloud provider service agreement",
+    "Customer contract renewal with security terms"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Contract"
+   ],
+   "auditor_sampling": "Reads the policy and samples records or agreements from the period to confirm the control runs.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.5.21",
+   "title": "Managing information security in the ICT supply chain",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Manage security risks in the technology supply chain, including suppliers of suppliers.",
+   "evidence": [
+    "Third-Party Management Policy",
+    "Vendor list maintained",
+    "Vendors assigned risk levels",
+    "Security assessments completed for relevant vendors (automated tests)"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Record",
+    "Automated test",
+    "Report"
+   ],
+   "auditor_sampling": "Checks the policy, then reviews automated test results or settings for the audit period and may pick a sample to confirm.",
+   "frequency": "Ongoing",
+   "inherited": false
+  },
+  {
+   "id": "A.5.22",
+   "title": "Monitoring, review and change management of supplier services",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Monitor supplier security and manage changes to their services.",
+   "evidence": [
+    "Third-Party Management Policy",
+    "Vendor security assessments",
+    "Sample payment processor security review"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Procedure",
+    "Report"
+   ],
+   "auditor_sampling": "Reads the policy or procedure and asks a control owner to explain how it works in practice.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.5.23",
+   "title": "Information security for use of cloud services",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Set rules for buying, using, managing and leaving cloud services.",
+   "evidence": [
+    "InfoSec, Third-Party Management and AI Acceptable Use policies"
+   ],
+   "evidence_types": [
+    "Policy"
+   ],
+   "auditor_sampling": "Reads the policy or procedure and asks a control owner to explain how it works in practice.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.5.24",
+   "title": "Information security incident management planning and preparation",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Plan and prepare for incidents with defined processes, roles and responsibilities.",
+   "evidence": [
+    "Incident Response Plan",
+    "Roles policy",
+    "Incident register",
+    "Quarterly incident response log",
+    "Incident report or root cause analysis",
+    "Review of engineering and security operations records",
+    "Lessons learned"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Procedure",
+    "Record",
+    "Report"
+   ],
+   "auditor_sampling": "Samples incidents from the register and follows each to closure and lessons learned.",
+   "frequency": "Per event",
+   "inherited": false
+  },
+  {
+   "id": "A.5.25",
+   "title": "Assessment and decision on information security events",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Assess security events and decide whether they are incidents.",
+   "evidence": [
+    "Incident Response Plan",
+    "Roles policy",
+    "Incident register",
+    "Quarterly incident response log",
+    "Incident report or root cause analysis",
+    "Review of engineering and security operations records",
+    "Lessons learned"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Procedure",
+    "Record",
+    "Report"
+   ],
+   "auditor_sampling": "Reads the policy and samples records or agreements from the period to confirm the control runs.",
+   "frequency": "Per event",
+   "inherited": false
+  },
+  {
+   "id": "A.5.26",
+   "title": "Response to information security incidents",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Respond to incidents following documented procedures.",
+   "evidence": [
+    "Incident Response Plan",
+    "Roles policy",
+    "Incident register",
+    "Quarterly incident response log",
+    "Incident report or root cause analysis",
+    "Review of engineering and security operations records",
+    "Lessons learned"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Procedure",
+    "Record",
+    "Report"
+   ],
+   "auditor_sampling": "Reads the policy and samples records or agreements from the period to confirm the control runs.",
+   "frequency": "Per event",
+   "inherited": false
+  },
+  {
+   "id": "A.5.27",
+   "title": "Learning from information security incidents",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Use what incidents teach you to strengthen controls.",
+   "evidence": [
+    "Incident Response Plan",
+    "Roles policy",
+    "Incident register",
+    "Quarterly incident response log",
+    "Incident report or root cause analysis",
+    "Review of engineering and security operations records",
+    "Lessons learned"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Procedure",
+    "Record",
+    "Report"
+   ],
+   "auditor_sampling": "Reads the policy and samples records or agreements from the period to confirm the control runs.",
+   "frequency": "Per event",
+   "inherited": false
+  },
+  {
+   "id": "A.5.28",
+   "title": "Collection of evidence",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Collect and preserve evidence related to incidents in a way that holds up.",
+   "evidence": [
+    "Incident Response Plan (evidence handling and chain of custody)"
+   ],
+   "evidence_types": [
+    "Procedure"
+   ],
+   "auditor_sampling": "Reads the policy or procedure and asks a control owner to explain how it works in practice.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.5.29",
+   "title": "Information security during disruption",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Keep security at the right level during disruptions.",
+   "evidence": [
+    "BC/DR Plan",
+    "Network diagram",
+    "Incident response tabletop exercise",
+    "Disaster recovery tabletop exercise",
+    "Combined IR/DR exercise report"
+   ],
+   "evidence_types": [
+    "Procedure",
+    "Screenshot/Config",
+    "Report"
+   ],
+   "auditor_sampling": "Reads the policy or procedure and asks a control owner to explain how it works in practice.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.5.30",
+   "title": "ICT readiness for business continuity",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Make sure technology can recover to meet continuity objectives.",
+   "evidence": [
+    "BC/DR Plan",
+    "Incident Response Plan",
+    "Annual IR and DR tabletop exercise reports"
+   ],
+   "evidence_types": [
+    "Procedure",
+    "Report"
+   ],
+   "auditor_sampling": "Asks for the latest continuity or DR exercise and its follow-up actions.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.5.31",
+   "title": "Legal, statutory, regulatory and contractual requirements",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Identify and keep up to date the legal, regulatory and contractual requirements that apply.",
+   "evidence": [
+    "Laws, regulations and contractual requirements register"
+   ],
+   "evidence_types": [
+    "Record",
+    "Contract"
+   ],
+   "auditor_sampling": "Reads the policy and samples records or agreements from the period to confirm the control runs.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.5.32",
+   "title": "Intellectual property rights",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Protect intellectual property rights, your own and others.",
+   "evidence": [
+    "Legal register",
+    "InfoSec Policy",
+    "Terms of use",
+    "MSA and NDA",
+    "Offer letters",
+    "Signed employee non-disclosure and invention assignment agreements"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Record",
+    "Contract"
+   ],
+   "auditor_sampling": "Reads the policy and samples records or agreements from the period to confirm the control runs.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.5.33",
+   "title": "Protection of records",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Protect records from loss, destruction, falsification and unauthorised access.",
+   "evidence": [
+    "Documented information procedure",
+    "Access Control and Data Management policies",
+    "Database backups enabled (automated test)",
+    "Signed agreements stored securely"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Procedure",
+    "Automated test",
+    "Screenshot/Config",
+    "Contract"
+   ],
+   "auditor_sampling": "Checks the policy, then reviews automated test results or settings for the audit period and may pick a sample to confirm.",
+   "frequency": "Ongoing",
+   "inherited": false
+  },
+  {
+   "id": "A.5.34",
+   "title": "Privacy and protection of PII",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Meet privacy and personal data protection requirements.",
+   "evidence": [
+    "Legal register",
+    "AI Acceptable Use Policy",
+    "Signed confidentiality agreements",
+    "Offer letters with confidentiality terms"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Record",
+    "Contract"
+   ],
+   "auditor_sampling": "Reads the policy and samples records or agreements from the period to confirm the control runs.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.5.35",
+   "title": "Independent review of information security",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Have the approach to information security reviewed independently at planned intervals and after significant changes.",
+   "evidence": [
+    "Internal audit procedure",
+    "Risk Management Policy",
+    "Annual third-party penetration test reports and executive summaries"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Procedure",
+    "Report"
+   ],
+   "auditor_sampling": "Reads the independent review or penetration test report and checks findings were tracked.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.5.36",
+   "title": "Compliance with policies, rules and standards for information security",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Regularly check compliance with security policies and standards.",
+   "evidence": [
+    "Internal audit and management review procedures",
+    "Continuous monitoring through compliance automation platform",
+    "Critical, high, medium and low vulnerabilities addressed within SLA for containers, cloud workloads and code dependencies (automated tests)",
+    "Vulnerability scanning enabled",
+    "Penetration test reports"
+   ],
+   "evidence_types": [
+    "Procedure",
+    "Automated test",
+    "Screenshot/Config",
+    "Report"
+   ],
+   "auditor_sampling": "Checks the policy, then reviews automated test results or settings for the audit period and may pick a sample to confirm.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.5.37",
+   "title": "Documented operating procedures",
+   "category": "Annex A Organizational (A.5.1 to A.5.37)",
+   "type": "Annex A control",
+   "requirement_summary": "Document operating procedures and make them available to the people who need them.",
+   "evidence": [
+    "Operations Security Policy"
+   ],
+   "evidence_types": [
+    "Policy"
+   ],
+   "auditor_sampling": "Reads the policy or procedure and asks a control owner to explain how it works in practice.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.6.1",
+   "title": "Screening",
+   "category": "Annex A People (A.6.1 to A.6.8)",
+   "type": "Annex A control",
+   "requirement_summary": "Screen candidates before they join, in line with law and the role.",
+   "evidence": [
+    "HR Security Policy",
+    "Background checks on new hires (automated test)",
+    "Sample background check reports"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Automated test",
+    "Report"
+   ],
+   "auditor_sampling": "Samples new hires and checks background checks were completed before start.",
+   "frequency": "Ongoing",
+   "inherited": false
+  },
+  {
+   "id": "A.6.2",
+   "title": "Terms and conditions of employment",
+   "category": "Annex A People (A.6.1 to A.6.8)",
+   "type": "Annex A control",
+   "requirement_summary": "Put security responsibilities into employment and contractor terms.",
+   "evidence": [
+    "HR Security, InfoSec, Roles policies",
+    "Code of Conduct and acknowledgement",
+    "Offer letters",
+    "Employee NDA and invention assignment agreements",
+    "Contractor agreement and contractor NDA"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Record",
+    "Contract"
+   ],
+   "auditor_sampling": "Reads the policy and samples records or agreements from the period to confirm the control runs.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.6.3",
+   "title": "Information security awareness, education and training",
+   "category": "Annex A People (A.6.1 to A.6.8)",
+   "type": "Annex A control",
+   "requirement_summary": "Give staff security awareness training and role-specific training.",
+   "evidence": [
+    "HR Security Policy",
+    "General security awareness training records",
+    "Secure code training records (automated tests)"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Record",
+    "Automated test",
+    "Training"
+   ],
+   "auditor_sampling": "Samples staff and checks training completion dates.",
+   "frequency": "Ongoing",
+   "inherited": false
+  },
+  {
+   "id": "A.6.4",
+   "title": "Disciplinary process",
+   "category": "Annex A People (A.6.1 to A.6.8)",
+   "type": "Annex A control",
+   "requirement_summary": "Have a formal, communicated disciplinary process for policy breaches.",
+   "evidence": [
+    "HR Security and InfoSec policies",
+    "HR Security Policy acknowledgement"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Record"
+   ],
+   "auditor_sampling": "Reads the policy and samples records or agreements from the period to confirm the control runs.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.6.5",
+   "title": "Responsibilities after termination or change of employment",
+   "category": "Annex A People (A.6.1 to A.6.8)",
+   "type": "Annex A control",
+   "requirement_summary": "Define and enforce the security duties that continue after someone leaves.",
+   "evidence": [
+    "HR Security Policy",
+    "Termination security policy",
+    "Offboarding and exit interview procedure",
+    "Sample exit record"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Procedure",
+    "Record"
+   ],
+   "auditor_sampling": "Reads the policy and samples records or agreements from the period to confirm the control runs.",
+   "frequency": "Per event",
+   "inherited": false
+  },
+  {
+   "id": "A.6.6",
+   "title": "Confidentiality or non-disclosure agreements",
+   "category": "Annex A People (A.6.1 to A.6.8)",
+   "type": "Annex A control",
+   "requirement_summary": "Use confidentiality agreements that reflect what needs protecting.",
+   "evidence": [
+    "HR Security Policy",
+    "Employee NDA template",
+    "Mutual NDA template",
+    "Signed NDAs",
+    "Exit record confirming ongoing confidentiality"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Record",
+    "Contract"
+   ],
+   "auditor_sampling": "Reads the policy and samples records or agreements from the period to confirm the control runs.",
+   "frequency": "Per event",
+   "inherited": false
+  },
+  {
+   "id": "A.6.7",
+   "title": "Remote working",
+   "category": "Annex A People (A.6.1 to A.6.8)",
+   "type": "Annex A control",
+   "requirement_summary": "Protect information when people work remotely.",
+   "evidence": [
+    "Access Control and InfoSec policies",
+    "MFA on productivity suite, infrastructure provider and root accounts (automated tests)"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Automated test"
+   ],
+   "auditor_sampling": "Checks the policy, then reviews automated test results or settings for the audit period and may pick a sample to confirm.",
+   "frequency": "Ongoing",
+   "inherited": false
+  },
+  {
+   "id": "A.6.8",
+   "title": "Information security event reporting",
+   "category": "Annex A People (A.6.1 to A.6.8)",
+   "type": "Annex A control",
+   "requirement_summary": "Give people a clear way to report security events quickly.",
+   "evidence": [
+    "Incident Response Plan",
+    "InfoSec Policy",
+    "Incident register",
+    "Incident log",
+    "Incident report or RCA"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Procedure",
+    "Record",
+    "Report"
+   ],
+   "auditor_sampling": "Reads the policy and samples records or agreements from the period to confirm the control runs.",
+   "frequency": "Per event",
+   "inherited": false
+  },
+  {
+   "id": "A.7.1",
+   "title": "Physical security perimeters",
+   "category": "Annex A Physical (A.7.1 to A.7.14)",
+   "type": "Annex A control",
+   "requirement_summary": "Define physical security perimeters around areas holding information.",
+   "evidence": [
+    "ISMS scope",
+    "Physical Security and Third-Party Management policies"
+   ],
+   "evidence_types": [
+    "Policy"
+   ],
+   "auditor_sampling": "Accepts the cloud provider certificate for data centre controls and checks the SoA justification; tests office and device controls directly.",
+   "frequency": "Annual",
+   "inherited": true
+  },
+  {
+   "id": "A.7.2",
+   "title": "Physical entry",
+   "category": "Annex A Physical (A.7.1 to A.7.14)",
+   "type": "Annex A control",
+   "requirement_summary": "Control who can physically enter secure areas.",
+   "evidence": [
+    "Physical Security and Third-Party policies",
+    "Cloud provider ISO 27001 certificate"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Report"
+   ],
+   "auditor_sampling": "Accepts the cloud provider certificate for data centre controls and checks the SoA justification; tests office and device controls directly.",
+   "frequency": "Annual",
+   "inherited": true
+  },
+  {
+   "id": "A.7.3",
+   "title": "Securing offices, rooms and facilities",
+   "category": "Annex A Physical (A.7.1 to A.7.14)",
+   "type": "Annex A control",
+   "requirement_summary": "Design physical security for offices, rooms and facilities.",
+   "evidence": [
+    "Physical Security and Third-Party policies"
+   ],
+   "evidence_types": [
+    "Policy"
+   ],
+   "auditor_sampling": "Accepts the cloud provider certificate for data centre controls and checks the SoA justification; tests office and device controls directly.",
+   "frequency": "Annual",
+   "inherited": true
+  },
+  {
+   "id": "A.7.4",
+   "title": "Physical security monitoring",
+   "category": "Annex A Physical (A.7.1 to A.7.14)",
+   "type": "Annex A control",
+   "requirement_summary": "Monitor premises for unauthorised physical access.",
+   "evidence": [
+    "Physical Security and Third-Party policies",
+    "Cloud provider certificate"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Report"
+   ],
+   "auditor_sampling": "Accepts the cloud provider certificate for data centre controls and checks the SoA justification; tests office and device controls directly.",
+   "frequency": "Annual",
+   "inherited": true
+  },
+  {
+   "id": "A.7.5",
+   "title": "Protecting against physical and environmental threats",
+   "category": "Annex A Physical (A.7.1 to A.7.14)",
+   "type": "Annex A control",
+   "requirement_summary": "Protect against fire, flood, power loss and other physical threats.",
+   "evidence": [
+    "Physical Security and Third-Party policies"
+   ],
+   "evidence_types": [
+    "Policy"
+   ],
+   "auditor_sampling": "Accepts the cloud provider certificate for data centre controls and checks the SoA justification; tests office and device controls directly.",
+   "frequency": "Annual",
+   "inherited": true
+  },
+  {
+   "id": "A.7.6",
+   "title": "Working in secure areas",
+   "category": "Annex A Physical (A.7.1 to A.7.14)",
+   "type": "Annex A control",
+   "requirement_summary": "Set rules for working in secure areas.",
+   "evidence": [
+    "Physical Security and Third-Party policies"
+   ],
+   "evidence_types": [
+    "Policy"
+   ],
+   "auditor_sampling": "Accepts the cloud provider certificate for data centre controls and checks the SoA justification; tests office and device controls directly.",
+   "frequency": "Annual",
+   "inherited": true
+  },
+  {
+   "id": "A.7.7",
+   "title": "Clear desk and clear screen",
+   "category": "Annex A Physical (A.7.1 to A.7.14)",
+   "type": "Annex A control",
+   "requirement_summary": "Keep desks clear of sensitive material and lock screens when unattended.",
+   "evidence": [
+    "InfoSec and Physical Security policies",
+    "Screen lock configured on macOS and Windows (automated tests)",
+    "Auto logout screenshots"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Record",
+    "Automated test",
+    "Screenshot/Config"
+   ],
+   "auditor_sampling": "Accepts the cloud provider certificate for data centre controls and checks the SoA justification; tests office and device controls directly.",
+   "frequency": "Ongoing",
+   "inherited": false
+  },
+  {
+   "id": "A.7.8",
+   "title": "Equipment siting and protection",
+   "category": "Annex A Physical (A.7.1 to A.7.14)",
+   "type": "Annex A control",
+   "requirement_summary": "Place and protect equipment to reduce physical risks.",
+   "evidence": [
+    "Physical Security and Third-Party policies",
+    "Cloud provider certificate"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Report"
+   ],
+   "auditor_sampling": "Accepts the cloud provider certificate for data centre controls and checks the SoA justification; tests office and device controls directly.",
+   "frequency": "Annual",
+   "inherited": true
+  },
+  {
+   "id": "A.7.9",
+   "title": "Security of assets off-premises",
+   "category": "Annex A Physical (A.7.1 to A.7.14)",
+   "type": "Annex A control",
+   "requirement_summary": "Protect devices and information used outside the office.",
+   "evidence": [
+    "Asset Management and InfoSec policies",
+    "Laptop disk encryption (automated test)",
+    "Cloud provider certificate"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Automated test",
+    "Report"
+   ],
+   "auditor_sampling": "Accepts the cloud provider certificate for data centre controls and checks the SoA justification; tests office and device controls directly.",
+   "frequency": "Ongoing",
+   "inherited": false
+  },
+  {
+   "id": "A.7.10",
+   "title": "Storage media",
+   "category": "Annex A Physical (A.7.1 to A.7.14)",
+   "type": "Annex A control",
+   "requirement_summary": "Manage storage media through its life cycle, including secure transport and disposal.",
+   "evidence": [
+    "Asset Management and Data Management policies",
+    "Cloud provider certificate"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Report"
+   ],
+   "auditor_sampling": "Accepts the cloud provider certificate for data centre controls and checks the SoA justification; tests office and device controls directly.",
+   "frequency": "Annual",
+   "inherited": true
+  },
+  {
+   "id": "A.7.11",
+   "title": "Supporting utilities",
+   "category": "Annex A Physical (A.7.1 to A.7.14)",
+   "type": "Annex A control",
+   "requirement_summary": "Protect equipment from power and other utility failures.",
+   "evidence": [
+    "Physical Security and Third-Party policies",
+    "Cloud provider certificate"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Report"
+   ],
+   "auditor_sampling": "Accepts the cloud provider certificate for data centre controls and checks the SoA justification; tests office and device controls directly.",
+   "frequency": "Annual",
+   "inherited": true
+  },
+  {
+   "id": "A.7.12",
+   "title": "Cabling security",
+   "category": "Annex A Physical (A.7.1 to A.7.14)",
+   "type": "Annex A control",
+   "requirement_summary": "Protect power and network cabling from damage and interception.",
+   "evidence": [
+    "Physical Security and Third-Party policies",
+    "Cloud provider certificate"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Report"
+   ],
+   "auditor_sampling": "Accepts the cloud provider certificate for data centre controls and checks the SoA justification; tests office and device controls directly.",
+   "frequency": "Annual",
+   "inherited": true
+  },
+  {
+   "id": "A.7.13",
+   "title": "Equipment maintenance",
+   "category": "Annex A Physical (A.7.1 to A.7.14)",
+   "type": "Annex A control",
+   "requirement_summary": "Maintain equipment so it stays available and secure.",
+   "evidence": [
+    "Physical Security and Third-Party policies",
+    "Cloud provider certificate"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Report"
+   ],
+   "auditor_sampling": "Accepts the cloud provider certificate for data centre controls and checks the SoA justification; tests office and device controls directly.",
+   "frequency": "Annual",
+   "inherited": true
+  },
+  {
+   "id": "A.7.14",
+   "title": "Secure disposal or re-use of equipment",
+   "category": "Annex A Physical (A.7.1 to A.7.14)",
+   "type": "Annex A control",
+   "requirement_summary": "Remove data securely before equipment is disposed of or reused.",
+   "evidence": [
+    "Asset Management and Data Management policies",
+    "Cloud provider certificate",
+    "Vendor security assessments"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Report"
+   ],
+   "auditor_sampling": "Accepts the cloud provider certificate for data centre controls and checks the SoA justification; tests office and device controls directly.",
+   "frequency": "Annual",
+   "inherited": true
+  },
+  {
+   "id": "A.8.1",
+   "title": "User endpoint devices",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Protect information on laptops, phones and other user devices.",
+   "evidence": [
+    "Asset, Data, InfoSec and Operations Security policies",
+    "Malware detection, disk encryption and screen lock on workstations (automated tests)",
+    "Endpoint configuration screenshots"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Automated test",
+    "Screenshot/Config"
+   ],
+   "auditor_sampling": "Checks the policy, then reviews automated test results or settings for the audit period and may pick a sample to confirm.",
+   "frequency": "Ongoing",
+   "inherited": false
+  },
+  {
+   "id": "A.8.2",
+   "title": "Privileged access rights",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Restrict and manage privileged access.",
+   "evidence": [
+    "Access Control Policy",
+    "Privileged user list for in-scope systems",
+    "Access request tickets",
+    "Quarterly access reviews"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Record"
+   ],
+   "auditor_sampling": "Compares the privileged user list with job roles and the latest access review.",
+   "frequency": "Quarterly",
+   "inherited": false
+  },
+  {
+   "id": "A.8.3",
+   "title": "Information access restriction",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Restrict access to information and functions based on policy.",
+   "evidence": [
+    "Access Control Policy",
+    "Access requests",
+    "Access reviews",
+    "Customer account access request evidence"
+   ],
+   "evidence_types": [
+    "Policy"
+   ],
+   "auditor_sampling": "Reads the policy or procedure and asks a control owner to explain how it works in practice.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.8.4",
+   "title": "Access to source code",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Control read and write access to source code and development tools.",
+   "evidence": [
+    "Access Control Policy",
+    "Source control user permissions export",
+    "Access review"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Record"
+   ],
+   "auditor_sampling": "Reads the policy and samples records or agreements from the period to confirm the control runs.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.8.5",
+   "title": "Secure authentication",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Use secure authentication, such as MFA, based on access restrictions.",
+   "evidence": [
+    "Access Control Policy",
+    "Network diagram showing auth flow",
+    "MFA on infrastructure provider (automated test)"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Automated test",
+    "Screenshot/Config"
+   ],
+   "auditor_sampling": "Checks the policy, then reviews automated test results or settings for the audit period and may pick a sample to confirm.",
+   "frequency": "Ongoing",
+   "inherited": false
+  },
+  {
+   "id": "A.8.6",
+   "title": "Capacity management",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Monitor and adjust capacity to meet current and expected demand.",
+   "evidence": [
+    "Operations Security Policy",
+    "Monitoring alerts for server CPU, database CPU, memory, storage and I/O, load balancer latency, errors and unhealthy hosts, queue message age, serverless error rate (automated tests)"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Automated test"
+   ],
+   "auditor_sampling": "Checks the policy, then reviews automated test results or settings for the audit period and may pick a sample to confirm.",
+   "frequency": "Ongoing",
+   "inherited": false
+  },
+  {
+   "id": "A.8.7",
+   "title": "Protection against malware",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Protect against malware with technical controls and user awareness.",
+   "evidence": [
+    "InfoSec, HR Security and Operations Security policies",
+    "Malware detection on workstations",
+    "Awareness training",
+    "Antivirus/EDR screenshots"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Screenshot/Config",
+    "Training"
+   ],
+   "auditor_sampling": "Reads the policy or procedure and asks a control owner to explain how it works in practice.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.8.8",
+   "title": "Management of technical vulnerabilities",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Find, assess and fix technical vulnerabilities in time.",
+   "evidence": [
+    "Operations Security and Risk Management policies",
+    "Vulnerability scanner connected and scanning enabled",
+    "Vulnerabilities addressed within SLA by severity",
+    "Annual penetration tests with executive summary and remediation report"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Screenshot/Config",
+    "Report"
+   ],
+   "auditor_sampling": "Samples findings from scans and the penetration test and checks they were fixed within SLA.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.8.9",
+   "title": "Configuration management",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Define, apply and monitor secure configurations.",
+   "evidence": [
+    "Operations Security Policy",
+    "Firewall default deny",
+    "Public SSH denied",
+    "Unwanted traffic filtered",
+    "Load balancer in use",
+    "VPC flow logs enabled (automated tests)",
+    "Pentest reports"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Record",
+    "Automated test",
+    "Screenshot/Config",
+    "Report"
+   ],
+   "auditor_sampling": "Checks the policy, then reviews automated test results or settings for the audit period and may pick a sample to confirm.",
+   "frequency": "Ongoing",
+   "inherited": false
+  },
+  {
+   "id": "A.8.10",
+   "title": "Information deletion",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Delete information when it is no longer needed.",
+   "evidence": [
+    "Data Management Policy",
+    "Customer data deletion request and confirmation",
+    "Deletion screenshots",
+    "Expired TLS certificates removed (automated test)"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Automated test",
+    "Screenshot/Config",
+    "Report"
+   ],
+   "auditor_sampling": "Checks the policy, then reviews automated test results or settings for the audit period and may pick a sample to confirm.",
+   "frequency": "Per event",
+   "inherited": false
+  },
+  {
+   "id": "A.8.11",
+   "title": "Data masking",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Mask data where policy or law requires it.",
+   "evidence": [
+    "Data Management Policy",
+    "Annual risk assessment",
+    "User data encrypted at rest"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Report"
+   ],
+   "auditor_sampling": "Reads the policy or procedure and asks a control owner to explain how it works in practice.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.8.12",
+   "title": "Data leakage prevention",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Prevent data from leaking out of systems, networks and devices.",
+   "evidence": [
+    "Data Management Policy",
+    "Disk encryption",
+    "TLS on admin console",
+    "Encryption at rest"
+   ],
+   "evidence_types": [
+    "Policy"
+   ],
+   "auditor_sampling": "Reads the policy or procedure and asks a control owner to explain how it works in practice.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.8.13",
+   "title": "Information backup",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Take backups and test that they can be restored.",
+   "evidence": [
+    "Operations Security Policy",
+    "Daily database backups enabled (automated test)",
+    "DR tabletop and restore evidence"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Automated test",
+    "Screenshot/Config"
+   ],
+   "auditor_sampling": "Asks for backup settings and a recent restore test.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.8.14",
+   "title": "Redundancy of information processing facilities",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Build enough redundancy into systems to meet availability needs.",
+   "evidence": [
+    "BC/DR Plan and acknowledgement",
+    "Operations Security Policy",
+    "Network diagram",
+    "Multi-AZ database",
+    "Cross-region storage replication (automated tests)"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Procedure",
+    "Record",
+    "Automated test",
+    "Screenshot/Config"
+   ],
+   "auditor_sampling": "Checks the policy, then reviews automated test results or settings for the audit period and may pick a sample to confirm.",
+   "frequency": "Ongoing",
+   "inherited": false
+  },
+  {
+   "id": "A.8.15",
+   "title": "Logging",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Produce, protect and keep logs of activity, exceptions and events.",
+   "evidence": [
+    "Operations Security Policy",
+    "Audit log storage delete-protected, versioned, MFA delete, restricted access",
+    "Storage access logs on",
+    "Server logs retained 365 days",
+    "VPC flow logs",
+    "Intrusion detection enabled with notifications (automated tests)",
+    "Log alerting and alarm screenshots"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Record",
+    "Automated test",
+    "Screenshot/Config"
+   ],
+   "auditor_sampling": "Checks log settings, retention and protection, and asks for an example alert.",
+   "frequency": "Ongoing",
+   "inherited": false
+  },
+  {
+   "id": "A.8.16",
+   "title": "Monitoring activities",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Monitor systems and networks for unusual behaviour and act on it.",
+   "evidence": [
+    "Operations Security Policy",
+    "Logging controls as listed under A.8.15"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Record"
+   ],
+   "auditor_sampling": "Reads the policy and samples records or agreements from the period to confirm the control runs.",
+   "frequency": "Ongoing",
+   "inherited": false
+  },
+  {
+   "id": "A.8.17",
+   "title": "Clock synchronization",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Synchronise system clocks to an approved time source.",
+   "evidence": [
+    "Operations Security Policy",
+    "Infrastructure clocks synchronised (automated test)"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Automated test"
+   ],
+   "auditor_sampling": "Checks the policy, then reviews automated test results or settings for the audit period and may pick a sample to confirm.",
+   "frequency": "Ongoing",
+   "inherited": false
+  },
+  {
+   "id": "A.8.18",
+   "title": "Use of privileged utility programs",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Restrict and control utilities that can override system controls.",
+   "evidence": [
+    "Access Control and Operations Security policies",
+    "Root account unused (automated test)",
+    "Admin account non-repudiation evidence",
+    "Branch protection evidence"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Automated test"
+   ],
+   "auditor_sampling": "Checks the policy, then reviews automated test results or settings for the audit period and may pick a sample to confirm.",
+   "frequency": "Ongoing",
+   "inherited": false
+  },
+  {
+   "id": "A.8.19",
+   "title": "Installation of software on operational systems",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Control what software can be installed on operational systems.",
+   "evidence": [
+    "InfoSec and Operations Security policies",
+    "Installed applications monitored evidence"
+   ],
+   "evidence_types": [
+    "Policy"
+   ],
+   "auditor_sampling": "Reads the policy or procedure and asks a control owner to explain how it works in practice.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.8.20",
+   "title": "Networks security",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Secure and manage networks and network devices.",
+   "evidence": [
+    "Operations Security Policy",
+    "Network diagrams",
+    "Public ports restricted on containers and instances",
+    "Database IP restricted",
+    "Storage HTTPS only",
+    "Firewall default deny",
+    "Flow logs (automated tests)"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Record",
+    "Automated test",
+    "Screenshot/Config"
+   ],
+   "auditor_sampling": "Checks the policy, then reviews automated test results or settings for the audit period and may pick a sample to confirm.",
+   "frequency": "Ongoing",
+   "inherited": false
+  },
+  {
+   "id": "A.8.21",
+   "title": "Security of network services",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Define and monitor security for network services.",
+   "evidence": [
+    "Operations Security and Third-Party policies",
+    "Ports restricted",
+    "HTTP to HTTPS redirect",
+    "HTTPS-only storage",
+    "Database IP restriction"
+   ],
+   "evidence_types": [
+    "Policy"
+   ],
+   "auditor_sampling": "Reads the policy or procedure and asks a control owner to explain how it works in practice.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.8.22",
+   "title": "Segregation of networks",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Separate networks by groups of users, services and systems.",
+   "evidence": [
+    "Operations Security Policy",
+    "High-level and detailed network diagrams"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Screenshot/Config"
+   ],
+   "auditor_sampling": "Reads the policy or procedure and asks a control owner to explain how it works in practice.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.8.23",
+   "title": "Web filtering",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Manage access to external websites to reduce exposure to harmful content.",
+   "evidence": [
+    "Operations Security Policy"
+   ],
+   "evidence_types": [
+    "Policy"
+   ],
+   "auditor_sampling": "Reads the policy or procedure and asks a control owner to explain how it works in practice.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.8.24",
+   "title": "Use of cryptography",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Define and apply rules for using cryptography and managing keys.",
+   "evidence": [
+    "Cryptography Policy",
+    "Disk encryption",
+    "Encryption at rest",
+    "TLS on admin console",
+    "HTTPS redirect and HTTPS-only storage"
+   ],
+   "evidence_types": [
+    "Policy"
+   ],
+   "auditor_sampling": "Reads the policy or procedure and asks a control owner to explain how it works in practice.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.8.25",
+   "title": "Secure development life cycle",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Apply secure development rules throughout the software life cycle.",
+   "evidence": [
+    "Secure Development Policy and acknowledgement"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Record"
+   ],
+   "auditor_sampling": "Reads the policy and samples records or agreements from the period to confirm the control runs.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.8.26",
+   "title": "Application security requirements",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Identify and approve security requirements when building or buying applications.",
+   "evidence": [
+    "Secure Development and Third-Party policies"
+   ],
+   "evidence_types": [
+    "Policy"
+   ],
+   "auditor_sampling": "Reads the policy or procedure and asks a control owner to explain how it works in practice.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.8.27",
+   "title": "Secure system architecture and engineering principles",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Set and apply secure engineering principles for system design.",
+   "evidence": [
+    "Secure Development Policy",
+    "Secure engineering principles document"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Procedure"
+   ],
+   "auditor_sampling": "Reads the policy or procedure and asks a control owner to explain how it works in practice.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.8.28",
+   "title": "Secure coding",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Apply secure coding practices.",
+   "evidence": [
+    "Secure Development Policy",
+    "Secure engineering principles",
+    "Security impact in merge requests"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Procedure"
+   ],
+   "auditor_sampling": "Reads the policy or procedure and asks a control owner to explain how it works in practice.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.8.29",
+   "title": "Security testing in development and acceptance",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Test security during development and before acceptance.",
+   "evidence": [
+    "Secure Development Policy",
+    "Secure engineering principles"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Procedure"
+   ],
+   "auditor_sampling": "Reads the policy or procedure and asks a control owner to explain how it works in practice.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.8.30",
+   "title": "Outsourced development",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Direct, monitor and review outsourced development.",
+   "evidence": [
+    "Secure Development and Third-Party policies",
+    "Executed MSA and SOW with development vendor",
+    "Vendor SOC 2 Type II summary",
+    "Outsourced development oversight record",
+    "Approval enforcement findings",
+    "Vendor feedback records and repository screenshots"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Record",
+    "Screenshot/Config",
+    "Report",
+    "Contract"
+   ],
+   "auditor_sampling": "Reads the policy and samples records or agreements from the period to confirm the control runs.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.8.31",
+   "title": "Separation of development, test and production environments",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Keep development, test and production environments separate.",
+   "evidence": [
+    "Operations Security and Secure Development policies",
+    "Network diagrams showing dev, test and prod"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Screenshot/Config"
+   ],
+   "auditor_sampling": "Reads the policy or procedure and asks a control owner to explain how it works in practice.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.8.32",
+   "title": "Change management",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Control changes through a defined change process.",
+   "evidence": [
+    "Operations Security and Secure Development policies",
+    "Version control in use",
+    "Application changes reviewed",
+    "Code changes approved or exception justified",
+    "Security impact in merge requests",
+    "Branch protection evidence"
+   ],
+   "evidence_types": [
+    "Policy"
+   ],
+   "auditor_sampling": "Samples changes from source control and checks review, approval and testing.",
+   "frequency": "Per event",
+   "inherited": false
+  },
+  {
+   "id": "A.8.33",
+   "title": "Test information",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Select, protect and manage information used for testing.",
+   "evidence": [
+    "Data Management and Secure Development policies"
+   ],
+   "evidence_types": [
+    "Policy"
+   ],
+   "auditor_sampling": "Reads the policy or procedure and asks a control owner to explain how it works in practice.",
+   "frequency": "Annual",
+   "inherited": false
+  },
+  {
+   "id": "A.8.34",
+   "title": "Protection of information systems during audit testing",
+   "category": "Annex A Technological (A.8.1 to A.8.34)",
+   "type": "Annex A control",
+   "requirement_summary": "Plan audit tests on live systems so they do not disrupt operations.",
+   "evidence": [
+    "Internal audit procedure",
+    "Operations Security and Risk Management policies"
+   ],
+   "evidence_types": [
+    "Policy",
+    "Procedure"
+   ],
+   "auditor_sampling": "Reads the policy or procedure and asks a control owner to explain how it works in practice.",
+   "frequency": "Annual",
+   "inherited": false
+  }
+ ],
+ "category_slugs": [
+  "context",
+  "leadership",
+  "planning",
+  "support",
+  "operation",
+  "performance-evaluation",
+  "improvement",
+  "annex-a-organizational",
+  "annex-a-people",
+  "annex-a-physical",
+  "annex-a-technological"
+ ],
+ "la_sampling": [
+  "Scope matches reality: issues, interested parties and boundaries are consistent with the systems actually in use.",
+  "Policy approved by leadership, communicated and acknowledged; roles assigned and understood.",
+  "Risk method applied consistently; sampled risks trace to treatments and the Statement of Applicability.",
+  "Training, competence and awareness records for sampled staff; documents version-controlled.",
+  "Dated risk assessment for the period and progress on the treatment plan.",
+  "Internal audit independence and coverage; management review minutes cover every required input and output.",
+  "Nonconformities tracked with root cause, action and an effectiveness check.",
+  "Joiner, mover and leaver samples, quarterly access reviews, vendor assessments, incidents and continuity exercises.",
+  "Background checks, signed agreements and training completion for sampled hires; offboarding records.",
+  "Cloud provider certificate and SoA justification; office screen-lock and laptop encryption tested directly.",
+  "Change samples from source control, vulnerability SLAs, logging settings, backups and restore evidence."
+ ]
+}

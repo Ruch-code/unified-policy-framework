@@ -7,6 +7,7 @@ import Iso27001ThemeScoping from "../../components/Iso27001ThemeScoping.jsx";
 import AnnexACoverage from "../../components/playbook/AnnexACoverage.jsx";
 import { withEvidence, appendToLevel, extendTasks } from "../../data/playbookEvidence.js";
 import { LI_L1_CLAUSES, LI_EXTEND } from "../../data/playbookAdditions/iso27001.js";
+import Iso27001EvidenceLibrary from '../../components/Iso27001EvidenceLibrary.jsx';
 
 const FRAMEWORK = {
   domainFramework: 'ISO 27001',
@@ -209,6 +210,7 @@ export default function Iso27001LiPage() {
       <Iso27001ThemeScoping />
       <Iso27001Sections basePath="/iso/27001/li" />
       <AnnexACoverage />
+      <Iso27001EvidenceLibrary />
       <EvidenceChecklistLink framework="ISO 27001" />
       <div className="max-w-6xl mx-auto px-4 my-8"><EngPartnershipLink set="iso27001" /></div>
     </>
