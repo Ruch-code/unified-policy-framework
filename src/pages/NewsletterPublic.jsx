@@ -92,7 +92,7 @@ export function NewsletterStatus() {
     <div className="max-w-xl mx-auto px-4 py-16">
       <h1 className={`text-2xl font-bold ${H}`}>{title}</h1>
       <p className={`mt-2 ${TXT}`}>{text}</p>
-      {params.get('s') === 'confirmed' && <a href="/OneLens_Control_Mapping.xlsx" download className="mt-4 inline-block px-4 py-2 rounded-lg text-sm font-semibold bg-indigo-700 text-white dark:bg-indigo-500 dark:text-slate-950">Download the mapping (Excel)</a>}
+      {params.get('s') === 'confirmed' && <a href="/OneLens_Control_Mapping.xlsx" download className="btn btn-primary mt-4 px-4 py-2 rounded-lg text-sm">Download the mapping (Excel)</a>}
       {params.get('s') === 'invalid' && <div className="mt-4"><SubscribeForm source="status-page" /></div>}
       <p className="mt-6"><Link to="/newsletter" className="text-sm underline text-sky-700 dark:text-sky-300">Back to the newsletter</Link></p>
     </div>

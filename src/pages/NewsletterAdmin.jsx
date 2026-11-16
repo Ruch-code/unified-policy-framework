@@ -8,9 +8,9 @@ const TXT = 'text-gray-700 dark:text-slate-300';
 const MUTED = 'text-gray-500 dark:text-slate-400';
 const LINE = 'border-gray-200 dark:border-slate-700';
 const CARD = `border ${LINE} rounded-lg p-4 bg-white dark:bg-[#1e293b]`;
-const FIELD = `w-full px-3 py-2 border ${LINE} rounded-lg text-sm bg-white text-gray-900 dark:bg-slate-900 dark:text-white`;
-const BTN = `px-3 py-2 rounded-lg text-sm font-semibold border ${LINE} bg-white text-gray-900 hover:bg-gray-50 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800 disabled:opacity-50`;
-const PRIMARY = 'px-3 py-2 rounded-lg text-sm font-semibold bg-indigo-700 text-white hover:bg-indigo-800 dark:bg-indigo-500 dark:text-slate-950 dark:hover:bg-indigo-400 disabled:opacity-50';
+const FIELD = 'ui-input w-full px-3 py-2 border rounded-lg text-sm';
+const BTN = 'btn btn-secondary px-3 py-2 rounded-lg text-sm';
+const PRIMARY = 'btn btn-primary px-3 py-2 rounded-lg text-sm';
 const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 const ist = (d) => (d ? new Date(d).toLocaleString('en-GB', { timeZone: TZ, day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) + ' IST' : '');

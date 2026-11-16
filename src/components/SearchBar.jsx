@@ -284,8 +284,8 @@ export default function SearchBar({ isDark = false }) {
     flex-1 w-full min-w-0 pl-9 pr-9 py-1.5 rounded-xl text-sm
     transition-all duration-200 ease-in-out truncate
     ${isDark
-      ? 'bg-slate-800 border-slate-700 text-white placeholder-slate-500 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 focus:bg-slate-800 focus:outline-none'
-      : 'bg-slate-100 dark:bg-slate-800 border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:bg-white focus:outline-none'
+      ? 'ui-input border focus:outline-none'
+      : 'ui-input border focus:outline-none'
     }
   `;
 
@@ -555,7 +555,7 @@ export default function SearchBar({ isDark = false }) {
                     transition-all duration-200 ease-in-out truncate
                     ${isDark
                       ? 'bg-slate-800 border-slate-700 text-white placeholder:text-slate-500 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 focus:outline-none'
-                      : 'bg-slate-100 dark:bg-slate-800 border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:bg-white focus:outline-none'
+                      : 'ui-input border focus:outline-none'
                     }
                   `}
                   autoComplete="off"

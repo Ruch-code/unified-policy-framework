@@ -7,10 +7,10 @@ import { FunnelOutline, FunnelFilled } from 'lucide-react';
 
 const H = 'text-gray-900 dark:text-white';
 const TXT = 'text-gray-700 dark:text-slate-300';
-const MUTED = 'text-gray-500 dark:text-slate-400';
+const MUTED = 'text-gray-600 dark:text-slate-400';
 const LINE = 'border-gray-200 dark:border-slate-700';
-const BTN = `px-3 py-1.5 border ${LINE} rounded text-sm ${H} bg-white dark:bg-slate-900`;
-const LINK = 'text-xs underline text-sky-700 dark:text-sky-300';
+const BTN = 'btn btn-secondary px-3 py-1.5 rounded-lg text-sm';
+const LINK = 'text-xs ui-link';
 const MAPPED = 'Mapped controls';
 const NOT_MAPPED = 'Not mapped';
 const VIEW_KEY = 'onelens_ucf_view';
@@ -205,7 +205,7 @@ export default function UcfGrid({ id, columns, rows, widths = {}, frameworks = [
             <div role="group" aria-label="Table view" className={`inline-flex border ${LINE} rounded overflow-hidden text-xs`}>
               {['compact', 'detailed'].map((v) => (
                 <button key={v} type="button" aria-pressed={view === v} onClick={() => changeView(v)}
-                  className={`px-2.5 py-1 capitalize ${view === v ? 'bg-gray-900 text-white dark:bg-white dark:text-slate-900 font-semibold' : `${TXT} bg-white dark:bg-slate-900`}`}>{v}</button>
+                  className="btn btn-ghost px-2.5 py-1 capitalize rounded-none">{v}</button>
               ))}
             </div>
           </div>

@@ -5,7 +5,7 @@ export const TXT = 'text-gray-700 dark:text-slate-300';
 export const LINE = 'border-gray-200 dark:border-slate-700';
 export const CARD = `bg-white dark:bg-[#1e293b] border ${LINE} rounded p-5`;
 
-export const NewBadge = () => <span className="inline-block align-middle ml-2 px-1.5 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wide bg-[#344c67] text-white">New</span>;
+export const NewBadge = () => <span className="inline-block align-middle ml-2 px-1.5 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wide badge badge-new">New</span>;
 export const Pending = () => <span className="inline-block align-middle ml-1 px-1.5 py-0.5 rounded text-[10px] font-semibold bg-amber-100 text-amber-900 dark:bg-amber-900/40 dark:text-amber-100" title="Not yet confirmed by the site owner">Pending verification</span>;
 export const Verified = () => <p className="mt-1 text-[11px] text-gray-500 dark:text-slate-400">Last verified: {LAST_VERIFIED}</p>;
 

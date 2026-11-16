@@ -129,9 +129,9 @@ export default function CertAdvisor() {
             </div>
           )}
           <div className="mt-5 flex items-center gap-3">
-            {step > 0 && <button onClick={goBack} className="px-4 py-2 rounded-lg bg-gray-100 text-gray-600 text-sm font-semibold hover:bg-gray-200 dark:hover:bg-slate-700">← Back</button>}
+            {step > 0 && <button onClick={goBack} className="btn btn-secondary px-4 py-2 rounded-lg text-sm">← Back</button>}
             <button onClick={goNext} disabled={!canProceed}
-              className={`ml-auto flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-bold transition ${canProceed ? 'bg-indigo-600 text-white hover:bg-indigo-700' : 'bg-gray-200 dark:bg-slate-700 text-gray-500 cursor-not-allowed'}`}>
+              className="btn btn-primary ml-auto px-5 py-2 rounded-lg text-sm">
               {step === 3 ? 'Show my roadmap' : 'Continue'}
               <ChevronRight className="w-4 h-4" />
             </button>

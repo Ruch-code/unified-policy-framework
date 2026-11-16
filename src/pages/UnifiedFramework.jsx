@@ -6,7 +6,7 @@ import { buildStyledXlsx, toCsv } from '../utils/styledXlsx.js';
 const H = 'text-gray-900 dark:text-white';
 const TXT = 'text-gray-700 dark:text-slate-300';
 const LINE = 'border-gray-200 dark:border-slate-700';
-const BTN = `px-3 py-1.5 border ${LINE} rounded text-sm ${H} bg-white dark:bg-slate-900`;
+const BTN = 'btn btn-secondary px-3 py-1.5 rounded-lg text-sm';
 
 const covered = (r) => UCF_FRAMEWORKS.filter((f) => r[f] !== 'Not mapped').length;
 const MAP_COLUMNS = [...UCF_COLUMNS.slice(0, 8), 'Frameworks covered', ...UCF_COLUMNS.slice(8)];
@@ -56,7 +56,7 @@ export default function UnifiedFramework() {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div role="tablist" className="flex gap-2">
           {[['map', `Control mapping (${MAP_ROWS.length})`], ['sla', `Framework SLAs and timelines (${SLA_ROWS.length})`]].map(([k, l]) => (
-            <button key={k} role="tab" aria-selected={tab === k} type="button" onClick={() => setTab(k)} className={`${BTN} ${tab === k ? 'font-bold border-gray-900 dark:border-white' : ''}`}>{l}</button>
+            <button key={k} role="tab" aria-selected={tab === k} type="button" onClick={() => setTab(k)} className={BTN}>{l}</button>
           ))}
         </div>
         <div className="flex gap-2">

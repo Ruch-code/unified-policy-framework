@@ -39,12 +39,12 @@ export default function SubscribeForm({ compact = false, source = 'site', dark =
           <input id={id} type="email" inputMode="email" autoComplete="email" required value={email}
             onChange={(e) => { setEmail(e.target.value); if (state.status === 'error') setState({ status: 'idle', msg: '' }); }}
             placeholder="you@company.com" aria-invalid={state.status === 'error'} aria-describedby={`${id}-help`}
-            className={`flex-1 min-w-0 px-3 py-2 rounded-lg border ${LINE} text-sm bg-white text-gray-900 dark:bg-slate-900 dark:text-white`} />
+            className="ui-input flex-1 min-w-0 px-3 py-2 rounded-lg border text-sm" />
           <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', width: 1, height: 1, overflow: 'hidden' }}>
             <label>Website<input tabIndex={-1} autoComplete="off" value={website} onChange={(e) => setWebsite(e.target.value)} /></label>
           </div>
           <button type="submit" disabled={state.status === 'loading'}
-            className="px-4 py-2 rounded-lg text-sm font-semibold bg-indigo-700 text-white hover:bg-indigo-800 disabled:opacity-60 dark:bg-indigo-500 dark:text-slate-950 dark:hover:bg-indigo-400">
+            className="btn btn-primary px-4 py-2 rounded-lg text-sm">
             {state.status === 'loading' ? 'Subscribing…' : 'Subscribe'}
           </button>
         </form>

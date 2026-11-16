@@ -759,3 +759,109 @@ html:not(.dark) body { background-color: #f4f2ed; }
 .nl-body li { margin: 0 0 0.25rem; line-height: 1.6; }
 .nl-body a { text-decoration: underline; overflow-wrap: anywhere; }
 .nl-body code { font-size: 0.9em; }
+
+/* ==========================================
+   SHARED COLOUR TOKENS AND CONTROL STYLES
+   One source for buttons, pills, badges and inputs in both themes.
+   Ratios (WCAG 2.1) are noted for dark mode; light keeps the existing steel blue.
+   ========================================== */
+:root {
+  --ui-page: #f8fafc;
+  --ui-surface: #ffffff;
+  --ui-surface-raised: #f1f5f9;
+  --ui-border: #e2e8f0;
+  --ui-border-strong: #64748b;      /* 4.8:1 on white */
+  --ui-text: #0f172a;
+  --ui-text-muted: #475569;          /* 7.6:1 on white */
+  --ui-primary: #415d7d;             /* white text 6.8:1 */
+  --ui-primary-hover: #344c67;
+  --ui-primary-text: #ffffff;
+  --ui-focus: #415d7d;
+  --ui-hover: #f1f5f9;
+  --ui-success-bg: #ecfdf5; --ui-success-text: #065f46;
+  --ui-warning-bg: #fefce8; --ui-warning-text: #713f12;
+  --ui-danger: #b91c1c; --ui-danger-hover: #991b1b; --ui-danger-text: #ffffff;
+  --ui-danger-bg: #fef2f2; --ui-danger-fg: #991b1b;
+  --ui-info-bg: #eff6ff; --ui-info-text: #1e3a8a;
+  --ui-new-bg: #f3e8ff; --ui-new-text: #6b21a8;
+  --ui-link: #0369a1;               /* 5.9:1 on white */
+}
+html.dark {
+  --ui-page: #0f172a;
+  --ui-surface: #1e293b;
+  --ui-surface-raised: #273449;
+  --ui-border: #334155;
+  --ui-border-strong: #7b8aa1;      /* 4.2:1 on #1e293b, 5.1:1 on #0f172a */
+  --ui-text: #f1f5f9;               /* 13.6:1 on #1e293b */
+  --ui-text-muted: #a3b1c4;          /* 6.7:1 on #1e293b, 5.9:1 on #273449 */
+  --ui-primary: #8fb3dc;             /* 6.7:1 on #1e293b, 8.2:1 on #0f172a */
+  --ui-primary-hover: #a9c5e6;
+  --ui-primary-text: #0f172a;        /* 8.2:1 on #8fb3dc */
+  --ui-focus: #a9c5e6;
+  --ui-hover: #273449;
+  --ui-success-bg: #0a2a1a; --ui-success-text: #a7f3d0;   /* 12.4:1 */
+  --ui-warning-bg: #2d2200; --ui-warning-text: #fef08a;   /* 14.2:1 */
+  --ui-danger: #fca5a5; --ui-danger-hover: #fecaca; --ui-danger-text: #0f172a; /* 9.4:1 */
+  --ui-danger-bg: #2d1215; --ui-danger-fg: #fecdd3;       /* 12.6:1 */
+  --ui-info-bg: #10203a; --ui-info-text: #bfdbfe;          /* 10.9:1 */
+  --ui-new-bg: #2a1a3d; --ui-new-text: #c4a1ff;            /* 7.5:1 */
+  --ui-link: #8fb3dc;               /* 6.7:1 on #1e293b */
+}
+
+/* Buttons: four variants. Sizes come from the element's own padding classes. */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .375rem; border: 1px solid transparent; font-weight: 600; cursor: pointer; transition: background-color .15s, border-color .15s, color .15s; }
+.btn:focus-visible, .ui-input:focus-visible, .ui-pill:focus-visible { outline: 2px solid var(--ui-focus) !important; outline-offset: 2px; }
+.btn:disabled, .btn[aria-disabled="true"] { opacity: .45; cursor: not-allowed; }
+.btn-primary, .dark .btn-primary { background-color: var(--ui-primary) !important; color: var(--ui-primary-text) !important; border-color: var(--ui-primary) !important; }
+.btn-primary:not(:disabled):hover, .dark .btn-primary:not(:disabled):hover { background-color: var(--ui-primary-hover) !important; border-color: var(--ui-primary-hover) !important; }
+.btn-primary:not(:disabled):active { filter: brightness(.95); }
+.btn-secondary, .dark .btn-secondary { background-color: var(--ui-surface-raised) !important; color: var(--ui-text) !important; border-color: var(--ui-border-strong) !important; }
+.btn-secondary:not(:disabled):hover, .dark .btn-secondary:not(:disabled):hover { background-color: var(--ui-surface) !important; border-color: var(--ui-text-muted) !important; }
+.btn-ghost, .dark .btn-ghost { background-color: transparent !important; color: var(--ui-text) !important; border-color: transparent !important; }
+.btn-ghost:not(:disabled):hover, .dark .btn-ghost:not(:disabled):hover { background-color: var(--ui-hover) !important; }
+.btn-danger, .dark .btn-danger { background-color: var(--ui-danger) !important; color: var(--ui-danger-text) !important; border-color: var(--ui-danger) !important; }
+.btn-danger:not(:disabled):hover, .dark .btn-danger:not(:disabled):hover { background-color: var(--ui-danger-hover) !important; }
+/* Selected or pressed state for toggles, tabs and filter pills: primary fill, never white in dark mode. */
+.btn[aria-pressed="true"], .btn[aria-selected="true"], .btn.is-selected,
+.dark .btn[aria-pressed="true"], .dark .btn[aria-selected="true"], .dark .btn.is-selected {
+  background-color: var(--ui-primary) !important; color: var(--ui-primary-text) !important; border-color: var(--ui-primary) !important;
+}
+
+/* Badges and pills: tinted fill, 4.5:1 or better text. */
+.badge { display: inline-flex; align-items: center; gap: .25rem; border: 1px solid transparent; border-radius: 9999px; font-weight: 600; }
+.badge-neutral, .dark .badge-neutral { background-color: var(--ui-surface-raised) !important; color: var(--ui-text) !important; border-color: var(--ui-border) !important; }
+.badge-primary, .dark .badge-primary { background-color: var(--ui-info-bg) !important; color: var(--ui-info-text) !important; border-color: transparent !important; }
+.badge-success, .dark .badge-success { background-color: var(--ui-success-bg) !important; color: var(--ui-success-text) !important; }
+.badge-warning, .dark .badge-warning { background-color: var(--ui-warning-bg) !important; color: var(--ui-warning-text) !important; }
+.badge-danger, .dark .badge-danger { background-color: var(--ui-danger-bg) !important; color: var(--ui-danger-fg) !important; }
+.badge-new, .dark .badge-new { background-color: var(--ui-new-bg) !important; color: var(--ui-new-text) !important; }
+
+/* Numbered circles that contain text. */
+.step-num, .dark .step-num { background-color: var(--ui-primary) !important; color: var(--ui-primary-text) !important; }
+
+/* One input style everywhere. */
+.ui-input, .dark .ui-input, .dark input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), .dark textarea, .dark select {
+  background-color: var(--ui-surface) !important; border-color: var(--ui-border-strong) !important; color: var(--ui-text) !important;
+}
+.ui-input::placeholder, .dark input::placeholder, .dark textarea::placeholder { color: var(--ui-text-muted) !important; }
+.dark input:focus-visible, .dark textarea:focus-visible, .dark select:focus-visible { outline: 2px solid var(--ui-focus); outline-offset: 1px; }
+
+/* ---- Central dark remaps for existing one-off styles (no per-button colours) ---- */
+/* Steel-blue fills with white text become the primary button style. */
+.dark :is(.bg-indigo-500, .bg-indigo-600, .bg-indigo-700, .bg-\[\#344c67\], .bg-\[\#415d7d\], .bg-\[\#557395\], .bg-\[\#4a6380\]).text-white,
+.dark :is(.dark\:bg-indigo-500, .dark\:bg-indigo-600, .dark\:bg-indigo-700).text-white {
+  background-color: var(--ui-primary) !important; color: var(--ui-primary-text) !important;
+}
+.dark :is(.bg-indigo-500, .bg-indigo-600, .bg-indigo-700, .bg-\[\#344c67\], .bg-\[\#415d7d\], .bg-\[\#557395\], .bg-\[\#4a6380\]).text-white:is(button, a):not(:disabled):hover,
+.dark :is(.dark\:bg-indigo-500, .dark\:bg-indigo-600, .dark\:bg-indigo-700).text-white:is(button, a):not(:disabled):hover { background-color: var(--ui-primary-hover) !important; }
+.dark :is(.bg-indigo-500, .bg-indigo-600, .bg-indigo-700, .bg-\[\#344c67\], .bg-\[\#415d7d\]).text-white svg { color: inherit !important; }
+/* White text on bright fills (step circles, status dots with text): dark text instead. */
+.dark .rounded-full:is(.bg-green-500, .bg-green-600, .bg-emerald-500, .bg-emerald-600, .bg-amber-500, .bg-orange-500, .bg-sky-500, .bg-teal-500, .bg-teal-600, .bg-red-500).text-white { color: #0f172a !important; }
+/* Dark "selected" pattern that rendered white on white. */
+.dark .dark\:bg-white.text-white, .dark .dark\:bg-white:is(.dark\:text-slate-900, .dark\:text-gray-900) { background-color: var(--ui-primary) !important; color: var(--ui-primary-text) !important; }
+
+/* Text links that act as small buttons (Clear, Show details). */
+.ui-link, .dark .ui-link { color: var(--ui-link) !important; text-decoration: underline; }
+/* Green number circles: darker fill in light (white text 5.0:1), dark text in dark mode (5.4:1). */
+.rounded-full.bg-green-600.text-white, .rounded-full.bg-emerald-600.text-white { background-color: #15803d; }
+.dark .rounded-full.bg-green-600.text-white, .dark .rounded-full.bg-emerald-600.text-white { background-color: #16a34a !important; }

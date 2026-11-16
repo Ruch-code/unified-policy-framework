@@ -25,8 +25,8 @@ function Sheet({ s }) {
           <p className="mt-1 text-[11px] text-gray-500 dark:text-slate-400">Last verified: {CS_VERIFIED}</p>
         </div>
         <div className="no-print flex gap-2 items-center">
-          <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Filter rows" aria-label={`Filter ${s.title}`} className={`px-2 py-1 border ${LINE} rounded text-sm bg-white dark:bg-slate-900 w-40`} />
-          <button type="button" onClick={() => { document.body.dataset.printSheet = s.id; window.print(); setTimeout(() => { delete document.body.dataset.printSheet; }, 500); }} className={`px-3 py-1 border ${LINE} rounded text-sm ${H}`}>Print / PDF</button>
+          <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Filter rows" aria-label={`Filter ${s.title}`} className="ui-input px-2 py-1 border rounded text-sm w-40" />
+          <button type="button" onClick={() => { document.body.dataset.printSheet = s.id; window.print(); setTimeout(() => { delete document.body.dataset.printSheet; }, 500); }} className="btn btn-secondary px-3 py-1 rounded text-sm">Print / PDF</button>
         </div>
       </div>
       <div className={`mt-3 overflow-x-auto rounded border ${LINE}`} tabIndex={0} role="region" aria-label={s.title}>
