@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import MappingWorkbookCard from './mappings/MappingWorkbookCard.jsx';
+import SECRETS_MAPPING from '../data/mappings/secrets.json';
 import {
   Shield, Lock, Key, Globe, Cloud, Users, FileText, Search, Zap, Cpu,
   HardDrive, Network, BookOpen, ExternalLink, CalendarDays, ShieldAlert,
@@ -356,19 +358,7 @@ function SecretsScanningTab() {
       </div>
 
       {/* 10. Framework mapping */}
-      <div className="bg-white border border-gray-200 rounded-2xl p-6 dark:bg-[#1e293b] dark:border-[#334155]">
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Framework mapping</h3>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">Secrets scanning controls map to these frameworks.</p>
-        <div className="grid md:grid-cols-2 gap-4">
-          {FRAMEWORK_MAPPINGS.map((f) => (
-            <div key={f.framework} className="bg-blue-50 rounded-lg p-4 dark:bg-blue-900/20 dark:border-blue-800">
-              <h4 className="font-bold text-blue-900 dark:text-blue-200 mb-2">{f.framework}</h4>
-              <p className="text-sm text-blue-800 dark:text-blue-300">{f.controls}</p>
-            </div>
-          ))}
-        </div>
-        <p className="text-xs text-gray-500 dark:text-gray-400 mt-4">Verify control references against the current published standard.</p>
-      </div>
+      <MappingWorkbookCard className="!mb-0" data={SECRETS_MAPPING} intro="Download the control-by-control mapping for secrets scanning across SOC 2, ISO 27001:2022, ISO 42001, NIST CSF 2.0, NIST SP 800-53 Rev 5, NIST SSDF, PCI DSS v4, HIPAA, CIS v8, GDPR, DPDP Act and FedRAMP." />
 
       {/* 11. Roadmap by size */}
       <div className="bg-white border border-gray-200 rounded-2xl p-6 dark:bg-[#1e293b] dark:border-[#334155]">

@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { ANNEX_A_CONTROLS } from '../data/iso27001AnnexA.js';
 import { NewBadge, Verified } from './updates/UpdateBits.jsx';
+import { buildStyledXlsx } from '../utils/styledXlsx.js';
+import { ChevronDown, FileSpreadsheet } from 'lucide-react';
 
 const CLAUSES = [
   ['4', 'Context of the organisation'], ['5', 'Leadership'], ['6', 'Planning'], ['7', 'Support'],
@@ -11,6 +13,8 @@ const KEY = 'onelens_iso27001_tracker';
 const LINE = 'border-gray-200 dark:border-slate-700';
 const FIELD = `w-full px-2 py-1 border ${LINE} rounded text-xs bg-white dark:bg-slate-900`;
 
+const COLS = ['Reference', 'Title', 'Group', 'Owner', 'Status', 'Gap', 'Corrective action', 'Due date'];
+const save = (blob, name) => { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000); };
 const load = () => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; } };
 
 export default function IsoImplementationTracker() {
@@ -21,6 +25,8 @@ export default function IsoImplementationTracker() {
   const [data, setData] = useState(load);
   const [filter, setFilter] = useState('All');
   const [q, setQ] = useState('');
+  const [open, setOpen] = useState(false);
+  const exportXlsx = async () => save(await buildStyledXlsx([{ name: 'ISO 27001 tracker', columns: COLS, rows: items.map((i) => { const e = data[i.id] || {}; return [i.id, i.title, i.group, e.owner || '', e.status || 'Not started', e.gap || '', e.action || '', e.due || '']; }), widths: [12, 44, 26, 18, 14, 40, 40, 12] }]), 'ISO27001_Implementation_Tracker.xlsx');
   useEffect(() => { try { localStorage.setItem(KEY, JSON.stringify(data)); } catch { /* storage unavailable */ } }, [data]);
 
   const set = (id, k, v) => setData((d) => ({ ...d, [id]: { ...d[id], [k]: v } }));
@@ -31,13 +37,20 @@ export default function IsoImplementationTracker() {
 
   return (
     <div>
-      <h3 className="text-lg font-bold text-gray-900 dark:text-white">ISO 27001:2022 Implementation Tracker<NewBadge /></h3>
+      <div className="flex flex-wrap items-center gap-2">
+        <button type="button" onClick={() => setOpen((o) => !o)} aria-expanded={open} aria-controls="iso-tracker-body" className="flex items-center gap-2 text-left">
+          <ChevronDown className={`w-5 h-5 shrink-0 text-gray-600 dark:text-slate-300 transition-transform ${open ? '' : '-rotate-90'}`} aria-hidden="true" />
+          <h3 className="text-lg font-bold text-gray-900 dark:text-white">ISO 27001:2022 Implementation Tracker<NewBadge /></h3>
+        </button>
+        <button type="button" onClick={exportXlsx} className="btn btn-secondary ml-auto inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm"><FileSpreadsheet className="w-4 h-4" aria-hidden="true" /> Export Excel</button>
+      </div>
       <Verified />
       <p className="mt-2 text-sm text-gray-700 dark:text-slate-300 max-w-3xl">Track clauses 4 to 10 and the 93 Annex A controls. Your entries are saved only in this browser. Mark controls excluded in your Statement of Applicability as Not applicable; they are left out of the progress figure.</p>
       <div className="mt-3">
         <div className="flex justify-between text-xs text-gray-600 dark:text-slate-300"><span>{done} of {applicable.length} applicable items implemented</span><span>{pct}%</span></div>
         <div className="mt-1 h-2 rounded bg-gray-200 dark:bg-slate-700" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100}><div className="h-2 rounded bg-[#344c67]" style={{ width: `${pct}%` }} /></div>
       </div>
+      <div id="iso-tracker-body" hidden={!open}>
       <div className="mt-3 flex flex-wrap gap-2 items-center">
         <select value={filter} onChange={(e) => setFilter(e.target.value)} aria-label="Filter by status" className={`${FIELD} w-auto`}>{['All', ...STATUSES].map((s) => <option key={s}>{s}</option>)}</select>
         <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search controls" aria-label="Search controls" className={`${FIELD} w-56`} />
@@ -63,6 +76,7 @@ export default function IsoImplementationTracker() {
             })}
           </tbody>
         </table>
+      </div>
       </div>
     </div>
   );

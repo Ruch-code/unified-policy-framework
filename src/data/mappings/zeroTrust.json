@@ -1,0 +1,40 @@
+{
+  "section": "ZeroTrust",
+  "title": "Zero trust and shadow IT: framework mapping",
+  "fileName": "OneLens_ZeroTrust_Framework_Mapping.xlsx",
+  "version": "1.0",
+  "reviewed": "2026-11-16",
+  "frameworks": [
+    ["ISO 27001", "2022", "ISO/IEC 27001:2022, Annex A"],
+    ["SOC 2", "2017 TSC, 2022 points of focus", "AICPA Trust Services Criteria (TSP Section 100)"],
+    ["NIST", "SP 800-207; CSF 2.0", "NIST SP 800-207 Zero Trust Architecture and NIST Cybersecurity Framework 2.0"],
+    ["HIPAA", "45 CFR Part 164, Subpart C", "HIPAA Security Rule"]
+  ],
+  "controls": {
+    "ZT-01": ["Asset and SaaS inventory", "All devices, applications and SaaS tools in use are inventoried, including ones found through discovery.", "Asset and SaaS inventory with discovery source"],
+    "ZT-02": ["Identity and access", "Access is granted per request based on identity, with no implicit trust from network location.", "Access policy and identity provider conditional access rules"],
+    "ZT-03": ["Cloud and vendor approval", "New cloud and SaaS services go through security and vendor review before use.", "SaaS approval records and vendor reviews"],
+    "ZT-04": ["Unapproved software", "Installation and use of unapproved software is prevented or detected.", "Allowlist or app control policy and detection reports"],
+    "ZT-05": ["Device posture", "Device health and compliance are checked as a condition of access.", "Device compliance policy and access denial logs"],
+    "ZT-06": ["Segmentation", "Networks and workloads are segmented so access is limited to what is needed.", "Network diagram and segmentation rules"]
+  },
+  "rows": [
+    ["ZT-01", "ISO 27001", "A.5.9", "Inventory of information and other associated assets", "Direct", ""],
+    ["ZT-01", "NIST", "CSF 2.0 ID.AM", "Identify: asset management", "Direct", ""],
+    ["ZT-02", "ISO 27001", "A.5.15", "Access control", "Direct", ""],
+    ["ZT-02", "SOC 2", "CC6.1", "Logical access security software, infrastructure and architectures", "Direct", ""],
+    ["ZT-02", "NIST", "SP 800-207", "Zero Trust Architecture", "Direct", ""],
+    ["ZT-02", "NIST", "CSF 2.0 PR.AA", "Protect: identity management, authentication and access control", "Direct", ""],
+    ["ZT-02", "HIPAA", "164.312(a)(1)", "Access control", "Direct", ""],
+    ["ZT-03", "ISO 27001", "A.5.23", "Information security for use of cloud services", "Direct", ""],
+    ["ZT-03", "SOC 2", "CC9.2", "Assesses and manages risks from vendors and business partners", "Direct", ""],
+    ["ZT-03", "HIPAA", "164.308(b)(1)", "Business associate contracts and other arrangements", "Direct", ""],
+    ["ZT-04", "SOC 2", "CC6.8", "Prevent or detect unauthorised or malicious software", "Direct", ""],
+    ["ZT-05", "ISO 27001", "A.8.1", "User endpoint devices", "Direct", ""],
+    ["ZT-05", "HIPAA", "164.310(b)", "Workstation use", "Partial", ""],
+    ["ZT-05", "HIPAA", "164.310(c)", "Workstation security", "Partial", ""],
+    ["ZT-06", "ISO 27001", "A.8.22", "Segregation of networks", "Direct", ""],
+    ["ZT-06", "SOC 2", "CC6.6", "Logical access security measures against threats from outside system boundaries", "Direct", ""],
+    ["ZT-06", "NIST", "SP 800-207", "Zero Trust Architecture", "Partial", "Microsegmentation is one of the deployment approaches it describes."]
+  ]
+}

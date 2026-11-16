@@ -1,4 +1,6 @@
 import * as D from '../data/zeroTrustShadowIt.js';
+import MappingWorkbookCard from './mappings/MappingWorkbookCard.jsx';
+import ZT_MAPPING from '../data/mappings/zeroTrust.json';
 
 const LINE = 'border-gray-200 dark:border-slate-700';
 const TXT = 'text-gray-700 dark:text-slate-300';
@@ -37,8 +39,7 @@ export default function ZeroTrustShadowIt() {
       <Sub>How to reduce it</Sub>
       <Rows label="Reducing shadow IT" headers={['Practice', 'Why it works']} rows={D.SIT_PREVENT} min={600} />
       <Sub>Related framework requirements</Sub>
-      <Rows label="Related requirements" headers={['Framework', 'Related requirement']} rows={D.ZT_SIT_CONTROLS} min={600} />
-      <p className="text-xs text-gray-500 dark:text-slate-400">Control references are paraphrased for orientation. Check the official text before relying on them.</p>
+      <MappingWorkbookCard bare data={ZT_MAPPING} intro="Download the control-by-control mapping for zero trust and shadow IT across ISO 27001:2022, SOC 2, NIST SP 800-207 and CSF 2.0, and HIPAA. Control references are paraphrased for orientation. Check the official text before relying on them." />
     </div>
   );
 }
