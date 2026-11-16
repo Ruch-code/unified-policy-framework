@@ -10,6 +10,8 @@ import HipaaCeVsBa from "../../components/playbook/HipaaCeVsBa.jsx";
 import HipaaSoc2Crosswalk from "../../components/playbook/HipaaSoc2Crosswalk.jsx";
 import HipaaPhiUpload from "../../components/playbook/HipaaPhiUpload.jsx";
 import { CROSSWALK_LEVEL } from "../../data/hipaaSoc2Crosswalk.js";
+import { IndiaUsScenarios } from '../../components/kb/TopicExtras.jsx';
+import HipaaControlSet from '../../components/HipaaControlSet.jsx';
 
 const FRAMEWORK = {
   domainFramework: 'HIPAA',
@@ -881,6 +883,8 @@ export default function Hipaa() {
       <HipaaSoc2Crosswalk />
       <HipaaRequirementLibrary />
       <HipaaCeVsBa />
+      <HipaaControlSet />
+      <IndiaUsScenarios />
       <RiskCrossCheckBlock frameworkId="hipaa" />
       <ReferenceTable id="hipaa-security-matrix" title="Security Rule implementation specifications: required or addressable"
         intro="Every Security Rule standard and implementation specification, one per row, checked against the eCFR matrix (Appendix A to Subpart C of Part 164). Addressable does not mean optional: implement it, implement an equivalent, or document why neither is reasonable and appropriate."

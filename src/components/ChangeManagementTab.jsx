@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { GitPullRequest, ChevronDown, Layers, Gauge, ShieldCheck, ShieldAlert, ClipboardCheck, BarChart3, Users, ArrowRight, Info } from 'lucide-react';
 import { SDLC_STAGES, CHANGE_TYPES, VELOCITY, SCENARIOS, KPIS, MAPPING, EVIDENCE } from '../data/changeManagement.js';
+import { ChangeExtras } from './kb/TopicExtras.jsx';
 
 const RISK_CLS = {
   Low: 'bg-emerald-50 text-emerald-800 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-800',
@@ -198,6 +199,7 @@ export default function ChangeManagementTab({ onOpenTab }) {
         <ul className="text-sm text-gray-700 dark:text-slate-200 space-y-1.5">{EVIDENCE.map(li)}</ul>
         <p className="text-xs text-gray-500 dark:text-slate-400 mt-3 flex gap-1.5"><Info className="w-3.5 h-3.5 shrink-0 mt-0.5" /> Common findings in this area, such as skipped reviews, hotfixes without retrospective approval and untested changes, are covered in Audit and Rebuttals.</p>
       </Card>
+      <ChangeExtras />
     </div>
   );
 }

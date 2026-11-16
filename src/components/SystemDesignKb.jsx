@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { SD_INTRO, SD_CATEGORIES, SD_ROWS, SD_QUESTIONS } from '../data/systemDesignGrc.js';
+import { MicroservicesBlock } from './kb/TopicExtras.jsx';
 
 const LINE = 'border-gray-200 dark:border-slate-700';
 const TXT = 'text-gray-700 dark:text-slate-300';
@@ -69,6 +70,7 @@ export default function SystemDesignKb() {
         </div>
       </section>
       <p className="text-xs text-gray-500 dark:text-slate-400">Control references show where each concept usually comes up in an audit. They are a guide, not a formal mapping.</p>
+      <MicroservicesBlock />
     </div>
   );
 }

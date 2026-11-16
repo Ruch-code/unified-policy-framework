@@ -11,6 +11,7 @@ import Soc2EvidenceDetail from "../../components/Soc2EvidenceDetail.jsx";
 import Soc2TechnicalSection from "../../components/Soc2TechnicalSection.jsx";
 import { withEvidence, appendToLevel, extendTasks } from "../../data/playbookEvidence.js";
 import { SOC2_L1_GOVERNANCE, SOC2_L3_TESTS, SOC2_EXTEND } from "../../data/playbookAdditions/soc2.js";
+import { SocCompareBlock } from '../../components/kb/TopicExtras.jsx';
 
 const FRAMEWORK = {
   domainFramework: 'SOC 2',
@@ -1169,6 +1170,7 @@ export default function Soc2() {
       <Soc2ControlMatrix framework={FRAMEWORK_WITH_EVIDENCE} />
       <TscControlMatrix />
       <Soc2EvidenceDetail />
+      <SocCompareBlock />
       <EvidenceChecklistLink framework="SOC 2" />
     </>
   );

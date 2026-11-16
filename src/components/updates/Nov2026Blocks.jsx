@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import * as U from '../../data/nov2026Updates.js';
 import { H, TXT, LINE, CARD, Pending, Sources, BlockTitle, Rows, NewBadge, Verified } from './UpdateBits.jsx';
 import QuickRefCard from '../QuickRefCard.jsx';
+import { AgentFrameworksBlock } from '../kb/TopicExtras.jsx';
 
 // ---------- 1. DPDPA ----------
 
@@ -132,6 +133,8 @@ export function AiPrivacyUpdates() {
         <p className="mt-2"><Sources keys={['iso42001', 'nistAi']} /></p>
         <p className={`mt-2 text-sm ${TXT}`}>Agents also need identity and access controls: see the <Link to="/#access-governance" className="underline">AI agent persona in Persona and Access Governance</Link>.</p>
       </div>
+
+      <AgentFrameworksBlock />
     </section>
   );
 }
