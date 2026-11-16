@@ -4,7 +4,6 @@ import ControlMappingCard from '../components/ControlMappingCard.jsx';
 import SubscribeForm from '../components/newsletter/SubscribeForm.jsx';
 import OnThisPage from '../components/OnThisPage.jsx';
 import AuditEvidenceChecklist from '../components/AuditEvidenceChecklist.jsx';
-import IsoImplementationTracker from '../components/IsoImplementationTracker.jsx';
 import { AuditorRequestList, TabletopExercise } from '../components/AuditInPractice.jsx';
 import {
   BookOpenCheck, SearchCheck, FileSignature, Radar,
@@ -56,7 +55,6 @@ const TABS = [
   { id: 'auditor-requests', label: 'Auditor Request List', icon: ShieldAlert, group: 'Audit in practice', desc: 'What a SOC 2 Type 2 auditor asks for, how to respond to each request with an example, and the follow-ups to expect.' },
   { id: 'tabletop', label: 'Tabletop Exercise (IR and DR)', icon: ShieldAlert, group: 'Audit in practice', desc: 'A template for a combined incident response and disaster recovery tabletop, with a worked scenario, model responses and findings.' },
   { id: 'radar', label: 'Discrepancy Radar', icon: Radar, group: 'Frameworks', desc: 'Where frameworks disagree, and how to reconcile them.' },
-  { id: 'iso-tracker', label: 'ISO 27001 Tracker', icon: BookOpenCheck, group: 'Frameworks', desc: 'Track clauses 4 to 10 and the 93 Annex A controls with owner, status, gap, corrective action and due date.' },
   { id: 'otherfw', label: 'Other Frameworks', icon: BookOpenCheck, group: 'Frameworks', desc: 'COSO, ISO 27002, ISAE 3402, CRBF 97-02, Solvency II, NIST CSF and HITRUST at a glance.' },
   { id: 'change', label: 'Change Management', icon: GitPullRequest, group: 'Engineering and change', desc: 'Change control expectations, evidence and common exceptions.' },
   { id: 'cicd', label: 'CI/CD Pipelines', icon: GitBranch, group: 'Engineering and change', desc: 'Pipeline controls auditors test, from branch protection to deployment approvals.' },
@@ -134,7 +132,9 @@ export default function KnowledgeBase() {
     } else if (t === 'tabletop' || t === 'ttx') {
       setTab('tabletop');
     } else if (t === 'iso-tracker') {
-      setTab('iso-tracker');
+      // Moved to the ISO 27001 page; keep old links working.
+      window.location.replace('/iso/27001/li#iso-tracker');
+      return;
     } else if (t === 'itgc-gaps') {
       setTab('gaps');
     } else if (t === 'audit-observations') {
@@ -320,7 +320,6 @@ export default function KnowledgeBase() {
     sysdesign: <SystemDesignKb />,
     otherfw: <OtherFrameworksKb />,
     'evidence-checklist': <AuditEvidenceChecklist />,
-    'iso-tracker': <IsoImplementationTracker />,
     'auditor-requests': <AuditorRequestList />,
     tabletop: <TabletopExercise />,
     zerotrust: <ZeroTrustShadowIt />,
