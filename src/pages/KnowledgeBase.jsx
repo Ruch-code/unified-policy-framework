@@ -24,6 +24,7 @@ import ItAuditToolkit from '../components/ItAuditToolkit.jsx';
 import RcsaTab from '../components/RcsaTab.jsx';
 import CryptoTabletopScenario from '../components/crypto/CryptoTabletopScenario.jsx';
 import DataGovernanceTab from '../components/DataGovernanceTab.jsx';
+import StreamlineGrc from '../components/toolkit/StreamlineGrc.jsx';
 import { CustomerTrustTab, PolicyLifecycleTab, DueDiligenceTab, AwarenessTab, ErpReviewTab } from '../components/toolkit/Phase4Modules.jsx';
 import CryptoExchangeTab from '../components/CryptoExchangeTab.jsx';
 import SecretsScanningTab from '../components/SecretsScanningTab.jsx';
@@ -55,6 +56,7 @@ const EDP_TABS = [
 ];
 const TABS = [
   { id: 'policies', label: 'Policies → Controls', icon: BookOpenCheck, group: 'GRC: Start here', area: 'GRC', desc: 'How each policy area maps to frameworks and controls, with readiness timelines.' },
+  { id: 'streamline', label: 'Streamlining GRC', icon: Layers, group: 'GRC: Start here', area: 'GRC', desc: 'Step by step: one control set, right-sized scope, one calendar, automated evidence and measures' },
   { id: 'policy-lifecycle', label: 'Policy Lifecycle', icon: BookOpenCheck, group: 'GRC: Start here', area: 'GRC', desc: 'Policy, standard, procedure and guideline: drafting, approval, acknowledgement and review' },
   { id: 'audit', label: 'Audit & Rebuttals', icon: ShieldAlert, group: 'Fieldwork and findings', area: 'Internal audit', desc: 'Common audit observations for the selected framework and how to respond.' },
   { id: 'evidence-checklist', label: 'Audit Evidence Checklist', icon: ShieldAlert, group: 'Fieldwork and findings', area: 'Internal audit', also: 'GRC: Start here', desc: 'What auditors ask for under SOC 2, ISO 27001, HIPAA and GDPR, plus a typical readiness plan and roles.' },
@@ -350,6 +352,7 @@ export default function KnowledgeBase() {
     rcsa: <RcsaTab />,
     'data-governance': <DataGovernanceTab />,
     'policy-lifecycle': <PolicyLifecycleTab />,
+    streamline: <StreamlineGrc />,
     'due-diligence': <DueDiligenceTab />,
     erp: <ErpReviewTab />,
     'customer-trust': <CustomerTrustTab />,
