@@ -1,8 +1,10 @@
 import CryptoControlsTechnical from './crypto/CryptoControlsTechnical.jsx';
+import FlowDiagram, { CompareDiagram } from './crypto/FlowDiagram.jsx';
 // Knowledge Base topic: security and compliance for crypto exchanges (virtual digital asset service providers),
 // with two public CoinDCX incidents as worked examples. Facts are taken from the cited public reporting.
 const H2 = 'text-xl font-bold text-gray-900 dark:text-white mb-3';
 const CARD = 'bg-white border border-gray-200 rounded-2xl p-6 mb-8 dark:bg-gray-800 dark:border-gray-700';
+const SUMMARY = 'cursor-pointer text-xl font-bold text-gray-900 dark:text-white';
 const P = 'text-sm text-gray-700 dark:text-gray-300';
 const TH = 'p-2 text-left font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-900';
 const TD = 'p-2 align-top border-t border-gray-100 dark:border-gray-700 text-gray-700 dark:text-gray-300';
@@ -196,48 +198,101 @@ export default function CryptoExchangeTab() {
         <p className={P}>Exchanges hold keys that move money in one step, so a single compromised account or forgotten wallet can mean an irreversible loss. The two public CoinDCX incidents below show where controls held and where they did not. Facts come from public reporting; the exchange has not published full root cause reports.</p>
       </div>
 
-      <div className={CARD}>
-        <h3 className={H2}>Crypto basics</h3>
+      <details className={CARD}>
+        <summary className={SUMMARY}>Crypto basics</summary>
+        <div className="mt-3">
+        <FlowDiagram title="How a crypto transfer works" steps={[
+          { label: 'Private key signs', note: 'The owner approves the transfer' },
+          { label: 'Sent to the network', note: 'Broadcast to the blockchain' },
+          { label: 'Validators confirm', note: 'Mining or staking' },
+          { label: 'Added to the ledger', note: 'Public, permanent record' },
+          { label: 'Final', note: 'Cannot be reversed', tone: 'risk' },
+        ]} />
+        <FlowDiagram title="How an exchange holds customer funds" steps={[
+          { label: 'Customer deposits', note: 'To a deposit address' },
+          { label: 'Sweep', note: 'Moved out automatically' },
+          { label: 'Hot wallet', note: 'Small amount, online', tone: 'risk' },
+          { label: 'Cold wallet', note: 'Most funds, offline', tone: 'safe' },
+        ]} caption="The exchange holds the keys. Customers see a balance in the app; the internal ledger records who owns what." />
+        <CompareDiagram title="Hot vs cold vs retired wallets" items={[
+          { label: 'Hot wallet', tone: 'risk', points: ['Keys online', 'Fast withdrawals', 'Easier to attack'] },
+          { label: 'Cold wallet', tone: 'safe', points: ['Keys offline', 'Slow, needs approvals', 'Holds most funds'] },
+          { label: 'Retired wallet', points: ['No longer in use', 'Dangerous if it still holds funds or its keys still exist', 'Should be emptied and watched'] },
+        ]} />
         {BASICS.map(([t, items]) => <Group key={t} title={t} items={items} />)}
-      </div>
+        </div>
+      </details>
 
-      <div className={CARD}>
-        <h3 className={H2}>Indian obligations for VDA service providers</h3>
+      <details className={CARD}>
+        <summary className={SUMMARY}>Indian obligations for VDA service providers</summary>
+        <div className="mt-3">
         <Table head={['Source', 'What it requires']} rows={REGS} min={560} />
-      </div>
+        </div>
+      </details>
 
-      <div className={CARD}>
-        <h3 className={H2}>Case 1: CoinDCX operational wallet hack, July 2025 (about 44 million USD)</h3>
+      <details className={CARD}>
+        <summary className={SUMMARY}>Case 1: CoinDCX operational wallet hack, July 2025 (about 44 million USD)</summary>
+        <div className="mt-3">
         <Flow steps={JULY_2025} label="July 2025 incident flow" />
-      </div>
+        </div>
+      </details>
 
-      <div className={CARD}>
-        <h3 className={H2}>How the funds were laundered (July 2025)</h3>
+      <details className={CARD}>
+        <summary className={SUMMARY}>How the funds were laundered (July 2025)</summary>
+        <div className="mt-3">
+        <FlowDiagram title="The laundering path at a glance" steps={[
+          { label: 'Stolen USDT', note: 'On Solana; issuer can freeze it', tone: 'risk' },
+          { label: 'Swap on Jupiter', note: 'DEX: no account, no KYC' },
+          { label: 'Now SOL', note: 'Cannot be frozen by an issuer' },
+          { label: 'Wormhole bridge', note: 'Solana to Ethereum, in chunks' },
+          { label: 'Now on Ethereum', note: 'New chain, new addresses' },
+          { label: 'Dormant wallets', note: 'Wait for attention to fade', tone: 'risk' },
+        ]} caption="Each step makes the funds harder to freeze and trace. Investigators can still follow them, because every transaction is public." />
         <ol className={`list-decimal pl-5 space-y-2 ${P}`}>{LAUNDERING.map((x) => <li key={x}>{x}</li>)}</ol>
-      </div>
+        </div>
+      </details>
 
-      <div className={CARD}>
-        <h3 className={H2}>Case 2: CoinDCX retired wallet loss, October 2026 (about 16 million USD)</h3>
+      <details className={CARD}>
+        <summary className={SUMMARY}>Case 2: CoinDCX retired wallet loss, October 2026 (about 16 million USD)</summary>
+        <div className="mt-3">
+        <CompareDiagram title="What should happen to a retired wallet, and what happened here" items={[
+          { label: 'Should happen', tone: 'safe', points: ['Sweep to zero', 'Revoke and destroy keys', 'Tell partners it is retired', 'Alert on any activity'] },
+          { label: 'Reported in October 2026', tone: 'risk', points: ['Old address still received funds', 'Sweep service failed for a period', 'Drained by attackers', 'Spotted by outsiders first'] },
+        ]} />
         <Flow steps={OCT_2026} label="October 2026 incident flow" />
-      </div>
+        </div>
+      </details>
 
-      <div className={CARD}>
-        <h3 className={H2}>Controls applied and gaps</h3>
+      <details className={CARD}>
+        <summary className={SUMMARY}>Controls applied and gaps</summary>
+        <div className="mt-3">
         <Table head={['Control', 'Status', 'Effect']} rows={APPLIED} />
-      </div>
+        </div>
+      </details>
 
-      <div className={CARD}>
-        <h3 className={H2}>Controls to implement</h3>
+      <details className={CARD}>
+        <summary className={SUMMARY}>Controls to implement</summary>
+        <div className="mt-3">
         <Table head={['Control', 'Security principle', 'Maps to']} rows={CONTROLS} min={820} />
         <p className={`mt-3 ${P}`}>The Lazarus Group (MITRE ATT&CK G0032) often gets in through fake job offers and malicious files sent to engineers, then uses valid accounts. Chainalysis tracks how stolen funds move through mixers and bridges.</p>
-      </div>
+        </div>
+      </details>
 
       <CryptoControlsTechnical />
 
-      <div className={CARD}>
-        <h3 className={H2}>Key terms and regulations</h3>
+      <details className={CARD}>
+        <summary className={SUMMARY}>Key terms and regulations</summary>
+        <div className="mt-3">
+        <FlowDiagram title="Reporting clocks after a crypto incident in India" steps={[
+          { label: 'Incident noticed', note: 'The clock starts here', tone: 'risk' },
+          { label: 'CERT-In report', note: 'Within 6 hours' },
+          { label: 'Preserve ICT logs', note: 'Keep 180 days, in India' },
+          { label: 'STR to FIU-IND', note: 'If funds or users are suspicious' },
+          { label: 'DPDP breach notice', note: 'If personal data affected' },
+        ]} caption="Timelines summarised from the sources described below. Confirm against the official text." />
         {GLOSSARY.map(([t, items, why]) => <Group key={t} title={t} items={items} why={why} />)}
-      </div>
+        </div>
+      </details>
 
       <p className="text-xs text-gray-500 dark:text-gray-400">Guidance only. Verify obligations against the official text before relying on them.</p>
     </div>

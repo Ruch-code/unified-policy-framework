@@ -1,7 +1,8 @@
+import FlowDiagram, { CompareDiagram } from './FlowDiagram.jsx';
+
 // Crypto Exchanges topic: "Controls Applied and Gaps: How to Implement Them Technically".
 // Written for a GRC reader who is new to crypto. Tool names are industry examples, not endorsements.
 const CARD = 'bg-white border border-gray-200 rounded-2xl p-6 mb-8 dark:bg-gray-800 dark:border-gray-700';
-const H2 = 'text-xl font-bold text-gray-900 dark:text-white mb-3';
 const P = 'text-sm text-gray-700 dark:text-gray-300';
 const TH = 'p-2 text-left font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-900';
 const TD = 'p-2 align-top border-t border-gray-100 dark:border-gray-700 text-gray-700 dark:text-gray-300';
@@ -9,6 +10,7 @@ const TD = 'p-2 align-top border-t border-gray-100 dark:border-gray-700 text-gra
 const AREAS = [
   {
     title: '1. Key management',
+    diagram: <CompareDiagram title="Single key vs 2-of-3 multisig or MPC" items={[{ label: 'Single key', tone: 'risk', points: ['One key signs everything', 'Steal it once, drain the wallet'] }, { label: '2-of-3 multisig or MPC', tone: 'safe', points: ['Three key holders or shares', 'Any two must agree', 'One stolen key is not enough'] }]} caption="Like a bank locker that needs two of three keys turned together." />,
     gap: 'One stolen key or one hacked server can drain a whole wallet.',
     why: 'Crypto transfers cannot be reversed. Whoever holds the private key (the secret code that authorises spending) controls the money.',
     control: 'No single person, key or server can move funds alone. Keys are split, stored in hardened hardware and changed on a schedule.',
@@ -33,6 +35,7 @@ const AREAS = [
   },
   {
     title: '2. Hot and cold wallet split',
+    diagram: <FlowDiagram title="Keeping the hot wallet small" steps={[{ label: 'Hot wallet above cap', tone: 'risk' }, { label: 'Automated sweep' }, { label: 'Cold wallet', tone: 'safe' }, { label: 'Hot wallet runs low' }, { label: 'Quorum approves refill' }, { label: 'Signed offline', tone: 'safe' }]} />,
     gap: 'Too much money is kept online, where an attacker can reach it.',
     why: 'Hot wallet losses come straight out of the business, and a large one can threaten solvency and customer trust.',
     control: 'Keep only what daily withdrawals need online, and the rest offline.',
@@ -52,6 +55,7 @@ const AREAS = [
   },
   {
     title: '3. Retired and dormant wallets',
+    diagram: <FlowDiagram title="Decommissioning a wallet" steps={[{ label: 'Mark retired', note: 'In the wallet inventory' }, { label: 'Sweep to zero' }, { label: 'Revoke keys' }, { label: 'Destroy key material', note: 'Witnessed' }, { label: 'Keep evidence' }, { label: 'Alert on activity', tone: 'safe', note: 'Forever' }]} />,
     gap: 'The October 2026 loss came from retired wallets that still held funds.',
     why: 'A wallet nobody watches is the easiest target. If its keys still exist or funds still arrive there, it can be drained without anyone noticing.',
     control: 'Every wallet is tracked from creation to decommissioning, and retired addresses are watched.',
@@ -71,6 +75,7 @@ const AREAS = [
   },
   {
     title: '4. Withdrawal controls',
+    diagram: <FlowDiagram title="Checks before a withdrawal is signed" steps={[{ label: 'Withdrawal request' }, { label: 'Whitelisted address?', note: 'Cooling-off for new ones' }, { label: 'Within limits?', note: 'Size and speed' }, { label: 'Policy engine', note: 'Rules pass or block' }, { label: 'Two approvers', note: 'Out of band' }, { label: 'Signed and sent', tone: 'safe' }]} caption="Fail any check → the transfer stops." />,
     gap: 'Large outflows go through without anyone checking.',
     why: 'Once funds leave, they are gone. Checks must happen before signing, not after.',
     control: 'Rules decide what can be sent, where, how much and how fast, and large transfers need human approval.',
@@ -90,6 +95,7 @@ const AREAS = [
   },
   {
     title: '5. Detection and monitoring',
+    diagram: <FlowDiagram title="From signal to response" steps={[{ label: 'On-chain outflow', tone: 'risk' }, { label: 'KYT alert' }, { label: 'Ledger reconciliation', note: 'Does it match?' }, { label: 'Mismatch = incident', note: 'Never a false alarm without proof' }, { label: 'Pause and investigate', tone: 'safe' }]} />,
     gap: 'The October 2026 breach was first called a "false alarm".',
     why: 'Every minute of delay lets funds move further and makes freezing harder.',
     control: 'Watch both the blockchain and internal systems, reconcile balances continuously, and treat any unexplained outflow as an incident until proven otherwise.',
@@ -109,6 +115,7 @@ const AREAS = [
   },
   {
     title: '6. Access and endpoint security',
+    diagram: <CompareDiagram title="Why SMS codes lose to security keys" items={[{ label: 'SMS or app code', tone: 'risk', points: ['Fake login page asks for the code', 'Person types it in', 'Attacker uses it straight away'] }, { label: 'FIDO2 security key', tone: 'safe', points: ['Key checks the real website', 'Fake site gets no answer', 'Nothing to trick the person into typing'] }]} />,
     gap: 'Groups like Lazarus usually get in by tricking people, not by breaking code.',
     why: 'One compromised engineer laptop can expose signing systems.',
     control: 'Strong login, minimal standing access and locked-down devices for anyone near the keys.',
@@ -147,6 +154,7 @@ const AREAS = [
   },
   {
     title: '8. Incident response and recovery',
+    diagram: <FlowDiagram title="The first hour" steps={[{ label: 'Anomaly detected', tone: 'risk' }, { label: 'Auto-pause wallet' }, { label: 'Confirm incident' }, { label: 'Freeze requests', note: 'Issuers, bridges, exchanges' }, { label: 'CERT-In clock running', note: '6 hours' }, { label: 'Reserve protects customers', tone: 'safe' }]} />,
     gap: 'In July 2025, stolen funds were moved out before anyone could freeze them.',
     why: 'Funds can cross chains within minutes, so recovery depends on speed and on having contacts ready.',
     control: 'Automatic pause on suspicious outflows, a ready list of freeze contacts and a reserve so customers are protected.',
@@ -240,7 +248,7 @@ function Area({ a }) {
       <Row label="The gap"><p className={P}>{a.gap}</p></Row>
       <Row label="Why it matters"><p className={P}>{a.why}</p></Row>
       <Row label="The control"><p className={P}>{a.control}</p></Row>
-      <Row label="How it works technically"><Ul items={a.how} /></Row>
+      <Row label="How it works technically">{a.diagram}<Ul items={a.how} /></Row>
       <Row label="Tools used in the industry"><Ul items={a.tools} /></Row>
       <Row label="Evidence an auditor would ask for"><Ul items={a.evidence} /></Row>
       <Row label="Interview one-liner"><p className={`${P} italic`}>"{a.oneLiner}"</p></Row>
@@ -250,8 +258,9 @@ function Area({ a }) {
 
 export default function CryptoControlsTechnical() {
   return (
-    <div className={CARD} id="crypto-controls-technical">
-      <h3 className={H2}>Controls Applied and Gaps: How to Implement Them Technically</h3>
+    <details className={CARD} id="crypto-controls-technical">
+      <summary className="cursor-pointer text-xl font-bold text-gray-900 dark:text-white">Controls Applied and Gaps: How to Implement Them Technically</summary>
+      <div className="mt-3">
       <p className={P}>Eight control areas, each in the same format: the gap, why it matters, the control, how it works step by step, tools, audit evidence and a one-liner for interviews. Where the public reporting does not confirm what happened, the text says so.</p>
       <div className="mt-4">{AREAS.map((a) => <Area key={a.title} a={a} />)}</div>
 
@@ -285,6 +294,7 @@ export default function CryptoControlsTechnical() {
         </dl>
       </details>
       <p className="mt-4 text-xs text-gray-500 dark:text-gray-400">Guidance only. Verify obligations against the official text before relying on them.</p>
-    </div>
+      </div>
+    </details>
   );
 }
