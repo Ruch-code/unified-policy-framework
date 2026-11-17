@@ -111,6 +111,8 @@ const STYLES_XML = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 function cellXml(ref, value, style) {
   if (value === '' || value === null || value === undefined) return `<c r="${ref}" s="${style}"/>`;
   if (typeof value === 'number' && Number.isFinite(value)) return `<c r="${ref}" s="${style}"><v>${value}</v></c>`;
+  // Formula cell: { f: 'F{r}*G{r}' }, where {r} becomes this cell's row number.
+  if (value && typeof value === 'object' && typeof value.f === 'string') return `<c r="${ref}" s="${style}"><f>${xmlEsc(value.f.replace(/\{r\}/g, ref.replace(/^[A-Z]+/, '')))}</f></c>`;
   return `<c r="${ref}" s="${style}" t="inlineStr"><is><t xml:space="preserve">${xmlEsc(toPlainText(value))}</t></is></c>`;
 }
 

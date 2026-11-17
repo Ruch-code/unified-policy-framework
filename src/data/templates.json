@@ -541,6 +541,28 @@
           ],
           "type": "record",
           "file": "control-self-assessment.xlsx"
+        },
+        {
+          "num": 320,
+          "slug": "risk-acceptance-form",
+          "name": "Risk Acceptance Form",
+          "purpose": "Records acceptance of a risk above appetite, compensating controls, expiry date and approver sign-off.",
+          "fields": [
+            "Risk details",
+            "Compensating controls",
+            "Conditions and expiry",
+            "Approver decision",
+            "Document control"
+          ],
+          "frameworks": [
+            "ISO27001",
+            "SOC2"
+          ],
+          "type": "document",
+          "file": "risk-acceptance-form.docx",
+          "tags": [
+            "Risk"
+          ]
         }
       ]
     },
@@ -2635,6 +2657,27 @@
           ],
           "type": "record",
           "file": "cyber-insurance-summary.xlsx"
+        },
+        {
+          "num": 321,
+          "slug": "tprm-csf-questionnaire",
+          "name": "TPRM Questionnaire (NIST CSF 2.0)",
+          "purpose": "Vendor security questionnaire organised by NIST CSF 2.0 functions, with reviewer scoring and a summary by function.",
+          "fields": [
+            "Question by CSF function",
+            "Vendor answer and evidence",
+            "Reviewer score",
+            "Summary by function"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001"
+          ],
+          "type": "record",
+          "file": "tprm-csf-questionnaire.xlsx",
+          "tags": [
+            "TPRM"
+          ]
         }
       ]
     },

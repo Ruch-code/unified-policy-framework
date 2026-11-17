@@ -1,4 +1,6 @@
 import { Download, FileText, ClipboardCheck } from 'lucide-react';
+import TemplateDownloadButton from '../templates/TemplateDownloadButton.jsx';
+import { useAuth } from '../../context/AuthContext.jsx';
 import { downloadXlsx } from '../../utils/xlsxExport.js';
 import { SEED_REGISTER } from '../../data/riskAssessment/register';
 import { CONTROLS } from '../../data/riskAssessment/controls';
@@ -7,16 +9,17 @@ import { LIBRARY_CATEGORIES } from '../../data/riskAssessment/library';
 import { LIKELIHOOD, IMPACT, BANDS, APPETITE, TREATMENTS, WORKFLOW } from '../../data/riskAssessment/methodology';
 import { score, sectionCls, h3Cls, leadCls } from './riskUtils.jsx';
 
-const REGISTER_HEADERS = ['ID', 'Risk scenario', 'Categories', 'CIA', 'Owner', 'Likelihood', 'Impact', 'Inherent score', 'Treatment', 'Treatment status', 'Residual likelihood', 'Residual impact', 'Residual score', 'Approval status', 'Linked controls', 'Approver', 'Identified date', 'Last reviewed date', 'Approval date', 'Notes'];
+const REGISTER_HEADERS = ['ID', 'Risk scenario', 'Categories', 'CIA', 'Owner', 'Likelihood', 'Impact', 'Inherent score', 'Treatment', 'Treatment status', 'Residual likelihood', 'Residual impact', 'Residual score', 'Approval status', 'Linked controls', 'Approver', 'Identified date', 'Last reviewed date', 'Approval date', 'Notes', 'Asset', 'Threat', 'Vulnerability', 'Control effectiveness', 'Risk acceptance expiry'];
 
 export function downloadRegisterTemplate() {
   const seedRows = SEED_REGISTER.map((r) => [
-    r.id, r.scenario, r.categories.join(', '), r.cia.join(', '), r.owner, r.likelihood, r.impact, score(r.likelihood, r.impact),
-    r.treatment, r.treatmentStatus, r.residualLikelihood, r.residualImpact, score(r.residualLikelihood, r.residualImpact),
+    r.id, r.scenario, r.categories.join(', '), r.cia.join(', '), r.owner, r.likelihood, r.impact, { f: 'F{r}*G{r}' },
+    r.treatment, r.treatmentStatus, r.residualLikelihood, r.residualImpact, { f: 'K{r}*L{r}' },
     r.approvalStatus, r.controls.join(', '), r.approver, r.identifiedDate, r.lastReviewedDate, r.approvalDate,
     [r.recommended ? 'Recommended addition' : '', r.note || ''].filter(Boolean).join('. '),
   ]);
-  const blanks = Array.from({ length: 30 }, () => []);
+  // Blank rows keep the score formulas so scores calculate as soon as likelihood and impact are entered.
+  const blanks = Array.from({ length: 30 }, () => { const row = Array(REGISTER_HEADERS.length).fill(''); row[7] = { f: 'IF(F{r}*G{r}=0,"",F{r}*G{r})' }; row[12] = { f: 'IF(K{r}*L{r}=0,"",K{r}*L{r})' }; return row; });
   const scale = ['1', '2', '3', '4', '5'];
   downloadXlsx([
     {
@@ -24,7 +27,8 @@ export function downloadRegisterTemplate() {
       title: 'Risk Register Template: Example Co.',
       notes: [
         'One row per risk. Score inherent likelihood and impact for the current state, and residual likelihood and impact for when the treatment plan is fully implemented. Score = likelihood x impact.',
-        'Columns with dropdowns: Likelihood, Impact, Treatment, Treatment status, Residual likelihood, Residual impact and Approval status. Inherent and residual score cells can use a formula such as =F5*G5.',
+        'Columns with dropdowns: Likelihood, Impact, Treatment, Treatment status, Residual likelihood, Residual impact, Approval status and Control effectiveness. Inherent and residual scores are formulas (likelihood x impact) and update when you change the inputs.',
+        'Asset, Threat and Vulnerability record what the scenario is built from. Control effectiveness supports the residual score. Risk acceptance expiry is the date an accepted risk must be reviewed again.',
         `Risk appetite: ${APPETITE.statement} ${APPETITE.rule}`,
         'Review the whole register at least annually and within 30 days of a material change. Include at least one fraud scenario (SOC 2 CC3.3).',
       ],
@@ -38,6 +42,7 @@ export function downloadRegisterTemplate() {
         { col: 8, values: TREATMENTS.map((t) => t.option) },
         { col: 9, values: WORKFLOW.map((w) => w.state) },
         { col: 13, values: ['Not submitted', 'Pending approval', 'Approved', 'Rejected'] },
+        { col: 23, values: ['Effective', 'Partially effective', 'Ineffective', 'Not tested'] },
       ],
     },
     {
@@ -88,6 +93,7 @@ const ITEMS = [
 ];
 
 export default function RiskDownloads() {
+  const { user } = useAuth();
   return (
     <section id="ra-downloads" className={sectionCls}>
       <h3 className={h3Cls}>9. Downloadables</h3>
@@ -106,6 +112,11 @@ export default function RiskDownloads() {
             </div>
           );
         })}
+      </div>
+      <div className="mt-3 rounded-xl border border-surface-200 dark:border-surface-dark-200 p-4">
+        <h4 className="font-semibold text-sm text-navy-900 dark:text-text-dark-primary">Risk acceptance form (Word)</h4>
+        <p className="text-xs text-navy-600 dark:text-text-dark-secondary mt-1">Use it when a residual score stays above appetite: risk details, compensating controls, conditions, an expiry date of no more than 12 months and approver sign-off. Record the expiry in the register's Risk acceptance expiry column.</p>
+        <div className="mt-3">{user ? <TemplateDownloadButton template={{ name: 'Risk Acceptance Form', file: 'risk-acceptance-form.docx' }} compact /> : <p className="text-xs text-navy-600 dark:text-text-dark-secondary">Log in to download this template.</p>}</div>
       </div>
     </section>
   );
