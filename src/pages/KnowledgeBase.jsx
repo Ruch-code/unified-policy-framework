@@ -22,6 +22,7 @@ import {
 import EdpTab from '../components/EdpTab.jsx';
 import ItAuditToolkit from '../components/ItAuditToolkit.jsx';
 import RcsaTab from '../components/RcsaTab.jsx';
+import CryptoTabletopScenario from '../components/crypto/CryptoTabletopScenario.jsx';
 import DataGovernanceTab from '../components/DataGovernanceTab.jsx';
 import CryptoExchangeTab from '../components/CryptoExchangeTab.jsx';
 import SecretsScanningTab from '../components/SecretsScanningTab.jsx';
@@ -338,7 +339,7 @@ export default function KnowledgeBase() {
     otherfw: <OtherFrameworksKb />,
     'evidence-checklist': <AuditEvidenceChecklist />,
     'auditor-requests': <AuditorRequestList />,
-    tabletop: <TabletopExercise />,
+    tabletop: <><TabletopExercise /><CryptoTabletopScenario /></>,
     'it-audit': <ItAuditToolkit />,
     rcsa: <RcsaTab />,
     'data-governance': <DataGovernanceTab />,
