@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import EvidenceChecklistLink from "../../components/EvidenceChecklistLink.jsx";
 import { EngPartnershipLink } from "../../components/engineering/EngineeringPartnership.jsx";
 import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCheck.jsx";
@@ -8,6 +9,7 @@ import AnnexACoverage from "../../components/playbook/AnnexACoverage.jsx";
 import { withEvidence, appendToLevel, extendTasks } from "../../data/playbookEvidence.js";
 import { LI_L1_CLAUSES, LI_EXTEND } from "../../data/playbookAdditions/iso27001.js";
 import Iso27001EvidenceLibrary from '../../components/Iso27001EvidenceLibrary.jsx';
+import Iso27001AuditJourney from '../../components/Iso27001AuditJourney.jsx';
 import IsoImplementationTracker from '../../components/IsoImplementationTracker.jsx';
 
 const FRAMEWORK = {
@@ -203,16 +205,39 @@ appendToLevel(FRAMEWORK, 1, { tasks: LI_L1_CLAUSES.slice(5) });
 extendTasks(FRAMEWORK, LI_EXTEND);
 const FRAMEWORK_WITH_EVIDENCE = withEvidence(FRAMEWORK);
 
+// Collapsed wrapper for long reference sections. Content stays mounted so anchors and search still work.
+function Fold({ title, children }) {
+  return (
+    <details className="max-w-6xl mx-auto my-4 px-4 group">
+      <summary className="cursor-pointer rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4 text-lg font-bold text-gray-900 dark:text-white">{title}</summary>
+      <div className="-mx-4">{children}</div>
+    </details>
+  );
+}
+
 export default function Iso27001LiPage() {
+  // A link to an anchor inside a collapsed section opens that section first.
+  useEffect(() => {
+    const reveal = () => {
+      const el = window.location.hash && document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+      if (!el) return;
+      for (let d = el.closest('details'); d; d = d.parentElement?.closest('details')) d.open = true;
+      el.scrollIntoView();
+    };
+    const t = setTimeout(reveal, 300);
+    window.addEventListener('hashchange', reveal);
+    return () => { clearTimeout(t); window.removeEventListener('hashchange', reveal); };
+  }, []);
   return (
     <>
       <LearningFrameworkPage framework={FRAMEWORK_WITH_EVIDENCE} />
+      <Iso27001AuditJourney />
       <RiskCrossCheckBlock frameworkId="iso27001" />
-      <Iso27001ThemeScoping />
-      <Iso27001Sections basePath="/iso/27001/li" />
-      <AnnexACoverage />
+      <Fold title="Scoping by theme"><Iso27001ThemeScoping /></Fold>
+      <Fold title="ISO 27001 topic guides"><Iso27001Sections basePath="/iso/27001/li" /></Fold>
+      <Fold title="Annex A coverage"><AnnexACoverage /></Fold>
       <section id="iso-tracker" className="max-w-6xl mx-auto px-4 my-8 scroll-mt-24"><IsoImplementationTracker /></section>
-      <Iso27001EvidenceLibrary />
+      <Fold title="Evidence library"><Iso27001EvidenceLibrary /></Fold>
       <EvidenceChecklistLink framework="ISO 27001" />
       <div className="max-w-6xl mx-auto px-4 my-8"><EngPartnershipLink set="iso27001" /></div>
     </>
