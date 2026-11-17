@@ -1,3 +1,4 @@
+import CryptoControlsTechnical from './crypto/CryptoControlsTechnical.jsx';
 // Knowledge Base topic: security and compliance for crypto exchanges (virtual digital asset service providers),
 // with two public CoinDCX incidents as worked examples. Facts are taken from the cited public reporting.
 const H2 = 'text-xl font-bold text-gray-900 dark:text-white mb-3';
@@ -230,6 +231,8 @@ export default function CryptoExchangeTab() {
         <Table head={['Control', 'Security principle', 'Maps to']} rows={CONTROLS} min={820} />
         <p className={`mt-3 ${P}`}>The Lazarus Group (MITRE ATT&CK G0032) often gets in through fake job offers and malicious files sent to engineers, then uses valid accounts. Chainalysis tracks how stolen funds move through mixers and bridges.</p>
       </div>
+
+      <CryptoControlsTechnical />
 
       <div className={CARD}>
         <h3 className={H2}>Key terms and regulations</h3>
