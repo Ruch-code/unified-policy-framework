@@ -177,3 +177,92 @@ def phase3():
 
 if __name__ == '__main__':
     phase3(); print('phase3 ok')
+
+
+# ---------- Phase 4 ----------
+def phase4():
+    S = 'Open,In progress,Done'
+    simple_book('questionnaire-tracker.xlsx', 'Questionnaire response tracker', ['One row per questionnaire. Use [Customer] placeholders, not real names, in shared copies.', 'Answers reused shows how much came from the approved answer bank.'],
+        ['Customer', 'Questionnaire type', 'Received date', 'Due date', 'Owner', 'Status', 'Total questions', 'Answers reused', 'Reuse rate', 'SME reviewer', 'SME sign-off date', 'Approved by', 'Sent date'],
+        [18, 18, 13, 13, 16, 12, 12, 12, 10, 16, 14, 16, 12], {'B': 'SIG Lite,SIG Core,CAIQ,Custom RFI,Security addendum', 'F': 'Not started,In progress,SME review,Approved,Sent'},
+        extra=lambda wb: [wb['Register'].append(['[Customer]'] + [''] * 7 + [f'=IF(G{i}="","",H{i}/G{i})'] + [''] * 4) for i in range(2, 102)])
+    simple_book('policy-register.xlsx', 'Policy register', ['One row per policy, standard, procedure or guideline.', 'Next review date defaults to 12 months after approval.'],
+        ['Document name', 'Type', 'Owner', 'Version', 'Approval date', 'Approved by', 'Next review date', 'Status', 'Mapped controls', 'Location'],
+        [32, 14, 18, 9, 14, 18, 16, 12, 28, 30], {'B': 'Policy,Standard,Procedure,Guideline', 'H': 'Draft,Approved,Under review,Retired'},
+        extra=lambda wb: [wb['Register'].append(['', '', '', '', '', '', f'=IF(E{i}="","",EDATE(E{i},12))', '', '', '']) for i in range(2, 102)])
+    d = Document(); d.add_heading('Standard Operating Procedure: [Title]', 0)
+    for h, t in [('Purpose', '[Why this procedure exists]'), ('Scope', '[Systems, teams and locations covered]'), ('Roles', '[Who performs, approves and is informed]'), ('Prerequisites', '[Access, tools or inputs needed]')]:
+        d.add_heading(h, 1); d.add_paragraph(t)
+    d.add_heading('Procedure steps', 1)
+    for i in range(1, 6): d.add_paragraph(f'[Step {i}]', style='List Number')
+    d.add_heading('Records and evidence', 1); d.add_paragraph('[What record is kept, where, and for how long]')
+    d.add_heading('Related documents', 1); d.add_paragraph('[Policy and standard this procedure supports]')
+    doc_control(d); d.save(OUT / 'sop-skeleton.docx')
+    simple_book('due-diligence-checklist.xlsx', 'Pre-IPO and M&A security due diligence checklist', ['One row per question. Rate risk and record follow-ups. Use [Target] placeholders in shared copies.'],
+        ['Area', 'Question', 'Evidence requested', 'Response', 'Evidence received', 'Risk rating', 'Follow-up', 'Owner'], [18, 50, 30, 36, 14, 12, 30, 16], {'E': 'Yes,No,Partial', 'F': 'High,Medium,Low'},
+        extra=lambda wb: [wb['Register'].append(r + ['', '', '', '', '']) for r in [
+            ['Governance', 'Who owns information security and how does the board oversee it?', 'Org chart, board minutes'],
+            ['Policies', 'Are policies approved and reviewed in the last 12 months?', 'Policy register'],
+            ['Certifications', 'Which certifications or reports exist, and what is their scope?', 'Certificates, SOC 2 reports'],
+            ['Incidents', 'List security incidents and data breaches in the last 3 years and how they were closed.', 'Incident register'],
+            ['Regulatory', 'Any regulator notices, fines or investigations?', 'Correspondence'],
+            ['Data protection', 'Is there a data inventory and record of processing?', 'Data inventory, RoPA'],
+            ['Cross-border', 'Where is personal data stored and transferred?', 'Data flow map'],
+            ['ITGC', 'Are access, change and operations controls documented and tested?', 'RCM, test results'],
+            ['Third parties', 'Who are the critical vendors and when were they last reviewed?', 'Vendor register'],
+            ['Findings', 'List open audit findings and risk acceptances.', 'Findings register'],
+            ['Technical', 'When was the last penetration test and are critical findings closed?', 'Pen test report'],
+            ['Integration', 'What is needed to connect the target to our network safely?', 'Integration plan']]])
+    simple_book('awareness-annual-plan.xlsx', 'Security awareness annual plan', ['One row per month. Track completion against the HR headcount.'],
+        ['Month', 'Theme', 'Audience', 'Channel', 'Owner', 'Planned date', 'Status', 'Completion %'], [12, 30, 20, 26, 16, 14, 12, 12], {'G': S},
+        extra=lambda wb: [wb['Register'].append([m, t, 'All staff', '', '', '', '', '']) for m, t in [('January', 'Phishing'), ('February', 'Passwords and MFA'), ('March', 'Data classification'), ('April', 'Social engineering'), ('May', 'Secure remote work'), ('June', 'Incident reporting'), ('July', 'Privacy and personal data'), ('August', 'Physical security'), ('September', 'Travel security'), ('October', 'Cybersecurity Awareness Month'), ('November', 'Fraud and payment scams'), ('December', 'Year review and quiz')]])
+    simple_book('phishing-tracker.xlsx', 'Phishing simulation tracker', ['One row per campaign. Rates calculate automatically.', 'Assign remedial training to everyone who clicked and record completion.'],
+        ['Campaign', 'Date', 'Audience', 'Scenario', 'Delivered', 'Clicked', 'Reported', 'Click rate', 'Report rate', 'Remedial assigned', 'Remedial completed'], [20, 12, 20, 30, 10, 10, 10, 10, 10, 14, 14],
+        extra=lambda wb: [wb['Register'].append([''] * 7 + [f'=IF(E{i}="","",F{i}/E{i})', f'=IF(E{i}="","",G{i}/E{i})', '', '']) for i in range(2, 52)])
+    simple_book('physical-spot-check.xlsx', 'Physical security spot check', ['Walk the site and record each check. Raise an action for every fail.'],
+        ['Location', 'Date', 'Check', 'Result', 'Finding', 'Action', 'Owner', 'Due date'], [16, 12, 40, 10, 36, 30, 16, 12], {'D': 'Pass,Fail,N/A'},
+        extra=lambda wb: [wb['Register'].append(['[Site]', '', c, '', '', '', '', '']) for c in ['Desks clear of confidential papers', 'Screens locked when unattended', 'Visitor log complete and visitors escorted', 'Badge access working; no propped doors', 'No tailgating observed', 'Secure disposal bins available and locked', 'Printers clear of documents', 'Server or network room locked', 'Whiteboards wiped of sensitive information']])
+    simple_book('employee-security-self-assessment.xlsx', 'Employee security self-assessment', ['Short questionnaire for staff. Use the results to target training.'],
+        ['Question', 'Answer', 'Notes'], [60, 12, 40], {'B': 'Yes,No,Not sure'},
+        extra=lambda wb: [wb['Register'].append([q, '', '']) for q in ['I use MFA on all work accounts.', 'I lock my screen when I leave my desk.', 'I know how to report a suspicious email.', 'I store work files only in approved locations.', 'I know which data is confidential or restricted.', 'I do not share passwords with anyone.', 'My devices have the latest updates.', 'I know who to contact if I lose a device.']])
+    simple_book('erp-security-checklist.xlsx', 'ERP security review checklist', ['One row per check. Product names in the guide are examples of ERP types only.'],
+        ['Area', 'Check', 'How to test', 'Result', 'Finding', 'Owner', 'Due date'], [20, 44, 40, 10, 36, 16, 12], {'D': 'Pass,Fail,N/A'},
+        extra=lambda wb: [wb['Register'].append(r + ['', '', '', '']) for r in [
+            ['Privileged accounts', 'Superuser and emergency accounts have owners and approvals', 'Extract privileged users; trace approvals'],
+            ['Generic accounts', 'Shared or generic accounts are disabled or controlled', 'Extract accounts without a named owner'],
+            ['Critical transactions', 'Only authorised roles can create vendors, change bank details or post journals', 'Run access report for critical transactions'],
+            ['Segregation of duties', 'Conflicts are removed or mitigated', 'Run SoD report; sample mitigating controls'],
+            ['Change control', 'Changes move through approved transports only', 'Sample production changes; trace to approvals'],
+            ['Direct changes', 'Production is locked against direct changes', 'Inspect system change settings'],
+            ['Parameters', 'Password, session and tolerance settings meet standard', 'Inspect configuration'],
+            ['Audit logging', 'Logs on for critical tables and transactions, reviewed', 'Inspect log settings and review evidence']]])
+    simple_book('bia-workbook.xlsx', 'Business Impact Analysis workbook', ['One row per process. Rate impact over time as Low, Medium, High or Severe.', 'MTPD is the first time point rated Severe. RTO must be shorter than MTPD.'],
+        ['Product or service', 'Process', 'Process owner', 'People', 'Systems', 'Data', 'Vendors', 'Site', 'Impact 1 hour', 'Impact 4 hours', 'Impact 1 day', 'Impact 1 week', 'MTPD', 'RTO', 'RPO', 'MBCO'],
+        [20, 24, 16, 14, 20, 16, 16, 12, 12, 12, 12, 12, 10, 10, 10, 20], {c: 'Low,Medium,High,Severe' for c in 'IJKL'})
+    simple_book('call-tree.xlsx', 'Call tree', ['Order of escalation for an incident or DR event. Test it in every drill and record response times.'],
+        ['Order', 'Role', 'Primary contact', 'Primary phone', 'Backup contact', 'Backup phone', 'Contacts next', 'Target response (minutes)', 'Last tested', 'Actual response (minutes)'],
+        [8, 22, 20, 16, 20, 16, 20, 14, 12, 14])
+    d = Document(); d.add_heading('IT Disaster Recovery Drill: Plan and Report', 0)
+    d.add_paragraph('Purpose: plan, run and record a DR drill, and compare actual recovery against RTO and RPO.')
+    d.add_heading('Part A: Plan', 1)
+    t = d.add_table(rows=0, cols=2); t.style = 'Table Grid'
+    for k in ['Service in scope', 'Objectives', 'Scenario', 'RTO target', 'RPO target', 'Date and time', 'Participants and roles', 'Observers', 'Call tree version', 'Runbook reference', 'Success criteria', 'Rollback plan']:
+        r = t.add_row().cells; r[0].text = k; r[1].text = '[ ]'
+    d.add_heading('Part B: Execution log', 1)
+    t = d.add_table(rows=1, cols=4); t.style = 'Table Grid'
+    for i, h in enumerate(['Time', 'Step', 'Who', 'Result']): t.rows[0].cells[i].text = h
+    for _ in range(6): t.add_row()
+    d.add_heading('Part C: Results', 1)
+    t = d.add_table(rows=0, cols=2); t.style = 'Table Grid'
+    for k in ['Actual recovery time', 'Actual data loss', 'RTO met (Yes / No)', 'RPO met (Yes / No)', 'Observations', 'Lessons learnt']:
+        r = t.add_row().cells; r[0].text = k; r[1].text = '[ ]'
+    d.add_heading('Part D: Corrective actions', 1)
+    t = d.add_table(rows=1, cols=4); t.style = 'Table Grid'
+    for i, h in enumerate(['Action', 'Owner', 'Due date', 'Status']): t.rows[0].cells[i].text = h
+    for _ in range(3): t.add_row()
+    d.add_paragraph('Retest date: [ ]')
+    doc_control(d); d.save(OUT / 'dr-drill-plan-report.docx')
+
+
+if __name__ == '__main__':
+    phase4(); print('phase4 ok')

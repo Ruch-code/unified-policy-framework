@@ -1,4 +1,5 @@
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
+import { BiaDrillCard } from "../../components/toolkit/Phase4Modules.jsx";
 
 const FRAMEWORK = {
   id: "iso-22301",
@@ -149,6 +150,7 @@ export default function Iso22301Page() {
   return (
     <>
       <LearningFrameworkPage framework={FRAMEWORK} />
+      <div className="px-4"><BiaDrillCard /></div>
     </>
   );
 }
