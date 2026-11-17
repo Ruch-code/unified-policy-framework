@@ -25,6 +25,7 @@ import RcsaTab from '../components/RcsaTab.jsx';
 import CryptoTabletopScenario from '../components/crypto/CryptoTabletopScenario.jsx';
 import DataGovernanceTab from '../components/DataGovernanceTab.jsx';
 import StreamlineGrc from '../components/toolkit/StreamlineGrc.jsx';
+import FindingClassification from '../components/toolkit/FindingClassification.jsx';
 import { CustomerTrustTab, PolicyLifecycleTab, DueDiligenceTab, AwarenessTab, ErpReviewTab } from '../components/toolkit/Phase4Modules.jsx';
 import CryptoExchangeTab from '../components/CryptoExchangeTab.jsx';
 import SecretsScanningTab from '../components/SecretsScanningTab.jsx';
@@ -59,6 +60,7 @@ const TABS = [
   { id: 'streamline', label: 'Streamlining GRC', icon: Layers, group: 'GRC: Start here', area: 'GRC', desc: 'Step by step: one control set, right-sized scope, one calendar, automated evidence and measures' },
   { id: 'policy-lifecycle', label: 'Policy Lifecycle', icon: BookOpenCheck, group: 'GRC: Start here', area: 'GRC', desc: 'Policy, standard, procedure and guideline: drafting, approval, acknowledgement and review' },
   { id: 'audit', label: 'Audit & Rebuttals', icon: ShieldAlert, group: 'Fieldwork and findings', area: 'Internal audit', desc: 'Common audit observations for the selected framework and how to respond.' },
+  { id: 'finding-classification', label: 'Classifying Findings', icon: ShieldAlert, group: 'Fieldwork and findings', area: 'Internal audit', desc: 'Major and minor nonconformity, OFI, observation, SOC 2 exceptions and opinions, SOX deficiencies and internal audit ratings' },
   { id: 'evidence-checklist', label: 'Audit Evidence Checklist', icon: ShieldAlert, group: 'Fieldwork and findings', area: 'Internal audit', also: 'GRC: Start here', desc: 'What auditors ask for under SOC 2, ISO 27001, HIPAA and GDPR, plus a typical readiness plan and roles.' },
   { id: 'gaps', label: 'Common Gaps (ITGC)', icon: ShieldAlert, group: 'Fieldwork and findings', area: 'Internal audit', desc: 'Typical startup gaps by ITGC domain, the pushback, compensating controls and a worked audit example.' },
   { id: 'it-audit', label: 'IT Audit Toolkit', icon: ShieldAlert, group: 'Fieldwork and findings', area: 'Internal audit', desc: 'Sample sizes, ITAC, report (IPE) testing, RCM, SOC report review, full-population analytics, findings and joiner, mover and leaver testing' },
@@ -353,6 +355,7 @@ export default function KnowledgeBase() {
     'data-governance': <DataGovernanceTab />,
     'policy-lifecycle': <PolicyLifecycleTab />,
     streamline: <StreamlineGrc />,
+    'finding-classification': <FindingClassification />,
     'due-diligence': <DueDiligenceTab />,
     erp: <ErpReviewTab />,
     'customer-trust': <CustomerTrustTab />,
