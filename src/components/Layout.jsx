@@ -48,6 +48,8 @@ const STANDARDS = [
   { path: '/dora', label: 'DORA' },
   { path: '/uk-gdpr', label: 'UK GDPR' },
   { path: '/cmmc', label: 'CMMC 2.0' },
+  { path: '/ccss', label: 'CCSS' },
+  { path: '/pmla-vda', label: 'PMLA (VDA)' },
   { path: '/whats-new', label: 'What\'s New' },
 ];
 
@@ -84,6 +86,7 @@ const MEGA_MENU_REGIONS = [
       { path: '/coso', label: 'COSO 2013', desc: 'Internal Control: Integrated Framework' },
       { path: '/cis', label: 'CIS Controls v8', desc: 'CIS 18 Controls & IGs' },
       { path: '/hitrust', label: 'HITRUST CSF', desc: 'Healthcare Security Framework' },
+      { path: '/ccss', label: 'CCSS', desc: 'CryptoCurrency Security Standard' },
     ],
   },
   {
@@ -135,6 +138,7 @@ const MEGA_MENU_REGIONS = [
       { path: '/cert-in', label: 'CERT-In', desc: 'Incident reporting directions' },
       { path: '/cscrf', label: 'CSCRF', desc: 'SEBI Cybersecurity and Cyber Resilience Framework, with CERT-In directions' },
       { path: '/irdai', label: 'IRDAI', desc: 'Insurance information and cyber security guidelines' },
+      { path: '/pmla-vda', label: 'PMLA (VDA)', desc: 'FIU-IND AML/CFT duties for crypto service providers' },
     ],
   },
 ];

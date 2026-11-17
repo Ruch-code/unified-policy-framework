@@ -198,6 +198,8 @@ const FRAMEWORK_KEYWORDS = {
   sebi: ['sebi', 'securities', 'stock market', 'capital markets', 'india', 'trading', 'exchange', 'cyber security', 'brokers', 'risk management'],
   rbi: ['rbi', 'reserve bank', 'banking', 'banks', 'financial', 'india', 'payment systems', 'cyber security', 'fintech'],
   cscrf: ['cscrf', 'india cyber security', 'cyber security framework', 'csirt', 'incident', 'cert', 'cyber crisis management', 'availability', 'forensic'],
+  ccss: ['ccss', 'cryptocurrency security standard', 'crypto', 'key custody', 'wallet', 'c4', 'multisig', 'proof of reserve'],
+  'pmla-vda': ['pmla', 'fiu-ind', 'fiu ind', 'aml', 'cft', 'kyc', 'str', 'vda', 'crypto', 'money laundering', 'travel rule'],
   'cert-in': ['cert in', 'cert-in', 'india', 'incident response', 'cyber security', 'mandatory directives', '6 hour reporting', '180 day logs', 'vpn logs', 'csirt', 'coordination'],
   lgpd: ['lgpd', 'lei geral', 'brazil', 'anpd', 'data protection', 'privacy', 'personal data', 'consent', 'portuguese'],
   pdpa: ['pdpa', 'singapore', 'personal data protection act', 'privacy', 'consent', 'data protection officer', 'pdpc', 'personal data', 'dpo'],
