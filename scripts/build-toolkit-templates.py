@@ -95,3 +95,66 @@ def csf_questionnaire():
 
 if __name__ == '__main__':
     risk_acceptance(); csf_questionnaire(); print('ok')
+
+
+# ---------- Phase 2: IT audit toolkit and access ----------
+def simple_book(fname, title, how, headers, widths, validations=None, rows=0, extra=None):
+    wb = Workbook(); h = wb.active; h.title = 'How to use'
+    for line in [title, ''] + how: h.append([line])
+    h.column_dimensions['A'].width = 110; h['A1'].font = Font(bold=True, size=13)
+    ws = wb.create_sheet('Register')
+    sheet(ws, headers, [[''] * len(headers) for _ in range(rows)], widths)
+    n = max(rows + 1, 200)
+    for col, opts in (validations or {}).items():
+        dv = DataValidation(type='list', formula1=f'"{opts}"', allow_blank=True); dv.add(f'{col}2:{col}{n}'); ws.add_data_validation(dv)
+    if extra: extra(wb)
+    wb.save(OUT / fname)
+
+
+def phase2():
+    simple_book('rcm-template.xlsx', 'Risk and Control Matrix', ['One row per control. Link each control to the risk it addresses and record how it will be tested.', 'Agree the matrix with control owners before testing starts.'],
+        ['Process', 'Risk ID', 'Risk description', 'Control ID', 'Control description', 'Control owner', 'Frequency', 'Manual or automated', 'Preventive or detective', 'Key control', 'Framework references', 'Test approach', 'Population source', 'Sample size'],
+        [16, 9, 40, 10, 44, 16, 14, 16, 16, 10, 24, 40, 24, 10],
+        {'G': 'Annual,Quarterly,Monthly,Weekly,Daily,Multiple times a day,Event driven', 'H': 'Manual,Automated,IT dependent manual', 'I': 'Preventive,Detective', 'J': 'Yes,No'})
+
+    def wp(wb):
+        wb.remove(wb['Register'])
+        tod = wb.create_sheet('Test of design')
+        sheet(tod, ['Control ID', 'Control description', 'Walkthrough performed with', 'Date', 'Steps observed', 'Evidence inspected', 'Design adequate', 'Notes'], [], [10, 40, 22, 12, 44, 36, 14, 30])
+        dv = DataValidation(type='list', formula1='"Yes,No"', allow_blank=True); dv.add('G2:G200'); tod.add_data_validation(dv)
+        toe = wb.create_sheet('Test of operating effectiveness')
+        sheet(toe, ['Control ID', 'Sample no.', 'Sample item', 'Date of occurrence', 'Attribute 1 met', 'Attribute 2 met', 'Attribute 3 met', 'Exception', 'Evidence reference', 'Notes'], [], [10, 10, 30, 14, 14, 14, 14, 12, 24, 30])
+        for col in 'EFGH':
+            dv = DataValidation(type='list', formula1='"Yes,No,N/A"', allow_blank=True); dv.add(f'{col}2:{col}500'); toe.add_data_validation(dv)
+        sm = wb.create_sheet('Conclusion')
+        sheet(sm, ['Control ID', 'Samples tested', 'Exceptions', 'Conclusion'], [], [12, 16, 12, 40])
+        for i in range(2, 22):
+            sm.append(['', f"=IF(A{i}=\"\",\"\",COUNTIF('Test of operating effectiveness'!A:A,A{i}))", f"=IF(A{i}=\"\",\"\",COUNTIFS('Test of operating effectiveness'!A:A,A{i},'Test of operating effectiveness'!H:H,\"Yes\"))", f'=IF(A{i}="","",IF(C{i}=0,"Operating effectively","Exceptions noted: evaluate"))'])
+    simple_book('itgc-workpaper.xlsx', 'ITGC test workpaper', ['Test of design: one walkthrough per control. Test of operating effectiveness: one row per sample.', 'Define the attributes for each control before testing (for example: approved, approved before release, approver is not the developer).', 'The Conclusion sheet counts samples and exceptions per control.'], ['x'], [10], extra=wp)
+
+    simple_book('sample-size-reference.xlsx', 'Sample size reference', ['Common starting points. Your firm methodology takes priority.'],
+        ['Control frequency', 'Typical sample', 'Lower risk minimum', 'Notes'], [26, 18, 18, 50], rows=0,
+        extra=lambda wb: [wb['Register'].append(r) for r in [['Annual', '1', '1', ''], ['Quarterly', '2', '2', ''], ['Monthly', '2 to 5', '2', ''], ['Weekly', '5 to 15', '5', ''], ['Daily', '20 to 40', '15', ''], ['Multiple times a day', '25 to 60', '25', ''], ['Automated (ITGCs effective)', '1 per variation', '1', 'Rely on change management to show the control did not change']]])
+
+    simple_book('jml-tracker.xlsx', 'Joiner, mover and leaver tracker', ['Start from the HR list of events. One row per person per system.', 'Days to action and SLA met calculate automatically.'],
+        ['Event type', 'Employee ID', 'Role (from)', 'Role (to)', 'HR effective date', 'System', 'Request ID', 'Approver', 'Approval date', 'Access granted or removed date', 'Days to action', 'SLA (days)', 'SLA met'],
+        [12, 12, 18, 18, 14, 18, 12, 18, 14, 18, 12, 10, 10], {'A': 'Joiner,Mover,Leaver'}, rows=0,
+        extra=lambda wb: [wb['Register'].append(['', '', '', '', '', '', '', '', '', '', f'=IF(OR(E{i}="",J{i}=""),"",J{i}-E{i})', 1, f'=IF(K{i}="","",IF(K{i}<=L{i},"Yes","No"))']) for i in range(2, 102)])
+
+    simple_book('sod-conflict-matrix.xlsx', 'Segregation of duties conflict matrix', ['List pairs of roles or tasks that one person should not hold together, the risk, and how it is controlled.', 'Test it by comparing user role assignments against each conflicting pair.'],
+        ['Conflict ID', 'Task or role A', 'Task or role B', 'Risk if one person holds both', 'Systems', 'Users with conflict', 'Mitigating control', 'Owner', 'Status'],
+        [10, 26, 26, 40, 18, 18, 36, 16, 14], {'I': 'Open,Mitigated,Resolved'}, rows=0,
+        extra=lambda wb: [wb['Register'].append(r + ['', '', '', '', '']) for r in [['SOD-01', 'Create vendor', 'Approve payment', 'Fictitious vendor paid'], ['SOD-02', 'Develop code', 'Deploy to production', 'Unauthorised or untested change in production'], ['SOD-03', 'Grant access', 'Review access', 'Inappropriate access never detected'], ['SOD-04', 'Raise journal entry', 'Approve journal entry', 'Misstated financial records']]])
+
+    d = Document()
+    d.add_heading('Audit Finding', 0)
+    d.add_paragraph('Purpose: record one audit finding in a consistent format so it can be agreed with management and tracked to closure.')
+    t = d.add_table(rows=0, cols=2); t.style = 'Table Grid'
+    for k in ['Finding ID', 'Audit or engagement', 'Control or area', 'Rating (High / Medium / Low)', 'Condition: what was found, with numbers', 'Criteria: what should have happened (policy, standard, requirement)', 'Cause: why it happened', 'Effect: risk or impact', 'Recommendation', 'Management response', 'Action owner', 'Due date', 'Status', 'Evidence of closure']:
+        r = t.add_row().cells; r[0].text = k; r[1].text = '[ ]'
+    doc_control(d)
+    d.save(OUT / 'audit-finding.docx')
+
+
+if __name__ == '__main__':
+    phase2(); print('phase2 ok')

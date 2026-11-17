@@ -563,6 +563,95 @@
           "tags": [
             "Risk"
           ]
+        },
+        {
+          "num": 322,
+          "slug": "rcm-template",
+          "name": "Risk and Control Matrix (RCM)",
+          "purpose": "Risks, controls, attributes, framework references and test approach in one matrix.",
+          "fields": [
+            "Risk",
+            "Control",
+            "Owner and frequency",
+            "Framework references",
+            "Test approach"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001"
+          ],
+          "type": "record",
+          "file": "rcm-template.xlsx",
+          "tags": [
+            "ITGC",
+            "Audit"
+          ]
+        },
+        {
+          "num": 323,
+          "slug": "itgc-workpaper",
+          "name": "ITGC Test Workpaper",
+          "purpose": "Test of design and test of operating effectiveness tabs, with an automatic conclusion per control.",
+          "fields": [
+            "Walkthrough",
+            "Samples and attributes",
+            "Exceptions",
+            "Conclusion"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001"
+          ],
+          "type": "record",
+          "file": "itgc-workpaper.xlsx",
+          "tags": [
+            "ITGC",
+            "Audit"
+          ]
+        },
+        {
+          "num": 324,
+          "slug": "audit-finding",
+          "name": "Audit Finding",
+          "purpose": "One finding in condition, criteria, cause, effect, recommendation and management response format.",
+          "fields": [
+            "Condition",
+            "Criteria",
+            "Cause",
+            "Effect",
+            "Recommendation",
+            "Management response"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001"
+          ],
+          "type": "document",
+          "file": "audit-finding.docx",
+          "tags": [
+            "Audit"
+          ]
+        },
+        {
+          "num": 325,
+          "slug": "sample-size-reference",
+          "name": "Sample Size Reference",
+          "purpose": "Sample sizes by control frequency and risk level.",
+          "fields": [
+            "Frequency",
+            "Typical sample",
+            "Lower risk minimum"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001"
+          ],
+          "type": "record",
+          "file": "sample-size-reference.xlsx",
+          "tags": [
+            "ITGC",
+            "Audit"
+          ]
         }
       ]
     },
@@ -1570,6 +1659,51 @@
           ],
           "type": "document",
           "file": "identity-inventory.xlsx"
+        },
+        {
+          "num": 326,
+          "slug": "jml-tracker",
+          "name": "Joiner, Mover and Leaver Tracker",
+          "purpose": "HR events traced to requests, approvals and access changes, with an automatic SLA check.",
+          "fields": [
+            "Event type",
+            "HR date",
+            "Approval",
+            "Access change date",
+            "SLA met"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001"
+          ],
+          "type": "record",
+          "file": "jml-tracker.xlsx",
+          "tags": [
+            "Access",
+            "ITGC"
+          ]
+        },
+        {
+          "num": 327,
+          "slug": "sod-conflict-matrix",
+          "name": "Segregation of Duties Conflict Matrix",
+          "purpose": "Conflicting roles or tasks, the risk, users affected and mitigating controls.",
+          "fields": [
+            "Conflicting pair",
+            "Risk",
+            "Users with conflict",
+            "Mitigating control"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001"
+          ],
+          "type": "record",
+          "file": "sod-conflict-matrix.xlsx",
+          "tags": [
+            "Access",
+            "SoD"
+          ]
         }
       ]
     },
