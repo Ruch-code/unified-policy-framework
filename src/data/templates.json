@@ -652,6 +652,30 @@
             "ITGC",
             "Audit"
           ]
+        },
+        {
+          "num": 328,
+          "slug": "kpi-kri-register",
+          "name": "KPI and KRI Register",
+          "purpose": "Security KPIs and KRIs with owners, thresholds, monthly values and a status dashboard.",
+          "fields": [
+            "Metric and formula",
+            "Owner and due date",
+            "Green, amber and red thresholds",
+            "Monthly value and status",
+            "Dashboard"
+          ],
+          "frameworks": [
+            "ISO27001",
+            "SOC2"
+          ],
+          "type": "record",
+          "file": "kpi-kri-register.xlsx",
+          "tags": [
+            "KPI",
+            "KRI",
+            "Risk"
+          ]
         }
       ]
     },
