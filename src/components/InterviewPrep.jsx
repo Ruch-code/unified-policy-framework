@@ -97,6 +97,7 @@ export default function InterviewPrep({ isDark = false }) {
     'principal-architect': 'bg-pink-600',
     'engineering-partnership': 'bg-teal-700',
     'senior-grc-engineering': 'bg-teal-700',
+    'lead-grc-situational': 'bg-indigo-700',
   };
 
   return (

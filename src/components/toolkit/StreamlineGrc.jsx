@@ -64,6 +64,13 @@ const STEPS = [
     link: ['Customer Trust and Questionnaires', '/knowledge?topic=customer-trust'],
   },
   {
+    t: 'Agree an audit charter',
+    why: 'Without a charter, audits keep being challenged on scope, access and who they report to, and each one restarts the same argument.',
+    do: ['Write a short charter for internal audit (and for the ISMS internal audit programme if you run one).', 'Get it approved by the board or audit committee.', 'Plan audits from it once a year, so every framework is covered by one audit plan.'],
+    result: 'Audits run on agreed rules, with access and independence settled in advance.',
+    link: ['Audit charter details below', '#audit-charter'],
+  },
+  {
     t: 'Measure and report',
     why: 'Without measures, you cannot show the programme is working or where to invest.',
     do: ['Pick a short set of KPIs and KRIs.', 'Report trends to management monthly or quarterly.', 'Track time spent on GRC tasks before and after each change.'],
@@ -104,9 +111,37 @@ export default function StreamlineGrc() {
           <p className={`mt-3 ${P}`}><span className="font-semibold">Why: </span>{s.why}</p>
           <ul className={`mt-2 list-disc pl-5 space-y-1 ${P}`}>{s.do.map((d) => <li key={d}>{d}</li>)}</ul>
           <p className={`mt-2 ${P}`}><span className="font-semibold">Result: </span>{s.result}</p>
-          {s.link && <p className={`mt-2 ${P}`}><Link className="ui-link" to={s.link[1]}>{s.link[0]}</Link></p>}
+          {s.link && <p className={`mt-2 ${P}`}>{s.link[1].startsWith('#') ? <a className="ui-link" href={s.link[1]}>{s.link[0]}</a> : <Link className="ui-link" to={s.link[1]}>{s.link[0]}</Link>}</p>}
         </details>
       ))}
+      <details id="audit-charter" className={`${CARD} scroll-mt-24`}>
+        <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">Audit charter: what it is and what it should contain</summary>
+        <p className={`mt-3 ${P}`}>An audit charter is a short, formal document, approved by the board or audit committee, that sets out why internal audit exists, what it can look at, what access it has and who it reports to. Think of it as the audit team's terms of engagement with the organisation.</p>
+        <FlowDiagram title="Where the charter sits" steps={[
+          { label: 'Board or audit committee', note: 'Approves the charter' },
+          { label: 'Audit charter', note: 'Mandate, scope, authority' },
+          { label: 'Annual audit plan', note: 'Risk based' },
+          { label: 'Individual audits', note: 'Fieldwork and findings' },
+          { label: 'Reports to the board', tone: 'safe' },
+        ]} />
+        <h3 className="font-semibold text-gray-900 dark:text-white mt-2 mb-1">What it should contain</h3>
+        <ul className={`list-disc pl-5 space-y-1 ${P}`}>
+          {['Purpose and mandate: why internal audit exists and the value it should add.', 'Scope: which entities, processes, systems and risks it can review, including IT, security, privacy and third parties.', 'Authority: unrestricted access to records, systems, people and premises needed for audits.', 'Independence and reporting lines: functional reporting to the audit committee, administrative reporting to a senior executive (often the CEO or CFO), and no operational duties that it later audits.', 'Responsibilities: of internal audit, management and the audit committee, including how findings are agreed and tracked.', 'Standards: commitment to follow the IIA Global Internal Audit Standards (2024) or the methodology the organisation adopts.', 'Quality: how the function checks its own work, such as periodic internal and external quality assessments.', 'Review: how often the charter is reviewed, usually yearly, and who approves changes.'].map((x) => <li key={x}>{x}</li>)}
+        </ul>
+        <h3 className="font-semibold text-gray-900 dark:text-white mt-4 mb-1">How it helps streamline GRC</h3>
+        <ul className={`list-disc pl-5 space-y-1 ${P}`}>
+          <li>One audit plan can cover ISO 27001 clause 9.2 internal audits, SOC 2 monitoring (CC4.1) and SOX testing, instead of separate programmes.</li>
+          <li>Access disputes are settled in advance, so fieldwork does not stall.</li>
+          <li>Independence is clear: the person who designs a control does not audit it.</li>
+        </ul>
+        <h3 className="font-semibold text-gray-900 dark:text-white mt-4 mb-1">Common pitfalls</h3>
+        <ul className={`list-disc pl-5 space-y-1 ${P}`}>
+          <li>Charter approved once and never reviewed.</li>
+          <li>Internal audit reporting only to the CFO, with no direct line to the audit committee.</li>
+          <li>Small companies where the GRC lead both runs and audits the ISMS. Use an outside auditor for the parts you designed.</li>
+        </ul>
+        <p className={`mt-3 text-xs text-gray-500 dark:text-gray-400`}>Source: IIA Global Internal Audit Standards (2024); ISO/IEC 27001:2022 clause 9.2; AICPA TSC CC4.1. Last verified: 17 Nov 2026.</p>
+      </details>
       <div className={CARD}>
         <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Quick wins</h3>
         <ul className={`list-disc pl-5 space-y-1 ${P}`}>{QUICK_WINS.map((q) => <li key={q}>{q}</li>)}</ul>
