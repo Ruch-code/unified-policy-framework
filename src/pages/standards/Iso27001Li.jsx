@@ -9,6 +9,7 @@ import AnnexACoverage from "../../components/playbook/AnnexACoverage.jsx";
 import { withEvidence, appendToLevel, extendTasks } from "../../data/playbookEvidence.js";
 import { LI_L1_CLAUSES, LI_EXTEND } from "../../data/playbookAdditions/iso27001.js";
 import Iso27001EvidenceLibrary from '../../components/Iso27001EvidenceLibrary.jsx';
+import { Iso2013vs2022, Iso27001MandatoryDocs } from '../../components/iso/Iso27001Reference.jsx';
 import Iso27001AuditJourney from '../../components/Iso27001AuditJourney.jsx';
 import IsoImplementationTracker from '../../components/IsoImplementationTracker.jsx';
 
@@ -231,6 +232,8 @@ export default function Iso27001LiPage() {
   return (
     <>
       <LearningFrameworkPage framework={FRAMEWORK_WITH_EVIDENCE} />
+      <Iso2013vs2022 />
+      <Iso27001MandatoryDocs />
       <Iso27001AuditJourney />
       <RiskCrossCheckBlock frameworkId="iso27001" />
       <Fold title="Scoping by theme"><Iso27001ThemeScoping /></Fold>

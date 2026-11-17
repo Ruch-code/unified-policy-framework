@@ -20,6 +20,7 @@ import {
   LICENSING_NOTE,
 } from '../data/edp.ts';
 import EdpTab from '../components/EdpTab.jsx';
+import CryptoExchangeTab from '../components/CryptoExchangeTab.jsx';
 import SecretsScanningTab from '../components/SecretsScanningTab.jsx';
 import AuditObservations from '../components/AuditObservations.jsx';
 import CicdPipelineSecurity from '../components/CicdPipelineSecurity.jsx';
@@ -64,6 +65,7 @@ const TABS = [
   { id: 'zerotrust', label: 'Zero Trust and Shadow IT', icon: BookOpenCheck, group: 'GRC: Security architecture', area: 'GRC', desc: 'Zero trust principles and shadow IT, with practical examples.' },
   { id: 'infranet', label: 'Infra & Network Audit', icon: Network, group: 'IT audit areas', area: 'Internal audit', desc: 'Infrastructure and network audit areas and evidence.' },
   { id: 'edp', label: 'Endpoint & Data Protection', icon: Smartphone, group: 'GRC: Security architecture', area: 'GRC', desc: 'MDM, DLP, BYOD, ecosystems, mapping, roadmap, evidence and checklists.' },
+  { id: 'crypto', label: 'Crypto Exchanges (VDA)', icon: Key, group: 'GRC: Security architecture', area: 'GRC', desc: 'Security and compliance for crypto exchanges: CERT-In, FIU-IND, DPDP, CCSS, and two CoinDCX incidents as worked examples' },
   { id: 'evidence', label: 'Evidence Automation', icon: Package, group: 'GRC: Programme and tooling', area: 'GRC', desc: 'Automating evidence collection and keeping it audit-ready.' },
   { id: 'tooling', label: 'GRC Tooling', icon: Package, group: 'GRC: Programme and tooling', area: 'GRC', desc: 'GRC tools by category, what evidence they produce and what to watch for.' },
 ];
@@ -317,6 +319,7 @@ export default function KnowledgeBase() {
       </div>
     ),
     edp: <EdpTab />,
+    crypto: <CryptoExchangeTab />,
     secrets: <SecretsScanningTab />,
     change: <ChangeManagementTab onOpenTab={setTab} />,
     cicd: <CicdPipelineSecurity onOpenTab={setTab} />,

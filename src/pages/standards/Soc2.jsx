@@ -1,4 +1,5 @@
 import EvidenceChecklistLink from "../../components/EvidenceChecklistLink.jsx";
+import Soc2MandatoryPolicies from '../../components/Soc2MandatoryPolicies.jsx';
 import { SOC2_POLICY_GAPS } from "../../data/startupVariants.js";
 import { EngPartnershipLink } from "../../components/engineering/EngineeringPartnership.jsx";
 import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCheck.jsx";
@@ -1207,6 +1208,7 @@ const SOC2_PAGE = {
     </details>
   ),
   extraSections: [
+    <Soc2MandatoryPolicies key="policies" />,
     <RiskCrossCheckBlock key="risk" frameworkId="soc2" />,
     <Soc2Catalogue key="catalogue" framework={FRAMEWORK_WITH_EVIDENCE} />,
     <Soc2TechnicalSection key="tech" />,
