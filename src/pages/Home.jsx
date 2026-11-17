@@ -212,6 +212,7 @@ const REGIONS = [
       { path: '/sox', name: 'SOX 404', desc: 'Internal control over financial reporting (ICFR)' },
       { path: '/cis', name: 'CIS Controls v8', desc: 'CIS 18 Controls & Implementation Groups' },
       { path: '/cmmc', name: 'CMMC 2.0', desc: 'NIST 800-171 / DoD cyber maturity' },
+      { path: '/ccss', name: 'CCSS', desc: 'CryptoCurrency Security Standard for key custody' },
     ],
   },
   {
@@ -235,6 +236,7 @@ const REGIONS = [
       { path: '/cscrf', name: 'CSCRF', desc: 'SEBI cyber resilience framework and CERT-In' },
       { path: '/irdai', name: 'IRDAI', desc: 'Insurance cyber security guidelines' },
       { path: '/cert-in', name: 'CERT-In', desc: 'Indian CERT incident directives' },
+      { path: '/pmla-vda', name: 'PMLA (VDA)', desc: 'FIU-IND AML/CFT duties for crypto providers' },
     ],
   },
   {

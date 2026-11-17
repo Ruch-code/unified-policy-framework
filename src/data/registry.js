@@ -18,6 +18,8 @@ import { FRAMEWORK as Rbi } from '../pages/standards/ReserveBankOfIndia.jsx';
 import { FRAMEWORK as Cscrf } from '../pages/standards/Cscrf.jsx';
 import { FRAMEWORK as Irdai } from '../pages/standards/Irdai.jsx';
 import { FRAMEWORK as CertIn } from '../pages/standards/CertIn.jsx';
+import { FRAMEWORK as Ccss } from '../pages/standards/Ccss.jsx';
+import { FRAMEWORK as Pmla } from '../pages/standards/Pmla.jsx';
 import { FRAMEWORK as Lgpd } from '../pages/standards/Lgpd.jsx';
 import { FRAMEWORK as Pdpa } from '../pages/standards/Pdpa.jsx';
 import { FRAMEWORK as Pipl } from '../pages/standards/Pipl.jsx';
@@ -60,6 +62,8 @@ export const FRAMEWORKS = {
   [Cscrf.id]: Cscrf,
   [Irdai.id]: Irdai,
   [CertIn.id]: CertIn,
+  [Ccss.id]: Ccss,
+  [Pmla.id]: Pmla,
   [Lgpd.id]: Lgpd,
   [Pdpa.id]: Pdpa,
   [Pipl.id]: Pipl,

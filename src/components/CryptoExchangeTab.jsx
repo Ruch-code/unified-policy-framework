@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import CryptoControlsTechnical from './crypto/CryptoControlsTechnical.jsx';
 import FlowDiagram, { CompareDiagram } from './crypto/FlowDiagram.jsx';
 // Knowledge Base topic: security and compliance for crypto exchanges (virtual digital asset service providers),
@@ -88,12 +89,13 @@ const REGS = [
 
 
 // Bullet group with an optional "Why it matters for GRC" line.
-function Group({ title, items, why }) {
+function Group({ title, items, why, link }) {
   return (
     <div className="mb-4">
       <h4 className="text-base font-semibold text-gray-900 dark:text-white mb-1">{title}</h4>
       <ul className={`list-disc pl-5 space-y-1 ${P}`}>{items.map((x) => <li key={x}>{x}</li>)}</ul>
       {why && <p className={`mt-1 ${P}`}><span className="font-semibold">Why it matters for GRC: </span>{why}</p>}
+      {link && <p className={`mt-1 ${P}`}><Link className="ui-link" to={link[1]}>{link[0]}</Link></p>}
     </div>
   );
 }
@@ -158,7 +160,7 @@ const GLOSSARY = [
     'A security standard for systems that store and use crypto keys, published by the CryptoCurrency Certification Consortium (C4).',
     'Three levels: Level I, II and III, each stricter than the last.',
     'Covers key and seed generation, wallet creation, key storage, key usage, key compromise policy, granting and revoking keyholder access, third-party security audits, data sanitisation, proof of reserve and security audit logs.',
-  ], 'ISO 27001 and SOC 2 do not go deep on key custody; CCSS fills that gap for wallets.'],
+  ], 'ISO 27001 and SOC 2 do not go deep on key custody; CCSS fills that gap for wallets.', ['Open the CCSS playbook', '/ccss']],
   ['VDA (Virtual Digital Asset)', [
     'Defined in Section 2(47A) of the Income Tax Act, 1961, added by the Finance Act, 2022.',
     'Covers any information, code, number or token generated through cryptographic means that has value or is used as a store of value or unit of account, including crypto tokens and NFTs. It excludes Indian and foreign currency.',
@@ -167,12 +169,12 @@ const GLOSSARY = [
   ['PMLA (Prevention of Money Laundering Act, 2002)', [
     'India\'s main anti-money-laundering law.',
     'A Ministry of Finance notification of March 2023 made VDA service providers "reporting entities" under PMLA.',
-  ], 'Being a reporting entity creates legal AML duties with penalties for failure.'],
+  ], 'Being a reporting entity creates legal AML duties with penalties for failure.', ['Open the PMLA and FIU-IND playbook', '/pmla-vda']],
   ['FIU-IND AML/CFT obligations', [
     'FIU-IND is the Financial Intelligence Unit of India, under the Ministry of Finance. It receives and analyses reports on suspicious financial activity.',
     'AML means anti-money laundering. CFT means countering the financing of terrorism.',
     'Main duties for VDA providers: register with FIU-IND, run KYC and customer due diligence, monitor transactions, file suspicious transaction reports, keep records, and appoint a designated director and a principal officer.',
-  ], 'Stolen funds passing through or out of an exchange are an AML event, not only a security incident.'],
+  ], 'Stolen funds passing through or out of an exchange are an AML event, not only a security incident.', ['Open the PMLA and FIU-IND playbook', '/pmla-vda']],
   ['CERT-In Directions under Section 70B (April 2022)', [
     'Issued by CERT-In, India\'s national computer emergency response team, under Section 70B(6) of the IT Act, 2000.',
     'Listed cyber incidents must be reported to CERT-In within 6 hours of noticing them.',
@@ -290,7 +292,7 @@ export default function CryptoExchangeTab() {
           { label: 'STR to FIU-IND', note: 'If funds or users are suspicious' },
           { label: 'DPDP breach notice', note: 'If personal data affected' },
         ]} caption="Timelines summarised from the sources described below. Confirm against the official text." />
-        {GLOSSARY.map(([t, items, why]) => <Group key={t} title={t} items={items} why={why} />)}
+        {GLOSSARY.map(([t, items, why, link]) => <Group key={t} title={t} items={items} why={why} link={link} />)}
         </div>
       </details>
 
