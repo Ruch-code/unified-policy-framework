@@ -1486,8 +1486,14 @@
           ],
           "example": "\"Two items were overdue a week. I sat with the lead for 20 minutes, exported the access list together, and set a date for the rest. Everything was in three days before fieldwork.\"",
           "pitfalls": [
-            "Escalating before you've had the one-to-one conversation.",
-            "Sending long generic evidence lists instead of exactly what's needed."
+            {
+              "pitfall": "Escalating before you've had the one-to-one conversation.",
+              "reply": "\"I always talk to the person first. Escalation is my second step, and when I do it, I bring facts and dates, not complaints.\""
+            },
+            {
+              "pitfall": "Sending long generic evidence lists instead of exactly what's needed.",
+              "reply": "\"I send each owner a short list of exactly what I need, with an example of good evidence, so it takes them minutes, not hours.\""
+            }
           ]
         },
         {
@@ -1500,8 +1506,14 @@
           ],
           "example": "\"I cut the list from 140 lines to the 12 that changed, with a one-click approve. It took them eight minutes.\"",
           "pitfalls": [
-            "Completing the review on their behalf.",
-            "Treating seniority as a reason to skip a control."
+            {
+              "pitfall": "Completing the review on their behalf.",
+              "reply": "\"I don't sign off access for someone else. If they don't review it, it's recorded as an exception and reported, because the accountability is theirs.\""
+            },
+            {
+              "pitfall": "Treating seniority as a reason to skip a control.",
+              "reply": "\"The control applies the same way at every level. What I can change is how easy I make it, not whether it's done.\""
+            }
           ]
         },
         {
@@ -1514,8 +1526,14 @@
           ],
           "example": "\"Logging was claimed by neither security nor platform. We split it: platform owns collection and retention, security owns alert review.\"",
           "pitfalls": [
-            "Owning it yourself as GRC, which hides the gap.",
-            "Leaving it unresolved until the audit."
+            {
+              "pitfall": "Owning it yourself as GRC, which hides the gap.",
+              "reply": "\"GRC can facilitate a control, but the team that does the work owns it. Otherwise we hide the real gap.\""
+            },
+            {
+              "pitfall": "Leaving it unresolved until the audit.",
+              "reply": "\"An unowned control is a finding waiting to happen, so I get a decision from the shared leader within the week.\""
+            }
           ]
         },
         {
@@ -1528,8 +1546,14 @@
           ],
           "example": "\"The contract promised quarterly penetration tests. We agreed with the customer to accept annual tests plus continuous scanning, and added GRC review to the deal desk checklist.\"",
           "pitfalls": [
-            "Quietly hoping the customer never checks.",
-            "Blaming sales instead of fixing the process."
+            {
+              "pitfall": "Quietly hoping the customer never checks.",
+              "reply": "\"I'd rather tell the customer early and agree a fix than have them find the gap during their own audit.\""
+            },
+            {
+              "pitfall": "Blaming sales instead of fixing the process.",
+              "reply": "\"Sales was trying to close a deal. The real fix was adding GRC review to the deal desk so it doesn't happen again.\""
+            }
           ]
         },
         {
@@ -1542,8 +1566,14 @@
           ],
           "example": "\"They asked for HR system access logs. HR was out of scope, but the leaver control depended on HR dates, so we gave the HR exit report only.\"",
           "pitfalls": [
-            "Saying yes to everything, which widens the audit.",
-            "Saying no without understanding why they asked."
+            {
+              "pitfall": "Saying yes to everything, which widens the audit.",
+              "reply": "\"I help the auditor with anything linked to scope, but I check the engagement letter before agreeing to new areas.\""
+            },
+            {
+              "pitfall": "Saying no without understanding why they asked.",
+              "reply": "\"Before I push back, I ask what risk they're trying to cover. Sometimes there's a link to an in-scope control and a smaller answer works.\""
+            }
           ]
         },
         {
@@ -1556,8 +1586,14 @@
           ],
           "example": "\"The exception was a service account in the user list. We showed it was in the separate service account review and the auditor removed it.\"",
           "pitfalls": [
-            "Arguing without evidence.",
-            "Assuming the auditor must be wrong."
+            {
+              "pitfall": "Arguing without evidence.",
+              "reply": "\"I don't dispute an exception unless I can show the source report and why the item doesn't belong in the population.\""
+            },
+            {
+              "pitfall": "Assuming the auditor must be wrong.",
+              "reply": "\"I start by checking our own population. If the exception is valid, I accept it and fix how we build populations.\""
+            }
           ]
         },
         {
@@ -1570,8 +1606,14 @@
           ],
           "example": "\"One missed supplier review was going to be a major. We showed eleven completed reviews and a calendar for the twelfth. It was graded minor.\"",
           "pitfalls": [
-            "Getting emotional or escalating in the closing meeting.",
-            "Hiding other evidence until after the grading."
+            {
+              "pitfall": "Getting emotional or escalating in the closing meeting.",
+              "reply": "\"I keep the closing meeting factual. If I still disagree, the certification body has a formal appeals process.\""
+            },
+            {
+              "pitfall": "Hiding other evidence until after the grading.",
+              "reply": "\"I share all relevant evidence during the audit. Holding it back only damages trust with the auditor.\""
+            }
           ]
         },
         {
@@ -1584,8 +1626,14 @@
           ],
           "example": "\"We gave a read-only role for 48 hours, logged every query, and removed it at the end of fieldwork.\"",
           "pitfalls": [
-            "Granting admin access because it's the auditor.",
-            "Refusing without offering another way."
+            {
+              "pitfall": "Granting admin access because it's the auditor.",
+              "reply": "\"Our least privilege rules apply to auditors too. I offer read-only, time-limited access or a screen share instead.\""
+            },
+            {
+              "pitfall": "Refusing without offering another way.",
+              "reply": "\"I never just say no. I offer an alternative that gives the auditor the same evidence safely.\""
+            }
           ]
         },
         {
@@ -1598,8 +1646,14 @@
           ],
           "example": "\"The draft said access reviews weren't done. They were, but stored in a different folder. We corrected it and agreed a shared evidence location.\"",
           "pitfalls": [
-            "Going around internal audit to the committee.",
-            "Treating internal audit as the enemy."
+            {
+              "pitfall": "Going around internal audit to the committee.",
+              "reply": "\"I work it out with internal audit first. Going around them undermines their independence and my credibility.\""
+            },
+            {
+              "pitfall": "Treating internal audit as the enemy.",
+              "reply": "\"Internal audit and GRC want the same thing: controls that work. I treat their findings as free advice.\""
+            }
           ]
         },
         {
@@ -1611,8 +1665,14 @@
           ],
           "example": "\"They rated it high; we thought medium because of a compensating control. We left their rating and documented the compensating control in our response.\"",
           "pitfalls": [
-            "Negotiating the rating instead of fixing the issue.",
-            "Ignoring the methodology and arguing from opinion."
+            {
+              "pitfall": "Negotiating the rating instead of fixing the issue.",
+              "reply": "\"I spend less time on the rating and more on the fix. Management can record its view in the response.\""
+            },
+            {
+              "pitfall": "Ignoring the methodology and arguing from opinion.",
+              "reply": "\"I go back to the rating criteria in the audit methodology, so the discussion is about facts, not opinions.\""
+            }
           ]
         },
         {
@@ -1625,8 +1685,14 @@
           ],
           "example": "\"I audited HR and supplier controls, and a contractor audited the access and change processes I'd built.\"",
           "pitfalls": [
-            "Ignoring independence because the team is small.",
-            "Not documenting how independence was handled."
+            {
+              "pitfall": "Ignoring independence because the team is small.",
+              "reply": "\"Even in a small team, I don't audit my own work. I swap with a colleague or bring in an outside auditor for those areas.\""
+            },
+            {
+              "pitfall": "Not documenting how independence was handled.",
+              "reply": "\"I write down how independence was handled in the audit programme, because the external auditor will ask.\""
+            }
           ]
         },
         {
@@ -1639,8 +1705,14 @@
           ],
           "example": "\"The analyst had edited a date to match the period. We replaced it with the real log and a note explaining the timing, and introduced peer review of evidence.\"",
           "pitfalls": [
-            "Letting it through to meet the deadline.",
-            "Public blame, which stops people admitting mistakes."
+            {
+              "pitfall": "Letting it through to meet the deadline.",
+              "reply": "\"A late item is a small problem. Altered evidence is a serious one. I'd always replace it, even if it means a delay.\""
+            },
+            {
+              "pitfall": "Public blame, which stops people admitting mistakes.",
+              "reply": "\"I handle it privately and fix the process, so people feel safe telling me when something goes wrong.\""
+            }
           ]
         }
       ]
