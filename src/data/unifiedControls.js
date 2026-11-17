@@ -2,7 +2,9 @@
 // Mappings are indicative. Confirm scope and wording against the official text before relying on them.
 export const UCF_VERIFIED = '14 Nov 2026';
 
-export const UCF_FRAMEWORKS = ['SOC 2', 'ISO 27001:2022', 'ISO 42001', 'HIPAA', 'GDPR', 'DPDPA', 'PCI DSS v4.0', 'NIST CSF 2.0'];
+import { UCF_EXTRA_FRAMEWORKS, UCF_EXTRA } from './unifiedControlsExtended.js';
+
+export const UCF_FRAMEWORKS = ['SOC 2', 'ISO 27001:2022', 'ISO 42001', 'HIPAA', 'GDPR', 'DPDPA', 'PCI DSS v4.0', 'NIST CSF 2.0', ...UCF_EXTRA_FRAMEWORKS];
 
 // Column order used by the preview and the export.
 export const UCF_COLUMNS = [
@@ -191,3 +193,6 @@ export const UCF_SLAS = [
   ['PCI DSS v4.0', 'Audit log retention', '1 year, last 3 months immediately available', 'Req. 10.5.1', ''],
   ['NIST CSF 2.0', 'Profile review', 'No fixed SLA; set by the organisation', 'CSF 2.0 Govern', 'Align with risk appetite and the risk review cycle.'],
 ];
+
+// Fill the extra framework columns (Module A). Rows without an entry keep 'Not mapped'.
+UCF_CONTROLS.forEach((r) => Object.assign(r, UCF_EXTRA[r['UCF ID']] || {}));

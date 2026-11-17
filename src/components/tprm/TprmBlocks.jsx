@@ -43,6 +43,7 @@ export const TPRM_TEMPLATES = [
   { name: 'Issue, remediation and risk-acceptance register', file: 'tprm-issue-register.xlsx' },
   { name: 'Annual and event-driven review checklist', file: 'tprm-review-checklist.xlsx' },
   { name: 'Vendor incident brief and offboarding checklist', file: 'tprm-incident-offboarding.docx' },
+  { name: 'Security questionnaire built on NIST CSF 2.0 functions', file: 'tprm-csf-questionnaire.xlsx' },
 ];
 export function TemplateStrip({ files, title = 'Templates' }) {
   const { user } = useAuth();
