@@ -158,3 +158,22 @@ def phase2():
 
 if __name__ == '__main__':
     phase2(); print('phase2 ok')
+
+
+# ---------- Phase 3: KPI and KRI register ----------
+def phase3():
+    def dash(wb):
+        ws = wb['Register']
+        for col, opts in (('A', 'KPI,KRI'), ('M', 'Green,Amber,Red')):
+            dv = DataValidation(type='list', formula1=f'"{opts}"', allow_blank=True); dv.add(f'{col}2:{col}200'); ws.add_data_validation(dv)
+        d = wb.create_sheet('Monthly dashboard')
+        sheet(d, ['Status', 'Count of metrics'], [], [16, 18])
+        for i, s in enumerate(['Green', 'Amber', 'Red'], start=2):
+            d.append([s, f'=COUNTIF(Register!M:M,A{i})'])
+    simple_book('kpi-kri-register.xlsx', 'KPI and KRI register', ['One row per metric. Name the owner who publishes it and the date it is due each month.', 'Set Green, Amber and Red thresholds from your risk appetite. Record this month\'s value and status.', 'The Monthly dashboard sheet counts metrics by status for the management report.'],
+        ['Type', 'Metric', 'Definition', 'Formula', 'Data source', 'Frequency', 'Owner role', 'Green threshold', 'Amber threshold', 'Red threshold', 'Publish due date', 'This period value', 'Status', 'Trend vs last period', 'Commentary'],
+        [8, 30, 40, 26, 20, 12, 18, 14, 14, 14, 14, 14, 10, 16, 40], extra=dash)
+
+
+if __name__ == '__main__':
+    phase3(); print('phase3 ok')

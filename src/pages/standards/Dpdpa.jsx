@@ -1,4 +1,5 @@
 import { DpdpaUpdates } from "../../components/updates/Nov2026Blocks.jsx";
+import EmployeeDataScoping from '../../components/EmployeeDataScoping.jsx';
 import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCheck.jsx";
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 import DpdpRoles from "../../components/DpdpRoles.jsx";
@@ -263,7 +264,7 @@ const FRAMEWORK = {
   ],
   hoursByLevel: [8, 10, 10, 8],
   referenceUrl: 'https://www.meity.gov.in/data-protection-framework',
-  extraSections: [<DpdpRoles key="dpdp-roles" />, <GdprDpdpaComparison key="gdpr-dpdpa-comparison" />, <VibePlatformScenario key="vibe-platform" jurisdiction="dpdpa" />]
+  extraSections: [<DpdpRoles key="dpdp-roles" />, <EmployeeDataScoping key="employee-data" />, <GdprDpdpaComparison key="gdpr-dpdpa-comparison" />, <VibePlatformScenario key="vibe-platform" jurisdiction="dpdpa" />]
 };
 
 // Additive: appended at the end of Level 3 so saved progress keys do not move.

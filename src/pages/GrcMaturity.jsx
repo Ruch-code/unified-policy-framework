@@ -1,3 +1,5 @@
+import CsfGapAssessment from '../components/maturity/CsfGapAssessment.jsx';
+import KpiKriLibrary from '../components/maturity/KpiKriLibrary.jsx';
 import { MATURITY_HERO, LEVEL_SUMMARY, LEVELS, COMPARISON, JUMP } from '../data/grcMaturity.js';
 
 const H = 'text-gray-900 dark:text-white';
@@ -58,6 +60,9 @@ export default function GrcMaturity() {
         <p className={`mt-5 max-w-3xl leading-relaxed ${TXT}`}>{JUMP.close}</p>
         <p className={`mt-3 max-w-3xl font-semibold ${H}`}>{JUMP.cta}</p>
       </section>
+
+      <CsfGapAssessment />
+      <KpiKriLibrary />
     </div>
   );
 }
