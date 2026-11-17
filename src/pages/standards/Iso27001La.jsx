@@ -1,4 +1,5 @@
 import { EngPartnershipLink } from "../../components/engineering/EngineeringPartnership.jsx";
+import { Iso2013vs2022, Iso27001MandatoryDocs } from '../../components/iso/Iso27001Reference.jsx';
 import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCheck.jsx";
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 import StatementOfApplicability from "../../components/StatementOfApplicability.jsx";
@@ -258,6 +259,8 @@ const FRAMEWORK_WITH_EVIDENCE = {
   jumpSections: JUMP_SECTIONS,
   // Rendered by the playbook page after the levels and before Common Gaps, in the agreed order.
   extraSections: [
+    <Iso2013vs2022 key="iso-diff" />,
+    <Iso27001MandatoryDocs key="iso-docs" />,
     <ScopingGuide key="scoping" />,
     <ScopeWalkthrough key="walkthrough" />,
     <RiskCrossCheckBlock key="risk" frameworkId="iso27001" />,
