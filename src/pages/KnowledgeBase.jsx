@@ -48,26 +48,31 @@ const EDP_TABS = [
   { id: 'checklist', label: 'Checklist & Downloads', icon: Timer },
 ];
 const TABS = [
-  { id: 'policies', label: 'Policies → Controls', icon: BookOpenCheck, group: 'Start here', desc: 'How each policy area maps to frameworks and controls, with readiness timelines.' },
-  { id: 'audit', label: 'Audit & Rebuttals', icon: ShieldAlert, group: 'Start here', desc: 'Common audit observations for the selected framework and how to respond.' },
-  { id: 'evidence-checklist', label: 'Audit Evidence Checklist', icon: ShieldAlert, group: 'Start here', desc: 'What auditors ask for under SOC 2, ISO 27001, HIPAA and GDPR, plus a typical readiness plan and roles.' },
-  { id: 'gaps', label: 'Common Gaps (ITGC)', icon: ShieldAlert, group: 'Start here', desc: 'Typical startup gaps by ITGC domain, the pushback, compensating controls and a worked audit example.' },
-  { id: 'auditor-requests', label: 'Auditor Request List', icon: ShieldAlert, group: 'Audit in practice', desc: 'What a SOC 2 Type 2 auditor asks for, how to respond to each request with an example, and the follow-ups to expect.' },
-  { id: 'tabletop', label: 'Tabletop Exercise (IR and DR)', icon: ShieldAlert, group: 'Audit in practice', desc: 'A template for a combined incident response and disaster recovery tabletop, with a worked scenario, model responses and findings.' },
-  { id: 'radar', label: 'Discrepancy Radar', icon: Radar, group: 'Frameworks', desc: 'Where frameworks disagree, and how to reconcile them.' },
-  { id: 'otherfw', label: 'Other Frameworks', icon: BookOpenCheck, group: 'Frameworks', desc: 'COSO, ISO 27002, ISAE 3402, CRBF 97-02, Solvency II, NIST CSF and HITRUST at a glance.' },
-  { id: 'change', label: 'Change Management', icon: GitPullRequest, group: 'Engineering and change', desc: 'Change control expectations, evidence and common exceptions.' },
-  { id: 'cicd', label: 'CI/CD Pipelines', icon: GitBranch, group: 'Engineering and change', desc: 'Pipeline controls auditors test, from branch protection to deployment approvals.' },
-  { id: 'secrets', label: 'Secrets Scanning', icon: Key, group: 'Engineering and change', desc: 'Finding and handling secrets in code and pipelines.' },
-  { id: 'bom', label: 'SBOM, AIBOM & ABOM', icon: Package, group: 'Engineering and change', desc: 'Software, AI and agent bills of materials and why they matter.' },
-  { id: 'sysdesign', label: 'System Design for GRC', icon: Network, group: 'Engineering and change', desc: '53 system design concepts explained for GRC work, with examples.' },
-  { id: 'zerotrust', label: 'Zero Trust and Shadow IT', icon: BookOpenCheck, group: 'Security architecture', desc: 'Zero trust principles and shadow IT, with practical examples.' },
-  { id: 'infranet', label: 'Infra & Network Audit', icon: Network, group: 'Security architecture', desc: 'Infrastructure and network audit areas and evidence.' },
-  { id: 'edp', label: 'Endpoint & Data Protection', icon: Smartphone, group: 'Security architecture', desc: 'MDM, DLP, BYOD, ecosystems, mapping, roadmap, evidence and checklists.' },
-  { id: 'evidence', label: 'Evidence Automation', icon: Package, group: 'Evidence and tooling', desc: 'Automating evidence collection and keeping it audit-ready.' },
-  { id: 'tooling', label: 'GRC Tooling', icon: Package, group: 'Evidence and tooling', desc: 'GRC tools by category, what evidence they produce and what to watch for.' },
+  { id: 'policies', label: 'Policies → Controls', icon: BookOpenCheck, group: 'GRC: Start here', area: 'GRC', desc: 'How each policy area maps to frameworks and controls, with readiness timelines.' },
+  { id: 'audit', label: 'Audit & Rebuttals', icon: ShieldAlert, group: 'Fieldwork and findings', area: 'Internal audit', desc: 'Common audit observations for the selected framework and how to respond.' },
+  { id: 'evidence-checklist', label: 'Audit Evidence Checklist', icon: ShieldAlert, group: 'Fieldwork and findings', area: 'Internal audit', also: 'GRC: Start here', desc: 'What auditors ask for under SOC 2, ISO 27001, HIPAA and GDPR, plus a typical readiness plan and roles.' },
+  { id: 'gaps', label: 'Common Gaps (ITGC)', icon: ShieldAlert, group: 'Fieldwork and findings', area: 'Internal audit', desc: 'Typical startup gaps by ITGC domain, the pushback, compensating controls and a worked audit example.' },
+  { id: 'auditor-requests', label: 'Auditor Request List', icon: ShieldAlert, group: 'Fieldwork and findings', area: 'Internal audit', desc: 'What a SOC 2 Type 2 auditor asks for, how to respond to each request with an example, and the follow-ups to expect.' },
+  { id: 'tabletop', label: 'Tabletop Exercise (IR and DR)', icon: ShieldAlert, group: 'GRC: Programme and tooling', area: 'GRC', desc: 'A template for a combined incident response and disaster recovery tabletop, with a worked scenario, model responses and findings.' },
+  { id: 'radar', label: 'Discrepancy Radar', icon: Radar, group: 'GRC: Frameworks', area: 'GRC', desc: 'Where frameworks disagree, and how to reconcile them.' },
+  { id: 'otherfw', label: 'Other Frameworks', icon: BookOpenCheck, group: 'GRC: Frameworks', area: 'GRC', desc: 'COSO, ISO 27002, ISAE 3402, CRBF 97-02, Solvency II, NIST CSF and HITRUST at a glance.' },
+  { id: 'change', label: 'Change Management', icon: GitPullRequest, group: 'IT audit areas', area: 'Internal audit', also: 'GRC: Engineering and change', desc: 'Change control expectations, evidence and common exceptions.' },
+  { id: 'cicd', label: 'CI/CD Pipelines', icon: GitBranch, group: 'IT audit areas', area: 'Internal audit', also: 'GRC: Engineering and change', desc: 'Pipeline controls auditors test, from branch protection to deployment approvals.' },
+  { id: 'secrets', label: 'Secrets Scanning', icon: Key, group: 'GRC: Engineering and change', area: 'GRC', desc: 'Finding and handling secrets in code and pipelines.' },
+  { id: 'bom', label: 'SBOM, AIBOM & ABOM', icon: Package, group: 'GRC: Engineering and change', area: 'GRC', desc: 'Software, AI and agent bills of materials and why they matter.' },
+  { id: 'sysdesign', label: 'System Design for GRC', icon: Network, group: 'GRC: Engineering and change', area: 'GRC', desc: '53 system design concepts explained for GRC work, with examples.' },
+  { id: 'zerotrust', label: 'Zero Trust and Shadow IT', icon: BookOpenCheck, group: 'GRC: Security architecture', area: 'GRC', desc: 'Zero trust principles and shadow IT, with practical examples.' },
+  { id: 'infranet', label: 'Infra & Network Audit', icon: Network, group: 'IT audit areas', area: 'Internal audit', desc: 'Infrastructure and network audit areas and evidence.' },
+  { id: 'edp', label: 'Endpoint & Data Protection', icon: Smartphone, group: 'GRC: Security architecture', area: 'GRC', desc: 'MDM, DLP, BYOD, ecosystems, mapping, roadmap, evidence and checklists.' },
+  { id: 'evidence', label: 'Evidence Automation', icon: Package, group: 'GRC: Programme and tooling', area: 'GRC', desc: 'Automating evidence collection and keeping it audit-ready.' },
+  { id: 'tooling', label: 'GRC Tooling', icon: Package, group: 'GRC: Programme and tooling', area: 'GRC', desc: 'GRC tools by category, what evidence they produce and what to watch for.' },
 ];
+// Two areas: internal audit work first, then GRC programme work. A topic can also be listed under a second group (also).
+const AREAS = ['Internal audit', 'GRC'];
 const TAB_GROUPS = [...new Set(TABS.map((t) => t.group))];
+const AREA_GROUPS = AREAS.map((a) => [a, TAB_GROUPS.filter((g) => TABS.some((t) => t.group === g && t.area === a))]);
+const inGroup = (t, g) => t.group === g || t.also === g;
+const groupLabel = (g) => g.replace(/^GRC: /, '');
 const FW_TABS = ['policies', 'audit'];
 
 
@@ -141,7 +146,7 @@ export default function KnowledgeBase() {
       setTab('audit');
     } else if (t === 'assistant') {
       // Old links: the assistant now lives only in the site-wide chatbot.
-      setTab(TABS.find((x) => x.group === 'Start here').id);
+      setTab('policies');
     } else if (p && FRAMEWORK_KB[p]) {
       setFw(p);
     }
@@ -343,18 +348,21 @@ export default function KnowledgeBase() {
         <nav aria-label="Knowledge Base topics" className="mb-5 lg:mb-0">
           <label className="lg:hidden block text-xs font-semibold text-gray-600 dark:text-slate-300">Topic
             <select value={tab} onChange={(e) => setTab(e.target.value)} className="mt-1 w-full px-3 py-2 border border-gray-300 dark:border-slate-700 rounded text-sm bg-white dark:bg-slate-900">
-              {TAB_GROUPS.map((g) => <optgroup key={g} label={g}>{TABS.filter((t) => t.group === g).map((t) => <option key={t.id} value={t.id}>{t.label}</option>)}</optgroup>)}
+              {AREA_GROUPS.flatMap(([a, gs]) => gs.map((g) => <optgroup key={g} label={`${a}: ${groupLabel(g)}`}>{TABS.filter((t) => t.group === g).map((t) => <option key={t.id} value={t.id}>{t.label}</option>)}</optgroup>))}
             </select>
           </label>
           <div className="hidden lg:block sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto pr-1">
             <input type="search" value={navFilter} onChange={(e) => setNavFilter(e.target.value)} placeholder="Filter topics" aria-label="Filter topics"
               className="w-full mb-3 px-3 py-1.5 border border-gray-300 dark:border-slate-700 rounded text-sm bg-white dark:bg-slate-900" />
-            {TAB_GROUPS.map((g) => {
-              const items = TABS.filter((t) => t.group === g && (!navFilter || `${t.label} ${t.desc}`.toLowerCase().includes(navFilter.toLowerCase())));
+            {AREA_GROUPS.map(([area, gs]) => (
+            <div key={area} className="mb-5">
+            <p className="px-2 mb-2 text-xs font-bold uppercase tracking-wider text-gray-900 dark:text-white border-b border-gray-200 dark:border-slate-700 pb-1">{area}</p>
+            {gs.map((g) => {
+              const items = TABS.filter((t) => inGroup(t, g) && (!navFilter || `${t.label} ${t.desc}`.toLowerCase().includes(navFilter.toLowerCase())));
               if (!items.length) return null;
               return (
                 <div key={g} className="mb-4">
-                  <p className="px-2 mb-1 text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-400">{g}</p>
+                  <p className="px-2 mb-1 text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-400">{groupLabel(g)}</p>
                   <ul>
                     {items.map((t) => (
                       <li key={t.id}>
@@ -368,12 +376,14 @@ export default function KnowledgeBase() {
                 </div>
               );
             })}
+            </div>
+            ))}
           </div>
         </nav>
 
         <div className="min-w-0">
           <div className="mb-4">
-            <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-400">{activeTab.group}</p>
+            <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-400">{activeTab.area}: {groupLabel(activeTab.group)}</p>
             <h2 className="text-xl font-bold text-gray-900 dark:text-white">{activeTab.label}</h2>
             <p className="text-sm text-gray-600 dark:text-slate-300 mt-1 max-w-3xl">{activeTab.desc}</p>
           </div>
