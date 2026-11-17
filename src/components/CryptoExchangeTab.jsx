@@ -38,7 +38,7 @@ const JULY_2025 = [
   ['Reconnaissance (16 July 2025)', 'The attacker sent a 1 USDT test transaction. The attacker\'s address had been funded with 1 ETH from Tornado Cash, a mixer.'],
   ['Access to an operational account', 'The attacker reached an internal operational liquidity account on Solana. CoinDCX said its liquidity infrastructure was breached; the exact method was not confirmed. One security expert suggested exposed backend credentials.'],
   ['Drain in about five minutes', 'About 44.2 million USD in USDT was moved out. Because the activity used legitimate operational privileges, it did not trigger alerts.'],
-  ['Laundering across chains', 'Funds were swapped through Jupiter and bridged from Solana to Ethereum over Wormhole in chunks, then parked in dormant wallets.'],
+  ['Laundering across chains', 'Funds were swapped, moved from Solana to Ethereum in chunks and parked in dormant wallets. See "How the funds were laundered" below for each step.'],
   ['Detection and disclosure', 'An on-chain investigator flagged the theft publicly about 17 hours later. CoinDCX then confirmed it and was criticised for the delay.'],
   ['Response', 'Loss covered from treasury reserves; customer funds in cold storage were not affected; experts engaged to trace funds; a recovery bounty of up to 25% offered on 21 July. Public reporting linked the attack to the Lazarus Group (reported, not officially confirmed).'],
 ];
@@ -83,16 +83,108 @@ const REGS = [
   ['CryptoCurrency Security Standard (CCSS)', 'Three levels covering key generation, wallet creation, key storage and use, key compromise, keyholder access, audits, data sanitisation, proof of reserve and audit logs.'],
 ];
 
-const SOURCES = [
-  ['CoinDCX blog', 'https://coindcx.com/blog/'],
-  ['The Block: CoinDCX confirms 16 million USD loss from retired wallets (Oct 2026)', 'https://theblock.co/news/business/2026-10-25-coindcx-confirms-16-million-loss-from-retired-wallets-days-after-ceo-called-breach-reports-a-false-alarm-431617'],
-  ['Cointelegraph: how hackers stole 44 million USD from CoinDCX (July 2025)', 'https://cointelegraph.com/explained/how-hackers-stole-44m-from-coindcx-without-touching-user-wallets'],
-  ['CERT-In Directions under Section 70B', 'https://www.cert-in.org.in/Directions70B.jsp'],
-  ['FIU-IND', 'https://fiuindia.gov.in'],
-  ['MeitY: data protection framework', 'https://www.meity.gov.in/data-protection-framework'],
-  ['CryptoCurrency Security Standard', 'https://cryptoconsortium.org/standards/CCSS'],
-  ['MITRE ATT&CK: Lazarus Group (G0032)', 'https://attack.mitre.org/groups/G0032/'],
-  ['Chainalysis blog', 'https://www.chainalysis.com/blog/'],
+
+// Bullet group with an optional "Why it matters for GRC" line.
+function Group({ title, items, why }) {
+  return (
+    <div className="mb-4">
+      <h4 className="text-base font-semibold text-gray-900 dark:text-white mb-1">{title}</h4>
+      <ul className={`list-disc pl-5 space-y-1 ${P}`}>{items.map((x) => <li key={x}>{x}</li>)}</ul>
+      {why && <p className={`mt-1 ${P}`}><span className="font-semibold">Why it matters for GRC: </span>{why}</p>}
+    </div>
+  );
+}
+
+const BASICS = [
+  ['What cryptocurrency is', [
+    'Digital money that exists only as entries on a shared public ledger. No bank or central authority keeps the record.',
+    'Ownership is proven with cryptographic keys, not with an account in your name.',
+  ]],
+  ['How it works', [
+    'Blockchain: a ledger made of blocks of transactions, each linked to the one before, copied across thousands of computers. Changing past entries is practically impossible.',
+    'Transaction: an instruction such as "send 10 USDT from address A to address B", signed with the sender\'s private key.',
+    'Validation: the network checks and records transactions. Bitcoin uses mining (computers compete to add the next block). Ethereum and Solana use staking (validators lock up coins and are chosen to confirm blocks).',
+    'Public and private keys: the private key is a secret that authorises spending. Whoever holds it controls the funds. The public key is derived from it and can be shared.',
+    'Wallet address: a public identifier, derived from the public key, that others send funds to. It works like an account number anyone can see.',
+    'Transactions cannot be reversed. Once stolen funds leave an address, there is no chargeback.',
+  ]],
+  ['What a crypto exchange is', [
+    'A company, such as CoinDCX, that lets customers buy, sell and hold crypto, usually against Indian rupees.',
+    'The exchange holds the private keys on behalf of customers (custody). Customers see a balance in the app; the coins sit in wallets the exchange controls.',
+    'Customer funds are usually pooled, with an internal ledger recording what each customer owns.',
+  ]],
+  ['Hot, cold, retired and dormant wallets', [
+    'Hot wallet: keys are on internet-connected systems so withdrawals can be processed quickly. Convenient, but exposed to online attack.',
+    'Cold wallet: keys are kept offline, for example on hardware devices in a vault. Much safer, but slower to use.',
+    'Exchanges keep most funds cold and only what is needed for daily withdrawals and trading hot.',
+    'Operational or liquidity wallet: a hot wallet used to settle trades or move funds between venues. In July 2025 one of these was drained.',
+    'Retired (deprecated) wallet: an address the company has stopped using. If anyone still sends funds to it, or its keys are still exposed, it can still be drained. This was the problem in October 2026.',
+    'Dormant wallet: any address with no recent activity. Attackers park stolen funds in dormant wallets to wait.',
+  ]],
+  ['Tokens named on this page', [
+    'BTC (Bitcoin): the first cryptocurrency, used mainly as a store of value.',
+    'ETH (Ether): the native coin of Ethereum, used to pay network fees and as collateral in decentralised finance.',
+    'SOL: the native coin of Solana, used to pay fees and for staking on that network.',
+    'USDT (Tether): a stablecoin designed to stay at 1 US dollar, backed by reserves held by its issuer, Tether. It is the most common token for trading and moving value.',
+    'Why USDT matters here: because it tracks the dollar, stolen USDT keeps its value. Because a central issuer controls the token contract, Tether can freeze USDT held at specific addresses, which is one of the few ways stolen crypto can be stopped.',
+  ]],
+  ['Chains and why one token exists on several', [
+    'A chain is a separate blockchain network with its own rules, validators and fees, for example Solana or Ethereum.',
+    'Tokens such as USDT are issued on several chains. USDT on Solana and USDT on Ethereum are separate tokens with the same value, recorded on different ledgers.',
+    'Moving value between chains needs a bridge (explained below), which is why cross-chain moves are a common laundering step.',
+  ]],
+];
+
+const LAUNDERING = [
+  'Swap on Jupiter: Jupiter is a decentralised exchange aggregator on Solana. It finds the best price across many on-chain trading pools and executes the swap without any account or KYC. Attackers swap stolen USDT for other tokens, such as SOL, quickly, partly because the issuer can freeze USDT but not SOL.',
+  'Bridge over Wormhole: a cross-chain bridge locks tokens on one chain and releases an equivalent amount on another. Wormhole connects Solana, Ethereum and other chains. The attacker used it to move value from Solana to Ethereum.',
+  'Why change chains: each hop adds a new set of addresses and transactions to follow, spreads the trail across two ledgers, and moves funds to where more mixers, exchanges and cash-out routes are available. It also puts funds out of reach of tools tied to the original chain.',
+  'Why move in chunks: reporting describes transfers in chunks of roughly 1,000 to 4,000 SOL. Smaller amounts are less likely to trip monitoring thresholds, bridge or pool limits, and price slippage on large trades.',
+  'Why park in dormant wallets: the funds were left in wallets with no further activity. Attackers often wait weeks or months until public attention and active monitoring fade, then cash out through mixers or less strict exchanges.',
+  'How investigators trace it: every transaction is public, so analysts follow the funds address by address. Blockchain analytics firms cluster addresses that belong to the same actor, label known services (exchanges, bridges, mixers) and alert exchanges when tainted funds arrive so they can be frozen at deposit.',
+  'Who froze the funds: for the July 2025 theft, the reporting used here does not confirm that any funds were frozen, so this page does not name anyone. For the October 2026 loss, The Block reported that on-chain investigator ZachXBT said he helped freeze stolen funds worth six figures; it did not say which party carried out the freeze. Freezing works only where a central party controls the asset or account: a stablecoin issuer blacklisting an address, or an exchange blocking a deposit.',
+];
+
+const GLOSSARY = [
+  ['MITRE ATT&CK', [
+    'A free, public knowledge base of attacker tactics and techniques built from real incidents, run by MITRE, a US not-for-profit.',
+    'Security teams use it to map detections, test defences and describe incidents in a common language (for example T1566 Phishing, T1078 Valid accounts).',
+    'Its Lazarus Group entry (G0032) describes a North Korea-linked threat group known for large crypto thefts, often starting with fake job offers or malicious files sent to staff, then using valid accounts.',
+  ], 'It turns a vague threat into specific techniques you can check your controls and monitoring against.'],
+  ['CryptoCurrency Security Standard (CCSS)', [
+    'A security standard for systems that store and use crypto keys, published by the CryptoCurrency Certification Consortium (C4).',
+    'Three levels: Level I, II and III, each stricter than the last.',
+    'Covers key and seed generation, wallet creation, key storage, key usage, key compromise policy, granting and revoking keyholder access, third-party security audits, data sanitisation, proof of reserve and security audit logs.',
+  ], 'ISO 27001 and SOC 2 do not go deep on key custody; CCSS fills that gap for wallets.'],
+  ['VDA (Virtual Digital Asset)', [
+    'Defined in Section 2(47A) of the Income Tax Act, 1961, added by the Finance Act, 2022.',
+    'Covers any information, code, number or token generated through cryptographic means that has value or is used as a store of value or unit of account, including crypto tokens and NFTs. It excludes Indian and foreign currency.',
+    'This is why Indian law and regulators refer to crypto exchanges as VDA service providers.',
+  ], 'The VDA label is what brings an exchange under Indian tax, AML and reporting rules.'],
+  ['PMLA (Prevention of Money Laundering Act, 2002)', [
+    'India\'s main anti-money-laundering law.',
+    'A Ministry of Finance notification of March 2023 made VDA service providers "reporting entities" under PMLA.',
+  ], 'Being a reporting entity creates legal AML duties with penalties for failure.'],
+  ['FIU-IND AML/CFT obligations', [
+    'FIU-IND is the Financial Intelligence Unit of India, under the Ministry of Finance. It receives and analyses reports on suspicious financial activity.',
+    'AML means anti-money laundering. CFT means countering the financing of terrorism.',
+    'Main duties for VDA providers: register with FIU-IND, run KYC and customer due diligence, monitor transactions, file suspicious transaction reports, keep records, and appoint a designated director and a principal officer.',
+  ], 'Stolen funds passing through or out of an exchange are an AML event, not only a security incident.'],
+  ['CERT-In Directions under Section 70B (April 2022)', [
+    'Issued by CERT-In, India\'s national computer emergency response team, under Section 70B(6) of the IT Act, 2000.',
+    'Listed cyber incidents must be reported to CERT-In within 6 hours of noticing them.',
+    'Organisations must keep ICT logs and synchronise system clocks to the national time servers.',
+  ], 'The 6-hour clock starts at detection, so incident response plans must include a CERT-In reporting step.'],
+  ['ICT logs', [
+    'ICT stands for Information and Communication Technology.',
+    'Covers system, network, application and access logs: for example firewall, server, database, authentication and wallet service logs.',
+    'Must be kept for 180 days and stored within India.',
+    'VDA providers must also keep KYC records and financial transaction records for 5 years.',
+  ], 'Without these logs you cannot reconstruct an incident or satisfy CERT-In and FIU-IND.'],
+  ['MeitY and the DPDP Act, 2023', [
+    'The Ministry of Electronics and Information Technology (MeitY) administers the Digital Personal Data Protection Act, 2023 and the DPDP Rules, 2025.',
+    'Exchanges hold a lot of personal data: identity documents, bank details and transaction history. They must apply reasonable security safeguards and report personal data breaches to the Data Protection Board and affected users.',
+  ], 'A wallet theft that also exposes KYC data becomes a reportable personal data breach.'],
 ];
 
 export default function CryptoExchangeTab() {
@@ -104,6 +196,11 @@ export default function CryptoExchangeTab() {
       </div>
 
       <div className={CARD}>
+        <h3 className={H2}>Crypto basics</h3>
+        {BASICS.map(([t, items]) => <Group key={t} title={t} items={items} />)}
+      </div>
+
+      <div className={CARD}>
         <h3 className={H2}>Indian obligations for VDA service providers</h3>
         <Table head={['Source', 'What it requires']} rows={REGS} min={560} />
       </div>
@@ -111,6 +208,11 @@ export default function CryptoExchangeTab() {
       <div className={CARD}>
         <h3 className={H2}>Case 1: CoinDCX operational wallet hack, July 2025 (about 44 million USD)</h3>
         <Flow steps={JULY_2025} label="July 2025 incident flow" />
+      </div>
+
+      <div className={CARD}>
+        <h3 className={H2}>How the funds were laundered (July 2025)</h3>
+        <ol className={`list-decimal pl-5 space-y-2 ${P}`}>{LAUNDERING.map((x) => <li key={x}>{x}</li>)}</ol>
       </div>
 
       <div className={CARD}>
@@ -130,12 +232,11 @@ export default function CryptoExchangeTab() {
       </div>
 
       <div className={CARD}>
-        <h3 className={H2}>Sources</h3>
-        <ul className="list-disc pl-5 space-y-1 text-sm">
-          {SOURCES.map(([t, u]) => <li key={u}><a href={u} target="_blank" rel="noopener noreferrer" className="ui-link">{t}</a></li>)}
-        </ul>
-        <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">Guidance only. Verify obligations against the official text before relying on them.</p>
+        <h3 className={H2}>Key terms and regulations</h3>
+        {GLOSSARY.map(([t, items, why]) => <Group key={t} title={t} items={items} why={why} />)}
       </div>
+
+      <p className="text-xs text-gray-500 dark:text-gray-400">Guidance only. Verify obligations against the official text before relying on them.</p>
     </div>
   );
 }
