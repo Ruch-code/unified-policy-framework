@@ -196,7 +196,9 @@ export const VELOCITY = {
     'With one or two engineers, full segregation of duties may be impossible. Say so in the policy rather than pretending.',
     'Use the detective control: a founder or manager reviews a log of all production changes weekly and signs it.',
     'Rely more on automated gates, restricted production access and monitoring.',
-    'Ask the auditor early how they will test it; agree the compensating controls before the observation period starts.',
+    'Ask the auditor early how they will test it; agree the compensating controls before the observation period starts.',    'For a young startup of around 25 people without a ticketing tool or CAB, an approval email (or a message in a dedicated Slack or Teams channel) from the CTO or engineering lead is acceptable evidence, as long as it names the change, comes from someone other than the author, and is dated before the deployment.',
+    'Example: "Approved: release 2.4.1, payment retry fix, PR #312. Deploy after 6 pm IST. Ravi (CTO), 12 Mar." Keep these emails in one shared folder or channel so the auditor can sample them against the deployment log.',
+    'Emergency fixes can be approved by email after the fact, within one working day, with the reason for skipping prior approval.',
   ],
   auditor: [
     'A compensating control must address the same risk (unauthorised or faulty code reaching production), not just exist.',
