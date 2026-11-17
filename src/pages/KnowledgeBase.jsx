@@ -20,6 +20,8 @@ import {
   LICENSING_NOTE,
 } from '../data/edp.ts';
 import EdpTab from '../components/EdpTab.jsx';
+import ItAuditToolkit from '../components/ItAuditToolkit.jsx';
+import RcsaTab from '../components/RcsaTab.jsx';
 import CryptoExchangeTab from '../components/CryptoExchangeTab.jsx';
 import SecretsScanningTab from '../components/SecretsScanningTab.jsx';
 import AuditObservations from '../components/AuditObservations.jsx';
@@ -53,6 +55,7 @@ const TABS = [
   { id: 'audit', label: 'Audit & Rebuttals', icon: ShieldAlert, group: 'Fieldwork and findings', area: 'Internal audit', desc: 'Common audit observations for the selected framework and how to respond.' },
   { id: 'evidence-checklist', label: 'Audit Evidence Checklist', icon: ShieldAlert, group: 'Fieldwork and findings', area: 'Internal audit', also: 'GRC: Start here', desc: 'What auditors ask for under SOC 2, ISO 27001, HIPAA and GDPR, plus a typical readiness plan and roles.' },
   { id: 'gaps', label: 'Common Gaps (ITGC)', icon: ShieldAlert, group: 'Fieldwork and findings', area: 'Internal audit', desc: 'Typical startup gaps by ITGC domain, the pushback, compensating controls and a worked audit example.' },
+  { id: 'it-audit', label: 'IT Audit Toolkit', icon: ShieldAlert, group: 'Fieldwork and findings', area: 'Internal audit', desc: 'Sample sizes, ITAC, report (IPE) testing, RCM, SOC report review, full-population analytics, findings and joiner, mover and leaver testing' },
   { id: 'auditor-requests', label: 'Auditor Request List', icon: ShieldAlert, group: 'Fieldwork and findings', area: 'Internal audit', desc: 'What a SOC 2 Type 2 auditor asks for, how to respond to each request with an example, and the follow-ups to expect.' },
   { id: 'tabletop', label: 'Tabletop Exercise (IR and DR)', icon: ShieldAlert, group: 'GRC: Programme and tooling', area: 'GRC', desc: 'A template for a combined incident response and disaster recovery tabletop, with a worked scenario, model responses and findings.' },
   { id: 'radar', label: 'Discrepancy Radar', icon: Radar, group: 'GRC: Frameworks', area: 'GRC', desc: 'Where frameworks disagree, and how to reconcile them.' },
@@ -68,6 +71,7 @@ const TABS = [
   { id: 'crypto', label: 'Crypto Exchanges (VDA)', icon: Key, group: 'GRC: Security architecture', area: 'GRC', desc: 'Security and compliance for crypto exchanges: CERT-In, FIU-IND, DPDP, CCSS, and two CoinDCX incidents as worked examples' },
   { id: 'evidence', label: 'Evidence Automation', icon: Package, group: 'GRC: Programme and tooling', area: 'GRC', desc: 'Automating evidence collection and keeping it audit-ready.' },
   { id: 'tooling', label: 'GRC Tooling', icon: Package, group: 'GRC: Programme and tooling', area: 'GRC', desc: 'GRC tools by category, what evidence they produce and what to watch for.' },
+  { id: 'rcsa', label: 'Risk and Control Self-Assessment', icon: ShieldAlert, group: 'GRC: Programme and tooling', area: 'GRC', desc: 'Running RCSA workshops, scoring control effectiveness and feeding results into the risk register' },
 ];
 // Two areas: internal audit work first, then GRC programme work. A topic can also be listed under a second group (also).
 const AREAS = ['Internal audit', 'GRC'];
@@ -149,6 +153,9 @@ export default function KnowledgeBase() {
     } else if (t === 'assistant') {
       // Old links: the assistant now lives only in the site-wide chatbot.
       setTab('policies');
+    } else if (t && TABS.some((x) => x.id === t)) {
+      // Any topic id works as ?topic=<id>.
+      setTab(t);
     } else if (p && FRAMEWORK_KB[p]) {
       setFw(p);
     }
@@ -330,6 +337,8 @@ export default function KnowledgeBase() {
     'evidence-checklist': <AuditEvidenceChecklist />,
     'auditor-requests': <AuditorRequestList />,
     tabletop: <TabletopExercise />,
+    'it-audit': <ItAuditToolkit />,
+    rcsa: <RcsaTab />,
     zerotrust: <ZeroTrustShadowIt />,
     infranet: <InfraNetworkAudit />,
     tooling: <GrcToolingKb />,
