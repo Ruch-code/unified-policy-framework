@@ -26,8 +26,9 @@ export default function MockInterview({ roles }) {
   const [busy, setBusy] = useState(false);
   const pool = useMemo(() => roles.find((r) => r.id === roleId)?.questions || [], [roles, roleId]);
   const q = pool[step % (pool.length || 1)];
-  const voice = useSpeechInput({ continuous: true, onFinal: (t) => setTyped(t) });
-  const shown = voice.listening ? voice.transcript : typed;
+  // Spoken words are added to anything already typed, and appear live while you speak.
+  const voice = useSpeechInput({ continuous: true, onFinal: (t) => setTyped((prev) => (prev.trim() ? `${prev.trim()} ${t}` : t)) });
+  const shown = voice.listening ? [typed.trim(), voice.transcript].filter(Boolean).join(' ') : typed;
   const review = async () => {
     setBusy(true);
     const text = await getFeedback(q, typed);
@@ -52,6 +53,7 @@ export default function MockInterview({ roles }) {
           ? <button type="button" className={PRIMARY} onClick={voice.stop}><Square className="w-4 h-4" aria-hidden="true" /> Stop answering</button>
           : <button type="button" className={PRIMARY} onClick={voice.start}><Mic className="w-4 h-4" aria-hidden="true" /> Answer by voice</button>)}
       </div>
+      {voice.listening && <p className="text-xs text-emerald-700 dark:text-emerald-300 mt-2" aria-live="polite">Listening. Your words appear below as you speak. Press Stop answering when you finish.</p>}
       {voice.error && <p role="alert" className="text-xs text-red-700 dark:text-red-300 mt-2">{voice.error}</p>}
       <textarea aria-label="Your answer" rows={4} value={shown} readOnly={voice.listening} onChange={(e) => setTyped(e.target.value)} placeholder="Your answer appears here. You can also type or edit it." className="w-full mt-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-sm text-slate-900 dark:text-white p-2" />
       <div className="flex flex-wrap gap-2 mt-2">

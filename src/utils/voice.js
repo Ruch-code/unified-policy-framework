@@ -45,29 +45,53 @@ export const stopSpeaking = () => { if (canSpeak()) window.speechSynthesis.cance
 
 const ERRORS = { 'not-allowed': 'Microphone access is blocked. Allow it in your browser settings.', 'no-speech': 'No speech was heard. Please try again.', network: 'The speech service could not be reached.' };
 
-/** Speech to text. onFinal receives the transcript when listening ends. */
+/** Speech to text. Shows words as they are spoken (interim results) and returns the full text when listening ends.
+ * In continuous mode the browser can stop on its own after a pause; we restart it straight away until the user presses Stop. */
 export function useSpeechInput({ lang = 'en-IN', continuous = false, onFinal } = {}) {
   const [listening, setListening] = useState(false);
   const [transcript, setTranscript] = useState('');
   const [error, setError] = useState('');
   const rec = useRef(null);
+  const userStopped = useRef(false);
   const finalCb = useRef(onFinal);
   finalCb.current = onFinal;
-  const stop = useCallback(() => rec.current?.stop(), []);
+  const stop = useCallback(() => { userStopped.current = true; rec.current?.stop(); }, []);
   const start = useCallback(() => {
     const R = Recognition();
     if (!R) { setError('Voice input is not supported in this browser. Try Chrome or Edge.'); return; }
     stopSpeaking();
-    const r = new R();
-    r.lang = lang; r.continuous = continuous; r.interimResults = true;
-    let text = '';
-    r.onresult = (e) => { text = Array.from(e.results).map((x) => x[0].transcript).join(' '); setTranscript(text); };
-    r.onerror = (e) => setError(ERRORS[e.error] || 'Voice input stopped. Please try again.');
-    r.onend = () => { setListening(false); if (text.trim()) finalCb.current?.(text.trim()); };
+    userStopped.current = false;
+    let committed = '';
+    let done = false;
+    const finish = () => { if (done) return; done = true; setListening(false); const t = committed.trim(); if (t) finalCb.current?.(t); };
+    const run = () => {
+      const r = new R();
+      r.lang = lang; r.continuous = continuous; r.interimResults = true; r.maxAlternatives = 1;
+      let sessionFinal = '';
+      let ended = false;
+      r.onresult = (e) => {
+        let interim = '';
+        sessionFinal = '';
+        for (let i = 0; i < e.results.length; i += 1) {
+          const piece = e.results[i][0].transcript;
+          if (e.results[i].isFinal) sessionFinal += `${piece} `; else interim += piece;
+        }
+        setTranscript(`${committed}${sessionFinal}${interim}`.replace(/\s+/g, ' ').trimStart());
+      };
+      r.onerror = (e) => { if (e.error !== 'no-speech' || !continuous) setError(ERRORS[e.error] || 'Voice input stopped. Please try again.'); if (e.error === 'not-allowed') userStopped.current = true; };
+      r.onend = () => {
+        if (ended || rec.current !== r) return; // ignore duplicate or stale end events
+        ended = true;
+        committed += sessionFinal;
+        if (continuous && !userStopped.current) { try { run(); return; } catch { /* fall through */ } }
+        finish();
+      };
+      rec.current = r;
+      r.start();
+    };
     setError(''); setTranscript(''); setListening(true);
-    rec.current = r;
-    r.start();
+    run();
   }, [lang, continuous]);
-  useEffect(() => () => rec.current?.abort(), []);
+  useEffect(() => () => { userStopped.current = true; rec.current?.abort(); }, []);
   return { listening, transcript, error, start, stop, setTranscript };
 }
