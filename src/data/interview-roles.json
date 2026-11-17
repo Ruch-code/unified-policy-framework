@@ -1468,6 +1468,182 @@
           ]
         }
       ]
+    },
+    {
+      "id": "lead-grc-situational",
+      "title": "Lead GRC Engineer: Situational",
+      "subtitle": "Difficult stakeholders, external auditors and internal audit",
+      "icon": "Users",
+      "color": "indigo",
+      "questions": [
+        {
+          "q": "An engineering lead keeps missing evidence deadlines, and fieldwork starts in two weeks. What do you do?",
+          "a": "I'd talk to them first, one to one, and find out why. Usually it's workload or they don't see the point. I'd make it easy: give them a short list with exactly what's needed, an example of good evidence, and offer to pull what I can myself from the tools. Then I'd agree dates for each item. If dates still slip, I'd raise it with their manager as a delivery risk, with facts: what's missing, which control it supports, and what happens if the auditor doesn't get it. I'd keep it about the audit date, not about the person.",
+          "tags": [
+            "Stakeholders",
+            "Audit readiness",
+            "Escalation"
+          ],
+          "example": "\"Two items were overdue a week. I sat with the lead for 20 minutes, exported the access list together, and set a date for the rest. Everything was in three days before fieldwork.\"",
+          "pitfalls": [
+            "Escalating before you've had the one-to-one conversation.",
+            "Sending long generic evidence lists instead of exactly what's needed."
+          ]
+        },
+        {
+          "q": "A senior VP refuses to do their quarterly access review and calls it a waste of time. How do you handle it?",
+          "a": "I'd show what the review protects and what it costs them. For a VP the honest answer is: if you sign off people who shouldn't have access, the risk is yours. I'd shrink the effort: pre-fill the list, highlight only the changes since last quarter, and ask for a yes or no per line. If they still refuse, it goes in the access review record as not completed, and I report it as an exception in the monthly risk report. I never complete it for them.",
+          "tags": [
+            "Stakeholders",
+            "Access review",
+            "Leadership"
+          ],
+          "example": "\"I cut the list from 140 lines to the 12 that changed, with a one-click approve. It took them eight minutes.\"",
+          "pitfalls": [
+            "Completing the review on their behalf.",
+            "Treating seniority as a reason to skip a control."
+          ]
+        },
+        {
+          "q": "Two teams each say a control belongs to the other, and it has no owner. What do you do?",
+          "a": "A control with no owner will fail, so I'd fix ownership quickly. I'd write down what the control actually does day to day, then the team that performs the activity owns it. If it's still unclear, I'd take it to the person who leads both teams and ask for a decision, then record the owner in the control register and RACI. I'd also check if the control should be split, because sometimes both teams do half of it.",
+          "tags": [
+            "Stakeholders",
+            "Control ownership",
+            "RACI"
+          ],
+          "example": "\"Logging was claimed by neither security nor platform. We split it: platform owns collection and retention, security owns alert review.\"",
+          "pitfalls": [
+            "Owning it yourself as GRC, which hides the gap.",
+            "Leaving it unresolved until the audit."
+          ]
+        },
+        {
+          "q": "Sales put a security commitment into a customer contract without checking with GRC, and we can't meet it. What now?",
+          "a": "First I'd find out exactly what was promised and by when. Then I'd tell Legal and the account owner straight away, because the risk is a contract breach. Options are: deliver the control in time, agree a compensating control with the customer, or amend the clause. I'd recommend one with dates. After that, I'd fix the process so security clauses go through GRC review before signing.",
+          "tags": [
+            "Stakeholders",
+            "Contracts",
+            "Customer trust"
+          ],
+          "example": "\"The contract promised quarterly penetration tests. We agreed with the customer to accept annual tests plus continuous scanning, and added GRC review to the deal desk checklist.\"",
+          "pitfalls": [
+            "Quietly hoping the customer never checks.",
+            "Blaming sales instead of fixing the process."
+          ]
+        },
+        {
+          "q": "In the last week of fieldwork, the external auditor asks for evidence outside the agreed scope. How do you respond?",
+          "a": "I'd stay polite and check the scope document. If it really is out of scope, I'd say so with reference to the engagement letter or audit plan and ask what risk they're trying to cover, because sometimes it's linked to something in scope. If there's a real link, I'd help. If not, I'd note it as a scope change for the audit manager and the auditor's engagement lead to agree, rather than refusing or quietly adding work.",
+          "tags": [
+            "External auditor",
+            "Scope",
+            "Fieldwork"
+          ],
+          "example": "\"They asked for HR system access logs. HR was out of scope, but the leaver control depended on HR dates, so we gave the HR exit report only.\"",
+          "pitfalls": [
+            "Saying yes to everything, which widens the audit.",
+            "Saying no without understanding why they asked."
+          ]
+        },
+        {
+          "q": "The auditor reports an exception you believe comes from a wrong population, not a failed control. What do you do?",
+          "a": "I'd ask to see the sample and how the population was produced. Often the list included test accounts, contractors on a different process, or the wrong date range. If I can show the item shouldn't have been in the population, I'd give evidence: the source report, its parameters and why the item is out. If the auditor still disagrees, I'd accept it, add management's response in the report and fix how we produce populations next time.",
+          "tags": [
+            "External auditor",
+            "Exceptions",
+            "Population"
+          ],
+          "example": "\"The exception was a service account in the user list. We showed it was in the separate service account review and the auditor removed it.\"",
+          "pitfalls": [
+            "Arguing without evidence.",
+            "Assuming the auditor must be wrong."
+          ]
+        },
+        {
+          "q": "An ISO auditor wants to raise a major nonconformity you think should be minor. How do you handle it?",
+          "a": "I'd ask which requirement they're citing and what evidence makes it major rather than minor. Major usually means the requirement isn't met at all or the system can't deliver its results. If it's one lapse in an otherwise working process, I'd show the other evidence that the process runs. I'd stay factual and respect that the grading is the auditor's call. If I still disagree after the audit, the certification body has an appeals process.",
+          "tags": [
+            "External auditor",
+            "ISO 27001",
+            "Nonconformity"
+          ],
+          "example": "\"One missed supplier review was going to be a major. We showed eleven completed reviews and a calendar for the twelfth. It was graded minor.\"",
+          "pitfalls": [
+            "Getting emotional or escalating in the closing meeting.",
+            "Hiding other evidence until after the grading."
+          ]
+        },
+        {
+          "q": "An external auditor asks for direct admin access to production to collect evidence. What do you say?",
+          "a": "I wouldn't give standing admin access, because that breaks our own least privilege control. I'd offer alternatives: a screen share where our engineer runs the commands, a read-only account limited to what they need for a short time, or exports with the query and screenshots that show completeness. Most auditors are happy with that if we explain why.",
+          "tags": [
+            "External auditor",
+            "Access",
+            "Least privilege"
+          ],
+          "example": "\"We gave a read-only role for 48 hours, logged every query, and removed it at the end of fieldwork.\"",
+          "pitfalls": [
+            "Granting admin access because it's the auditor.",
+            "Refusing without offering another way."
+          ]
+        },
+        {
+          "q": "Internal audit is about to report a finding to the audit committee that they never discussed with you. How do you react?",
+          "a": "I'd ask for a short meeting before the report goes out. The aim is to check the facts, not to soften the finding. If the facts are right, I'd agree an action plan with owners and dates so the report shows a response. If something is wrong, I'd bring evidence. Afterwards I'd agree with internal audit how we share draft findings in future, because surprises at the committee hurt both teams.",
+          "tags": [
+            "Internal audit",
+            "Audit committee",
+            "Findings"
+          ],
+          "example": "\"The draft said access reviews weren't done. They were, but stored in a different folder. We corrected it and agreed a shared evidence location.\"",
+          "pitfalls": [
+            "Going around internal audit to the committee.",
+            "Treating internal audit as the enemy."
+          ]
+        },
+        {
+          "q": "You and internal audit disagree on how serious a finding is. How do you resolve it?",
+          "a": "I'd go back to the rating criteria in the internal audit methodology and compare the finding against them: impact, likelihood, number of exceptions and compensating controls. If we still disagree, the rating is internal audit's call because of their independence, but management can record its view in the response. What matters most is agreeing the fix and the date.",
+          "tags": [
+            "Internal audit",
+            "Risk rating"
+          ],
+          "example": "\"They rated it high; we thought medium because of a compensating control. We left their rating and documented the compensating control in our response.\"",
+          "pitfalls": [
+            "Negotiating the rating instead of fixing the issue.",
+            "Ignoring the methodology and arguing from opinion."
+          ]
+        },
+        {
+          "q": "You're asked to run the ISMS internal audit for processes you designed. What do you do?",
+          "a": "I'd raise the independence problem. ISO 27001 clause 9.2 expects auditors to be objective and impartial, and auditing my own work isn't. Options: swap with a colleague from another team, use an external auditor for those areas, or limit my audit to areas I didn't design. I'd document the choice in the audit programme.",
+          "tags": [
+            "Internal audit",
+            "Independence",
+            "ISO 27001"
+          ],
+          "example": "\"I audited HR and supplier controls, and a contractor audited the access and change processes I'd built.\"",
+          "pitfalls": [
+            "Ignoring independence because the team is small.",
+            "Not documenting how independence was handled."
+          ]
+        },
+        {
+          "q": "A junior analyst on your team submitted evidence that had been edited. How do you handle it?",
+          "a": "I'd stop it going to the auditor and talk to the analyst privately to understand what happened and why. Often it's a misunderstanding about cropping or redacting. I'd replace it with original evidence, explain the rule clearly (redaction is fine and documented, changing content is never fine) and check other items they submitted. If it was deliberate, it goes to HR. Either way I'd add a simple evidence standard and a review step for the team.",
+          "tags": [
+            "Leadership",
+            "Evidence integrity",
+            "Coaching"
+          ],
+          "example": "\"The analyst had edited a date to match the period. We replaced it with the real log and a note explaining the timing, and introduced peer review of evidence.\"",
+          "pitfalls": [
+            "Letting it through to meet the deadline.",
+            "Public blame, which stops people admitting mistakes."
+          ]
+        }
+      ]
     }
   ]
 }
