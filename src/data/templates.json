@@ -676,6 +676,74 @@
             "KRI",
             "Risk"
           ]
+        },
+        {
+          "num": 330,
+          "slug": "policy-register",
+          "name": "Policy Register",
+          "purpose": "Register of policies, standards, procedures and guidelines with owners, versions and review dates.",
+          "fields": [
+            "Document and type",
+            "Owner and version",
+            "Approval",
+            "Next review date",
+            "Mapped controls"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001"
+          ],
+          "type": "record",
+          "file": "policy-register.xlsx",
+          "tags": [
+            "Policy"
+          ]
+        },
+        {
+          "num": 331,
+          "slug": "sop-skeleton",
+          "name": "SOP Skeleton",
+          "purpose": "Generic standard operating procedure layout with document control.",
+          "fields": [
+            "Purpose",
+            "Scope",
+            "Roles",
+            "Steps",
+            "Records",
+            "Document control"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001"
+          ],
+          "type": "document",
+          "file": "sop-skeleton.docx",
+          "tags": [
+            "Policy"
+          ]
+        },
+        {
+          "num": 332,
+          "slug": "due-diligence-checklist",
+          "name": "Pre-IPO and M&A Security Due Diligence Checklist",
+          "purpose": "Questions, evidence requests and risk ratings for listing or acquisition due diligence.",
+          "fields": [
+            "Area",
+            "Question",
+            "Evidence",
+            "Risk rating",
+            "Follow-up"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001"
+          ],
+          "type": "record",
+          "file": "due-diligence-checklist.xlsx",
+          "tags": [
+            "Due diligence",
+            "M&A"
+          ]
         }
       ]
     },
@@ -1482,6 +1550,72 @@
           ],
           "type": "record",
           "file": "visitor-log.xlsx"
+        },
+        {
+          "num": 333,
+          "slug": "awareness-annual-plan",
+          "name": "Security Awareness Annual Plan",
+          "purpose": "Monthly themes, audiences, channels and completion.",
+          "fields": [
+            "Month",
+            "Theme",
+            "Channel",
+            "Owner",
+            "Completion"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001"
+          ],
+          "type": "record",
+          "file": "awareness-annual-plan.xlsx",
+          "tags": [
+            "Awareness"
+          ]
+        },
+        {
+          "num": 334,
+          "slug": "phishing-tracker",
+          "name": "Phishing Simulation Tracker",
+          "purpose": "Campaign results with click and report rates and remedial training.",
+          "fields": [
+            "Campaign",
+            "Delivered",
+            "Clicked",
+            "Reported",
+            "Rates",
+            "Remedial training"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001"
+          ],
+          "type": "record",
+          "file": "phishing-tracker.xlsx",
+          "tags": [
+            "Awareness",
+            "Phishing"
+          ]
+        },
+        {
+          "num": 336,
+          "slug": "employee-security-self-assessment",
+          "name": "Employee Security Self-Assessment",
+          "purpose": "Short staff questionnaire to target awareness training.",
+          "fields": [
+            "Question",
+            "Answer",
+            "Notes"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001"
+          ],
+          "type": "record",
+          "file": "employee-security-self-assessment.xlsx",
+          "tags": [
+            "Awareness"
+          ]
         }
       ]
     },
@@ -1726,6 +1860,30 @@
           "file": "sod-conflict-matrix.xlsx",
           "tags": [
             "Access",
+            "SoD"
+          ]
+        },
+        {
+          "num": 337,
+          "slug": "erp-security-checklist",
+          "name": "ERP Security Review Checklist",
+          "purpose": "Tool-neutral checks for privileged accounts, critical transactions, SoD, change and logging in ERP systems.",
+          "fields": [
+            "Area",
+            "Check",
+            "How to test",
+            "Result",
+            "Owner"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001"
+          ],
+          "type": "record",
+          "file": "erp-security-checklist.xlsx",
+          "tags": [
+            "ERP",
+            "ITGC",
             "SoD"
           ]
         }
@@ -2444,6 +2602,94 @@
           ],
           "type": "record",
           "file": "log-event-catalogue.xlsx"
+        },
+        {
+          "num": 335,
+          "slug": "physical-spot-check",
+          "name": "Physical Security Spot Check",
+          "purpose": "Walkthrough checklist for clean desk, visitors, badges and disposal.",
+          "fields": [
+            "Location",
+            "Check",
+            "Result",
+            "Action"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001"
+          ],
+          "type": "record",
+          "file": "physical-spot-check.xlsx",
+          "tags": [
+            "Physical security"
+          ]
+        },
+        {
+          "num": 338,
+          "slug": "bia-workbook",
+          "name": "Business Impact Analysis Workbook",
+          "purpose": "Processes, dependencies, impact over time, MTPD, RTO, RPO and MBCO.",
+          "fields": [
+            "Process",
+            "Dependencies",
+            "Impact over time",
+            "MTPD, RTO, RPO, MBCO"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001"
+          ],
+          "type": "record",
+          "file": "bia-workbook.xlsx",
+          "tags": [
+            "BIA",
+            "BCP"
+          ]
+        },
+        {
+          "num": 339,
+          "slug": "dr-drill-plan-report",
+          "name": "IT DR Drill Plan and Report",
+          "purpose": "Plan, execution log, results against RTO and RPO, and corrective actions.",
+          "fields": [
+            "Objectives",
+            "Scenario",
+            "Execution log",
+            "RTO and RPO results",
+            "Actions"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001"
+          ],
+          "type": "document",
+          "file": "dr-drill-plan-report.docx",
+          "tags": [
+            "DR",
+            "BCP"
+          ]
+        },
+        {
+          "num": 340,
+          "slug": "call-tree",
+          "name": "Call Tree",
+          "purpose": "Escalation contacts with backups and tested response times.",
+          "fields": [
+            "Role",
+            "Primary and backup",
+            "Escalation order",
+            "Response time"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001"
+          ],
+          "type": "record",
+          "file": "call-tree.xlsx",
+          "tags": [
+            "DR",
+            "Incident"
+          ]
         }
       ]
     },
@@ -3492,6 +3738,29 @@
           ],
           "type": "document",
           "file": "soc2-system-description.docx"
+        },
+        {
+          "num": 329,
+          "slug": "questionnaire-tracker",
+          "name": "Questionnaire Response Tracker",
+          "purpose": "Tracks customer security questionnaires from intake to sending, with reuse rate and SME sign-off.",
+          "fields": [
+            "Customer",
+            "Type",
+            "Due date",
+            "Status",
+            "Answers reused",
+            "SME sign-off"
+          ],
+          "frameworks": [
+            "SOC2",
+            "ISO27001"
+          ],
+          "type": "record",
+          "file": "questionnaire-tracker.xlsx",
+          "tags": [
+            "Customer trust"
+          ]
         }
       ]
     },
