@@ -120,6 +120,29 @@ export default function RaiCrosswalk() {
     <section id="rai-crosswalk" className="grc-section scroll-mt-24">
       <h2 className="grc-section-title mb-2"><Layers className="w-6 h-6 text-violet-600 dark:text-violet-300" /> Responsible AI review: how the regulations and standards map</h2>
       <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 max-w-3xl">How the EU AI Act, ISO/IEC 42001, ISO/IEC 27090, GDPR and the NIST AI RMF apply at each stage of a responsible AI review, with worked use cases and interview-ready answers.</p>
+      <details id="controller-processor" className="mb-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-4">
+        <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">Controller vs processor: who is responsible for personal data</summary>
+        <div className="mt-3 space-y-3 text-sm text-gray-700 dark:text-gray-300">
+          <p>Under GDPR (and India&apos;s DPDP Act, which uses the terms data fiduciary and data processor), the role decides the duties. The test is simple: who decides <strong>why</strong> and <strong>how</strong> the data is used?</p>
+          <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="Controller and processor roles">
+            <table className="w-full text-sm min-w-[760px]">
+              <thead><tr>{['Role', 'What it means', 'Everyday example (wedding)', 'AI example', 'Main duties'].map(h => <th key={h} scope="col" className={TH}>{h}</th>)}</tr></thead>
+              <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
+                {[
+                  ['Controller (DPDP: data fiduciary)', 'Decides why personal data is collected and how it is used', 'The couple decides who to invite and hands the guest list to the planner', 'A bank deploys a chatbot to answer customer loan questions', 'Lawful basis, notices, rights requests, DPIA, choosing safe processors, breach notification to the regulator'],
+                  ['Processor (DPDP: data processor)', 'Handles the data only on the controller\'s instructions', 'The wedding planner uses the list only to send invitations, as instructed', 'The chatbot vendor hosts the model and processes the chats for the bank', 'Follow instructions, keep data secure, use approved sub-processors only, tell the controller about breaches without delay'],
+                  ['Sub-processor', 'A processor\'s own supplier that touches the data', 'The printing company the planner hires to print invitation envelopes', 'The cloud provider that hosts the vendor\'s model', 'Same duties flow down by contract'],
+                  ['Joint controllers', 'Two parties decide the purpose and means together', 'Both families jointly plan a shared reception and guest list', 'Two companies co-run a shared AI fraud model on pooled data', 'An arrangement setting out who handles which duty (GDPR Art. 26)'],
+                ].map(r => <tr key={r[0]}>{r.map((c, j) => <td key={j} className={TD + (j === 0 ? ' font-semibold text-gray-900 dark:text-white' : '')}>{c}</td>)}</tr>)}
+              </tbody>
+            </table>
+          </div>
+          <p><strong>When a processor becomes a controller:</strong> if the planner starts using the guest list to market its own services, or the chatbot vendor reuses the bank&apos;s chats to train its general model without instructions, it is now deciding the purpose. It becomes a controller for that use and takes on the full duties and liability (GDPR Art. 28(10)).</p>
+          <p><strong>What links them:</strong> a data processing agreement (GDPR Art. 28) covering instructions, confidentiality, security, sub-processors, assistance with rights requests, deletion or return at the end, and audit rights.</p>
+          <p><strong>How it maps to the EU AI Act:</strong> the AI Act uses different roles. The provider builds or places the AI system on the market; the deployer uses it. The vendor is usually the AI Act provider and the GDPR processor, while the bank is the deployer and the GDPR controller. The two sets of roles are assessed separately.</p>
+        </div>
+      </details>
+
       <div role="tablist" aria-label="Crosswalk views" className="flex flex-wrap gap-2 mb-4">
         {TABS.map(t => (
           <button key={t} role="tab" aria-selected={tab === t} type="button" onClick={() => setTab(t)}
