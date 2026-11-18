@@ -3,6 +3,7 @@ import AiSecurityAudit from '../components/aiAssurance/AiSecurityAudit.jsx';
 import AiSecurityFieldGuide from '../components/aiAssurance/AiSecurityFieldGuide.jsx';
 import RaiCrosswalk from '../components/aiAssurance/RaiCrosswalk.jsx';
 import AiArchitectureRisks from '../components/aiAssurance/AiArchitectureRisks.jsx';
+import AiInCompliance from '../components/aiAssurance/AiInCompliance.jsx';
 import AiLifecycleCrosswalk from '../components/aiAssurance/AiLifecycleCrosswalk.jsx';
 import ProcessorPrivacy from '../components/ProcessorPrivacy.jsx';
 import React from 'react';
@@ -192,6 +193,7 @@ export default function AIGovernance({ isDark = false }) {
 
         <RaiCrosswalk />
         <AiArchitectureRisks />
+        <AiInCompliance />
         <AiLifecycleCrosswalk />
         <ProcessorPrivacy />
         <AimsRoadmap />
