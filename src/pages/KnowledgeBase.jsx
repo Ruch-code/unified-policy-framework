@@ -43,6 +43,7 @@ import ZeroTrustShadowIt from '../components/ZeroTrustShadowIt.jsx';
 import InfraNetworkAudit from '../components/InfraNetworkAudit.jsx';
 import AuditReadinessPlan, { ARP_PARTS } from '../components/AuditReadinessPlan.jsx';
 import ImplementationGuide, { IMPL_PARTS } from '../components/ImplementationGuide.jsx';
+import LogisticsSecurity from '../components/LogisticsSecurity.jsx';
 
 const order = ['soc2', 'iso27001', 'iso42001', 'pci', 'hipaa', 'nist', 'gdpr', 'cis', 'hitrust', 'dpdpa', 'fedramp', 'cjis'];
 const EDP_TABS = [
@@ -86,6 +87,7 @@ const TABS = [
   { id: 'erp', label: 'ERP Security Review', icon: ShieldAlert, group: 'IT audit areas', area: 'Internal audit', desc: 'Privileged accounts, critical transactions, SoD, change transports and logging in ERP systems' },
   { id: 'edp', label: 'Endpoint & Data Protection', icon: Smartphone, group: 'GRC: Security architecture', area: 'GRC', desc: 'MDM, DLP, BYOD, ecosystems, mapping, roadmap, evidence and checklists.' },
   { id: 'data-governance', label: 'Data Governance', icon: Shield, group: 'GRC: Security architecture', area: 'GRC', desc: 'Data discovery, classification, labelling, data flow mapping and records of processing' },
+  { id: 'logistics', label: 'Logistics and Supply Chain Security', icon: Network, group: 'GRC: Security architecture', area: 'GRC', desc: 'Security, compliance and privacy for logistics, supply chain and transport platforms: hubs, fleets, driver apps, partners and DPDP' },
   { id: 'crypto', label: 'Crypto Exchanges (VDA)', icon: Key, group: 'GRC: Security architecture', area: 'GRC', desc: 'Security and compliance for crypto exchanges: CERT-In, FIU-IND, DPDP, CCSS, and two CoinDCX incidents as worked examples' },
   { id: 'evidence', label: 'Evidence Automation', icon: Package, group: 'GRC: Programme and tooling', area: 'GRC', desc: 'Automating evidence collection and keeping it audit-ready.' },
   { id: 'tooling', label: 'GRC Tooling', icon: Package, group: 'GRC: Programme and tooling', area: 'GRC', desc: 'GRC tools by category, what evidence they produce and what to watch for.' },
@@ -370,6 +372,7 @@ export default function KnowledgeBase() {
     'cloud-testing': <CloudTestingGuide />,
     'audit-readiness': <AuditReadinessPlan />,
     'implementation': <ImplementationGuide />,
+    'logistics': <LogisticsSecurity />,
     'policy-lifecycle': <PolicyLifecycleTab />,
     streamline: <StreamlineGrc />,
     'finding-classification': <FindingClassification />,

@@ -99,6 +99,7 @@ export default function InterviewPrep({ isDark = false }) {
     'senior-grc-engineering': 'bg-teal-700',
     'lead-grc-situational': 'bg-indigo-700',
     'grc-program-manager': 'bg-teal-700',
+    'logistics-security-head': 'bg-indigo-700',
   };
 
   return (
