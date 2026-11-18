@@ -2208,6 +2208,26 @@
               "reply": "\"I run the AI tool through vendor review: data use, retention, training on our data, and access.\""
             }
           ]
+        },
+        {
+          "q": "Our SOC 2 Type I was six months ago. Can we get a Type II in the next three months?",
+          "a": "Possibly, and it depends on one thing: whether the controls have actually been running, with evidence, since the Type I. A Type II needs an observation period, and many auditors accept three months for a first Type II. So there are two routes. If the controls have been operating since the Type I and we kept the evidence, like access reviews, change approvals and onboarding records, I'd ask the auditor whether the period can cover months that have already passed, say the last three to six months. Then fieldwork could start soon and a report within three months is realistic. If the evidence is patchy, the window has to start now. A three-month window plus two to six weeks of fieldwork and a few weeks for the report puts us closer to four or five months. So I'd say: three months is possible if we've kept the evidence, otherwise plan for five, and in the meantime give customers the Type I with a bridge letter.",
+          "tags": [
+            "Audit",
+            "SOC 2",
+            "Timelines"
+          ],
+          "example": "\"I pulled a sample of quarterly access reviews and change tickets from the last six months before calling the auditor. Everything was there, so we agreed a period that had already ended, and the Type II came out about ten weeks later.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Promising a date before checking the evidence.",
+              "reply": "\"I check that the past months have complete evidence first. That decides whether three months is real or five.\""
+            },
+            {
+              "pitfall": "Forgetting what changed since the Type I.",
+              "reply": "\"If systems or controls changed since the Type I, I tell the auditor up front, because the Type II tests what's running now.\""
+            }
+          ]
         }
       ]
     },
