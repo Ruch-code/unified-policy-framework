@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ChevronDown, ChevronRight, Download, ShieldAlert } from 'lucide-react';
 import { AUDIT_PHASES, AUDIT_TESTS, AUDIT_SEVERITY, AUDIT_REPORT_OUTLINE } from '../../data/aiAssurance';
 import { downloadXlsx } from '../../utils/xlsxExport.js';
@@ -33,6 +33,19 @@ export default function AiSecurityAudit() {
   const [area, setArea] = useState('all');
   const areas = [...new Set(AUDIT_TESTS.map((t) => t.area))];
   const tests = AUDIT_TESTS.filter((t) => area === 'all' || t.area === area);
+  // Deep links such as #ais-08 (used by the field guide) clear the filter, open the test and scroll to it.
+  useEffect(() => {
+    const go = () => {
+      const m = window.location.hash.match(/^#(ais-\d{2})$/i);
+      if (!m) return;
+      const id = m[1].toUpperCase();
+      setArea('all'); setOpen(id);
+      setTimeout(() => document.getElementById(m[1].toLowerCase())?.scrollIntoView({ block: 'start' }), 50);
+    };
+    go();
+    window.addEventListener('hashchange', go);
+    return () => window.removeEventListener('hashchange', go);
+  }, []);
 
   return (
     <section id="ai-security-audit" className="scroll-mt-24 rounded-2xl border border-surface-300 dark:border-surface-dark-300 bg-white dark:bg-slate-900/60 p-5 md:p-8 mb-10">
@@ -50,7 +63,7 @@ export default function AiSecurityAudit() {
 
       <ol className="grid gap-3 md:grid-cols-2 mb-6">
         {AUDIT_PHASES.map((p) => (
-          <li key={p.phase} className="rounded-xl border border-surface-200 dark:border-surface-dark-200 bg-surface-50 dark:bg-slate-900/80 p-4">
+          <li key={p.phase} id={`audit-phase-${p.phase.split('.')[0]}`} className="scroll-mt-24 rounded-xl border border-surface-200 dark:border-surface-dark-200 bg-surface-50 dark:bg-slate-900/80 p-4">
             <h3 className="font-bold text-sm text-gray-900 dark:text-text-dark-primary">{p.phase}</h3>
             <p className="text-xs text-gray-600 dark:text-text-dark-secondary mt-1 italic">{p.goal}</p>
             <ul className="list-disc pl-4 mt-2 space-y-0.5 text-xs text-gray-700 dark:text-text-dark-secondary">{p.activities.map((a) => <li key={a}>{a}</li>)}</ul>
@@ -70,7 +83,7 @@ export default function AiSecurityAudit() {
         {tests.map((t) => {
           const isOpen = open === t.id;
           return (
-            <li key={t.id} className="rounded-xl border border-surface-200 dark:border-surface-dark-200">
+            <li key={t.id} id={t.id.toLowerCase()} className="scroll-mt-24 rounded-xl border border-surface-200 dark:border-surface-dark-200">
               <button type="button" onClick={() => setOpen(isOpen ? null : t.id)} aria-expanded={isOpen} className="w-full flex items-start gap-2 p-3 text-left hover:bg-surface-50 dark:hover:bg-slate-800/60">
                 {isOpen ? <ChevronDown className="w-4 h-4 mt-0.5 shrink-0 text-gray-500" /> : <ChevronRight className="w-4 h-4 mt-0.5 shrink-0 text-gray-500" />}
                 <span className="font-mono text-xs shrink-0 w-14 text-rose-700 dark:text-rose-300">{t.id}</span>
