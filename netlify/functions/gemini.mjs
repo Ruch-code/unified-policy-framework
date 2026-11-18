@@ -56,7 +56,7 @@ Style: plain text, no markdown symbols, no em dashes. Keep technical content acc
 export default async (req, context) => {
   try {
     if (req.method !== 'POST') return json({ message: 'Method not allowed.' }, 405);
-    await connectDb();
+    try { await connectDb(); } catch (e) { console.error('DB connect failed:', e); return json({ message: 'Sign-in service is not reachable right now. Please try again shortly.' }, 503); }
     const user = await authUser(req);
     if (!user) return json({ message: 'Please sign in.' }, 401);
     const { query, context: retrieved, history, structured, mode, interview } = await req.json();
@@ -67,7 +67,7 @@ export default async (req, context) => {
     if (limited) return json({ message: 'Usage limit reached. Please try again later.' }, 429);
 
     const apiKey = process.env.GEMINI_API_KEY;
-    if (!apiKey) return json({ message: 'Gemini API key not configured.' }, 500);
+    if (!apiKey) { console.error('GEMINI_API_KEY is not set'); return json({ message: 'The AI key is not set up on the server (GEMINI_API_KEY).' }, 500); }
 
     const isInterview = mode === 'interview';
     // Real multi-turn conversation so the model can follow up on earlier answers.
@@ -92,7 +92,10 @@ export default async (req, context) => {
       userText = query;
     }
     const multi = isInterview || structured;
-    const call = (tools) => fetch(GEMINI_URL + '?key=' + apiKey, {
+    // Try the main model, then fall back to other models if it is busy or retired.
+    const MODELS = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-2.5-flash-lite'];
+    let model = MODELS[0];
+    const call = (tools) => fetch(GEMINI_URL.replace('gemini-2.5-flash', model) + '?key=' + apiKey, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -104,9 +107,17 @@ export default async (req, context) => {
     });
     // Try with Google Search first, and fall back to the model alone if search is unavailable.
     const useSearch = !!structured && !isInterview;
-    let res = await call(useSearch);
-    if (!res.ok && useSearch) res = await call(false);
-    if (!res.ok) return json({ message: 'Gemini API error.' }, 502);
+    let res = null;
+    for (const m of MODELS) {
+      model = m;
+      try {
+        res = await call(useSearch);
+        if (!res.ok && useSearch) res = await call(false);
+      } catch (e) { console.error('Gemini fetch failed for', m, e); res = null; }
+      if (res && res.ok) break;
+      if (res) console.error('Gemini error for', m, res.status, (await res.text()).slice(0, 300));
+    }
+    if (!res || !res.ok) return json({ message: 'The AI service did not respond. Please try again in a minute.' }, 502);
     const data = await res.json();
     const cand = data?.candidates?.[0];
     const answer = (cand?.content?.parts || []).map((p) => p.text || '').join('').trim();

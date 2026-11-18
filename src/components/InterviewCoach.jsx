@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { parseCoachReply } from '../utils/coachReply.js';
 
-const ROLES = ['GRC Analyst', 'Senior GRC Engineer', 'IT Auditor', 'Third-Party Risk Analyst', 'Information Security Manager', 'Privacy Analyst', 'AI Governance Specialist', 'Technology Risk Manager', 'SOX / ITGC Auditor'];
+const ROLES = ['GRC Analyst', 'Lead GRC Engineer', 'Program Manager, GRC', 'Compliance Analyst', 'Senior GRC Engineer', 'IT Auditor', 'Third-Party Risk Analyst', 'Information Security Manager', 'Privacy Analyst', 'AI Governance Specialist', 'Technology Risk Manager', 'SOX / ITGC Auditor'];
 const LEVELS = ['Entry-level', 'Mid-level', 'Senior', 'Lead / Manager'];
 const FOCUS = ['A balanced mix', 'Technical: frameworks and controls', 'Scenario: audits and findings', 'Behavioural and stakeholder management', 'Vendor risk', 'AI governance and privacy'];
 const KEY = 'onelens_interview_coach';
@@ -23,7 +23,11 @@ async function callCoach(query, history, interview) {
     });
     if (res.status === 401) return { error: 'Please sign in to use interview practice.' };
     if (res.status === 429) return { error: 'You have reached the usage limit for now. Please try again later.' };
-    if (!res.ok) return { error: 'The interviewer is unavailable right now. Please try again in a moment.' };
+    if (!res.ok) {
+      let msg = '';
+      try { msg = (await res.json()).message || ''; } catch { /* no body */ }
+      return { error: `The interviewer is unavailable right now${msg ? `: ${msg}` : '.'} Please try again in a moment.` };
+    }
     const data = await res.json();
     return data.answer ? { text: data.answer } : { error: 'No reply received. Please try again.' };
   } catch { return { error: 'The request timed out. Please try again.' }; } finally { clearTimeout(t); }
@@ -84,8 +88,11 @@ export default function InterviewCoach() {
         <p className="font-semibold">Interview practice</p>
         <p className="text-slate-600 dark:text-[#94a3b8]">The interviewer asks one question at a time. After each answer you get a score, what worked, what to improve, and a model answer showing what to say. Questions follow up on your earlier answers.</p>
         <label className="block"><span className="text-xs font-semibold">Role</span>
-          <input list="coach-roles" value={setup.role} onChange={(e) => setSetup({ ...setup, role: e.target.value })} className={FIELD} aria-label="Role you are interviewing for" />
-          <datalist id="coach-roles">{ROLES.map((r) => <option key={r} value={r} />)}</datalist>
+          <select value={ROLES.includes(setup.role) ? setup.role : 'Other'} onChange={(e) => setSetup({ ...setup, role: e.target.value === 'Other' ? '' : e.target.value })} className={FIELD} aria-label="Role you are interviewing for">
+            {ROLES.map((r) => <option key={r}>{r}</option>)}
+            <option value="Other">Other (type your own)</option>
+          </select>
+          {!ROLES.includes(setup.role) && <input value={setup.role} onChange={(e) => setSetup({ ...setup, role: e.target.value })} placeholder="Type the role, e.g. Lead GRC Engineer" className={`${FIELD} mt-2`} aria-label="Custom role" />}
         </label>
         <label className="block"><span className="text-xs font-semibold">Level</span>
           <select value={setup.level} onChange={(e) => setSetup({ ...setup, level: e.target.value })} className={FIELD}>{LEVELS.map((l) => <option key={l}>{l}</option>)}</select>
