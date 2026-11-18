@@ -1,7 +1,7 @@
 import FlowDiagram, { CompareDiagram } from './FlowDiagram.jsx';
 
 // Deeper dive on how Bitcoin, exchanges and decentralised exchanges work, written for a GRC reader.
-// Written in our own words; the reading list names the books for further study and does not quote them.
+// Written in our own words.
 const CARD = 'bg-white border border-gray-200 rounded-2xl p-6 mb-8 dark:bg-gray-800 dark:border-gray-700';
 const SUMMARY = 'cursor-pointer text-xl font-bold text-gray-900 dark:text-white';
 const P = 'text-sm text-gray-700 dark:text-gray-300';
@@ -20,17 +20,6 @@ function Table({ head, rows, min = 640 }) {
     </div>
   );
 }
-
-const READING = [
-  ['Inventing Bitcoin', 'Yan Pritzker', 'Start here', 'Plain-language explanation of keys, nodes and mining.'],
-  ['The Basics of Bitcoins and Blockchains', 'Antony Lewis', 'Start here', 'Broad, non-technical overview of the ecosystem, wallets, exchanges and regulation.'],
-  ['Mastering Bitcoin', 'Andreas M. Antonopoulos', 'Technical', 'How the network, transactions and consensus actually work.'],
-  ['The Bitcoin Standard', 'Saifedean Ammous', 'Economics', 'The economic argument for a fixed-supply currency. Read it as one viewpoint.'],
-  ['Cryptoassets', 'Chris Burniske and Jack Tatar', 'Business', 'Types of cryptoassets and how investors and platforms use them.'],
-  ['Kings of Crypto', 'Jeff John Roberts', 'Exchange business', 'The growth of a large centralised exchange and its regulatory and security hurdles.'],
-  ['The Truth Machine', 'Michael J. Casey and Paul Vigna', 'Enterprise', 'How banks and large companies use blockchain, and where it helps transparency.'],
-  ['Cryptography and Network Security', 'ITL Education Solutions', 'Foundations', 'Hashing, public key cryptography and digital signatures behind wallets and TLS.'],
-];
 
 export default function CryptoDeepDive() {
   return (
@@ -108,8 +97,6 @@ export default function CryptoDeepDive() {
           'GRC angle: permissioned networks still need access control, key management, change control and a clear operating agreement between members.',
         ]} />
 
-        <h3 className={H}>Further reading</h3>
-        <Table head={['Book', 'Author', 'Level', 'Best for']} rows={READING} />
         <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">This section is written in our own words as general guidance. Figures such as block time, halving interval and supply cap are approximate protocol parameters.</p>
       </div>
     </details>
