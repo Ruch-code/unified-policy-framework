@@ -1973,6 +1973,241 @@
               "reply": "\"I tell the auditor early with a new date, so it doesn't land on the last day.\""
             }
           ]
+        },
+        {
+          "q": "How would you build the security policy set and control framework for a company with several frameworks?",
+          "a": "I'd build one internal control framework and map every framework to it, rather than writing policies per framework. I start with a short set of policies approved by leadership: information security, access control, change management, incident response, business continuity, vendor management, data classification and retention, acceptable use, and secure development. Each policy states the rule; procedures and standards hold the detail, so policies don't need rewriting every time a tool changes. Then each control gets an ID, an owner, a frequency, the evidence it produces, and its mapping to SOC 2, ISO 27001 Annex A and anything else in scope. Policies are reviewed and approved at least yearly, and staff acknowledge them.",
+          "tags": [
+            "Policies",
+            "Control framework"
+          ],
+          "example": "\"One access review control mapped to SOC 2 CC6.2, CC6.3 and ISO A.5.18, so one quarterly review covered both audits.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Writing a separate policy set per framework.",
+              "reply": "\"I keep one policy set and one control list, and map the frameworks to it.\""
+            },
+            {
+              "pitfall": "Putting tool-specific steps in policies.",
+              "reply": "\"Policies state the rule. Procedures hold the tool steps, so a tool change doesn't need a new board approval.\""
+            }
+          ]
+        },
+        {
+          "q": "How do you run a risk assessment and keep the risk register useful?",
+          "a": "I run a formal assessment at least yearly and after big changes, like a new product, acquisition or major vendor. I identify risks from assets, threats, past incidents, audit findings and vendor reviews, score likelihood and impact on an agreed scale, and compare against the risk appetite leadership has approved. Each risk gets an owner, a treatment decision (mitigate, accept, transfer or avoid), linked controls and a due date. Accepted risks need sign-off at the right level. To keep the register alive, I review high risks monthly with owners and the full register quarterly, and new findings or incidents feed straight into it.",
+          "tags": [
+            "Risk",
+            "Risk register"
+          ],
+          "example": "\"A vendor outage led us to add a concentration risk on a single cloud region. It went into the register that week with an owner and a failover test date.\"",
+          "pitfalls": [
+            {
+              "pitfall": "A register that only gets updated before audits.",
+              "reply": "\"New incidents and findings feed in as they happen, and high risks are reviewed monthly.\""
+            },
+            {
+              "pitfall": "Accepting risks without the right sign-off.",
+              "reply": "\"Accepted risks above a set score need sign-off from the level that owns that risk.\""
+            }
+          ]
+        },
+        {
+          "q": "How do you assess a new vendor's security, and how do you scale it?",
+          "a": "I tier vendors by risk first: what data they touch, how critical they are, and their access to our systems. High-tier vendors get a full review: SOC 2 Type II or ISO 27001 certificate, a questionnaire for gaps, a check of exceptions and the controls we're expected to run ourselves (CUECs), plus contract terms like a DPA, breach notice and right to audit. Low-tier vendors get a light check. Findings go to the business owner with a clear recommendation, and accepted risks are recorded. I reassess high-tier vendors yearly and track report expiry dates, so nothing lapses.",
+          "tags": [
+            "Vendor risk",
+            "TPRM"
+          ],
+          "example": "\"Tiering cut full reviews from 80 vendors to 15, which meant the ones that mattered got a proper look.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Sending the same long questionnaire to every vendor.",
+              "reply": "\"I tier first, so effort goes to vendors that hold our data or run critical services.\""
+            },
+            {
+              "pitfall": "Accepting a SOC 2 report without reading the exceptions.",
+              "reply": "\"I read the exceptions and CUECs, because that's where the real risk is.\""
+            }
+          ]
+        },
+        {
+          "q": "How do you manage penetration testing and vulnerability management?",
+          "a": "Pen testing is at least yearly and after major changes, by an independent tester, with a clear scope covering the app, APIs and cloud. Vulnerability scanning runs continuously or at least monthly on infrastructure, containers and dependencies. Every finding gets a severity and a fix deadline from our policy, for example critical within a short window and lower severities over longer ones, with the exact days set by the policy. Owners fix, we retest to confirm, and anything that can't be fixed in time goes through a documented exception with a compensating control and an expiry date. I report open findings by age and severity, and share the pen test summary with customers on request.",
+          "tags": [
+            "Pen testing",
+            "Vulnerability management"
+          ],
+          "example": "\"We had 30 overdue mediums. Grouping them by service owner and setting weekly targets cleared them in a month.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Treating the pen test report as the end of the job.",
+              "reply": "\"The job ends at the retest that proves the fix, not the report.\""
+            },
+            {
+              "pitfall": "Missing deadlines with no exception record.",
+              "reply": "\"If a fix will be late, there's a written exception with a compensating control and an expiry date.\""
+            }
+          ]
+        },
+        {
+          "q": "How do you make sure incident response and BCP/DR actually work, not just exist on paper?",
+          "a": "I test them. The incident response plan names roles, severity levels, escalation, and who decides on customer and regulator notifications, with timelines like CERT-In's 6 hours in India or GDPR's 72 hours to the regulator. I run a tabletop at least yearly with engineering, legal and leadership using a realistic scenario. For BCP and DR, I make sure critical systems have agreed recovery time and recovery point objectives, backups are restore-tested, and failover is exercised. Every test produces a short report with gaps, owners and dates, and real incidents get a post-incident review. That evidence is exactly what auditors ask for.",
+          "tags": [
+            "Incident response",
+            "BCP/DR"
+          ],
+          "example": "\"Our tabletop showed nobody knew who could approve a customer notice. We named the role in the plan the same week.\"",
+          "pitfalls": [
+            {
+              "pitfall": "A plan that's never been tested.",
+              "reply": "\"I run at least one tabletop a year and restore-test backups, and keep the evidence.\""
+            },
+            {
+              "pitfall": "Forgetting regulatory notification deadlines.",
+              "reply": "\"The plan lists every notification deadline that applies, with the person who decides.\""
+            }
+          ]
+        },
+        {
+          "q": "What cloud security controls do you check in AWS, Azure or GCP?",
+          "a": "The same areas in each cloud. Identity: no root or owner use, MFA everywhere, least privilege roles, no long-lived keys. Logging: CloudTrail, Azure Activity Log or GCP Audit Logs on in every account, sent to a central, protected store with retention. Data: encryption at rest and in transit, with key management in KMS or Key Vault, and no public storage buckets. Network: security groups and firewall rules reviewed, no open management ports. Monitoring: GuardDuty, Defender for Cloud or Security Command Center turned on with alerts routed. I test them directly in the console or CLI, not only in a dashboard, and track drift with a cloud security posture tool.",
+          "tags": [
+            "Cloud security",
+            "AWS",
+            "Azure",
+            "GCP"
+          ],
+          "example": "\"A posture scan found a public storage bucket from an old test. We closed it the same day and added a policy that blocks public buckets by default.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Relying only on a dashboard's green tick.",
+              "reply": "\"I spot-check the setting in the console or CLI so I know the tool is reading it correctly.\""
+            },
+            {
+              "pitfall": "Checking only the production account.",
+              "reply": "\"I check every account and project, because old test accounts are where the gaps usually are.\""
+            }
+          ]
+        },
+        {
+          "q": "Walk me through how you audit IAM, encryption, logging, EDR and network security.",
+          "a": "IAM: joiner, mover and leaver evidence, quarterly access reviews with documented removals, MFA and SSO coverage, and privileged access approved and logged. Encryption: TLS 1.2 or higher in transit, encryption at rest for databases and backups, and key rotation with restricted key access. Logging and SIEM: the right sources feed the SIEM, alerts are tuned and triaged, and retention meets policy. EDR: coverage across all endpoints and servers, with a report of devices missing the agent. Network: segmentation between production and corporate, firewall rule reviews, and no direct admin access from the internet. For each, I compare the population (for example all devices or all users) against the tool, because gaps hide in what isn't enrolled.",
+          "tags": [
+            "IAM",
+            "Encryption",
+            "Logging",
+            "EDR",
+            "Network"
+          ],
+          "example": "\"Comparing the HR list to the EDR console found 12 laptops without the agent, all from one office. Fixed in a week.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Trusting the tool's own count.",
+              "reply": "\"I compare the tool against the full population from HR or the asset inventory.\""
+            },
+            {
+              "pitfall": "Checking that access reviews happened but not that removals followed.",
+              "reply": "\"I check that every removal flagged in the review was actually done.\""
+            }
+          ]
+        },
+        {
+          "q": "How do you handle customer security questionnaires at scale?",
+          "a": "I keep an approved answer library mapped to our controls, with evidence links and an owner for each topic, and review it every quarter. Most questionnaires are then 80 percent reuse. I share a trust center or security pack early, which often removes the need for a questionnaire. For new or tricky questions, I confirm with the control owner instead of guessing, and anything we can't meet goes to sales and legal before it's promised. AI tools can draft answers from the library, but a person reviews every answer before it goes out, because the answer becomes a contractual commitment.",
+          "tags": [
+            "Questionnaires",
+            "Sales enablement"
+          ],
+          "example": "\"Moving to an answer library and a trust center cut our average turnaround from about 10 days to 3.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Answering optimistically to help close the deal.",
+              "reply": "\"Every answer must be true today. Anything we can't meet goes to legal and sales first.\""
+            },
+            {
+              "pitfall": "Letting AI answers go out unchecked.",
+              "reply": "\"AI drafts, a person approves. The answer is a commitment, so it needs an owner.\""
+            }
+          ]
+        },
+        {
+          "q": "How do you embed data privacy requirements into the GRC program?",
+          "a": "I start with a data inventory and records of processing: what personal data we hold, why, where it goes and how long we keep it. That drives the rest: lawful basis and notices, retention and deletion, data subject requests with tracked deadlines, processor agreements with vendors, and DPIAs for high-risk processing. I map privacy controls into the same control framework, for example GDPR, India's DPDP Act and ISO 27701, so one review covers several laws. I also make sure the incident plan covers personal data breach notices.",
+          "tags": [
+            "Privacy",
+            "GDPR",
+            "DPDP"
+          ],
+          "example": "\"A data map showed support tickets kept customer IDs forever. We set a 24-month retention and automated the deletion.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Treating privacy as a separate legal project.",
+              "reply": "\"Privacy controls sit in the same control framework and evidence process as security.\""
+            },
+            {
+              "pitfall": "No data inventory.",
+              "reply": "\"You can't meet deletion or access requests if you don't know where the data is.\""
+            }
+          ]
+        },
+        {
+          "q": "How do you make security awareness training effective, not a tick box?",
+          "a": "I keep the annual training short and role-based: everyone gets the basics, while engineers get secure coding, finance gets payment fraud, and admins get privileged access. New joiners complete it within their first weeks. I add regular phishing simulations and short reminders tied to real incidents or trends. I measure completion, phishing click and report rates, and whether people report suspicious messages, and follow up with teams that lag. Completion records go to the auditor; the trends go to leadership.",
+          "tags": [
+            "Awareness",
+            "Training"
+          ],
+          "example": "\"Report rates on phishing simulations rose from about 20 to 60 percent once we added a one-click report button and thanked people who used it.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Measuring only completion.",
+              "reply": "\"Completion is the audit evidence. Report rates show whether behaviour changed.\""
+            },
+            {
+              "pitfall": "One long generic course for everyone.",
+              "reply": "\"Short, role-based modules work better and get finished.\""
+            }
+          ]
+        },
+        {
+          "q": "How do you report security and compliance to the board versus to customers?",
+          "a": "The board wants risk and decisions: top risks against appetite and their trend, audit and certification status, major incidents and lessons, and where we need investment or a decision. I keep it to a page or two with clear red, amber and green, and no jargon. Customers want assurance: our certifications and reports, how we protect their data, incident notice terms, and answers to their questionnaires, usually through a trust center and NDA-protected reports. The facts are the same in both, just framed for what each audience needs to decide.",
+          "tags": [
+            "Board reporting",
+            "Customer reporting"
+          ],
+          "example": "\"The board pack showed one red risk with a clear funding ask. It was approved in that meeting.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Sending the board technical detail.",
+              "reply": "\"The board gets risk, trend and the decision needed. The detail stays in the appendix.\""
+            },
+            {
+              "pitfall": "Telling customers more than the contract allows.",
+              "reply": "\"Customer reports go out under NDA, and the incident terms match the contract.\""
+            }
+          ]
+        },
+        {
+          "q": "How do you see AI changing security compliance work, for example tools like SiftHub?",
+          "a": "AI helps most with repetitive text work. Tools like SiftHub draft answers to security questionnaires and RFPs from an approved knowledge base, and GRC platforms use AI to map controls across frameworks, summarise vendor SOC 2 reports, flag missing evidence and draft policy updates. That frees time for risk judgment. The risks are inaccurate or outdated answers sent as commitments, confidential data going to the AI vendor, and over-trust. So I'd treat the tool as a vendor: check its security, data use and retention terms, connect it only to approved, current sources, keep a human reviewer on every customer-facing answer, and log what it produced. I'd measure it by turnaround time and the error rate found in review.",
+          "tags": [
+            "AI in compliance",
+            "Tools",
+            "Questionnaires"
+          ],
+          "example": "\"In a pilot, AI drafts saved most of the writing time, but review still caught a few answers from an outdated policy. That's why the approved source list matters.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Saying AI will do the compliance work.",
+              "reply": "\"AI drafts and summarises. Judgment and sign-off stay with people.\""
+            },
+            {
+              "pitfall": "Forgetting the tool is a vendor too.",
+              "reply": "\"I run the AI tool through vendor review: data use, retention, training on our data, and access.\""
+            }
+          ]
         }
       ]
     },
