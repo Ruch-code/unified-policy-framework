@@ -10,6 +10,7 @@ import { withEvidence, appendToLevel, extendTasks } from "../../data/playbookEvi
 import { LI_L1_CLAUSES, LI_EXTEND } from "../../data/playbookAdditions/iso27001.js";
 import Iso27001EvidenceLibrary from '../../components/Iso27001EvidenceLibrary.jsx';
 import { Iso2013vs2022, Iso27001MandatoryDocs } from '../../components/iso/Iso27001Reference.jsx';
+import ByodScenario from '../../components/iso/ByodScenario.jsx';
 import Iso27001AuditJourney from '../../components/Iso27001AuditJourney.jsx';
 import IsoImplementationTracker from '../../components/IsoImplementationTracker.jsx';
 
@@ -237,6 +238,7 @@ export default function Iso27001LiPage() {
       <Iso27001AuditJourney />
       <RiskCrossCheckBlock frameworkId="iso27001" />
       <Fold title="Scoping by theme"><Iso27001ThemeScoping /></Fold>
+      <ByodScenario />
       <Fold title="ISO 27001 topic guides"><Iso27001Sections basePath="/iso/27001/li" /></Fold>
       <Fold title="Annex A coverage"><AnnexACoverage /></Fold>
       <section id="iso-tracker" className="max-w-6xl mx-auto px-4 my-8 scroll-mt-24"><IsoImplementationTracker /></section>
