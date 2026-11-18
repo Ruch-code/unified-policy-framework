@@ -42,6 +42,7 @@ import { OtherFrameworksKb, GrcToolingKb } from '../components/OtherFrameworksKb
 import ZeroTrustShadowIt from '../components/ZeroTrustShadowIt.jsx';
 import InfraNetworkAudit from '../components/InfraNetworkAudit.jsx';
 import AuditReadinessPlan, { ARP_PARTS } from '../components/AuditReadinessPlan.jsx';
+import ImplementationGuide, { IMPL_PARTS } from '../components/ImplementationGuide.jsx';
 
 const order = ['soc2', 'iso27001', 'iso42001', 'pci', 'hipaa', 'nist', 'gdpr', 'cis', 'hitrust', 'dpdpa', 'fedramp', 'cjis'];
 const EDP_TABS = [
@@ -60,6 +61,7 @@ const EDP_TABS = [
 ];
 const TABS = [
   { id: 'policies', label: 'Policies → Controls', icon: BookOpenCheck, group: 'GRC: Start here', area: 'GRC', desc: 'How each policy area maps to frameworks and controls, with readiness timelines.' },
+  { id: 'implementation', label: 'Implementation Guide (SOC 2, ISO 27001, HIPAA)', icon: Layers, group: 'GRC: Start here', area: 'GRC', desc: 'A 12-week plan with intake, scope, control build sheet, evidence plan, testing, gap tracker and deliverables', parts: IMPL_PARTS, partPrefix: 'impl' },
   { id: 'streamline', label: 'Streamlining GRC', icon: Layers, group: 'GRC: Start here', area: 'GRC', desc: 'Step by step: one control set, right-sized scope, one calendar, automated evidence and measures' },
   { id: 'policy-lifecycle', label: 'Policy Lifecycle', icon: BookOpenCheck, group: 'GRC: Start here', area: 'GRC', desc: 'Policy, standard, procedure and guideline: drafting, approval, acknowledgement and review' },
   { id: 'audit', label: 'Audit & Rebuttals', icon: ShieldAlert, group: 'Fieldwork and findings', area: 'Internal audit', desc: 'Common audit observations for the selected framework and how to respond.' },
@@ -367,6 +369,7 @@ export default function KnowledgeBase() {
     'data-governance': <DataGovernanceTab />,
     'cloud-testing': <CloudTestingGuide />,
     'audit-readiness': <AuditReadinessPlan />,
+    'implementation': <ImplementationGuide />,
     'policy-lifecycle': <PolicyLifecycleTab />,
     streamline: <StreamlineGrc />,
     'finding-classification': <FindingClassification />,
