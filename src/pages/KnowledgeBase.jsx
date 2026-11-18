@@ -24,6 +24,8 @@ import ItAuditToolkit from '../components/ItAuditToolkit.jsx';
 import RcsaTab from '../components/RcsaTab.jsx';
 import CryptoTabletopScenario from '../components/crypto/CryptoTabletopScenario.jsx';
 import DataGovernanceTab from '../components/DataGovernanceTab.jsx';
+import CloudTestingGuide from '../components/CloudTestingGuide.jsx';
+import { PARTS as CCT_PARTS } from '../data/cloudTestingGuide.js';
 import StreamlineGrc from '../components/toolkit/StreamlineGrc.jsx';
 import FindingClassification from '../components/toolkit/FindingClassification.jsx';
 import { CustomerTrustTab, PolicyLifecycleTab, DueDiligenceTab, AwarenessTab, ErpReviewTab } from '../components/toolkit/Phase4Modules.jsx';
@@ -76,6 +78,7 @@ const TABS = [
   { id: 'sysdesign', label: 'System Design for GRC', icon: Network, group: 'GRC: Engineering and change', area: 'GRC', desc: '53 system design concepts explained for GRC work, with examples.' },
   { id: 'zerotrust', label: 'Zero Trust and Shadow IT', icon: BookOpenCheck, group: 'GRC: Security architecture', area: 'GRC', desc: 'Zero trust principles and shadow IT, with practical examples.' },
   { id: 'infranet', label: 'Infra & Network Audit', icon: Network, group: 'IT audit areas', area: 'Internal audit', desc: 'Infrastructure and network audit areas and evidence.' },
+  { id: 'cloud-testing', label: 'Cloud Control Testing Guide', icon: ShieldAlert, group: 'IT audit areas', area: 'Internal audit', desc: 'Testing SOC 2 CC6, CC7, CC8, A1 and HIPAA 164.308 and 164.312 directly in AWS, GCP and Azure', parts: CCT_PARTS },
   { id: 'erp', label: 'ERP Security Review', icon: ShieldAlert, group: 'IT audit areas', area: 'Internal audit', desc: 'Privileged accounts, critical transactions, SoD, change transports and logging in ERP systems' },
   { id: 'edp', label: 'Endpoint & Data Protection', icon: Smartphone, group: 'GRC: Security architecture', area: 'GRC', desc: 'MDM, DLP, BYOD, ecosystems, mapping, roadmap, evidence and checklists.' },
   { id: 'data-governance', label: 'Data Governance', icon: Shield, group: 'GRC: Security architecture', area: 'GRC', desc: 'Data discovery, classification, labelling, data flow mapping and records of processing' },
@@ -108,6 +111,13 @@ function useCopy() {
 export default function KnowledgeBase() {
   const [fw, setFw] = useState('soc2');
   const [tab, setTab] = useState('policies');
+  // Section in view inside a topic with sub-entries (Cloud Control Testing Guide), for sidebar highlighting.
+  const [subActive, setSubActive] = useState('');
+  useEffect(() => {
+    const on = (e) => setSubActive(e.detail);
+    window.addEventListener('kb-subsection', on);
+    return () => window.removeEventListener('kb-subsection', on);
+  }, []);
   const [navFilter, setNavFilter] = useState('');
   const kbContentRef = useRef(null);
   const activeTab = TABS.find((t) => t.id === tab) || TABS[0];
@@ -353,6 +363,7 @@ export default function KnowledgeBase() {
     'it-audit': <ItAuditToolkit />,
     rcsa: <RcsaTab />,
     'data-governance': <DataGovernanceTab />,
+    'cloud-testing': <CloudTestingGuide />,
     'policy-lifecycle': <PolicyLifecycleTab />,
     streamline: <StreamlineGrc />,
     'finding-classification': <FindingClassification />,
@@ -403,6 +414,14 @@ export default function KnowledgeBase() {
                           className={`btn btn-ghost w-full !justify-start text-left px-2 py-1.5 rounded text-sm ${tab === t.id ? 'is-selected' : '!font-normal'}`}>
                           {t.label}
                         </button>
+                        {tab === t.id && t.parts && (
+                          <ul className="ml-3 mt-1 mb-2 border-l border-gray-200 dark:border-slate-700 pl-2 space-y-0.5" aria-label={`${t.label} sections`}>
+                            {t.parts.map(([pid, plabel]) => (
+                              <li key={pid}><a href={`#cct-${pid}`} aria-current={subActive === pid ? 'true' : undefined}
+                                className={`block rounded px-2 py-0.5 text-xs ${subActive === pid ? 'is-selected font-semibold' : 'text-gray-600 dark:text-slate-300 hover:underline'}`}>{plabel}</a></li>
+                            ))}
+                          </ul>
+                        )}
                       </li>
                     ))}
                   </ul>

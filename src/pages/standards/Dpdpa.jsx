@@ -281,7 +281,7 @@ export default function Dpdpa() {
   return (
     <>
       <LearningFrameworkPage framework={FRAMEWORK} />
-      <div className="max-w-6xl mx-auto px-4 my-8"><DpdpaUpdates /></div>
+      <div id="dpdpa-updates" className="max-w-6xl mx-auto px-4 my-8 scroll-mt-24"><DpdpaUpdates /></div>
       <IndiaUsScenarios />
       <RiskCrossCheckBlock frameworkId="dpdpa" />
     </>

@@ -891,10 +891,8 @@ const TEMPLATE_ENTRIES = [
     label: 'Cloud Control Testing Guide: AWS, GCP and Azure',
     desc: 'How auditors test cloud infrastructure controls for SOC 2 (CC6, CC7, CC8, A1) and HIPAA (164.308, 164.312): test procedures, CLI verification, evidence, pass criteria and exceptions.',
     keywords: ['cloud', 'aws', 'gcp', 'azure', 'cloudtrail', 'guardduty', 'iam', 'kms', 's3', 'eks', 'gke', 'entra', 'defender', 'control testing', 'audit testing', 'cli', 'evidence', 'sampling', 'cc6', 'cc7', 'cc8', 'a1', '164.312', '164.308', 'continuous monitoring'],
-    path: '/',
-    tab: 'regional',
-    anchorId: 'cloud-control-testing',
-    mode: 'hash',
+    path: '/knowledge?topic=cloud-testing',
+    mode: 'route',
   },
   {
     id: 'access-review-template',
