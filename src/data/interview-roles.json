@@ -1714,6 +1714,145 @@
               "reply": "\"I handle it privately and fix the process, so people feel safe telling me when something goes wrong.\""
             }
           ]
+        },
+        {
+          "q": "Walk me through how you build the yearly compliance plan.",
+          "a": "I start from the fixed dates: the external audit windows, ISO surveillance or recertification, and customer commitments. Then I add the recurring controls around them: quarterly access reviews, annual policy reviews, vendor reviews, risk assessment, BCP and incident tests, training and the internal audit. I spread them so no month is overloaded and nothing lands in the middle of fieldwork. Each item gets an owner, a due date and the evidence it produces. I share the calendar with control owners at the start of the year and review it monthly, so the audit becomes a check of work already done, not a scramble.",
+          "tags": [
+            "Planning",
+            "Compliance calendar"
+          ],
+          "example": "\"I moved the annual risk assessment and policy review to two months before the SOC 2 window, so the auditor saw fresh, signed versions instead of ones done the week before.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Treating the plan as an audit-week checklist.",
+              "reply": "\"My plan runs all year. The audit only tests whether the recurring controls actually happened.\""
+            },
+            {
+              "pitfall": "Putting every review in the same month.",
+              "reply": "\"I spread reviews across the year so control owners aren't hit with everything at once.\""
+            }
+          ]
+        },
+        {
+          "q": "We need SOC 2 Type II and ISO 27001 within a year. How would you plan it?",
+          "a": "I'd run one program, not two. First a gap assessment against both, mapping to one control set, since most controls overlap. Then a remediation phase with owners and dates, prioritised by audit risk. For ISO I need the ISMS pieces early: scope, risk assessment, Statement of Applicability, internal audit and management review before Stage 1. For SOC 2 Type II the observation window has to start once controls are actually running, usually three to six months before the report date. So the order is gap assessment, fix, start the SOC 2 window, ISO Stage 1 and Stage 2 during the window, then the SOC 2 fieldwork. I'd share the timeline with leadership up front, including what could push it.",
+          "tags": [
+            "Planning",
+            "Multi-framework",
+            "Roadmap"
+          ],
+          "example": "\"Mapping both frameworks to one control set cut the evidence requests roughly in half, because one access review satisfied both.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Starting the Type II window before controls are working.",
+              "reply": "\"I only start the window once controls have been running cleanly for a few weeks, otherwise we're buying exceptions.\""
+            },
+            {
+              "pitfall": "Running the two frameworks as separate projects.",
+              "reply": "\"I use one control set mapped to both, so each piece of evidence is collected once.\""
+            }
+          ]
+        },
+        {
+          "q": "Fieldwork is in six weeks and readiness is at 60 percent. What's your plan?",
+          "a": "First I'd sort the open items by audit impact: controls in scope with no evidence at all come first, then items with weak evidence, then nice-to-haves. I'd confirm with the auditor what's really in scope so we don't chase the wrong things. Each remaining item gets one owner and a date, and I'd run a short weekly check-in, or twice weekly in the last two weeks. Where something genuinely can't be fixed in time, I'd tell leadership early and decide together: accept a likely exception, add a compensating control, or move the date. Surprises are worse than a known gap.",
+          "tags": [
+            "Planning",
+            "Audit readiness",
+            "Prioritisation"
+          ],
+          "example": "\"I split 40 open items into must, should and later. The must list was 12 items, and we closed all 12 before fieldwork.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Trying to close everything at the same priority.",
+              "reply": "\"I rank by audit impact so the effort goes where an exception would actually land.\""
+            },
+            {
+              "pitfall": "Hiding the gap until the last week.",
+              "reply": "\"I tell leadership early what won't make it, with options, so the decision is theirs and not a surprise.\""
+            }
+          ]
+        },
+        {
+          "q": "How do you plan your team's workload when everything feels urgent?",
+          "a": "I list the commitments with real dates, like audits, customer deadlines and regulatory filings, and treat those as fixed. Everything else gets ranked by risk and effort. I look at capacity honestly, including leave and the time reviews actually take, and I keep some buffer for the unplanned requests that always come, like security questionnaires. If demand is more than capacity, I don't quietly overload people. I show my manager what fits, what doesn't, and the risk of dropping each item, and ask them to choose. I also look for repeat work to automate or template, because that is where capacity comes from long term.",
+          "tags": [
+            "Planning",
+            "Capacity",
+            "Prioritisation"
+          ],
+          "example": "\"Questionnaires were eating two days a week. A reusable answer library cut that to half a day.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Saying yes to everything.",
+              "reply": "\"I show what fits in the capacity we have and let leadership choose what moves.\""
+            },
+            {
+              "pitfall": "Planning with no buffer.",
+              "reply": "\"I keep some time free for unplanned requests, because they always come.\""
+            }
+          ]
+        },
+        {
+          "q": "How would you plan and justify the GRC budget for next year?",
+          "a": "I tie every line to a business outcome. The fixed costs are the audits themselves. Then tooling, like a compliance platform, which I justify by the hours it saves on evidence collection and the deals it helps close faster. Then people, based on the number of frameworks, customers and control owners we support. I compare the cost to the risk it reduces, for example revenue blocked by a missing certificate or the cost of a failed audit. I present options at two or three levels so leadership can see what each level buys and what it leaves out.",
+          "tags": [
+            "Planning",
+            "Budget",
+            "Leadership"
+          ],
+          "example": "\"I showed that three enterprise deals were waiting on ISO 27001. That made the audit budget an easy approval.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Asking for budget in compliance terms only.",
+              "reply": "\"I explain spend in business terms: deals unblocked, hours saved, risk reduced.\""
+            },
+            {
+              "pitfall": "Giving one take-it-or-leave-it number.",
+              "reply": "\"I give options at a few levels so leadership can trade cost against coverage.\""
+            }
+          ]
+        },
+        {
+          "q": "What metrics would you use to track the GRC program, and how do you report them?",
+          "a": "I keep it short and tied to decisions. For operations: controls passing versus failing, overdue reviews, evidence collected on time, and time to close audit findings. For risk: the number of high risks above appetite and how long they've been open. For the business: questionnaire turnaround time and certifications held or due. I report monthly to leadership on one page, red, amber and green with a trend, and only raise the items where I need a decision or help. Metrics that never change a decision get dropped.",
+          "tags": [
+            "Planning",
+            "Metrics",
+            "Reporting"
+          ],
+          "example": "\"My monthly page had six numbers and three asks. Leadership started reading it because it never took more than five minutes.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Reporting activity instead of outcomes.",
+              "reply": "\"I report what changed in risk and readiness, not how many meetings happened.\""
+            },
+            {
+              "pitfall": "Long dashboards nobody reads.",
+              "reply": "\"One page, a trend, and the decisions I need. Anything else stays in the detail.\""
+            }
+          ]
+        },
+        {
+          "q": "Halfway through the plan, a key control owner leaves and the audit date can't move. What do you do?",
+          "a": "First I'd find out exactly what they owned and what state it's in: which controls, what evidence exists, and what's due. I'd get a handover from them if they're still serving notice, and make sure access and knowledge aren't lost. Then I'd agree an interim owner with their manager quickly, even if it's temporary, and give them a short, clear list. I'd tell the auditor early if the change affects a control, for example a new approver, and keep evidence of the handover. Afterwards, I'd fix the root cause: every critical control should have a named backup and written steps, so one person leaving can't put the audit at risk.",
+          "tags": [
+            "Planning",
+            "Continuity",
+            "Audit readiness"
+          ],
+          "example": "\"After that, we added a backup owner column to the control register. The next time someone left, the handover took a day.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Waiting for a replacement hire.",
+              "reply": "\"I name an interim owner straight away. The audit doesn't wait for hiring.\""
+            },
+            {
+              "pitfall": "Not telling the auditor about the change.",
+              "reply": "\"If an approver changes mid-period, I tell the auditor and keep evidence of the handover, so it isn't an exception later.\""
+            }
+          ]
         }
       ]
     },
