@@ -1853,6 +1853,126 @@
               "reply": "\"If an approver changes mid-period, I tell the auditor and keep evidence of the handover, so it isn't an exception later.\""
             }
           ]
+        },
+        {
+          "q": "How do you start an external audit? Walk me through the first two weeks.",
+          "a": "Before the kickoff I confirm the basics with the audit firm: framework, scope (systems, locations, trust services criteria or ISO clauses), the audit period, key dates and who the auditor's contact is. I also confirm the engagement letter is signed. Then I run a kickoff meeting with the auditor and our control owners: scope, timeline, how requests will be sent, response times we commit to, and who approves evidence before it goes out. Straight after, I get the request list (often called the PBC list, provided by client), assign every item an owner and a due date, and set up a shared tracker. In the first two weeks I aim to send the easy, policy-level items early, book the walkthrough meetings, and flag anything I already know is weak so it isn't a surprise.",
+          "tags": [
+            "Audit",
+            "Kickoff",
+            "Planning"
+          ],
+          "example": "\"At kickoff we agreed a 3 business day turnaround for requests and one GRC reviewer for all evidence. Fieldwork closed a week early because nothing went to the auditor unchecked.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Letting control owners send evidence straight to the auditor.",
+              "reply": "\"Every item goes through one GRC review first, so the auditor gets complete, consistent evidence.\""
+            },
+            {
+              "pitfall": "Starting without agreeing scope and dates in writing.",
+              "reply": "\"I confirm scope, period and dates in writing at kickoff so there's no argument in the last week.\""
+            }
+          ]
+        },
+        {
+          "q": "What does a typical SOC 2 timeline look like, Type I versus Type II?",
+          "a": "Timelines vary by company and auditor, so I give ranges. Readiness, meaning gap assessment and fixing gaps, usually takes about two to four months for a company starting out. A Type I is a point-in-time test of control design: fieldwork is usually one to three weeks, and the report follows a few weeks later. A Type II tests that controls operated over a period. The observation window is commonly three to twelve months; first-time reports often use three to six. Fieldwork usually starts near or after the end of the window and takes two to six weeks, with the report typically four to eight weeks after the period ends. So from a standing start, a first Type II report is often eight to twelve months away. After that it's a yearly cycle, with the next window usually starting the day after the last one ends so there are no gaps.",
+          "tags": [
+            "Audit",
+            "SOC 2",
+            "Timelines"
+          ],
+          "example": "\"For a first-time client we did a Type I in month four to unblock sales, then a six-month Type II window, and had the Type II report in month twelve.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Promising a Type II report in a few weeks.",
+              "reply": "\"A Type II needs an observation window first, so I set expectations: months, not weeks.\""
+            },
+            {
+              "pitfall": "Leaving a gap between audit periods.",
+              "reply": "\"I start the next window the day after the last one ends, so customers never see a gap in coverage.\""
+            }
+          ]
+        },
+        {
+          "q": "What is the ISO 27001 certification timeline, from Stage 1 to recertification?",
+          "a": "Again it varies, but the shape is fixed. First the ISMS has to be running: scope, risk assessment, Statement of Applicability, policies, and at least one internal audit and management review. That usually takes three to six months from a standing start. Stage 1 is a documentation and readiness review, often one to two days. Stage 2 is the main audit of whether the ISMS works, usually a few weeks to a couple of months after Stage 1 so gaps can be fixed. Major nonconformities must be closed before certification; for minors, the certification body accepts a corrective action plan. The certificate is valid for three years, with surveillance audits in year one and year two, then a recertification audit before it expires.",
+          "tags": [
+            "Audit",
+            "ISO 27001",
+            "Timelines"
+          ],
+          "example": "\"We left six weeks between Stage 1 and Stage 2, which was enough to close the two documentation gaps the auditor raised.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Booking Stage 2 straight after Stage 1.",
+              "reply": "\"I leave time between Stage 1 and Stage 2 to fix what Stage 1 finds.\""
+            },
+            {
+              "pitfall": "Skipping the internal audit and management review before Stage 2.",
+              "reply": "\"Both must have happened before Stage 2. Auditors check for them.\""
+            }
+          ]
+        },
+        {
+          "q": "How do you plan an internal audit?",
+          "a": "I start with an annual audit plan based on risk: higher-risk areas, areas with past findings, and anything that changed a lot get audited first or more often. For each audit I write a short plan: objective, scope, criteria (for example ISO 27001 clauses or our own policies), the auditor, and dates. The auditor must be independent of the area, so I don't audit my own processes. Then: an opening meeting, document review, interviews and sampling, and a closing meeting where findings are agreed with the owner. The report follows within about two weeks, owners agree corrective actions and dates, and I track them to closure and check they worked. For ISO, the whole ISMS must be covered over the audit cycle, and the internal audit must happen before Stage 2 and each surveillance audit.",
+          "tags": [
+            "Audit",
+            "Internal audit",
+            "Planning"
+          ],
+          "example": "\"I built a two-year rotation so every clause and Annex A theme was covered, with access control and change management every year because they had past findings.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Auditing processes you designed yourself.",
+              "reply": "\"I make sure the auditor is independent of the area. If I designed it, someone else audits it.\""
+            },
+            {
+              "pitfall": "Closing findings without checking the fix worked.",
+              "reply": "\"I only close a finding once I've checked the corrective action actually worked.\""
+            }
+          ]
+        },
+        {
+          "q": "What happens after fieldwork, and how do you handle the draft report?",
+          "a": "Once fieldwork ends, the auditor shares draft exceptions or findings. I review each one against our evidence before we accept it, because some come from a misunderstanding, the wrong population or a missed document. Where I disagree, I respond in writing with evidence. For valid exceptions, I write the management response: the cause, what we've fixed and by when. I check the system description and the wording of the draft report for accuracy. After the report is issued, I log every exception as a tracked action with an owner, share the report with customers under NDA, and run a short lessons-learned review so the next audit starts better.",
+          "tags": [
+            "Audit",
+            "Reporting",
+            "Findings"
+          ],
+          "example": "\"One draft exception came from a sample that included a contractor out of scope. I showed the scope document and the exception was removed.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Accepting every draft exception without checking.",
+              "reply": "\"I check each one against our evidence first. Some are misunderstandings that can be corrected.\""
+            },
+            {
+              "pitfall": "Writing management responses that only say we will fix it.",
+              "reply": "\"Each response states the cause, what's already done, and a date for the rest.\""
+            }
+          ]
+        },
+        {
+          "q": "Give me a week-by-week plan for a SOC 2 Type II fieldwork period.",
+          "a": "A typical four to six week fieldwork looks like this, though it depends on the auditor. Weeks before: the request list arrives, and I assign owners and pre-load population lists like new hires, leavers and changes. Week 1: kickoff, policy and system description items, populations sent so the auditor can pick samples. Week 2: walkthroughs with control owners, sample evidence requested. Weeks 3 to 4: sample evidence delivered within our agreed turnaround, follow-up questions answered daily. Week 5: open items closed, draft exceptions discussed. Week 6: closing meeting, management responses, and the draft report reviewed. Throughout, I run a short daily or twice-weekly status check with owners and keep the auditor updated on anything late.",
+          "tags": [
+            "Audit",
+            "SOC 2",
+            "Timelines"
+          ],
+          "example": "\"Sending complete populations in week 1 meant the auditor picked samples on day three, which gave owners two full weeks to pull evidence.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Sending incomplete populations.",
+              "reply": "\"I check populations are complete before sending, because a wrong population is the fastest way to an exception.\""
+            },
+            {
+              "pitfall": "Going quiet when something runs late.",
+              "reply": "\"I tell the auditor early with a new date, so it doesn't land on the last day.\""
+            }
+          ]
         }
       ]
     },
