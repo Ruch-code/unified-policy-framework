@@ -1,6 +1,6 @@
 import OnThisPage from '../components/OnThisPage.jsx';
 import { revealTarget } from '../components/SiteHelpers.jsx';
-import { DpdpaUpdates, AiPrivacyUpdates, AiAgentPersona, VendorUpdates, IrUpdates, CisoContinuity, Nov2026Questions } from '../components/updates/Nov2026Blocks.jsx';
+import { AiPrivacyUpdates, AiAgentPersona, VendorUpdates, IrUpdates, CisoContinuity, Nov2026Questions } from '../components/updates/Nov2026Blocks.jsx';
 import { Link } from 'react-router-dom';
 import GlobeExplorer from '../components/GlobeExplorer.jsx';
 import RegionControlMap from '../components/RegionControlMap.jsx';
@@ -20,7 +20,6 @@ import AccessSod from '../components/AccessSod.jsx';
 import SecurityOperations from '../components/SecurityOperations.jsx';
 import HybridSecurityFramework from '../components/HybridSecurityFramework.jsx';
 import AssetInventoryTemplate from '../components/AssetInventoryTemplate.jsx';
-import CloudControlTesting from '../components/CloudControlTesting.jsx';
 import ContactCenterThreatModel from '../components/ccThreat/ContactCenterThreatModel.jsx';
 import CcDownloads from '../components/ccThreat/CcDownloads.jsx';
 import EngineeringPartnership, { EngPartnershipLink } from '../components/engineering/EngineeringPartnership.jsx';
@@ -356,9 +355,7 @@ function TabPanel({ isDark, activeTab }) {
 
       {/* Tab Content */}
       {activeTab === 'regional' && (
-        <ErrorBoundary>
-          <DpdpaUpdates />
-        </ErrorBoundary>
+        <MovedNote id="dpdpa-updates" title="DPDPA updates" to="/dpdpa#dpdpa-updates" where="the DPDPA page" />
       )}
 
       {activeTab === 'regional' && (
@@ -383,9 +380,7 @@ function TabPanel({ isDark, activeTab }) {
       )}
 
       {activeTab === 'regional' && (
-        <ErrorBoundary>
-          <CloudControlTesting />
-        </ErrorBoundary>
+        <MovedNote id="cloud-control-testing" title="Cloud Control Testing Guide: AWS, GCP and Azure" to="/knowledge?topic=cloud-testing" where="the Knowledge Base" />
       )}
 
       {activeTab === 'regional' && (
@@ -560,6 +555,15 @@ function TabPanel({ isDark, activeTab }) {
           </div>
         </div>
       )}
+    </div>
+  );
+}
+
+// Short pointer left where a block used to live, so existing links still lead somewhere useful.
+function MovedNote({ id, title, to, where }) {
+  return (
+    <div id={id} className="scroll-mt-24 rounded-xl border border-surface-200 dark:border-surface-dark-200 bg-white dark:bg-surface-dark-100 p-4 text-sm text-gray-700 dark:text-text-dark-secondary">
+      <span className="font-semibold text-navy-900 dark:text-text-dark-primary">{title}</span> has moved to {where}. <Link className="ui-link" to={to}>Open it</Link>.
     </div>
   );
 }
