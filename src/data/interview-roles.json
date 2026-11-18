@@ -2450,6 +2450,195 @@
           ]
         }
       ]
+    },
+    {
+      "id": "logistics-security-head",
+      "title": "Head of Cyber Security, Compliance and Privacy: Logistics",
+      "subtitle": "ISO 27001, NIST, DPDP, exceptions, IR, BCP-DR and third parties in logistics and supply chain",
+      "icon": "Shield",
+      "color": "indigo",
+      "questions": [
+        {
+          "q": "How would you set up the security, compliance and privacy programme for a large logistics and supply chain platform?",
+          "a": "I'd start by understanding the ecosystem: customer and shipper data, consignee names, addresses and phone numbers, driver and partner data, warehouse and hub systems, fleet telematics, handheld scanners, partner and marketplace APIs, and payment flows. Then I'd pick one control framework, usually ISO 27001 as the backbone, use NIST CSF to structure detection and response, and map DPDP Act duties into the same control set. In the first 90 days: asset and data inventory, a risk assessment focused on API abuse, account takeover, ransomware on hub systems and partner access, quick wins like MFA, EDR coverage and logging, and a roadmap with owners. From there it's a steady rhythm: internal audits, vendor reviews, BCP tests and leadership reporting.",
+          "tags": [
+            "Programme",
+            "Logistics",
+            "ISO 27001",
+            "NIST",
+            "DPDP"
+          ],
+          "example": "\"In a logistics setup, the first data map found consignee phone numbers in five systems, including a partner portal nobody owned. That shaped the first quarter's priorities.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Treating it like an office IT company.",
+              "reply": "\"Logistics means warehouses, vehicles, scanners and hundreds of partners. I scope for that operational edge, not only corporate laptops.\""
+            },
+            {
+              "pitfall": "Running ISO, NIST and DPDP as separate projects.",
+              "reply": "\"One control set, mapped to all three, so teams aren't asked the same thing three times.\""
+            }
+          ]
+        },
+        {
+          "q": "How do you apply the DPDP Act in a logistics business?",
+          "a": "Most personal data here is consignee and driver data: names, phone numbers, addresses, location and sometimes ID for verification. As a data fiduciary for its own customers and drivers, the company needs clear notices, a lawful basis, purpose and retention limits, a way to handle rights requests and grievances, and breach reporting to the Data Protection Board and affected people. When it delivers for an e-commerce client, it usually acts as a processor for that client and must follow the contract. Practical controls: mask phone numbers between driver and consignee, limit address and phone visibility in driver apps to the active delivery, delete delivery data on a schedule, and sign data processing terms with partners. The DPDP Rules are being phased in, so I track the dates.",
+          "tags": [
+            "Privacy",
+            "DPDP",
+            "Logistics"
+          ],
+          "example": "\"Number masking for driver calls removed the consignee's real number from the driver app and closed a common complaint.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Saying DPDP is only a legal task.",
+              "reply": "\"Most DPDP duties land in product and engineering: masking, retention, deletion and access.\""
+            },
+            {
+              "pitfall": "Ignoring the processor role for client deliveries.",
+              "reply": "\"For client shipments we are often the processor, so the client contract decides much of what we can do with the data.\""
+            }
+          ]
+        },
+        {
+          "q": "How do you run security exception management?",
+          "a": "An exception is a time-bound, approved departure from a policy or standard, for example a legacy warehouse system that can't take MFA yet. Every exception goes through one form: what policy is not met, why, the risk, the compensating control, the owner, and an expiry date, usually no more than 6 or 12 months. The approver depends on the risk: the CISO for medium, leadership for high. I keep an exception register, review it monthly, and nothing renews automatically. Expired exceptions become findings. I report open exceptions by age and risk to leadership, because a growing list usually means a standard is unrealistic or a fix is not funded.",
+          "tags": [
+            "Exceptions",
+            "Risk",
+            "Governance"
+          ],
+          "example": "\"We had 40 open exceptions for the same legacy scanner app. Grouping them into one tracked remediation project closed them in two quarters.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Exceptions with no expiry.",
+              "reply": "\"Every exception expires. Renewal needs a fresh review, not a click.\""
+            },
+            {
+              "pitfall": "No compensating control.",
+              "reply": "\"An exception is only approved with a compensating control, such as network isolation or extra monitoring.\""
+            }
+          ]
+        },
+        {
+          "q": "What does secure by design look like across product and infrastructure?",
+          "a": "It means security decisions are made when things are designed, not after release. In practice: a short security review or threat model for new features that touch personal data, payments, partner APIs or admin functions; secure coding standards and training; SAST, dependency and secret scanning in CI that block critical issues; infrastructure as code with policy checks, so a public bucket or open port can't be deployed; secure defaults like SSO, MFA, encryption and logging built into templates; and a security champion in each engineering team. I measure it by how many issues are caught before production versus after.",
+          "tags": [
+            "Secure by design",
+            "DevSecOps"
+          ],
+          "example": "\"Adding a policy check to the infrastructure pipeline stopped three public storage buckets from ever reaching production in the first month.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Making security a gate at the end.",
+              "reply": "\"I move checks into design and CI, so security is part of the path, not a stop at the end.\""
+            },
+            {
+              "pitfall": "Threat modelling everything.",
+              "reply": "\"I threat model the risky changes: personal data, payments, partner APIs and admin features.\""
+            }
+          ]
+        },
+        {
+          "q": "How do you do risk assessments, vulnerability analysis and threat monitoring together?",
+          "a": "They feed each other. The risk assessment sets what matters most: for logistics, partner APIs, driver and customer apps, warehouse systems and the data lake. Vulnerability scanning and VAPT focus on those assets with SLAs by severity. Threat monitoring through a SOC and SIEM watches for the threats in the risk register: credential stuffing on customer apps, API scraping of shipment data, ransomware on hub machines, and misuse of partner accounts. Threat intelligence, including CERT-In advisories, updates the risk register. Each month I bring the three views together for leadership: top risks, open critical vulnerabilities and notable detections.",
+          "tags": [
+            "Risk",
+            "Vulnerability management",
+            "Threat monitoring"
+          ],
+          "example": "\"Scraping alerts on the tracking API led us to add rate limits and a new risk on shipment data exposure the same week.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Running them as separate silos.",
+              "reply": "\"Detections and vulnerabilities update the risk register, and the register decides where we scan and monitor hardest.\""
+            },
+            {
+              "pitfall": "Monitoring everything equally.",
+              "reply": "\"I tune monitoring to the threats in our risk register first.\""
+            }
+          ]
+        },
+        {
+          "q": "A ransomware attack hits warehouse systems during peak season. Walk me through your response.",
+          "a": "First, contain: isolate affected machines and segments, disable compromised accounts, and protect backups. Then assess the impact on operations: which hubs can't scan or dispatch. I'd activate the BCP manual workarounds, like paper manifests or offline scanning, so shipments keep moving. In parallel: preserve evidence, engage the IR retainer, and decide on notifications. CERT-In needs a report within 6 hours, and if personal data is affected, DPDP breach reporting applies. Customers and partners get clear updates. Recovery is from clean backups after the entry point is closed. Afterwards, a post-incident review with owners and dates.",
+          "tags": [
+            "Incident response",
+            "BCP/DR",
+            "Logistics"
+          ],
+          "example": "\"In a tabletop, we found the paper manifest process had not been printed or practised at two hubs. We fixed it before the festive peak.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Restoring before finding the entry point.",
+              "reply": "\"I close the way in first, otherwise we restore into the same attack.\""
+            },
+            {
+              "pitfall": "Forgetting operations.",
+              "reply": "\"In logistics, keeping parcels moving is as important as fixing the systems, so manual workarounds are part of the plan.\""
+            }
+          ]
+        },
+        {
+          "q": "How do you manage vendor compliance and third-party risk with hundreds of logistics partners?",
+          "a": "I tier them. Partners with system access or personal data, like last-mile fleets using our app, sorting partners, IT vendors and cloud providers, get proper reviews; small partners with no data or access get a light checklist. Contracts include security and DPDP clauses, breach notice, and audit rights. Partner access is through named accounts with MFA, scoped to their own shipments, and removed when the contract ends. For critical IT vendors, I review SOC 2 or ISO reports yearly. Partner risk feeds the BCP: if a key carrier or cloud provider fails, what is the fallback?",
+          "tags": [
+            "Third-party risk",
+            "Vendor compliance",
+            "Logistics"
+          ],
+          "example": "\"A quarterly partner access review removed over 200 accounts from partners who had stopped working with us.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Reviewing every partner the same way.",
+              "reply": "\"Tiering lets us review the few partners that hold data or access properly.\""
+            },
+            {
+              "pitfall": "Shared partner logins.",
+              "reply": "\"Every partner user gets a named account with MFA, so we can remove access and trace actions.\""
+            }
+          ]
+        },
+        {
+          "q": "How do you build security awareness for a workforce that includes warehouse staff and drivers, not just office employees?",
+          "a": "One programme doesn't fit everyone. Office and tech staff get the usual onboarding and annual training, phishing simulations, and role-based modules like secure coding. For warehouse staff and drivers, I keep it short, visual and in local languages: don't share OTPs or app logins, report lost devices, spot fake calls asking for shipment details, and protect customer phone numbers and addresses. It's delivered in shift briefings or short app videos. I measure completion and real behaviour, like lost-device reports and phishing report rates.",
+          "tags": [
+            "Awareness",
+            "Training",
+            "Logistics"
+          ],
+          "example": "\"A 2-minute video in Hindi on OTP fraud, shown in shift briefings, cut reported OTP-sharing incidents noticeably over the next quarter.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Sending long English e-learning to field staff.",
+              "reply": "\"Field staff get short, visual training in their language, during the shift.\""
+            },
+            {
+              "pitfall": "Measuring only completion.",
+              "reply": "\"I also track behaviour, like lost-device reports and phishing reports.\""
+            }
+          ]
+        },
+        {
+          "q": "How do you lead and grow a team of security engineers and compliance specialists?",
+          "a": "I set clear ownership: engineers own technical controls and tooling, compliance specialists own frameworks, audits and vendors, and everyone owns a few control areas end to end. I agree yearly goals tied to the roadmap, hold weekly priorities and one-to-ones, and review work that goes to auditors, regulators or leadership. I grow people by rotating them through audits, incidents and vendor reviews and by funding certifications. I protect the team's focus by saying no to low-value requests and automating repetitive evidence work.",
+          "tags": [
+            "Leadership",
+            "Team"
+          ],
+          "example": "\"Pairing a compliance specialist with an engineer on evidence automation cut quarterly evidence collection from two weeks to three days.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Being the bottleneck on every decision.",
+              "reply": "\"I delegate ownership with clear review points, so the team moves without waiting for me.\""
+            },
+            {
+              "pitfall": "No growth plan for the team.",
+              "reply": "\"Each person has a development goal, and I rotate people through audits and incidents to build range.\""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
