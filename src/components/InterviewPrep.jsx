@@ -98,6 +98,7 @@ export default function InterviewPrep({ isDark = false }) {
     'engineering-partnership': 'bg-teal-700',
     'senior-grc-engineering': 'bg-teal-700',
     'lead-grc-situational': 'bg-indigo-700',
+    'grc-program-manager': 'bg-teal-700',
   };
 
   return (
