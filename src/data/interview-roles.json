@@ -1716,6 +1716,226 @@
           ]
         }
       ]
+    },
+    {
+      "id": "grc-program-manager",
+      "title": "Program Manager, GRC: Multi-site and Critical Infrastructure",
+      "subtitle": "Running ISO 27001, SOC 1 and SOC 2 Type II across sites and business units",
+      "icon": "Users",
+      "color": "teal",
+      "questions": [
+        {
+          "q": "You join and need to run ISO 27001:2022, SOC 1 and SOC 2 Type II together across several sites. What do you do in your first 90 days?",
+          "a": "I'd start by listening and mapping, not changing things. In the first 30 days I'd meet each function owner, read the last audit reports and findings, and build one picture: which sites and business units are in scope for which framework, when each audit window falls, and what's already working. By day 60 I'd have one integrated plan: a single control set mapped to all three frameworks, one evidence calendar, and named owners for every control. By day 90 the plan is running, with a weekly status rhythm and a monthly report to leadership. The aim is one programme, not three projects competing for the same people.",
+          "tags": [
+            "Program planning",
+            "ISO 27001",
+            "SOC 1",
+            "SOC 2"
+          ],
+          "example": "\"At my last client, three frameworks had three trackers. I merged them into one control register, cut evidence requests to control owners by about a third, and gave leadership one status page.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Starting with tools before understanding the current state.",
+              "reply": "\"I don't buy or change tools in month one. I first learn what exists and what the audits actually need.\""
+            },
+            {
+              "pitfall": "Running each framework as a separate project.",
+              "reply": "\"I run one programme with one control set, so a control owner gets one request, not three.\""
+            }
+          ]
+        },
+        {
+          "q": "How would you build the plan and timeline for a SOC 2 Type II cycle, not just collect evidence?",
+          "a": "I'd work backwards from the report date. The auditor needs the observation period to finish, then fieldwork, then report drafting, so I'd agree those dates with the audit firm first. Then I'd plan readiness before the period starts: scope, system description, control design, a readiness check and fixes. During the period, I'd schedule every recurring control (access reviews, change samples, vendor reviews, backups) on a calendar with owners. I'd hold a mid-period check so we find gaps while there's still time to fix them, and pre-collect evidence before fieldwork.",
+          "tags": [
+            "SOC 2 Type II",
+            "Timeline",
+            "Planning"
+          ],
+          "example": "\"For a 12-month period ending December, we set fieldwork for January, a mid-period check in July, and the report in March. The mid-period check caught two missed access reviews in time to fix the process.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Treating the audit as an evidence scramble at the end.",
+              "reply": "\"I plan the year, not the fieldwork week. Most failures happen months before the auditor arrives.\""
+            },
+            {
+              "pitfall": "Not agreeing dates with the auditor early.",
+              "reply": "\"I lock the audit firm's dates first, because everything else in the plan hangs off them.\""
+            }
+          ]
+        },
+        {
+          "q": "SOC 1 and SOC 2 overlap. How do you avoid doing the work twice?",
+          "a": "SOC 1 covers controls relevant to customers' financial reporting, and SOC 2 covers security and the other Trust Services Criteria. Many IT general controls, like access, change and operations, appear in both. I'd map those shared controls once, align both observation periods if the business allows, and ask the auditor to use one set of samples where the controls are the same. Finance-specific controls, such as billing or reconciliations, sit only in SOC 1 and get their own owners.",
+          "tags": [
+            "SOC 1",
+            "SOC 2",
+            "Efficiency"
+          ],
+          "example": "\"By aligning both periods and sharing ITGC testing with the same audit firm, we cut duplicate sample requests to IT almost in half.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Assuming SOC 1 and SOC 2 are the same thing.",
+              "reply": "\"I'm clear that SOC 1 is about financial reporting and SOC 2 about security. They overlap in IT controls, not in purpose.\""
+            }
+          ]
+        },
+        {
+          "q": "You need Finance, Legal, IT, HR, Procurement and Operations to deliver on time, but none of them report to you. How do you drive accountability?",
+          "a": "I make the work visible and easy. Each owner gets a short list of what they own, why it matters, and the date. I agree those dates with their leader up front, so commitments come from their own management. Then I run a short weekly check-in, publish a simple red, amber, green status, and celebrate teams that deliver. When something slips, I go to the owner first, then their leader with facts. People respond to clear asks, visibility and a sponsor, not to pressure.",
+          "tags": [
+            "Influence",
+            "Stakeholders",
+            "Accountability"
+          ],
+          "example": "\"Procurement kept missing vendor reviews. I agreed a monthly slot with their head, gave them a two-question template for low-risk vendors, and on-time reviews went from about half to almost all within a quarter.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Escalating as the first move.",
+              "reply": "\"Escalation is my last step. I start with the owner and make the ask easy.\""
+            },
+            {
+              "pitfall": "Using the auditor as a threat.",
+              "reply": "\"I explain the business reason, not 'the auditor will fail us', because fear doesn't build lasting habits.\""
+            }
+          ]
+        },
+        {
+          "q": "How is GRC different at a data centre or critical infrastructure site compared with a SaaS company?",
+          "a": "The physical and operational side matters much more. Beyond the usual IT controls, I'd expect focus on physical access to the facility and data halls, CCTV and visitor management, power and cooling resilience, environmental monitoring, maintenance of critical equipment, and safety. Operational technology, the systems that run power and cooling, needs its own access and change controls, often separate from the corporate network. Business continuity is also about power loss and equipment failure, not just cloud outages. In ISO 27001 terms, the physical controls in A.7 and the continuity controls become central rather than inherited from a cloud provider.",
+          "tags": [
+            "Data centres",
+            "Critical infrastructure",
+            "Physical security"
+          ],
+          "example": "\"At a colocation site, I'd test that badge access to the data hall matches the approved list, and that every visitor is escorted and logged.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Treating physical controls as inherited from a cloud provider.",
+              "reply": "\"On a site we operate, physical controls are ours to run and evidence, so I give them the same attention as IT controls.\""
+            },
+            {
+              "pitfall": "Ignoring operational technology.",
+              "reply": "\"I ask how power and cooling systems are accessed and changed, because they are critical systems too.\""
+            }
+          ]
+        },
+        {
+          "q": "You run audits across several sites, and one site is far behind the others. What do you do?",
+          "a": "I'd find out why before deciding anything. Usually it's staffing, a different local process, or a site manager who hasn't bought in. I'd visit or call the site lead, agree a short recovery plan with dates, and give them templates and examples from sites that are doing well. I'd report the site's status separately so leadership can see it, and if it can't be ready in time, I'd raise early whether to adjust scope for that site rather than risk the whole audit.",
+          "tags": [
+            "Multi-site",
+            "Recovery plan",
+            "Scope"
+          ],
+          "example": "\"One site had no visitor logs. We gave them the template another site used, trained the front desk, and had three months of logs before fieldwork.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Hiding a lagging site to keep the overall status green.",
+              "reply": "\"I show each site's status honestly, because a hidden gap becomes an audit finding.\""
+            }
+          ]
+        },
+        {
+          "q": "Leadership asks you for a monthly GRC status report. What goes in it?",
+          "a": "I'd keep it to one page. Overall status for each framework and audit, with red, amber or green and a one-line reason. Key dates coming up. Top risks and blockers, each with an owner and the decision I need from leadership. A few measures that show trend: controls on track, overdue evidence, open findings and their age, and vendor reviews due. Leaders should be able to read it in two minutes and know what to do.",
+          "tags": [
+            "Reporting",
+            "KPIs",
+            "Leadership"
+          ],
+          "example": "\"My report had one ask per month at the top. It turned the meeting from an update into a decision.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Reporting activity instead of outcomes.",
+              "reply": "\"I report what's on track and what's at risk, not how many emails we sent.\""
+            },
+            {
+              "pitfall": "Long reports nobody reads.",
+              "reply": "\"If it doesn't fit on one page, I cut it.\""
+            }
+          ]
+        },
+        {
+          "q": "Three weeks before SOC 2 fieldwork, you find that a key control did not run for two months of the period. What do you do?",
+          "a": "I'd tell the control owner and my sponsor the same day, with the facts: which control, which months, and why. I'd check for a compensating control that covered the risk in that gap. Then I'd talk to the auditor early. Hiding it never works, and they'll find it in sampling anyway. The likely outcome is an exception in the report with management's response, so I'd write a clear root cause and the fix, and make sure the control runs reliably from now on.",
+          "tags": [
+            "SOC 2",
+            "Exceptions",
+            "Transparency"
+          ],
+          "example": "\"Quarterly access reviews were missed for Q2. We disclosed it, showed weekly automated access alerts as a compensating control, and the report carried one exception with a clear management response.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Backfilling evidence after the fact.",
+              "reply": "\"I never create evidence for a period after it's passed. I disclose the gap and fix the process.\""
+            }
+          ]
+        },
+        {
+          "q": "You're building the GRC function from scratch. What do you set up first?",
+          "a": "Three things first: a clear scope and calendar of obligations, one control set with owners, and a simple way to track evidence and actions. Then a risk register and a short policy set approved by leadership. Tools can come later. I'd rather run a clean spreadsheet process for a quarter and then choose a platform based on real needs than buy a tool and fit the process to it.",
+          "tags": [
+            "Build from scratch",
+            "Process design"
+          ],
+          "example": "\"In my first quarter I ran everything from one tracker and a shared folder. By the time we chose a GRC platform, we knew exactly what we needed it to do.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Buying a tool before the process exists.",
+              "reply": "\"A tool automates a process. If the process isn't clear, the tool just automates confusion.\""
+            }
+          ]
+        },
+        {
+          "q": "How do you handle an ISO 27001 surveillance audit across sites while SOC work is also running?",
+          "a": "I'd put both on the same calendar and share as much as possible: the same risk register, the same control evidence and the same management review. The ISO internal audit and management review must be done before the surveillance audit. I'd check last year's nonconformities are closed with evidence, because surveillance auditors always start there. I'd also tell the certification body about any scope changes, like a new site, in advance.",
+          "tags": [
+            "ISO 27001",
+            "Surveillance audit",
+            "Multi-site"
+          ],
+          "example": "\"We held one management review covering ISO, SOC 1 and SOC 2 inputs, which saved leadership a second meeting and gave both auditors the same minutes.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Forgetting to notify the certification body of a new site.",
+              "reply": "\"Scope changes go to the certification body early, because they can change audit time.\""
+            }
+          ]
+        },
+        {
+          "q": "A department head says compliance slows them down and asks to skip a control. How do you respond?",
+          "a": "I'd listen to what's actually slowing them down. Often the control is fine but the way it's done is clunky. I'd look for a lighter way to meet the same requirement, like automating the evidence or reducing frequency where risk allows. If they still want an exception, there's a formal path: a risk acceptance with the risk owner's sign-off and an expiry date. I'd never just quietly drop it.",
+          "tags": [
+            "Stakeholders",
+            "Risk acceptance"
+          ],
+          "example": "\"Operations hated the manual change form. We moved it into their ticketing tool with three required fields, and compliance went up while their time went down.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Defending the control without listening.",
+              "reply": "\"I ask what's painful first. Usually I can keep the control and remove the friction.\""
+            }
+          ]
+        },
+        {
+          "q": "Why are you interested in GRC for digital asset mining and critical infrastructure?",
+          "a": "It's where security, operations and compliance meet in a very real way. A data centre or mining site has physical risk, operational risk and financial reporting obligations all at once, and the controls have to work on the ground, not only on paper. I've built ISO 27001 and SOC 2 programmes, and I've studied how crypto businesses handle custody and incidents. I'd enjoy turning that into a programme that keeps multiple sites audit-ready without slowing the business down.",
+          "tags": [
+            "Motivation",
+            "Digital assets",
+            "Critical infrastructure"
+          ],
+          "example": "Keep it specific: name one or two things about the industry that interest you and connect them to work you've done.",
+          "pitfalls": [
+            {
+              "pitfall": "Giving a generic answer about loving compliance.",
+              "reply": "\"I connect my interest to the specific mix of physical, operational and financial risk this role involves.\""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
