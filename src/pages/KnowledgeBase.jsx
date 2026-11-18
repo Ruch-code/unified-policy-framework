@@ -41,6 +41,7 @@ import SystemDesignKb from '../components/SystemDesignKb.jsx';
 import { OtherFrameworksKb, GrcToolingKb } from '../components/OtherFrameworksKb.jsx';
 import ZeroTrustShadowIt from '../components/ZeroTrustShadowIt.jsx';
 import InfraNetworkAudit from '../components/InfraNetworkAudit.jsx';
+import AuditReadinessPlan, { ARP_PARTS } from '../components/AuditReadinessPlan.jsx';
 
 const order = ['soc2', 'iso27001', 'iso42001', 'pci', 'hipaa', 'nist', 'gdpr', 'cis', 'hitrust', 'dpdpa', 'fedramp', 'cjis'];
 const EDP_TABS = [
@@ -63,6 +64,7 @@ const TABS = [
   { id: 'policy-lifecycle', label: 'Policy Lifecycle', icon: BookOpenCheck, group: 'GRC: Start here', area: 'GRC', desc: 'Policy, standard, procedure and guideline: drafting, approval, acknowledgement and review' },
   { id: 'audit', label: 'Audit & Rebuttals', icon: ShieldAlert, group: 'Fieldwork and findings', area: 'Internal audit', desc: 'Common audit observations for the selected framework and how to respond.' },
   { id: 'finding-classification', label: 'Classifying Findings', icon: ShieldAlert, group: 'Fieldwork and findings', area: 'Internal audit', desc: 'Major and minor nonconformity, OFI, observation, SOC 2 exceptions and opinions, SOX deficiencies and internal audit ratings' },
+  { id: 'audit-readiness', label: 'Audit Readiness Plan (Lead GRC)', icon: ShieldAlert, group: 'Fieldwork and findings', area: 'Internal audit', also: 'GRC: Start here', desc: 'Readiness to report for SOC 2, ISO 27001, surveillance and ISO 42001: control domains, gaps, timelines, delegation and interview answers', parts: ARP_PARTS, partPrefix: 'arp' },
   { id: 'evidence-checklist', label: 'Audit Evidence Checklist', icon: ShieldAlert, group: 'Fieldwork and findings', area: 'Internal audit', also: 'GRC: Start here', desc: 'What auditors ask for under SOC 2, ISO 27001, HIPAA and GDPR, plus a typical readiness plan and roles.' },
   { id: 'gaps', label: 'Common Gaps (ITGC)', icon: ShieldAlert, group: 'Fieldwork and findings', area: 'Internal audit', desc: 'Typical startup gaps by ITGC domain, the pushback, compensating controls and a worked audit example.' },
   { id: 'it-audit', label: 'IT Audit Toolkit', icon: ShieldAlert, group: 'Fieldwork and findings', area: 'Internal audit', desc: 'Sample sizes, ITAC, report (IPE) testing, RCM, SOC report review, full-population analytics, findings and joiner, mover and leaver testing' },
@@ -364,6 +366,7 @@ export default function KnowledgeBase() {
     rcsa: <RcsaTab />,
     'data-governance': <DataGovernanceTab />,
     'cloud-testing': <CloudTestingGuide />,
+    'audit-readiness': <AuditReadinessPlan />,
     'policy-lifecycle': <PolicyLifecycleTab />,
     streamline: <StreamlineGrc />,
     'finding-classification': <FindingClassification />,
@@ -417,7 +420,7 @@ export default function KnowledgeBase() {
                         {tab === t.id && t.parts && (
                           <ul className="ml-3 mt-1 mb-2 border-l border-gray-200 dark:border-slate-700 pl-2 space-y-0.5" aria-label={`${t.label} sections`}>
                             {t.parts.map(([pid, plabel]) => (
-                              <li key={pid}><a href={`#cct-${pid}`} aria-current={subActive === pid ? 'true' : undefined}
+                              <li key={pid}><a href={`#${t.partPrefix || 'cct'}-${pid}`} aria-current={subActive === pid ? 'true' : undefined}
                                 className={`block rounded px-2 py-0.5 text-xs ${subActive === pid ? 'is-selected font-semibold' : 'text-gray-600 dark:text-slate-300 hover:underline'}`}>{plabel}</a></li>
                             ))}
                           </ul>
