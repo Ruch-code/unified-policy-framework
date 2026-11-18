@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import CryptoControlsTechnical from './crypto/CryptoControlsTechnical.jsx';
 import FlowDiagram, { CompareDiagram } from './crypto/FlowDiagram.jsx';
 import CryptoAttackVectors from './crypto/CryptoAttackVectors.jsx';
+import CryptoDeepDive from './crypto/CryptoDeepDive.jsx';
 // Knowledge Base topic: security and compliance for crypto exchanges (virtual digital asset service providers),
 // with two public CoinDCX incidents as worked examples. Facts are taken from the cited public reporting.
 const H2 = 'text-xl font-bold text-gray-900 dark:text-white mb-3';
@@ -232,6 +233,8 @@ export default function CryptoExchangeTab() {
         <Table head={['Source', 'What it requires']} rows={REGS} min={560} />
         </div>
       </details>
+
+      <CryptoDeepDive />
 
       <CryptoAttackVectors />
 
