@@ -11,6 +11,7 @@ import TscControlMatrix, { TscStackNote } from "../../components/TscControlMatri
 import { useState } from 'react';
 import Soc2EvidenceDetail from "../../components/Soc2EvidenceDetail.jsx";
 import Soc2TechnicalSection from "../../components/Soc2TechnicalSection.jsx";
+import StatusPageAndDocs from "../../components/StatusPageAndDocs.jsx";
 import { withEvidence, appendToLevel, extendTasks } from "../../data/playbookEvidence.js";
 import { SOC2_L1_GOVERNANCE, SOC2_L3_TESTS, SOC2_EXTEND } from "../../data/playbookAdditions/soc2.js";
 import { SocCompareBlock } from '../../components/kb/TopicExtras.jsx';
@@ -1212,6 +1213,7 @@ const SOC2_PAGE = {
     <RiskCrossCheckBlock key="risk" frameworkId="soc2" />,
     <Soc2Catalogue key="catalogue" framework={FRAMEWORK_WITH_EVIDENCE} />,
     <Soc2TechnicalSection key="tech" />,
+    <StatusPageAndDocs key="statusdocs" />,
   ],
 };
 
