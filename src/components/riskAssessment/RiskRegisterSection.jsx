@@ -45,6 +45,22 @@ function ensureRequired(rows) {
   return [...missing, ...marked];
 }
 
+// Who may accept a residual risk, based on the residual band and the appetite statement.
+export const ACCEPTANCE_AUTHORITY = [
+  ['Low (1 to 4)', 'Risk Owner', 'Accept and monitor on the normal review cycle. No separate form needed; record the decision in the register.', 'Next scheduled review (up to 12 months)'],
+  ['Medium (5 to 9)', 'Risk Owner, with the CISO or Head of Security informed', 'Within appetite. Owner signs off the residual risk and the controls relied on.', '12 months'],
+  ['High (10 to 16)', 'Approver: CISO or Head of Security together with the accountable business head', 'Above appetite. Signed risk acceptance form stating the risk, why it is not treated now, compensating controls and the date it will be revisited.', '6 to 12 months'],
+  ['Critical (17 to 25)', 'Executive leadership (CEO or executive risk committee); board or audit committee informed', 'Normally treat, not accept. Acceptance only with a documented business reason, a treatment plan and a short expiry.', '3 to 6 months'],
+  ['Outside appetite by category (personal data breach, regulatory penalty, material misstatement)', 'Cannot be accepted by a single owner; executive leadership decides and records the decision', 'The appetite statement says there is no appetite for these, so the default is to treat or avoid.', 'Shortest practical period'],
+];
+
+export function acceptanceFor(res) {
+  if (res >= 17) return { by: 'Executive leadership; board informed', expiry: '3 to 6 months' };
+  if (res >= 10) return { by: 'Approver (CISO or Head of Security) with business head', expiry: '6 to 12 months' };
+  if (res >= 5) return { by: 'Risk Owner; CISO informed', expiry: '12 months' };
+  return { by: 'Risk Owner', expiry: 'Next review' };
+}
+
 export function exportMyRegister(rows) {
   const today = new Date().toISOString().slice(0, 10);
   const riskRows = rows.map((r) => {
@@ -52,7 +68,7 @@ export function exportMyRegister(rows) {
     const res = score(r.residualLikelihood, r.residualImpact);
     return [r.id, r.scenario, r.categories.join(', '), r.cia.join(', '), r.likelihood, r.impact, inh, bandFor(inh).label,
       r.treatment, r.treatmentStatus, r.residualLikelihood, r.residualImpact, res, bandFor(res).label,
-      r.controls.length, r.controls.join(', '), r.owner, r.approver, r.approvalStatus, r.approvalDate || '', r.identifiedDate, r.lastReviewedDate || '', r.libraryId || (r.source === 'seed' ? 'Sample' : ''), r.required ? `Required: ${r.requiredBasis || ''}` : r.recommended ? 'Recommended addition' : 'Optional', r.note || ''];
+      r.controls.length, r.controls.join(', '), r.owner, r.approver, r.approvalStatus, r.approvalDate || '', r.identifiedDate, r.lastReviewedDate || '', r.libraryId || (r.source === 'seed' ? 'Sample' : ''), r.required ? `Required: ${r.requiredBasis || ''}` : r.recommended ? 'Recommended addition' : 'Optional', r.note || '', acceptanceFor(res).by, `Residual risk of: ${r.scenario} (score ${res}, ${bandFor(res).label}) after ${r.controls.length} linked control(s)`, acceptanceFor(res).expiry];
   });
   const controlRows = rows.flatMap((r) => (r.controls.length ? r.controls : ['']).map((id) => {
     const c = CONTROL_BY_ID[id];
@@ -63,7 +79,7 @@ export function exportMyRegister(rows) {
     {
       name: 'My Risk Register', title: `My Risk Register (exported ${today})`,
       notes: ['Score = likelihood x impact. Bands: 1 to 4 Low, 5 to 9 Medium, 10 to 16 High, 17 to 25 Critical. Residual assumes the linked controls are fully implemented with evidence.'],
-      headers: ['ID', 'Risk scenario', 'Category', 'CIA', 'Likelihood', 'Impact', 'Inherent score', 'Inherent rating', 'Treatment', 'Treatment status', 'Residual likelihood', 'Residual impact', 'Residual score', 'Residual rating', 'No. of controls', 'Linked controls', 'Owner', 'Approver', 'Approval status', 'Approval date', 'Identified date', 'Last reviewed date', 'Source', 'Required baseline', 'Notes'],
+      headers: ['ID', 'Risk scenario', 'Category', 'CIA', 'Likelihood', 'Impact', 'Inherent score', 'Inherent rating', 'Treatment', 'Treatment status', 'Residual likelihood', 'Residual impact', 'Residual score', 'Residual rating', 'No. of controls', 'Linked controls', 'Owner', 'Approver', 'Approval status', 'Approval date', 'Identified date', 'Last reviewed date', 'Source', 'Required baseline', 'Notes', 'Who can accept the residual risk', 'What is being accepted', 'Acceptance valid for'],
       rows: riskRows,
       validations: [{ col: 4, values: ['1', '2', '3', '4', '5'] }, { col: 5, values: ['1', '2', '3', '4', '5'] }, { col: 10, values: ['1', '2', '3', '4', '5'] }, { col: 11, values: ['1', '2', '3', '4', '5'] },
         { col: 8, values: ['Mitigate', 'Transfer', 'Avoid', 'Accept'] }, { col: 18, values: ['Not submitted', 'Pending approval', 'Approved', 'Rejected'] }],
@@ -147,6 +163,18 @@ export default function RiskRegisterSection({ isDark = false }) {
       <section id="ra-register" className={sectionCls}>
         <h3 className={h3Cls}>4. My risk register</h3>
         <p className={leadCls}>Your register starts with the required baseline risks. Add more from the scenario library below. Rows are saved in this browser only. The Excel export carries every field: inherent and residual scores and ratings, treatment and status, owner, approver, approval status and dates, notes, and every linked control with its tests and evidence.</p>
+        <div className="mt-4 rounded-xl border border-surface-200 dark:border-surface-dark-200 p-3">
+          <h4 className="text-sm font-semibold text-navy-900 dark:text-text-dark-primary mb-1">Who accepts the risk, and for what</h4>
+          <p className="text-xs text-navy-600 dark:text-text-dark-secondary mb-2">Acceptance is always of the residual risk: the risk that remains after the linked controls. The level of the person who accepts it rises with the residual score. The Excel export adds three columns for each risk: who can accept it, what exactly is being accepted, and how long the acceptance is valid.</p>
+          <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="Risk acceptance authority">
+            <table className="w-full text-sm min-w-[860px]">
+              <thead><tr>{['Residual rating', 'Who can accept', 'What they are accepting and how', 'Acceptance valid for'].map((h) => <th key={h} scope="col" className="p-2 text-left font-semibold text-navy-900 dark:text-text-dark-primary bg-surface-50 dark:bg-slate-800 align-top">{h}</th>)}</tr></thead>
+              <tbody>{ACCEPTANCE_AUTHORITY.map((r) => <tr key={r[0]}>{r.map((c, j) => <td key={j} className={`p-2 align-top border-t border-surface-200 dark:border-surface-dark-200 text-navy-700 dark:text-text-dark-secondary ${j === 0 ? 'font-medium' : ''}`}>{c}</td>)}</tr>)}</tbody>
+            </table>
+          </div>
+          <p className="mt-2 text-xs text-navy-600 dark:text-text-dark-secondary">Example: "Account takeover of the admin console" has a residual score of 12 (High) after MFA and login alerts, because SSO is not yet enforced for one legacy tool. The CISO and the Head of Engineering sign the acceptance for 6 months, relying on IP allow-listing as a compensating control, with SSO due before the expiry date. Adjust the roles to your organisation and approved risk policy.</p>
+        </div>
+
 
 
         {(
