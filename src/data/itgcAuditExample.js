@@ -81,3 +81,17 @@ export const ITGC_EXAMPLE_LESSONS = [
   ['Tool plans matter', 'A cheaper subscription plan lacked SSO, password policy and the vendor\'s SOC 2 report. Check what each plan includes before relying on it.'],
   ['Management responses need a follow-up', 'Several items were reported closed by management but still open at follow-up, because policy updates or evidence were missing.'],
 ];
+
+// How the anonymised report rated each observation. Ratings combine four lenses; the highest one applies.
+export const ITGC_EXAMPLE_SCOPE = 'Scope of the review: six ITGC domains (change management, incident management, backup and restoration, password management, access management and capacity management) across 19 applications for a six-month review period, covering internal applications, the cloud platform, code repositories and build tools, the ticketing and HR systems, and email and chat. Result: 13 observations, of which 7 High, 1 Medium and 5 Low.';
+
+// [lens, High, Medium, Low]
+export const ITGC_RATING_METHOD = [
+  ['Action expected', 'Management attention for remediation immediately or in the short term', 'Management attention for remediation in a reasonable timeframe', 'Opportunity for minor improvement'],
+  ['Compliance', 'Non-compliance with material legal or statutory requirements, with risk of prosecution, fine or penalty', 'Non-compliance with immaterial legal or statutory requirements', 'Not applicable'],
+  ['Financial', 'Potential impact above the threshold (standalone materiality or a set amount, whichever is lower)', 'Potential impact between the clearly trivial threshold and that threshold', 'Potential impact up to the clearly trivial threshold'],
+  ['Operational: deviation rate in samples', 'More than 30 percent of samples are exceptions', '10 to 30 percent of samples are exceptions', 'Less than 10 percent of samples are exceptions'],
+  ['Operational: control and policy', 'Major ineffectiveness; key risks not identified or controlled; significant segregation of duties gaps; no metrics; breach of data privacy or confidentiality', 'Policies missing or not consistently followed; control needs moderate improvement; segregation of duties needs enhancement; metrics not reviewed', 'Policies exist with occasional non-compliance; policies not updated periodically; incidental issues with limited impact'],
+  ['Repeat observations', 'Repeat High observation because earlier recommendations were not implemented', 'Repeat Medium observation for the same reason', 'Repeat Low observation for the same reason'],
+  ['Fraud', 'Indicator or vulnerability showing exposure to fraud or unauthorised transactions', 'Indicator of exposure that is not material for reporting', 'Not applicable'],
+];

@@ -5,7 +5,7 @@ import { VIBE_ITGC_GAPS, SOC1_ICFR_NOTE } from '../data/vibeItgcGaps.js';
 import { ENG_ITGC_GAPS } from '../data/engineeringPartnership.js';
 import { ITGC_MAPPING } from '../data/iso42001.js';
 import { FRAMEWORK_GAPS, SHARED_THEMES, COMMON_ONLY_FRAMEWORKS } from '../data/itgcStartupGaps.js';
-import { ITGC_EXAMPLE_INTRO, ITGC_EXAMPLE, ITGC_EXAMPLE_LESSONS } from '../data/itgcAuditExample.js';
+import { ITGC_EXAMPLE_INTRO, ITGC_EXAMPLE, ITGC_EXAMPLE_LESSONS, ITGC_EXAMPLE_SCOPE, ITGC_RATING_METHOD } from '../data/itgcAuditExample.js';
 
 const COLORS = { bgLight: 'bg-amber-50 dark:bg-amber-900/30', text: 'text-amber-700 dark:text-amber-300', border: 'border-amber-200 dark:border-amber-800' };
 const BY_ID = Object.fromEntries(FRAMEWORK_GAPS.map((f) => [f.id, f]));
@@ -87,6 +87,15 @@ export default function ItgcGapsKb({ initialFramework = 'all' }) {
           <summary className="cursor-pointer p-4 font-semibold text-gray-900 dark:text-white">Worked example: internal audit ITGC observations and remediation</summary>
           <div className="p-4 pt-0 space-y-4">
             <p className="text-sm text-gray-700 dark:text-slate-300 max-w-3xl">{ITGC_EXAMPLE_INTRO}</p>
+            <p className="text-sm text-gray-700 dark:text-slate-300 max-w-3xl">{ITGC_EXAMPLE_SCOPE}</p>
+            <h4 className="text-sm font-bold text-gray-900 dark:text-white">How each observation was rated</h4>
+            <div className="overflow-x-auto rounded border border-gray-200 dark:border-slate-700" tabIndex={0} role="region" aria-label="Risk rating methodology">
+              <table className="w-full text-sm" style={{ minWidth: 900 }}>
+                <thead className="bg-gray-50 dark:bg-slate-800"><tr>{['Lens', 'High', 'Medium', 'Low'].map((h) => <th key={h} scope="col" className="text-left p-2 font-semibold text-gray-900 dark:text-white">{h}</th>)}</tr></thead>
+                <tbody>{ITGC_RATING_METHOD.map((r) => <tr key={r[0]} className="border-t border-gray-200 dark:border-slate-700 align-top">{r.map((c, j) => <td key={j} className={`p-2 ${j === 0 ? 'font-semibold text-gray-900 dark:text-white' : 'text-gray-700 dark:text-slate-300'}`}>{c}</td>)}</tr>)}</tbody>
+              </table>
+            </div>
+            <p className="text-xs text-gray-500 dark:text-slate-400">The rating takes the highest result across the lenses. For example, 11 of 21 sampled access requests with no approval (52 percent) is High on the deviation lens alone.</p>
             <div className="overflow-x-auto rounded border border-gray-200 dark:border-slate-700" tabIndex={0} role="region" aria-label="ITGC audit observations">
               <table className="w-full text-sm" style={{ minWidth: 1400 }}>
                 <thead className="bg-gray-50 dark:bg-slate-800"><tr>{['No.', 'Observation', 'Risk rating', 'ITGC domain', 'What the auditor found', 'Recommendation', 'Management response', 'Follow-up status'].map((h) => <th key={h} scope="col" className="text-left p-2 font-semibold text-gray-900 dark:text-white">{h}</th>)}</tr></thead>
