@@ -208,6 +208,17 @@ export default function InterviewPrep({ isDark = false }) {
                   <div className="prose prose-gray max-w-none text-navy-700 dark:text-text-dark-secondary">
                     <p className="whitespace-pre-wrap">{q.a}</p>
                   </div>
+                  {q.story && (
+                    <div className="mt-4 rounded-xl border border-surface-300 dark:border-surface-dark-300 bg-white dark:bg-slate-900/60 p-4">
+                      <h5 className="font-bold text-navy-900 dark:text-text-dark-primary mb-2">Answer as a story: challenge, action, learning</h5>
+                      <dl className="space-y-2 text-sm text-navy-700 dark:text-text-dark-secondary">
+                        <div><dt className="font-semibold text-navy-900 dark:text-text-dark-primary">The challenge</dt><dd>{q.story.challenge}</dd></div>
+                        <div><dt className="font-semibold text-navy-900 dark:text-text-dark-primary">The action I took</dt><dd>{q.story.action}</dd></div>
+                        <div><dt className="font-semibold text-navy-900 dark:text-text-dark-primary">What I learned</dt><dd>{q.story.learned}</dd></div>
+                      </dl>
+                      <p className="mt-2 text-xs text-gray-500 dark:text-text-dark-muted">Sample story. Swap in a real example from your own experience before the interview.</p>
+                    </div>
+                  )}
                   <div className="mt-4 p-4 rounded-xl
                     bg-emerald-50 dark:bg-alert-success
                     border border-emerald-200 dark:border-alert-success
