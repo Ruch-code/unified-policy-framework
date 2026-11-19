@@ -2574,6 +2574,208 @@
             "action": "I secured root with MFA and a vault on day one, cut admins to three with just-in-time access for the rest that week, ran a restore test and wrote a DR plan within the month, then updated and re-approved the policies.",
             "learned": "Fix what an attacker would use first, protect your ability to recover second, and update the paperwork last."
           }
+        },
+        {
+          "q": "(VP Infrastructure round) I'm an engineer, not a security person. Why should my team trust GRC not to slow us down?",
+          "a": "Because I measure GRC by how little engineering time it takes. My approach is to put controls where engineers already work: branch protection and required checks in GitHub instead of a change form, access through SSO groups instead of tickets where possible, evidence pulled by API from the cloud, GitHub and the identity provider instead of screenshots. I only ask engineers for judgement, not for paperwork. Before an audit I give each team one consolidated request, not three. And I'm open about trade-offs: if a control would block a release, we agree a time-bound exception with compensating controls rather than a hard stop.",
+          "tags": [
+            "VP Infrastructure round",
+            "Engineering partnership"
+          ],
+          "example": "\"After we switched change evidence to a GitHub API export, engineers stopped getting audit requests for changes entirely.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Talking about frameworks instead of engineering time.",
+              "reply": "\"I lead with what it costs the team and how I keep that cost low.\""
+            },
+            {
+              "pitfall": "Promising zero effort.",
+              "reply": "\"I say what I'll still need from them, and keep it to judgement calls.\""
+            }
+          ],
+          "story": {
+            "challenge": "Engineers saw audits as weeks of screenshots and repeated questions.",
+            "action": "I mapped every engineering control to an automated source and sent one request per team per audit cycle.",
+            "learned": "Engineers support GRC when it respects their time."
+          }
+        },
+        {
+          "q": "(VP Infrastructure round) Walk me through how a request moves through a Java full-stack application, and where you'd look for security controls.",
+          "a": "I'm not a Java developer, but I review these systems regularly, so I'll walk it end to end. The user's browser loads the front end, often React or Angular, from a CDN. Requests go over TLS to a load balancer or API gateway, where I'd expect rate limiting, a WAF and TLS 1.2 or higher. The gateway sends them to the backend, typically Spring Boot services. There I'd look at authentication, usually OAuth or JWT validated on every request, authorisation checks on each object so one customer can't read another's data, and input validation. The services talk to a database through an ORM like Hibernate, which helps prevent SQL injection when queries are parameterised. Secrets should come from a secrets manager, not properties files. Logs go to a central system, without personal data or tokens. In the pipeline, I'd look for dependency scanning on Maven or Gradle libraries, SAST, secret scanning, and container image scanning before deployment.",
+          "tags": [
+            "VP Infrastructure round",
+            "Technical",
+            "Application security",
+            "Java"
+          ],
+          "example": "\"In one review, a Spring service read the database password from application.properties in the repo. We moved it to the secrets manager and added secret scanning to block it in future.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Pretending to be a developer.",
+              "reply": "\"I'm honest that I don't write Java, and show I understand where the risks sit.\""
+            },
+            {
+              "pitfall": "Listing tools without the flow.",
+              "reply": "\"I follow the request from browser to database and name the control at each hop.\""
+            }
+          ],
+          "story": {
+            "challenge": "I had to assess a Java microservices platform without being a Java developer.",
+            "action": "I asked an engineer to walk one request end to end with me, mapped the controls at each hop, and checked the risky ones directly in the code and config.",
+            "learned": "Following one real request through the system is the fastest way to understand where controls matter."
+          }
+        },
+        {
+          "q": "(VP Infrastructure round) How do you use AI tools in your GRC work, practically?",
+          "a": "I use them for the text-heavy, repeatable parts, always with a source and a reviewer. Concretely: summarising vendor SOC 2 reports into exceptions and CUECs, drafting questionnaire answers from our approved answer library, mapping a control to SOC 2, ISO 27001 and HIPAA as a first draft, checking evidence for missing dates or wrong periods, turning meeting notes into action lists, and drafting policy updates when a process changes. I've also built a retrieval-based knowledge base over compliance documents so answers come with the source attached. The rules I follow: approved tools only, no customer data in tools that haven't been through vendor review, every answer traceable to a source, and a person signs off anything going to an auditor or customer. The time saved goes into risk judgement and talking to engineers.",
+          "tags": [
+            "VP Infrastructure round",
+            "AI in GRC",
+            "Automation"
+          ],
+          "example": "\"Summarising vendor SOC 2 reports with AI took first-pass review from about an hour to fifteen minutes each, and the reviewer still read the exceptions section in full.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Saying AI does the compliance work.",
+              "reply": "\"AI drafts and summarises. Decisions and sign-off stay with me.\""
+            },
+            {
+              "pitfall": "No guardrails.",
+              "reply": "\"Approved tools, sources attached, no sensitive data in unapproved tools, and human review.\""
+            }
+          ],
+          "story": {
+            "challenge": "Vendor reviews and questionnaires were taking most of my week.",
+            "action": "I used approved AI tools to draft from our own sources, with a review step, and built a retrieval-based knowledge base so every answer cited its source.",
+            "learned": "AI saves the most time when it's grounded in your own approved material."
+          }
+        },
+        {
+          "q": "(VP Infrastructure round) How would you automate audit evidence from our infrastructure?",
+          "a": "I'd start from the control list and map each control to the system that proves it. Then pull it by API on a schedule: from the cloud, audit log status, encryption settings, IAM users, MFA and public storage; from GitHub, branch protection, PR approvals and CI results; from the identity provider, MFA enrolment and deprovisioning events; from MDM and EDR, device coverage; from the scanner, findings and closure dates. Store each pull with a timestamp in an evidence location named by control ID. A compliance platform can do much of this, or a small set of scripts with infrastructure as code checks in the pipeline. I'd validate each automated test once against a manual check, and keep human review for things like access review decisions and exceptions.",
+          "tags": [
+            "VP Infrastructure round",
+            "Evidence automation",
+            "Technical",
+            "Infrastructure"
+          ],
+          "example": "\"A weekly script that exported every cloud account's logging and encryption settings replaced about forty screenshots per audit.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Automating without validating.",
+              "reply": "\"I check each automated test against a manual one first, so the dashboard tells the truth.\""
+            },
+            {
+              "pitfall": "Trying to automate judgement.",
+              "reply": "\"Approvals and risk decisions still need a person.\""
+            }
+          ],
+          "story": {
+            "challenge": "Evidence for infrastructure controls was collected as screenshots, and auditors questioned their dates.",
+            "action": "I replaced them with scheduled API exports stored by control ID with timestamps, validated against one manual check each.",
+            "learned": "Timestamped, automated evidence ends arguments about whether a screenshot is current."
+          }
+        },
+        {
+          "q": "(VP Infrastructure round) How do you lead an audit across stakeholders who don't report to you and still get the work done?",
+          "a": "I make it easy, visible and fair. Before kickoff, I agree scope and dates with the auditor and send each team a single list of what they own, with dates and examples of good evidence. I run a short weekly check-in with owners and a shared tracker everyone can see, so nobody is chased privately. I collect what I can myself from read-only access so owners only confirm. When something slips, I talk to the owner first, find the real blocker, and only escalate with a proposed fix. Every piece of evidence goes through my review before the auditor sees it. And I close the loop afterwards: thank the teams, share the result and the time it took them, and fix what slowed us down.",
+          "tags": [
+            "VP Infrastructure round",
+            "Audit leadership",
+            "Stakeholders"
+          ],
+          "example": "\"Sharing a single tracker with the whole team, instead of chasing people one by one, cut overdue evidence items by more than half in the next audit.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Chasing by email only.",
+              "reply": "\"A short working session or a shared tracker moves faster than reminders.\""
+            },
+            {
+              "pitfall": "Escalating first.",
+              "reply": "\"I talk to the owner first and escalate only with a proposed fix.\""
+            }
+          ],
+          "story": {
+            "challenge": "Evidence requests were late across five teams, with fieldwork two weeks away.",
+            "action": "I sent one consolidated list per team, pulled what I could myself, ran twice-weekly check-ins on a shared tracker, and sat with the slowest team for an hour.",
+            "learned": "Visibility and doing some of the work yourself get more done than escalation."
+          }
+        },
+        {
+          "q": "(VP Infrastructure round) Tell me about the hardest audit challenge you've faced and how you resolved it.",
+          "a": "Use a real story in challenge, action, result form. A strong structure: the situation was a first SOC 2 Type II where access reviews and change approvals hadn't been running consistently for the early part of the period. I couldn't backdate anything, so I was open with the auditor and leadership, agreed a period that started when the controls were genuinely operating, and set up quarterly reviews and branch protection with required approvals straight away. I automated the evidence pulls so the controls kept running without reminders. The result was a report with few exceptions, each with a clear management response, and a process that no longer depended on one person remembering.",
+          "tags": [
+            "VP Infrastructure round",
+            "Challenges",
+            "Audit leadership"
+          ],
+          "example": "\"Choosing a period that started when the controls truly began cost us a few weeks, but saved a report full of exceptions.\"",
+          "pitfalls": [
+            {
+              "pitfall": "A story where nothing went wrong.",
+              "reply": "\"Pick a real problem, what you did and what changed because of it.\""
+            },
+            {
+              "pitfall": "Blaming other teams.",
+              "reply": "\"Describe the problem as a system gap you fixed, not a person who failed.\""
+            }
+          ],
+          "story": {
+            "challenge": "Controls weren't running for the first part of a planned SOC 2 Type II period.",
+            "action": "I told the auditor and leadership, moved the period start to when controls were really running, and automated the evidence so the controls stayed on.",
+            "learned": "Honesty about timing protects the report and the relationship with the auditor."
+          }
+        },
+        {
+          "q": "(VP Infrastructure round) How would you handle infrastructure as code and cloud changes from a compliance point of view?",
+          "a": "Infrastructure as code is good for compliance, because every change is a reviewed pull request with history. I'd treat Terraform or similar the same as application code: branch protection, required review, plan output attached to the PR, and policy checks in the pipeline that block things like public buckets, unencrypted storage or open admin ports. Manual console changes in production should be rare, logged and reviewed, and drift detection should flag them. For the audit, the evidence is the PR history, the policy check results and the drift reports, all exportable.",
+          "tags": [
+            "VP Infrastructure round",
+            "Infrastructure as code",
+            "Change management",
+            "Cloud"
+          ],
+          "example": "\"A policy check in the Terraform pipeline blocked an unencrypted database in its first week, before anyone had to raise a finding.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Ignoring console changes.",
+              "reply": "\"I check drift reports, because manual changes bypass the review.\""
+            },
+            {
+              "pitfall": "Treating infrastructure separately from code.",
+              "reply": "\"Infrastructure changes get the same review and evidence as application changes.\""
+            }
+          ],
+          "story": {
+            "challenge": "Cloud changes were made both in Terraform and directly in the console, so the audit trail was incomplete.",
+            "action": "We required changes through Terraform with review and policy checks, limited console write access, and turned on drift detection.",
+            "learned": "One path for changes makes both security and evidence simpler."
+          }
+        },
+        {
+          "q": "(VP Infrastructure round) What would you need from my team in your first 90 days, and what would you give back?",
+          "a": "In the first month I'd need about an hour with each infrastructure lead to understand the architecture, how changes and access work, and what pains they have with audits today, plus read-only access to the cloud, GitHub and the identity provider. In months two and three, I'd need named owners for a small set of controls and their help to switch on automated evidence. What I'd give back: fewer and better-targeted audit requests, a clear list of the few security gaps that actually matter with a plan for each, help answering customer security questions so engineers aren't pulled into sales calls, and early warning on regulatory or customer requirements that will affect the roadmap.",
+          "tags": [
+            "VP Infrastructure round",
+            "Engineering partnership",
+            "First 90 days"
+          ],
+          "example": "\"Taking over customer questionnaires freed roughly a day a week of senior engineer time.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Only asking, never offering.",
+              "reply": "\"I make the exchange clear: what I need, and what the team gets back.\""
+            },
+            {
+              "pitfall": "Asking for broad admin access.",
+              "reply": "\"Read-only access is enough for most of my work.\""
+            }
+          ],
+          "story": {
+            "challenge": "An infrastructure team expected a new GRC lead to mean more meetings and more requests.",
+            "action": "I asked for one hour per lead and read-only access, then took questionnaires and evidence collection off their plate.",
+            "learned": "Show value to engineering early and the partnership follows."
+          }
         }
       ]
     },
