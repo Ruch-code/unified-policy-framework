@@ -2523,6 +2523,57 @@
             "action": "I checked whether past months had complete evidence, then asked the auditor about a period that had already ended.",
             "learned": "The evidence you kept decides how fast a Type II can come."
           }
+        },
+        {
+          "q": "Policy says keys rotate every 90 days. A production key is at 180 days, and rotating it could break production. What do you do?",
+          "a": "First I'd find out what the key protects and whether there's any sign it has leaked: check where it's stored, who and what uses it, and the access logs for unusual use. If there's any sign of compromise, it becomes an incident and we rotate now, with engineering on standby. If not, I wouldn't force a risky change blindly. I'd agree a planned rotation with engineering within a short window, for example two weeks: list every service that uses the key, create the new key, deploy it alongside the old one where the system allows, switch over in a maintenance window with a rollback plan, then revoke the old key and confirm nothing still calls it. Until then I'd record a time-bound exception approved by the risk owner, with compensating controls: tighter scope on the key, IP restrictions, alerting on its use and secret scanning. Afterwards I'd fix the root cause: move the key into a secrets manager with automated rotation, add an expiry alert, and test rotation in staging so it stops being scary. For the audit, the overdue period is still an exception; I'd disclose it with the cause and the fix.",
+          "tags": [
+            "Key management",
+            "Exceptions",
+            "Change management"
+          ],
+          "example": "\"An API key was 200 days old because nobody knew which services used it. We traced the callers from logs, rotated in a maintenance window with dual keys, and moved it into a secrets manager with 90-day automatic rotation.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Rotating immediately in production without a plan.",
+              "reply": "\"Unless there's a sign of compromise, I plan the rotation with a rollback, because an outage is also a risk.\""
+            },
+            {
+              "pitfall": "Leaving it overdue with no record.",
+              "reply": "\"If it can't be rotated today, there's a signed, time-bound exception with compensating controls and a fixed date.\""
+            }
+          ],
+          "story": {
+            "challenge": "A production key was 90 days past its rotation date, and engineering feared an outage if we rotated it.",
+            "action": "I checked logs for misuse, recorded a two-week exception with alerting and tighter scope, then rotated in a maintenance window using two keys in parallel and moved it into a secrets manager with automatic rotation.",
+            "learned": "Rotation is only scary when it's manual. Automating it removes the reason to delay."
+          }
+        },
+        {
+          "q": "You find 20 people with admin access to production, one root account without MFA, no disaster recovery, and policies not updated for 1.6 years. What do you prioritise and why?",
+          "a": "I'd rank by how likely each is to cause serious harm soon, and how fast it can be fixed. First, today: the root account without MFA. It's the single biggest risk, because one stolen password gives full control and it can delete everything, including backups. Turn on hardware or app MFA, store the credentials in a vault with two people needed to access them, remove any access keys on root, and alert on any root login. Second, this week: the 20 admins. Review each one with their manager, remove admin from everyone who doesn't need it daily, move the rest to named accounts through SSO with MFA, and use just-in-time elevation with approval and logging for occasional admin tasks. Most companies end up with two to four standing admins. Third, within a month: disaster recovery. Confirm backups exist and are copied to a separate account or region the admins can't delete, run a restore test, agree RTO and RPO for the critical systems, and write a short DR plan, then test it. I put this third because the first two reduce the chance of the disaster, but if one happens without backups the damage is permanent. Fourth: policies. Review and re-approve them within a month or two, updated to reflect the new controls, because auditors and customers will ask, but stale policies don't cause a breach on their own. I'd present this to leadership as a one-page plan with owners and dates, and log each item in the risk register.",
+          "tags": [
+            "Prioritisation",
+            "Privileged access",
+            "DR",
+            "Policies"
+          ],
+          "example": "\"At one company, removing admin from 17 of 20 people took three days and nobody noticed a change in their work. The restore test the following week found that one database backup had been failing silently for a month.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Starting with the policies because they're easiest.",
+              "reply": "\"Policies matter for audits, but the root account and admin sprawl are what attackers use. I fix exposure first.\""
+            },
+            {
+              "pitfall": "Removing admin access with no plan for emergencies.",
+              "reply": "\"I set up break-glass access and just-in-time elevation first, so engineers can still fix incidents.\""
+            }
+          ],
+          "story": {
+            "challenge": "I found an unprotected root account, 20 production admins, no DR and policies 18 months out of date, all at once.",
+            "action": "I secured root with MFA and a vault on day one, cut admins to three with just-in-time access for the rest that week, ran a restore test and wrote a DR plan within the month, then updated and re-approved the policies.",
+            "learned": "Fix what an attacker would use first, protect your ability to recover second, and update the paperwork last."
+          }
         }
       ]
     },
