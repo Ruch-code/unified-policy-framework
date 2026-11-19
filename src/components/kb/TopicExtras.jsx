@@ -1,5 +1,5 @@
 // Reference blocks added to the matching sections of the site. Data lives in src/data/topicExtras.js and aiVendorExtras.js.
-import { CHANGE_EXAMPLES, VULN_RELEASE, MICROSERVICES, CLOUD_MODELS, DPA_CHECKS, DPA_TEAMS, BAA_COVERAGE, SOC_COMPARE, INDIA_US_SCENARIOS, CRYPTO_COMPARE } from '../../data/topicExtras.js';
+import { CHANGE_EXAMPLES, CHANGE_EVIDENCE_MATRIX, CAB, VULN_RELEASE, MICROSERVICES, CLOUD_MODELS, DPA_CHECKS, DPA_TEAMS, BAA_COVERAGE, SOC_COMPARE, INDIA_US_SCENARIOS, CRYPTO_COMPARE } from '../../data/topicExtras.js';
 import * as AI from '../../data/aiVendorExtras.js';
 
 const H = 'text-gray-900 dark:text-white';
@@ -83,6 +83,20 @@ export function ChangeExtras() {
     <>
       <Block id="cm-hotfix-cosmetic" title="Hotfix, cosmetic, standard and normal changes: SaaS examples and audit evidence" intro={CHANGE_EXAMPLES.population}>
         <RefTable label="Change types with SaaS examples" columns={CHANGE_EXAMPLES.columns} rows={CHANGE_EXAMPLES.rows} />
+      </Block>
+      <Block id="cm-evidence-matrix" title="Mandatory evidence by change type" intro={CHANGE_EVIDENCE_MATRIX.intro}>
+        <RefTable label="Mandatory evidence by change type" columns={CHANGE_EVIDENCE_MATRIX.columns} rows={CHANGE_EVIDENCE_MATRIX.rows} />
+        <Note>{CHANGE_EVIDENCE_MATRIX.note}</Note>
+      </Block>
+      <Block id="cm-cab" title="Change advisory board (CAB): is it needed, and why" intro={CAB.intro}>
+        <RefTable label="Why a CAB matters" columns={['Purpose', 'What it does']} rows={CAB.why} />
+        <Sub>Typical agenda</Sub>
+        <Bullets items={CAB.agenda} />
+        <p className={`text-sm ${TXT}`}><span className={`font-semibold ${H}`}>Who attends: </span>{CAB.attendees}</p>
+        <p className={`text-sm ${TXT}`}><span className={`font-semibold ${H}`}>Evidence: </span>{CAB.evidence}</p>
+        <p className={`text-sm ${TXT}`}><span className={`font-semibold ${H}`}>For a small company: </span>{CAB.startup}</p>
+        <Sub>Common pitfalls</Sub>
+        <Bullets items={CAB.pitfalls} />
       </Block>
       <Block id="cm-release-with-vuln" title="Should we go to production with a known vulnerability?" intro={VULN_RELEASE.intro}>
         <RefTable label="Release decisions with a known vulnerability" columns={VULN_RELEASE.columns} rows={VULN_RELEASE.rows} />

@@ -178,3 +178,53 @@ export const CRYPTO_COMPARE = {
   ],
   evidence: ['TLS scan result for public endpoints showing TLS 1.2 minimum and TLS 1.3 enabled', 'Encryption-at-rest settings for each database, bucket and backup', 'KMS key policy showing who can use and manage keys, plus rotation settings', 'Disk encryption report from MDM for laptops', 'Cryptography policy naming approved algorithms and key lengths'],
 };
+
+// ---------- Change management: mandatory evidence by change type, and the CAB ----------
+// Values: Mandatory, If applicable, Not needed. "Retrospective" means captured after deploy within the agreed window.
+export const CHANGE_EVIDENCE_MATRIX = {
+  intro: 'What an auditor expects to see for each change type. Mandatory means a sampled change without it is an exception. Set these in the change policy so engineers know the rule before the audit, not during it.',
+  columns: ['Evidence', 'Standard (pre-approved)', 'Cosmetic or minor', 'Normal', 'Major', 'Hotfix or emergency'],
+  rows: [
+    ['Change record (ticket or log entry) linked to the deploy', 'Mandatory (automatic log referencing the approved model)', 'Mandatory', 'Mandatory', 'Mandatory', 'Mandatory (incident ticket, can be raised during the fix)'],
+    ['Classification and risk rating', 'Mandatory once, in the approved change model', 'Mandatory (why it counts as cosmetic)', 'Mandatory', 'Mandatory', 'Mandatory (why it was an emergency)'],
+    ['Pull request with approval by someone other than the author', 'Not needed per change (model approved once)', 'Mandatory', 'Mandatory', 'Mandatory, including code owners and security', 'Mandatory, before deploy if anyone is available, otherwise retrospective'],
+    ['Automated tests and security scans passed', 'Mandatory for the automation itself', 'Mandatory', 'Mandatory', 'Mandatory, plus regression and performance tests', 'Minimum agreed test set before deploy; full set afterwards'],
+    ['UAT or business sign-off', 'Not needed', 'Not needed (visual check on staging)', 'If user-facing', 'Mandatory', 'Not needed before deploy'],
+    ['Design, RFC or security review', 'Not needed', 'Not needed', 'If it touches auth, payments or personal data', 'Mandatory', 'Not needed before deploy'],
+    ['Release approval', 'Not needed per change', 'Not needed beyond PR approval', 'As set in policy (release manager or lead)', 'Mandatory: CAB or senior approver', 'Named emergency approver before deploy (verbal is fine, recorded immediately)'],
+    ['Rollback plan', 'In the change model', 'Not needed', 'If higher risk', 'Mandatory, rehearsed', 'Mandatory (often redeploying the previous version)'],
+    ['Deployment record (pipeline run, timestamp, who deployed)', 'Mandatory (automation logs)', 'Mandatory', 'Mandatory', 'Mandatory', 'Mandatory'],
+    ['Post-deploy check or smoke test', 'Logged by automation', 'Visual check', 'Mandatory', 'Mandatory', 'Mandatory'],
+    ['Retrospective approval and post-incident review', 'Not needed', 'Not needed', 'Not needed', 'Not needed', 'Mandatory, within the window in policy (for example 1 to 2 business days)'],
+    ['Communication to customers or support', 'Not needed', 'Not needed', 'If behaviour changes (release notes)', 'Mandatory', 'If customers were affected (status page)'],
+  ],
+  note: 'Whatever the type, the population comes from the system that deploys (Git history, CI/CD runs or cloud deploy logs). A deploy that has no matching record is an exception even if the change was harmless.',
+};
+
+export const CAB = {
+  intro: 'A change advisory board (CAB) is a short, regular meeting where the people who understand the systems, the business and the risk review significant changes before they go live. It is not needed for every change. Pre-approved standard changes and peer-reviewed minor changes skip it; major changes and anything that touches shared infrastructure, customer data or a busy period go through it.',
+  why: [
+    ['Risk and impact discussion', 'Engineers see their own change; the CAB sees how it interacts with other changes, customers and dependencies. It asks what could break, who would be affected and how fast it can be rolled back.'],
+    ['Scheduling and conflicts', 'Avoids two risky changes on the same night, releases during peak trading or a customer event, and changes while key people are away. It agrees maintenance windows and freeze periods.'],
+    ['Readiness check', 'Confirms testing is done, the rollback plan is real, monitoring is in place and support knows what is coming.'],
+    ['Communication', 'Makes sure support, customer success and, if needed, customers get notice through release notes or the status page.'],
+    ['Accountability and evidence', 'Records who approved what and why. Auditors use CAB minutes as evidence of release approval and segregation of duties for major changes (SOC 2 CC8.1; ISO 27001 A.8.32).'],
+    ['Learning', 'Reviews failed changes and emergency changes since the last meeting, so patterns are fixed instead of repeated.'],
+  ],
+  agenda: [
+    'Failed changes and emergency changes since the last meeting, with root cause and follow-up',
+    'Upcoming major and high-risk changes: purpose, risk rating, impact, test results, rollback plan, owner',
+    'Schedule: conflicts, maintenance windows, freeze periods',
+    'Decision per change: approve, approve with conditions, defer or reject, with the reason',
+    'Communication actions and owners',
+  ],
+  attendees: 'Chair (release or change manager), engineering leads for affected services, infrastructure or SRE, security, QA, support or customer success, and a business owner for customer-facing changes. Keep it small; invite change owners only for their item.',
+  evidence: 'Calendar invite or schedule, agenda, minutes with each decision and approver, the change records linked to the minutes, and attendance. For each sampled major change the auditor matches the change ticket to a CAB decision dated before the deploy.',
+  startup: 'For a small company, a weekly 15-minute slot or an asynchronous approval in the ticket by a named senior approver is enough, as long as the policy says which changes need it and the approval is recorded before deploy. What matters to an auditor is that significant changes get a second, informed look with a record, not that a formal board exists.',
+  pitfalls: [
+    'Every change sent to CAB, so it becomes a rubber stamp and teams work around it',
+    'CAB approval dated after the deploy',
+    'Minutes that say "approved" without the risk discussion or conditions',
+    'Major changes classified as normal to avoid CAB',
+  ],
+};
