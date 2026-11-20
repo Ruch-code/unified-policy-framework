@@ -16,21 +16,21 @@ export const EXEC = [
 ];
 
 export const PATH_A = [
-  ['Reported fact', 'A software engineer accepted a part-time side job from people posing as recruiters.'],
-  ['Reported fact', 'The tasks moved from a personal device to the company laptop, where malware was installed.'],
-  ['Reported fact', 'The compromised access reached internal wallet systems and drained an operational account used only for liquidity on a partner exchange.'],
-  ['Reported fact', 'A test transfer of about 1 USDT came first, in the early hours.'],
-  ['Assessed control gap', 'The engineer\'s endpoint or session could reach wallet systems, so signing was not isolated from day-to-day developer access.'],
-  ['Assessed control gap', 'The test transfer and the large drain did not trigger an alert or block in time, which points to missing anomaly rules or hot wallet limits.'],
+  ['Reported fact', 'A software engineer accepted a part-time side job from people posing as recruiters.', 'Outside employment and conflict of interest policy with declaration and approval; awareness training on fake recruiter lures', 'ISO A.6.2, A.6.3, A.5.10; SOC 2 CC1.1, CC1.4'],
+  ['Reported fact', 'The tasks moved from a personal device to the company laptop, where malware was installed.', 'Acceptable use banning non-company work on company devices; EDR in prevention mode; application allow-listing and no local admin', 'ISO A.8.1, A.8.7, A.5.10; SOC 2 CC6.8'],
+  ['Reported fact', 'The compromised access reached internal wallet systems and drained an operational account used only for liquidity on a partner exchange.', 'Signing on isolated systems unreachable from developer laptops; just-in-time privileged access; multi-party approval for outflows', 'ISO A.8.2, A.8.3, A.8.22; SOC 2 CC6.1, CC6.3; CCSS key usage'],
+  ['Reported fact', 'A test transfer of about 1 USDT came first, in the early hours.', 'Alerts on new destinations, test-size transfers and off-hours activity, with auto-pause pending review', 'ISO A.8.16; SOC 2 CC7.2'],
+  ['Assessed control gap', 'The engineer\'s endpoint or session could reach wallet systems, so signing was not isolated from day-to-day developer access.', 'Network segmentation of signing infrastructure; separate privileged accounts and devices for wallet operations', 'ISO A.8.22, A.8.2; CCSS key usage'],
+  ['Assessed control gap', 'The test transfer and the large drain did not trigger an alert or block in time, which points to missing anomaly rules or hot wallet limits.', 'Per-wallet hot wallet limits, velocity limits and automatic pause above thresholds', 'ISO A.5.15, A.8.16; SOC 2 CC6.1, CC7.2; CCSS key storage'],
 ];
 
 export const PATH_B = [
-  ['Reported fact', 'Deposit addresses were retired after the first incident.'],
-  ['Reported fact', 'At least one was still used by a liquidity provider for about 10 months afterwards and swept user deposits into the current hot wallet within the previous several months.'],
-  ['Reported fact', 'The automated deposit-sweeping service failed for a period, so deposits built up at the old addresses.'],
-  ['Reported fact', 'Leadership first called the reports a false alarm; the loss was later confirmed and absorbed.'],
-  ['Assessed control gap', '"Retired" was a label, not a verified state: keys stayed usable, partners were not cut over, and nothing alerted on activity.'],
-  ['Assessed control gap', 'The sweeping service had no health monitoring, and on-chain balances were not reconciled against the ledger often enough to notice the build-up.'],
+  ['Reported fact', 'Deposit addresses were retired after the first incident.', 'Decommissioning standard: sweep to zero, revoke and destroy keys, remove from systems, record in the wallet register', 'ISO A.5.9, A.5.11, A.8.10; CCSS key compromise policy'],
+  ['Reported fact', 'At least one was still used by a liquidity provider for about 10 months afterwards and swept user deposits into the current hot wallet within the previous several months.', 'Formal notice to liquidity providers with an approved address allow-list and contract terms; alert on any activity at retired addresses', 'ISO A.5.19 to A.5.22, A.8.16; SOC 2 CC9.2, CC7.2'],
+  ['Reported fact', 'The automated deposit-sweeping service failed for a period, so deposits built up at the old addresses.', 'Heartbeat monitoring on the sweep job with alerts when it stops or falls behind', 'ISO A.8.16, A.8.6; SOC 2 CC7.2, A1.1'],
+  ['Reported fact', 'Leadership first called the reports a false alarm; the loss was later confirmed and absorbed.', 'Crisis communication procedure: no public statement until the incident lead confirms the facts; holding statement template', 'ISO A.5.24, A.5.26; SOC 2 CC2.3, CC7.4'],
+  ['Assessed control gap', '"Retired" was a label, not a verified state: keys stayed usable, partners were not cut over, and nothing alerted on activity.', 'Corrective action closure only after independent verification in production', 'ISO clause 10.2; SOC 2 CC4.2, CC7.5'],
+  ['Assessed control gap', 'The sweeping service had no health monitoring, and on-chain balances were not reconciled against the ledger often enough to notice the build-up.', 'Continuous on-chain to ledger reconciliation covering every address in the register, with break alerts', 'ISO A.8.16, A.5.9; SOC 2 CC7.2; CCSS proof of reserve'],
 ];
 
 // [control area, what failed, basis, ISO 27001:2022 Annex A, SOC 2 / CCSS, severity]
@@ -122,3 +122,25 @@ export const CONTEXT = [
 ];
 
 export const DISCLAIMER = 'This case study is an anonymised, independent analysis based on publicly reported information, intended for educational purposes, and does not represent the views of any organisation.';
+
+// Expand ranges such as "A.5.19 to A.5.22" into single control IDs so overlaps are counted once.
+function expandIds(text) {
+  const out = [];
+  text.split(/,\s*/).forEach((part) => {
+    const m = part.match(/^A\.(\d+)\.(\d+) to A\.(\d+)\.(\d+)$/);
+    if (m && m[1] === m[3]) { for (let n = Number(m[2]); n <= Number(m[4]); n += 1) out.push(`A.${m[1]}.${n}`); } else out.push(part.trim());
+  });
+  return out;
+}
+
+// Combined control register for the spreadsheet: one row per control area, with which incidents it applies to.
+export function controlRegister() {
+  const map = new Map();
+  [['Incident A', TABLE_A], ['Incident B', TABLE_B]].forEach(([inc, rows]) => rows.forEach(([area, failed, basis, iso, soc, sev]) => {
+    const r = map.get(area) || { area, incidents: [], failed: [], iso: new Set(), soc: new Set(), sev: [] };
+    r.incidents.push(inc); r.failed.push(`${inc}: ${failed}`); expandIds(iso).forEach((x) => r.iso.add(x)); soc.split(/;\s*|,\s*/).forEach((x) => r.soc.add(x)); r.sev.push(`${inc}: ${sev}`);
+    map.set(area, r);
+  }));
+  const sortIds = (a, b) => a.localeCompare(b, undefined, { numeric: true });
+  return [...map.values()].map((r) => [r.area, r.incidents.join(' and '), r.incidents.length > 1 ? 'Yes' : 'No', [...r.iso].sort(sortIds).join(', '), [...r.soc].join(', '), r.failed.join(' | '), r.sev.join(' | ')]);
+}
