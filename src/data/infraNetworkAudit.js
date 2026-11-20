@@ -228,3 +228,36 @@ export const SECURE_PORTS = [
 
 export const PORT_NOTE =
   'A port is not secure on its own: an encrypted port is only as safe as its TLS version, authentication and who can reach it. Audit rule: insecure ports should be closed or justified with a documented exception, and every open port should map to a business need.';
+
+// Ports that are acceptable only when restricted, and further high-risk ports, added to complete the port review.
+// [port, service, acceptable when, flag as]
+export const CONDITIONAL_PORTS = [
+  ['22', 'SSH', 'Only from trusted admin networks or a bastion, with MFA, key-based authentication and logging', 'Critical if open to the internet with password login'],
+  ['53', 'DNS', 'Only to approved internal or upstream resolvers', 'High if hosts can query any resolver (tunnelling risk)'],
+  ['80', 'HTTP', 'Only to redirect to HTTPS', 'High if it serves content or logins'],
+  ['123', 'NTP', 'Only to approved time sources', 'Medium if open to any server (amplification risk)'],
+  ['443', 'HTTPS', 'With TLS 1.2 or higher and strong ciphers', 'Medium if older TLS is allowed'],
+  ['587', 'SMTP submission', 'With authentication and TLS', 'High if unauthenticated'],
+  ['993 / 995', 'IMAPS / POP3S', 'With TLS', 'Medium if legacy plaintext variants also open'],
+  ['3389', 'RDP', 'Only through VPN, bastion or zero trust access', 'Critical if exposed to the internet'],
+  ['1433 / 3306 / 5432', 'SQL Server / MySQL / PostgreSQL', 'Internal only, from application subnets', 'Critical if reachable from the internet'],
+  ['6379', 'Redis', 'Internal only, with authentication', 'Critical if exposed (often no authentication by default)'],
+  ['27017', 'MongoDB', 'Internal only, with authentication', 'Critical if exposed'],
+  ['9200', 'Elasticsearch', 'Internal only, with authentication', 'Critical if exposed (common source of data leaks)'],
+  ['6443', 'Kubernetes API server', 'Restricted admin access only: private endpoint or allow-listed IPs', 'Critical if open to the internet'],
+];
+
+// [port, service, why it is high risk, what to do]
+export const MORE_INSECURE_PORTS = [
+  ['135', 'Microsoft RPC', 'Used for lateral movement and remote exploitation', 'Block from untrusted networks'],
+  ['512-514', 'r-services (rexec, rlogin, rsh) and plaintext syslog (UDP 514)', 'No encryption; weak or no authentication', 'Replace with SSH and syslog over TLS; isolate if unavoidable'],
+  ['1521', 'Oracle database', 'Database exposure and brute force', 'Internal only'],
+  ['2049', 'NFS', 'File shares readable or writable by any reachable host if misconfigured', 'Internal only, restricted exports'],
+  ['2375', 'Docker API without TLS', 'Gives full control of the host to anyone who can reach it', 'Block; use 2376 with TLS client certificates only if remote access is needed'],
+  ['3128', 'HTTP proxy', 'Open proxies are abused to hide attacker traffic', 'Restrict to internal clients and require authentication'],
+  ['5900', 'VNC', 'Weak authentication, often no encryption', 'Block from the internet; use through VPN or bastion'],
+  ['5985', 'WinRM over HTTP', 'Remote management without transport encryption', 'Prefer 5986 (WinRM over HTTPS), restricted to admin networks'],
+  ['8080 / 8443', 'Alternate web ports', 'Often forgotten admin, test or proxy services', 'Review what runs there; close or put behind the main gateway with TLS'],
+  ['11211', 'Memcached', 'No authentication; abused for large amplification attacks', 'Internal only; disable UDP'],
+];
+export const PORT_RULE = 'Any database, admin, storage or management port exposed to the internet is high risk, whatever the service, unless there is a documented, approved exception.';

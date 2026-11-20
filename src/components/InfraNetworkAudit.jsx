@@ -45,6 +45,11 @@ export default function InfraNetworkAudit() {
       <Sub>Secure ports</Sub>
       <Rows label="Secure ports" headers={['Port', 'Service', 'What it protects', 'What to verify']} rows={D.SECURE_PORTS} min={900} />
       <p className={`text-sm max-w-3xl ${TXT}`}>{D.PORT_NOTE}</p>
+      <Sub>Conditionally acceptable ports (secure only when restricted)</Sub>
+      <Rows label="Conditionally acceptable ports" headers={['Port', 'Service', 'Acceptable when', 'Flag as']} rows={D.CONDITIONAL_PORTS} min={900} />
+      <Sub>More high-risk ports</Sub>
+      <Rows label="More high-risk ports" headers={['Port', 'Service', 'Why it is high risk', 'What to do']} rows={D.MORE_INSECURE_PORTS} min={900} />
+      <p className={`text-sm max-w-3xl font-semibold ${TXT}`}>{D.PORT_RULE}</p>
 
       <Sub>Email security</Sub>
       <Rows label="Email security" headers={['Control', 'What it does', 'What good looks like']} rows={D.EMAIL_SECURITY} min={900} />
