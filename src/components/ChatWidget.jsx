@@ -29,10 +29,10 @@ export default function ChatWidget() {
       <button
         onClick={toggle}
         className="fixed bottom-5 right-5 z-50 px-4 h-11 rounded bg-[#344c67] text-white text-sm font-semibold hover:bg-[#2a3d53] transition-colors flex items-center justify-center"
-        aria-label="Open GRC assistant"
+        aria-label="Open ComplianceJolly by Ruch"
       >
         <MessageSquare className="w-4 h-4 mr-2" />
-        Ask the GRC assistant
+        Ask ComplianceJolly
       </button>
 
       {open && createPortal(
@@ -43,7 +43,7 @@ export default function ChatWidget() {
             <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 bg-[#415d7d] text-white shrink-0">
               <div className="flex items-center gap-2">
                 <MessageSquare className="w-4 h-4" />
-                <span className="text-sm font-bold">GRC Advisor</span>
+                <span className="text-sm font-bold">ComplianceJolly by Ruch</span>
                 <span className="text-[10px] opacity-80">ask anything about policies, audits, contracts &amp; conflicts</span>
               </div>
               <button onClick={toggle} className="p-1 rounded-lg hover:bg-white/20 transition" aria-label="Close">
