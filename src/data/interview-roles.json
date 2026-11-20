@@ -67,6 +67,47 @@
               "reply": "\"I check whether the same period is in scope for SOC 2 or ISO, and tell the auditor early with the remediation plan.\""
             }
           ]
+        },
+        {
+          "q": "What does AI literacy mean for someone in a GRC analyst role?",
+          "a": "For me it means knowing enough about how AI systems work to ask the right questions and spot the risks, without being a data scientist. I should understand the basics: a model learns patterns from training data, a large language model predicts likely text rather than looking up facts, so it can be confidently wrong, and retrieval-augmented generation grounds answers in a set of documents. I should know the common risks, like hallucination, bias from skewed data, data leakage through prompts, prompt injection and model drift over time. And I should know the frameworks well enough to map them: the EU AI Act's risk tiers and its AI literacy duty in Article 4, ISO 42001 for an AI management system, and the NIST AI RMF's Govern, Map, Measure and Manage. In practice that lets me review an AI feature or an AI vendor and ask useful questions.",
+          "tags": [
+            "AI literacy",
+            "Fundamentals",
+            "EU AI Act",
+            "ISO 42001"
+          ],
+          "example": "\"When reviewing a support chatbot, I asked where its answers came from and whether customer data was used for training. That one question found that the vendor kept prompts for 30 days by default.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Defining AI literacy as knowing how to use ChatGPT.",
+              "reply": "\"It's about understanding how systems work and fail, not just using a tool.\""
+            },
+            {
+              "pitfall": "Pretending to know the maths.",
+              "reply": "\"I don't need to build models, but I need to know what can go wrong and what to ask.\""
+            }
+          ]
+        },
+        {
+          "q": "You're asked to review a new AI feature before launch. What questions would you ask?",
+          "a": "I'd start with what it does and who it affects: is it making or supporting decisions about people, which could make it high risk under the EU AI Act? Then data: what goes in, whether prompts contain personal or confidential data, which model provider gets it, how long they keep it and whether they train on it. Then quality: how it was tested, what the error and hallucination rate looks like, and whether there's a human check where mistakes matter. Then security: protection against prompt injection, what tools or data the model can reach, and logging. Then transparency: do users know they're dealing with AI? Finally, ownership: who monitors it after launch and who can switch it off.",
+          "tags": [
+            "AI literacy",
+            "AI risk review",
+            "Privacy"
+          ],
+          "example": "\"A review of an AI email assistant found it could read all mailboxes through a broad API permission. We limited it to the user's own mailbox before launch.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Only checking the vendor's SOC 2.",
+              "reply": "\"The vendor report covers their security, not whether our use of the model is safe or lawful.\""
+            },
+            {
+              "pitfall": "Skipping the post-launch owner.",
+              "reply": "\"AI behaviour changes over time, so someone has to own monitoring.\""
+            }
+          ]
         }
       ]
     },
@@ -2775,6 +2816,57 @@
             "challenge": "An infrastructure team expected a new GRC lead to mean more meetings and more requests.",
             "action": "I asked for one hour per lead and read-only access, then took questionnaires and evidence collection off their plate.",
             "learned": "Show value to engineering early and the partnership follows."
+          }
+        },
+        {
+          "q": "How would you build AI literacy across the company, and what does the EU AI Act expect?",
+          "a": "Article 4 of the EU AI Act expects providers and deployers to take measures for a sufficient level of AI literacy among staff who deal with AI systems, and it has applied since February 2025, though the recent omnibus changes softened the wording. I'd treat it as role-based, not one course. Everyone gets a short module: what AI can and can't do, our acceptable use policy, which tools are approved, and never pasting confidential data into unapproved tools. People who buy or configure AI tools learn how to assess vendors and data use. Engineers building AI features learn about prompt injection, evaluation, logging and human oversight. Leaders get the risk and accountability view. I'd keep completion records by role, refresh it when tools or rules change, and measure it by fewer policy breaches and better questions in AI reviews.",
+          "tags": [
+            "AI literacy",
+            "EU AI Act",
+            "Training",
+            "Programme"
+          ],
+          "example": "\"Splitting the training into four role-based modules took completion from patchy to near full in a quarter, because each was short and relevant.\"",
+          "pitfalls": [
+            {
+              "pitfall": "One generic AI course for everyone.",
+              "reply": "\"Role-based training matches what each group actually does with AI.\""
+            },
+            {
+              "pitfall": "Treating it as only a legal box to tick.",
+              "reply": "\"The real goal is fewer mistakes with AI, so I measure behaviour, not just completion.\""
+            }
+          ],
+          "story": {
+            "challenge": "Staff were using AI tools in different ways with no shared understanding of the risks.",
+            "action": "I built short role-based AI literacy modules, tied them to an approved tools list and acceptable use policy, and tracked completion by role.",
+            "learned": "AI literacy sticks when it's specific to what people actually do."
+          }
+        },
+        {
+          "q": "How do you keep your own AI knowledge current as a GRC lead, and how does it change the way you audit?",
+          "a": "I follow the primary sources rather than summaries: the EU AI Act and its implementation updates, ISO 42001 and related standards, NIST's AI RMF and its GenAI profile, and regulator guidance like the DPDP rules where AI touches personal data. I also stay hands-on with the tools, because it's hard to assess a retrieval system or an agent if you've never built a simple one. It changes how I audit in three ways: I ask for an AI inventory alongside the asset inventory, I test AI controls the same way as others, with evidence of evaluations, logs and human review rather than a policy statement, and I treat model providers as vendors with their own data use and retention questions.",
+          "tags": [
+            "AI literacy",
+            "Continuous learning",
+            "Audit approach"
+          ],
+          "example": "\"Building a small retrieval-based knowledge base myself made it much easier to ask engineers the right questions about source control and access in their RAG system.\"",
+          "pitfalls": [
+            {
+              "pitfall": "Relying only on news and vendor marketing.",
+              "reply": "\"I read the primary texts and test the tools myself.\""
+            },
+            {
+              "pitfall": "Auditing AI only through policies.",
+              "reply": "\"I ask for evidence of evaluations, logs and human review, not just a policy.\""
+            }
+          ],
+          "story": {
+            "challenge": "AI features were reaching production faster than the audit approach could keep up.",
+            "action": "I added an AI inventory to the audit scope, built a simple retrieval tool myself to understand the risks, and started testing evaluations, logs and human review as evidence.",
+            "learned": "Hands-on familiarity makes AI audits sharper than reading about them."
           }
         }
       ]
