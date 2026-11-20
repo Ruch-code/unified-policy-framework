@@ -43,7 +43,6 @@ import InfraNetworkAudit from '../components/InfraNetworkAudit.jsx';
 import AuditReadinessPlan, { ARP_PARTS } from '../components/AuditReadinessPlan.jsx';
 import ImplementationGuide, { IMPL_PARTS } from '../components/ImplementationGuide.jsx';
 import LogisticsSecurity from '../components/LogisticsSecurity.jsx';
-import VpEngGuide, { VPG_PARTS } from '../components/VpEngGuide.jsx';
 import KpiKriLibrary from '../components/maturity/KpiKriLibrary.jsx';
 import InfraReviewPlaybook, { IRP_PARTS } from '../components/InfraReviewPlaybook.jsx';
 
@@ -64,7 +63,6 @@ const EDP_TABS = [
 ];
 const TABS = [
   { id: 'policies', label: 'Policies → Controls', icon: BookOpenCheck, group: 'GRC: Start here', area: 'GRC', desc: 'How each policy area maps to frameworks and controls, with readiness timelines.' },
-  { id: 'vp-eng-guide', label: 'VP Engineering Interview Guide (Lead GRC)', icon: Users, group: 'GRC: Start here', area: 'GRC', desc: 'Questions, model answers, probes, red flags and a 1 to 5 rubric for interviewing a Lead GRC, plus Kubernetes controls and production access designs for AWS, GCP and Azure', parts: VPG_PARTS, partPrefix: 'vpg' },
   { id: 'implementation', label: 'Implementation Guide (SOC 2, ISO 27001, HIPAA)', icon: Layers, group: 'GRC: Start here', area: 'GRC', desc: 'A 12-week plan with intake, scope, control build sheet, evidence plan, testing, gap tracker and deliverables', parts: IMPL_PARTS, partPrefix: 'impl' },
   { id: 'kpi-kri', label: 'KPI and KRI Library', icon: Layers, group: 'GRC: Start here', area: 'GRC', desc: 'Programme KPIs and KRIs with definition, formula, data source, frequency, owner and green, amber and red thresholds' },
   { id: 'streamline', label: 'Streamlining GRC', icon: Layers, group: 'GRC: Start here', area: 'GRC', desc: 'Step by step: one control set, right-sized scope, one calendar, automated evidence and measures' },
@@ -92,8 +90,8 @@ const TABS = [
   { id: 'erp', label: 'ERP Security Review', icon: ShieldAlert, group: 'IT audit areas', area: 'Internal audit', desc: 'Privileged accounts, critical transactions, SoD, change transports and logging in ERP systems' },
   { id: 'edp', label: 'Endpoint & Data Protection', icon: Smartphone, group: 'GRC: Security architecture', area: 'GRC', desc: 'MDM, DLP, BYOD, ecosystems, mapping, roadmap, evidence and checklists.' },
   { id: 'data-governance', label: 'Data Governance', icon: Shield, group: 'GRC: Security architecture', area: 'GRC', desc: 'Data discovery, classification, labelling, data flow mapping and records of processing' },
-  { id: 'logistics', label: 'Logistics and Supply Chain Security', icon: Network, group: 'GRC: Security architecture', area: 'GRC', desc: 'Security, compliance and privacy for logistics, supply chain and transport platforms: hubs, fleets, driver apps, partners and DPDP' },
-  { id: 'crypto', label: 'Crypto Exchanges (VDA)', icon: Key, group: 'GRC: Security architecture', area: 'GRC', desc: 'Security and compliance for crypto exchanges: CERT-In, FIU-IND, DPDP, CCSS, and two CoinDCX incidents as worked examples' },
+  { id: 'logistics', label: 'Logistics and Supply Chain Security', icon: Network, group: 'GRC: Industry', area: 'GRC', desc: 'Security, compliance and privacy for logistics, supply chain and transport platforms: hubs, fleets, driver apps, partners and DPDP' },
+  { id: 'crypto', label: 'Crypto Exchanges (VDA)', icon: Key, group: 'GRC: Industry', area: 'GRC', desc: 'Security and compliance for crypto exchanges: CERT-In, FIU-IND, DPDP, CCSS, and two CoinDCX incidents as worked examples' },
   { id: 'evidence', label: 'Evidence Automation', icon: Package, group: 'GRC: Programme and tooling', area: 'GRC', desc: 'Automating evidence collection and keeping it audit-ready.' },
   { id: 'tooling', label: 'GRC Tooling', icon: Package, group: 'GRC: Programme and tooling', area: 'GRC', desc: 'GRC tools by category, what evidence they produce and what to watch for.' },
   { id: 'rcsa', label: 'Risk and Control Self-Assessment', icon: ShieldAlert, group: 'GRC: Programme and tooling', area: 'GRC', desc: 'Running RCSA workshops, scoring control effectiveness and feeding results into the risk register' },
@@ -378,7 +376,6 @@ export default function KnowledgeBase() {
     'audit-readiness': <AuditReadinessPlan />,
     'implementation': <ImplementationGuide />,
     'logistics': <LogisticsSecurity />,
-    'vp-eng-guide': <VpEngGuide />,
     'kpi-kri': <KpiKriLibrary />,
     'infra-review': <InfraReviewPlaybook />,
     'policy-lifecycle': <PolicyLifecycleTab />,
