@@ -50,6 +50,7 @@ const STANDARDS = [
   { path: '/cmmc', label: 'CMMC 2.0' },
   { path: '/ccss', label: 'CCSS' },
   { path: '/pmla-vda', label: 'PMLA (VDA)' },
+  { path: '/trai-whatsapp', label: 'TRAI DLT and WhatsApp' },
   { path: '/whats-new', label: 'What\'s New' },
 ];
 
@@ -139,6 +140,7 @@ const MEGA_MENU_REGIONS = [
       { path: '/cscrf', label: 'CSCRF', desc: 'SEBI Cybersecurity and Cyber Resilience Framework, with CERT-In directions' },
       { path: '/irdai', label: 'IRDAI', desc: 'Insurance information and cyber security guidelines' },
       { path: '/pmla-vda', label: 'PMLA (VDA)', desc: 'FIU-IND AML/CFT duties for crypto service providers' },
+      { path: '/trai-whatsapp', label: 'TRAI DLT and WhatsApp', desc: 'TCCCPR 2018, DLT headers, templates and consent, and WhatsApp Business Platform rules' },
     ],
   },
 ];
