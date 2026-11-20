@@ -3,8 +3,9 @@ import CryptoControlsTechnical from './crypto/CryptoControlsTechnical.jsx';
 import FlowDiagram, { CompareDiagram } from './crypto/FlowDiagram.jsx';
 import CryptoAttackVectors from './crypto/CryptoAttackVectors.jsx';
 import CryptoDeepDive from './crypto/CryptoDeepDive.jsx';
+import CryptoCaseStudy from './crypto/CryptoCaseStudy.jsx';
 // Knowledge Base topic: security and compliance for crypto exchanges (virtual digital asset service providers),
-// with two public CoinDCX incidents as worked examples. Facts are taken from the cited public reporting.
+// with two anonymised incidents at a large Indian centralised exchange as worked examples, based on public reporting.
 const H2 = 'text-xl font-bold text-gray-900 dark:text-white mb-3';
 const CARD = 'bg-white border border-gray-200 rounded-2xl p-6 mb-8 dark:bg-gray-800 dark:border-gray-700';
 const SUMMARY = 'cursor-pointer text-xl font-bold text-gray-900 dark:text-white';
@@ -41,32 +42,33 @@ function Flow({ steps, label }) {
 }
 
 const JULY_2025 = [
-  ['Reconnaissance (16 July 2025)', 'The attacker sent a 1 USDT test transaction. The attacker\'s address had been funded with 1 ETH from Tornado Cash, a mixer.'],
-  ['Access to an operational account', 'The attacker reached an internal operational liquidity account on Solana. CoinDCX said its liquidity infrastructure was breached; the exact method was not confirmed. One security expert suggested exposed backend credentials.'],
-  ['Drain in about five minutes', 'About 44.2 million USD in USDT was moved out. Because the activity used legitimate operational privileges, it did not trigger alerts.'],
-  ['Laundering across chains', 'Funds were swapped, moved from Solana to Ethereum in chunks and parked in dormant wallets. See "How the funds were laundered" below for each step.'],
-  ['Detection and disclosure', 'An on-chain investigator flagged the theft publicly about 17 hours later. CoinDCX then confirmed it and was criticised for the delay.'],
-  ['Response', 'Loss covered from treasury reserves; customer funds in cold storage were not affected; experts engaged to trace funds; a recovery bounty of up to 25% offered on 21 July. Public reporting linked the attack to the Lazarus Group (reported, not officially confirmed).'],
+  ['Entry point', 'Attackers posing as recruiters offered a software engineer a part-time side job. The engineer did the tasks first on a personal device, then on the company laptop, where malware was installed.'],
+  ['Access to an operational account', 'The compromised access was used to reach internal wallet systems, including an operational account used only for liquidity provisioning on a partner exchange.'],
+  ['Test transfer', 'A small test transfer of about 1 USDT was made in the early hours, before the main drain.'],
+  ['Drain', 'About USD 44 million was moved out. Customer wallets were reported as unaffected.'],
+  ['Laundering across chains', 'Funds were swapped, moved across chains and parked in dormant wallets. See "How the funds were laundered" below for each step.'],
+  ['Detection and disclosure', 'An independent on-chain investigator flagged the theft; the Exchange disclosed publicly about 17 hours later.'],
+  ['Response', 'The Exchange absorbed the loss from its treasury and later launched a recovery bounty.'],
 ];
 
 const OCT_2026 = [
-  ['Retired wallets left active', 'Deposit addresses from before the July 2025 hack were treated as deprecated, but at least one was still in use by a liquidity provider months later.'],
+  ['Retired wallets left active', 'Deposit addresses retired after the mid-2025 incident were treated as deprecated, but at least one was still used by a liquidity provider for about 10 months afterwards.'],
   ['Sweeping service failed', 'The automated service that moves deposits out of user-facing addresses into secure wallets stopped working for a period. Deposits built up at the old address.'],
-  ['Drain (21 October 2026)', 'Attackers emptied the old address: about 16 million USD in USDT.'],
-  ['External detection', 'Outflows were flagged on X by outside researchers, not by the exchange.'],
-  ['Conflicting statements', 'The CEO first called the reports a false alarm. The company later acknowledged "operational losses" and confirmed the amount in a blog update.'],
-  ['Response', 'CoinDCX absorbed the loss and said user funds in segregated cold wallets were safe. Some stolen funds were frozen with outside help.'],
+  ['Drain (late 2026)', 'Funds left the hot wallet and several retired deposit addresses: about USD 16 million in total.'],
+  ['External detection', 'Outflows were flagged by outside researchers, not by the Exchange.'],
+  ['Conflicting statements', 'Leadership first called the reports a false alarm, describing the addresses as old, compromised infrastructure. An independent investigator then showed one address had swept user deposits into the current hot wallet within the previous several months.'],
+  ['Response', 'The Exchange confirmed the loss and absorbed it.'],
 ];
 
 const APPLIED = [
   ['Segregation of operational and customer wallets', 'Applied', 'Limited both losses to company funds'],
   ['Cold storage for customer assets', 'Applied', 'Customer balances were not touched in either incident'],
   ['Treasury reserve to absorb losses', 'Applied', 'Trading and withdrawals continued'],
-  ['Recovery bounty and forensic tracing', 'Applied after July 2025', 'Supports recovery, not prevention'],
+  ['Recovery bounty and forensic tracing', 'Applied after the mid-2025 incident', 'Supports recovery, not prevention'],
   ['Behavioural monitoring of privileged and hot-wallet activity', 'Gap', 'A five-minute drain using valid privileges raised no alert'],
-  ['Wallet lifecycle management (decommissioning)', 'Gap', 'Old addresses stayed live and receivable after the July 2025 hack'],
+  ['Wallet lifecycle management (decommissioning)', 'Gap', 'Old addresses stayed live and receivable after the mid-2025 incident'],
   ['Monitoring of the sweeping job itself', 'Gap', 'The failure was not noticed until funds were stolen'],
-  ['Timely and consistent incident communication', 'Gap', 'Both incidents were first reported by outsiders; the first statement in October was later contradicted'],
+  ['Timely and consistent incident communication', 'Gap', 'Both incidents were first reported by outsiders; the first statement in the late-2026 incident was later contradicted'],
 ];
 
 const CONTROLS = [
@@ -116,7 +118,7 @@ const BASICS = [
     'Transactions cannot be reversed. Once stolen funds leave an address, there is no chargeback.',
   ]],
   ['What a crypto exchange is', [
-    'A company, such as CoinDCX, that lets customers buy, sell and hold crypto, usually against Indian rupees.',
+    'A company that lets customers buy, sell and hold crypto, usually against Indian rupees.',
     'The exchange holds the private keys on behalf of customers (custody). Customers see a balance in the app; the coins sit in wallets the exchange controls.',
     'Customer funds are usually pooled, with an internal ledger recording what each customer owns.',
   ]],
@@ -124,8 +126,8 @@ const BASICS = [
     'Hot wallet: keys are on internet-connected systems so withdrawals can be processed quickly. Convenient, but exposed to online attack.',
     'Cold wallet: keys are kept offline, for example on hardware devices in a vault. Much safer, but slower to use.',
     'Exchanges keep most funds cold and only what is needed for daily withdrawals and trading hot.',
-    'Operational or liquidity wallet: a hot wallet used to settle trades or move funds between venues. In July 2025 one of these was drained.',
-    'Retired (deprecated) wallet: an address the company has stopped using. If anyone still sends funds to it, or its keys are still exposed, it can still be drained. This was the problem in October 2026.',
+    'Operational or liquidity wallet: a hot wallet used to settle trades or move funds between venues. In the mid-2025 incident one of these was drained.',
+    'Retired (deprecated) wallet: an address the company has stopped using. If anyone still sends funds to it, or its keys are still exposed, it can still be drained. This was the problem in the late-2026 incident.',
     'Dormant wallet: any address with no recent activity. Attackers park stolen funds in dormant wallets to wait.',
   ]],
   ['Tokens named on this page', [
@@ -143,13 +145,13 @@ const BASICS = [
 ];
 
 const LAUNDERING = [
-  'Swap on Jupiter: Jupiter is a decentralised exchange aggregator on Solana. It finds the best price across many on-chain trading pools and executes the swap without any account or KYC. Attackers swap stolen USDT for other tokens, such as SOL, quickly, partly because the issuer can freeze USDT but not SOL.',
-  'Bridge over Wormhole: a cross-chain bridge locks tokens on one chain and releases an equivalent amount on another. Wormhole connects Solana, Ethereum and other chains. The attacker used it to move value from Solana to Ethereum.',
+  'Swap on a DEX aggregator: an aggregator finds the best price across many on-chain trading pools and executes the swap without any account or KYC. Attackers swap stolen stablecoins for a chain\'s native coin quickly, because a stablecoin issuer can freeze its token but nobody can freeze the native coin.',
+  'Bridge to another chain: a cross-chain bridge locks tokens on one chain and releases an equivalent amount on another. Attackers use it to move value away from the chain where the theft happened.',
   'Why change chains: each hop adds a new set of addresses and transactions to follow, spreads the trail across two ledgers, and moves funds to where more mixers, exchanges and cash-out routes are available. It also puts funds out of reach of tools tied to the original chain.',
-  'Why move in chunks: reporting describes transfers in chunks of roughly 1,000 to 4,000 SOL. Smaller amounts are less likely to trip monitoring thresholds, bridge or pool limits, and price slippage on large trades.',
-  'Why park in dormant wallets: the funds were left in wallets with no further activity. Attackers often wait weeks or months until public attention and active monitoring fade, then cash out through mixers or less strict exchanges.',
+  'Why move in chunks: smaller amounts are less likely to trip monitoring thresholds, bridge or pool limits, and price slippage on large trades.',
+  'Why park in dormant wallets: attackers often wait weeks or months until public attention and active monitoring fade, then cash out through mixers or less strict exchanges.',
   'How investigators trace it: every transaction is public, so analysts follow the funds address by address. Blockchain analytics firms cluster addresses that belong to the same actor, label known services (exchanges, bridges, mixers) and alert exchanges when tainted funds arrive so they can be frozen at deposit.',
-  'Who froze the funds: for the July 2025 theft, the reporting used here does not confirm that any funds were frozen, so this page does not name anyone. For the October 2026 loss, The Block reported that on-chain investigator ZachXBT said he helped freeze stolen funds worth six figures; it did not say which party carried out the freeze. Freezing works only where a central party controls the asset or account: a stablecoin issuer blacklisting an address, or an exchange blocking a deposit.',
+  'Freezing: it works only where a central party controls the asset or account, such as a stablecoin issuer blacklisting an address or an exchange blocking a deposit.',
 ];
 
 const GLOSSARY = [
@@ -199,7 +201,7 @@ export default function CryptoExchangeTab() {
     <div>
       <div className={CARD}>
         <h2 className={H2}>Crypto exchanges: security and compliance</h2>
-        <p className={P}>Exchanges hold keys that move money in one step, so a single compromised account or forgotten wallet can mean an irreversible loss. The two public CoinDCX incidents below show where controls held and where they did not. Facts come from public reporting; the exchange has not published full root cause reports.</p>
+        <p className={P}>Exchanges hold keys that move money in one step, so a single compromised account or forgotten wallet can mean an irreversible loss. The two anonymised incidents below, at a large Indian centralised exchange, show where controls held and where they did not. Facts come from public reporting; the exchange has not published full root cause reports.</p>
       </div>
 
       <details className={CARD}>
@@ -239,21 +241,21 @@ export default function CryptoExchangeTab() {
       <CryptoAttackVectors />
 
       <details className={CARD}>
-        <summary className={SUMMARY}>Case 1: CoinDCX operational wallet hack, July 2025 (about 44 million USD)</summary>
+        <summary className={SUMMARY}>Case 1: operational wallet drain, mid-2025 (about USD 44 million)</summary>
         <div className="mt-3">
-        <Flow steps={JULY_2025} label="July 2025 incident flow" />
+        <Flow steps={JULY_2025} label="Mid-2025 incident flow" />
         </div>
       </details>
 
       <details className={CARD}>
-        <summary className={SUMMARY}>How the funds were laundered (July 2025)</summary>
+        <summary className={SUMMARY}>How the funds were laundered (mid-2025)</summary>
         <div className="mt-3">
         <FlowDiagram title="The laundering path at a glance" steps={[
-          { label: 'Stolen USDT', note: 'On Solana; issuer can freeze it', tone: 'risk' },
-          { label: 'Swap on Jupiter', note: 'DEX: no account, no KYC' },
-          { label: 'Now SOL', note: 'Cannot be frozen by an issuer' },
-          { label: 'Wormhole bridge', note: 'Solana to Ethereum, in chunks' },
-          { label: 'Now on Ethereum', note: 'New chain, new addresses' },
+          { label: 'Stolen stablecoins', note: 'Issuer can freeze them', tone: 'risk' },
+          { label: 'Swap on a DEX aggregator', note: 'No account, no KYC' },
+          { label: 'Now a native coin', note: 'Cannot be frozen by an issuer' },
+          { label: 'Cross-chain bridge', note: 'To another chain, in chunks' },
+          { label: 'Now on another chain', note: 'New chain, new addresses' },
           { label: 'Dormant wallets', note: 'Wait for attention to fade', tone: 'risk' },
         ]} caption="Each step makes the funds harder to freeze and trace. Investigators can still follow them, because every transaction is public." />
         <ol className={`list-decimal pl-5 space-y-2 ${P}`}>{LAUNDERING.map((x) => <li key={x}>{x}</li>)}</ol>
@@ -261,13 +263,13 @@ export default function CryptoExchangeTab() {
       </details>
 
       <details className={CARD}>
-        <summary className={SUMMARY}>Case 2: CoinDCX retired wallet loss, October 2026 (about 16 million USD)</summary>
+        <summary className={SUMMARY}>Case 2: retired wallet loss, late 2026 (about USD 16 million)</summary>
         <div className="mt-3">
         <CompareDiagram title="What should happen to a retired wallet, and what happened here" items={[
           { label: 'Should happen', tone: 'safe', points: ['Sweep to zero', 'Revoke and destroy keys', 'Tell partners it is retired', 'Alert on any activity'] },
-          { label: 'Reported in October 2026', tone: 'risk', points: ['Old address still received funds', 'Sweep service failed for a period', 'Drained by attackers', 'Spotted by outsiders first'] },
+          { label: 'Reported in late 2026', tone: 'risk', points: ['Old address still received funds', 'Sweep service failed for a period', 'Drained by attackers', 'Spotted by outsiders first'] },
         ]} />
-        <Flow steps={OCT_2026} label="October 2026 incident flow" />
+        <Flow steps={OCT_2026} label="Late-2026 incident flow" />
         </div>
       </details>
 
@@ -282,9 +284,11 @@ export default function CryptoExchangeTab() {
         <summary className={SUMMARY}>Controls to implement</summary>
         <div className="mt-3">
         <Table head={['Control', 'Security principle', 'Maps to']} rows={CONTROLS} min={820} />
-        <p className={`mt-3 ${P}`}>The Lazarus Group (MITRE ATT&CK G0032) often gets in through fake job offers and malicious files sent to engineers, then uses valid accounts. Chainalysis tracks how stolen funds move through mixers and bridges.</p>
+        <p className={`mt-3 ${P}`}>The Lazarus Group (MITRE ATT&CK G0032) often gets in through fake job offers and malicious files sent to engineers, then uses valid accounts. Blockchain analytics firms track how stolen funds move through mixers and bridges.</p>
         </div>
       </details>
+
+      <CryptoCaseStudy />
 
       <CryptoControlsTechnical />
 
