@@ -45,6 +45,7 @@ import AuditReadinessPlan, { ARP_PARTS } from '../components/AuditReadinessPlan.
 import ImplementationGuide, { IMPL_PARTS } from '../components/ImplementationGuide.jsx';
 import LogisticsSecurity from '../components/LogisticsSecurity.jsx';
 import VpEngGuide, { VPG_PARTS } from '../components/VpEngGuide.jsx';
+import KpiKriLibrary from '../components/maturity/KpiKriLibrary.jsx';
 
 const order = ['soc2', 'iso27001', 'iso42001', 'pci', 'hipaa', 'nist', 'gdpr', 'cis', 'hitrust', 'dpdpa', 'fedramp', 'cjis'];
 const EDP_TABS = [
@@ -65,6 +66,7 @@ const TABS = [
   { id: 'policies', label: 'Policies → Controls', icon: BookOpenCheck, group: 'GRC: Start here', area: 'GRC', desc: 'How each policy area maps to frameworks and controls, with readiness timelines.' },
   { id: 'vp-eng-guide', label: 'VP Engineering Interview Guide (Lead GRC)', icon: Users, group: 'GRC: Start here', area: 'GRC', desc: 'Questions, model answers, probes, red flags and a 1 to 5 rubric for interviewing a Lead GRC, plus Kubernetes controls and production access designs for AWS, GCP and Azure', parts: VPG_PARTS, partPrefix: 'vpg' },
   { id: 'implementation', label: 'Implementation Guide (SOC 2, ISO 27001, HIPAA)', icon: Layers, group: 'GRC: Start here', area: 'GRC', desc: 'A 12-week plan with intake, scope, control build sheet, evidence plan, testing, gap tracker and deliverables', parts: IMPL_PARTS, partPrefix: 'impl' },
+  { id: 'kpi-kri', label: 'KPI and KRI Library', icon: Layers, group: 'GRC: Start here', area: 'GRC', desc: 'Programme KPIs and KRIs with definition, formula, data source, frequency, owner and green, amber and red thresholds' },
   { id: 'streamline', label: 'Streamlining GRC', icon: Layers, group: 'GRC: Start here', area: 'GRC', desc: 'Step by step: one control set, right-sized scope, one calendar, automated evidence and measures' },
   { id: 'policy-lifecycle', label: 'Policy Lifecycle', icon: BookOpenCheck, group: 'GRC: Start here', area: 'GRC', desc: 'Policy, standard, procedure and guideline: drafting, approval, acknowledgement and review' },
   { id: 'audit', label: 'Audit & Rebuttals', icon: ShieldAlert, group: 'Fieldwork and findings', area: 'Internal audit', desc: 'Common audit observations for the selected framework and how to respond.' },
@@ -376,6 +378,7 @@ export default function KnowledgeBase() {
     'implementation': <ImplementationGuide />,
     'logistics': <LogisticsSecurity />,
     'vp-eng-guide': <VpEngGuide />,
+    'kpi-kri': <KpiKriLibrary />,
     'policy-lifecycle': <PolicyLifecycleTab />,
     streamline: <StreamlineGrc />,
     'finding-classification': <FindingClassification />,
