@@ -46,6 +46,7 @@ import ImplementationGuide, { IMPL_PARTS } from '../components/ImplementationGui
 import LogisticsSecurity from '../components/LogisticsSecurity.jsx';
 import VpEngGuide, { VPG_PARTS } from '../components/VpEngGuide.jsx';
 import KpiKriLibrary from '../components/maturity/KpiKriLibrary.jsx';
+import InfraReviewPlaybook, { IRP_PARTS } from '../components/InfraReviewPlaybook.jsx';
 
 const order = ['soc2', 'iso27001', 'iso42001', 'pci', 'hipaa', 'nist', 'gdpr', 'cis', 'hitrust', 'dpdpa', 'fedramp', 'cjis'];
 const EDP_TABS = [
@@ -87,6 +88,7 @@ const TABS = [
   { id: 'sysdesign', label: 'System Design for GRC', icon: Network, group: 'GRC: Engineering and change', area: 'GRC', desc: '53 system design concepts explained for GRC work, with examples.' },
   { id: 'zerotrust', label: 'Zero Trust and Shadow IT', icon: BookOpenCheck, group: 'GRC: Security architecture', area: 'GRC', desc: 'Zero trust principles and shadow IT, with practical examples.' },
   { id: 'infranet', label: 'Infra & Network Audit', icon: Network, group: 'IT audit areas', area: 'Internal audit', desc: 'Infrastructure and network audit areas and evidence.' },
+  { id: 'infra-review', label: 'Infrastructure Security Review Playbook', icon: Network, group: 'IT audit areas', area: 'Internal audit', desc: 'End-to-end review of network, BC/DR, incident response, access and firewall rules, with priority, effort, rollback and owners for each fix, plus key rotation and contractor access scenarios', parts: IRP_PARTS, partPrefix: 'irp' },
   { id: 'cloud-testing', label: 'Cloud Control Testing Guide', icon: ShieldAlert, group: 'IT audit areas', area: 'Internal audit', desc: 'Testing SOC 2 CC6, CC7, CC8, A1 and HIPAA 164.308 and 164.312 directly in AWS, GCP and Azure', parts: CCT_PARTS },
   { id: 'erp', label: 'ERP Security Review', icon: ShieldAlert, group: 'IT audit areas', area: 'Internal audit', desc: 'Privileged accounts, critical transactions, SoD, change transports and logging in ERP systems' },
   { id: 'edp', label: 'Endpoint & Data Protection', icon: Smartphone, group: 'GRC: Security architecture', area: 'GRC', desc: 'MDM, DLP, BYOD, ecosystems, mapping, roadmap, evidence and checklists.' },
@@ -379,6 +381,7 @@ export default function KnowledgeBase() {
     'logistics': <LogisticsSecurity />,
     'vp-eng-guide': <VpEngGuide />,
     'kpi-kri': <KpiKriLibrary />,
+    'infra-review': <InfraReviewPlaybook />,
     'policy-lifecycle': <PolicyLifecycleTab />,
     streamline: <StreamlineGrc />,
     'finding-classification': <FindingClassification />,
