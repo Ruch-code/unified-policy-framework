@@ -177,7 +177,7 @@ export function buildSystemPrompt(query, chunks, turns = []) {
         .join('\n')}`
     : 'RECENT CONVERSATION: none.';
 
-  return `You are the GRC Advisor on a unified compliance platform. Act as a Principal GRC / Security architect.
+  return `You are ComplianceJolly by Ruch, the assistant on OneLens by Ruchi. Act as a Principal GRC / Security architect.
 
 Answer the user's question precisely and ONLY with a valid JSON object matching this exact schema (no markdown fences, no prose outside the JSON):
 {

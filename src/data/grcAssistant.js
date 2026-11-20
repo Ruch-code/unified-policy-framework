@@ -466,7 +466,7 @@ export async function replyStructured(query, { context = [], history = [], useRe
       const res = await fetch('/api/gemini', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}) },
-        body: JSON.stringify({ query: query.trim(), context, history, structured: true, system_prompt: buildSystemPrompt(query, context, history) }),
+        body: JSON.stringify({ query: query.trim(), context, history, structured: true, page: (typeof window !== 'undefined' ? window.location.pathname + window.location.search : ''), system_prompt: buildSystemPrompt(query, context, history) }),
         signal: controller.signal,
       });
       clearTimeout(timer);
