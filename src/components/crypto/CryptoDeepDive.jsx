@@ -1,4 +1,5 @@
 import FlowDiagram, { CompareDiagram } from './FlowDiagram.jsx';
+import CexDexDiagram from './CexDexDiagram.jsx';
 
 // Deeper dive on how Bitcoin, exchanges and decentralised exchanges work, written for a GRC reader.
 // Written in our own words.
@@ -70,6 +71,7 @@ export default function CryptoDeepDive() {
         ]} />
 
         <h3 className={H}>4. Centralised vs decentralised exchanges</h3>
+        <CexDexDiagram />
         <CompareDiagram items={[
           { label: 'Centralised exchange (CEX)', points: ['A company runs it and holds customer keys', 'KYC, AML and local regulation apply', 'Order book and matching engine', 'Risk: custody, insiders, hacks of company wallets'] },
           { label: 'Decentralised exchange (DEX)', points: ['Smart contracts run it; users keep their own keys', 'Usually no KYC at the protocol level', 'Automated market maker (AMM) pools', 'Risk: contract bugs, price manipulation, fake tokens'] },

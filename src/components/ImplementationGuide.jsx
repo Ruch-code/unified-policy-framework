@@ -22,7 +22,7 @@ function Table({ head, rows, min = 700 }) {
   );
 }
 
-const Section = ({ id, title, children }) => <section id={`impl-${id}`} className={CARD}><h2 className={H2}>{title}</h2>{children}</section>;
+const Section = ({ id, title, children }) => <details open id={`impl-${id}`} className={CARD}><summary className="cursor-pointer list-none"><h2 className={`${H2} inline`}>{title}</h2></summary><div className="mt-2">{children}</div></details>;
 
 export default function ImplementationGuide() {
   useEffect(() => {
