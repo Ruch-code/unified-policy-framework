@@ -44,7 +44,7 @@ const AREAS = [
       'Cold wallet (keys kept offline) → holds the rest.',
       'Automated sweep (a scheduled script that moves excess funds) → when the hot wallet goes above the cap → sweep the excess to cold storage.',
       'When the hot wallet runs low → a refill request → quorum approval (an agreed minimum number of approvers) → signed on an air-gapped device (a computer never connected to any network) → funds move from cold to hot.',
-      'Monitor the sweep job itself → alert if it stops running. In October 2026 a failed sweep left funds sitting at an old address.',
+      'Monitor the sweep job itself → alert if it stops running. In the late-2026 incident a failed sweep left funds sitting at an old address.',
     ],
     tools: [
       ['Fireblocks, BitGo, Copper', 'Run hot and cold wallets with policy limits and approval workflows.'],
@@ -56,7 +56,7 @@ const AREAS = [
   {
     title: '3. Retired and dormant wallets',
     diagram: <FlowDiagram title="Decommissioning a wallet" steps={[{ label: 'Mark retired', note: 'In the wallet inventory' }, { label: 'Sweep to zero' }, { label: 'Revoke keys' }, { label: 'Destroy key material', note: 'Witnessed' }, { label: 'Keep evidence' }, { label: 'Alert on activity', tone: 'safe', note: 'Forever' }]} />,
-    gap: 'The October 2026 loss came from retired wallets that still held funds.',
+    gap: 'The late-2026 loss came from retired wallets that still held funds.',
     why: 'A wallet nobody watches is the easiest target. If its keys still exist or funds still arrive there, it can be drained without anyone noticing.',
     control: 'Every wallet is tracked from creation to decommissioning, and retired addresses are watched.',
     how: [
@@ -96,7 +96,7 @@ const AREAS = [
   {
     title: '5. Detection and monitoring',
     diagram: <FlowDiagram title="From signal to response" steps={[{ label: 'On-chain outflow', tone: 'risk' }, { label: 'KYT alert' }, { label: 'Ledger reconciliation', note: 'Does it match?' }, { label: 'Mismatch = incident', note: 'Never a false alarm without proof' }, { label: 'Pause and investigate', tone: 'safe' }]} />,
-    gap: 'The October 2026 breach was first called a "false alarm".',
+    gap: 'The late-2026 breach was first called a "false alarm".',
     why: 'Every minute of delay lets funds move further and makes freezing harder.',
     control: 'Watch both the blockchain and internal systems, reconcile balances continuously, and treat any unexplained outflow as an incident until proven otherwise.',
     how: [
@@ -155,7 +155,7 @@ const AREAS = [
   {
     title: '8. Incident response and recovery',
     diagram: <FlowDiagram title="The first hour" steps={[{ label: 'Anomaly detected', tone: 'risk' }, { label: 'Auto-pause wallet' }, { label: 'Confirm incident' }, { label: 'Freeze requests', note: 'Issuers, bridges, exchanges' }, { label: 'CERT-In clock running', note: '6 hours' }, { label: 'Reserve protects customers', tone: 'safe' }]} />,
-    gap: 'In July 2025, stolen funds were moved out before anyone could freeze them.',
+    gap: 'In the mid-2025 incident, stolen funds were moved out before anyone could freeze them.',
     why: 'Funds can cross chains within minutes, so recovery depends on speed and on having contacts ready.',
     control: 'Automatic pause on suspicious outflows, a ready list of freeze contacts and a reserve so customers are protected.',
     how: [
