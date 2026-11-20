@@ -236,6 +236,7 @@ const REGIONS = [
       { path: '/irdai', name: 'IRDAI', desc: 'Insurance cyber security guidelines' },
       { path: '/cert-in', name: 'CERT-In', desc: 'Indian CERT incident directives' },
       { path: '/pmla-vda', name: 'PMLA (VDA)', desc: 'FIU-IND AML/CFT duties for crypto providers' },
+      { path: '/trai-whatsapp', name: 'TRAI DLT and WhatsApp', desc: 'Commercial SMS rules and WhatsApp Business Platform' },
     ],
   },
   {

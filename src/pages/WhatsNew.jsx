@@ -6,6 +6,14 @@ import { FRAMEWORKS } from '../data/registry';
 
 const CHANGELOG = [
   {
+    version: '2.10.0',
+    date: '2026-11-20',
+    label: 'India Messaging Release',
+    changes: [
+      { type: 'Feature', title: 'TRAI DLT and WhatsApp Business Platform', desc: 'New /trai-whatsapp page under India: TRAI TCCCPR 2018 roles, DLT entity, header, template and consent registration, link whitelisting and chain traceability, plus WhatsApp Business Platform opt-in, templates, BSP roles and data processing.' },
+    ],
+  },
+  {
     version: '2.9.0',
     date: '2026-10-26',
     label: 'ISO/IEC 27090 Release',

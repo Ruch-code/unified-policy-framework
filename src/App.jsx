@@ -46,6 +46,7 @@ import Cscrf from './pages/standards/Cscrf.jsx';
 import CertIn from './pages/standards/CertIn.jsx';
 import Ccss from './pages/standards/Ccss.jsx';
 import Pmla from './pages/standards/Pmla.jsx';
+import TraiWhatsapp from './pages/standards/TraiWhatsapp.jsx';
 
 import Lgpd from './pages/standards/Lgpd.jsx';
 import Pdpa from './pages/standards/Pdpa.jsx';
@@ -150,6 +151,7 @@ function App() {
           <Route path="cert-in" element={<Protected><CertIn /></Protected>} />
           <Route path="ccss" element={<Protected><Ccss /></Protected>} />
           <Route path="pmla-vda" element={<Protected><Pmla /></Protected>} />
+          <Route path="trai-whatsapp" element={<Protected><TraiWhatsapp /></Protected>} />
           <Route path="lgpd" element={<Protected><Lgpd /></Protected>} />
           <Route path="pdpa" element={<Protected><Pdpa /></Protected>} />
           <Route path="pipl" element={<Protected><Pipl /></Protected>} />

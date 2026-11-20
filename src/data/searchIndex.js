@@ -199,6 +199,7 @@ const FRAMEWORK_KEYWORDS = {
   rbi: ['rbi', 'reserve bank', 'banking', 'banks', 'financial', 'india', 'payment systems', 'cyber security', 'fintech'],
   cscrf: ['cscrf', 'india cyber security', 'cyber security framework', 'csirt', 'incident', 'cert', 'cyber crisis management', 'availability', 'forensic'],
   ccss: ['ccss', 'cryptocurrency security standard', 'crypto', 'key custody', 'wallet', 'c4', 'multisig', 'proof of reserve'],
+  'trai-whatsapp': ['trai', 'tcccpr', 'dlt', 'sms', 'header', 'sender id', 'template', 'consent', 'dnd', 'telemarketer', 'whatsapp', 'bsp', 'business solution provider', 'meta', 'messaging', 'cpaas'],
   'pmla-vda': ['pmla', 'fiu-ind', 'fiu ind', 'aml', 'cft', 'kyc', 'str', 'vda', 'crypto', 'money laundering', 'travel rule'],
   'cert-in': ['cert in', 'cert-in', 'india', 'incident response', 'cyber security', 'mandatory directives', '6 hour reporting', '180 day logs', 'vpn logs', 'csirt', 'coordination'],
   lgpd: ['lgpd', 'lei geral', 'brazil', 'anpd', 'data protection', 'privacy', 'personal data', 'consent', 'portuguese'],
