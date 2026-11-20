@@ -24,7 +24,7 @@ function Table({ head, rows, min = 760 }) {
   );
 }
 const List = ({ items }) => <ul className={`list-disc pl-5 space-y-1 ${P}`}>{items.map((x) => <li key={x}>{x}</li>)}</ul>;
-const Section = ({ id, title, children }) => <section id={`irp-${id}`} className={CARD}><h2 className={H2}>{title}</h2>{children}</section>;
+const Section = ({ id, title, children }) => <details open id={`irp-${id}`} className={CARD}><summary className="cursor-pointer list-none"><h2 className={`${H2} inline`}>{title}</h2></summary><div className="mt-2">{children}</div></details>;
 
 export default function InfraReviewPlaybook() {
   useEffect(() => {

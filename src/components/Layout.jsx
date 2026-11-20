@@ -9,6 +9,7 @@ import NewsletterPopup from './NewsletterPopup.jsx';
 import SubscribeForm from './newsletter/SubscribeForm.jsx';
 import InspectorCursor from './InspectorCursor.jsx';
 import ChatWidget from './ChatWidget.jsx';
+import PageTools from './PageTools.jsx';
 import DonateButton from './DonateButton.jsx';
 import LinkedInStory from './LinkedInStory.jsx';
 import SearchBar from './SearchBar.jsx';
@@ -706,7 +707,7 @@ export default function Layout() {
           <VisitorCounter />
           <div className="w-full max-w-md text-left px-4">
             <p className="text-sm font-semibold text-white">Newsletter</p>
-            <p className="text-xs text-gray-300">One practical GRC note every two weeks. <Link to="/newsletter" className="underline">Past issues</Link></p>
+            <p className="text-xs text-gray-300">One practical GRC note every two weeks. Subscribe and get the 113-control cross-framework mapping (Excel). <Link to="/newsletter" className="underline">Past issues</Link></p>
             <SubscribeForm compact dark source="footer" />
           </div>
           <nav aria-label="Legal" className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs">
@@ -725,6 +726,7 @@ export default function Layout() {
       <NewsletterPopup open={newsletterOpen} onClose={() => setNewsletterOpen(false)} />
       {!user && <InspectorCursor />}
       <SiteHelpers />
+      <PageTools />
       {user && <ChatWidget />}
     </div>
   );

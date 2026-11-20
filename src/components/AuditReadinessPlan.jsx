@@ -26,7 +26,7 @@ function Table({ head, rows, min = 700, label, render }) {
 }
 
 function Section({ id, title, children }) {
-  return <section id={`arp-${id}`} className={CARD}><h2 className={H2}>{title}</h2>{children}</section>;
+  return <details open id={`arp-${id}`} className={CARD}><summary className="cursor-pointer list-none"><h2 className={`${H2} inline`}>{title}</h2></summary><div className="mt-2">{children}</div></details>;
 }
 
 export default function AuditReadinessPlan() {
