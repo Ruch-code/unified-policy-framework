@@ -135,7 +135,7 @@ export function AwarenessTab() {
     evidence: ['Awareness plan', 'Training completion report', 'Phishing campaign results', 'Spot check records with actions'],
     pitfalls: ['Annual click-through training only.', 'Punishing clickers, which stops people reporting.', 'Spot checks done once and never repeated.'],
     maps: ['ISO 27001:2022 A.6.3, A.7.2, A.7.7, A.7.14', 'SOC 2 CC1.4, CC2.2', 'NIST CSF 2.0 PR.AT', 'CIS Controls v8.1 Control 14'],
-    related: <p className={`mt-3 ${P}`}>Training and phishing metrics are in the <Link className="ui-link" to="/grc-maturity#kpi-kri">KPI and KRI library</Link>.</p>,
+    related: <p className={`mt-3 ${P}`}>Training and phishing metrics are in the <Link className="ui-link" to="/knowledge?topic=kpi-kri">KPI and KRI library</Link>.</p>,
     templates: [
       { name: 'Awareness annual plan', file: 'awareness-annual-plan.xlsx', desc: 'month, theme, audience, channel, owner and completion' },
       { name: 'Phishing simulation tracker', file: 'phishing-tracker.xlsx', desc: 'campaign, audience, delivered, clicked, reported, rates and remedial training' },

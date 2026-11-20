@@ -75,7 +75,7 @@ const STEPS = [
     why: 'Without measures, you cannot show the programme is working or where to invest.',
     do: ['Pick a short set of KPIs and KRIs.', 'Report trends to management monthly or quarterly.', 'Track time spent on GRC tasks before and after each change.'],
     result: 'Evidence that streamlining saved time and reduced risk.',
-    link: ['KPI and KRI library', '/grc-maturity#kpi-kri'],
+    link: ['KPI and KRI library', '/knowledge?topic=kpi-kri'],
   },
   {
     t: 'Review and improve each year',

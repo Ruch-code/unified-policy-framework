@@ -1,5 +1,6 @@
 import CsfGapAssessment from '../components/maturity/CsfGapAssessment.jsx';
-import KpiKriLibrary from '../components/maturity/KpiKriLibrary.jsx';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext.jsx';
 import { MATURITY_HERO, LEVEL_SUMMARY, LEVELS, COMPARISON, JUMP } from '../data/grcMaturity.js';
 
 const H = 'text-gray-900 dark:text-white';
@@ -18,6 +19,7 @@ function Rows({ label, headers, rows, min = 700 }) {
 }
 
 export default function GrcMaturity() {
+  const { user } = useAuth() || {};
   return (
     <div className="max-w-5xl mx-auto px-4 py-10 space-y-12">
       <header className="max-w-3xl">
@@ -30,12 +32,23 @@ export default function GrcMaturity() {
         <h2 className={`text-xl font-semibold mb-3 ${H}`}>The three levels at a glance</h2>
         <Rows label="Maturity levels" headers={['Level', 'Name', 'Stage', 'Focus', 'Market reality']} rows={LEVEL_SUMMARY} min={800} />
         <nav className="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-sm" aria-label="Jump to level">
-          {LEVELS.map((l) => <a key={l.id} href={`#${l.id}`} className="underline text-blue-700 dark:text-blue-300">{l.level}: {l.name}</a>)}
-          <a href="#cognitive-jump" className="underline text-blue-700 dark:text-blue-300">The cognitive jump</a>
+          {user && LEVELS.map((l) => <a key={l.id} href={`#${l.id}`} className="underline text-blue-700 dark:text-blue-300">{l.level}: {l.name}</a>)}
+          {user && <a href="#cognitive-jump" className="underline text-blue-700 dark:text-blue-300">The cognitive jump</a>}
         </nav>
       </section>
 
-      {LEVELS.map((l) => (
+      {!user && (
+        <section className={`border-t pt-8 ${LINE}`} aria-label="Sign in to view the full maturity model">
+          <h2 className={`text-xl font-semibold ${H}`}>Preview only</h2>
+          <p className={`mt-2 max-w-3xl ${TXT}`}>You are seeing the summary of the three maturity levels. Sign in to view the full model: pain points and services for each level, the level comparison, the cognitive jump, and the CSF gap assessment.</p>
+          <div className="mt-4 flex gap-3">
+            <Link to="/login" className="inline-flex items-center rounded-lg bg-navy-900 dark:bg-white px-4 py-2 text-sm font-semibold text-white dark:text-navy-900">Sign in</Link>
+            <Link to="/signup" className="inline-flex items-center rounded-lg border border-gray-300 dark:border-slate-600 px-4 py-2 text-sm font-semibold text-gray-900 dark:text-white">Create an account</Link>
+          </div>
+        </section>
+      )}
+
+      {user && LEVELS.map((l) => (
         <section key={l.id} id={l.id} className={`border-t pt-8 ${LINE} scroll-mt-20`}>
           <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-400">{l.level}: {l.name}</p>
           <h2 className={`text-2xl font-serif font-bold mt-1 ${H}`}>{l.headline}</h2>
@@ -48,6 +61,7 @@ export default function GrcMaturity() {
         </section>
       ))}
 
+      {user && <>
       <section className={`border-t pt-8 ${LINE}`}>
         <h2 className={`text-xl font-semibold mb-3 ${H}`}>How the levels compare</h2>
         <Rows label="Level comparison" headers={['Dimension', 'Level 1: Documentation', 'Level 2: Integration', 'Level 3: Influence']} rows={COMPARISON} min={900} />
@@ -62,7 +76,8 @@ export default function GrcMaturity() {
       </section>
 
       <CsfGapAssessment />
-      <KpiKriLibrary />
+      <p className={`text-sm ${TXT}`}>The KPI and KRI library has moved to the <Link to="/knowledge?topic=kpi-kri" className="underline text-blue-700 dark:text-blue-300">GRC Knowledge Base</Link>.</p>
+      </>}
     </div>
   );
 }
