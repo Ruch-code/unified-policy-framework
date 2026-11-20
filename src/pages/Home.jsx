@@ -12,6 +12,7 @@ import RiskAssessmentModule from '../components/riskAssessment/RiskAssessmentMod
 import { WHAT_CAN_GO_WRONG as RISK_WHAT_CAN_GO_WRONG } from '../data/riskAssessment/methodology';
 import VendorRiskManagement from '../components/VendorRiskManagement.jsx';
 import InterviewPrep from '../components/InterviewPrep.jsx';
+import VpEngGuide from '../components/VpEngGuide.jsx';
 import PasswordPolicies from '../components/PasswordPolicies.jsx';
 import AccessRequirements from '../components/AccessRequirements.jsx';
 import UserAccessReview from '../components/UserAccessReview.jsx';
@@ -474,6 +475,10 @@ function TabPanel({ isDark, activeTab }) {
           showLoginPrompt={false}
         >
           <InterviewPrep isDark={isDark} />
+          <details id="vp-eng-guide" className="mt-8 rounded-2xl border border-surface-200 dark:border-surface-dark-200 scroll-mt-24">
+            <summary className="cursor-pointer px-4 py-3 text-lg font-bold text-navy-900 dark:text-text-dark-primary">VP Engineering Interview Guide (Lead GRC)</summary>
+            <div className="px-2 pb-2"><VpEngGuide /></div>
+          </details>
           <div className="mt-8"><Nov2026Questions /></div>
           <CcDownloads groups={['interview']} title="Contact-centre threat modelling interview Q&As" />
         </LockedSection>

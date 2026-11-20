@@ -40,7 +40,7 @@ export default function VpEngGuide() {
     <div className="min-w-0">
       <section className={CARD}>
         <h2 className="text-xl font-bold text-navy-900 dark:text-text-dark-primary mb-2">VP of Engineering Interview Guide: Lead GRC</h2>
-        <p className={P}>For an engineering leader interviewing a Lead GRC candidate. Each competency has a main question, a model answer in conversational form, follow-up probes that expose shallow experience, red flags, and two columns: technical depth (what an engineer will recognise) and compliance vocabulary (what the candidate should also name). Candidates can use the same material to prepare; the candidate-side answers for this round are in <Link className="ui-link" to="/#interview-prep">Interview Prep</Link> under Lead GRC Engineer, VP Infrastructure round.</p>
+        <p className={P}>For an engineering leader interviewing a Lead GRC candidate. Each competency has a main question, a model answer in conversational form, follow-up probes that expose shallow experience, red flags, and two columns: technical depth (what an engineer will recognise) and compliance vocabulary (what the candidate should also name). Candidates can use the same material to prepare; the candidate-side answers for this round are in the Lead GRC Engineer role above, tagged VP Infrastructure round.</p>
       </section>
 
       <Section id="how" title="How to use this guide"><List items={HOW} /></Section>
