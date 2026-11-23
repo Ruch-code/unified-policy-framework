@@ -79,9 +79,10 @@ export default function CloudLegacyPrimer() {
         <p className={P}>A legacy system is not automatically bad. It becomes risky when it is old, unsupported, poorly documented, hard to monitor or hard to secure.</p>
         <Table head={['Legacy system type', 'Example', 'Common issue']} rows={[
           ['Old operating system', 'Windows Server 2012, CentOS 7', 'No longer supported or hard to patch'],
+          ['Old payroll system', 'On-premises payroll server from around 2012', 'Hard to patch, sensitive employee data, weak logging'],
           ['Old database', 'SQL Server 2008, Oracle 11g', 'Missing security updates, weak encryption'],
-          ['Old ERP', 'SAP ECC, heavily customised older ERP', 'Complex dependencies and fragile integrations'],
-          ['Old CRM', 'Self-hosted CRM', 'Weak access controls, poor logging'],
+          ['Old ERP', 'SAP ECC before migration to S/4HANA, heavily customised older ERP', 'Complex dependencies and fragile integrations'],
+          ['Old CRM', 'Self-hosted CRM or an outdated CRM integration', 'Weak access controls, poor logging'],
           ['Old file server', 'On-premises Windows shared drive', 'Excessive permissions, limited audit trails'],
           ['Old authentication', 'On-premises Active Directory without MFA', 'High risk of account compromise'],
           ['Old custom application', 'Internal app built years ago', 'No owner, no tests, hardcoded credentials'],
@@ -128,7 +129,7 @@ export default function CloudLegacyPrimer() {
           ['Recovery', 'Snapshots and managed backups are common', 'May depend on tapes, old images or manual steps'],
         ]} />
 
-        <p className={`${P} mt-3 font-medium`}>In short: cloud infrastructure needs strong identity, configuration, logging, encryption, backup and change controls. Legacy systems need the same, but often cannot support them cleanly, so the company needs isolation, monitoring, documented exceptions and a migration plan.</p>
+        <p className={`${P} mt-3 font-medium`}>In short: legacy systems are older systems the company still depends on; cloud infrastructure is the modern hosted environment where applications, data, identity and networks run. Cloud infrastructure needs strong identity, configuration, logging, encryption, backup and change controls. Legacy systems need the same, but often cannot support them cleanly, so the company needs isolation, monitoring, documented exceptions and a migration plan.</p>
         <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">Product names are illustrative examples, not recommendations. Check vendor support dates before calling a specific version unsupported.</p>
       </div>
     </details>
