@@ -20,9 +20,9 @@ export default function PrivacySecurityLeadership() {
       <div className="mt-3 text-sm text-gray-700 dark:text-gray-300">
         <p>The DPO is the independent privacy compliance monitor. The CISO owns security. The CPO usually owns privacy strategy. The CTO owns technology and engineering.</p>
         <Table head={['Role', 'Main job', 'Typical reporting line']} rows={[
-          ['DPO (Data Protection Officer)', 'Informs and advises on data protection duties, monitors compliance, advises on DPIAs, and is the contact point for the regulator and data subjects', 'Highest management level, such as the CEO or board (GDPR Art. 38(3))'],
-          ['CISO (Chief Information Security Officer)', 'Runs the security programme: risk, controls, security operations and incident response', 'CEO, CIO, CTO or COO, varies by company'],
-          ['CPO (Chief Privacy Officer)', 'Sets privacy strategy, builds the privacy programme and embeds privacy into products', 'General Counsel, CEO or Chief Compliance Officer, varies by company'],
+          ['DPO (Data Protection Officer)', 'Informs and advises on data protection duties, monitors compliance, advises on DPIAs, and is the contact point for the regulator and data subjects', 'Highest management level: CEO, board, or General Counsel with direct board access (GDPR Art. 38(3))'],
+          ['CISO (Chief Information Security Officer)', 'Runs the security programme: risk, controls, security operations and incident response', 'CIO, CTO, COO, CEO or the board, varies by company'],
+          ['CPO (Chief Privacy Officer)', 'Sets privacy strategy, builds the privacy programme and embeds privacy into products', 'General Counsel, CEO or COO, varies by company'],
           ['CTO (Chief Technology Officer)', 'Owns technology direction, architecture and engineering delivery', 'CEO'],
         ]} />
 
@@ -31,8 +31,9 @@ export default function PrivacySecurityLeadership() {
           ['CISO', 'The DPO may need to challenge security decisions about personal data. Reporting to the person being challenged weakens independence.'],
           ['CPO', 'The CPO designs the privacy programme the DPO monitors, so the DPO would be checking their own manager\'s work.'],
           ['CTO', 'The CTO decides how systems process personal data, which is exactly what the DPO must assess. This is a classic conflict of interest.'],
+          ['Product or Engineering', 'Product and Engineering decide how data is collected and used. The DPO must review those decisions independently.'],
         ]} />
-        <p className="mt-2"><strong>Simple rule:</strong> the DPO should not report to, or be, the person who decides why and how personal data is processed. GDPR Art. 38(3) says the DPO reports directly to the highest management level and must not be dismissed or penalised for doing the job. Art. 38(6) allows other duties only if they do not create a conflict of interest.</p>
+        <p className="mt-2"><strong>Simple rule:</strong> the DPO should not report to someone whose work they are supposed to audit or challenge, and should not be the person who decides why and how personal data is processed. GDPR Art. 38(3) says the DPO reports directly to the highest management level and must not be dismissed or penalised for doing the job. Art. 38(6) allows other duties only if they do not create a conflict of interest.</p>
         <p className="mt-2">In smaller companies one person may hold the CPO and DPO titles. That can work if they do not also decide the purposes and means of processing, and the arrangement is documented.</p>
         <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">Under India's DPDP Act, a DPO is required only for a Significant Data Fiduciary, must be based in India and is responsible to the Board of Directors or similar governing body (Section 10(2)(a)).</p>
       </div>
