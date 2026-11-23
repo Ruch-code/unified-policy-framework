@@ -26,6 +26,7 @@ import DataGovernanceTab from '../components/DataGovernanceTab.jsx';
 import CloudTestingGuide from '../components/CloudTestingGuide.jsx';
 import CloudLegacyPrimer from '../components/CloudLegacyPrimer.jsx';
 import ThreatNewsNov2026 from '../components/ThreatNewsNov2026.jsx';
+import { CsfVsAiRmf } from '../components/kb/InterviewHubExtras.jsx';
 import { PARTS as CCT_PARTS } from '../data/cloudTestingGuide.js';
 import StreamlineGrc from '../components/toolkit/StreamlineGrc.jsx';
 import FindingClassification from '../components/toolkit/FindingClassification.jsx';
@@ -207,6 +208,7 @@ export default function KnowledgeBase() {
           </h4>
           <ControlMappingCard />
         </div>
+        <CsfVsAiRmf />
         {fwObj.timeline && (
           <div className="bg-white border border-gray-200 rounded-2xl p-4 dark:bg-[#1e293b] dark:border-[#334155]">
             <div className="flex flex-wrap items-center justify-between gap-2">
