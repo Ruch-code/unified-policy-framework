@@ -6,6 +6,7 @@ import { taskNotes } from '../data/startupVariants.js';
 import { Link } from 'react-router-dom';
 import { Clock, RefreshCw, ArrowRight, BookOpen, ExternalLink, Lock, CheckCircle, ChevronDown, ChevronRight, Zap, Shield, Award, Target, TrendingUp, AlertTriangle, Lightbulb, ClipboardList, Info } from 'lucide-react';
 import FindingsDatabase from './FindingsDatabase.jsx';
+import { downloadXlsx } from '../utils/xlsxExport.js';
 import { resolveTaskDomains } from '../data/controlDomains.js';
 import ReportTimeline from './ReportTimeline.jsx';
 import Flag from './ui/Flag.jsx';
@@ -322,6 +323,24 @@ function FrameworkBody({ framework, extraSections }) {
     });
   };
 
+  // Excel: project plan (every task with progress) and a gap assessment sheet to fill in.
+  const downloadPlan = () => {
+    const name = framework.name || framework.title || framework.id;
+    const plan = [];
+    const gap = [];
+    data.weeks.forEach((w) => w.tasks.forEach((t, i) => {
+      const done = progress[`w${w.week}-${i}`] ? 'Done' : 'Not started';
+      plan.push([`Level ${w.week}: ${w.title || ''}`, t.title || '', t.control || '', t.how || '', t.check || '', t.hours || '', '', '', done]);
+      gap.push([t.control || '', t.title || '', t.check || '', '', '', '', '', '', '']);
+    }));
+    downloadXlsx([
+      { name: 'Project plan', title: `${name}: implementation project plan`, notes: ['Status reflects the tasks you ticked on this page. Fill in owner and due date.'], headers: ['Phase', 'Task', 'Control or clause', 'How to do it', 'Done when', 'Est. hours', 'Owner', 'Due date', 'Status'], rows: plan,
+        validations: [{ col: 8, values: ['Not started', 'In progress', 'Done', 'Blocked'] }] },
+      { name: 'Gap assessment', title: `${name}: gap assessment`, notes: ['Record the current state for each requirement, then rate the gap.'], headers: ['Control or clause', 'Requirement', 'Expected evidence', 'Current state', 'Gap rating', 'Risk if not fixed', 'Remediation', 'Owner', 'Target date'], rows: gap,
+        validations: [{ col: 4, values: ['Met', 'Partially met', 'Not met', 'Not applicable'] }] },
+    ], `${String(framework.id || 'framework').toLowerCase()}-project-plan-and-gap-assessment`);
+  };
+
   const resetProgress = () => {
     if (window.confirm('Reset all progress? This cannot be undone.')) {
       localStorage.removeItem(storageKey);
@@ -449,6 +468,9 @@ function FrameworkBody({ framework, extraSections }) {
               })}
             </div>
 
+            <button type="button" onClick={downloadPlan} className="text-sm text-blue-700 dark:text-blue-300 underline self-start shrink-0">
+              Download project plan and gap assessment (Excel)
+            </button>
             <button onClick={resetProgress} className="text-sm text-gray-400 hover:text-red-500 transition underline self-start shrink-0">
               <RefreshCw className="w-4 h-4 inline mr-1" />
               Reset
