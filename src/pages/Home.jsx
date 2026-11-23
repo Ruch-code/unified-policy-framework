@@ -201,7 +201,6 @@ const REGIONS = [
       { path: '/iso/27001/la', name: 'ISO 27001 LA', desc: 'ISMS auditing & certification' },
       { path: '/iso/27001/li', name: 'ISO 27001 LI', desc: 'ISMS implementation' },
       { path: '/iso-22317', name: 'ISO 22317', desc: 'Business Impact Analysis (2021)' },
-      { path: '/iso/42001', name: 'ISO 42001', desc: 'AI Management System' },
       { path: '/iso/27090', name: 'ISO 27090', desc: 'Security threats to AI systems (2026)' },
       { path: '/eu-ai-act', name: 'EU AI Act', desc: 'Risk-based AI regulation (post-omnibus dates)' },
       { path: '/iso/27017', name: 'ISO 27017', desc: 'Cloud security controls' },
@@ -358,10 +357,6 @@ function TabPanel({ isDark, activeTab }) {
       </div>
 
       {/* Tab Content */}
-      {activeTab === 'regional' && (
-        <MovedNote id="dpdpa-updates" title="DPDPA updates" to="/dpdpa#dpdpa-updates" where="the DPDPA page" />
-      )}
-
       {activeTab === 'regional' && (
         <ErrorBoundary>
           <SecurityOperations isDark={isDark} />
