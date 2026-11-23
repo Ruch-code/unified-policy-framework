@@ -23,7 +23,7 @@ const FRAMEWORK = {
       templates: ['dpdpa-consent-notice'],
       gap: "Relying on implicit/vague consent instead of a valid notice + consent request",
       pushback: "People sign up and tick a box; that's consent.",
-      reality: "DPDPA (Sec 5, 6) requires a clear notice BEFORE processing and consent that's separate, informed, and freely given. Pre-ticked boxes or bundled consent fail.",
+      reality: "DPDP Act (Sec 5, 6) requires a clear notice BEFORE processing and consent that's separate, informed, and freely given. Pre-ticked boxes or bundled consent fail.",
       leantip: "Implement a plain-language notice, a granular consent checkbox, and a way to withdraw. Log consent (who, what, when) as evidence - use a consent-management tool."
     },
     {
@@ -31,7 +31,7 @@ const FRAMEWORK = {
       templates: ['ropa-dpia', 'data-management-policy'],
       gap: "Collecting more data than needed with no purpose limitation",
       pushback: "We may need this data later, so we collect it now.",
-      reality: "DPDPA enforces purpose limitation and data minimization (Sec 4). Over-collecting is a compliance failure and a breach liability.",
+      reality: "DPDP Act enforces purpose limitation and data minimization (Sec 4). Over-collecting is a compliance failure and a breach liability.",
       leantip: "Review each field you collect - if you can't state its purpose, don't collect it. Add a data inventory and prune unused fields."
     },
     {
@@ -39,7 +39,7 @@ const FRAMEWORK = {
       templates: ['dpdpa-crossborder-register', 'transfers-register'],
       gap: "Storing data abroad / no clarity on cross-border transfers",
       pushback: "Our cloud is fine wherever it is.",
-      reality: "DPDPA Section 16 allows transfers outside India except to countries the Central Government restricts by notification. Rule 15 can add requirements on making data available to foreign States, sector laws (for example payment data rules) can require local storage, and a Significant Data Fiduciary must keep data specified under Rule 13(4) in India. There is no general rule that all data must stay in India.",
+      reality: "DPDP Act Section 16 allows transfers outside India except to countries the Central Government restricts by notification. Rule 15 can add requirements on making data available to foreign States, sector laws (for example payment data rules) can require local storage, and a Significant Data Fiduciary must keep data specified under Rule 13(4) in India. There is no general rule that all data must stay in India.",
       leantip: "Map where personal data physically resides and keep a transfer register. Check Section 16 notifications before new transfers. Pin to India regions only where a sector rule, a customer contract or Rule 13(4) requires it, or where you choose to."
     },
     {
@@ -47,7 +47,7 @@ const FRAMEWORK = {
       templates: ['dpdpa-breach-intimation', 'incident-response-plan'],
       gap: "No breach notification runbook to the DPDP Board",
       pushback: "Breach? We'll figure that out if ever.",
-      reality: "DPDPA Section 8(6) and Rule 7 require intimation of every personal data breach to affected Data Principals and to the Board without delay, followed by a detailed report to the Board within 72 hours. There is no risk threshold, and failure can attract a penalty of up to Rs 200 crore.",
+      reality: "DPDP Act Section 8(6) and Rule 7 require intimation of every personal data breach to affected Data Principals and to the Board without delay, followed by a detailed report to the Board within 72 hours. There is no risk threshold, and failure can attract a penalty of up to Rs 200 crore.",
       leantip: "Write a one-page breach runbook: detect, intimate Data Principals and the Board without delay, send the detailed Board report within 72 hours, document. Assign a 24/7 on-call owner."
     },
     {
@@ -55,11 +55,11 @@ const FRAMEWORK = {
       templates: ['dpdpa-grievance-log', 'dpdpa-nomination-form'],
       gap: "No grievance redressal mechanism for data principals",
       pushback: "It's just a feedback email address.",
-      reality: "DPDPA Sections 11 to 14 give rights of access, correction and erasure, grievance redressal and nomination. Rule 14 requires you to publish how to exercise them and to respond within a period not exceeding 90 days, and Section 13(3) makes people use your grievance process before going to the Board.",
+      reality: "DPDP Act Sections 11 to 14 give rights of access, correction and erasure, grievance redressal and nomination. Rule 14 requires you to publish how to exercise them and to respond within a period not exceeding 90 days, and Section 13(3) makes people use your grievance process before going to the Board.",
       leantip: "Stand up a support workflow for data-principal requests with ownership and SLAs. Keep request logs as evidence of the mechanism existing."
     }
   ],
-  privacyStartupNotes: "DPDPA-specific note: India's DPDP Act expects notice + consent, purpose limitation, and breach notification to the DPDP Board. It does NOT statutorily mandate a GDPR-style ROPA, but keep an internal record of processing activities as best practice. DPIA is appropriate for high-risk processing even where not literally prescribed - run one to show diligence.",
+  privacyStartupNotes: "DPDP Act-specific note: India's DPDP Act expects notice + consent, purpose limitation, and breach notification to the DPDP Board. It does NOT statutorily mandate a GDPR-style ROPA, but keep an internal record of processing activities as best practice. DPIA is appropriate for high-risk processing even where not literally prescribed - run one to show diligence.",
   weeks: [
     {
       week: 1,
@@ -68,7 +68,7 @@ const FRAMEWORK = {
       description: 'Establish applicability, map data flows, and design consent infrastructure across multi-cloud environments',
       tasks: [
         {
-          title: 'Determine applicability and classify roles under DPDPA',
+          title: 'Determine applicability and classify roles under DPDP Act',
           control: 'Identify whether the organization is a Data Fiduciary (determines purpose and means of processing) or a Data Processor (processes on behalf of a Fiduciary), and confirm scope. The Act applies to digital personal data processed in India, and to processing outside India connected with offering goods or services to Data Principals in India. It does not apply to personal data made publicly available by the Data Principal or under a legal duty, or to purely personal or domestic use. Citation: Sections 2(i), 2(k), 3 and 8(1); Rule 2.',
           how: 'Review all systems that collect or process digital personal data. Use a RACI matrix to map which team controls purpose (Fiduciary) vs. which executes processing (Processor). For multi-cloud setups, tag resources in AWS Resource Groups, Azure Resource Graph, and GCP Resource Manager by role classification.',
           check: 'A documented role classification register exists covering all data-handling systems. Each cloud account is tagged with fiduciary/processor designation.',
@@ -119,7 +119,7 @@ const FRAMEWORK = {
           title: 'Publish compliant privacy notices for all data collection points',
           control: 'Give a notice before or when consent is requested (Section 5) that is understandable on its own and contains, at minimum, an itemised description of the personal data and the specified purpose for each item, the goods or services enabled, how to withdraw consent, how to exercise rights and raise grievances, and how to complain to the Data Protection Board (Rule 3). Offer the notice in English or any language in the Eighth Schedule to the Constitution (Section 5(3)). Citation: Section 5; Rule 3.',
           how: 'Create notice templates stored in a version-controlled CMS (e.g., headless CMS like Strapi on ECS/EKS or Azure App Service). Each notice version is immutable and versioned. At every collection point (web forms, mobile SDKs, APIs), serve the current notice version and log which version was presented. Use AWS Lambda@Edge or Azure Front Door to inject notices dynamically. Store notice acceptance records in DynamoDB/Cosmos DB.',
-          check: 'Every collection point serves a DPDPA-compliant notice. Notice version history is maintained. Sample audit: 10 random collection points all display correct, current notice with all required disclosures.',
+          check: 'Every collection point serves a DPDP Act-compliant notice. Notice version history is maintained. Sample audit: 10 random collection points all display correct, current notice with all required disclosures.',
           templates: ['dpdpa-consent-notice', 'privacy-notice'],
           templatesExclusive: true
         },
@@ -192,7 +192,7 @@ const FRAMEWORK = {
           control: 'A DPIA is mandatory for Significant Data Fiduciaries, once every twelve months, with significant observations reported to the Board (Section 10(2)(c); Rule 13(1) and (2)). For other Data Fiduciaries it is good practice for high-risk processing such as children\'s data, large-scale profiling or new technology. Citation: Section 10; Rule 13.',
           how: 'DPIA is NOT a ROPA (see note below). Build a DPIA template covering: (1) description of processing and purposes, (2) necessity and proportionality assessment, (3) risk assessment to data principals (likelihood × severity matrix), (4) mitigation measures (technical + organizational), (5) DPO consultation outcome, (6) residual risk acceptance. Run DPIAs before deploying new features involving profiling, large-scale processing, or children\'s data. Store DPIA records in a versioned SharePoint/Confluence space. Use a scoring matrix: Likelihood (Rare/Possible/Likely/Almost Certain) × Severity (Negligible/Moderate/Major/Critical) = Risk Level.',
           check: 'DPIA template exists and follows the structure above. At least one completed DPIA for an existing high-risk processing activity. DPIA records show DPO sign-off and residual risk acceptance. New feature deployments involving profiling cannot proceed without a completed DPIA.',
-          note: 'IMPORTANT: DPDPA does NOT mandate ROPA (Record of Processing Activities) like GDPR Article 30. However, maintaining an internal processing activities register is strongly recommended as a best practice - it supports DPIA completion, audit readiness, and data mapping. Treat ROPA as an internal governance tool, not a statutory obligation under DPDPA.',
+          note: 'IMPORTANT: DPDP Act does NOT mandate ROPA (Record of Processing Activities) like GDPR Article 30. However, maintaining an internal processing activities register is strongly recommended as a best practice - it supports DPIA completion, audit readiness, and data mapping. Treat ROPA as an internal governance tool, not a statutory obligation under DPDP Act.',
           templates: ['ropa-dpia', 'dpdpa-sdf-assessment'],
           templatesExclusive: true
         },
@@ -231,8 +231,8 @@ const FRAMEWORK = {
         {
           title: 'Implement vendor and Data Processor contract management',
           control: 'A Data Fiduciary may engage a Data Processor only under a valid contract (Section 8(2)) and remains responsible for compliance irrespective of any agreement (Section 8(1)). Contracts must carry security provisions (Rule 6(1)(f)), breach notice fast enough for Rule 7, erasure on instruction (Section 8(7)), Rule 8(3) log retention support and sub-processor controls. Citation: Section 8(1), 8(2); Rules 6, 7, 8.',
-          how: 'Build a vendor register in a GRC tool (ServiceNow, OneTrust, or a custom SharePoint list) with fields: vendor_name, data_processed, contract_expiry, DPD clauses_status, last_audit_date, sub-processor_list. Require all new vendor contracts to include a DPDPA data processing addendum covering: purpose limitation, security standards, breach notification to Fiduciary within 24 hours, sub-processor approval, audit rights, and data deletion on termination. For cloud providers: leverage built-in DPAs (AWS DPA, Microsoft DPA, GCP DPA) and supplement with custom addenda where needed. Review annually.',
-          check: 'Vendor register is complete with all data processors. 100% of active vendor contracts include DPDPA-compliant DPA. Last annual review date is recorded. High-risk vendors (processing sensitive personal data) have been audited within the last 12 months.',
+          how: 'Build a vendor register in a GRC tool (ServiceNow, OneTrust, or a custom SharePoint list) with fields: vendor_name, data_processed, contract_expiry, DPD clauses_status, last_audit_date, sub-processor_list. Require all new vendor contracts to include a DPDP Act data processing addendum covering: purpose limitation, security standards, breach notification to Fiduciary within 24 hours, sub-processor approval, audit rights, and data deletion on termination. For cloud providers: leverage built-in DPAs (AWS DPA, Microsoft DPA, GCP DPA) and supplement with custom addenda where needed. Review annually.',
+          check: 'Vendor register is complete with all data processors. 100% of active vendor contracts include DPDP Act-compliant DPA. Last annual review date is recorded. High-risk vendors (processing sensitive personal data) have been audited within the last 12 months.',
           templates: ['dpdpa-vendor-addendum', 'vendor-management-policy'],
           templatesExclusive: true
         },
@@ -247,7 +247,7 @@ const FRAMEWORK = {
         {
           title: 'Establish ongoing compliance monitoring, audit, and training program',
           control: 'Run a continuous programme: track Central Government notifications and Board directions, review policies, train staff, and audit controls. An independent audit every twelve months is mandatory only for Significant Data Fiduciaries (Rule 13(1)). Plan around the commencement dates: Rules 1, 2 and 17 to 21 from 13 November 2025; Rule 4 (Consent Managers) from 13 November 2026; Rules 3, 5 to 16, 22 and 23 from 13 May 2027. Citation: Section 10; Rules 1, 13.',
-          how: 'Build a compliance calendar: (1) Monthly: review DPB guidelines and Central Government notifications, update internal policies, (2) Quarterly: access review and privilege audit across all cloud environments, (3) Semi-annually: penetration test and vulnerability assessment, (4) Annually: full DPDPA compliance audit (mandatory for SDF), DPIA reviews, employee training refresh, policy updates. Training: deploy DPDPA awareness training via LMS (e.g., Workday Learning, Docebo) with completion tracking. Gamify with department-level compliance scores. Publish a compliance dashboard in QuickSight/Power BI showing: audit findings, training completion %, grievance resolution metrics, breach drill results.',
+          how: 'Build a compliance calendar: (1) Monthly: review DPB guidelines and Central Government notifications, update internal policies, (2) Quarterly: access review and privilege audit across all cloud environments, (3) Semi-annually: penetration test and vulnerability assessment, (4) Annually: full DPDP Act compliance audit (mandatory for SDF), DPIA reviews, employee training refresh, policy updates. Training: deploy DPDP Act awareness training via LMS (e.g., Workday Learning, Docebo) with completion tracking. Gamify with department-level compliance scores. Publish a compliance dashboard in QuickSight/Power BI showing: audit findings, training completion %, grievance resolution metrics, breach drill results.',
           check: 'Compliance calendar exists with all cadences defined. Training completion rate > 95%. Last penetration test report shows no critical findings unresolved. Compliance dashboard is live and reviewed by leadership monthly. All audit findings have owners and remediation timelines.',
           templates: ['internal-audit-programme'],
           templatesExclusive: true
@@ -265,7 +265,7 @@ const FRAMEWORK = {
   ],
   hoursByLevel: [8, 10, 10, 8],
   referenceUrl: 'https://www.meity.gov.in/data-protection-framework',
-  extraSections: [<DpdpRoles key="dpdp-roles" />, <EmployeeDataScoping key="employee-data" />, <GdprDpdpaComparison key="gdpr-dpdpa-comparison" />, <VibePlatformScenario key="vibe-platform" jurisdiction="dpdpa" />]
+  extraSections: [<DpdpRoles key="dpdp-roles" />, <EmployeeDataScoping key="employee-data" />, <div key="related-guidance" id="dpdp-related-guidance" className="max-w-6xl mx-auto px-4 mt-10 scroll-mt-24"><h2 className="text-2xl font-bold text-slate-900 dark:text-white">Related guidance (other laws and scenarios)</h2><p className="mt-1 text-sm text-slate-700 dark:text-slate-300">The sections below compare the DPDP Act with GDPR and walk through practical scenarios. GDPR, EU cookie rules, HIPAA, ISO and SOC 2 points here are requirements of those laws or frameworks, not of the DPDP Act.</p></div>, <GdprDpdpaComparison key="gdpr-dpdpa-comparison" />, <VibePlatformScenario key="vibe-platform" jurisdiction="dpdpa" />]
 };
 
 // Additive: appended at the end of Level 3 so saved progress keys do not move.

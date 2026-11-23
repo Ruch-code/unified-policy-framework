@@ -158,7 +158,7 @@ export const FRAMEWORK_GAPS = [
         ],
         "gap": "Relying on implicit/vague consent instead of a valid notice + consent request",
         "pushback": "People sign up and tick a box; that's consent.",
-        "reality": "DPDPA (Sec 5, 6) requires a clear notice BEFORE processing and consent that's separate, informed, and freely given. Pre-ticked boxes or bundled consent fail.",
+        "reality": "DPDP Act (Sec 5, 6) requires a clear notice BEFORE processing and consent that's separate, informed, and freely given. Pre-ticked boxes or bundled consent fail.",
         "leantip": "Implement a plain-language notice, a granular consent checkbox, and a way to withdraw. Log consent (who, what, when) as evidence - use a consent-management tool."
       },
       {
@@ -169,7 +169,7 @@ export const FRAMEWORK_GAPS = [
         ],
         "gap": "Collecting more data than needed with no purpose limitation",
         "pushback": "We may need this data later, so we collect it now.",
-        "reality": "DPDPA enforces purpose limitation and data minimization (Sec 4). Over-collecting is a compliance failure and a breach liability.",
+        "reality": "DPDP Act enforces purpose limitation and data minimization (Sec 4). Over-collecting is a compliance failure and a breach liability.",
         "leantip": "Review each field you collect - if you can't state its purpose, don't collect it. Add a data inventory and prune unused fields."
       },
       {
@@ -180,7 +180,7 @@ export const FRAMEWORK_GAPS = [
         ],
         "gap": "Storing data abroad / no clarity on cross-border transfers",
         "pushback": "Our cloud is fine wherever it is.",
-        "reality": "DPDPA Section 16 allows transfers outside India except to countries the Central Government restricts by notification. Rule 15 can add requirements on making data available to foreign States, sector laws (for example payment data rules) can require local storage, and a Significant Data Fiduciary must keep data specified under Rule 13(4) in India. There is no general rule that all data must stay in India.",
+        "reality": "DPDP Act Section 16 allows transfers outside India except to countries the Central Government restricts by notification. Rule 15 can add requirements on making data available to foreign States, sector laws (for example payment data rules) can require local storage, and a Significant Data Fiduciary must keep data specified under Rule 13(4) in India. There is no general rule that all data must stay in India.",
         "leantip": "Map where personal data physically resides and keep a transfer register. Check Section 16 notifications before new transfers. Pin to India regions only where a sector rule, a customer contract or Rule 13(4) requires it, or where you choose to."
       },
       {
@@ -191,7 +191,7 @@ export const FRAMEWORK_GAPS = [
         ],
         "gap": "No breach notification runbook to the DPDP Board",
         "pushback": "Breach? We'll figure that out if ever.",
-        "reality": "DPDPA Section 8(6) and Rule 7 require intimation of every personal data breach to affected Data Principals and to the Board without delay, followed by a detailed report to the Board within 72 hours. There is no risk threshold, and failure can attract a penalty of up to Rs 200 crore.",
+        "reality": "DPDP Act Section 8(6) and Rule 7 require intimation of every personal data breach to affected Data Principals and to the Board without delay, followed by a detailed report to the Board within 72 hours. There is no risk threshold, and failure can attract a penalty of up to Rs 200 crore.",
         "leantip": "Write a one-page breach runbook: detect, intimate Data Principals and the Board without delay, send the detailed Board report within 72 hours, document. Assign a 24/7 on-call owner."
       },
       {
@@ -202,7 +202,7 @@ export const FRAMEWORK_GAPS = [
         ],
         "gap": "No grievance redressal mechanism for data principals",
         "pushback": "It's just a feedback email address.",
-        "reality": "DPDPA Sections 11 to 14 give rights of access, correction and erasure, grievance redressal and nomination. Rule 14 requires you to publish how to exercise them and to respond within a period not exceeding 90 days, and Section 13(3) makes people use your grievance process before going to the Board.",
+        "reality": "DPDP Act Sections 11 to 14 give rights of access, correction and erasure, grievance redressal and nomination. Rule 14 requires you to publish how to exercise them and to respond within a period not exceeding 90 days, and Section 13(3) makes people use your grievance process before going to the Board.",
         "leantip": "Stand up a support workflow for data-principal requests with ownership and SLAs. Keep request logs as evidence of the mechanism existing."
       }
     ]
