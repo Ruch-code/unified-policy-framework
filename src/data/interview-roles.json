@@ -3379,6 +3379,210 @@
           }
         }
       ]
+    },
+    {
+      "id": "grilling",
+      "title": "Super Grilling: ITGC, ITAC, Agentic AI, Cloud and Infrastructure",
+      "subtitle": "Hard follow-up questions with the answer, evidence, weak answer, example and the audit finding if it fails",
+      "icon": "Shield",
+      "color": "rose",
+      "questions": [
+        {
+          "q": "How do you prove the user access review actually removed access, not just that a review happened?",
+          "a": "I trace each reviewer decision marked revoke to a ticket and then to the system, confirming the account or role was removed after the review date. I also check the population was complete by reconciling the review list to a fresh system extract. Evidence I would ask for: Review sign-offs, the extract with timestamp and parameters, removal tickets, post-review extract showing removals. Typical audit finding if it fails: Access review performed but revocations not completed; review population not validated for completeness.",
+          "tags": [
+            "ITGC",
+            "Grilling"
+          ],
+          "example": "Of 12 revoke decisions in Q2, I found 3 still active a month later; the fix was a ticket per revoke with a 5-day SLA.",
+          "pitfalls": [
+            {
+              "pitfall": "Weak answer: We do quarterly reviews and managers sign off.",
+              "reply": "Instead, name the control, how it is tested, and the evidence that proves it operated."
+            }
+          ]
+        },
+        {
+          "q": "A developer can deploy to production. Is that a finding?",
+          "a": "Not automatically. It depends on compensating controls: mandatory peer review enforced by branch protection, CI that blocks unapproved merges, and monitoring of production deployments reconciled to approved changes. If those exist and operate, the SoD risk is mitigated. If one person can write, approve and deploy alone, it is a finding. Evidence I would ask for: Branch protection settings, deployment logs, sample of changes traced to independent approval. Typical audit finding if it fails: Lack of segregation of duties in change management without compensating detective control.",
+          "tags": [
+            "ITGC",
+            "Grilling"
+          ],
+          "example": "In a 10-engineer startup, we accepted the risk with branch protection plus a weekly review of all production deploys by the engineering lead.",
+          "pitfalls": [
+            {
+              "pitfall": "Weak answer: Small team, everyone trusts each other.",
+              "reply": "Instead, name the control, how it is tested, and the evidence that proves it operated."
+            }
+          ]
+        },
+        {
+          "q": "How do you validate a system-generated report used as audit evidence?",
+          "a": "I treat it as information provided by the entity: I check who ran it, when, with what parameters, that it covers the full period and population, and I reconcile totals to the source or rerun it myself. Evidence I would ask for: Screenshot of report parameters, row counts reconciled to source, rerun output. Typical audit finding if it fails: Reliance on unvalidated information provided by the entity (IPE).",
+          "tags": [
+            "ITGC",
+            "Grilling"
+          ],
+          "example": "A user listing missed disabled-but-not-deleted accounts because of a filter; rerunning without the filter added 40 users to the population.",
+          "pitfalls": [
+            {
+              "pitfall": "Weak answer: The tool generated it, so it is correct.",
+              "reply": "Instead, name the control, how it is tested, and the evidence that proves it operated."
+            }
+          ]
+        },
+        {
+          "q": "How do you test an automated three-way match control?",
+          "a": "Test of one: in a test environment or with a sample, I confirm an invoice that does not match the PO and goods receipt within tolerance is blocked. I also confirm the tolerance configuration and that changes to it are controlled by ITGC change management. Evidence I would ask for: Configuration screenshot, test transaction results, change log for the tolerance setting. Typical audit finding if it fails: Application control configured inconsistently with approved design; no change control over configuration.",
+          "tags": [
+            "ITAC",
+            "Grilling"
+          ],
+          "example": "Tolerance was set to 10% instead of the approved 2%; the control worked as configured but the configuration was wrong.",
+          "pitfalls": [
+            {
+              "pitfall": "Weak answer: We tested 25 invoices and they all matched.",
+              "reply": "Instead, name the control, how it is tested, and the evidence that proves it operated."
+            }
+          ]
+        },
+        {
+          "q": "Why can you test an automated control with a sample of one?",
+          "a": "Because an automated control performs the same way every time, provided the ITGCs over change and access are effective. If ITGCs fail, I cannot rely on a sample of one and must expand testing or baseline the control again. Evidence I would ask for: ITGC test results for the period, configuration evidence, the single test. Typical audit finding if it fails: Benchmarking not supported by effective ITGCs.",
+          "tags": [
+            "ITAC",
+            "Grilling"
+          ],
+          "example": "When change management had an exception, we re-baselined the control at year end.",
+          "pitfalls": [
+            {
+              "pitfall": "Weak answer: Because the auditor said so.",
+              "reply": "Instead, name the control, how it is tested, and the evidence that proves it operated."
+            }
+          ]
+        },
+        {
+          "q": "An AI agent has access to your production database. How do you control it?",
+          "a": "Give the agent its own identity with least privilege, read-only where possible, scoped to specific tables. Put high-impact actions behind human approval, log every tool call, set rate limits and a kill switch, and test for prompt injection. Evidence I would ask for: Agent identity and role definitions, tool call logs, approval records, red team results. Typical audit finding if it fails: Non-human identity with excessive privileges and no audit trail of actions.",
+          "tags": [
+            "Agentic AI",
+            "Grilling"
+          ],
+          "example": "We limited an internal support agent to read-only views and required approval for refunds over a set amount.",
+          "pitfalls": [
+            {
+              "pitfall": "Weak answer: The model is safe, it has guardrails.",
+              "reply": "Instead, name the control, how it is tested, and the evidence that proves it operated."
+            }
+          ]
+        },
+        {
+          "q": "How do you show an auditor that a RAG system respects document access permissions?",
+          "a": "Permissions are enforced at retrieval: each chunk carries the source document's access list and the retriever filters by the requesting user's identity before the model sees anything. I test it with two users of different access and identical queries. Evidence I would ask for: Retriever code or config, test results for two users, access sync logs. Typical audit finding if it fails: Access control enforced only by prompt instructions.",
+          "tags": [
+            "Agentic AI",
+            "Grilling"
+          ],
+          "example": "A test user without HR access asked about salaries and retrieval returned nothing, proving the filter, not the prompt, did the work.",
+          "pitfalls": [
+            {
+              "pitfall": "Weak answer: The model is told not to show restricted data.",
+              "reply": "Instead, name the control, how it is tested, and the evidence that proves it operated."
+            }
+          ]
+        },
+        {
+          "q": "How do you prove no S3 bucket was public during the audit period?",
+          "a": "Account-level Block Public Access enforced through an organisation policy, plus continuous CSPM monitoring with alert history for the period. A single point-in-time screenshot is not enough for Type 2. Evidence I would ask for: SCP or organisation policy, CSPM alert history, Config rule compliance timeline. Typical audit finding if it fails: Point-in-time evidence only; no evidence of operation across the period.",
+          "tags": [
+            "Cloud",
+            "Grilling"
+          ],
+          "example": "Config history showed one bucket public for two days; we showed the alert, ticket and fix within SLA.",
+          "pitfalls": [
+            {
+              "pitfall": "Weak answer: Here is a screenshot showing all buckets private.",
+              "reply": "Instead, name the control, how it is tested, and the evidence that proves it operated."
+            }
+          ]
+        },
+        {
+          "q": "Who can assume the most privileged role in your cloud account, and how do you know?",
+          "a": "I list every principal with a trust policy allowing assumption of admin roles, including cross-account and third-party roles, and review them quarterly. Use is logged in CloudTrail and alerted. Evidence I would ask for: IAM trust policies, quarterly review, CloudTrail AssumeRole events. Typical audit finding if it fails: Unreviewed cross-account access to privileged roles.",
+          "tags": [
+            "Cloud",
+            "Grilling"
+          ],
+          "example": "We found a former vendor's cross-account role still trusted two years later.",
+          "pitfalls": [
+            {
+              "pitfall": "Weak answer: Only the DevOps team.",
+              "reply": "Instead, name the control, how it is tested, and the evidence that proves it operated."
+            }
+          ]
+        },
+        {
+          "q": "How do you know your firewall rules are still needed?",
+          "a": "Each rule has an owner, business reason and review date. We review rules at least yearly using hit counts; rules with no traffic are disabled then removed, and any-to-any rules need an approved exception. Evidence I would ask for: Rule base export with owners, hit count report, review sign-off. Typical audit finding if it fails: Firewall rules not periodically reviewed; overly permissive rules present.",
+          "tags": [
+            "Infrastructure",
+            "Grilling"
+          ],
+          "example": "We removed 30% of rules after a hit-count review with no business impact.",
+          "pitfalls": [
+            {
+              "pitfall": "Weak answer: The network team manages it.",
+              "reply": "Instead, name the control, how it is tested, and the evidence that proves it operated."
+            }
+          ]
+        },
+        {
+          "q": "Your backups succeed every night. Is that enough?",
+          "a": "No. Success logs prove backups ran, not that they restore. I need periodic restore tests against RTO and RPO, immutable or offline copies for ransomware, and alerts on failed jobs followed up. Evidence I would ask for: Restore test records with timings, immutability settings, failed job follow-up. Typical audit finding if it fails: Backups not tested for restoration.",
+          "tags": [
+            "Infrastructure",
+            "Grilling"
+          ],
+          "example": "A restore test showed a 9-hour restore against a 4-hour RTO, which drove a redesign.",
+          "pitfalls": [
+            {
+              "pitfall": "Weak answer: Yes, the dashboard is green.",
+              "reply": "Instead, name the control, how it is tested, and the evidence that proves it operated."
+            }
+          ]
+        },
+        {
+          "q": "Your control failed in the audit period. Walk me through what you do in the next 48 hours.",
+          "a": "Confirm the facts and scope of the failure, assess impact (what could have happened, did anything happen), check compensating controls, fix the control, start a remediation record with owner and dates, and tell the auditor early rather than letting them find it. Then plan how long it must operate before retest. Evidence I would ask for: Incident or exception record, impact analysis, remediation plan, communication to auditor. Typical audit finding if it fails: Control did not operate for part of the period.",
+          "tags": [
+            "Super grilling",
+            "Grilling"
+          ],
+          "example": "Missed quarterly review: we performed it late, showed no inappropriate access was used, and disclosed it; the result was an exception, not a qualified opinion.",
+          "pitfalls": [
+            {
+              "pitfall": "Weak answer: Hope the auditor does not sample it.",
+              "reply": "Instead, name the control, how it is tested, and the evidence that proves it operated."
+            }
+          ]
+        },
+        {
+          "q": "If I removed one control from your environment, which would hurt most and why?",
+          "a": "Usually MFA on identity, because most attack paths and most other access controls depend on identity being trustworthy. I would back that with the risk register: the highest-rated risks it mitigates. Evidence I would ask for: Risk register linkage, MFA coverage report. Typical audit finding if it fails: Not applicable; tests risk-based prioritisation.",
+          "tags": [
+            "Super grilling",
+            "Grilling"
+          ],
+          "example": "In our environment it was SSO with MFA, since it gated 90% of applications.",
+          "pitfalls": [
+            {
+              "pitfall": "Weak answer: All controls are important.",
+              "reply": "Instead, name the control, how it is tested, and the evidence that proves it operated."
+            }
+          ]
+        }
+      ]
     }
   ]
 }
