@@ -109,6 +109,28 @@ export default async (req) => {
         const r = await buildDigest({ force: true });
         return json({ message: r.created ? `Draft created: ${r.title}` : `No draft created (${r.reason}).` });
       }
+      case 'subscribers': {
+        const rows = await Subscriber.find().sort({ createdAt: -1 }).limit(5000)
+          .select('email status source createdAt confirmedAt unsubscribedAt').lean();
+        return json({ subscribers: rows.map((r) => ({
+          id: String(r._id), email: r.email, source: r.source || '',
+          status: r.status || (r.unsubscribedAt ? 'unsubscribed' : 'confirmed'),
+          createdAt: r.createdAt, confirmedAt: r.confirmedAt, unsubscribedAt: r.unsubscribedAt,
+        })) });
+      }
+      case 'unsubscribe-subscriber': {
+        const sub = await Subscriber.findById(b.subId);
+        if (!sub) return json({ message: 'Subscriber not found.' }, 404);
+        sub.status = 'unsubscribed'; sub.unsubscribedAt = new Date();
+        sub.tokenVersion = (sub.tokenVersion || 1) + 1;
+        await sub.save();
+        return json({ message: `${sub.email} unsubscribed.` });
+      }
+      case 'delete-subscriber': {
+        const sub = await Subscriber.findByIdAndDelete(b.subId);
+        if (!sub) return json({ message: 'Subscriber not found.' }, 404);
+        return json({ message: `${sub.email} deleted.` });
+      }
       case 'failures': {
         const rows = await Delivery.find({ issueId: b.id, status: 'failed' }).select('email error').limit(200).lean();
         return json({ failures: rows });
