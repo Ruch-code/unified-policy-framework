@@ -6,6 +6,7 @@ import LearningFrameworkPage from "../../components/LearningFrameworkPage";
 import Iso27001Sections from "../../components/Iso27001Sections.jsx";
 import Iso27001ThemeScoping from "../../components/Iso27001ThemeScoping.jsx";
 import AnnexACoverage from "../../components/playbook/AnnexACoverage.jsx";
+import SoaCloudDeptMapping from "../../components/iso/SoaCloudDeptMapping.jsx";
 import { withEvidence, appendToLevel, extendTasks } from "../../data/playbookEvidence.js";
 import { LI_L1_CLAUSES, LI_EXTEND } from "../../data/playbookAdditions/iso27001.js";
 import Iso27001EvidenceLibrary from '../../components/Iso27001EvidenceLibrary.jsx';
@@ -233,7 +234,7 @@ export default function Iso27001LiPage() {
   }, []);
   return (
     <>
-      <LearningFrameworkPage framework={FRAMEWORK_WITH_EVIDENCE} />
+      <LearningFrameworkPage framework={FRAMEWORK_WITH_EVIDENCE} extraSections={[<SoaCloudDeptMapping key="soa-cloud" />]} />
       <Iso2013vs2022 />
       <Iso27001MandatoryDocs />
       <Iso27001AuditJourney />
