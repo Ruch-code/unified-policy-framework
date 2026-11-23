@@ -1,4 +1,5 @@
 import { connectDb, User, authAdmin, json, DEFAULT_PASSWORD, hashPassword } from './_shared/auth.js';
+import { sendAccessRejected } from './_shared/mailer.js';
 
 // Approve (activate) or reject (delete) a pending user.
 // action: 'approve' | 'reject'
@@ -26,7 +27,12 @@ export default async (req) => {
       user.deletedAt = new Date();
     }
     await user.save();
-    return json({ message: action === 'approve' ? 'User approved.' : 'User rejected and removed.', user });
+    let emailNote = '';
+    if (action === 'reject') {
+      try { await sendAccessRejected(user); emailNote = ' Rejection email sent.'; }
+      catch (e) { emailNote = ` Rejection email not sent: ${e.message}`; }
+    }
+    return json({ message: (action === 'approve' ? 'User approved.' : 'User rejected and removed.') + emailNote, user });
   } catch (err) {
     return json({ message: err.message }, 500);
   }
