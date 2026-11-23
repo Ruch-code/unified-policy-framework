@@ -119,6 +119,69 @@ function Settings({ settings, onSaved, notify }) {
   );
 }
 
+
+// Subscriber list: search, filter, export, unsubscribe or delete.
+function Subscribers({ notify, onChanged, askConfirm }) {
+  const [rows, setRows] = useState(null);
+  const [q, setQ] = useState('');
+  const [status, setStatus] = useState('all');
+  const [busy, setBusy] = useState(false);
+  const notifyRef = useRef(notify); notifyRef.current = notify;
+  const load = useCallback(async () => {
+    try { const r = await call({ action: 'subscribers' }); setRows(r.subscribers); } catch (e) { notifyRef.current(e.message, true); }
+  }, []);
+  useEffect(() => { load(); }, [load]);
+  const act = async (action, sub, verb) => {
+    setBusy(true);
+    try { const r = await call({ action, subId: sub.id }); notify(r.message); await load(); onChanged?.(); }
+    catch (e) { notify(e.message, true); } finally { setBusy(false); }
+  };
+  const fmt = (d) => (d ? new Date(d).toLocaleDateString() : '');
+  const shown = (rows || []).filter((r) => (status === 'all' || r.status === status) && (!q || r.email.includes(q.toLowerCase())));
+  const exportCsv = () => {
+    const head = ['email', 'status', 'source', 'subscribed', 'confirmed', 'unsubscribed'];
+    const lines = [head.join(',')].concat(shown.map((r) => [r.email, r.status, r.source, fmt(r.createdAt), fmt(r.confirmedAt), fmt(r.unsubscribedAt)].map((c) => `"${String(c).replace(/"/g, '""')}"`).join(',')));
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([lines.join('\n')], { type: 'text/csv' }));
+    a.download = 'onelens-subscribers.csv'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  };
+  return (
+    <details className={CARD} id="nl-subscribers">
+      <summary className={`cursor-pointer font-bold ${H}`}>Subscribers {rows ? `(${rows.length})` : ''}</summary>
+      {!rows ? <p className={`mt-2 text-sm ${MUTED}`}>Loading…</p> : (
+        <div className="mt-3">
+          <div className="flex flex-wrap gap-2 items-center">
+            <input type="search" className={`${FIELD} sm:w-64`} placeholder="Search email" aria-label="Search subscribers" value={q} onChange={(e) => setQ(e.target.value)} />
+            <select className={`${FIELD} sm:w-48`} aria-label="Filter by status" value={status} onChange={(e) => setStatus(e.target.value)}>
+              <option value="all">All statuses</option><option value="confirmed">Confirmed</option><option value="pending">Waiting to confirm</option><option value="unsubscribed">Unsubscribed</option>
+            </select>
+            <button type="button" className={BTN} onClick={exportCsv}>Export CSV</button>
+            <span className={`text-sm ${MUTED}`}>{shown.length} shown</span>
+          </div>
+          <div className="overflow-x-auto mt-3">
+            <table className="w-full text-sm min-w-[640px]">
+              <thead><tr className={`text-left ${MUTED}`}><th className="p-2">Email</th><th className="p-2">Status</th><th className="p-2">Source</th><th className="p-2">Subscribed</th><th className="p-2">Actions</th></tr></thead>
+              <tbody>{shown.map((r) => (
+                <tr key={r.id} className={`border-t ${LINE}`}>
+                  <td className={`p-2 ${H}`}>{r.email}</td>
+                  <td className={`p-2 ${TXT}`}>{r.status}</td>
+                  <td className={`p-2 ${TXT}`}>{r.source}</td>
+                  <td className={`p-2 ${TXT}`}>{fmt(r.createdAt)}</td>
+                  <td className="p-2 flex flex-wrap gap-2">
+                    {r.status !== 'unsubscribed' && <button type="button" className={BTN} disabled={busy} onClick={() => askConfirm({ text: `Unsubscribe ${r.email}? They will stop receiving issues.`, label: 'Unsubscribe', go: () => act('unsubscribe-subscriber', r) })}>Unsubscribe</button>}
+                    <button type="button" className={BTN} disabled={busy} onClick={() => askConfirm({ text: `Permanently delete ${r.email}? This cannot be undone. Use this for erasure requests.`, label: 'Delete', go: () => act('delete-subscriber', r) })}>Delete</button>
+                  </td>
+                </tr>
+              ))}</tbody>
+            </table>
+          </div>
+          <p className={`mt-2 text-xs ${MUTED}`}>Unsubscribe keeps a record so the person is not emailed again. Delete removes the record entirely, for example for an erasure request.</p>
+        </div>
+      )}
+    </details>
+  );
+}
+
 export default function NewsletterAdmin() {
   const [data, setData] = useState(null);
   const [loadError, setLoadError] = useState('');
@@ -244,6 +307,8 @@ export default function NewsletterAdmin() {
           ))}
         </ul>
       </section>
+
+      <Subscribers notify={notify} onChanged={load} askConfirm={setConfirm} />
 
       <Settings settings={data.settings} onSaved={load} notify={notify} />
 
