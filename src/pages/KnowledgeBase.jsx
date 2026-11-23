@@ -24,6 +24,7 @@ import RcsaTab from '../components/RcsaTab.jsx';
 import CryptoTabletopScenario from '../components/crypto/CryptoTabletopScenario.jsx';
 import DataGovernanceTab from '../components/DataGovernanceTab.jsx';
 import CloudTestingGuide from '../components/CloudTestingGuide.jsx';
+import CloudLegacyPrimer from '../components/CloudLegacyPrimer.jsx';
 import { PARTS as CCT_PARTS } from '../data/cloudTestingGuide.js';
 import StreamlineGrc from '../components/toolkit/StreamlineGrc.jsx';
 import FindingClassification from '../components/toolkit/FindingClassification.jsx';
@@ -386,7 +387,7 @@ export default function KnowledgeBase() {
     'customer-trust': <CustomerTrustTab />,
     awareness: <AwarenessTab />,
     zerotrust: <ZeroTrustShadowIt />,
-    infranet: <InfraNetworkAudit />,
+    infranet: <><InfraNetworkAudit /><CloudLegacyPrimer /></>,
     tooling: <GrcToolingKb />,
     gaps: <ItgcGapsKb initialFramework={new URLSearchParams(location.search).get('gapfw') || 'all'} />,
   };

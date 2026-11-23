@@ -3,6 +3,7 @@ import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCh
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 import GdprAccountability from "../../components/GdprAccountability.jsx";
 import GdprRoles from "../../components/GdprRoles.jsx";
+import PrivacySecurityLeadership from '../../components/PrivacySecurityLeadership.jsx';
 import { withEvidence, appendToLevel } from "../../data/playbookEvidence.js";
 import { GDPR_L1, GDPR_L2, GDPR_L3, GDPR_L4_US, GDPR_NOTES, GDPR_EVIDENCE_TYPES } from "../../data/playbookAdditions/gdpr.js";
 import ReferenceTable from "../../components/playbook/ReferenceTable.jsx";
@@ -221,7 +222,7 @@ const FRAMEWORK = {
     { day: 60, label: 'DPIA Program & Breach Response Ready', color: 'green' }
   ],
   referenceUrl: 'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0679',
-  extraSections: [<GdprRoles key="gdpr-roles" />, <GdprDpdpaComparison key="gdpr-dpdpa-comparison" />, <GdprAccountability key="gdpr-accountability" />, <VibePlatformScenario key="vibe-platform" jurisdiction="gdpr" />]
+  extraSections: [<GdprRoles key="gdpr-roles" />, <PrivacySecurityLeadership key="dpo-ciso-cpo-cto" />, <GdprDpdpaComparison key="gdpr-dpdpa-comparison" />, <GdprAccountability key="gdpr-accountability" />, <VibePlatformScenario key="vibe-platform" jurisdiction="gdpr" />]
 };
 
 // Additive: new tasks are appended at the end of each level so saved progress keys do not move.
