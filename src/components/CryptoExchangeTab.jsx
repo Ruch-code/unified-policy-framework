@@ -3,6 +3,7 @@ import CryptoControlsTechnical from './crypto/CryptoControlsTechnical.jsx';
 import FlowDiagram, { CompareDiagram } from './crypto/FlowDiagram.jsx';
 import CryptoAttackVectors from './crypto/CryptoAttackVectors.jsx';
 import CryptoDeepDive from './crypto/CryptoDeepDive.jsx';
+import CryptoFinancialControls from './crypto/CryptoFinancialControls.jsx';
 import CryptoCaseStudy from './crypto/CryptoCaseStudy.jsx';
 // Knowledge Base topic: security and compliance for crypto exchanges (virtual digital asset service providers),
 // with two anonymised incidents at a large Indian centralised exchange as worked examples, based on public reporting.
@@ -237,6 +238,7 @@ export default function CryptoExchangeTab() {
       </details>
 
       <CryptoDeepDive />
+      <CryptoFinancialControls />
 
       <CryptoAttackVectors />
 
