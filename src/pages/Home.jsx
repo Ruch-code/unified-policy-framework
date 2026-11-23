@@ -14,6 +14,7 @@ import VendorRiskManagement from '../components/VendorRiskManagement.jsx';
 import InterviewPrep from '../components/InterviewPrep.jsx';
 import VpEngGuide from '../components/VpEngGuide.jsx';
 import EmGrillingGuide from '../components/EmGrillingGuide.jsx';
+import GrillingTables from '../components/GrillingTables.jsx';
 import PasswordPolicies from '../components/PasswordPolicies.jsx';
 import AccessRequirements from '../components/AccessRequirements.jsx';
 import UserAccessReview from '../components/UserAccessReview.jsx';
@@ -483,6 +484,10 @@ function TabPanel({ isDark, activeTab }) {
           <details id="em-grilling-guide" className="mt-4 rounded-2xl border border-surface-200 dark:border-surface-dark-200 scroll-mt-24">
             <summary className="cursor-pointer px-4 py-3 text-lg font-bold text-navy-900 dark:text-text-dark-primary">Engineering Manager Super-Grilling Guide</summary>
             <div className="px-4 pb-4"><EmGrillingGuide /></div>
+          </details>
+          <details id="grilling-tables" className="mt-4 rounded-2xl border border-surface-200 dark:border-surface-dark-200 scroll-mt-24">
+            <summary className="cursor-pointer px-4 py-3 text-lg font-bold text-navy-900 dark:text-text-dark-primary">Grilling drills: ITGC, ITAC, Agentic AI, Cloud and Infrastructure</summary>
+            <div className="px-4 pb-4"><GrillingTables /></div>
           </details>
           <div className="mt-8"><Nov2026Questions /></div>
           <CcDownloads groups={['interview']} title="Contact-centre threat modelling interview Q&As" />
