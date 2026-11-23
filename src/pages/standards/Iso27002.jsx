@@ -1,4 +1,5 @@
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
+import Iso27028Playbook from "../../components/iso/Iso27028Playbook.jsx";
 
 // Detailed playbook. Linked from Knowledge Base > Other Frameworks.
 const FRAMEWORK = {
@@ -143,5 +144,5 @@ const FRAMEWORK = {
 };
 
 export default function Iso27002Page() {
-  return <LearningFrameworkPage framework={FRAMEWORK} />;
+  return <LearningFrameworkPage framework={FRAMEWORK} extraSections={[<Iso27028Playbook key="iso-27028" />]} />;
 }
