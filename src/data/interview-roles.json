@@ -3768,6 +3768,168 @@
           ]
         }
       ]
+    },
+    {
+      "id": "tech-risk-resilience",
+      "title": "Technology Risk and Resilience Assurance",
+      "subtitle": "Bridging engineering and technology risk: SRE, SLOs and KRIs, resilience and DR, incidents and RCA, cloud, data-driven and AI-enabled assurance",
+      "icon": "Shield",
+      "color": "teal",
+      "questions": [
+        {
+          "q": "This role bridges engineering and technology risk. How do you approach risk differently from a pure compliance view?",
+          "a": "Compliance asks whether a control exists and is documented. Technology risk asks whether the service will actually stay available, recoverable and secure under stress, and what evidence proves it. So I go to the technical evidence: deployment logs, monitoring data, incident timelines, failover test results and configuration, not only policies. I still map findings to frameworks, but the starting point is how the critical service fails and whether controls really reduce that.\n\nMemory cue: start from the service, not the checklist.",
+          "tags": [
+            "Technology risk",
+            "Assurance"
+          ],
+          "example": "Instead of checking that a DR policy exists, I pull the last failover test results and compare actual recovery time with the RTO.",
+          "pitfalls": [
+            {
+              "pitfall": "Talking only about policies and audit checklists.",
+              "reply": "Anchor the answer in technical evidence: the data source, how you tested it, and what you concluded."
+            }
+          ]
+        },
+        {
+          "q": "What are SLIs, SLOs and error budgets, and how would you use them in risk assurance?",
+          "a": "An SLI is a measured indicator of service health, such as the percentage of successful requests or requests answered under 300 ms. An SLO is the target for that indicator over a window, for example 99.9 percent of requests successful over 30 days. The error budget is what is left: at 99.9 percent, about 43 minutes of failure in 30 days. For assurance, I check that critical services have SLOs tied to user impact, that SLIs come from reliable telemetry, and that burning the budget triggers an agreed action such as pausing risky releases. An SLO with no consequence is a dashboard, not a control.",
+          "tags": [
+            "SRE",
+            "SLO",
+            "Reliability metrics"
+          ],
+          "example": "A payments API at 99.95 percent has roughly 22 minutes of monthly error budget; two failed deployments consumed it, so the release freeze policy should have triggered.",
+          "pitfalls": [
+            {
+              "pitfall": "Confusing SLOs with contractual SLAs, or quoting uptime without saying how it is measured.",
+              "reply": "Anchor the answer in technical evidence: the data source, how you tested it, and what you concluded."
+            }
+          ]
+        },
+        {
+          "q": "How do KRIs differ from SLOs, and which KRIs would you set for a critical technology service?",
+          "a": "SLOs measure service performance against a target. KRIs are early warnings that risk is rising, set against appetite thresholds. Good KRIs for a critical service: error budget burn rate, change failure rate, mean time to recover, number of Sev-1 and Sev-2 incidents, overdue postmortem actions, untested DR plans, single points of failure without a fix date, critical vulnerabilities past SLA, and capacity headroom below a threshold. Each needs an owner, a data source, green-amber-red thresholds and an escalation path.",
+          "tags": [
+            "KRI",
+            "Risk metrics"
+          ],
+          "example": "Overdue postmortem actions above five for a tier-1 service went amber and triggered a review at the reliability forum.",
+          "pitfalls": [
+            {
+              "pitfall": "Listing metrics with no thresholds, owners or actions.",
+              "reply": "Anchor the answer in technical evidence: the data source, how you tested it, and what you concluded."
+            }
+          ]
+        },
+        {
+          "q": "How do you test the design and operating effectiveness of a resilience control, such as automated failover?",
+          "a": "Design: does the control, as built, address the risk? I read the architecture, check that failover covers all critical components and dependencies, and that health checks detect the right failure. Operating effectiveness: did it work over the period? I sample failover tests and real events, compare actual switchover time and data loss with RTO and RPO, and check failures were followed up. Where possible I reperform with data, for example recalculating recovery time from monitoring timestamps rather than trusting the test report.",
+          "tags": [
+            "Control testing",
+            "Resilience",
+            "Disaster recovery"
+          ],
+          "example": "The DR report said 30 minutes, but monitoring showed the service returned errors for 52 minutes because DNS TTL was not counted.",
+          "pitfalls": [
+            {
+              "pitfall": "Accepting a test report without checking the underlying evidence.",
+              "reply": "Anchor the answer in technical evidence: the data source, how you tested it, and what you concluded."
+            }
+          ]
+        },
+        {
+          "q": "Walk me through how you would review an incident and its root cause analysis.",
+          "a": "I start with the timeline from logs and alerts, not the narrative: when did it start, when was it detected, when was it mitigated, and how many users were affected. Then I check the root cause goes beyond the trigger, using contributing factors such as missing tests, alert gaps or unsafe change processes. I look at whether actions address causes, have owners and dates, and whether similar incidents have happened before. Repeated root causes signal a control weakness, which I escalate as a technology risk.",
+          "tags": [
+            "Incident management",
+            "RCA"
+          ],
+          "example": "Three incidents in a quarter all traced to config changes without canary release, so the finding was on change control, not on the individual engineers.",
+          "pitfalls": [
+            {
+              "pitfall": "Accepting 'human error' as the root cause.",
+              "reply": "Anchor the answer in technical evidence: the data source, how you tested it, and what you concluded."
+            }
+          ]
+        },
+        {
+          "q": "What are the key risks in cloud and distributed systems that you would assess?",
+          "a": "Single points of failure hidden in shared dependencies such as one region, one database or one identity provider; cascading failures and retry storms; configuration drift; dependency on third-party managed services; data consistency during failover; capacity limits and quotas; and observability gaps across services. I check multi-zone or multi-region design matches the service tier, that dependencies are mapped, and that resilience is proven by testing such as game days or chaos experiments rather than assumed.",
+          "tags": [
+            "Cloud",
+            "Distributed systems"
+          ],
+          "example": "A multi-region app still depended on a single-region secrets service, which would have taken both regions down.",
+          "pitfalls": [
+            {
+              "pitfall": "Assuming a cloud provider's redundancy covers the whole application.",
+              "reply": "Anchor the answer in technical evidence: the data source, how you tested it, and what you concluded."
+            }
+          ]
+        },
+        {
+          "q": "How do you use Python, SQL and automation for data-driven assurance?",
+          "a": "I use SQL to pull full populations instead of samples where possible, for example every production change for the quarter joined to approvals, and Python to test rules across all of them, such as changes deployed without an approved ticket or deployed by the approver. Automation lets me run the same tests continuously and alert on exceptions. I validate the data source first, so I know the extract is complete and accurate. [Describe your own tools and an example you actually built.]",
+          "tags": [
+            "Python",
+            "SQL",
+            "Data analytics"
+          ],
+          "example": "A query joining deployment logs to the ticketing system found 14 of 2,300 changes with no approval, instead of a 25-item sample that would likely have missed them.",
+          "pitfalls": [
+            {
+              "pitfall": "Claiming automation experience without a concrete example you can explain.",
+              "reply": "Anchor the answer in technical evidence: the data source, how you tested it, and what you concluded."
+            }
+          ]
+        },
+        {
+          "q": "How can AI help with technology risk analysis and assurance, and what are the limits?",
+          "a": "AI can summarise large volumes of incident reports and postmortems to spot recurring themes, classify changes and alerts, draft control test steps, and help query logs in plain language. The limits: outputs can be wrong or incomplete, so every conclusion that goes into a finding must be verified against source evidence; sensitive data must be handled under policy; and the use of AI itself should be documented. AI speeds up analysis, but the assurance judgement and evidence stay with the person.",
+          "tags": [
+            "AI in assurance",
+            "Technology risk"
+          ],
+          "example": "An AI-assisted review of 200 postmortems surfaced certificate expiry as a recurring cause, which we then confirmed in the source records.",
+          "pitfalls": [
+            {
+              "pitfall": "Treating AI output as evidence.",
+              "reply": "Anchor the answer in technical evidence: the data source, how you tested it, and what you concluded."
+            }
+          ]
+        },
+        {
+          "q": "How do you provide independent challenge to engineering teams without becoming a blocker?",
+          "a": "I make challenge specific and evidence-based: 'your RTO is 1 hour but the last two tests took 3 hours' rather than 'resilience looks weak'. I agree the facts with the team first, focus on the risk to the service and customers, and propose proportionate options. I keep independence by reporting through the risk line, but I build relationships early so engineers bring issues to me rather than hiding them.",
+          "tags": [
+            "Stakeholder management",
+            "Independent challenge"
+          ],
+          "example": "An engineering lead disagreed with a finding until we walked through the monitoring data together; we agreed a fix plan instead of escalating.",
+          "pitfalls": [
+            {
+              "pitfall": "Challenging on opinion instead of evidence.",
+              "reply": "Anchor the answer in technical evidence: the data source, how you tested it, and what you concluded."
+            }
+          ]
+        },
+        {
+          "q": "How do operational resilience and disaster recovery fit together?",
+          "a": "Operational resilience starts from important business services and asks how much disruption the business and customers can tolerate (impact tolerance). Disaster recovery is one set of capabilities to stay within that tolerance for technology failures. So I map critical services to their technology dependencies, check RTOs and RPOs support the impact tolerance, test severe but plausible scenarios, and include third parties. A DR plan that meets its RTO but ignores a critical vendor still leaves the service outside tolerance.",
+          "tags": [
+            "Operational resilience",
+            "Disaster recovery"
+          ],
+          "example": "A service had a 4-hour RTO but its payment vendor had a 24-hour recovery commitment, so the end-to-end service could not meet its tolerance.",
+          "pitfalls": [
+            {
+              "pitfall": "Treating resilience as only a backup and restore question.",
+              "reply": "Anchor the answer in technical evidence: the data source, how you tested it, and what you concluded."
+            }
+          ]
+        }
+      ]
     }
   ]
 }
