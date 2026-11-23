@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PolicySopProcedure from './PolicySopProcedure.jsx';
 import SapItgcPlan from './SapItgcPlan.jsx';
+import { SapAccessControlGuide, AwarenessCycleMetrics, ChangeIncidentPolicyBlueprints } from '../kb/InterviewHubExtras.jsx';
 import ToolkitModule, { ModuleTable, ModuleTemplates } from './ToolkitModule.jsx';
 
 // GRC toolkit phase 4 modules. Each is a Knowledge Base topic except BIA and DR, which sits on the ISO 22301 page.
@@ -83,6 +84,7 @@ export function PolicyLifecycleTab() {
           ['Guideline', 'Recommended good practice', 'Tips for spotting phishing', 'No, advisory'],
         ]} />
         <PolicySopProcedure />
+        <ChangeIncidentPolicyBlueprints />
       </>
     ),
     steps: ['Draft using the standard template, with owner and scope.', 'Review with the owner, affected teams and Legal where needed.', 'Approve by the named authority (for example CISO or leadership).', 'Publish in one place staff already use.', 'Communicate the change and what it means for people.', 'Collect acknowledgements from everyone in scope.', 'Review yearly or on a trigger event; archive superseded versions, do not delete them.'],
@@ -139,6 +141,7 @@ export function AwarenessTab() {
     pitfalls: ['Annual click-through training only.', 'Punishing clickers, which stops people reporting.', 'Spot checks done once and never repeated.'],
     maps: ['ISO 27001:2022 A.6.3, A.7.2, A.7.7, A.7.14', 'SOC 2 CC1.4, CC2.2', 'NIST CSF 2.0 PR.AT', 'CIS Controls v8.1 Control 14'],
     related: <p className={`mt-3 ${P}`}>Training and phishing metrics are in the <Link className="ui-link" to="/knowledge?topic=kpi-kri">KPI and KRI library</Link>.</p>,
+    intro: <AwarenessCycleMetrics />,
     templates: [
       { name: 'Awareness annual plan', file: 'awareness-annual-plan.xlsx', desc: 'month, theme, audience, channel, owner and completion' },
       { name: 'Phishing simulation tracker', file: 'phishing-tracker.xlsx', desc: 'campaign, audience, delivered, clicked, reported, rates and remedial training' },
@@ -170,7 +173,7 @@ export function ErpReviewTab() {
     evidence: ['User and role extracts', 'SoD conflict report', 'Emergency access logs and reviews', 'Transport or migration logs', 'Configuration screenshots'],
     pitfalls: ['Testing roles but not the access hidden in composite or derived roles.', 'Generic accounts with no owner.', 'Direct production changes allowed "temporarily".'],
     maps: ['ISO 27001:2022 A.5.3, A.8.2, A.8.15, A.8.32', 'SOX 404 ITGCs: access, change and operations', 'COSO 2013 Principle 11'],
-    intro: <SapItgcPlan />,
+    intro: <><SapAccessControlGuide /><SapItgcPlan /></>,
     related: <p className={`mt-3 ${P}`}>The SoD conflict matrix template and testing steps are in the <Link className="ui-link" to="/knowledge?topic=it-audit">IT Audit Toolkit</Link>.</p>,
     templates: [{ name: 'ERP security review checklist', file: 'erp-security-checklist.xlsx', desc: 'area, check, how to test, result, finding and owner' }],
     source: 'Common IT audit practice; COSO 2013; PCAOB AS 2201',
