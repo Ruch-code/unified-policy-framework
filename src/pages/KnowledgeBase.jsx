@@ -25,6 +25,7 @@ import CryptoTabletopScenario from '../components/crypto/CryptoTabletopScenario.
 import DataGovernanceTab from '../components/DataGovernanceTab.jsx';
 import CloudTestingGuide from '../components/CloudTestingGuide.jsx';
 import CloudLegacyPrimer from '../components/CloudLegacyPrimer.jsx';
+import CloudRunGrc from '../components/CloudRunGrc.jsx';
 import ThreatNewsNov2026 from '../components/ThreatNewsNov2026.jsx';
 import { CsfVsAiRmf } from '../components/kb/InterviewHubExtras.jsx';
 import { PARTS as CCT_PARTS } from '../data/cloudTestingGuide.js';
@@ -377,7 +378,7 @@ export default function KnowledgeBase() {
     'it-audit': <ItAuditToolkit />,
     rcsa: <RcsaTab />,
     'data-governance': <DataGovernanceTab />,
-    'cloud-testing': <CloudTestingGuide />,
+    'cloud-testing': <><CloudTestingGuide /><CloudRunGrc /></>,
     'audit-readiness': <AuditReadinessPlan />,
     'implementation': <ImplementationGuide />,
     'logistics': <LogisticsSecurity />,
