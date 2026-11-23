@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import PolicySopProcedure from './PolicySopProcedure.jsx';
 import ToolkitModule, { ModuleTable, ModuleTemplates } from './ToolkitModule.jsx';
 
 // GRC toolkit phase 4 modules. Each is a Knowledge Base topic except BIA and DR, which sits on the ISO 22301 page.
@@ -80,6 +81,7 @@ export function PolicyLifecycleTab() {
           ['Procedure (SOP)', 'Step-by-step instructions to carry out a task', 'How to run the quarterly access review', 'Yes, as written'],
           ['Guideline', 'Recommended good practice', 'Tips for spotting phishing', 'No, advisory'],
         ]} />
+        <PolicySopProcedure />
       </>
     ),
     steps: ['Draft using the standard template, with owner and scope.', 'Review with the owner, affected teams and Legal where needed.', 'Approve by the named authority (for example CISO or leadership).', 'Publish in one place staff already use.', 'Communicate the change and what it means for people.', 'Collect acknowledgements from everyone in scope.', 'Review yearly or on a trigger event; archive superseded versions, do not delete them.'],
