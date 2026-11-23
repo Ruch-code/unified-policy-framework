@@ -25,6 +25,7 @@ import CryptoTabletopScenario from '../components/crypto/CryptoTabletopScenario.
 import DataGovernanceTab from '../components/DataGovernanceTab.jsx';
 import CloudTestingGuide from '../components/CloudTestingGuide.jsx';
 import CloudLegacyPrimer from '../components/CloudLegacyPrimer.jsx';
+import ThreatNewsNov2026 from '../components/ThreatNewsNov2026.jsx';
 import { PARTS as CCT_PARTS } from '../data/cloudTestingGuide.js';
 import StreamlineGrc from '../components/toolkit/StreamlineGrc.jsx';
 import FindingClassification from '../components/toolkit/FindingClassification.jsx';
@@ -76,6 +77,7 @@ const TABS = [
   { id: 'it-audit', label: 'IT Audit Toolkit', icon: ShieldAlert, group: 'Fieldwork and findings', area: 'Internal audit', desc: 'Sample sizes, ITAC, report (IPE) testing, RCM, SOC report review, full-population analytics, findings and joiner, mover and leaver testing' },
   { id: 'due-diligence', label: 'Pre-IPO and M&A Due Diligence', icon: ShieldAlert, group: 'Fieldwork and findings', area: 'Internal audit', desc: 'Security and privacy due diligence before a listing or an acquisition' },
   { id: 'auditor-requests', label: 'Auditor Request List', icon: ShieldAlert, group: 'Fieldwork and findings', area: 'Internal audit', desc: 'What a SOC 2 Type 2 auditor asks for, how to respond to each request with an example, and the follow-ups to expect.' },
+  { id: 'threat-news', label: 'Threat News Deep Dives', icon: ShieldAlert, group: 'GRC: Programme and tooling', area: 'GRC', desc: 'Recent security incidents explained for GRC: what happened, lessons, controls to check, and how each would play out through an AI agent with RAG' },
   { id: 'tabletop', label: 'Tabletop Exercise (IR and DR)', icon: ShieldAlert, group: 'GRC: Programme and tooling', area: 'GRC', desc: 'A template for a combined incident response and disaster recovery tabletop, with a worked scenario, model responses and findings.' },
   { id: 'radar', label: 'Discrepancy Radar', icon: Radar, group: 'GRC: Frameworks', area: 'GRC', desc: 'Where frameworks disagree, and how to reconcile them.' },
   { id: 'otherfw', label: 'Other Frameworks', icon: BookOpenCheck, group: 'GRC: Frameworks', area: 'GRC', desc: 'COSO, ISO 27002, ISAE 3402, CRBF 97-02, Solvency II, NIST CSF and HITRUST at a glance.' },
@@ -388,6 +390,7 @@ export default function KnowledgeBase() {
     awareness: <AwarenessTab />,
     zerotrust: <ZeroTrustShadowIt />,
     infranet: <><InfraNetworkAudit /><CloudLegacyPrimer /></>,
+    'threat-news': <ThreatNewsNov2026 />,
     tooling: <GrcToolingKb />,
     gaps: <ItgcGapsKb initialFramework={new URLSearchParams(location.search).get('gapfw') || 'all'} />,
   };
