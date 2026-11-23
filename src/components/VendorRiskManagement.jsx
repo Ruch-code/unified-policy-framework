@@ -1,6 +1,7 @@
 import StartupNotes from './StartupNotes.jsx';
 import { VibePlatformLink } from './playbook/VibePlatformScenario.jsx';
 import TprmDeepDive from './TprmDeepDive.jsx';
+import VendorIncidents2026 from './tprm/VendorIncidents2026.jsx';
 import VendorClauseBuilder from './VendorClauseBuilder.jsx';
 import VendorQuestionnaires from './VendorQuestionnaires.jsx';
 import AiVendorAssuranceTab from './AiVendorAssuranceTab.jsx';
@@ -862,6 +863,7 @@ export default function VendorRiskManagement({ isDark = false }) {
               }>
                 <VendorIncidentBrief isDark={isDark} />
               </Suspense>
+              <VendorIncidents2026 />
             </div>
           )}
         </div>
