@@ -1,6 +1,6 @@
 import OnThisPage from '../components/OnThisPage.jsx';
 import { revealTarget } from '../components/SiteHelpers.jsx';
-import { AiPrivacyUpdates, AiAgentPersona, VendorUpdates, IrUpdates, CisoContinuity, Nov2026Questions } from '../components/updates/Nov2026Blocks.jsx';
+import { AiPrivacyUpdates, AiAgentPersona, VendorUpdates, CisoContinuity, Nov2026Questions } from '../components/updates/Nov2026Blocks.jsx';
 import { Link } from 'react-router-dom';
 import GlobeExplorer from '../components/GlobeExplorer.jsx';
 import RegionControlMap from '../components/RegionControlMap.jsx';
@@ -360,7 +360,6 @@ function TabPanel({ isDark, activeTab }) {
       {activeTab === 'regional' && (
         <ErrorBoundary>
           <SecurityOperations isDark={isDark} />
-          <div className="mt-6"><IrUpdates /></div>
         </ErrorBoundary>
       )}
 
