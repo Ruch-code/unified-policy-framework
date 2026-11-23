@@ -4,6 +4,35 @@ import React, { useState } from 'react';
 import { Radar, FileClock, Siren, ShieldAlert, CheckCircle2, Activity, Database, Clock, FileSearch, GitBranch, Repeat, Search, ShieldCheck, Shield } from 'lucide-react';
 import PriorityBadge from './ui/PriorityBadge.jsx';
 import ResponsiveTable from './ResponsiveTable';
+import { IrUpdates } from './updates/Nov2026Blocks.jsx';
+
+function RelatedLinks({ title, links }) {
+  return (
+    <div className="mt-6 rounded-xl border border-surface-200 dark:border-surface-dark-200 bg-white dark:bg-slate-900/60 p-4">
+      <p className="font-semibold text-sm text-navy-900 dark:text-text-dark-primary">{title}</p>
+      <ul className="mt-2 list-disc pl-5 space-y-1 text-sm">
+        {links.map(([label, href]) => <li key={href}><a className="ui-link" href={href}>{label}</a></li>)}
+      </ul>
+    </div>
+  );
+}
+
+const VULN_LINKS = [
+  ['Vulnerability management policy: audit actions and evidence (policy matrix)', '/unified-framework#policy-framework-matrix'],
+  ['Infrastructure Security Review Playbook (patching, firewall and exposure findings)', '/knowledge?topic=infra-review'],
+  ['Infra & Network Audit: patch, scanning and port controls', '/knowledge?topic=infranet'],
+  ['Cloud Control Testing Guide: testing vulnerability controls in AWS, GCP and Azure', '/knowledge?topic=cloud-testing'],
+  ['Threat News: CISA KEV additions, VMware zero-day and AI-driven exploitation', '/knowledge?topic=threat-news'],
+];
+
+const IR_LINKS = [
+  ['Tabletop Exercise (IR and DR): worked scenario and findings', '/knowledge?topic=tabletop'],
+  ['Incident Management policy blueprint and NIST 800-61r3 workflow', '/knowledge?topic=policy-lifecycle'],
+  ['Recent third-party incidents: remediation and missing controls', '/?section=incident-brief#vendor-risk'],
+  ['Threat News Deep Dives: recent incidents explained', '/knowledge?topic=threat-news'],
+  ['DPDP Act breach intimation (Rule 7) guidance', '/dpdpa'],
+  ['Incident and RCA interview questions', '/#interview-prep'],
+];
 
 const SEV_LABELS = { Critical: 'P0', High: 'P1', Medium: 'P2', Low: 'P3' };
 
@@ -276,6 +305,8 @@ export default function SecurityOperations({ isDark = false }) {
               enableSort
               defaultSortKey="rank"
             />
+            <StartupNotes id="patch" />
+            <RelatedLinks title="Everything else on vulnerability management across OneLens" links={VULN_LINKS} />
           </div>
         </section>
 
@@ -345,6 +376,7 @@ export default function SecurityOperations({ isDark = false }) {
               Regulated minimums to honor: <strong>CERT-In</strong> directions require ICT system logs to be kept for 180 days within India; DPDP Rules 6 and 8 require processing logs, traffic data and associated personal data to be kept for at least one year; PCI DSS requires one year of audit logs; other regulated records can need up to 6 years in immutable storage. Where rules differ, keep the longest period that applies.
             </p>
             <EngPartnershipLink className="mt-4" only={['eng-logging']} />
+            <StartupNotes id="logs" />
           </div>
         </section>
 
@@ -426,10 +458,10 @@ export default function SecurityOperations({ isDark = false }) {
               </div>
             </div>
 
-            <StartupNotes id="patch" />
-            <StartupNotes id="logs" />
             <StartupNotes id="ir" />
             <IrTriageGenerator />
+            <div className="mt-6"><IrUpdates /></div>
+            <RelatedLinks title="Everything else on incidents across OneLens" links={IR_LINKS} />
           </div>
         </section>
       </div>
