@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import PolicySopProcedure from './PolicySopProcedure.jsx';
+import SapItgcPlan from './SapItgcPlan.jsx';
 import ToolkitModule, { ModuleTable, ModuleTemplates } from './ToolkitModule.jsx';
 
 // GRC toolkit phase 4 modules. Each is a Knowledge Base topic except BIA and DR, which sits on the ISO 22301 page.
@@ -80,6 +82,7 @@ export function PolicyLifecycleTab() {
           ['Procedure (SOP)', 'Step-by-step instructions to carry out a task', 'How to run the quarterly access review', 'Yes, as written'],
           ['Guideline', 'Recommended good practice', 'Tips for spotting phishing', 'No, advisory'],
         ]} />
+        <PolicySopProcedure />
       </>
     ),
     steps: ['Draft using the standard template, with owner and scope.', 'Review with the owner, affected teams and Legal where needed.', 'Approve by the named authority (for example CISO or leadership).', 'Publish in one place staff already use.', 'Communicate the change and what it means for people.', 'Collect acknowledgements from everyone in scope.', 'Review yearly or on a trigger event; archive superseded versions, do not delete them.'],
@@ -167,6 +170,7 @@ export function ErpReviewTab() {
     evidence: ['User and role extracts', 'SoD conflict report', 'Emergency access logs and reviews', 'Transport or migration logs', 'Configuration screenshots'],
     pitfalls: ['Testing roles but not the access hidden in composite or derived roles.', 'Generic accounts with no owner.', 'Direct production changes allowed "temporarily".'],
     maps: ['ISO 27001:2022 A.5.3, A.8.2, A.8.15, A.8.32', 'SOX 404 ITGCs: access, change and operations', 'COSO 2013 Principle 11'],
+    intro: <SapItgcPlan />,
     related: <p className={`mt-3 ${P}`}>The SoD conflict matrix template and testing steps are in the <Link className="ui-link" to="/knowledge?topic=it-audit">IT Audit Toolkit</Link>.</p>,
     templates: [{ name: 'ERP security review checklist', file: 'erp-security-checklist.xlsx', desc: 'area, check, how to test, result, finding and owner' }],
     source: 'Common IT audit practice; COSO 2013; PCAOB AS 2201',
