@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { UCF_COLUMNS, UCF_CONTROLS, UCF_FRAMEWORKS, UCF_SLA_COLUMNS, UCF_SLAS, UCF_VERIFIED } from '../data/unifiedControls.js';
 import UcfGrid from '../components/UcfGrid.jsx';
+import PolicyFrameworkMatrix from '../components/PolicyFrameworkMatrix.jsx';
 import { buildStyledXlsx, toCsv } from '../utils/styledXlsx.js';
 
 const H = 'text-gray-900 dark:text-white';
@@ -83,6 +84,7 @@ export default function UnifiedFramework() {
         Excel export has three sheets (Control mapping, Framework SLAs, About), each with a bold frozen header row and filters switched on.
         Exports always include every framework column and every row.
       </p>
+      <PolicyFrameworkMatrix />
     </div>
   );
 }
