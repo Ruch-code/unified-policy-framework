@@ -101,6 +101,7 @@ export default function InterviewPrep({ isDark = false }) {
     'grc-program-manager': 'bg-teal-700',
     'logistics-security-head': 'bg-indigo-700',
     'grilling': 'bg-rose-700',
+    'tech-risk-resilience': 'bg-teal-700',
   };
 
   return (
