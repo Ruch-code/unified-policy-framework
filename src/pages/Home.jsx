@@ -13,6 +13,7 @@ import { WHAT_CAN_GO_WRONG as RISK_WHAT_CAN_GO_WRONG } from '../data/riskAssessm
 import VendorRiskManagement from '../components/VendorRiskManagement.jsx';
 import InterviewPrep from '../components/InterviewPrep.jsx';
 import VpEngGuide from '../components/VpEngGuide.jsx';
+import EmGrillingGuide from '../components/EmGrillingGuide.jsx';
 import PasswordPolicies from '../components/PasswordPolicies.jsx';
 import AccessRequirements from '../components/AccessRequirements.jsx';
 import UserAccessReview from '../components/UserAccessReview.jsx';
@@ -478,6 +479,10 @@ function TabPanel({ isDark, activeTab }) {
           <details id="vp-eng-guide" className="mt-8 rounded-2xl border border-surface-200 dark:border-surface-dark-200 scroll-mt-24">
             <summary className="cursor-pointer px-4 py-3 text-lg font-bold text-navy-900 dark:text-text-dark-primary">VP Engineering Interview Guide (Lead GRC)</summary>
             <div className="px-2 pb-2"><VpEngGuide /></div>
+          </details>
+          <details id="em-grilling-guide" className="mt-4 rounded-2xl border border-surface-200 dark:border-surface-dark-200 scroll-mt-24">
+            <summary className="cursor-pointer px-4 py-3 text-lg font-bold text-navy-900 dark:text-text-dark-primary">Engineering Manager Super-Grilling Guide</summary>
+            <div className="px-4 pb-4"><EmGrillingGuide /></div>
           </details>
           <div className="mt-8"><Nov2026Questions /></div>
           <CcDownloads groups={['interview']} title="Contact-centre threat modelling interview Q&As" />
