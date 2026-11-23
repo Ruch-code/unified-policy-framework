@@ -99,3 +99,14 @@ export async function uniqueSlug(title, excludeId) {
   while (await Newsletter.exists({ slug, ...(excludeId ? { _id: { $ne: excludeId } } : {}) })) slug = `${base}-${n++}`;
   return slug;
 }
+
+// Sent when an admin rejects a pending account request. Neutral and short.
+export async function sendAccessRejected(user) {
+  const name = escapeHtml((user.name || '').split(' ')[0] || 'there');
+  const inner = `<h1 style="font-size:22px;margin:0 0 12px;color:#0f172a">Access request not approved</h1>
+  <p style="margin:0 0 12px;line-height:1.6;color:#1f2937">Hi ${name},</p>
+  <p style="margin:0 0 12px;line-height:1.6;color:#1f2937">Thank you for your interest in OneLens. Your request for access has not been approved, and the account request has been closed.</p>
+  <p style="margin:0;line-height:1.6;color:#1f2937">Regards,<br/>OneLens by Ruchi</p>`;
+  const html = `<div style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:auto;padding:24px;background:#ffffff">${inner}</div>`;
+  await sendOne({ to: user.email, subject: 'Your OneLens access request', html });
+}
