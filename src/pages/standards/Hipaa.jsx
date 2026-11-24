@@ -7,6 +7,7 @@ import { withEvidence, appendToLevel } from "../../data/playbookEvidence.js";
 import { HIPAA_L2_SECURITY, HIPAA_L3_PRIVACY_BREACH, HIPAA_SECURITY_MATRIX, HIPAA_STATUS_NOTES } from "../../data/playbookAdditions/hipaa.js";
 import ReferenceTable from "../../components/playbook/ReferenceTable.jsx";
 import HipaaCeVsBa from "../../components/playbook/HipaaCeVsBa.jsx";
+import HipaaEnforcementCases from "../../components/playbook/HipaaEnforcementCases.jsx";
 import HipaaSoc2Crosswalk from "../../components/playbook/HipaaSoc2Crosswalk.jsx";
 import HipaaPhiUpload from "../../components/playbook/HipaaPhiUpload.jsx";
 import { CROSSWALK_LEVEL } from "../../data/hipaaSoc2Crosswalk.js";
@@ -883,6 +884,7 @@ export default function Hipaa() {
       <HipaaSoc2Crosswalk />
       <HipaaRequirementLibrary />
       <HipaaCeVsBa />
+      <HipaaEnforcementCases />
       <HipaaControlSet />
       <IndiaUsScenarios />
       <RiskCrossCheckBlock frameworkId="hipaa" />
