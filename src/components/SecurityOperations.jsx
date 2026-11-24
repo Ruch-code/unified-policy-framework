@@ -6,6 +6,39 @@ import PriorityBadge from './ui/PriorityBadge.jsx';
 import ResponsiveTable from './ResponsiveTable';
 import { IrUpdates } from './updates/Nov2026Blocks.jsx';
 
+
+// Decision guide for the first hours after a critical vulnerability is disclosed.
+const VULN_OPTIONS = [
+  ['Patch immediately', 'A fixed version exists, it is tested or low-risk to apply, and the system can restart.', 'Fastest permanent fix.', 'Can break things if rushed; needs rollback and a quick test.', 'Change ticket, patched version, re-scan showing the finding closed.'],
+  ['Compensating control (for example a WAF or IPS rule)', 'The attack path is network-reachable and a rule can block the exploit pattern.', 'Fast, no restart, buys time.', 'Can be bypassed by variants; the flaw is still there.', 'Rule config, test showing the exploit is blocked, expiry date, link to the patch plan.'],
+  ['Isolate the workload', 'No patch or rule is possible yet, and the system can run with reduced exposure.', 'Removes or narrows the attack path (network segmentation, remove public access, block egress).', 'May reduce service or break integrations.', 'Firewall or security group change, exposure scan after isolation.'],
+  ['Runtime protection without restart', 'Patching needs a restart you cannot take now, and a runtime control is available.', 'Mitigates on the running application, for example a RASP or EDR rule, a feature flag to switch off the vulnerable function, or a configuration change that disables it.', 'Product-specific; validate that it actually blocks the exploit before relying on it.', 'Validation test result, configuration, monitoring for exploit attempts.'],
+  ['Accept the risk until the maintenance window', 'Exploitation is unlikely or impact is low, and other options cost more than the risk.', 'Avoids unplanned downtime.', 'Not acceptable for actively exploited (KEV) or internet-facing critical flaws without other controls.', 'Signed, time-bound risk acceptance by the right authority, with compensating monitoring.'],
+];
+
+function VulnResponseOptions() {
+  return (
+    <details className="mt-6 rounded-xl border border-surface-200 dark:border-surface-dark-200 bg-white dark:bg-slate-900/60 p-4" id="critical-vuln-options">
+      <summary className="cursor-pointer font-semibold text-navy-900 dark:text-text-dark-primary">Critical vulnerability disclosed: the five response options and how to choose</summary>
+      <p className="mt-2 text-sm text-navy-700 dark:text-text-dark-secondary">Do not rush a risky deployment. Decide quickly, but on evidence: is the flaw actively exploited, is the system reachable, and what does it protect? Most teams combine options, for example a WAF rule today and the patch at the next safe window.</p>
+      <div className="overflow-x-auto mt-3" tabIndex={0} role="region" aria-label="Vulnerability response options">
+        <table className="w-full text-sm min-w-[860px]">
+          <thead><tr>{['Option', 'Use when', 'Benefit', 'Watch out for', 'Evidence to keep'].map((h) => <th key={h} scope="col" className="p-2 text-left font-semibold text-navy-900 dark:text-text-dark-primary bg-surface-100 dark:bg-slate-800">{h}</th>)}</tr></thead>
+          <tbody>{VULN_OPTIONS.map((r) => <tr key={r[0]}>{r.map((c, j) => <td key={j} className={`p-2 align-top border-t border-surface-200 dark:border-surface-dark-200 text-navy-700 dark:text-text-dark-secondary ${j === 0 ? 'font-medium text-navy-900 dark:text-text-dark-primary' : ''}`}>{c}</td>)}</tr>)}</tbody>
+        </table>
+      </div>
+      <p className="mt-3 text-sm font-semibold text-navy-900 dark:text-text-dark-primary">Questions to ask your security vendors</p>
+      <ul className="mt-1 list-disc pl-5 text-sm text-navy-700 dark:text-text-dark-secondary space-y-1">
+        <li>Can your product apply a protection for this CVE without restarting the vulnerable application?</li>
+        <li>How do we validate that the protection actually blocks the exploit, not just that a rule exists?</li>
+        <li>How fast do you ship rules or signatures after disclosure, and how do we hear about them?</li>
+        <li>What happens when the rule causes false positives, and how is it rolled back?</li>
+      </ul>
+      <p className="mt-2 text-xs text-navy-500 dark:text-text-dark-secondary">A compensating control or runtime protection is temporary. Track it with an owner and expiry until the patch is applied and verified.</p>
+    </details>
+  );
+}
+
 function RelatedLinks({ title, links }) {
   return (
     <div className="mt-6 rounded-xl border border-surface-200 dark:border-surface-dark-200 bg-white dark:bg-slate-900/60 p-4">
@@ -305,6 +338,7 @@ export default function SecurityOperations({ isDark = false }) {
               enableSort
               defaultSortKey="rank"
             />
+            <VulnResponseOptions />
             <StartupNotes id="patch" />
             <RelatedLinks title="Everything else on vulnerability management across OneLens" links={VULN_LINKS} />
           </div>
