@@ -30,6 +30,7 @@ import ThreatNewsNov2026 from '../components/ThreatNewsNov2026.jsx';
 import { CsfVsAiRmf } from '../components/kb/InterviewHubExtras.jsx';
 import { pairRebuttals } from '../data/auditRebuttalPairs.js';
 import GrcOperatingModel from '../components/kb/GrcOperatingModel.jsx';
+import DlpDeepDive from '../components/DlpDeepDive.jsx';
 import { PARTS as CCT_PARTS } from '../data/cloudTestingGuide.js';
 import StreamlineGrc from '../components/toolkit/StreamlineGrc.jsx';
 import FindingClassification from '../components/toolkit/FindingClassification.jsx';
@@ -364,7 +365,7 @@ export default function KnowledgeBase() {
         </div>
       </div>
     ),
-    edp: <EdpTab />,
+    edp: <><EdpTab /><DlpDeepDive /></>,
     crypto: <CryptoExchangeTab />,
     secrets: <SecretsScanningTab />,
     change: <ChangeManagementTab onOpenTab={setTab} />,
