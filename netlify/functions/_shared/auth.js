@@ -30,6 +30,10 @@ const userSchema = new mongoose.Schema(
     approvedAt: Date,
     approvedBy: String,
     deletedAt: Date,
+    // Bumped to sign a user out everywhere; tokens carry the version they were issued with.
+    sessionVersion: { type: Number, default: 0 },
+    // Set when an admin issues a one-off temporary password; cleared when the user sets their own.
+    mustChangePassword: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
@@ -58,7 +62,7 @@ export const signToken = async (user) => {
   const secret = getSecret();
   const header = b64u(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
   const now = Math.floor(Date.now() / 1000);
-  const payload = b64u(JSON.stringify({ id: user._id, email: user.email, role: user.role, iat: now, exp: now + 604800 }));
+  const payload = b64u(JSON.stringify({ id: user._id, email: user.email, role: user.role, sv: user.sessionVersion || 0, iat: now, exp: now + 604800 }));
   const data = `${header}.${payload}`;
   const sig = crypto.createHmac('sha256', secret).update(data).digest();
   return `${data}.${base64url(sig)}`;
@@ -80,8 +84,19 @@ export const verifyToken = async (token) => {
 export const authUser = async (req) => {
   const auth = req.headers.get('authorization');
   if (!auth || !auth.startsWith('Bearer ')) return null;
+  let p;
   try {
-    return await verifyToken(auth.slice(7));
+    p = await verifyToken(auth.slice(7));
+  } catch {
+    return null;
+  }
+  // Check the account is still active and the session has not been revoked.
+  try {
+    await connectDb();
+    const u = await User.findById(p.id).select('status deletedAt sessionVersion role').lean();
+    if (!u || u.deletedAt || u.status !== 'active') return null;
+    if ((u.sessionVersion || 0) !== (p.sv || 0)) return null;
+    return { ...p, role: u.role };
   } catch {
     return null;
   }
@@ -102,6 +117,15 @@ export const makeResetToken = () => {
 };
 
 export const DEFAULT_PASSWORD = process.env.DEFAULT_USER_PASSWORD || '';
+
+// A unique, random one-off password for one user (never shared between accounts).
+export const makeTempPassword = () => {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789';
+  const bytes = crypto.randomBytes(14);
+  return Array.from(bytes, (b) => chars[b % chars.length]).join('');
+};
+// An unusable password for accounts awaiting approval.
+export const lockedPassword = () => crypto.randomBytes(32).toString('hex');
 
 export const json = (data, status = 200) => {
   return new Response(JSON.stringify(data), {

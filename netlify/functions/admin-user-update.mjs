@@ -1,10 +1,11 @@
-import { connectDb, User, authAdmin, json, DEFAULT_PASSWORD, hashPassword } from './_shared/auth.js';
+import { connectDb, User, authAdmin, json, hashPassword, makeTempPassword } from './_shared/auth.js';
+import { sendAccessApproved } from './_shared/mailer.js';
 
 // actions:
 //   'activate'      -> set active
 //   'deactivate'    -> set deactivated
 //   'delete'        -> soft delete
-//   'reset-password'-> set password back to default
+//   'reset-password'-> issue a new one-off password, emailed to the user, and sign them out
 //   'make-admin'    -> promote to admin
 //   'revoke-admin'  -> demote to user
 export default async (req) => {
@@ -18,11 +19,12 @@ export default async (req) => {
     const admin = await authAdmin(req);
     if (!admin) return json({ message: 'Admins only.' }, 403);
 
+    let tempPassword;
     const target = await User.findById(id);
     if (!target) return json({ message: 'User not found.' }, 404);
 
     // Prevent an admin from locking themselves out.
-    if (String(target._id) === String(admin._id) && ['deactivate', 'delete', 'revoke-admin'].includes(action)) {
+    if (String(target._id) === String(admin.id) && ['deactivate', 'delete', 'revoke-admin'].includes(action)) {
       return json({ message: 'You cannot deactivate, delete, or demote your own account.' }, 400);
     }
 
@@ -33,14 +35,19 @@ export default async (req) => {
         break;
       case 'deactivate':
         target.status = 'deactivated';
+        target.sessionVersion = (target.sessionVersion || 0) + 1;
         break;
       case 'delete':
         target.deletedAt = new Date();
         target.status = 'deactivated';
         break;
-      case 'reset-password':
-        target.password = await hashPassword(DEFAULT_PASSWORD);
+      case 'reset-password': {
+        tempPassword = makeTempPassword();
+        target.password = await hashPassword(tempPassword);
+        target.mustChangePassword = true;
+        target.sessionVersion = (target.sessionVersion || 0) + 1;
         break;
+      }
       case 'make-admin':
         target.role = 'admin';
         break;
@@ -49,6 +56,10 @@ export default async (req) => {
         break;
     }
     await target.save();
+    if (action === 'reset-password') {
+      try { await sendAccessApproved(target, tempPassword, true); return json({ message: 'New one-time password emailed to the user.', user: target }); }
+      catch (e) { return json({ message: `Password reset, but the email was not sent (${e.message}). Share the one-time password below privately.`, user: target, tempPassword }); }
+    }
     return json({ message: `User ${action.replace('-', ' ')}d.`, user: target });
   } catch (err) {
     return json({ message: err.message }, 500);

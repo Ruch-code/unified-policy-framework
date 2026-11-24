@@ -14,6 +14,7 @@ export default async (req) => {
       return json({ message: 'Reset token is invalid or expired.' }, 400);
     }
     user.password = await hashPassword(newPassword);
+    user.mustChangePassword = false;
     user.resetToken = null;
     user.resetTokenExpires = null;
     await user.save();

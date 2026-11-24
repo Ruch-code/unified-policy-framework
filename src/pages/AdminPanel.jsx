@@ -32,7 +32,7 @@ export default function AdminPanel() {
     setMsg(''); setErr('');
     try {
       const d = await api('/api/admin/user-update', { method: 'POST', body: JSON.stringify({ id, action }) });
-      setMsg(d.message || 'Done');
+      setMsg(d.tempPassword ? `${d.message} One-time password: ${d.tempPassword}` : (d.message || 'Done'));
       await load();
     } catch (e) { setErr(e.message); }
   };
@@ -41,9 +41,16 @@ export default function AdminPanel() {
     setMsg(''); setErr('');
     try {
       const d = await api('/api/admin/approve', { method: 'POST', body: JSON.stringify({ id, action: doApprove ? 'approve' : 'reject' }) });
-      setMsg(d.message || 'Done');
+      setMsg(d.tempPassword ? `${d.message} One-time password: ${d.tempPassword}` : (d.message || 'Done'));
       await load();
     } catch (e) { setErr(e.message); }
+  };
+
+  const signOutOthers = async () => {
+    if (!window.confirm('Sign out every other account? You stay signed in. Others must sign in again.')) return;
+    setMsg(''); setErr('');
+    try { const d = await api('/api/admin/signout-others', { method: 'POST' }); setMsg(d.message || 'Done'); }
+    catch (e) { setErr(e.message); }
   };
 
   const pending = users.filter(u => u.status === 'pending' && !isDeleted(u));
@@ -58,6 +65,7 @@ export default function AdminPanel() {
       <h1 className="text-2xl font-bold text-gray-900 mb-1">Admin - User Access Control</h1>
       <p className="text-gray-500 text-sm mb-6">Review access requests, approve accounts, and manage users. Signed in as {user.email}.</p>
 
+      <button type="button" onClick={signOutOthers} className="inline-flex items-center gap-2 mb-4 mr-2 bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-red-800 transition">Sign out everyone else</button>
       <Link to="/admin/newsletter" className="inline-flex items-center gap-2 mb-4 bg-[#415d7d] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-[#344c67] transition">
         <Send className="w-4 h-4" /> Send Newsletter
       </Link>
@@ -108,7 +116,7 @@ export default function AdminPanel() {
         defaultSortKey="joined"
         defaultSortDir="desc"
       />
-      <p className="text-[11px] text-gray-400 mt-3">Reset pwd sets the user's password back to the default temporary password. Deactivate blocks sign-in without removing the record; Delete hides the account (restorable).</p>
+      <p className="text-[11px] text-gray-400 mt-3">Reset pwd creates a new one-time password for that user only, emails it to them and signs them out. Deactivate blocks sign-in without removing the record; Delete hides the account (restorable).</p>
     </div>
   );
 }

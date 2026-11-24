@@ -1,4 +1,4 @@
-import { connectDb, User, hashPassword, json, DEFAULT_PASSWORD } from './_shared/auth.js';
+import { connectDb, User, hashPassword, json, lockedPassword } from './_shared/auth.js';
 import { Resend } from 'resend';
 
 async function notifyAdmin(name, email) {
@@ -45,20 +45,18 @@ export default async (req) => {
     if (existing) {
       return json({ message: 'A user with that email already exists.' }, 400);
     }
-    // New users start with a default password they must reset on first login.
+    // No usable password until an admin approves; the approval email carries a one-off password.
     await User.create({
       name,
       email: email.toLowerCase(),
-      password: await hashPassword(DEFAULT_PASSWORD),
+      password: await hashPassword(lockedPassword()),
       status: 'pending',
     });
     await notifyAdmin(name, email.toLowerCase());
     return json(
       {
         message:
-          'Account created and awaiting approval. You will be able to sign in once an admin approves you. Your temporary password is ' +
-          DEFAULT_PASSWORD,
-        defaultPassword: DEFAULT_PASSWORD,
+          'Request received and awaiting approval. If an admin approves it, you will get an email with a one-time password to sign in.',
       },
       201
     );

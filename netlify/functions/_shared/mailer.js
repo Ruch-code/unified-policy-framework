@@ -110,3 +110,16 @@ export async function sendAccessRejected(user) {
   const html = `<div style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:auto;padding:24px;background:#ffffff">${inner}</div>`;
   await sendOne({ to: user.email, subject: 'Your OneLens access request', html });
 }
+
+// Sent when an admin approves an account or resets its password: a one-off password, for this user only.
+export async function sendAccessApproved(user, tempPassword, isReset = false) {
+  const name = escapeHtml((user.name || '').split(' ')[0] || 'there');
+  const inner = `<h1 style="font-size:22px;margin:0 0 12px;color:#0f172a">${isReset ? 'Your OneLens password was reset' : 'Your OneLens access is approved'}</h1>
+  <p style="margin:0 0 12px;line-height:1.6;color:#1f2937">Hi ${name},</p>
+  <p style="margin:0 0 12px;line-height:1.6;color:#1f2937">Sign in at <a href="${SITE}/login" style="color:#1d4ed8">${SITE.replace(/^https?:\/\//, '')}/login</a> with this one-time password:</p>
+  <p style="margin:0 0 12px;font-family:Consolas,monospace;font-size:18px;letter-spacing:1px;background:#f1f5f9;padding:10px 14px;display:inline-block;border-radius:4px">${escapeHtml(tempPassword)}</p>
+  <p style="margin:0 0 12px;line-height:1.6;color:#1f2937">Please change it after you sign in. Do not share it with anyone.</p>
+  <p style="margin:0;line-height:1.6;color:#1f2937">Regards,<br/>OneLens by Ruchi</p>`;
+  const html = `<div style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:auto;padding:24px;background:#ffffff">${inner}</div>`;
+  await sendOne({ to: user.email, subject: isReset ? 'Your OneLens password was reset' : 'Your OneLens access is approved', html });
+}
