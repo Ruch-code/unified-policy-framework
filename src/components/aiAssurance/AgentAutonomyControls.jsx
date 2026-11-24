@@ -1,5 +1,4 @@
 // Classifying and controlling autonomous AI agents by what they can do, not by which model they use.
-// Ideas paraphrased from "The Autonomous AI Agent Control Book" (Hernan Huwyler). OneLens summary, not a copy.
 const P = 'text-sm leading-relaxed text-gray-700 dark:text-gray-300';
 const H = 'mt-5 mb-1 text-base font-semibold text-gray-900 dark:text-white';
 const TH = 'p-2 text-left font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-900';
@@ -55,7 +54,6 @@ export default function AgentAutonomyControls() {
           ['Cost governance', 'Usage costs have a named owner, budgets and alerts, and runaway loops trip a spending circuit breaker.'],
           ['Sustained controls', 'Controls are documented and owned so they survive when the people who built the agent move on.'],
         ]} />
-        <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">Source: ideas summarised from Hernan Huwyler, The Autonomous AI Agent Control Book. Paraphrased; check the book for full detail and its ISO/IEC 27090 and EN 18286 commentary.</p>
       </div>
     </details>
   );
