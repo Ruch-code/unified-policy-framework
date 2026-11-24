@@ -76,6 +76,32 @@ export default function DpdpRegulatoryContext() {
           <p className={`${P} mt-2`}><strong>In practice:</strong> one incident can trigger both. Build one runbook with two clocks: CERT-In within 6 hours of noticing a reportable incident, and DPDP intimations without delay plus the Board report within 72 hours. Keep logs for the longer applicable period. Sector rules (for example RBI or SEBI) may add their own timelines.</p>
         </Part>
 
+
+        <Part id="dpdp-dpo-ai-risk" title="DPO guide: managing AI risk under the DPDP Act">
+          <p className={P}><strong>Why a DPO should care about AI governance.</strong> Data protection is becoming one integrated function. Senior privacy roles, including the DPO, are increasingly expected to lead privacy, AI governance and information security together, because AI systems collect, infer and act on personal data at scale. Even a role focused only on privacy now sits where those three meet. (This is a practitioner view of the trend, not a legal requirement.)</p>
+          <h3 className={H}>Where AI touches DPDP duties</h3>
+          <Table head={['DPDP duty', 'AI-specific question for the DPO']} rows={[
+            ['Lawful basis (Sections 4, 6, 7)', 'Is personal data used to train, fine-tune or prompt a model covered by consent or a listed legitimate use for that exact purpose?'],
+            ['Notice (Section 5, Rule 3)', 'Does the notice tell people their data is used by an AI feature, and for what purpose?'],
+            ['Purpose and data minimisation (Section 6(1))', 'Is the model given only the fields it needs, or whole records?'],
+            ['Accuracy (Section 8(3))', 'Where AI output is used to make a decision about a person or is shared with another Fiduciary, how is accuracy checked?'],
+            ['Security safeguards (Section 8(5), Rule 6)', 'Are prompts, retrieved documents and outputs protected, logged and access-controlled? Is prompt injection and data leakage tested?'],
+            ['Processors (Section 8(2))', 'Do contracts with AI vendors cover use of your data for their own training, retention, sub-processors and breach notice?'],
+            ['Erasure and withdrawal (Sections 6(4), 8(7), 12)', 'If someone withdraws consent, can their data be removed from training sets, embeddings, caches and logs?'],
+            ['Children (Section 9)', 'Does any AI feature track, profile or target advertising at under-18s?'],
+            ['Breach (Section 8(6), Rule 7)', 'Is leakage of personal data through an AI output treated as a personal data breach in the incident runbook?'],
+            ['SDF duties (Section 10, Rule 13)', 'If notified as an SDF, include AI systems in the yearly DPIA and audit, and check any algorithmic software for risks to Data Principals\' rights.'],
+          ]} />
+          <h3 className={H}>Practical steps</h3>
+          <ol className={`list-decimal pl-5 space-y-1 ${P}`}>
+            <li>Keep an inventory of AI systems and the personal data each one uses, with the purpose and basis.</li>
+            <li>Run a privacy and AI risk review before launch (a DPIA is good practice even if you are not an SDF).</li>
+            <li>Agree ownership: privacy, security and AI governance share one risk register and one review forum.</li>
+            <li>Add AI clauses to vendor contracts and review vendors before personal data is sent.</li>
+            <li>Monitor outputs and handle complaints about AI decisions through the grievance process.</li>
+          </ol>
+          <p className={`${P} mt-2`}>For AI-specific frameworks, see ISO/IEC 42001 and the AI Governance page.</p>
+        </Part>
         <Part id="dpdp-vs-uk-gdpr" title="DPDP Act compared with UK GDPR">
           <Table head={['Topic', 'UK GDPR', 'DPDP Act']} rows={[
             ['Regulator', 'Information Commissioner\'s Office (ICO).', 'Data Protection Board of India.'],

@@ -22,6 +22,9 @@ const TERMS = [
   ['Data Principal', 'The person the personal data is about. For a child or a person with a disability, it includes the parent or lawful guardian.'],
   ['Data Fiduciary', 'The organisation that decides why and how personal data is processed, alone or with others.'],
   ['Data Processor', 'An organisation that processes personal data on behalf of a Data Fiduciary.'],
+  ['Personal data', 'Any data about an individual who can be identified by or in relation to it, such as a name, email address or phone number (Section 2(t)).'],
+  ['Processing', 'A wholly or partly automated operation or set of operations on digital personal data, such as collection, storage, use, sharing or erasure (Section 2(x)).'],
+  ['Consent', 'Permission that is free, specific, informed, unconditional and unambiguous, given by a clear affirmative action, for a specified purpose and limited to the data needed for it (Section 6(1)).'],
   ['Consent Manager', 'A registered entity that lets people give, manage, review and withdraw consent through one platform.'],
   ['Significant Data Fiduciary (SDF)', 'A Data Fiduciary or class of them that the Central Government notifies as significant. It is not automatic.'],
 ];
@@ -83,7 +86,7 @@ const TOPICS = [
     check: 'Consent records and configuration showing ads and tracking disabled for children.',
     law: 'Sections 2(f), 9; Rules 10 and 12; Fourth Schedule', from: '13 May 2027', applies: 'Children\'s personal data', next: ['basis'] },
   { id: 'sdf', q: 'What changes if we are notified as a Significant Data Fiduciary?', aud: ['org', 'practitioner'],
-    a: 'SDF duties apply only if the Central Government notifies you or your class. You then need a Data Protection Officer based in India, an independent data auditor, and a Data Protection Impact Assessment and audit every 12 months, plus other duties in Rule 13. Being large or handling sensitive data does not make you an SDF automatically.',
+    a: 'SDF duties apply only if the Central Government notifies you or your class. Under Section 10(1) it weighs the volume and sensitivity of data processed, risk to the rights of Data Principals, possible impact on the sovereignty and integrity of India, risk to electoral democracy, security of the State and public order. If notified, you need a Data Protection Officer based in India who is responsible to the Board, an independent data auditor, and a Data Protection Impact Assessment and audit every 12 months, plus other duties in Rule 13. Being large or handling sensitive data does not make you an SDF automatically. Organisations that are not SDFs still have all the general duties: a lawful basis, accuracy, reasonable security safeguards, breach intimation, erasure and a grievance mechanism.',
     example: 'A company not yet notified may still run DPIAs as good practice, but they are not a DPDP statutory duty for it. (Illustrative.)',
     todo: 'Track notifications; if notified, plan the DPO, auditor and 12-month DPIA and audit cycle.',
     check: 'Notification tracking record; for SDFs, DPIA and audit reports.',
