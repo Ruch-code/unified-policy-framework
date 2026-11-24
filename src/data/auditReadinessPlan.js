@@ -67,6 +67,7 @@ export const STARTUP = {
     ['Type I', 'As soon as the controls exist and one instance of each can be shown, often 4 to 8 weeks after they start'],
     ['Type II', 'The period starts the day the controls began operating. A 3-month first period after that date is common'],
     ['ISO 27001', 'Stage 2 needs the controls operating with records, plus an internal audit and management review, so usually 2 to 3 months after start'],
+    ['How these fit with other timings on OneLens', 'Assumption here: minimum controls switched on this week. Starting from zero (gap assessment, policies, tooling) adds readiness of roughly 2 to 4 months first, which is the range in the Implementation Guide and interview answers. Auditor fieldwork and report issuance come after readiness or after the Type II period ends, often several weeks. All are typical ranges, not rules: the AICPA sets no minimum Type II period, and your auditor confirms the plan.'],
   ],
   say: '"If access and change controls are weak today, I don\'t try to make the past look better. I switch on the minimum control set this week, record the start date, and pick a Type I now and a Type II period starting from that date. Customers get a Type I and a bridge letter in the meantime."',
 };

@@ -126,7 +126,7 @@ const FRAMEWORK = {
     },
     {
       week: 4,
-      title: 'Certified: Integration, Multi-Cloud & Remediation',
+      title: 'Assessed: Integration, Multi-Cloud & Remediation',
       days: 'Days 22-28',
       description: 'Integrate CSF 2.0 with SOC 2, ISO 27001, and HIPAA, deploy multi-cloud controls, automate compliance, and close common gaps',
       tasks: [
@@ -155,10 +155,10 @@ const FRAMEWORK = {
           check: 'Metrics programme defined with ≥10 KPIs, monthly scorecards produced, board receives quarterly briefing, annual maturity assessment completed, KPIs trending positively over 12-month period, benchmark comparison documented.'
         },
         {
-          title: 'Conduct final validation and certification readiness',
-          control: 'End-to-end validation of all CSF 2.0 functions, external assessment readiness, and organizational certification preparation',
+          title: 'Conduct final validation and independent assessment readiness',
+          control: 'End-to-end validation of all CSF 2.0 functions, external assessment readiness, and preparation for an independent CSF assessment (NIST does not certify organisations against the CSF)',
           how: 'Final validation: (1) Run internal audit against all 22 CSF categories using NIST CSF 2.0 assessment tool, (2) Verify all evidence artefacts collected in GRC platform, (3) Conduct pre-audit readiness review with external assessor, (4) Prepare management presentation summarizing CSF posture. For multi-cloud, produce cloud-specific compliance attestations - AWS Compliance Reports, Azure Service Trust Portal, GCP Compliance Resource Center. Document all deviations and compensating controls.',
-          check: 'Internal audit completed covering all 22 categories, ≥90% subcategory compliance score, all evidence artefacts collected and organized, external assessor engaged, management presentation prepared, certification readiness confirmed by CISO.'
+          check: 'Internal audit completed covering all 22 categories, ≥90% subcategory compliance score, all evidence artefacts collected and organized, external assessor engaged, management presentation prepared, assessment readiness confirmed by CISO.'
         }
       ]
     }

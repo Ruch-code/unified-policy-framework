@@ -43,7 +43,7 @@ const accessRequirements = {
         icon: Shield,
         requirements: [
           'Quarterly access reviews (automated via IdP) - manager attestation + privilege report',
-          'Semi-annual privileged access review (separate from standard) - CISO/IT Director sign-off',
+          'Quarterly privileged access review (separate from the standard review) - CISO/IT Director sign-off',
           'Immediate revocation on role change/termination (HR→IdP auto-deprovision < 4 hours)',
           'Annual re-certification for high-risk roles (production, financial, legal, HR)',
           'Dormant account detection (>45 days inactive) → disable → delete after 90 days',
@@ -189,8 +189,8 @@ const accessRequirements = {
         name: 'Production Access (Interns)',
         icon: Server,
         requirements: [
-          'NEVER - interns do not receive production access under any circumstance',
-          'If business-critical exception: CISO + Legal + University Dean sign-off; 2-hour max; full recording; mentor co-pilot',
+          'Default: no production access for interns',
+          'Exception only when business-critical: CISO + Legal (+ university sign-off if the internship agreement requires it); read-only where possible; 2-hour maximum, auto-revoked; full session recording; mentor present; removal verified in the IdP or PAM log and reviewed at the next weekly intern review',
         ],
         frameworks: ['SOC 2 CC6.1', 'ISO A.8.1', 'PCI 7.1', 'HIPAA 164.308(a)(3)'],
       },
@@ -220,7 +220,7 @@ const accessRequirements = {
           'Production Access Request Form: requestor, business justification, systems, duration, risk assessment',
           'Approvers: Direct Manager + Security Lead + Compliance (for regulated data) + Data Owner',
           'Ticket reference required (change request, incident, deployment) - no standing access',
-          'Maximum duration: 8 hours (standard), 4 hours (contractor), 2 hours (emergency break-glass)',
+          'Maximum duration: 8 hours (standard), 4 hours (contractor); break-glass follows the Emergency / Break-Glass rule below (4 hours maximum)',
           'Auto-expiry enforced by PAM/PIM - no manual revocation reliance',
         ],
         frameworks: ['SOC 2 CC6.1', 'ISO A.8.2, A.9.2', 'PCI 7.2, 8.3', 'NIST PR.AC-3, PR.IP-3', 'FedRAMP AC-3', 'HIPAA 164.308(a)(4)'],
@@ -302,6 +302,9 @@ export default function AccessRequirements({ isDark = false }) {
           </h2>
           <p className="text-lg text-navy-600 dark:text-text-dark-secondary max-w-3xl mx-auto">
             Role-based access requirements for FTEs, contractors, interns, and production personnel - mapped to SOC 2, ISO 27001, PCI-DSS, HIPAA, NIST, CIS, FedRAMP, GDPR, DPDPA, CJIS.
+          </p>
+          <p className="mt-3 text-sm text-navy-600 dark:text-text-dark-secondary max-w-3xl mx-auto">
+            <strong>OneLens example baseline.</strong> Durations, review cadences and approvers below are a suggested organisational choice, not framework requirements. The frameworks require that access is approved, least-privilege, reviewed and removed on time; your policy sets the numbers. Canonical rules on this page: privileged access reviewed at least quarterly, break-glass time-boxed to 4 hours with auto-revoke, and interns have no production access except through the documented exception path.
           </p>
         </div>
 
@@ -410,7 +413,7 @@ export default function AccessRequirements({ isDark = false }) {
               { req: 'RBAC / Least privilege', fte: 'Yes', contractor: 'Yes: Project-scoped', intern: 'Yes: Sandbox only', prod: 'Yes: JIT + ZSP' },
               { req: 'Automated provisioning', fte: 'Yes: HR→IdP', contractor: 'Yes: VMS→IdP', intern: 'Yes: ATS→IdP', prod: 'Yes: PAM/PIM' },
               { req: 'Access review frequency', fte: 'Quarterly', contractor: 'Monthly', intern: 'Weekly (mentor)', prod: 'Per session + Monthly' },
-              { req: 'Production write access', fte: 'CAB + JIT (8h)', contractor: 'Exception only (4h)', intern: 'No: Never', prod: 'JIT + Recording' },
+              { req: 'Production write access', fte: 'CAB + JIT (8h)', contractor: 'Exception only (4h)', intern: 'No (exception only, 2h)', prod: 'JIT + Recording' },
               { req: 'Session recording', fte: 'Privileged only', contractor: 'All prod', intern: 'N/A', prod: 'Yes: Full (video+keys)' },
               { req: 'Offboarding SLA', fte: '< 4 hours', contractor: 'Immediate', intern: 'Program end', prod: 'Immediate + key rotation' },
               { req: 'Device compliance', fte: 'MDM/EDR', contractor: 'MDM/EDR or VDI', intern: 'Client VDI only', prod: 'PAW/Bastion only' },

@@ -171,7 +171,7 @@ export const UCF_CONTROLS = [
 export const UCF_SLA_COLUMNS = ['Framework', 'Activity', 'SLA or timeline', 'Reference', 'Notes'];
 
 export const UCF_SLAS = [
-  ['SOC 2', 'Type II observation period', '3 to 12 months (6 to 12 typical)', 'AICPA SOC 2 guide', 'Report covers the full period; gaps become exceptions.'],
+  ['SOC 2', 'Type II observation period', '3 to 12 months is common in practice; first reports often use 3 to 6 months', 'Market practice (AICPA SOC 2 guide sets no fixed minimum)', 'Report covers the full period; gaps become exceptions. Agree the period with your auditor.'],
   ['SOC 2', 'Report validity', 'Customers expect a report no older than 12 months', 'Market practice', 'Bridge letter covers the gap to the next report.'],
   ['ISO 27001:2022', 'Certification cycle', '3 years; surveillance audits in years 2 and 3', 'ISO/IEC 17021-1', 'Recertification audit before expiry.'],
   ['ISO 27001:2022', 'Internal audit and management review', 'At planned intervals, at least annually in practice', 'Cl. 9.2, 9.3', 'Both are required before Stage 2.'],
