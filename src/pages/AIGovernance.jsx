@@ -4,6 +4,7 @@ import AiSecurityFieldGuide from '../components/aiAssurance/AiSecurityFieldGuide
 import AiSessionOffboarding from '../components/aiAssurance/AiSessionOffboarding.jsx';
 import SecureRagPipeline from '../components/aiAssurance/SecureRagPipeline.jsx';
 import AgentToAgentBanking from '../components/aiAssurance/AgentToAgentBanking.jsx';
+import AgentAutonomyControls from '../components/aiAssurance/AgentAutonomyControls.jsx';
 import RaiCrosswalk from '../components/aiAssurance/RaiCrosswalk.jsx';
 import AiArchitectureRisks from '../components/aiAssurance/AiArchitectureRisks.jsx';
 import AiInCompliance from '../components/aiAssurance/AiInCompliance.jsx';
@@ -204,6 +205,7 @@ export default function AIGovernance({ isDark = false }) {
         <AiSessionOffboarding />
         <SecureRagPipeline />
         <AgentToAgentBanking />
+        <AgentAutonomyControls />
         <AiSecurityAudit />
 
         {/* Operating rhythm */}
