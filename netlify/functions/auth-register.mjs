@@ -42,8 +42,23 @@ export default async (req) => {
     }
     await connectDb();
     const existing = await User.findOne({ email: email.toLowerCase() });
+    if (existing && existing.deletedAt) {
+      // Previously rejected or deleted: allow a fresh request, which goes back to the admin for a decision.
+      existing.name = name;
+      existing.status = 'pending';
+      existing.deletedAt = undefined;
+      existing.role = 'user';
+      existing.approvedAt = undefined;
+      existing.approvedBy = undefined;
+      existing.mustChangePassword = false;
+      existing.password = await hashPassword(lockedPassword());
+      existing.sessionVersion = (existing.sessionVersion || 0) + 1;
+      await existing.save();
+      await notifyAdmin(name, email.toLowerCase());
+      return json({ message: 'Request received and awaiting approval. If an admin approves it, you will get an email with a one-time password to sign in.' }, 201);
+    }
     if (existing) {
-      return json({ message: 'A user with that email already exists.' }, 400);
+      return json({ message: existing.status === 'pending' ? 'A request for this email is already waiting for approval.' : 'An account with this email already exists. Sign in, or use Forgot password.' }, 400);
     }
     // No usable password until an admin approves; the approval email carries a one-off password.
     await User.create({
