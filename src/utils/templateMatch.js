@@ -26,6 +26,18 @@ export function extractRefs(text) {
 }
 
 /** Returns up to `limit` templates ranked by control-reference and keyword matches. */
+// Maps a playbook id to the template-index framework code. Unknown playbooks get 'OTHER'.
+export function templateFrameworkFor(id = '') {
+  const k = String(id).toLowerCase();
+  if (k === 'hipaa') return 'HIPAA';
+  if (k === 'gdpr') return 'GDPR';
+  if (k === 'dpdpa') return 'DPDPA';
+  if (k.startsWith('soc')) return 'SOC2';
+  if (k === 'iso-42001' || k === 'iso42001') return 'ISO42001';
+  if (k.startsWith('iso27001') || k.startsWith('iso-27001') || k === 'iso27701') return 'ISO27001';
+  return 'OTHER';
+}
+
 export function findTemplates(text, { limit = 3, framework } = {}) {
   const t = String(text || '').toLowerCase();
   if (!t.trim()) return [];
@@ -38,6 +50,8 @@ export function findTemplates(text, { limit = 3, framework } = {}) {
       else if (r.startsWith('Clause ') && tpl.refs.some(x => x.startsWith(r + '.') || r.startsWith(x + '.'))) score += 1;
     }
     for (const k of tpl.kw) if (k.length >= 3 && kwHit(k, t)) score += k.includes(' ') ? 4 : 3;
+    // A template written for one specific framework (e.g. a HIPAA-only policy) is not offered on other frameworks' tasks.
+    if (framework && tpl.fw.length === 1 && tpl.fw[0] !== framework) continue;
     if (framework && tpl.fw.includes(framework)) score += score > 0 ? 0.5 : 0;
     if (score >= 2) scored.push({ tpl, score });
   }

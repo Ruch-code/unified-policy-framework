@@ -28,6 +28,8 @@ import CloudLegacyPrimer from '../components/CloudLegacyPrimer.jsx';
 import CloudRunGrc from '../components/CloudRunGrc.jsx';
 import ThreatNewsNov2026 from '../components/ThreatNewsNov2026.jsx';
 import { CsfVsAiRmf } from '../components/kb/InterviewHubExtras.jsx';
+import { pairRebuttals } from '../data/auditRebuttalPairs.js';
+import GrcOperatingModel from '../components/kb/GrcOperatingModel.jsx';
 import { PARTS as CCT_PARTS } from '../data/cloudTestingGuide.js';
 import StreamlineGrc from '../components/toolkit/StreamlineGrc.jsx';
 import FindingClassification from '../components/toolkit/FindingClassification.jsx';
@@ -304,8 +306,7 @@ export default function KnowledgeBase() {
             </ul>
           </div>
         )}
-        {fwObj.observations.map((o, i) => {
-          const reb = fwObj.rebuttals[i];
+        {(() => { const { pairs, standalone } = pairRebuttals(fw, fwObj); return [...pairs, ...standalone.map((r) => ({ observation: { finding: r.finding, why: 'Common auditor challenge for this framework.' }, rebuttal: r }))]; })().map(({ observation: o, rebuttal: reb }) => {
           return (
             <div key={o.finding} className="bg-white border border-gray-200 rounded-2xl overflow-hidden dark:bg-[#1e293b] dark:border-[#334155]">
               <div className="p-4 border-b border-red-100 bg-red-50/50 dark:bg-red-900/20 dark:border-red-800">
@@ -385,7 +386,7 @@ export default function KnowledgeBase() {
     'kpi-kri': <KpiKriLibrary />,
     'infra-review': <InfraReviewPlaybook />,
     'policy-lifecycle': <PolicyLifecycleTab />,
-    streamline: <StreamlineGrc />,
+    streamline: <><GrcOperatingModel /><StreamlineGrc /></>,
     'finding-classification': <FindingClassification />,
     'due-diligence': <DueDiligenceTab />,
     erp: <ErpReviewTab />,
@@ -433,7 +434,7 @@ export default function KnowledgeBase() {
                       <li key={t.id}>
                         <button type="button" onClick={() => setTab(t.id)} aria-current={tab === t.id ? 'page' : undefined}
                           className={`btn btn-ghost w-full !justify-start text-left px-2 py-1.5 rounded text-sm ${tab === t.id ? 'is-selected' : '!font-normal'}`}>
-                          {t.label}
+                          {t.label}{t.also === g && <span className="ml-1 text-[10px] font-normal text-gray-500 dark:text-slate-400">(shortcut)</span>}
                         </button>
                         {tab === t.id && t.parts && (
                           <ul className="ml-3 mt-1 mb-2 border-l border-gray-200 dark:border-slate-700 pl-2 space-y-0.5" aria-label={`${t.label} sections`}>
@@ -456,7 +457,7 @@ export default function KnowledgeBase() {
 
         <div className="min-w-0">
           <div className="mb-4">
-            <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-400">{activeTab.area}: {groupLabel(activeTab.group)}</p>
+            <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-400">{activeTab.area}: {groupLabel(activeTab.group)}{activeTab.also ? ` · also listed under ${groupLabel(activeTab.also)}` : ''}</p>
             <h2 className="text-xl font-bold text-gray-900 dark:text-white">{activeTab.label}</h2>
             <p className="text-sm text-gray-600 dark:text-slate-300 mt-1 max-w-3xl">{activeTab.desc}</p>
           </div>

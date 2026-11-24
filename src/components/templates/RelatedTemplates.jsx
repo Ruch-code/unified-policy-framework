@@ -29,6 +29,7 @@ export default function RelatedTemplates({ text, framework, limit = 3, className
           <span key={t.slug} className="badge badge-neutral inline-flex items-center gap-1 pl-1 pr-2 py-0.5 text-xs font-medium">
             <TemplateDownloadButton template={t} compact />
             <Link to={`/templates/${t.slug}`} className="hover:underline break-words">{t.name}</Link>
+            <span className="text-[10px] text-gray-500 dark:text-slate-400">{t.fw?.length === 1 ? `${t.fw[0]}-specific` : 'generic'}</span>
           </span>
         ))}
       </div>
@@ -44,6 +45,7 @@ export default function RelatedTemplates({ text, framework, limit = 3, className
           <li key={t.slug} className="flex flex-wrap items-center gap-2">
             <TemplateDownloadButton template={t} compact />
             <Link to={`/templates/${t.slug}`} className="text-xs font-semibold text-violet-800 dark:text-violet-200 hover:underline break-words">{t.name}</Link>
+            <span className="text-[10px] text-gray-500 dark:text-slate-400">{t.fw?.length === 1 ? `${t.fw[0]}-specific` : 'generic, adapt to your framework'}</span>
           </li>
         ))}
       </ul>

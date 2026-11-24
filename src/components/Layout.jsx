@@ -453,8 +453,9 @@ export default function Layout() {
               <Link to="/cheat-sheets" aria-label="Cheat Sheets" title="Cheat Sheets" className="hidden sm:inline-flex items-center justify-center h-9 w-9 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">
                 <Table2 className="w-4 h-4" aria-hidden="true" />
               </Link>
-              <Link to="/unified-framework" aria-label="Unified Control Framework" title="Unified Control Framework" className="hidden sm:inline-flex items-center justify-center h-9 w-9 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">
+              <Link to="/unified-framework" aria-label="Unified Control Framework" title="Unified Control Framework" className="hidden sm:inline-flex items-center justify-center gap-1.5 h-9 px-2.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">
                 <LayersNav className="w-4 h-4" aria-hidden="true" />
+                <span className="text-xs font-semibold">UCF</span>
               </Link>
               </>
             )}

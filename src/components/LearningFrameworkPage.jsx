@@ -1,5 +1,6 @@
 import { useState, useEffect, Fragment } from 'react';
 import RelatedTemplates from './templates/RelatedTemplates.jsx';
+import { templateFrameworkFor } from '../utils/templateMatch.js';
 import OnThisPage from './OnThisPage.jsx';
 import { SOA_FIELDS } from './StatementOfApplicability.jsx';
 import { taskNotes } from '../data/startupVariants.js';
@@ -644,7 +645,7 @@ function FrameworkBody({ framework, extraSections }) {
                                   <ul className="ml-5 list-disc pl-4 text-sm text-amber-800 dark:text-amber-200 space-y-0.5">{taskNotes(framework.id, task.title).map(n => <li key={n}>{n}</li>)}</ul>
                                 )}
                                 {task.evidence && <EvidenceDetail evidence={task.evidence} color={colors.text} />}
-                                <RelatedTemplates className="ml-5" chips={compact} slugs={task.templates} exclusive={!!task.templatesExclusive} text={[task.title, task.control, task.how, task.check, task.citation && (task.citation.ref || task.citation.section || task.citation.label)].filter(Boolean).join(' ')} />
+                                <RelatedTemplates className="ml-5" chips={compact} framework={templateFrameworkFor(framework.id)} slugs={task.templates} exclusive={!!task.templatesExclusive} text={[task.title, task.control, task.how, task.check, task.citation && (task.citation.ref || task.citation.section || task.citation.label)].filter(Boolean).join(' ')} />
                                 {Array.isArray(task.toBuild) && task.toBuild.length > 0 && <p className="ml-5 mt-1 text-xs text-gray-600 dark:text-slate-300">{task.toBuild.map((n) => `Template to build: ${n}`).join('; ')}</p>}
                                 {task.citation && (
                                   <CitationRow
