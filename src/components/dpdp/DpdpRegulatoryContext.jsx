@@ -32,6 +32,23 @@ export default function DpdpRegulatoryContext() {
       <p className={`${P} mt-1 max-w-3xl`}>How enforcement works, how Consent Managers fit in, and how the DPDP Act sits alongside the IT Act, CERT-In directions and UK GDPR. Section and Rule numbers are given so you can check the source. Not legal advice.</p>
       <div className="mt-4 space-y-3">
 
+        <Part id="dpdp-starter-pack" title="DPDP starter pack: the 10 documents most organisations need, and why DPDP is behavioural">
+          <p className={P}>DPDP compliance is more <strong>behavioural</strong> than purely technical. It is mostly about how an organisation acts, communicates and makes decisions about personal data: telling people what happens (notices), giving them choice (consent), and running internal processes (SOPs and training). Technical safeguards such as encryption and firewalls are one part (Section 8(5), Rule 6), not the whole.</p>
+          <Table head={['Document', 'What it is', 'DPDP link']} rows={[
+            ['Data inventory', 'A record of the personal data you collect and store: what, where, why, whose and who can access it.', 'Foundation for Sections 4 to 8'],
+            ['Privacy notice', 'Information for people about how their data is used, in plain language.', 'Section 5, Rule 3'],
+            ['Consent text', 'The exact wording used to ask for permission, one purpose at a time, with how to withdraw.', 'Section 6'],
+            ['Lawful basis map', 'For each purpose, whether you rely on consent or a listed legitimate use, and why.', 'Sections 4, 6, 7'],
+            ['Retention table', 'How long each type of data is kept and when it is erased, including legal retention.', 'Section 8(7), Rules 6(1)(e), 8'],
+            ['Security baseline', 'The minimum security measures in place, such as access control, encryption, logging and backups.', 'Section 8(5), Rule 6'],
+            ['Grievance SOP', 'How complaints and rights requests are received, tracked and answered within the published time (maximum 90 days).', 'Sections 11 to 13, Rule 14'],
+            ['Breach SOP template', 'Steps, owners and templates for intimating affected people and the Board, and the 72-hour report.', 'Section 8(6), Rule 7'],
+            ['Vendor list with DPDP clause', 'Every processor, the data it handles, and the data protection clauses in its contract.', 'Section 8(2)'],
+            ['Mini training', 'Short, regular training so staff know how to handle personal data and spot requests and breaches.', 'Supports Section 8(4) and (5) (practice, not a named duty)'],
+          ]} />
+          <p className={`${P} mt-2`}>Templates for several of these are in the practitioner playbook below. Having the document is not enough: keep evidence that it is used, such as consent logs, completed grievance tickets and training records.</p>
+        </Part>
+
         <Part id="dpdp-board-process" title="Data Protection Board of India: from complaint to appeal">
           <ol className={`list-decimal pl-5 space-y-1 ${P}`}>
             <li><strong>Grievance first:</strong> a Data Principal must use the Data Fiduciary's own grievance process before complaining to the Board (Section 13(3)).</li>
