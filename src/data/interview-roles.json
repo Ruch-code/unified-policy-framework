@@ -3930,6 +3930,122 @@
           ]
         }
       ]
+    },
+    {
+      "id": "regulated-gaming-grc",
+      "title": "GRC Analyst: Regulated Gaming (Fanatics Momentum)",
+      "subtitle": "GCGRA and GLI-19, ISO 27001/27701/42001, TPRM, access reviews, policy exceptions and GRC dashboards",
+      "icon": "Shield",
+      "color": "indigo",
+      "questions": [
+        {
+          "q": "What do you know about Fanatics Momentum and the regulatory environment it operates in?",
+          "a": "Momentum runs Play971, which public reporting describes as the only iGaming and sports betting platform licensed by the UAE's General Commercial Gaming Regulatory Authority (GCGRA). In June 2026 Fanatics and Momentum announced a joint venture: Momentum brings the licensed operation and market access, Fanatics brings gaming technology, operations and its consumer brand. It is Fanatics' first gaming expansion outside the US. For GRC that means a young, tightly regulated market where the regulator sets technical standards, largely the GLI series such as GLI-19 for interactive gaming and GLI-33 for event wagering, alongside advertising standards and responsible gaming duties. Security, integrity of games and wagers, player protection and regulator-ready evidence all matter as much as ISO 27001 certification.\n\n[Check the latest company news before the interview.]",
+          "tags": [
+            "Company research",
+            "Regulated gaming"
+          ],
+          "example": "I would mention the GCGRA technical standards page and that operators are responsible for staying compliant with the referenced GLI standards.",
+          "pitfalls": [
+            {
+              "pitfall": "Talking only about generic ISO 27001 without the gaming regulator angle.",
+              "reply": "Tie the answer to evidence, an owner and a date, and use your own real examples."
+            }
+          ]
+        },
+        {
+          "q": "What is GLI-19 and how would you support an audit against it?",
+          "a": "GLI-19 is Gaming Laboratories International's standard for interactive gaming systems, which covers the online platform rather than physical machines. It sets technical requirements such as player account management, game and random number integrity, change control over certified software, security of the platform and data, logging and audit trails, and incident handling. GCGRA references it in its technical standards framework. To support an audit I would map GLI-19 requirements to our existing ISO 27001 and ITGC controls so evidence is reused, then fill the gaps that are gaming-specific: certified-version control, game integrity and player account controls. I would coordinate evidence collection with named owners, track findings to closure and keep a clean audit trail for the regulator and the test laboratory.",
+          "tags": [
+            "GLI-19",
+            "Audit coordination"
+          ],
+          "example": "A change to a certified game component needs approval, testing and often re-certification before release; I would sample releases to prove that.",
+          "pitfalls": [
+            {
+              "pitfall": "Claiming deep GLI testing experience you do not have; say how you would map it instead.",
+              "reply": "Tie the answer to evidence, an owner and a date, and use your own real examples."
+            }
+          ]
+        },
+        {
+          "q": "How do ISO 27001, ISO 27701 and ISO 42001 fit together in one programme?",
+          "a": "They share the same management system structure, so I run one programme with shared governance: one risk process, one internal audit, one management review and one corrective action process. ISO 27001 covers information security, ISO 27701 extends it with privacy controls for PII controllers and processors, and ISO 42001 adds an AI management system for AI risks and impact assessments. In practice the risk register has security, privacy and AI risk categories, and the Statement of Applicability shows controls from each. That avoids three parallel programmes and duplicate evidence.",
+          "tags": [
+            "ISO 27001",
+            "ISO 27701",
+            "ISO 42001"
+          ],
+          "example": "An AI-based fraud or risk scoring model would appear in the AI inventory, the privacy assessment and the security risk register under one owner.",
+          "pitfalls": [
+            {
+              "pitfall": "Treating them as three separate certifications with separate teams.",
+              "reply": "Tie the answer to evidence, an owner and a date, and use your own real examples."
+            }
+          ]
+        },
+        {
+          "q": "How do you decide a vendor's criticality and whether its assurance is adequate?",
+          "a": "Criticality comes from what the vendor touches and what happens if it fails: type and volume of data (player personal data, payment data), access to production, how operationally important the service is, and regulatory relevance such as gaming suppliers that need approval. Adequacy then depends on the evidence: a current ISO 27001 certificate with the right scope, or a SOC 2 Type II report covering the period, plus its exceptions and complementary user entity controls. If assurance is weak, I ask targeted questions, review contract security clauses, and set conditions. I then state the inherent risk, the residual risk after controls, and who must accept it.",
+          "tags": [
+            "TPRM",
+            "Vendor criticality"
+          ],
+          "example": "A payment processor with a SOC 2 report scoped to a different product would not be adequate; I would ask for a bridge letter or the right scope.",
+          "pitfalls": [
+            {
+              "pitfall": "Accepting a certificate without checking scope and date.",
+              "reply": "Tie the answer to evidence, an owner and a date, and use your own real examples."
+            }
+          ]
+        },
+        {
+          "q": "What does a good user access review look like, and what findings do you track?",
+          "a": "The population comes straight from the system with a timestamp, each reviewer is the person who understands the access, decisions are recorded per user, and revocations are completed and verified. I track three main findings: orphaned accounts with no current owner or employee, excessive privileges beyond the role, and segregation of duties conflicts. I report completion by system, the number of findings, and how fast they were fixed.",
+          "tags": [
+            "Access review",
+            "Identity governance"
+          ],
+          "example": "Matching the user list to the HR leaver list found two orphaned accounts in the back-office admin tool; both were disabled and the joiner-leaver process was fixed.",
+          "pitfalls": [
+            {
+              "pitfall": "Saying the review is done once the manager signs off.",
+              "reply": "Tie the answer to evidence, an owner and a date, and use your own real examples."
+            }
+          ]
+        },
+        {
+          "q": "What would you put on a GRC dashboard for leadership?",
+          "a": "One page that answers: are we within risk appetite, and are we fixing things on time? Risk exposure trend by category, top risks with owners, remediation status and ageing of findings, control testing results, third-party risk by criticality with overdue assessments, audit and certification status, policy exceptions, and awareness completion with phishing reporting rates. Each metric has a definition, a data source, a threshold and an owner, and I use KRIs as early warnings, for example overdue high-risk remediations above a set number.",
+          "tags": [
+            "GRC dashboard",
+            "KRI",
+            "Reporting"
+          ],
+          "example": "Findings older than 90 days for high risks moved from 3 to 9 in a quarter, which triggered an escalation to the risk committee.",
+          "pitfalls": [
+            {
+              "pitfall": "Listing counts with no thresholds, owners or trend.",
+              "reply": "Tie the answer to evidence, an owner and a date, and use your own real examples."
+            }
+          ]
+        },
+        {
+          "q": "How do you manage policy exceptions?",
+          "a": "An exception is a documented, time-limited acceptance of a gap. Each one records the policy requirement, the reason, the risk, any compensating controls, the approver at the right authority level, and an expiry date. I track them in one register, report open and expiring exceptions, and review them before they expire so they do not become permanent.",
+          "tags": [
+            "Policy",
+            "Exceptions"
+          ],
+          "example": "A legacy system that cannot enforce MFA gets an exception with network isolation as a compensating control and a 6-month expiry tied to the migration plan.",
+          "pitfalls": [
+            {
+              "pitfall": "Exceptions with no expiry or no named approver.",
+              "reply": "Tie the answer to evidence, an owner and a date, and use your own real examples."
+            }
+          ]
+        }
+      ]
     }
   ]
 }

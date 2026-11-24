@@ -102,6 +102,7 @@ export default function InterviewPrep({ isDark = false }) {
     'logistics-security-head': 'bg-indigo-700',
     'grilling': 'bg-rose-700',
     'tech-risk-resilience': 'bg-teal-700',
+    'regulated-gaming-grc': 'bg-indigo-700',
   };
 
   return (
