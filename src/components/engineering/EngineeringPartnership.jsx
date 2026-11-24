@@ -238,6 +238,60 @@ export default function EngineeringPartnership() {
             </details>))}
         </div>
       </Section>
+
+      <Section id="eng-agentic-appsec" title="8. Agentic AppSec: fixing, owning the SSDLC, and guarding AI coding agents" intro="Security adds most value when findings turn into merged fixes, security is built into how software is designed and run, and the AI agents that now write code work inside clear limits.">
+        <details className="rounded-xl border border-gray-200 dark:border-slate-700 p-3" open>
+          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">A. Agentic workflows that apply the fix, not just report it</summary>
+          <p className={`${P} mt-2`}>Scanners create findings; engineers fix them. An agentic workflow closes the gap by drafting the fix as a pull request in the team's normal process, so security work arrives as reviewable code rather than a ticket backlog.</p>
+          <ol className={`${P} list-decimal pl-5 space-y-1 mt-2`}>
+            <li>Detect: a scanner or advisory raises a finding (dependency CVE, SAST issue, misconfiguration, exposed secret).</li>
+            <li>Enrich: add context automatically: is the code reachable, is the asset internet-facing, is it on the KEV list, who owns the repository.</li>
+            <li>Propose: an agent opens a pull request with the smallest safe change (version bump, config fix, input validation) and explains why.</li>
+            <li>Verify: CI runs tests, security scans and, where possible, a check that the vulnerability is gone.</li>
+            <li>Human review: the code owner reviews and merges; the agent never merges or deploys on its own.</li>
+            <li>Close the loop: the finding closes when the fix is deployed and the re-scan is clean; the metric is time to fix, not number of findings raised.</li>
+          </ol>
+          <p className={`${P} mt-2`}><strong>How to work with engineering on it:</strong> start with one low-risk class of fix (dependency upgrades), agree the PR format and review rules with team leads, measure merge rate and rework, then expand. If engineers reject most agent PRs, tune the agent before adding more.</p>
+          <Table label="Fix automation guardrails" headers={['Guardrail', 'Why']} rows={[
+            ['Agent opens PRs only; humans merge', 'Keeps change management and segregation of duties intact'],
+            ['Scoped repository access, short-lived tokens', 'A compromised agent cannot change everything'],
+            ['Required tests and scans must pass', 'Prevents a fix from introducing a new bug or vulnerability'],
+            ['Limit size and type of automated changes', 'Large refactors need a human design decision'],
+            ['Log every agent action with the finding it addresses', 'Audit trail from finding to fix'],
+          ]} min={560} />
+        </details>
+
+        <details className="rounded-xl border border-gray-200 dark:border-slate-700 p-3 mt-3">
+          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">B. Owning the SSDLC: threat modelling, design reviews and production triage</summary>
+          <Table label="SSDLC ownership" headers={['Stage', 'What security owns', 'Output and evidence']} rows={[
+            ['Threat modelling', 'For new features and significant changes: what are we building, what can go wrong, what are we doing about it, did we do a good job (for example STRIDE or attack trees). Keep it lightweight and early.', 'Threat model in the design doc, with mitigations turned into tickets'],
+            ['Design review', 'Review authentication, authorisation, data flows, secrets, third parties and AI components before build. Use a checklist and a risk tier so low-risk changes are not slowed down.', 'Review record with decisions and accepted risks'],
+            ['Secure build', 'Secure coding standards, code review, SAST, dependency and secrets scanning, IaC scanning in CI.', 'Pipeline results and branch protection settings'],
+            ['Pre-release', 'Security tests matched to risk: DAST, pen test for major releases, abuse-case tests.', 'Test reports and fixed findings'],
+            ['Production triage', 'Severity-based SLAs, reachability and exploitability triage, on-call path for security bugs, coordinated disclosure intake.', 'Triage decisions, SLA tracking, incident links'],
+            ['Feedback loop', 'Recurring root causes feed secure coding training, libraries and guardrails.', 'Trend reports, updated standards'],
+          ]} min={860} />
+          <p className={`${P} mt-2`}>Reference: NIST SP 800-218 Secure Software Development Framework (SSDF) and OWASP SAMM describe these practices; use them to measure maturity.</p>
+        </details>
+
+        <details className="rounded-xl border border-gray-200 dark:border-slate-700 p-3 mt-3">
+          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">C. Guardrails for the agentic engineering workforce</summary>
+          <p className={`${P} mt-2`}>AI coding agents and assistants now write and change code. Treat them like a new kind of contributor: give them an identity, limited permissions, review requirements and monitoring.</p>
+          <Table label="AI coding agent guardrails" headers={['Area', 'Guardrail']} rows={[
+            ['Approved tools', 'Allow-list of approved AI coding tools and extensions with enterprise data terms (no training on company code); pin versions.'],
+            ['Identity and access', 'Agents run under their own identity, with access only to the repositories and environments they need; no production credentials.'],
+            ['Sandboxing', 'Agents execute code in isolated sandboxes with restricted network egress.'],
+            ['Secrets', 'Secrets never placed in prompts or context; secret scanning on all agent output; agents cannot read secret stores.'],
+            ['Review', 'All AI-generated code goes through the same pull request review, tests and scans as human code; label agent-authored PRs.'],
+            ['Supply chain', 'Check that suggested packages exist and are trusted (to catch invented or typo-squatted package names); dependency scanning on every change.'],
+            ['Prompt injection', 'Agents treat content from issues, web pages and repositories as untrusted; high-impact tools (deploy, delete, change permissions) need human approval.'],
+            ['Logging and kill switch', 'Log prompts, tool calls and changes per agent; be able to revoke an agent\'s access immediately.'],
+            ['Policy and training', 'An AI-assisted development policy covering acceptable use, data handling, licence and IP checks, and accountability: the human who merges owns the code.'],
+          ]} min={720} />
+          <p className={`${P} mt-2`}>Related: section 6 (Cloud and agent execution) on this page, and the AI Governance page for agent identity, RAG and offboarding controls.</p>
+        </details>
+      </Section>
+
     </div>
   );
 }

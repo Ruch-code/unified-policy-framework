@@ -20,10 +20,12 @@ export const ENG_SECTIONS = [
   { id: 'eng-cicd', label: 'CI/CD controls' },
   { id: 'eng-agent-exec', label: 'Cloud and agent execution' },
   { id: 'eng-scenarios', label: 'Walkthrough scenarios' },
+  { id: 'eng-agentic-appsec', label: 'Agentic AppSec and SSDLC' },
 ];
 
 // Each section carries owner, evidence source and exception path (acceptance check).
 export const SECTION_META = {
+  'eng-agentic-appsec': { owner: 'Application security lead (SSDLC owner); engineering leads (fix owners); AI platform owner (agent guardrails)', evidence: 'Threat models, design review records, fix PRs with review and test results, agent permission configs and agent action logs', exception: 'Risk acceptance by the system owner for any fix not applied within SLA, with expiry and compensating control' },
   'eng-control-delivery': { owner: 'GRC lead (control owner); engineering lead (implementation owner)', evidence: 'Ticket, merged PR and system export named on the card', exception: 'Exception ticket approved by the control owner and system owner, with expiry of no more than 90 days' },
   'eng-access': { owner: 'System owner for each system; IdP administrator for the directory', evidence: 'IdP and system account exports, review sign-off, removal tickets', exception: 'Exception register entry approved by the system owner and security, with expiry and compensating control' },
   'eng-logging': { owner: 'Platform or SRE lead for pipelines; security operations for alerting', evidence: 'Log source inventory, SIEM configuration export, sample events', exception: 'Logged gap with risk acceptance by the system owner and security, and a fix date' },
