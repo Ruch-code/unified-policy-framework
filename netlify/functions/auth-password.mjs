@@ -13,6 +13,7 @@ export default async (req) => {
     const ok = await bcrypt.compare(currentPassword || '', user.password);
     if (!ok) return json({ message: 'Current password is incorrect.' }, 400);
     user.password = await hashPassword(newPassword);
+    user.mustChangePassword = false;
     await user.save();
     return json({ message: 'Password updated successfully.' });
   } catch (err) {

@@ -15,6 +15,12 @@ export default async (req) => {
     const ok = await bcrypt.compare(password, user.password);
     if (!ok) return json({ message: 'Invalid credentials.' }, 401);
 
+    // The old shared temporary password is retired: accounts still using it must get a new one-time password.
+    const legacyShared = process.env.DEFAULT_USER_PASSWORD;
+    if (legacyShared && password === legacyShared && user.role !== 'admin') {
+      return json({ message: 'This temporary password is no longer valid. Use "Forgot password" or ask the admin for a new one-time password.' }, 403);
+    }
+
     if (user.status === 'pending') {
       return json({ message: 'Your account is awaiting admin approval.' }, 403);
     }
@@ -23,8 +29,7 @@ export default async (req) => {
     }
 
     const token = await signToken(user);
-    const defaultPw = process.env.DEFAULT_USER_PASSWORD;
-    return json({ token, user, isDefaultPassword: !!defaultPw && password === defaultPw });
+    return json({ token, user, isDefaultPassword: !!user.mustChangePassword });
   } catch (err) {
     return json({ message: err.message }, 500);
   }

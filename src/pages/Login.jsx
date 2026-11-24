@@ -175,7 +175,7 @@ export default function Login() {
                   <input type="email" required value={reqEmail} onChange={e => setReqEmail(e.target.value)} className={INPUT_CLASS} />
                 </div>
                 <p className="text-xs text-gray-500 bg-gray-50 p-3 rounded-lg">
-                  On approval you'll receive a temporary password which you can change after your first sign-in (or via the reset tab).
+                  If approved, you'll get an email with a one-time password, which you should change after your first sign-in (or via the reset tab).
                 </p>
                 <button disabled={reqLoading}
                   className="w-full bg-indigo-600 text-white py-2.5 rounded-lg font-semibold hover:bg-indigo-700 disabled:opacity-50 transition">
