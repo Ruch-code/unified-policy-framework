@@ -25,6 +25,7 @@ import Iso27701 from './pages/standards/Iso27701.jsx';
 import PciDss from './pages/standards/PciDss.jsx';
 import Sox404 from './pages/standards/Sox404.jsx';
 import MedicalDevices from './pages/standards/MedicalDevices.jsx';
+import Irdai from './pages/standards/Irdai.jsx';
 import Soc2 from './pages/standards/Soc2.jsx';
 import Hipaa from './pages/standards/Hipaa.jsx';
 import Nist from './pages/standards/Nist.jsx';
@@ -133,6 +134,7 @@ function App() {
           <Route path="sebi" element={<Protected><SecuritiesExchangeBoardIndia /></Protected>} />
           <Route path="rbi" element={<Protected><ReserveBankOfIndia /></Protected>} />
           <Route path="cscrf" element={<Protected><Cscrf /></Protected>} />
+          <Route path="irdai" element={<Protected><Irdai /></Protected>} />
           <Route path="cert-in" element={<Protected><CertIn /></Protected>} />
           <Route path="lgpd" element={<Protected><Lgpd /></Protected>} />
           <Route path="pdpa" element={<Protected><Pdpa /></Protected>} />
