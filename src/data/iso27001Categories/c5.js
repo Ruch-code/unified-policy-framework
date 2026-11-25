@@ -1,0 +1,48 @@
+import { card } from './card.js';
+
+export default {
+  id: 'C.5', name: 'Leadership', type: 'clause',
+  items: [
+    card('5.1', 'Audit top management leadership and commitment to the ISMS', 2,
+      'Top management has to lead the ISMS in practice: set direction, give it resources, make sure it fits business processes and back the people running it. The auditor looks for decisions and actions by leaders, not a signature on a policy.',
+      'Make the CEO or a named founder the accountable executive. Put security on the leadership meeting agenda at least quarterly, approve the ISMS budget and tooling in writing, and have leaders take part in management review and key risk decisions. Keep the meeting notes, because they are the evidence.',
+      [
+        'Interview the CEO or accountable executive before the security lead, so the answers are their own.',
+        'Interview: "What are the top three security risks to the business, and what have you decided about them this year?"',
+        'Interview: "How did you decide how much to spend on security, and who asked for it?"',
+        'Inspect leadership meeting notes and management review minutes for security decisions made by top management.',
+        'Check that ISMS requirements appear in business processes, for example security review in product planning or vendor purchasing.',
+        'Confirm resource requests from the ISMS were answered, approved or rejected with a reason.',
+      ],
+      ['Minor', 'Clause 5.1 requires top management to demonstrate leadership and commitment. The CEO could not describe any current security risk or decision, leadership minutes for the last two quarters contain no security items, and the ISMS budget request has no recorded decision.'],
+      ['R: Leadership or board meeting minutes with security agenda items', 'R: Budget or tooling approvals signed by top management', 'R: Management review attendance and decisions'],
+      { templates: ['management-review', 'management-review-procedure'], related: ['5.2', '5.3', '7.1', '9.3.1', 'A.5.4'], soc2: 'CC1.1, CC1.2' }),
+    card('5.2', 'Audit the information security policy content, communication and availability', 2,
+      'Top management must set an information security policy that suits the organization, gives a framework for objectives, and commits to meeting requirements and to continual improvement. It must be documented, shared inside the organization and available to interested parties where appropriate.',
+      'Keep the top-level policy to one or two pages, approved by the CEO. Include a line for each required commitment and point to the objectives and topic policies. Publish it on the wiki for staff and on the trust page or on request for customers, and collect acknowledgements through the HR or training tool.',
+      [
+        'Read the policy and tick off each required element: suits the purpose, objectives framework, commitment to requirements, commitment to continual improvement.',
+        'Confirm top management approval with a date and version.',
+        'Check how the policy is communicated, and sample acknowledgements for 5 to 10 staff including recent joiners.',
+        'Check how an interested party, such as a customer, can obtain it.',
+        'Interview a staff member: "Where is the security policy, and what does it say about your role?"',
+        'Interview the policy owner: "How do the objectives in the register link to this policy?"',
+      ],
+      ['Minor', 'Clause 5.2 requires the policy to include a commitment to continual improvement of the ISMS. The approved information security policy v2.1 contains no such commitment and does not refer to information security objectives.'],
+      ['R: Approved information security policy with version and approver', 'S: Acknowledgement report from the HR or training tool, with timestamp', 'R: Trust page or customer request log showing external availability'],
+      { templates: ['infosec-aup-policy'], related: ['5.1', '6.2', '7.3', 'A.5.1'], soc2: 'CC2.2, CC5.3' }),
+    card('5.3', 'Audit organizational roles, responsibilities and authorities for the ISMS', 2,
+      'Top management must assign and communicate responsibility and authority for security roles. In particular, someone must be responsible for making sure the ISMS meets the standard, and someone for reporting ISMS performance to top management.',
+      'Name an ISMS owner with authority to run the program and report to leadership, and record it in the roles policy. Give each risk, asset and control area an owner. Announce assignments in the company channel and in onboarding, and update them when people change roles.',
+      [
+        'Obtain the roles policy and confirm the two mandatory responsibilities: conformity of the ISMS, and reporting performance to top management.',
+        'Confirm the named people are current employees and accept the role.',
+        'Check management review minutes for evidence that ISMS performance was reported by the named person.',
+        'Interview the ISMS owner: "What authority do you have to stop a release or require a fix?"',
+        'Interview an asset owner: "What are you responsible for on this asset, and who told you?"',
+      ],
+      ['Minor', 'Clause 5.3 requires responsibility for reporting ISMS performance to top management to be assigned. No role holds this responsibility in the roles policy, and no performance reporting appears in management review minutes.'],
+      ['R: Information security roles and responsibilities policy or RACI', 'R: Communication of role assignments, such as an onboarding page or announcement', 'R: Management review minutes showing performance reporting'],
+      { templates: ['infosec-roles-policy'], related: ['5.1', 'A.5.2', 'A.5.3', '9.3.2'], soc2: 'CC1.3' }),
+  ],
+};
