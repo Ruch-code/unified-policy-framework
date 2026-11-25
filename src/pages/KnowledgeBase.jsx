@@ -36,6 +36,7 @@ import StreamlineGrc from '../components/toolkit/StreamlineGrc.jsx';
 import FindingClassification from '../components/toolkit/FindingClassification.jsx';
 import { CustomerTrustTab, PolicyLifecycleTab, DueDiligenceTab, AwarenessTab, ErpReviewTab } from '../components/toolkit/Phase4Modules.jsx';
 import CryptoExchangeTab from '../components/CryptoExchangeTab.jsx';
+import CryptoAlgorithms from '../components/kb/CryptoAlgorithms.jsx';
 import SecretsScanningTab from '../components/SecretsScanningTab.jsx';
 import AuditObservations from '../components/AuditObservations.jsx';
 import CicdPipelineSecurity from '../components/CicdPipelineSecurity.jsx';
@@ -97,6 +98,7 @@ const TABS = [
   { id: 'cloud-testing', label: 'Cloud Control Testing Guide', icon: ShieldAlert, group: 'IT audit areas', area: 'Internal audit', desc: 'Testing SOC 2 CC6, CC7, CC8, A1 and HIPAA 164.308 and 164.312 directly in AWS, GCP and Azure', parts: CCT_PARTS },
   { id: 'erp', label: 'ERP Security Review', icon: ShieldAlert, group: 'IT audit areas', area: 'Internal audit', desc: 'Privileged accounts, critical transactions, SoD, change transports and logging in ERP systems' },
   { id: 'edp', label: 'Endpoint & Data Protection', icon: Smartphone, group: 'GRC: Security architecture', area: 'GRC', desc: 'MDM, DLP, BYOD, ecosystems, mapping, roadmap, evidence and checklists.' },
+  { id: 'crypto-algorithms', label: 'Cryptographic Algorithms', icon: Key, group: 'GRC: Security architecture', area: 'GRC', desc: 'AES-128, AES-256 (GCM), ChaCha20-Poly1305, RSA, ECDHE, ECDSA and Ed25519: flow charts, pros and cons' },
   { id: 'data-governance', label: 'Data Governance', icon: Shield, group: 'GRC: Security architecture', area: 'GRC', desc: 'Data discovery, classification, labelling, data flow mapping and records of processing' },
   { id: 'logistics', label: 'Logistics and Supply Chain Security', icon: Network, group: 'GRC: Industry', area: 'GRC', desc: 'Security, compliance and privacy for logistics, supply chain and transport platforms: hubs, fleets, driver apps, partners and DPDP' },
   { id: 'crypto', label: 'Crypto Exchanges (VDA)', icon: Key, group: 'GRC: Industry', area: 'GRC', desc: 'Security and compliance for crypto exchanges: CERT-In, FIU-IND, DPDP, CCSS, and two anonymised exchange incidents as worked examples' },
@@ -367,6 +369,7 @@ export default function KnowledgeBase() {
     ),
     edp: <><EdpTab /><DlpDeepDive /></>,
     crypto: <CryptoExchangeTab />,
+    'crypto-algorithms': <CryptoAlgorithms />,
     secrets: <SecretsScanningTab />,
     change: <ChangeManagementTab onOpenTab={setTab} />,
     cicd: <CicdPipelineSecurity onOpenTab={setTab} />,
