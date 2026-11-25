@@ -440,6 +440,60 @@ export default function UserAccessReview({ isDark = false }) {
           </div>
         </section>
 
+        {/* Shared accounts */}
+        <section id="uar-shared-accounts" className="mt-16">
+          <details className="rounded-xl border border-gray-200 dark:border-slate-700 p-5">
+            <summary className="cursor-pointer text-2xl font-bold text-navy-900 dark:text-text-dark-primary">Shared and generic accounts: how do we know who has access?</summary>
+            <div className="mt-4 space-y-4 text-sm text-navy-600 dark:text-text-dark-secondary">
+              <p>A shared account (for example admin@, a root or break-glass login, a social media login, a vendor portal or a database superuser) shows up in the identity system as one account, so a normal access review cannot see which people actually use it. The review has to look behind the account to the people who hold or can retrieve the credential. Yes, this belongs in the user access review, as a separate population with its own evidence.</p>
+              <h4 className="font-bold text-navy-900 dark:text-text-dark-primary">How to find out who has access</h4>
+              <div className="overflow-x-auto rounded border border-gray-200 dark:border-slate-700" tabIndex={0} role="region" aria-label="Ways to identify shared account users">
+                <table className="w-full text-sm" style={{ minWidth: 760 }}>
+                  <thead className="bg-gray-50 dark:bg-slate-800"><tr>{['Source', 'What it tells you'].map((h) => <th key={h} scope="col" className="text-left p-3 font-semibold text-navy-900 dark:text-text-dark-primary">{h}</th>)}</tr></thead>
+                  <tbody>{[
+                    ['Shared account register', 'Each shared account with its purpose, system, business owner, named authorised users and approval date. This is the list you review against.'],
+                    ['Password vault or PAM tool (e.g. 1Password, Bitwarden, CyberArk, Delinea, BeyondTrust)', 'Who can view, copy or check out the credential, and a log of each checkout with user and time. The vault sharing list is the real access list.'],
+                    ['Identity provider or SSO groups', 'If the shared app sits behind SSO, the group membership shows who can launch it.'],
+                    ['MFA device or phone number', 'Whose phone or authenticator receives the code. This is often the hidden owner.'],
+                    ['Mailbox delegation and distribution lists', 'For shared mailboxes, who has delegate or full access rights.'],
+                    ['System and session logs', 'Logins by source IP, device and time, matched to vault checkouts, to spot use by someone not on the list.'],
+                    ['Interviews with the owner', 'Confirms who really knows the password, including people outside the vault.'],
+                  ].map((r) => <tr key={r[0]} className="border-t border-gray-200 dark:border-slate-700">{r.map((c, j) => <td key={j} className={j === 0 ? 'p-3 align-top font-semibold' : 'p-3 align-top'}>{c}</td>)}</tr>)}</tbody>
+                </table>
+              </div>
+              <h4 className="font-bold text-navy-900 dark:text-text-dark-primary">Review steps</h4>
+              <ol className="list-decimal pl-5 space-y-1">
+                <li>Find every shared and generic account: search the identity provider, systems and SaaS apps for non-personal names (admin, test, support, info, root) and accounts with no named owner.</li>
+                <li>For each, record the business owner, purpose and the named people allowed to use it, with the approval behind each person.</li>
+                <li>Pull the actual list of people from the vault, SSO groups, mailbox delegation and MFA settings.</li>
+                <li>The owner reviews actual against approved and confirms each person still needs access.</li>
+                <li>Remove anyone not approved and <strong>rotate the password</strong> whenever someone with knowledge of it leaves or changes role; removing a person from a list does not stop them using a password they remember.</li>
+                <li>Check vault checkout and login logs for use outside approved people or times.</li>
+                <li>Decide whether each account can be removed or replaced with individual accounts; keep a reasoned exception for any that must stay.</li>
+              </ol>
+              <h4 className="font-bold text-navy-900 dark:text-text-dark-primary">Controls that make this reviewable</h4>
+              <ul className="list-disc pl-5 space-y-1">
+                <li>Shared credentials live only in a vault or PAM tool, never in spreadsheets, chat or notes.</li>
+                <li>Use individual named accounts with role-based access wherever the system allows; shared logins are the exception.</li>
+                <li>Break-glass accounts are sealed in the vault, alert when used, and are rotated after each use.</li>
+                <li>MFA on shared accounts is tied to the vault or a managed device, not one person&apos;s personal phone.</li>
+                <li>Leaver and mover processes include a step to rotate shared passwords the person knew.</li>
+                <li>Review frequency is higher than for normal accounts, often monthly or quarterly, because accountability is weaker.</li>
+              </ul>
+              <h4 className="font-bold text-navy-900 dark:text-text-dark-primary">Evidence an auditor will ask for</h4>
+              <ul className="list-disc pl-5 space-y-1">
+                <li>Shared account register with owners and approved users</li>
+                <li>Vault sharing list and checkout log for the review period</li>
+                <li>Signed review by the owner showing actual vs approved users and actions taken</li>
+                <li>Password rotation records after leavers, linked to the HR leaver list</li>
+                <li>Approved exceptions for shared accounts that cannot be removed</li>
+              </ul>
+              <p><strong>Common finding:</strong> a former employee still knew the password of a shared admin account that was never rotated after they left. The fix is rotation tied to the leaver process and vault-only storage.</p>
+              <p><strong>Framework links:</strong> ISO/IEC 27001:2022 A.5.16 (identity management, where shared identities need approval and documentation), A.5.18 (access rights review) and A.8.2 (privileged access); SOC 2 CC6.1 to CC6.3; PCI DSS v4.0 Requirement 8.2.2 (shared or generic IDs only on an exception basis and tied to an individual).</p>
+            </div>
+          </details>
+        </section>
+
         {/* Where AI helps */}
         <section id="uar-ai" className="mt-16">
           <h3 className="text-2xl font-bold text-navy-900 dark:text-text-dark-primary mb-3">Where AI Helps in Access Reviews</h3>
