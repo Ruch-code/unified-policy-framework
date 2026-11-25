@@ -50,6 +50,7 @@ const STANDARDS = [
   { path: '/uk-gdpr', label: 'UK GDPR' },
   { path: '/cmmc', label: 'CMMC 2.0' },
   { path: '/ccss', label: 'CCSS' },
+  { path: '/gli-19', label: 'GLI-19' },
   { path: '/pmla-vda', label: 'PMLA (VDA)' },
   { path: '/trai-whatsapp', label: 'TRAI DLT and WhatsApp' },
   { path: '/whats-new', label: 'What\'s New' },
@@ -89,6 +90,7 @@ const MEGA_MENU_REGIONS = [
       { path: '/cis', label: 'CIS Controls v8', desc: 'CIS 18 Controls & IGs' },
       { path: '/hitrust', label: 'HITRUST CSF', desc: 'Healthcare Security Framework' },
       { path: '/ccss', label: 'CCSS', desc: 'CryptoCurrency Security Standard' },
+      { path: '/gli-19', label: 'GLI-19', desc: 'Interactive gaming systems (GLI)' },
     ],
   },
   {

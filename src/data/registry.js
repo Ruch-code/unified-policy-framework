@@ -19,6 +19,7 @@ import { FRAMEWORK as Cscrf } from '../pages/standards/Cscrf.jsx';
 import { FRAMEWORK as Irdai } from '../pages/standards/Irdai.jsx';
 import { FRAMEWORK as CertIn } from '../pages/standards/CertIn.jsx';
 import { FRAMEWORK as Ccss } from '../pages/standards/Ccss.jsx';
+import { FRAMEWORK as Gli19 } from '../pages/standards/Gli19.jsx';
 import { FRAMEWORK as Pmla } from '../pages/standards/Pmla.jsx';
 import { FRAMEWORK as TraiWhatsapp } from '../pages/standards/TraiWhatsapp.jsx';
 import { FRAMEWORK as Lgpd } from '../pages/standards/Lgpd.jsx';
@@ -64,6 +65,7 @@ export const FRAMEWORKS = {
   [Irdai.id]: Irdai,
   [CertIn.id]: CertIn,
   [Ccss.id]: Ccss,
+  [Gli19.id]: Gli19,
   [Pmla.id]: Pmla,
   [TraiWhatsapp.id]: TraiWhatsapp,
   [Lgpd.id]: Lgpd,
