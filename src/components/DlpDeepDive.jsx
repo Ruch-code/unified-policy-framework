@@ -148,6 +148,64 @@ export default function DlpDeepDive() {
         <Part id="dlp-interview" title="10. Interview answer: how would you roll out DLP?">
           <p className={P}>"I start with the data, not the tool: the classification scheme and where Restricted and Confidential data lives. I pick the top leak risks, usually customer personal data and source code leaving by email, file sharing, endpoint and GenAI tools. I run every policy in audit mode first to see the real volume and false positives, tune it, then turn on user tips with justified overrides, and only then block the high-confidence, high-risk cases. Alerts go to a named owner with a triage playbook, and I report coverage, false positives, overrides and confirmed incidents. Staff are told about monitoring, and exceptions are documented with an expiry."</p>
         </Part>
+
+        <Part id="dlp-enforcement-assessment" title="11. Assessing whether DLP is actually enforced (audit work program)">
+          <p className={P}>A policy document alone does not mean DLP is enforced. Test each channel for technical enforcement, monitoring, exceptions and recent operating evidence. If evidence is missing, do not assume enforcement exists.</p>
+
+          <h3 className={H}>Enforcement level per channel</h3>
+          <Table head={['Level', 'Meaning', 'How to report it']} rows={[
+            ['0. Not implemented', 'No rule covers the channel', 'Not enforced'],
+            ['1. Monitor only', 'Events are logged, nothing is stopped', 'Monitored but not enforced'],
+            ['2. User warning', 'Policy tip or warning, user can continue', 'Partially enforced'],
+            ['3. Approval', 'Manager or security must approve the action', 'Enforced with approval'],
+            ['4. Block', 'Action is stopped automatically', 'Enforced'],
+            ['5. Quarantine or encrypt', 'Content is held, encrypted or the link removed', 'Enforced'],
+          ]} />
+
+          <h3 className={H}>Channels and the tools that typically cover them</h3>
+          <Table head={['Channel', 'Example tools', 'What to check']} rows={[
+            ['Email', 'Microsoft Purview DLP (Exchange Online), Google Workspace DLP for Gmail, Proofpoint, Mimecast', 'Rules for PII, card numbers and secrets; external and personal domains blocked or encrypted'],
+            ['Cloud storage (Drive, OneDrive, SharePoint, Box, Dropbox)', 'Microsoft Purview, Google Workspace DLP, Netskope, Nightfall, Varonis', 'Public links, external sharing, labels, bulk downloads'],
+            ['Endpoint (USB, print, clipboard, screenshots)', 'Microsoft Purview Endpoint DLP, Symantec (Broadcom) DLP, Forcepoint, CrowdStrike Falcon Data Protection, Intune or Jamf for device control', 'Agent coverage across all devices, USB and print restrictions'],
+            ['Web uploads and unsanctioned SaaS', 'Netskope, Zscaler, Microsoft Defender for Cloud Apps (CASB)', 'Uploads to personal or unapproved apps blocked; unmanaged device downloads controlled'],
+            ['Chat and collaboration (Slack, Teams, Google Chat)', 'Microsoft Purview for Teams, Nightfall or Netskope for Slack, Google Workspace DLP for Chat', 'Secrets and customer data in messages detected and redacted'],
+            ['Source code repositories', 'GitHub secret scanning and push protection, GitGuardian, Nightfall', 'Secrets blocked at push; repo visibility and forks controlled'],
+            ['Alerting and response', 'Microsoft Sentinel, Splunk, Google SecOps, a SOAR tool, ticketing such as Jira or ServiceNow', 'Alerts reach a named team with an SLA and closed tickets exist'],
+          ]} />
+          <p className={P}>For each tool record: deployment scope, integrated systems, policy coverage, enforcement mode, alert destination, evidence available and known gaps. Tool names are examples, not endorsements.</p>
+
+          <h3 className={H}>Rule coverage to confirm</h3>
+          <Ul items={['PII, national ID and Social Security numbers, card and bank account numbers, health data', 'API keys, passwords, private keys and other secrets', 'Source code, intellectual property, legal and financial documents', 'Large transfers and bulk downloads', 'Sharing to personal email domains, public links and external collaborators', 'Downloads from cloud apps to unmanaged devices']} />
+          <p className={P}>For each rule: does it exist, is it active, does it alert or block, who is in scope, which exceptions apply, and when was it last tested.</p>
+
+          <h3 className={H}>Scenario tests</h3>
+          <Table head={['Scenario', 'Expected result', 'Record']} rows={[
+            ['Send sensitive data to a personal Gmail address', 'Blocked or encrypted, alert raised', 'Actual result, alert, recipient of alert, log entry, ticket'],
+            ['Upload sensitive data to an unsanctioned cloud app', 'Blocked by CASB or proxy', 'Same as above'],
+            ['Share a confidential file publicly', 'Blocked or link removed', 'Same as above'],
+            ['Share a regulated file externally', 'Blocked, encrypted or needs approval', 'Same as above'],
+            ['Download sensitive files to an unmanaged device', 'Blocked or view-only', 'Same as above'],
+            ['Copy sensitive data to USB', 'Blocked or encrypted', 'Same as above'],
+            ['Print restricted data', 'Blocked or warned and logged', 'Same as above'],
+            ['Post an API key in chat', 'Message blocked or redacted', 'Same as above'],
+            ['Push source code to an external location', 'Blocked or alerted', 'Same as above'],
+          ]} />
+          <p className={P}>Use dummy test data, never real customer data, and get approval before testing.</p>
+
+          <h3 className={H}>Monitoring, exceptions and incident links</h3>
+          <Ul items={['Alerts go to a SIEM, ticketing or SOAR queue with a named reviewer, review frequency, triage SLA and escalation path', 'False positives and repeat offenders are tracked', 'Exceptions need business justification, an approver and an expiry, and are reviewed periodically', 'Red flag: broad exclusions for executives, admins, developers or service accounts', 'Confirmed leaks become incidents with root cause analysis, customer or regulator notification where required, and rule updates', 'Logs capture user, file, rule, action, timestamp, destination and result, are tamper-resistant and retained']} />
+
+          <h3 className={H}>Rating</h3>
+          <Table head={['Rating', 'When to use it']} rows={[
+            ['Effective', 'Enforced across key channels, high-risk activity blocked or controlled, alerts monitored, exceptions managed, recent operating evidence'],
+            ['Partially effective', 'Limited scope, monitor-only rules, weak alert review, broad exceptions or no testing evidence'],
+            ['Ineffective', 'Mostly policy-only, not monitored, or common leak scenarios succeed'],
+            ['Not implemented', 'No meaningful policy, tooling, monitoring or enforcement'],
+          ]} />
+
+          <h3 className={H}>Report structure</h3>
+          <Ul items={['Executive conclusion and rating', 'Channels covered and not covered', 'Evidence reviewed (see the evidence list in Part 9)', 'Enforcement, monitoring and exception findings', 'Gaps, risks and remediation actions', 'Evidence still needed', 'Final determination: enforced, monitored but not enforced, or not enforced']} />
+        </Part>
       </div>
     </details>
   );
