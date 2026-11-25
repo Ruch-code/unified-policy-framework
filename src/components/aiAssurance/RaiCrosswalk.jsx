@@ -142,6 +142,53 @@ export default function RaiCrosswalk() {
           <p><strong>How it maps to the EU AI Act:</strong> the AI Act uses different roles. The provider builds or places the AI system on the market; the deployer uses it. The vendor is usually the AI Act provider and the GDPR processor, while the bank is the deployer and the GDPR controller. The two sets of roles are assessed separately.</p>
         </div>
       </details>
+      <details id="gaming-ai-usecase" className="mb-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-4">
+        <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">Use case: AI in a regulated online gaming and sports betting operator</summary>
+        <div className="mt-3 space-y-3 text-sm text-gray-700 dark:text-gray-300">
+          <p>A licensed online casino and sports betting operator uses AI for player risk scoring (responsible gaming), fraud and bonus abuse detection, AML transaction monitoring, personalised offers, a customer support chatbot and automated KYC document checks. Regulators expect the platform to meet technical standards such as GLI-19, and player data is personal and often financial.</p>
+          <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="Gaming AI use cases and risk">
+            <table className="w-full text-sm min-w-[860px]">
+              <thead><tr>{['AI use', 'Main risk', 'Regulatory angle', 'Key control'].map(h => <th key={h} scope="col" className={TH}>{h}</th>)}</tr></thead>
+              <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
+                {[
+                  ['Responsible gaming risk score', 'Missing a problem gambler, or acting on a wrong flag', 'Gaming regulator player protection duties; automated decisions under GDPR Art. 22 where they have significant effects', 'Human review before account restrictions; regular accuracy and bias testing'],
+                  ['Personalised offers and bonuses', 'Targeting vulnerable or self-excluded players', 'Advertising and responsible gaming rules; EU AI Act bans manipulative techniques that exploit vulnerabilities (Art. 5)', 'Hard block on self-excluded and at-risk players before any offer model runs'],
+                  ['Fraud, bonus abuse and collusion detection', 'Wrongly freezing honest players\' winnings', 'Fair treatment, complaints and dispute duties', 'Explainable reasons, appeal route and human decision on account closure'],
+                  ['AML transaction monitoring', 'Missed suspicious activity or excessive false positives', 'AML laws for gambling operators', 'Model validation, tuning records and analyst review of alerts'],
+                  ['Automated KYC and age checks', 'Underage play or wrongful rejection; biometric data', 'Age verification duties; biometric data is special category (GDPR Art. 9)', 'Liveness and document checks, manual fallback, vendor DPIA'],
+                  ['Support chatbot', 'Prompt injection, leaking account data, poor advice on limits or self-exclusion', 'Transparency that users are talking to AI (EU AI Act Art. 50)', 'No account changes without authentication; escalation to a human for responsible gaming topics'],
+                ].map(r => <tr key={r[0]}>{r.map((c, j) => <td key={j} className={TD + (j === 0 ? ' font-semibold text-gray-900 dark:text-white' : '')}>{c}</td>)}</tr>)}
+              </tbody>
+            </table>
+          </div>
+          <h3 className="font-semibold text-gray-900 dark:text-white">Information security checks</h3>
+          <ul className="list-disc pl-5 space-y-1">
+            <li>AI systems are in the asset inventory and inside the ISO 27001 and GLI-19 scope, with a named owner.</li>
+            <li>Models must not influence game outcomes or the RNG; certified game components stay separate and change-controlled.</li>
+            <li>Access to training data, models and scoring APIs follows least privilege with MFA and logged admin actions.</li>
+            <li>Training and inference data are encrypted; secrets and API keys are kept in a vault.</li>
+            <li>Prompt injection, data leakage and model abuse testing for the chatbot; adversarial testing for fraud models.</li>
+            <li>Model and prompt changes go through change management with versioning and rollback.</li>
+            <li>Monitoring for model drift, unusual scoring patterns and abuse, feeding the SIEM.</li>
+            <li>AI vendors (KYC, chatbot, analytics) assessed through third-party risk management, including where data is hosted and whether it is used for training.</li>
+            <li>Incident response covers AI failures such as wrong mass account freezes or chatbot data exposure.</li>
+          </ul>
+          <h3 className="font-semibold text-gray-900 dark:text-white">Privacy checks</h3>
+          <ul className="list-disc pl-5 space-y-1">
+            <li>DPIA for player risk scoring, profiling for offers and biometric KYC.</li>
+            <li>Lawful basis recorded per use: legal obligation for AML and age checks, and a separate assessed basis (consent or legitimate interest) for marketing personalisation.</li>
+            <li>Clear player notices on profiling, automated decisions and the right to human review.</li>
+            <li>Data minimisation: only the features each model needs; no special category data in offer models.</li>
+            <li>Retention set per purpose, with AML records kept as the law requires and marketing data deleted sooner.</li>
+            <li>Self-exclusion and marketing opt-outs enforced across all models and channels.</li>
+            <li>Rights requests (access, erasure, objection) cover model inputs and scores.</li>
+            <li>Cross-border transfer safeguards where AI vendors process data abroad.</li>
+            <li>Players are told when they talk to a chatbot and can reach a human.</li>
+          </ul>
+          <p><strong>Interview line:</strong> &quot;In gaming, the same AI can protect or harm a player. I check that responsible gaming and self-exclusion rules sit above every model, that no AI touches certified game outcomes, and that every decision affecting a player&apos;s account has a human review and an appeal route.&quot;</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">Requirements vary by jurisdiction and regulator; confirm local gaming, AML and data protection rules.</p>
+        </div>
+      </details>
 
       <div role="tablist" aria-label="Crosswalk views" className="flex flex-wrap gap-2 mb-4">
         {TABS.map(t => (
