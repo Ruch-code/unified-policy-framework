@@ -109,6 +109,13 @@ const RISK_CLS = { High: 'bg-rose-100 text-rose-800 dark:bg-rose-900/40 dark:tex
 const TH = 'text-left p-2 font-semibold text-gray-900 dark:text-white bg-gray-100 dark:bg-gray-800 align-bottom';
 const TD = 'p-2 text-gray-700 dark:text-gray-300 align-top';
 
+const TYPE_NAME = Object.fromEntries(AI_TYPES.map(([c, n]) => [c, n]));
+function TypeCell({ t }) {
+  const [pri, sec = ''] = t.split('/').map(x => x.trim());
+  const secs = sec ? sec.split(',').map(x => x.trim()) : [];
+  return <span><span className="font-semibold text-gray-900 dark:text-white" title={TYPE_NAME[pri]}>{pri}: {TYPE_NAME[pri]}</span>{secs.length > 0 && <span className="block text-xs text-gray-500 dark:text-gray-400">Also: {secs.map(c => `${c} (${TYPE_NAME[c]})`).join(', ')}</span>}</span>;
+}
+
 export default function RaiCrosswalk() {
   const [tab, setTab] = useState(TABS[0]);
   const [openQ, setOpenQ] = useState(0);
@@ -239,6 +246,7 @@ export default function RaiCrosswalk() {
           <div className="flex flex-wrap gap-2 mb-3" role="group" aria-label="Filter by industry">
             {['All', ...INDUSTRIES].map(i => <button key={i} type="button" aria-pressed={ind === i} onClick={() => setInd(i)} className={`px-2.5 py-1 rounded-full text-[11px] font-semibold border ${ind === i ? 'bg-violet-600 border-violet-600 text-white' : 'border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200'}`}>{i}</button>)}
           </div>
+          <details className="mb-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 text-sm text-gray-700 dark:text-gray-300"><summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">What the AI type letters mean</summary><p className="mt-2 text-xs">Written as primary / secondary. For example, &quot;F / D, A&quot; means mainly predictive ML, also using document intelligence and agentic AI.</p><ul className="mt-1 space-y-1">{AI_TYPES.map(([c, n, d]) => <li key={c}><span className="font-bold">{c}. {n}:</span> {d}</li>)}</ul></details>
           <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700">
             <table className="w-full text-sm min-w-[1000px]">
               <thead><tr>{['Industry', 'Use-case pattern', 'AI type', 'Autonomy', 'Audience', 'Data processed', 'EU AI Act tier (indicative)', 'Overall risk', 'Escalate'].map(h => <th key={h} scope="col" className={TH}>{h}</th>)}</tr></thead>
@@ -247,7 +255,7 @@ export default function RaiCrosswalk() {
                   const k = p.industry + p.pattern; const open = openP === k;
                   return [
                     <tr key={k} className="cursor-pointer hover:bg-violet-50/60 dark:hover:bg-violet-900/20" onClick={() => setOpenP(open ? null : k)} aria-expanded={open}>
-                      <td className={TD}>{p.industry}</td><td className={TD + ' font-semibold text-gray-900 dark:text-white'}>{p.pattern}</td><td className={TD}>{p.type}</td><td className={TD}>{p.autonomy}</td><td className={TD}>{p.audience}</td><td className={TD}>{p.data}</td><td className={TD}>{p.tier}</td>
+                      <td className={TD}>{p.industry}</td><td className={TD + ' font-semibold text-gray-900 dark:text-white'}>{p.pattern}</td><td className={TD}><TypeCell t={p.type} /></td><td className={TD}>{p.autonomy}</td><td className={TD}>{p.audience}</td><td className={TD}>{p.data}</td><td className={TD}>{p.tier}</td>
                       <td className={TD}><span className={`px-2 py-0.5 rounded-full text-xs font-bold ${RISK_CLS[p.risk]}`}>{p.risk}</span></td><td className={TD}>{p.escalate ? 'Yes' : 'No'}</td>
                     </tr>,
                     open && <tr key={k + '-d'}><td colSpan={9} className="p-3 bg-violet-50/50 dark:bg-violet-900/10">{PATTERN_DETAIL[p.pattern] && <div className="mb-2 space-y-1 text-sm text-gray-700 dark:text-gray-300"><p><span className="font-bold text-gray-900 dark:text-white">End-to-end flow:</span> {PATTERN_DETAIL[p.pattern].flow}</p><p><span className="font-bold text-gray-900 dark:text-white">Key risks:</span> {PATTERN_DETAIL[p.pattern].risks}</p></div>}<ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300">{[...p.actions, ...((PATTERN_DETAIL[p.pattern] || {}).extra || [])].sort((a, b) => (b.startsWith('Must') ? 1 : 0) - (a.startsWith('Must') ? 1 : 0)).map(x => <li key={x}><span className={`font-bold ${x.startsWith('Must') ? 'text-rose-700 dark:text-rose-300' : 'text-sky-700 dark:text-sky-300'}`}>{x.split(':')[0]}:</span>{x.slice(x.indexOf(':') + 1)}</li>)}</ul></td></tr>,
