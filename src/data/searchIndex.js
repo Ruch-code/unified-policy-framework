@@ -867,6 +867,16 @@ const TEMPLATE_ENTRIES = [
     anchorId: null,
   },
   {
+    id: 'grc-vs-audit',
+    category: 'Policy & Control Modules',
+    label: 'GRC view vs Audit view',
+    desc: 'How GRC and auditors look at the same controls: access reviews, shared accounts, SoD, firewall, change, vulnerabilities, vendors, DLP, BCMS and policies.',
+    keywords: ['grc vs audit', 'audit view', 'auditor view', 'grc view', 'audit perspective', 'evidence', 'lines of defence'],
+    path: '/grc-vs-audit',
+    mode: 'route',
+    anchorId: null,
+  },
+  {
     id: 'rai-crosswalk',
     category: 'Policy & Control Modules',
     label: 'Responsible AI review: regulations and standards crosswalk',
