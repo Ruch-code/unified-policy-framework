@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { PARTS, APPROACH, FINDING_FIELDS, LENS, LENS_EXAMPLES, DOMAINS, FIREWALL_COLUMNS, FIREWALL_EXAMPLES, FIREWALL_NOTE, KEY, CONTRACTOR } from '../data/infraReviewPlaybook.js';
+import { PARTS, APPROACH, FINDING_FIELDS, LENS, LENS_EXAMPLES, DOMAINS, FIREWALL_COLUMNS, FIREWALL_EXAMPLES, FIREWALL_NOTE, FIREWALL_EVIDENCE, FIREWALL_EVIDENCE_NOTE, KEY, CONTRACTOR } from '../data/infraReviewPlaybook.js';
 
 // Knowledge Base topic: infrastructure security review playbook with an infrastructure leadership lens.
 export const IRP_PARTS = PARTS;
@@ -64,6 +64,9 @@ export default function InfraReviewPlaybook() {
       <Section id="firewall" title="4. Firewall rule review register">
         <Table head={FIREWALL_COLUMNS} rows={FIREWALL_EXAMPLES} min={1500} />
         <p className={`mt-2 ${P}`}>{FIREWALL_NOTE}</p>
+        <h4 className="mt-4 mb-1 font-semibold text-gray-900 dark:text-white">Evidence an auditor asks for in a firewall review</h4>
+        <Table head={['Evidence', 'What it proves', 'What the auditor checks']} rows={FIREWALL_EVIDENCE} min={900} />
+        <p className={`mt-2 ${P}`}>{FIREWALL_EVIDENCE_NOTE}</p>
       </Section>
 
       <Section id="key" title="5. Scenario: production key 180 days old against a 90-day rotation rule">

@@ -46,3 +46,16 @@ export const SOD_STRATEGIES = [
 ];
 
 export const AS_RELATED = 'Related on this page: Mandatory Access Requirements by Persona, User Access Review coverage and frequency, and Access Reviews by Design.';
+
+// How auditors test segregation of duties: [test step, what the auditor does, evidence requested]
+export const SOD_AUDIT_TESTS = [
+  ['1. Understand the SoD design', 'Reads the SoD policy and the conflict matrix (ruleset) listing which roles or permissions must not be combined, for example create vendor and approve payment, or develop and deploy code.', 'SoD policy; SoD conflict matrix or ruleset with risk rating per conflict; role catalogue with permissions per role'],
+  ['2. Confirm the population', 'Gets a complete list of users with their roles and permissions from each in-scope system and checks it is complete and accurate (where it came from, when it was pulled, filters used).', 'System-generated user and role export with date, query or report name and who ran it; HR active employee list to reconcile against'],
+  ['3. Run or reperform the conflict analysis', 'Checks users against the conflict matrix, by reperforming the analysis or by reviewing the output of an SoD tool such as SAP GRC Access Control, Pathlock, SailPoint or Saviynt.', 'SoD conflict report for the period; tool configuration showing the ruleset in use'],
+  ['4. Test that conflicts are prevented at provisioning', 'Samples new access requests and role changes to see whether conflicts were checked before access was granted.', 'Sample access request tickets showing SoD check, approver and approval date before provisioning'],
+  ['5. Test approved exceptions and mitigating controls', 'Where a conflict is allowed, for example in a small team, checks it was approved by the right level, time-bound, and covered by a mitigating control that actually operated.', 'Exception register with approver, reason and expiry; mitigating control evidence such as a signed monthly review of transactions posted by that user'],
+  ['6. Check privileged and emergency access', 'Reviews firefighter or break-glass use and admin accounts, which bypass normal SoD.', 'Emergency access logs, usage justification and the reviewer sign-off for each session'],
+  ['7. Check periodic review', 'Confirms SoD conflicts are part of the user access review and that removals were completed.', 'Signed access review including SoD results; tickets proving removals'],
+  ['8. Look at actual transactions', 'For high-risk conflicts, checks whether anyone actually did both steps, for example created and paid the same vendor.', 'Transaction log extract or audit trail for the conflicting activities'],
+];
+export const SOD_AUDIT_FINDINGS = 'Common findings: no documented conflict matrix; developers with production deploy rights and no compensating review; finance users who can both create vendors and release payments; exceptions with no expiry; mitigating reviews that were signed but never looked at the transactions; user lists that cannot be shown to be complete.';
