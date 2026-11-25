@@ -74,7 +74,7 @@ export const FIREWALL_EXAMPLES = [
   ['FW-031', 'App subnet', 'Database subnet', '5432', 'TCP', 'Inbound', 'Application database access', 'Platform lead', 'Annual review', 'On', 'Today', 'Low', 'Keep; confirm source limited to app subnet only'],
   ['FW-044', 'Any', 'Any', 'Any', 'Any', 'Outbound', 'Not documented', 'Not assigned', 'None', 'Off', 'Today', 'High', 'Replace with egress allow-list to required destinations; enable logging'],
 ];
-export const FIREWALL_NOTE = 'Classify each port as secure, conditionally acceptable or insecure using the secure and insecure port tables in the Infra & Network Audit topic. Any database, admin, storage or management port exposed to the internet is high risk. Rules with no owner, no justification or no hits for 90 days or more are candidates to retire rather than harden.';
+export const FIREWALL_NOTE = 'Classify each port as secure, conditionally acceptable or insecure using the port tables below. Any database, admin, storage or management port exposed to the internet is high risk. Rules with no owner, no justification or no hits for 90 days or more are candidates to retire rather than harden.';
 
 export const KEY = {
   advisory: '"Thanks for flagging this. I\'d treat it as a high-risk production key management issue. The key is 180 days old against a 90-day rotation requirement, so it has missed two rotation windows. The immediate goal is to rotate safely, validate production, revoke the old key, and keep enough evidence to show what happened and how we stop it recurring. The other concern is that only two people can rotate it, which is both a single point of failure and the likely reason it slipped."',

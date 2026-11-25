@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { INSECURE_PORTS, SECURE_PORTS, PORT_NOTE, CONDITIONAL_PORTS, MORE_INSECURE_PORTS, PORT_RULE } from '../data/infraNetworkAudit.js';
 import { Link } from 'react-router-dom';
 import { PARTS, APPROACH, FINDING_FIELDS, LENS, LENS_EXAMPLES, DOMAINS, FIREWALL_COLUMNS, FIREWALL_EXAMPLES, FIREWALL_NOTE, FIREWALL_EVIDENCE, FIREWALL_EVIDENCE_NOTE, KEY, CONTRACTOR } from '../data/infraReviewPlaybook.js';
 
@@ -42,7 +43,7 @@ export default function InfraReviewPlaybook() {
     <div className="min-w-0">
       <section className={CARD}>
         <h2 className="text-xl font-bold text-navy-900 dark:text-text-dark-primary mb-2">Infrastructure Security Review Playbook</h2>
-        <p className={P}>How to review network security, BC/DR, incident response, access management and firewall rules end to end, and how to present each finding so an infrastructure leader can act on it: priority, effort, outage risk, rollback and the teams involved. Port tables, firewall types and BC/DR basics are in the <Link className="ui-link" to="/knowledge?topic=infranet">Infra &amp; Network Audit</Link> topic.</p>
+        <p className={P}>How to review network security, BC/DR, incident response, access management and firewall rules end to end, and how to present each finding so an infrastructure leader can act on it: priority, effort, outage risk, rollback and the teams involved. Firewall types, common ports and BC/DR basics are in the <Link className="ui-link" to="/knowledge?topic=infranet">Infra &amp; Network Audit</Link> topic.</p>
       </section>
 
       <Section id="approach" title="1. Review approach and finding format">
@@ -64,6 +65,16 @@ export default function InfraReviewPlaybook() {
       <Section id="firewall" title="4. Firewall rule review register">
         <Table head={FIREWALL_COLUMNS} rows={FIREWALL_EXAMPLES} min={1500} />
         <p className={`mt-2 ${P}`}>{FIREWALL_NOTE}</p>
+        <h4 className="mt-4 mb-1 font-semibold text-gray-900 dark:text-white">Insecure ports and their secure replacements</h4>
+        <Table head={['Port', 'Service', 'Why it is insecure', 'Secure alternative']} rows={INSECURE_PORTS} min={900} />
+        <h4 className="mt-4 mb-1 font-semibold text-gray-900 dark:text-white">Secure ports</h4>
+        <Table head={['Port', 'Service', 'What it protects', 'What to verify']} rows={SECURE_PORTS} min={900} />
+        <p className={`mt-2 ${P}`}>{PORT_NOTE}</p>
+        <h4 className="mt-4 mb-1 font-semibold text-gray-900 dark:text-white">Conditionally acceptable ports (secure only when restricted)</h4>
+        <Table head={['Port', 'Service', 'Acceptable when', 'Flag as']} rows={CONDITIONAL_PORTS} min={900} />
+        <h4 className="mt-4 mb-1 font-semibold text-gray-900 dark:text-white">More high-risk ports</h4>
+        <Table head={['Port', 'Service', 'Why it is high risk', 'What to do']} rows={MORE_INSECURE_PORTS} min={900} />
+        <p className={`mt-2 font-semibold ${P}`}>{PORT_RULE}</p>
         <h4 className="mt-4 mb-1 font-semibold text-gray-900 dark:text-white">Evidence an auditor asks for in a firewall review</h4>
         <Table head={['Evidence', 'What it proves', 'What the auditor checks']} rows={FIREWALL_EVIDENCE} min={900} />
         <p className={`mt-2 ${P}`}>{FIREWALL_EVIDENCE_NOTE}</p>
