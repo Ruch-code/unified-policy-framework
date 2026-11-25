@@ -29,6 +29,14 @@ const TOPICS = [
   ['Policies', 'Write usable policies, map them to controls, keep them current', 'Approved, reviewed on schedule, communicated, and does practice match the policy?', 'Version history, approvals, acknowledgements, evidence of practice', '/knowledge?topic=policy-lifecycle'],
 ];
 
+const GAPS = [
+  ['1. Spotting the gap', 'Self-assessment, control monitoring, risk reviews, metrics and incidents show a control is weak or missing', 'Walkthroughs, design review, sample testing and reperformance show the control failed or does not exist'],
+  ['2. Judging it', 'Rates the risk against appetite: likelihood, impact, who is affected', 'Classifies it: design gap or operating failure, and severity (deficiency, significant deficiency, material weakness, or minor or major nonconformity)'],
+  ['3. Recording it', 'Risk register and issue tracker with owner, due date and treatment', 'Finding or exception in the audit report or management letter'],
+  ['4. Responding', 'Builds the fix: new control, automation, policy or process change; or formal risk acceptance with an approver and expiry', 'Asks for a management response and action plan; does not design the fix'],
+  ['5. Closing it', 'Collects evidence that the fix operated for long enough, then retests before closing', 'Validates remediation in follow-up or the next audit; a fix after the period does not change the earlier result'],
+];
+
 const QUESTIONS = [
   ['GRC asks', 'What is our biggest risk here, who owns it, and what is the plan?', 'Audit asks', 'Show me the evidence that the control operated for the full period.'],
   ['GRC asks', 'Is this control proportionate to the risk and practical for the team?', 'Audit asks', 'How do I know this population is complete and accurate?'],
@@ -66,6 +74,16 @@ export default function GrcVsAudit() {
                 <td className={TD}><Link className="ui-link" to={href}>Open</Link></td>
               </tr>
             ))}</tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">How GRC closes gaps and how audit finds them</h2>
+        <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-slate-700" tabIndex={0} role="region" aria-label="Gap lifecycle">
+          <table className="w-full text-sm min-w-[860px]">
+            <thead><tr>{['Stage', 'GRC: covers the gap', 'Audit: finds the gap'].map((h) => <th key={h} scope="col" className={TH}>{h}</th>)}</tr></thead>
+            <tbody>{GAPS.map((r) => <tr key={r[0]}>{r.map((c, j) => <td key={j} className={`${TD} ${j === 0 ? 'font-semibold text-gray-900 dark:text-white' : ''}`}>{c}</td>)}</tr>)}</tbody>
           </table>
         </div>
       </section>
