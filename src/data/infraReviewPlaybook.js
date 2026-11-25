@@ -182,3 +182,18 @@ export const CONTRACTOR = {
     ['Data protection', 'Data classification of systems accessed, DLP policy, sharing restrictions, redaction and screenshot rules, report storage location, confirmation no data on personal devices or accounts.'],
   ],
 };
+
+// Evidence for a firewall rule review: [evidence, what it proves, what the auditor checks]
+export const FIREWALL_EVIDENCE = [
+  ['Firewall and network security policy or standard', 'The rules for what is allowed, default deny, and how often rules are reviewed', 'Approved, current, states the review frequency (often every 6 months; PCI DSS Requirement 1.2.7 requires at least every six months)'],
+  ['Inventory of in-scope firewalls and security groups', 'Which devices and cloud controls are covered (perimeter, internal, WAF, AWS security groups, Azure NSGs, GCP firewall rules)', 'Complete; matches network diagram and cloud accounts'],
+  ['Current network diagram and data flow diagram', 'Where firewalls sit and what traffic should cross them', 'Dated and matches the rule base'],
+  ['Full rule base export with hit counts', 'The actual rules in force, with source, destination, port, action and last-hit date', 'System-generated, dated, from the device or cloud console; rules with any-any, wide open ports or no hits for 90+ days flagged'],
+  ['Rule review record', 'That someone actually reviewed every rule in the period', 'Reviewer name, date, decision per rule (keep, change, remove) and sign-off by the network or security owner'],
+  ['Business justification per rule', 'Each rule has a reason and an owner', 'Justification and owner recorded, temporary rules have expiry dates'],
+  ['Change tickets for rule additions and changes', 'Rules are changed through change management', 'Sample of changes with request, risk review, approval before implementation and testing'],
+  ['Remediation tickets from the review', 'Findings were actually fixed', 'Tickets closed and a later export proves the rule was removed or tightened'],
+  ['Admin access list and logs for firewalls', 'Only authorised people can change rules', 'MFA on admin access, access review of admins, logs sent to the SIEM'],
+  ['Configuration backup and baseline', 'Firewall config is backed up and hardened', 'Backup records, firmware patching and hardening checks'],
+];
+export const FIREWALL_EVIDENCE_NOTE = 'Screenshots alone are weak evidence; auditors prefer a dated system export plus the review sign-off and closed remediation tickets. Framework links: ISO/IEC 27001:2022 A.8.20 network security and A.8.22 segregation of networks, SOC 2 CC6.6, PCI DSS v4.0 Requirement 1.';

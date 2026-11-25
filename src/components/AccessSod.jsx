@@ -1,4 +1,4 @@
-import { AS_INTRO, LEAST_PRIVILEGE, APP_SCOPING_RULES, APP_REQUIREMENTS, SOD_STRATEGIES, AS_RELATED } from '../data/accessSod.js';
+import { AS_INTRO, LEAST_PRIVILEGE, APP_SCOPING_RULES, APP_REQUIREMENTS, SOD_STRATEGIES, AS_RELATED, SOD_AUDIT_TESTS, SOD_AUDIT_FINDINGS } from '../data/accessSod.js';
 
 const LINE = 'border-gray-200 dark:border-slate-700';
 const TXT = 'text-gray-700 dark:text-slate-300';
@@ -42,6 +42,14 @@ export default function AccessSod() {
         <h3 className={`text-lg font-semibold mb-2 ${H}`}>Preventing segregation of duties conflicts</h3>
         <Table label="Segregation of duties strategies" headers={['Strategy', 'How it works', 'Example conflict it prevents']} rows={SOD_STRATEGIES} />
       </div>
+      <details id="sod-audit" className={`rounded-xl border ${LINE} p-4`}>
+        <summary className={`cursor-pointer text-lg font-semibold ${H}`}>How auditors test segregation of duties and what evidence they ask for</summary>
+        <div className="mt-3 space-y-2">
+          <Table label="SoD audit tests" headers={['Test step', 'What the auditor does', 'Evidence requested']} rows={SOD_AUDIT_TESTS} min={900} />
+          <p className={`text-sm ${TXT}`}>{SOD_AUDIT_FINDINGS}</p>
+          <p className={`text-sm ${TXT}`}>Framework links: ISO/IEC 27001:2022 A.5.3 (segregation of duties), SOC 2 CC5.1 and CC6.1 to CC6.3, SOX ITGC access controls. Tool names are examples, not endorsements.</p>
+        </div>
+      </details>
       <p className="text-xs text-gray-500 dark:text-slate-400">{AS_RELATED}</p>
     </section>
   );
