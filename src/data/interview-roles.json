@@ -4046,6 +4046,199 @@
           ]
         }
       ]
+    },
+    {
+      "id": "bcms-bia",
+      "title": "Business Continuity (ISO 22301 BCMS and BIA)",
+      "subtitle": "BIA method, MTPD/RTO/RPO/MBCO, case scenarios, testing, audit evidence and framework links",
+      "icon": "Shield",
+      "color": "teal",
+      "questions": [
+        {
+          "q": "Walk me through how you would run a BIA from scratch.",
+          "a": "I scope it first: which products and services are in the BCMS scope (ISO 22301 clause 4.3). Then I list the activities that deliver those products, with their owners. With each owner I agree impact categories (financial, customer, regulatory, reputational, safety) and a time scale, for example 1 hour, 4 hours, 1 day, 3 days, 1 week. In a workshop we rate how impact grows over time, which gives the maximum tolerable period of disruption (MTPD). From that we set an RTO shorter than the MTPD, the minimum level of service needed (MBCO), the RPO for data, and the resources each activity needs: people, sites, IT systems, suppliers and vital records. I validate the results with senior management, who approve the priorities, and the output drives the risk assessment, strategies and plans (ISO 22301 clauses 8.2.2 to 8.4; ISO 22317 gives the detailed method).",
+          "tags": [
+            "BIA",
+            "ISO 22301",
+            "ISO 22317"
+          ],
+          "example": "In my answer I would name one real process, say payroll, and show the impact curve: low at 1 day, severe at 3 days because staff are unpaid, so MTPD 3 days and RTO 2 days.",
+          "pitfalls": [
+            {
+              "pitfall": "Listing systems instead of business activities.",
+              "reply": "Start from products, services and activities; systems are resources that support them."
+            }
+          ]
+        },
+        {
+          "q": "What is the difference between MTPD, RTO, RPO and MBCO?",
+          "a": "MTPD is the point after which the impact of not resuming an activity becomes unacceptable. RTO is the target time to resume it, and must be shorter than the MTPD to leave a safety margin. RPO is how much data you can afford to lose, measured back in time from the incident. MBCO is the minimum level of service that is acceptable while you recover, for example 60 percent of normal order volume.",
+          "tags": [
+            "BIA",
+            "Definitions"
+          ],
+          "example": "Customer support: MTPD 24 hours, RTO 8 hours, RPO 15 minutes for the ticketing database, MBCO priority tickets only.",
+          "pitfalls": [
+            {
+              "pitfall": "Saying RTO equals MTPD.",
+              "reply": "RTO must sit inside MTPD, otherwise there is no margin if recovery slips."
+            }
+          ]
+        },
+        {
+          "q": "How is a BIA different from a risk assessment?",
+          "a": "The BIA asks what happens if an activity stops, regardless of cause, and sets priorities and recovery times. The risk assessment asks what could cause the disruption, how likely it is and what controls reduce it. In ISO 22301 the BIA comes first so the risk assessment focuses on the prioritised activities and their resources.",
+          "tags": [
+            "BIA",
+            "Risk"
+          ],
+          "example": "BIA says the payment gateway has a 2-hour RTO; the risk assessment then looks at the single cloud region and the single payment provider as threats to it.",
+          "pitfalls": [
+            {
+              "pitfall": "Mixing likelihood into the BIA.",
+              "reply": "Keep the BIA impact-only; likelihood belongs in the risk assessment."
+            }
+          ]
+        },
+        {
+          "q": "Case: every department in the BIA says its activities are critical with a 1-hour RTO. What do you do?",
+          "a": "That usually means the impact scale was not anchored. I would re-run with fixed criteria tied to money, customers and regulation, challenge each rating with evidence (what actually happened in past outages, contract SLAs, regulatory deadlines), and show the cost of a 1-hour RTO in recovery spend. Final priorities are agreed and signed off by senior management, not by each department alone.",
+          "tags": [
+            "Case",
+            "BIA"
+          ],
+          "example": "After re-rating, 4 of 30 activities kept a sub-4-hour RTO; the rest moved to 1 to 3 days.",
+          "pitfalls": [
+            {
+              "pitfall": "Accepting the inflated ratings.",
+              "reply": "Anchor the scales and get top management to arbitrate."
+            }
+          ]
+        },
+        {
+          "q": "Case: the BIA says the core platform needs a 4-hour RTO, but IT's DR test showed 18 hours. How do you handle it?",
+          "a": "That is a gap between requirement and capability. I would record it as a risk with an owner, report it to management, and give options: invest to bring recovery under 4 hours (warm standby, automation), change the business workaround so the MTPD is longer, or formally accept the risk at the right level. Then retest and track it to closure.",
+          "tags": [
+            "Case",
+            "DR",
+            "Gap"
+          ],
+          "example": "We cut recovery to 3.5 hours with automated failover and a pre-built database replica, proven in the next test.",
+          "pitfalls": [
+            {
+              "pitfall": "Quietly changing the BIA to match IT's capability.",
+              "reply": "The BIA reflects business need; the gap is managed, not hidden."
+            }
+          ]
+        },
+        {
+          "q": "Case: a key supplier, for example your cloud or payroll provider, fails. How does the BCMS deal with it?",
+          "a": "The BIA should already list the supplier as a dependency of prioritised activities. I would check the supplier's own continuity arrangements and test evidence, contract terms on recovery and notice, and our own options: a second provider, manual workaround or exit plan. In the incident itself the plan's supplier contacts and escalation are used, and afterwards the supplier assessment is updated.",
+          "tags": [
+            "Case",
+            "Third party"
+          ],
+          "example": "For a single payroll provider we kept an offline copy of the last payroll file and a manual bank upload procedure, tested yearly.",
+          "pitfalls": [
+            {
+              "pitfall": "Assuming the supplier's SOC 2 report covers continuity.",
+              "reply": "Ask for their BC and DR test evidence and RTO commitments, and plan your own fallback."
+            }
+          ]
+        },
+        {
+          "q": "Case: ransomware takes out Active Directory and the file servers. Walk me through the first 24 hours from a BCMS point of view.",
+          "a": "Incident response contains it while the business continuity plan keeps priority activities running on workarounds. The crisis team is convened, decides priorities using the BIA, and handles communications to staff, customers and, where required, regulators. Recovery restores in BIA priority order from offline or immutable backups, after confirming they are clean. Everything is logged for the post-incident review.",
+          "tags": [
+            "Case",
+            "Ransomware",
+            "Crisis"
+          ],
+          "example": "Order processing switched to the manual form for 10 hours while identity services were rebuilt first, since every other system depended on them.",
+          "pitfalls": [
+            {
+              "pitfall": "Restoring systems in random order.",
+              "reply": "Restore in BIA priority and dependency order, identity first."
+            }
+          ]
+        },
+        {
+          "q": "How do you test a BCMS and prove it works?",
+          "a": "ISO 22301 clause 8.5 needs an exercise programme. I build up from plan walkthroughs to tabletop scenarios, then technical recovery tests and full or partial live failovers. Each exercise has objectives, scope, observers, a report, and actions tracked to closure. Over time I cover every prioritised activity and key scenario.",
+          "tags": [
+            "Testing",
+            "ISO 22301"
+          ],
+          "example": "Year plan: two tabletops, one DR failover, one call-tree test, and a site loss simulation.",
+          "pitfalls": [
+            {
+              "pitfall": "Saying the plan was reviewed, so it is tested.",
+              "reply": "A review is not an exercise; show reports and closed actions."
+            }
+          ]
+        },
+        {
+          "q": "What would an auditor ask for to check your BIA?",
+          "a": "The BIA method and impact criteria, completed BIA records with owners and dates, the approved list of prioritised activities with MTPD, RTO, RPO and MBCO, the resource and dependency requirements, evidence of senior management approval, and proof it is reviewed at planned intervals or after significant change.",
+          "tags": [
+            "Audit",
+            "Evidence"
+          ],
+          "example": "I keep the BIA register with a version history and the approval minutes linked.",
+          "pitfalls": [
+            {
+              "pitfall": "Showing a template instead of completed records.",
+              "reply": "Only dated, approved records are evidence."
+            }
+          ]
+        },
+        {
+          "q": "When should a BIA be updated?",
+          "a": "At a planned interval, usually yearly, and whenever something significant changes: new products, new systems or suppliers, reorganisation, a merger, new regulation, or lessons from an incident or exercise.",
+          "tags": [
+            "BIA",
+            "Maintenance"
+          ],
+          "example": "A move to a new cloud provider triggered a BIA refresh for the six activities that depended on it.",
+          "pitfalls": [
+            {
+              "pitfall": "Updating only once a year no matter what.",
+              "reply": "Add change-based triggers."
+            }
+          ]
+        },
+        {
+          "q": "How do you link the BCMS with ISO 27001 and DORA or other resilience rules?",
+          "a": "ISO 27001 controls 5.29 (information security during disruption) and 5.30 (ICT readiness for business continuity) rely on the BIA to set recovery needs. In financial services, rules such as DORA expect ICT continuity and response plans, testing and third-party risk management, so I reuse the same BIA, plans and test evidence and map them to each requirement rather than running separate programmes.",
+          "tags": [
+            "Mapping",
+            "ISO 27001",
+            "DORA"
+          ],
+          "example": "One BIA register feeds the ISO 27001 SoA evidence for 5.29 and 5.30 and the DORA ICT continuity requirements.",
+          "pitfalls": [
+            {
+              "pitfall": "Running separate BC programmes per framework.",
+              "reply": "Use one BIA and map it to each requirement."
+            }
+          ]
+        },
+        {
+          "q": "Case: management wants to cut the BC budget because there has never been a major outage. How do you respond?",
+          "a": "I would show the BIA impact in money and customers for a realistic scenario, the cost of current gaps, and what each spending option buys in recovery time. Then let management make an informed, documented decision on risk acceptance.",
+          "tags": [
+            "Case",
+            "Stakeholders"
+          ],
+          "example": "Showing that a 2-day order outage costs about the same as three years of the standby environment usually moves the conversation.",
+          "pitfalls": [
+            {
+              "pitfall": "Arguing from fear.",
+              "reply": "Use the BIA figures and let management formally accept or fund."
+            }
+          ]
+        }
+      ]
     }
   ]
 }

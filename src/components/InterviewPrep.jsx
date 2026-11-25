@@ -103,6 +103,7 @@ export default function InterviewPrep({ isDark = false }) {
     'grilling': 'bg-rose-700',
     'tech-risk-resilience': 'bg-teal-700',
     'regulated-gaming-grc': 'bg-indigo-700',
+    'bcms-bia': 'bg-teal-700',
   };
 
   return (
