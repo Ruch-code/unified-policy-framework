@@ -57,11 +57,12 @@ const QUESTIONS = [
   ['GRC asks', 'Should we accept, fix or transfer this gap?', 'Audit asks', 'Is this a design gap or an operating failure, and how severe is it?'],
 ];
 
-export default function GrcVsAudit() {
+export default function GrcVsAudit({ embedded = false }) {
+  const Title = embedded ? 'h2' : 'h1';
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10 space-y-8">
+    <div id="grc-vs-audit" className={embedded ? 'space-y-8 scroll-mt-24' : 'max-w-6xl mx-auto px-4 py-10 space-y-8'}>
       <header>
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">GRC view vs Audit view</h1>
+        <Title className="text-3xl font-bold text-gray-900 dark:text-white">GRC view vs Audit view</Title>
         <p className="mt-2 max-w-3xl text-sm text-gray-700 dark:text-slate-300">The same control looks different depending on whether you build and run it (GRC) or independently test it (audit). Knowing both views helps you design controls that pass audit, and answer interview questions from the right angle.</p>
       </header>
 

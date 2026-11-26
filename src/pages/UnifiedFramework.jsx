@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { UCF_COLUMNS, UCF_CONTROLS, UCF_FRAMEWORKS, UCF_SLA_COLUMNS, UCF_SLAS, UCF_VERIFIED } from '../data/unifiedControls.js';
 import UcfGrid from '../components/UcfGrid.jsx';
+import GrcVsAudit from './GrcVsAudit.jsx';
 import PolicyFrameworkMatrix from '../components/PolicyFrameworkMatrix.jsx';
 import { buildStyledXlsx, toCsv } from '../utils/styledXlsx.js';
 
@@ -18,6 +19,12 @@ const SHOW_FRAMEWORK_PICKER = false;
 const WIDTH = {  'UCF ID': 10, Domain: 18, Control: 28, 'Control activity': 44, 'Reusable evidence': 40, 'Strictest SLA or timeline': 40, 'Frameworks covered': 12 };
 
 export default function UnifiedFramework() {
+  useEffect(() => {
+    const id = window.location.hash.slice(1);
+    if (!id) return;
+    const t = setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300);
+    return () => clearTimeout(t);
+  }, []);
   const [tab, setTab] = useState('map');
   const [hidden, setHidden] = useState(new Set());
   const [busy, setBusy] = useState(false);
@@ -85,6 +92,7 @@ export default function UnifiedFramework() {
         Exports always include every framework column and every row.
       </p>
       <PolicyFrameworkMatrix />
+      <div className="border-t border-gray-200 dark:border-slate-700 pt-8"><GrcVsAudit embedded /></div>
     </div>
   );
 }

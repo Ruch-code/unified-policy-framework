@@ -20,7 +20,6 @@ import AccessRequirements from '../components/AccessRequirements.jsx';
 import UserAccessReview from '../components/UserAccessReview.jsx';
 import AccessReviewByDesign from '../components/AccessReviewByDesign.jsx';
 import AccessSod from '../components/AccessSod.jsx';
-import SiteNav from '../components/nav/SiteNav.jsx';
 import SecurityOperations from '../components/SecurityOperations.jsx';
 import HybridSecurityFramework from '../components/HybridSecurityFramework.jsx';
 import AssetInventoryTemplate from '../components/AssetInventoryTemplate.jsx';
@@ -219,6 +218,7 @@ TABS.push(
     ],
   },
 );
+const SIDE_TABS = ['regional', 'interview-prep'];
 const HOME_GROUPS = ['Frameworks and regulation', 'Security operations', 'Risk', 'Third parties', 'Access', 'Engineering', 'Career'];
 
 
@@ -684,11 +684,21 @@ export default function Home() {
           <nav aria-label="GRC modules" className="mb-5 lg:mb-0">
             <label className="lg:hidden block text-xs font-semibold text-gray-600 dark:text-slate-300">Module
               <select value={activeTab} onChange={(e) => setActiveTab(e.target.value)} className="mt-1 w-full px-3 py-2 border border-gray-300 dark:border-slate-700 rounded text-sm bg-white dark:bg-slate-900">
-                {HOME_GROUPS.map((g) => <optgroup key={g} label={g}>{TABS.filter((t) => t.group === g).map((t) => <option key={t.id} value={t.id}>{t.label}</option>)}</optgroup>)}
+                {SIDE_TABS.map((id) => <option key={id} value={id}>{TABS.find((t) => t.id === id).label}</option>)}
+                {!SIDE_TABS.includes(activeTab) && <option value={activeTab}>{TABS.find((t) => t.id === activeTab)?.label}</option>}
               </select>
             </label>
-            <div className="hidden lg:block">
-              <SiteNav active={`home:${activeTab}`} onSelect={(it) => { if (it[0] === 'home') { setActiveTab(it[1]); return true; } return false; }} />
+            <div className="hidden lg:block sticky top-20 w-[220px]" role="tablist" aria-orientation="vertical" aria-label="Home sections">
+              {SIDE_TABS.map((id) => { const t = TABS.find((x) => x.id === id); return (
+                <button key={id} type="button" role="tab" id={`tab-${id}`} aria-selected={activeTab === id} aria-controls={`panel-${id}`} onClick={() => setActiveTab(id)}
+                  className={`w-full text-left px-2 py-2 mb-1 rounded text-sm font-bold ${activeTab === id ? 'bg-[#1e293b] text-white' : 'text-fuchsia-700 dark:text-fuchsia-400 hover:bg-gray-100 dark:hover:bg-slate-800'}`}>
+                  {t.label}
+                </button>
+              ); })}
+              {!SIDE_TABS.includes(activeTab) && (
+                <p className="px-2 py-2 mb-1 rounded text-sm font-semibold bg-[#1e293b] text-white">{TABS.find((t) => t.id === activeTab)?.label}</p>
+              )}
+              <p className="mt-3 px-2 text-xs text-gray-600 dark:text-slate-300">All other topics are in the <Link className="ui-link" to="/knowledge">Knowledge Base</Link>.</p>
             </div>
           </nav>
 
