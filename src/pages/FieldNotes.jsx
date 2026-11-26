@@ -1,4 +1,3 @@
-import SiteNav from '../components/nav/SiteNav.jsx';
 import { NOTES, PRACTICES, CONTROL_MAP, CHECKLISTS } from '../data/fieldNotes.js';
 
 const TH = 'p-3 text-left font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800 align-bottom';
@@ -19,8 +18,7 @@ function Table({ label, head, rows, min }) {
 
 export default function FieldNotes() {
   return (
-    <div className="max-w-7xl mx-auto px-4 py-10 lg:grid lg:grid-cols-[auto_minmax(0,1fr)] lg:gap-8">
-      <nav aria-label="Site sections" className="hidden lg:block"><SiteNav active="page:/field-notes" /></nav>
+    <div className="max-w-6xl mx-auto px-4 py-10">
       <div className="min-w-0 space-y-8">
       <header>
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Field Notes: engineering practices to audit evidence</h1>

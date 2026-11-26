@@ -3,6 +3,13 @@ import interviewData from '../data/interview-roles.json';
 import MockInterview from './MockInterview.jsx';
 import Skeleton from './ui/Skeleton.jsx';
 
+const ROLE_GROUPS = [
+  ['GRC and compliance', ['grc-analyst', 'compliance-manager', 'grc-program-manager', 'senior-grc-engineering', 'lead-grc-situational', 'grc-deep-dives']],
+  ['Security, AI and engineering', ['security-engineer', 'ai-appsec-soc', 'engineering-partnership', 'grilling']],
+  ['Risk, vendors and resilience', ['tprm', 'tech-risk-resilience', 'bcms-bia']],
+  ['Privacy, leadership and industry', ['privacy-engineer', 'ciso', 'logistics-security-head', 'regulated-gaming-grc', 'behavioral']],
+];
+
 export default function InterviewPrep({ isDark = false }) {
   const [roles, setRoles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -123,28 +130,30 @@ export default function InterviewPrep({ isDark = false }) {
 
         <MockInterview roles={roles.filter((r) => r.questions?.some((q) => q.q && q.a))} />
 
-        {/* Role Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10" role="tablist" aria-label="Interview roles">
-          {roles.map((r) => {
-            const colors = roleColors[r.id] || roleColors['grc-analyst'];
-            const isActive = activeRole === r.id;
+        {/* Role Tabs, clubbed by theme and sized by number of questions */}
+        <div className="max-w-5xl mx-auto mb-10 grid gap-3 md:grid-cols-2" role="tablist" aria-label="Interview roles">
+          {ROLE_GROUPS.map(([group, ids]) => {
+            const items = ids.map((id) => roles.find((r) => r.id === id)).filter(Boolean);
+            if (!items.length) return null;
             return (
-              <button
-                key={r.id}
-                onClick={() => { setActiveRole(r.id); setExpandedQ(null); setExpandedTip(null); }}
-                role="tab"
-                aria-selected={isActive}
-                aria-controls={`panel-${r.id}`}
-                id={`tab-${r.id}`}
-                className={`px-5 py-2.5 rounded-xl font-medium transition-all duration-200 border-2
-                  ${isActive
-                    ? `${ACTIVE_BADGE[r.id] || 'bg-indigo-600'} text-white shadow-lg border-transparent`
-                    : `bg-surface-100 dark:bg-surface-dark-100 text-navy-700 dark:text-text-dark-secondary hover:bg-surface-200 dark:hover:bg-surface-dark-200 border-surface-300 dark:border-surface-dark-300`}
-                `}
-                style={{ borderColor: isActive ? 'transparent' : colors.primary }}
-              >
-                {r.title}
-              </button>
+              <div key={group} className="rounded-xl border border-surface-300 dark:border-surface-dark-300 p-3">
+                <p className="mb-2 text-sm font-extrabold text-fuchsia-700 dark:text-fuchsia-400">{group}</p>
+                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  {items.map((r) => {
+                    const isActive = activeRole === r.id;
+                    const n = r.questions?.length || 0;
+                    const size = n >= 25 ? 'text-lg' : n >= 10 ? 'text-base' : 'text-sm';
+                    return (
+                      <button key={r.id} type="button" role="tab" aria-selected={isActive} aria-controls={`panel-${r.id}`} id={`tab-${r.id}`}
+                        onClick={() => { setActiveRole(r.id); setExpandedQ(null); setExpandedTip(null); }}
+                        className={`${size} rounded-lg px-2 py-0.5 transition-colors ${isActive ? `${ACTIVE_BADGE[r.id] || 'bg-indigo-600'} text-white font-semibold` : 'text-navy-700 dark:text-text-dark-secondary hover:bg-surface-200 dark:hover:bg-surface-dark-200'}`}
+                        title={`${n} questions`}>
+                        {r.title} <span className={`text-xs ${isActive ? 'text-white/80' : 'text-gray-500 dark:text-slate-400'}`}>{n}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
             );
           })}
         </div>
