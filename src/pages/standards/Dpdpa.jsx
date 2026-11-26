@@ -5,6 +5,7 @@ import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 import DpdpRoles from "../../components/DpdpRoles.jsx";
 import DpdpGuide from "../../components/dpdp/DpdpGuide.jsx";
 import DpdpRegulatoryContext from "../../components/dpdp/DpdpRegulatoryContext.jsx";
+import DpdpB2bB2c from "../../components/dpdp/DpdpB2bB2c.jsx";
 import GdprDpdpaComparison from "../../components/playbook/GdprDpdpaComparison.jsx";
 import VibePlatformScenario from "../../components/playbook/VibePlatformScenario.jsx";
 import { appendToLevel } from "../../data/playbookEvidence.js";
@@ -284,6 +285,7 @@ export default function Dpdpa() {
     <>
       <DpdpGuide />
       <DpdpRegulatoryContext />
+      <DpdpB2bB2c />
       <div id="dpdp-playbook" className="scroll-mt-20">
         <p className="mx-auto max-w-6xl px-4 text-sm text-slate-700 dark:text-slate-300"><strong>Practitioner playbook.</strong> 21 implementation tasks with progress tracking, templates and evidence. Task progress is self-reported and is not legal certification. Sections such as the GDPR comparison and the AI vendor scenario are related guidance, not DPDP Act requirements.</p>
         <LearningFrameworkPage framework={FRAMEWORK} />
