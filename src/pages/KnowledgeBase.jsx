@@ -140,6 +140,7 @@ export default function KnowledgeBase() {
     return () => window.removeEventListener('kb-subsection', on);
   }, []);
   const [navFilter, setNavFilter] = useState('');
+  const [openGroups, setOpenGroups] = useState([]);
   const kbContentRef = useRef(null);
   const activeTab = TABS.find((t) => t.id === tab) || TABS[0];
   const [edpTab, setEdpTab] = useState('overview');
@@ -434,8 +435,15 @@ export default function KnowledgeBase() {
               const items = TABS.filter((t) => inGroup(t, g) && (!navFilter || `${t.label} ${t.desc}`.toLowerCase().includes(navFilter.toLowerCase())));
               if (!items.length) return null;
               return (
-                <div key={g} className="mb-4">
-                  <p className="px-2 mb-1 text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-400">{groupLabel(g)}</p>
+                <div key={g} className="mb-2">
+                  {(() => { const isOpen = !!navFilter || items.some((t) => t.id === tab) || openGroups.includes(g); return (
+                  <>
+                  <button type="button" aria-expanded={isOpen} onClick={() => setOpenGroups((p) => (p.includes(g) ? p.filter((x) => x !== g) : [...p, g]))}
+                    className="w-full flex items-center justify-between px-2 py-1 text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-400 hover:text-gray-900 dark:hover:text-white">
+                    <span>{groupLabel(g)} <span className="font-normal normal-case">({items.length})</span></span>
+                    <span aria-hidden="true">{isOpen ? '−' : '+'}</span>
+                  </button>
+                  {isOpen && (
                   <ul>
                     {items.map((t) => (
                       <li key={t.id}>
@@ -454,6 +462,9 @@ export default function KnowledgeBase() {
                       </li>
                     ))}
                   </ul>
+                  )}
+                  </>
+                  ); })()}
                 </div>
               );
             })}
