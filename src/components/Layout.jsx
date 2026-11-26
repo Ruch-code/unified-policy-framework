@@ -444,7 +444,7 @@ export default function Layout() {
           </div>
 
           {/* Center: Search Bar - Fluid & Constrained */}
-          <div className="flex-1 max-w-xs sm:max-w-md mx-2 sm:mx-4 min-w-0 hidden sm:block">
+          <div className="flex-1 max-w-xs sm:max-w-md mx-2 sm:mx-4 min-w-[140px] hidden sm:block">
             <SearchBar isDark={isDark} />
           </div>
 
@@ -452,11 +452,13 @@ export default function Layout() {
           <div className="flex items-center gap-2 shrink-0">
             {user && (
               <>
-              <Link to="/field-notes" aria-label="Field Notes" title="Field Notes" className="hidden sm:inline-flex items-center justify-center h-9 px-2.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">
-                <span className="text-xs font-semibold">Field Notes</span>
+              <Link to="/field-notes" aria-label="Field Notes" title="Field Notes" className="hidden sm:inline-flex items-center justify-center gap-1.5 h-9 px-2.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">
+                <BookOpenCheck className="w-4 h-4" aria-hidden="true" />
+                <span className="hidden 2xl:inline text-xs font-semibold">Field Notes</span>
               </Link>
-              <Link to="/grc-vs-audit" aria-label="GRC vs Audit view" title="GRC vs Audit view" className="hidden sm:inline-flex items-center justify-center h-9 px-2.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">
-                <span className="text-xs font-semibold">GRC vs Audit</span>
+              <Link to="/grc-vs-audit" aria-label="GRC vs Audit view" title="GRC vs Audit view" className="hidden sm:inline-flex items-center justify-center gap-1.5 h-9 px-2.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">
+                <ShieldCheck className="w-4 h-4" aria-hidden="true" />
+                <span className="hidden 2xl:inline text-xs font-semibold">GRC vs Audit</span>
               </Link>
               <Link to="/cheat-sheets" aria-label="Cheat Sheets" title="Cheat Sheets" className="hidden sm:inline-flex items-center justify-center h-9 w-9 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">
                 <Table2 className="w-4 h-4" aria-hidden="true" />
