@@ -867,6 +867,16 @@ const TEMPLATE_ENTRIES = [
     anchorId: null,
   },
   {
+    id: 'field-notes',
+    category: 'Policy & Control Modules',
+    label: 'Field Notes: engineering practices to audit evidence',
+    desc: 'DR minimal path, reconciliation as processing integrity, SLOs, alert fatigue, infrastructure as code, post-incident reviews, AI data agents and payment vendor risk, with control map and checklists.',
+    keywords: ['field notes', 'slo', 'service level objective', 'reconciliation', 'processing integrity', 'disaster recovery', 'alert fatigue', 'infrastructure as code', 'clickops', 'post-incident review', 'rca', 'idempotency', 'checklist', 'control map'],
+    path: '/field-notes',
+    mode: 'route',
+    anchorId: null,
+  },
+  {
     id: 'grc-vs-audit',
     category: 'Policy & Control Modules',
     label: 'GRC view vs Audit view',
