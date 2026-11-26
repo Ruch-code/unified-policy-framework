@@ -6,6 +6,7 @@ import SecureRagPipeline from '../components/aiAssurance/SecureRagPipeline.jsx';
 import AgentToAgentBanking from '../components/aiAssurance/AgentToAgentBanking.jsx';
 import AgentAutonomyControls from '../components/aiAssurance/AgentAutonomyControls.jsx';
 import AgentHarnessLayers from '../components/aiAssurance/AgentHarnessLayers.jsx';
+import ShadowAi from '../components/aiAssurance/ShadowAi.jsx';
 import RaiCrosswalk from '../components/aiAssurance/RaiCrosswalk.jsx';
 import AiArchitectureRisks from '../components/aiAssurance/AiArchitectureRisks.jsx';
 import AiInCompliance from '../components/aiAssurance/AiInCompliance.jsx';
@@ -208,6 +209,7 @@ export default function AIGovernance({ isDark = false }) {
         <AgentToAgentBanking />
         <AgentAutonomyControls />
         <AgentHarnessLayers />
+        <ShadowAi />
         <AiSecurityAudit />
 
         {/* Operating rhythm */}
