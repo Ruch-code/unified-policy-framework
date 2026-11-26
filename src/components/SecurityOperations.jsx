@@ -61,6 +61,7 @@ const VULN_LINKS = [
 const IR_LINKS = [
   ['Tabletop Exercise (IR and DR): worked scenario and findings', '/knowledge?topic=tabletop'],
   ['Incident Management policy blueprint and NIST 800-61r3 workflow', '/knowledge?topic=policy-lifecycle'],
+  ['Incident governance: ISO 27035 and NIST crosswalk, roles and regulatory clocks', '/knowledge?topic=policy-lifecycle'],
   ['Recent third-party incidents: remediation and missing controls', '/?section=incident-brief#vendor-risk'],
   ['Threat News Deep Dives: recent incidents explained', '/knowledge?topic=threat-news'],
   ['DPDP Act breach intimation (Rule 7) guidance', '/dpdpa'],

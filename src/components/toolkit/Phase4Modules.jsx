@@ -1,3 +1,6 @@
+import IncidentGovernanceExtras from '../kb/IncidentGovernanceExtras.jsx';
+import PolicyGovernanceLifecycle from '../kb/PolicyGovernanceLifecycle.jsx';
+import AwarenessProgrammeExtras from '../kb/AwarenessProgrammeExtras.jsx';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PolicySopProcedure from './PolicySopProcedure.jsx';
@@ -85,6 +88,8 @@ export function PolicyLifecycleTab() {
         ]} />
         <PolicySopProcedure />
         <ChangeIncidentPolicyBlueprints />
+        <PolicyGovernanceLifecycle />
+        <IncidentGovernanceExtras />
       </>
     ),
     steps: ['Draft using the standard template, with owner and scope.', 'Review with the owner, affected teams and Legal where needed.', 'Approve by the named authority (for example CISO or leadership).', 'Publish in one place staff already use.', 'Communicate the change and what it means for people.', 'Collect acknowledgements from everyone in scope.', 'Review yearly or on a trigger event; archive superseded versions, do not delete them.'],
@@ -139,9 +144,9 @@ export function AwarenessTab() {
     test: ['Sample new joiners and confirm induction training before or within the first week.', 'Check training completion against the HR list, not the training tool list.', 'Review the last two phishing campaigns and follow-up training for clickers.'],
     evidence: ['Awareness plan', 'Training completion report', 'Phishing campaign results', 'Spot check records with actions'],
     pitfalls: ['Annual click-through training only.', 'Punishing clickers, which stops people reporting.', 'Spot checks done once and never repeated.'],
-    maps: ['ISO 27001:2022 A.6.3, A.7.2, A.7.7, A.7.14', 'SOC 2 CC1.4, CC2.2', 'NIST CSF 2.0 PR.AT', 'CIS Controls v8.1 Control 14'],
+    maps: ['ISO 27001:2022 A.6.3, A.7.2, A.7.7, A.7.14', 'SOC 2 CC1.4, CC2.2', 'NIST CSF 2.0 PR.AT', 'CIS Controls v8.1 Control 14', 'HIPAA Security Rule 45 CFR 164.308(a)(5)', 'PCI DSS v4.0 Requirement 12.6'],
     related: <p className={`mt-3 ${P}`}>Training and phishing metrics are in the <Link className="ui-link" to="/knowledge?topic=kpi-kri">KPI and KRI library</Link>.</p>,
-    intro: <AwarenessCycleMetrics />,
+    intro: <><AwarenessCycleMetrics /><AwarenessProgrammeExtras /></>,
     templates: [
       { name: 'Awareness annual plan', file: 'awareness-annual-plan.xlsx', desc: 'month, theme, audience, channel, owner and completion' },
       { name: 'Phishing simulation tracker', file: 'phishing-tracker.xlsx', desc: 'campaign, audience, delivered, clicked, reported, rates and remedial training' },
@@ -174,7 +179,7 @@ export function ErpReviewTab() {
     pitfalls: ['Testing roles but not the access hidden in composite or derived roles.', 'Generic accounts with no owner.', 'Direct production changes allowed "temporarily".'],
     maps: ['ISO 27001:2022 A.5.3, A.8.2, A.8.15, A.8.32', 'SOX 404 ITGCs: access, change and operations', 'COSO 2013 Principle 11'],
     intro: <><SapAccessControlGuide /><SapItgcPlan /></>,
-    related: <p className={`mt-3 ${P}`}>The SoD conflict matrix template and testing steps are in the <Link className="ui-link" to="/knowledge?topic=it-audit">IT Audit Toolkit</Link>.</p>,
+    related: <p className={`mt-3 ${P}`}>The SoD conflict matrix template and testing steps are in the <Link className="ui-link" to="/knowledge?topic=it-audit">IT Audit Toolkit</Link>. Rule set design, Firefighter governance and key transactions are in <Link className="ui-link" to="/knowledge?topic=sap-grc">SAP GRC Access Control</Link>.</p>,
     templates: [{ name: 'ERP security review checklist', file: 'erp-security-checklist.xlsx', desc: 'area, check, how to test, result, finding and owner' }],
     source: 'Common IT audit practice; COSO 2013; PCAOB AS 2201',
   };

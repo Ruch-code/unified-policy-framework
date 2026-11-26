@@ -106,4 +106,21 @@ export const CHEAT_SHEETS = [
     ],
     sources: [['AICPA Trust Services Criteria', 'https://www.aicpa-cima.com/'], ['ISO/IEC 27001:2022', 'https://www.iso.org/standard/27001']],
   },
+  {
+    id: 'sap-firefighter',
+    title: 'SAP GRC Firefighter checklist',
+    intro: 'What good emergency access governance looks like in SAP Access Control, and the evidence to keep. Last verified 26 Nov 2026.',
+    columns: ['Area', 'What good looks like'],
+    rows: [
+      ['Firefighter IDs', 'Each Firefighter ID has a named owner and a defined scope; no permanent assignment to users'],
+      ['Controllers', 'A controller, independent of the user, is assigned to review every session'],
+      ['Reason codes', 'Every session has a reason code and a ticket or incident reference'],
+      ['Logging', 'Transaction usage, change documents and the security audit log are captured for the session'],
+      ['Review SLA', 'Controller reviews the log within a defined period (often 1 to 5 working days) and signs off'],
+      ['Exceptions', 'Activity outside the stated reason is escalated and investigated'],
+      ['Periodic review', 'Firefighter ID assignments, owners and controllers are re-certified at least yearly'],
+      ['Evidence', 'Session list, logs, controller sign-off and follow-up of exceptions, kept for the audit period'],
+    ],
+    sources: [['SAP Help Portal: SAP Access Control', 'https://help.sap.com/docs/SAP_ACCESS_CONTROL']],
+  },
 ];
