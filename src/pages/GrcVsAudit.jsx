@@ -60,24 +60,25 @@ const QUESTIONS = [
 export default function GrcVsAudit({ embedded = false }) {
   const Title = embedded ? 'h2' : 'h1';
   return (
-    <div id="grc-vs-audit" className={embedded ? 'space-y-8 scroll-mt-24' : 'max-w-6xl mx-auto px-4 py-10 space-y-8'}>
+    <details id="grc-vs-audit" open className={embedded ? 'scroll-mt-24' : 'max-w-6xl mx-auto px-4 py-10'}>
+      <summary className="cursor-pointer text-3xl font-bold text-gray-900 dark:text-white"><Title className="inline">GRC view vs Audit view</Title></summary>
+      <div className="mt-4 space-y-8">
       <header>
-        <Title className="text-3xl font-bold text-gray-900 dark:text-white">GRC view vs Audit view</Title>
         <p className="mt-2 max-w-3xl text-sm text-gray-700 dark:text-slate-300">The same control looks different depending on whether you build and run it (GRC) or independently test it (audit). Knowing both views helps you design controls that pass audit, and answer interview questions from the right angle.</p>
       </header>
 
-      <section>
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">The core difference</h2>
+      <details className="rounded-xl border border-gray-200 dark:border-slate-700 p-3" open>
+        <summary className="cursor-pointer text-xl font-semibold text-gray-900 dark:text-white mb-2">The core difference</summary>
         <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-slate-700" tabIndex={0} role="region" aria-label="GRC vs audit core difference">
           <table className="w-full text-sm min-w-[760px]">
             <thead><tr>{['Aspect', 'GRC view', 'Audit view'].map((h) => <th key={h} scope="col" className={TH}>{h}</th>)}</tr></thead>
             <tbody>{CORE.map((r) => <tr key={r[0]}>{r.map((c, j) => <td key={j} className={`${TD} ${j === 0 ? 'font-semibold text-gray-900 dark:text-white' : ''}`}>{c}</td>)}</tr>)}</tbody>
           </table>
         </div>
-      </section>
+      </details>
 
-      <section>
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Topic by topic</h2>
+      <details className="rounded-xl border border-gray-200 dark:border-slate-700 p-3" open>
+        <summary className="cursor-pointer text-xl font-semibold text-gray-900 dark:text-white mb-2">Topic by topic</summary>
         <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-slate-700" tabIndex={0} role="region" aria-label="GRC vs audit by topic">
           <table className="w-full text-sm min-w-[1100px]">
             <thead><tr>{['Topic', 'GRC view: design and run', 'Audit view: test and conclude', 'Evidence the auditor asks for', 'Detail'].map((h) => <th key={h} scope="col" className={TH}>{h}</th>)}</tr></thead>
@@ -90,10 +91,10 @@ export default function GrcVsAudit({ embedded = false }) {
             ))}</tbody>
           </table>
         </div>
-      </section>
+      </details>
 
-      <section id="sod-grc-vs-audit" className="scroll-mt-24">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Segregation of duties: GRC view vs audit view</h2>
+      <details id="sod-grc-vs-audit" className="scroll-mt-24" className="rounded-xl border border-gray-200 dark:border-slate-700 p-3" open>
+        <summary className="cursor-pointer text-xl font-semibold text-gray-900 dark:text-white mb-2">Segregation of duties: GRC view vs audit view</summary>
         <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-slate-700" tabIndex={0} role="region" aria-label="Segregation of duties GRC vs audit">
           <table className="w-full text-sm min-w-[860px]">
             <thead><tr>{['Area', 'GRC view: design and run', 'Audit view: test and conclude'].map((h) => <th key={h} scope="col" className={TH}>{h}</th>)}</tr></thead>
@@ -101,32 +102,33 @@ export default function GrcVsAudit({ embedded = false }) {
           </table>
         </div>
         <p className="mt-2 text-sm text-gray-700 dark:text-slate-300">Example: in a five-person finance team, the same person creates vendors and releases payments. GRC agrees a monthly review of new vendors against payments by the finance controller. The auditor samples three months and checks the controller actually compared the lists and followed up anything unusual. Full testing steps are in <Link className="ui-link" to="/#access-governance">Least Privilege and Segregation of Duties</Link>.</p>
-      </section>
+      </details>
 
-      <section>
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">How GRC closes gaps and how audit finds them</h2>
+      <details className="rounded-xl border border-gray-200 dark:border-slate-700 p-3" open>
+        <summary className="cursor-pointer text-xl font-semibold text-gray-900 dark:text-white mb-2">How GRC closes gaps and how audit finds them</summary>
         <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-slate-700" tabIndex={0} role="region" aria-label="Gap lifecycle">
           <table className="w-full text-sm min-w-[860px]">
             <thead><tr>{['Stage', 'GRC: covers the gap', 'Audit: finds the gap'].map((h) => <th key={h} scope="col" className={TH}>{h}</th>)}</tr></thead>
             <tbody>{GAPS.map((r) => <tr key={r[0]}>{r.map((c, j) => <td key={j} className={`${TD} ${j === 0 ? 'font-semibold text-gray-900 dark:text-white' : ''}`}>{c}</td>)}</tr>)}</tbody>
           </table>
         </div>
-      </section>
+      </details>
 
-      <section>
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Typical questions from each side</h2>
+      <details className="rounded-xl border border-gray-200 dark:border-slate-700 p-3" open>
+        <summary className="cursor-pointer text-xl font-semibold text-gray-900 dark:text-white mb-2">Typical questions from each side</summary>
         <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-slate-700" tabIndex={0} role="region" aria-label="Typical questions">
           <table className="w-full text-sm min-w-[700px]">
             <thead><tr>{['GRC asks', 'Audit asks'].map((h) => <th key={h} scope="col" className={TH}>{h}</th>)}</tr></thead>
             <tbody>{QUESTIONS.map((r) => <tr key={r[1]}><td className={TD}>{r[1]}</td><td className={TD}>{r[3]}</td></tr>)}</tbody>
           </table>
         </div>
-      </section>
+      </details>
 
       <section className="rounded-xl border border-indigo-200 dark:border-indigo-800 p-4 text-sm text-gray-700 dark:text-slate-300">
         <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">Interview line</h2>
         <p>&quot;In GRC I design controls with the audit test in mind: a complete population, a named performer, a dated record and a follow-up on exceptions. That way the evidence exists as a by-product of doing the work, and the audit becomes a check rather than a scramble.&quot;</p>
       </section>
-    </div>
+      </div>
+    </details>
   );
 }
