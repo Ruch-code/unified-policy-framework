@@ -37,6 +37,19 @@ const GAPS = [
   ['5. Closing it', 'Collects evidence that the fix operated for long enough, then retests before closing', 'Validates remediation in follow-up or the next audit; a fix after the period does not change the earlier result'],
 ];
 
+const SOD = [
+  ['Purpose', 'Prevent one person from both doing and hiding a harmful action, while keeping the business able to work', 'Confirm no user can complete a high-risk process alone without detection'],
+  ['Conflict matrix', 'Build it with process owners: which functions conflict and how severe each risk is', 'Inspect the matrix: is it complete for in-scope processes, approved and current?'],
+  ['Role design', 'Design roles that avoid conflicts from the start; remove toxic combinations from role templates', 'Test that role definitions match the matrix; look for conflicts hidden in composite roles'],
+  ['Provisioning', 'Run a conflict check in the access request so approvers see the risk before approving', 'Sample new access and role changes: was the conflict check done before access was granted?'],
+  ['Accepted conflicts', 'Where a small team cannot separate duties, agree a mitigating control with an owner, frequency and expiry', 'Check each exception was approved at the right level and that the mitigating review actually ran, with evidence'],
+  ['Privileged and emergency access', 'Time-bound break-glass access with logging and independent review', 'Sample sessions: reason, log and reviewer sign-off by someone other than the user'],
+  ['Monitoring', 'Include SoD results in the periodic access review and track conflicts as a KRI', 'Confirm conflicts are in the review population and removals were completed'],
+  ['Actual activity', 'Use transaction monitoring for the highest-risk conflicts', 'For high-risk conflicts, check whether anyone actually performed both steps'],
+  ['Evidence', 'Keep the matrix, conflict reports, exception register and mitigation evidence as you go', 'Requests a complete user and role export, the conflict report, the exception register and mitigation records'],
+  ['Outcome', 'Fewer conflicts over time, each remaining one owned and mitigated', 'A conclusion: effective, or a deficiency with severity based on what could go wrong'],
+];
+
 const QUESTIONS = [
   ['GRC asks', 'What is our biggest risk here, who owns it, and what is the plan?', 'Audit asks', 'Show me the evidence that the control operated for the full period.'],
   ['GRC asks', 'Is this control proportionate to the risk and practical for the team?', 'Audit asks', 'How do I know this population is complete and accurate?'],
@@ -76,6 +89,17 @@ export default function GrcVsAudit() {
             ))}</tbody>
           </table>
         </div>
+      </section>
+
+      <section id="sod-grc-vs-audit" className="scroll-mt-24">
+        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Segregation of duties: GRC view vs audit view</h2>
+        <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-slate-700" tabIndex={0} role="region" aria-label="Segregation of duties GRC vs audit">
+          <table className="w-full text-sm min-w-[860px]">
+            <thead><tr>{['Area', 'GRC view: design and run', 'Audit view: test and conclude'].map((h) => <th key={h} scope="col" className={TH}>{h}</th>)}</tr></thead>
+            <tbody>{SOD.map((r) => <tr key={r[0]}>{r.map((c, j) => <td key={j} className={`${TD} ${j === 0 ? 'font-semibold text-gray-900 dark:text-white' : ''}`}>{c}</td>)}</tr>)}</tbody>
+          </table>
+        </div>
+        <p className="mt-2 text-sm text-gray-700 dark:text-slate-300">Example: in a five-person finance team, the same person creates vendors and releases payments. GRC agrees a monthly review of new vendors against payments by the finance controller. The auditor samples three months and checks the controller actually compared the lists and followed up anything unusual. Full testing steps are in <Link className="ui-link" to="/#access-governance">Least Privilege and Segregation of Duties</Link>.</p>
       </section>
 
       <section>
