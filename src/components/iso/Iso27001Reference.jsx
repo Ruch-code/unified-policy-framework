@@ -106,6 +106,24 @@ export function Iso27001MandatoryDocs() {
     <details id="iso-mandatory-docs" className={`${CARD} max-w-6xl mx-auto my-4 scroll-mt-24`}>
       <summary className="cursor-pointer p-4 text-lg font-bold text-gray-900 dark:text-white">Mandatory documents and policies for ISO 27001:2022</summary>
       <div className="px-4 pb-4 space-y-4">
+        <div className="rounded-xl border-2 border-amber-400 dark:border-amber-600 bg-amber-50 dark:bg-amber-900/20 p-4">
+          <p className="font-bold text-gray-900 dark:text-white">Must have before the Stage 1 audit</p>
+          <p className={`mt-1 ${P}`}>Stage 1 is a documentation review. Have these approved and dated before the certification body arrives:</p>
+          <ul className={`mt-2 list-disc pl-5 space-y-1 ${P}`}>
+            <li>ISMS scope (Clause 4.3)</li>
+            <li>Information security policy (Clause 5.2) and information security objectives (Clause 6.2)</li>
+            <li>Risk assessment and risk treatment process (Clause 6.1.2, 6.1.3) with results (Clause 8.2, 8.3)</li>
+            <li>Statement of Applicability (Clause 6.1.3 d) and risk treatment plan approved by risk owners</li>
+            <li>Evidence of competence (Clause 7.2)</li>
+            <li>Operational planning and control records (Clause 8.1)</li>
+            <li>Monitoring and measurement results (Clause 9.1)</li>
+            <li>Internal audit programme and results (Clause 9.2); certification bodies normally expect one full internal audit before Stage 2</li>
+            <li>Management review results (Clause 9.3)</li>
+            <li>Nonconformities and corrective actions (Clause 10.2)</li>
+            <li>Annex A policies and procedures for controls marked applicable in the SoA (table below)</li>
+          </ul>
+          <p className="mt-2 text-xs text-gray-600 dark:text-gray-400">A missing internal audit or management review before Stage 2 is a common reason certification is delayed.</p>
+        </div>
         <p className={P}>Clauses 4 to 10 require the documented information below. An auditor raises a nonconformity if any is missing.</p>
         <Table head={['Clause', 'Documented information required']} rows={MANDATORY_DOCS} min={480} />
         <h3 className="font-semibold text-gray-900 dark:text-white">Policies expected through Annex A</h3>
