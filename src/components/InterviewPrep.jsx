@@ -104,6 +104,7 @@ export default function InterviewPrep({ isDark = false }) {
     'tech-risk-resilience': 'bg-teal-700',
     'regulated-gaming-grc': 'bg-indigo-700',
     'bcms-bia': 'bg-teal-700',
+    'ai-appsec-soc': 'bg-red-700',
   };
 
   return (
