@@ -6,6 +6,18 @@ import { FRAMEWORKS } from '../data/registry';
 
 const CHANGELOG = [
   {
+    version: '2.11.0',
+    date: '2026-11-26',
+    label: 'GRC Deep Dives Release',
+    changes: [
+      { type: 'Feature', title: 'SAP GRC Access Control topic', desc: 'New Knowledge Base topic next to ERP Security Review: SoD rule set design, Firefighter governance, key transactions with export, ITGC testing and planning for the next release.' },
+      { type: 'Feature', title: 'Awareness programme runbook', desc: 'Role-based curriculum, phishing simulation runbook, sortable metrics led by report rate and a 12-month awareness calendar you can export.' },
+      { type: 'Feature', title: 'Applying NIST CSF 2.0', desc: 'New section on /nist: profiles, Tiers, all 22 categories with evidence and OneLens links, a 12-month worked example and CSF vs ISO 27001.' },
+      { type: 'Feature', title: 'Policy and incident governance', desc: 'Policy governance lifecycle, RACI and exceptions register; ISO/IEC 27035-1 and NIST SP 800-61r3 crosswalk, incident roles, regulatory clocks and ITSM major incidents.' },
+      { type: 'Feature', title: 'Cheat sheet and interview questions', desc: 'SAP GRC Firefighter checklist cheat sheet and 25 new interview questions across these topics.' },
+    ],
+  },
+  {
     version: '2.10.0',
     date: '2026-11-20',
     label: 'India Messaging Release',

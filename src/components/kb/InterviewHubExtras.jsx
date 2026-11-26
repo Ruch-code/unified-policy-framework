@@ -1,6 +1,8 @@
 // Interview-focused additions to existing KB topics: SAP Access Control, awareness cycle and metrics,
 // NIST CSF 2.0 vs AI RMF, and Change and Incident Management policy blueprints.
 import { Link } from 'react-router-dom';
+import SortableGrid from './SortableGrid.jsx';
+import { NewBadge } from '../updates/UpdateBits.jsx';
 
 const P = 'text-sm text-gray-700 dark:text-gray-300';
 const H = 'mt-4 mb-1 text-base font-semibold text-gray-900 dark:text-white';
@@ -78,7 +80,8 @@ export function AwarenessCycleMetrics() {
           'Privacy safeguards: report trends, not names, to wider management. Never collect real passwords.',
         ]} />
         <h3 className={H}>Metrics and what they tell management</h3>
-        <Table head={['Metric', 'How to calculate', 'What it tells you']} rows={[
+        <SortableGrid label="Awareness and phishing metrics" headers={['Metric', 'How to calculate', 'What it tells you']} file="awareness-phishing-metrics" rows={[
+
           ['Coverage', 'People trained or sent simulations divided by people eligible', 'Whether the programme reaches everyone in scope'],
           ['Completion', 'Completed training divided by assigned', 'Delivery, not behaviour'],
           ['Click rate', 'Unique recipients who clicked divided by messages delivered', 'Susceptibility to that lure; compare to baseline, not to other companies'],
@@ -87,7 +90,9 @@ export function AwarenessCycleMetrics() {
           ['Data submission rate', 'Only if safely simulated, with nothing stored', 'Severity of risky behaviour'],
           ['Repeat clickers', 'People who clicked in two or more recent campaigns', 'Where targeted coaching is needed'],
           ['Remedial completion', 'Remedial learning completed divided by assigned', 'Follow-through'],
+          ['Real phish reported', 'Count of genuine malicious emails reported by staff in the period', 'Whether simulation habits carry over to real attacks'],
         ]} />
+        <p className={P}><strong>Lead with report rate and time to report.</strong> A 2025 study of about 19,500 UC San Diego Health employees, presented at the IEEE Symposium on Security and Privacy, found no significant link between recently completing annual training and falling for phishing, and embedded training reduced clicks by only about 2 percent. Completion shows delivery, not behaviour. <NewBadge /></p>
         <p className={P}>No single number proves security. A falling click rate with a falling report rate may just mean people ignore email.</p>
         <h3 className={H}>Campaign walkthrough (fill in your real details)</h3>
         <Ol items={[
@@ -98,7 +103,7 @@ export function AwarenessCycleMetrics() {
           'Review: compare to baseline, share trends with leadership, adjust next quarter\'s theme.',
         ]} />
         <p className={P}>Templates: see the awareness plan and phishing tracker in this topic's template list.</p>
-        <Src links={[['CISA: Teach employees to avoid phishing', 'https://www.cisa.gov/audiences/small-and-medium-businesses/secure-your-business/teach-employees-avoid-phishing']]} />
+        <Src links={[['CISA: Teach employees to avoid phishing', 'https://www.cisa.gov/audiences/small-and-medium-businesses/secure-your-business/teach-employees-avoid-phishing'], ['UC San Diego: phishing training study (2025)', 'https://today.ucsd.edu/story/cybersecurity-training-programs-dont-prevent-employees-from-falling-for-phishing-scams']]} />
       </div>
     </details>
   );
@@ -151,7 +156,7 @@ export function ChangeIncidentPolicyBlueprints() {
         <div className="mt-3">
           <p className={P}>The operating detail (change types, CAB, evidence) is in <Link className="ui-link" to="/knowledge?topic=change">Change Management</Link>. This shows the policy document and how it is governed.</p>
           <h3 className={H}>Policy blueprint</h3>
-          <Ul items={['Purpose, scope and definitions', 'Policy owner and approver', 'Roles and segregation of duties (author, reviewer, approver, deployer)', 'Change categories: standard, normal, major, emergency, with risk criteria', 'Intake and impact assessment', 'Approvals by category', 'Testing and security review', 'Release and rollback requirements', 'Emergency change rules and retrospective review', 'Evidence and record retention', 'Exceptions and risk acceptance', 'Monitoring and metrics', 'Communication and training', 'Version control and review triggers']} />
+          <Ul items={['Purpose, scope and definitions', 'Policy owner and approver', 'Roles and segregation of duties (author, reviewer, approver, deployer)', 'Change categories: standard, normal, major, emergency, with risk criteria', 'Intake and impact assessment', 'Approvals by category, including the Change Advisory Board (CAB) for normal and major changes and an Emergency CAB (ECAB) for emergencies', 'Testing and security review', 'Release and rollback requirements', 'Emergency change rules and retrospective approval within a set window', 'Post-implementation review for failed, emergency and major changes', 'Evidence and record retention', 'Exceptions and risk acceptance', 'Monitoring and metrics', 'Communication and training', 'Version control and review triggers']} />
           <h3 className={H}>Lifecycle applied</h3>
           <p className={P}>Draft with Engineering, IT, Security, business owners and Legal where relevant. Approve at the right authority. Publish one controlled version. Train affected teams. Configure tickets, repositories and CI/CD to enforce it. Test that evidence is produced. Review at the organisation's chosen interval (annual is common, not a universal law) and sooner after incidents, audit findings or major changes.</p>
           <h3 className={H}>Spoken answer (about 60 seconds)</h3>
@@ -164,7 +169,7 @@ export function ChangeIncidentPolicyBlueprints() {
         <div className="mt-3">
           <p className={P}>Separate two things: the ongoing preparation and governance the organisation maintains, and the response to a specific incident. Deep practice is in <Link className="ui-link" to="/knowledge?topic=tabletop">Tabletop Exercise</Link> and the Security Operations playbook on the home page.</p>
           <h3 className={H}>Policy blueprint</h3>
-          <Ul items={['Purpose, scope, definitions; event versus incident threshold', 'Categories and severity levels with response targets', 'Reporting channels for staff, customers and vendors', 'Roles, authority, escalation and backups (incident commander, technical lead, communications, legal and privacy)', 'Evidence and incident record handling', 'Containment and recovery decision rights', 'Legal, privacy and contract notification assessment', 'Internal and external communications, including out-of-band channels', 'Vendor, insurer and external support escalation', 'Record retention, exceptions, exercises', 'Post-incident review and corrective action tracking', 'Owner, approver, version, effective date, training and review triggers']} />
+          <Ul items={['Purpose, scope and definitions of event, incident and breach (a breach is an incident that affects personal or regulated data and may trigger notification)', 'Categories and severity levels with response targets', 'Reporting channels for staff, customers and vendors', 'Roles, authority, escalation and backups (incident commander, technical lead, communications, legal and privacy)', 'Evidence and incident record handling', 'Containment and recovery decision rights', 'Legal, privacy and contract notification assessment', 'Internal and external communications, including out-of-band channels', 'Vendor, insurer and external support escalation', 'Record retention and exceptions', 'Annual testing through a tabletop or live exercise', 'Post-incident review and corrective action tracking', 'Owner, approver, version, effective date, training and review triggers']} />
           <h3 className={H}>Workflow</h3>
           <Ol items={[
             'Prepare and govern: approved plan, severity definitions, named commander and backups, contacts, tools, templates, exercises.',

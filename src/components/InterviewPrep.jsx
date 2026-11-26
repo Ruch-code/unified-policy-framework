@@ -105,6 +105,7 @@ export default function InterviewPrep({ isDark = false }) {
     'regulated-gaming-grc': 'bg-indigo-700',
     'bcms-bia': 'bg-teal-700',
     'ai-appsec-soc': 'bg-red-700',
+    'grc-deep-dives': 'bg-indigo-800',
   };
 
   return (

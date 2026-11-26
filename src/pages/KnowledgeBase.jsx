@@ -34,6 +34,7 @@ import DlpDeepDive from '../components/DlpDeepDive.jsx';
 import { PARTS as CCT_PARTS } from '../data/cloudTestingGuide.js';
 import StreamlineGrc from '../components/toolkit/StreamlineGrc.jsx';
 import FindingClassification from '../components/toolkit/FindingClassification.jsx';
+import SapGrcTopic from '../components/toolkit/SapGrcTopic.jsx';
 import { CustomerTrustTab, PolicyLifecycleTab, DueDiligenceTab, AwarenessTab, ErpReviewTab } from '../components/toolkit/Phase4Modules.jsx';
 import CryptoExchangeTab from '../components/CryptoExchangeTab.jsx';
 import CryptoAlgorithms from '../components/kb/CryptoAlgorithms.jsx';
@@ -97,6 +98,7 @@ const TABS = [
   { id: 'infra-review', label: 'Infrastructure Security Review Playbook', icon: Network, group: 'IT audit areas', area: 'Internal audit', desc: 'End-to-end review of network, BC/DR, incident response, access and firewall rules, with priority, effort, rollback and owners for each fix, plus key rotation and contractor access scenarios', parts: IRP_PARTS, partPrefix: 'irp' },
   { id: 'cloud-testing', label: 'Cloud Control Testing Guide', icon: ShieldAlert, group: 'IT audit areas', area: 'Internal audit', desc: 'Testing SOC 2 CC6, CC7, CC8, A1 and HIPAA 164.308 and 164.312 directly in AWS, GCP and Azure', parts: CCT_PARTS },
   { id: 'erp', label: 'ERP Security Review', icon: ShieldAlert, group: 'IT audit areas', area: 'Internal audit', desc: 'Privileged accounts, critical transactions, SoD, change transports and logging in ERP systems' },
+  { id: 'sap-grc', label: 'SAP GRC Access Control', icon: ShieldAlert, group: 'IT audit areas', area: 'Internal audit', desc: 'SoD rule set design, Firefighter governance, key transactions, ITGC testing and planning ahead for the next SAP Access Control release.' },
   { id: 'edp', label: 'Endpoint & Data Protection', icon: Smartphone, group: 'GRC: Security architecture', area: 'GRC', desc: 'MDM, DLP, BYOD, ecosystems, mapping, roadmap, evidence and checklists.' },
   { id: 'crypto-algorithms', label: 'Cryptographic Algorithms', icon: Key, group: 'GRC: Security architecture', area: 'GRC', desc: 'AES-128, AES-256 (GCM), ChaCha20-Poly1305, RSA, ECDHE, ECDSA and Ed25519: flow charts, pros and cons' },
   { id: 'data-governance', label: 'Data Governance', icon: Shield, group: 'GRC: Security architecture', area: 'GRC', desc: 'Data discovery, classification, labelling, data flow mapping and records of processing' },
@@ -394,6 +396,7 @@ export default function KnowledgeBase() {
     'finding-classification': <FindingClassification />,
     'due-diligence': <DueDiligenceTab />,
     erp: <ErpReviewTab />,
+    'sap-grc': <SapGrcTopic />,
     'customer-trust': <CustomerTrustTab />,
     awareness: <AwarenessTab />,
     zerotrust: <ZeroTrustShadowIt />,

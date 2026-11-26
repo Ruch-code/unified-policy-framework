@@ -641,6 +641,7 @@ export default function Home() {
             <ul className="mt-1 grid gap-1 md:grid-cols-3 text-sm">
               <li><a href="#regional" onClick={(e) => { e.preventDefault(); setActiveTab('regional'); setTimeout(() => window.dispatchEvent(new CustomEvent('compliance:scroll-to-section', { detail: { id: 'dpdpa-updates' } })), 150); }} className="underline text-gray-900 dark:text-white">DPDPA phased rollout and core rules</a></li>
               <li><Link to="/cheat-sheets" className="underline text-gray-900 dark:text-white">Cheat sheets: breach deadlines, DPO, retention</Link></li>
+              <li><Link to="/knowledge?topic=sap-grc" className="underline text-gray-900 dark:text-white">SAP GRC, CSF 2.0 in practice, policy and incident governance</Link></li>
               <li><a href="#ai-privacy" onClick={(e) => { e.preventDefault(); setActiveTab('ai-privacy'); setTimeout(() => window.dispatchEvent(new CustomEvent('compliance:scroll-to-section', { detail: { id: 'ai-updates' } })), 150); }} className="underline text-gray-900 dark:text-white">Agentic AI controls and AI pipeline privacy</a></li>
             </ul>
           </div>

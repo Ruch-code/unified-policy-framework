@@ -1,3 +1,4 @@
+import NistApplyCsf from "../../components/nist/NistApplyCsf.jsx";
 import { RiskCrossCheckBlock } from "../../components/riskAssessment/RiskCrossCheck.jsx";
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
 
@@ -175,6 +176,7 @@ export default function Nist() {
   return (
     <>
       <LearningFrameworkPage framework={FRAMEWORK} />
+      <NistApplyCsf />
       <RiskCrossCheckBlock frameworkId="nist" />
     </>
   );
