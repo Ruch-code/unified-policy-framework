@@ -20,6 +20,7 @@ import AccessRequirements from '../components/AccessRequirements.jsx';
 import UserAccessReview from '../components/UserAccessReview.jsx';
 import AccessReviewByDesign from '../components/AccessReviewByDesign.jsx';
 import AccessSod from '../components/AccessSod.jsx';
+import SiteNav from '../components/nav/SiteNav.jsx';
 import SecurityOperations from '../components/SecurityOperations.jsx';
 import HybridSecurityFramework from '../components/HybridSecurityFramework.jsx';
 import AssetInventoryTemplate from '../components/AssetInventoryTemplate.jsx';
@@ -190,7 +191,35 @@ const TABS = [
     ],
   },
 ];
-const HOME_GROUPS = ['Frameworks and regulation', 'Risk', 'Third parties', 'Access', 'Engineering', 'Career'];
+TABS.push(
+  {
+    id: 'security-operations',
+    group: 'Security operations',
+    label: 'Incidents, Vulnerabilities and Hybrid Security',
+    icon: Shield,
+    description: 'Security operations playbook: logging, incident response, vulnerability management, hybrid workforce security and asset inventory.',
+    whatCanGoWrong: [
+      'Missed Incidents: Alerts nobody reviews, so attacks run for weeks before anyone notices',
+      'Late Notification: Regulatory clocks such as CERT-In 6 hours or GDPR 72 hours are missed',
+      'Unpatched Exposure: Critical vulnerabilities stay open past their SLA with no exception approved',
+      'Unmanaged Devices: Remote and personal devices reach company data without controls',
+      'Unknown Assets: Systems missing from the inventory are never scanned, patched or monitored',
+    ],
+  },
+  {
+    id: 'framework-cards',
+    group: 'Frameworks and regulation',
+    label: 'Framework Cards by Region',
+    icon: Globe,
+    description: 'Framework cards for ISO 27001, GDPR, DPDPA, FedRAMP, CJIS and 20+ regulations across 8 regions, with control reuse maps and how to unify into one policy set.',
+    whatCanGoWrong: [
+      'Duplicate Effort: Separate policies and evidence for each framework',
+      'Missed Obligations: A regulation in a new market is not identified until a customer or regulator asks',
+      'Inconsistent Controls: The same control described and tested differently per framework',
+    ],
+  },
+);
+const HOME_GROUPS = ['Frameworks and regulation', 'Security operations', 'Risk', 'Third parties', 'Access', 'Engineering', 'Career'];
 
 
 const REGIONS = [
@@ -357,13 +386,13 @@ function TabPanel({ isDark, activeTab }) {
       </div>
 
       {/* Tab Content */}
-      {activeTab === 'regional' && (
+      {activeTab === 'security-operations' && (
         <ErrorBoundary>
           <SecurityOperations isDark={isDark} />
         </ErrorBoundary>
       )}
 
-      {activeTab === 'regional' && (
+      {activeTab === 'security-operations' && (
         <div id="hybrid-security" className="scroll-mt-24">
           <ErrorBoundary>
             <HybridSecurityFramework isDark={isDark} />
@@ -371,17 +400,17 @@ function TabPanel({ isDark, activeTab }) {
         </div>
       )}
 
-      {activeTab === 'regional' && (
+      {activeTab === 'security-operations' && (
         <ErrorBoundary>
           <AssetInventoryTemplate />
         </ErrorBoundary>
       )}
 
-      {activeTab === 'regional' && (
+      {activeTab === 'security-operations' && (
         <MovedNote id="cloud-control-testing" title="Cloud Control Testing Guide: AWS, GCP and Azure" to="/knowledge?topic=cloud-testing" where="the Knowledge Base" />
       )}
 
-      {activeTab === 'regional' && (
+      {activeTab === 'framework-cards' && (
         <LockedSection
           title="By Region Framework Cards"
           description="Access detailed framework cards for ISO 27001, GDPR, DPDPA, FedRAMP, CJIS, and 20+ regulations across 8 global regions with direct playbook links."
@@ -543,7 +572,7 @@ function TabPanel({ isDark, activeTab }) {
       )}
 
       {/* Unified control matrix teaser - only on last tab or regional */}
-      {(activeTab === 'regional' || activeTab === 'access-governance') && (
+      {(activeTab === 'framework-cards' || activeTab === 'access-governance') && (
         <div className="mt-10 bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl p-8">
           <h3 className="text-2xl font-bold text-navy-900 dark:text-text-dark-primary mb-2">How to unify into one policy set</h3>
           <p className="text-gray-700 dark:text-text-dark-secondary mb-4 max-w-3xl">
@@ -614,9 +643,13 @@ export default function Home() {
       const id = e.detail?.id;
       if (!id) return;
       let tries = 0;
+      const fallbacks = ['security-operations', 'framework-cards'];
       const attempt = () => {
         if (revealTarget(id) || revealTarget(`panel-${id}`)) return;
-        if (tries++ < 15) setTimeout(attempt, 100);
+        if (tries++ < 15) { setTimeout(attempt, 100); return; }
+        // Sections that moved off the Regional tab: try the tabs they moved to.
+        const next = fallbacks.shift();
+        if (next) { tries = 0; setActiveTab(next); setTimeout(attempt, 200); }
       };
       attempt();
     };
@@ -647,25 +680,15 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-8">
+        <div className="lg:grid lg:grid-cols-[auto_minmax(0,1fr)] lg:gap-8">
           <nav aria-label="GRC modules" className="mb-5 lg:mb-0">
             <label className="lg:hidden block text-xs font-semibold text-gray-600 dark:text-slate-300">Module
               <select value={activeTab} onChange={(e) => setActiveTab(e.target.value)} className="mt-1 w-full px-3 py-2 border border-gray-300 dark:border-slate-700 rounded text-sm bg-white dark:bg-slate-900">
                 {HOME_GROUPS.map((g) => <optgroup key={g} label={g}>{TABS.filter((t) => t.group === g).map((t) => <option key={t.id} value={t.id}>{t.label}</option>)}</optgroup>)}
               </select>
             </label>
-            <div className="hidden lg:block sticky top-20" role="tablist" aria-orientation="vertical" aria-label="GRC modules">
-              {HOME_GROUPS.map((g) => (
-                <div key={g} className="mb-4">
-                  <p className="px-2 mb-1 text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-400">{g}</p>
-                  {TABS.filter((t) => t.group === g).map((t) => (
-                    <button key={t.id} type="button" role="tab" id={`tab-${t.id}`} aria-selected={activeTab === t.id} aria-controls={`panel-${t.id}`} onClick={() => setActiveTab(t.id)}
-                      className={`w-full text-left px-2 py-1.5 rounded text-sm ${activeTab === t.id ? 'bg-[#1e293b] text-white font-semibold' : 'text-gray-700 hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-slate-800'}`}>
-                      {t.label}
-                    </button>
-                  ))}
-                </div>
-              ))}
+            <div className="hidden lg:block">
+              <SiteNav active={`home:${activeTab}`} onSelect={(it) => { if (it[0] === 'home') { setActiveTab(it[1]); return true; } return false; }} />
             </div>
           </nav>
 

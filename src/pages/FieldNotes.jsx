@@ -1,3 +1,4 @@
+import SiteNav from '../components/nav/SiteNav.jsx';
 import { NOTES, PRACTICES, CONTROL_MAP, CHECKLISTS } from '../data/fieldNotes.js';
 
 const TH = 'p-3 text-left font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-800 align-bottom';
@@ -18,7 +19,9 @@ function Table({ label, head, rows, min }) {
 
 export default function FieldNotes() {
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10 space-y-8">
+    <div className="max-w-7xl mx-auto px-4 py-10 lg:grid lg:grid-cols-[auto_minmax(0,1fr)] lg:gap-8">
+      <nav aria-label="Site sections" className="hidden lg:block"><SiteNav active="page:/field-notes" /></nav>
+      <div className="min-w-0 space-y-8">
       <header>
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Field Notes: engineering practices to audit evidence</h1>
         <p className={`mt-2 max-w-3xl ${P}`}>Short notes connecting real engineering practices to the controls they satisfy and the evidence an auditor will ask for. Drawn from public engineering write-ups and engagement experience, with company names removed. Control references are to SOC 2 (2017 TSC), ISO/IEC 27001:2022 Annex A and ISO/IEC 42001:2023 Annex A; check them against your own control library.</p>
@@ -66,6 +69,7 @@ export default function FieldNotes() {
           </details>
         ))}
       </section>
+      </div>
     </div>
   );
 }
