@@ -4239,6 +4239,245 @@
           ]
         }
       ]
+    },
+    {
+      "id": "ai-appsec-soc",
+      "title": "AI Security, AppSec and SOC",
+      "subtitle": "Threat modelling AI agents, OWASP LLM Top 10, SAST/DAST in CI/CD, triage, OSINT, malware analysis and rule tuning",
+      "icon": "Shield",
+      "color": "red",
+      "questions": [
+        {
+          "q": "AI security: How do you threat-model an AI agent from day one?",
+          "a": "I start with a data flow diagram of the agent: users, the model, the system prompt, retrieved context (RAG sources, files, web pages), tools and APIs it can call, the identity and tokens it uses, memory, and logs. I mark every trust boundary, especially where untrusted content enters the context. Then I walk each element with STRIDE plus AI-specific threats from the OWASP Top 10 for LLM Applications and MITRE ATLAS: prompt injection, data leakage, excessive agency, poisoning, unbounded consumption. For each threat I agree a control and an owner: least-privilege tools, human approval for high-impact actions, output validation, rate and cost limits, logging. The model is revisited whenever a new tool, data source, permission or model is added.",
+          "tags": [
+            "AI security",
+            "Threat modelling"
+          ],
+          "example": "For a support agent that can issue refunds, the top threat is indirect prompt injection from a customer email making it refund the wrong account, so refunds above a limit need human approval and the agent can only refund the authenticated customer's own orders.",
+          "pitfalls": [
+            {
+              "pitfall": "Threat-modelling only the model, not the tools and data around it.",
+              "reply": "Most real risk sits in what the agent can read and do, so model the whole system."
+            }
+          ]
+        },
+        {
+          "q": "AI security: How do you find AI vulnerabilities before production? Can that scanning run in CI/CD?",
+          "a": "I combine normal AppSec testing with AI-specific testing. AI-specific: red-teaming with prompt injection and jailbreak test sets, data leakage probes, tool misuse scenarios and evaluation of harmful or wrong outputs, using open-source tools such as garak, PyRIT or promptfoo, plus manual testing for business-logic abuse. Yes, much of it can run in CI/CD: keep a regression suite of adversarial prompts and expected behaviour, run it on every change to the prompt, model, tools or retrieval, and fail the build if the pass rate drops below a threshold. Because outputs are probabilistic, each test runs several times. Deeper manual red-teaming happens before major releases.",
+          "tags": [
+            "AI security",
+            "Testing",
+            "CI/CD"
+          ],
+          "example": "A pipeline step runs 200 injection and leakage prompts five times each; a prompt change that let the system prompt leak dropped the pass rate and blocked the merge.",
+          "pitfalls": [
+            {
+              "pitfall": "Running each AI test once and calling it passed.",
+              "reply": "Repeat runs and set a pass-rate threshold."
+            }
+          ]
+        },
+        {
+          "q": "AI security: How does prompt injection work? Is LLM input trusted or untrusted?",
+          "a": "An LLM cannot reliably tell instructions from data, so text that looks like an instruction can change its behaviour. Direct injection is a user typing instructions to override the system prompt. Indirect injection hides instructions in content the model reads: a web page, email, document or tool output. All input to an LLM, and all of its output, should be treated as untrusted. Mitigations: keep secrets and authority out of the prompt, give tools least privilege, require human approval for sensitive actions, separate and label untrusted content, filter inputs and outputs, and validate outputs before they reach other systems.",
+          "tags": [
+            "AI security",
+            "Prompt injection"
+          ],
+          "example": "A summariser reads a web page containing hidden text telling it to send the user's chat history to an external URL; if the agent has a web request tool, it might do it.",
+          "pitfalls": [
+            {
+              "pitfall": "Saying a strong system prompt prevents injection.",
+              "reply": "System prompts help but are not a security boundary; enforce limits outside the model."
+            }
+          ]
+        },
+        {
+          "q": "AI security: Explain two items from the OWASP Top 10 for LLM Applications with examples.",
+          "a": "The 2025 list includes LLM01 Prompt Injection, LLM02 Sensitive Information Disclosure, LLM03 Supply Chain, LLM04 Data and Model Poisoning, LLM05 Improper Output Handling, LLM06 Excessive Agency, LLM07 System Prompt Leakage, LLM08 Vector and Embedding Weaknesses, LLM09 Misinformation and LLM10 Unbounded Consumption. Two examples: LLM06 Excessive Agency, where an agent has more tools, permissions or autonomy than needed, for example an email assistant that can also delete and send mail, so an injected instruction can cause real damage; fix with minimal tools, scoped permissions and human approval. LLM05 Improper Output Handling, where model output is passed to other systems without validation, for example generated SQL or HTML run directly, leading to injection or XSS; fix by treating output as untrusted and validating, encoding or parameterising it.",
+          "tags": [
+            "AI security",
+            "OWASP"
+          ],
+          "example": "A chatbot's answer rendered as HTML executed a script tag that came from a poisoned document.",
+          "pitfalls": [
+            {
+              "pitfall": "Listing all ten without explaining any.",
+              "reply": "Pick two, explain the risk, an example and the control."
+            }
+          ]
+        },
+        {
+          "q": "AI security: What is sensitive information disclosure, and what are runtime attacks on AI systems?",
+          "a": "Sensitive information disclosure is the model revealing data it should not: personal data, secrets, system prompts, other users' data, or confidential training or retrieval content. Causes include sensitive data in training or RAG sources without access control, secrets in prompts, and weak output filtering. Runtime attacks target the system while it runs: prompt injection and jailbreaks, data extraction through repeated queries, model denial of service and cost abuse, tool misuse, and attacks on the retrieval layer. Controls: data minimisation and redaction before indexing, permission-aware retrieval so users only see documents they could access anyway, output filtering and DLP, rate and cost limits, monitoring for abuse patterns, and logging for investigation.",
+          "tags": [
+            "AI security",
+            "Data leakage"
+          ],
+          "example": "An internal assistant indexed HR files without permissions; any employee could ask for salary data. Fix: retrieval filtered by the user's own access rights.",
+          "pitfalls": [
+            {
+              "pitfall": "Assuming the model will refuse to share sensitive data.",
+              "reply": "Control what the model can access, not just what it says."
+            }
+          ]
+        },
+        {
+          "q": "AI security: How do SBOMs help with AI, and how do you mitigate prompt injection, data leakage and data poisoning?",
+          "a": "An SBOM lists software components and versions; for AI it extends to an AI or ML bill of materials covering models, datasets, libraries and their sources and licences (CycloneDX supports this). It lets you find affected systems quickly when a model or library is found vulnerable or poisoned. Mitigations: prompt injection, by treating input as untrusted, least privilege tools and human approval; data leakage, by minimising and redacting data, permission-aware retrieval, output DLP and vendor terms that bar training on your data; data poisoning, by using trusted, versioned data sources, checking provenance and integrity of datasets and models (hashes, signatures), reviewing changes to training and RAG data, and monitoring for drift or odd behaviour.",
+          "tags": [
+            "AI security",
+            "SBOM",
+            "Supply chain"
+          ],
+          "example": "When a popular open-source model file was found to contain malicious code, the AI-BOM showed which two services used it within minutes.",
+          "pitfalls": [
+            {
+              "pitfall": "Treating models from public hubs as safe by default.",
+              "reply": "Verify source and integrity, scan model files, and record them in the AI-BOM."
+            }
+          ]
+        },
+        {
+          "q": "AppSec: What is the difference between SAST and DAST for apps and APIs?",
+          "a": "SAST analyses source code, bytecode or binaries without running the app. It finds issues early, such as injection patterns, hardcoded secrets and insecure functions, and points to the exact line, but can produce false positives and misses runtime and configuration issues. DAST tests the running app or API from outside like an attacker, sending requests and checking responses. It finds runtime issues such as authentication flaws, misconfiguration and injection that is actually exploitable, but does not show the code location and needs a deployed environment. For APIs, DAST needs the API definition (for example an OpenAPI file) and authentication set up to reach endpoints. Most programmes use both, plus software composition analysis for open-source dependencies and secret scanning.",
+          "tags": [
+            "AppSec",
+            "SAST",
+            "DAST"
+          ],
+          "example": "SAST flagged string-built SQL in a repository; DAST against staging confirmed the endpoint was exploitable, which raised its priority.",
+          "pitfalls": [
+            {
+              "pitfall": "Saying one replaces the other.",
+              "reply": "They find different issues at different stages; use both."
+            }
+          ]
+        },
+        {
+          "q": "AppSec: Which SAST tools are common, and how do you plug them into CI/CD?",
+          "a": "Common tools include Semgrep, SonarQube, GitHub CodeQL, Checkmarx, Veracode and Snyk Code. Only name the ones you have actually used. In CI/CD, the scan runs on every pull request; results appear as comments on the pull request; the pipeline fails on new high or critical findings based on an agreed policy, while older findings are tracked as a backlog; rules are tuned to cut false positives; exceptions need approval and an expiry. Results feed a central dashboard for metrics such as findings per repository and time to fix.",
+          "tags": [
+            "AppSec",
+            "CI/CD"
+          ],
+          "example": "A pull request check blocked merging when a new hardcoded API key and an unsafe deserialisation call were found; the developer fixed both before merge.",
+          "pitfalls": [
+            {
+              "pitfall": "Blocking every build on every finding from day one.",
+              "reply": "Start with new high and critical findings, tune rules, then tighten."
+            }
+          ]
+        },
+        {
+          "q": "AppSec: How do you run a vulnerability assessment and collect evidence?",
+          "a": "Define scope and get written authorisation, build an asset inventory, run authenticated scans with tools such as Nessus, Qualys or OpenVAS for infrastructure and DAST for applications, validate findings to remove false positives, rate them by severity and exploitability, assign owners and fix deadlines per the SLA, and rescan to confirm fixes. Evidence: scope and approval, asset list, scan configuration and dates, raw and summary reports, ticket links with owners and due dates, exception approvals, and rescan reports showing closure.",
+          "tags": [
+            "AppSec",
+            "Vulnerability management",
+            "Evidence"
+          ],
+          "example": "The auditor sampled five critical findings and traced each from the scan report to a ticket and a clean rescan within the 15-day SLA.",
+          "pitfalls": [
+            {
+              "pitfall": "Keeping only the scan report.",
+              "reply": "Auditors want the full trail from finding to verified fix."
+            }
+          ]
+        },
+        {
+          "q": "SOC: What are endpoint security tools, and how would you use Wazuh as an EDR from finding to fix?",
+          "a": "Endpoint tools include EDR or XDR platforms such as Microsoft Defender for Endpoint, CrowdStrike Falcon and SentinelOne, plus device management, disk encryption and patching. Wazuh is an open-source security platform with endpoint agents offering log collection, file integrity monitoring, vulnerability detection, configuration assessment and active response. Flow: deploy agents, collect events, detection rules raise an alert, an analyst triages it, confirms true or false positive, contains it (for example an active response that isolates the host or blocks an IP), raises a ticket for the owner to fix the root cause such as patching or a configuration change, verifies the fix through a new scan or check, and closes with notes. Rules are then tuned from lessons learned.",
+          "tags": [
+            "SOC",
+            "EDR",
+            "Wazuh"
+          ],
+          "example": "Wazuh file integrity monitoring flagged a changed web server config; triage found an unapproved change, it was reverted, and the change process was reinforced.",
+          "pitfalls": [
+            {
+              "pitfall": "Calling Wazuh a full commercial EDR.",
+              "reply": "Describe it as an open-source SIEM and XDR platform with EDR-like features."
+            }
+          ]
+        },
+        {
+          "q": "SOC: How do you confirm whether an alert is a true or false positive?",
+          "a": "Gather context first: which rule fired and why, the asset and its owner, the user, the time, and what is normal for that host. Correlate with other sources such as EDR, proxy, identity and email logs. Check indicators against threat intelligence, review the process tree, command line and network connections, and if needed ask the user or owner whether the activity was expected. A true positive is malicious or policy-breaking activity; a false positive is benign activity matching the rule; a benign true positive is real but authorised activity. Document the reasoning and evidence, and feed false positives into rule tuning.",
+          "tags": [
+            "SOC",
+            "Triage"
+          ],
+          "example": "A PowerShell alert turned out to be an approved IT deployment script; it was marked benign, and the script's signed hash was added as an exception.",
+          "pitfalls": [
+            {
+              "pitfall": "Closing alerts without recording why.",
+              "reply": "Every closure needs a reason and evidence."
+            }
+          ]
+        },
+        {
+          "q": "SOC: Name two OSINT tools and how you use them to check integrity.",
+          "a": "VirusTotal: check a file hash, URL, domain or IP against many antivirus engines and reputation data. To verify a file's integrity, calculate its SHA-256 hash and compare it with the vendor's published hash, and look the hash up on VirusTotal to see whether it is known to be malicious. Shodan: shows internet-exposed devices, open ports and banners, useful to confirm what your own external attack surface looks like and whether a suspicious IP is running known malicious infrastructure. Others include AbuseIPDB, URLhaus, Have I Been Pwned and WHOIS. Avoid uploading confidential files to public services, because uploads can be shared; search by hash instead.",
+          "tags": [
+            "SOC",
+            "OSINT"
+          ],
+          "example": "A downloaded installer's SHA-256 did not match the vendor's published value; VirusTotal showed it was a known trojanised copy.",
+          "pitfalls": [
+            {
+              "pitfall": "Uploading internal files to VirusTotal.",
+              "reply": "Search by hash; uploads may be visible to others."
+            }
+          ]
+        },
+        {
+          "q": "SOC: Who does deep malware analysis, and what do they actually do?",
+          "a": "Malware analysts or reverse engineers, often in a dedicated team, an incident response firm or a threat intelligence unit. Static analysis: hashes, strings, file structure, imports, packers, and disassembly with tools like Ghidra or IDA. Dynamic analysis: running the sample in an isolated sandbox to observe processes, files, registry and network behaviour. They extract indicators of compromise and behaviours, map them to MITRE ATT&CK, write detection rules such as YARA, and explain capability and impact to incident responders.",
+          "tags": [
+            "SOC",
+            "Malware analysis"
+          ],
+          "example": "Sandbox analysis showed a sample contacted two domains and created a scheduled task; those became blocking rules and a hunt query.",
+          "pitfalls": [
+            {
+              "pitfall": "Saying the SOC analyst reverse engineers every sample.",
+              "reply": "Tier 1 and 2 triage and contain; deep analysis is a specialist job."
+            }
+          ]
+        },
+        {
+          "q": "SOC: How and why do you tune detection rules?",
+          "a": "Untuned rules create alert fatigue, so real attacks get missed. Tuning means reviewing rules with high false positive rates, adding context such as known admin hosts or approved tools as narrow exceptions, adjusting thresholds and time windows, raising or lowering severity, and adding new rules for gaps found by hunts, incidents or ATT&CK coverage reviews. Every change is documented, reviewed and tested so that tuning does not create blind spots, and metrics such as false positive rate and time to triage are tracked.",
+          "tags": [
+            "SOC",
+            "Detection engineering"
+          ],
+          "example": "A brute-force rule fired 400 times a day from a vulnerability scanner; excluding the scanner's IP and service account cut it to five meaningful alerts.",
+          "pitfalls": [
+            {
+              "pitfall": "Disabling noisy rules.",
+              "reply": "Narrow exceptions and documented changes, never silent disabling."
+            }
+          ]
+        },
+        {
+          "q": "SOC: What is the difference between threat hunting and OSINT, and between a threat hunter and a malware analyst?",
+          "a": "Threat hunting is proactively searching your own environment for attackers who evaded detection, starting from a hypothesis, for example looking for unusual use of remote admin tools. OSINT is gathering intelligence from public sources about threats, attackers, leaked data or your external exposure. OSINT often feeds hunting with indicators and techniques. A threat hunter works across your logs and telemetry looking for signs of compromise and turns findings into new detections. A malware analyst takes a specific malicious file and works out what it does and how to detect it. Hunters look across the environment; analysts go deep on one sample.",
+          "tags": [
+            "SOC",
+            "Threat hunting"
+          ],
+          "example": "A public report on a new phishing kit gave indicators (OSINT); the hunter searched proxy logs and found two users who visited the domain; the analyst reversed the payload one of them downloaded.",
+          "pitfalls": [
+            {
+              "pitfall": "Treating hunting as just reviewing alerts.",
+              "reply": "Hunting starts from a hypothesis, not an alert."
+            }
+          ]
+        }
+      ]
     }
   ]
 }
