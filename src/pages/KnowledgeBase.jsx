@@ -34,6 +34,7 @@ import DlpDeepDive from '../components/DlpDeepDive.jsx';
 import { PARTS as CCT_PARTS } from '../data/cloudTestingGuide.js';
 import StreamlineGrc from '../components/toolkit/StreamlineGrc.jsx';
 import FindingClassification from '../components/toolkit/FindingClassification.jsx';
+import SiteNav from '../components/nav/SiteNav.jsx';
 import SapGrcTopic from '../components/toolkit/SapGrcTopic.jsx';
 import { CustomerTrustTab, PolicyLifecycleTab, DueDiligenceTab, AwarenessTab, ErpReviewTab } from '../components/toolkit/Phase4Modules.jsx';
 import CryptoExchangeTab from '../components/CryptoExchangeTab.jsx';
@@ -417,7 +418,7 @@ export default function KnowledgeBase() {
         </p>
       </div>
 
-      <div className="lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-8">
+      <div className="lg:grid lg:grid-cols-[auto_minmax(0,1fr)] lg:gap-8">
         {/* Topic navigation: grouped sidebar on large screens, grouped menu on small screens */}
         <nav aria-label="Knowledge Base topics" className="mb-5 lg:mb-0">
           <label className="lg:hidden block text-xs font-semibold text-gray-600 dark:text-slate-300">Topic
@@ -425,51 +426,19 @@ export default function KnowledgeBase() {
               {AREA_GROUPS.flatMap(([a, gs]) => gs.map((g) => <optgroup key={g} label={`${a}: ${groupLabel(g)}`}>{TABS.filter((t) => t.group === g).map((t) => <option key={t.id} value={t.id}>{t.label}</option>)}</optgroup>))}
             </select>
           </label>
-          <div className="hidden lg:block sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto pr-1">
-            <input type="search" value={navFilter} onChange={(e) => setNavFilter(e.target.value)} placeholder="Filter topics" aria-label="Filter topics"
-              className="w-full mb-3 px-3 py-1.5 border border-gray-300 dark:border-slate-700 rounded text-sm bg-white dark:bg-slate-900" />
-            {AREA_GROUPS.map(([area, gs]) => (
-            <div key={area} className="mb-5">
-            <p className="px-2 mb-2 text-xs font-bold uppercase tracking-wider text-gray-900 dark:text-white border-b border-gray-200 dark:border-slate-700 pb-1">{area}</p>
-            {gs.map((g) => {
-              const items = TABS.filter((t) => inGroup(t, g) && (!navFilter || `${t.label} ${t.desc}`.toLowerCase().includes(navFilter.toLowerCase())));
-              if (!items.length) return null;
-              return (
-                <div key={g} className="mb-2">
-                  {(() => { const isOpen = !!navFilter || items.some((t) => t.id === tab) || openGroups.includes(g); return (
-                  <>
-                  <button type="button" aria-expanded={isOpen} onClick={() => setOpenGroups((p) => (p.includes(g) ? p.filter((x) => x !== g) : [...p, g]))}
-                    className="w-full flex items-center justify-between px-2 py-1 text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-400 hover:text-gray-900 dark:hover:text-white">
-                    <span>{groupLabel(g)} <span className="font-normal normal-case">({items.length})</span></span>
-                    <span aria-hidden="true">{isOpen ? '−' : '+'}</span>
-                  </button>
-                  {isOpen && (
-                  <ul>
-                    {items.map((t) => (
-                      <li key={t.id}>
-                        <button type="button" onClick={() => setTab(t.id)} aria-current={tab === t.id ? 'page' : undefined}
-                          className={`btn btn-ghost w-full !justify-start text-left px-2 py-1.5 rounded text-sm ${tab === t.id ? 'is-selected' : '!font-normal'}`}>
-                          {t.label}{t.also === g && <span className="ml-1 text-[10px] font-normal text-gray-500 dark:text-slate-400">(shortcut)</span>}
-                        </button>
-                        {tab === t.id && t.parts && (
-                          <ul className="ml-3 mt-1 mb-2 border-l border-gray-200 dark:border-slate-700 pl-2 space-y-0.5" aria-label={`${t.label} sections`}>
-                            {t.parts.map(([pid, plabel]) => (
-                              <li key={pid}><a href={`#${t.partPrefix || 'cct'}-${pid}`} aria-current={subActive === pid ? 'true' : undefined}
-                                className={`block rounded px-2 py-0.5 text-xs ${subActive === pid ? 'is-selected font-semibold' : 'text-gray-600 dark:text-slate-300 hover:underline'}`}>{plabel}</a></li>
-                            ))}
-                          </ul>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                  )}
-                  </>
-                  ); })()}
-                </div>
-              );
-            })}
-            </div>
-            ))}
+          <div className="hidden lg:block">
+            <SiteNav active={`kb:${tab}`} filter={navFilter}
+              onSelect={(it) => { if (it[0] === 'kb') { setTab(it[1]); return true; } return false; }}
+              top={<input type="search" value={navFilter} onChange={(e) => setNavFilter(e.target.value)} placeholder="Filter topics" aria-label="Filter topics"
+                className="w-full mb-3 px-3 py-1.5 border border-gray-300 dark:border-slate-700 rounded text-sm bg-white dark:bg-slate-900" />}
+              activeChildren={activeTab?.parts ? (
+                <ul className="ml-3 mt-1 mb-2 border-l border-gray-200 dark:border-slate-700 pl-2 space-y-0.5" aria-label={`${activeTab.label} sections`}>
+                  {activeTab.parts.map(([pid, plabel]) => (
+                    <li key={pid}><a href={`#${activeTab.partPrefix || 'cct'}-${pid}`} aria-current={subActive === pid ? 'true' : undefined}
+                      className={`block rounded px-2 py-0.5 text-xs ${subActive === pid ? 'is-selected font-semibold' : 'text-gray-600 dark:text-slate-300 hover:underline'}`}>{plabel}</a></li>
+                  ))}
+                </ul>
+              ) : null} />
           </div>
         </nav>
 
