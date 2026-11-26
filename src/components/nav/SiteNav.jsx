@@ -44,7 +44,7 @@ export const SITE_SECTIONS = [
     ['kb', 'awareness', 'Awareness and Physical Checks'],
   ]],
   ['Audit and evidence', [
-    ['page', '/grc-vs-audit', 'GRC view vs Audit view'],
+    ['page', '/unified-framework#grc-vs-audit', 'GRC view vs Audit view'],
     ['page', '/field-notes', 'Field Notes'],
     ['kb', 'audit', 'Audit and Rebuttals'],
     ['kb', 'finding-classification', 'Classifying Findings'],

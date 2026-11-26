@@ -56,7 +56,6 @@ import Cis from './pages/standards/Cis.jsx';
 import Aigp from './pages/standards/Aigp.jsx';
 import AIGovernance from './pages/AIGovernance.jsx';
 import WhatsNew from './pages/WhatsNew.jsx';
-import GrcVsAudit from './pages/GrcVsAudit.jsx';
 import FieldNotes from './pages/FieldNotes.jsx';
 
 import Iso42001 from './pages/standards/Iso42001';
@@ -183,7 +182,7 @@ function App() {
           <Route path="templates" element={<Protected><Templates /></Protected>} />
           <Route path="templates/:slug" element={<Protected><TemplatePreview /></Protected>} />
           <Route path="whats-new" element={<Protected><WhatsNew /></Protected>} />
-          <Route path="grc-vs-audit" element={<Protected><GrcVsAudit /></Protected>} />
+          <Route path="grc-vs-audit" element={<Navigate to="/unified-framework#grc-vs-audit" replace />} />
           <Route path="field-notes" element={<Protected><FieldNotes /></Protected>} />
           <Route path="*" element={<Protected><AssessRoute /></Protected>} />
         </Route>

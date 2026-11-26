@@ -882,7 +882,7 @@ const TEMPLATE_ENTRIES = [
     label: 'GRC view vs Audit view',
     desc: 'How GRC and auditors look at the same controls: access reviews, shared accounts, SoD, firewall, change, vulnerabilities, vendors, DLP, BCMS and policies.',
     keywords: ['grc vs audit', 'audit view', 'auditor view', 'grc view', 'audit perspective', 'evidence', 'lines of defence'],
-    path: '/grc-vs-audit',
+    path: '/unified-framework#grc-vs-audit',
     mode: 'route',
     anchorId: null,
   },
