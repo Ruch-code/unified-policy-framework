@@ -46,6 +46,8 @@ import Cscrf from './pages/standards/Cscrf.jsx';
 import CertIn from './pages/standards/CertIn.jsx';
 import Ccss from './pages/standards/Ccss.jsx';
 import Gli19 from './pages/standards/Gli19.jsx';
+import IsfSogp from './pages/standards/IsfSogp.jsx';
+import Cobit from './pages/standards/Cobit.jsx';
 import Pmla from './pages/standards/Pmla.jsx';
 import TraiWhatsapp from './pages/standards/TraiWhatsapp.jsx';
 
@@ -153,6 +155,8 @@ function App() {
           <Route path="cert-in" element={<Protected><CertIn /></Protected>} />
           <Route path="ccss" element={<Protected><Ccss /></Protected>} />
           <Route path="gli-19" element={<Protected><Gli19 /></Protected>} />
+          <Route path="isf-sogp" element={<Protected><IsfSogp /></Protected>} />
+          <Route path="cobit" element={<Protected><Cobit /></Protected>} />
           <Route path="pmla-vda" element={<Protected><Pmla /></Protected>} />
           <Route path="trai-whatsapp" element={<Protected><TraiWhatsapp /></Protected>} />
           <Route path="lgpd" element={<Protected><Lgpd /></Protected>} />
