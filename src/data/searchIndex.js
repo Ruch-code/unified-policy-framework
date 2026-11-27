@@ -199,6 +199,8 @@ const FRAMEWORK_KEYWORDS = {
   rbi: ['rbi', 'reserve bank', 'banking', 'banks', 'financial', 'india', 'payment systems', 'cyber security', 'fintech'],
   cscrf: ['cscrf', 'india cyber security', 'cyber security framework', 'csirt', 'incident', 'cert', 'cyber crisis management', 'availability', 'forensic'],
   ccss: ['ccss', 'cryptocurrency security standard', 'crypto', 'key custody', 'wallet', 'c4', 'multisig', 'proof of reserve'],
+  'isf-sogp': ['isf', 'sogp', 'standard of good practice', 'information security forum'],
+  cobit: ['cobit', 'cobit 7', 'cobit 2019', 'isaca', 'it governance', 'edm', 'apo', 'bai', 'dss', 'mea', 'design factors', 'governance objectives'],
   gli19: ['gli-19', 'gli 19', 'gaming laboratories', 'interactive gaming', 'igaming', 'online casino', 'rng', 'sports betting', 'gaming'],
   'trai-whatsapp': ['trai', 'tcccpr', 'dlt', 'sms', 'header', 'sender id', 'template', 'consent', 'dnd', 'telemarketer', 'whatsapp', 'bsp', 'business solution provider', 'meta', 'messaging', 'cpaas'],
   'pmla-vda': ['pmla', 'fiu-ind', 'fiu ind', 'aml', 'cft', 'kyc', 'str', 'vda', 'crypto', 'money laundering', 'travel rule'],
