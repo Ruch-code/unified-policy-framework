@@ -36,6 +36,8 @@ import StreamlineGrc from '../components/toolkit/StreamlineGrc.jsx';
 import FindingClassification from '../components/toolkit/FindingClassification.jsx';
 import SiteNav from '../components/nav/SiteNav.jsx';
 import InfraConsultingTopic from '../components/toolkit/InfraConsultingTopic.jsx';
+import GamingTopic from '../components/kb/GamingTopic.jsx';
+import { GAMING_TOPICS } from '../data/gamingGrc.js';
 import SapGrcTopic from '../components/toolkit/SapGrcTopic.jsx';
 import { CustomerTrustTab, PolicyLifecycleTab, DueDiligenceTab, AwarenessTab, ErpReviewTab } from '../components/toolkit/Phase4Modules.jsx';
 import CryptoExchangeTab from '../components/CryptoExchangeTab.jsx';
@@ -112,6 +114,7 @@ const TABS = [
   { id: 'rcsa', label: 'Risk and Control Self-Assessment', icon: ShieldAlert, group: 'GRC: Programme and tooling', area: 'GRC', desc: 'Running RCSA workshops, scoring control effectiveness and feeding results into the risk register' },
   { id: 'customer-trust', label: 'Customer Trust and Questionnaires', icon: ShieldCheck, group: 'GRC: Programme and tooling', area: 'GRC', desc: 'Answering security questionnaires from an approved answer bank' },
   { id: 'awareness', label: 'Awareness and Physical Checks', icon: Users, group: 'GRC: Programme and tooling', area: 'GRC', desc: 'Awareness plan, induction, role-based training, phishing simulations and physical spot checks' },
+  ...GAMING_TOPICS.map((g) => ({ id: g.id, label: g.label, icon: ShieldCheck, group: 'GRC: Commercial gaming (UAE)', area: 'GRC', desc: g.desc })),
 ];
 // Two areas: internal audit work first, then GRC programme work. A topic can also be listed under a second group (also).
 const AREAS = ['Internal audit', 'GRC'];
@@ -401,6 +404,7 @@ export default function KnowledgeBase() {
     'due-diligence': <DueDiligenceTab />,
     erp: <ErpReviewTab />,
     'sap-grc': <SapGrcTopic />,
+    ...Object.fromEntries(GAMING_TOPICS.map((g) => [g.id, <GamingTopic key={g.id} id={g.id} />])),
     'infra-consulting': <InfraConsultingTopic />,
     'customer-trust': <CustomerTrustTab />,
     awareness: <AwarenessTab />,

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { GAMING_TOPICS } from '../../data/gamingGrc.js';
 
 // One shared side panel for the home modules, Knowledge Base topics and standalone pages.
 // Item kinds: ['kb', topicId, label] -> /knowledge?topic=id; ['home', tabId, label] -> /#tabId; ['page', path, label].
@@ -70,6 +71,10 @@ export const SITE_SECTIONS = [
     ['page', '/cheat-sheets', 'Cheat Sheets'],
     ['kb', 'otherfw', 'Other Frameworks'],
     ['kb', 'radar', 'Discrepancy Radar'],
+  ]],
+  ['Commercial Gaming GRC (UAE)', [
+    ...GAMING_TOPICS.map((g) => ['kb', g.id, g.label]),
+    ['page', '/gli-19', 'GLI-19 playbook'],
   ]],
   ['Industry', [
     ['kb', 'logistics', 'Logistics and Supply Chain Security'],
