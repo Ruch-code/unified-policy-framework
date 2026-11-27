@@ -494,6 +494,57 @@ export default function UserAccessReview({ isDark = false }) {
           </details>
         </section>
 
+        {/* Personal access tokens */}
+        <section id="uar-personal-access-tokens" className="mt-16">
+          <details className="rounded-xl border border-gray-200 dark:border-slate-700 p-5">
+            <summary className="cursor-pointer text-2xl font-bold text-navy-900 dark:text-text-dark-primary">Personal access tokens (PATs): the access that skips your login controls</summary>
+            <div className="mt-4 space-y-4 text-sm text-navy-600 dark:text-text-dark-secondary">
+              <p>A personal access token is a long string a user creates in a tool such as GitHub, GitLab, Azure DevOps, Atlassian or a data platform, to let scripts and integrations act as that user. It works like a password, but it bypasses SSO login and MFA at the point of use, often has broad scope, and can live for months. It rarely shows up in a normal user access review, because the review looks at the account, not the tokens behind it.</p>
+              <h4 className="font-bold text-navy-900 dark:text-text-dark-primary">Why PATs are risky</h4>
+              <ul className="list-disc pl-5 space-y-1">
+                <li>Leaked in code, CI logs, chat or tickets and used by attackers without any MFA prompt.</li>
+                <li>Scoped wider than needed, for example full repository or admin rights for a read-only script.</li>
+                <li>No expiry, or an expiry far in the future.</li>
+                <li>May keep working after the person leaves, depending on the tool and how deprovisioning is set up.</li>
+                <li>Business-critical jobs quietly depend on one person&apos;s token, so revoking it breaks production.</li>
+              </ul>
+              <h4 className="font-bold text-navy-900 dark:text-text-dark-primary">Controls</h4>
+              <div className="overflow-x-auto rounded border border-gray-200 dark:border-slate-700" tabIndex={0} role="region" aria-label="PAT controls">
+                <table className="w-full text-sm" style={{ minWidth: 760 }}>
+                  <thead className="bg-gray-50 dark:bg-slate-800"><tr>{['Control', 'What good looks like'].map((h) => <th key={h} scope="col" className="text-left p-3 font-semibold text-navy-900 dark:text-text-dark-primary">{h}</th>)}</tr></thead>
+                  <tbody>{[
+                    ['Policy', 'PATs allowed only where no better option exists; prefer app identities such as GitHub Apps, service principals, OIDC federation for CI/CD, or short-lived tokens.'],
+                    ['Platform settings', 'Use organisation settings to restrict or require approval of PATs, allow only fine-grained tokens where the platform supports them, and set a maximum lifetime.'],
+                    ['Least privilege', 'Each token limited to the repositories, projects and actions it needs; read-only by default.'],
+                    ['Expiry and rotation', 'Short maximum lifetime (for example 30 to 90 days) and rotation before expiry.'],
+                    ['Storage', 'Tokens kept in a secrets manager or vault, never in code, config files or chat; secret scanning with push protection enabled.'],
+                    ['Inventory', 'Pull a list of active tokens from the platform admin console, API or audit log: owner, scopes, created date, expiry, last used.'],
+                    ['Leavers', 'Offboarding includes revoking the person\'s tokens and checking no jobs depend on them.'],
+                    ['Monitoring', 'Alert on token creation with high scopes, use from unusual locations, and tokens found by secret scanning.'],
+                  ].map((r) => <tr key={r[0]} className="border-t border-gray-200 dark:border-slate-700">{r.map((c, j) => <td key={j} className={j === 0 ? 'p-3 align-top font-semibold' : 'p-3 align-top'}>{c}</td>)}</tr>)}</tbody>
+                </table>
+              </div>
+              <h4 className="font-bold text-navy-900 dark:text-text-dark-primary">Including PATs in the access review</h4>
+              <ol className="list-decimal pl-5 space-y-1">
+                <li>Export the active token list from each platform that allows PATs.</li>
+                <li>Match each token owner to the HR active list; any token owned by a leaver is revoked immediately.</li>
+                <li>The owner&apos;s manager or the system owner confirms each token is still needed and its scope is right.</li>
+                <li>Revoke unused tokens (for example no use in 90 days) and any without an expiry.</li>
+                <li>Move long-lived automation tokens to app or service identities with a named owner.</li>
+              </ol>
+              <h4 className="font-bold text-navy-900 dark:text-text-dark-primary">Evidence an auditor will ask for</h4>
+              <ul className="list-disc pl-5 space-y-1">
+                <li>Platform settings showing PAT restrictions, approval and maximum lifetime</li>
+                <li>Dated token inventory with owner, scope, expiry and last used</li>
+                <li>Review sign-off and revocation records, including tokens owned by leavers</li>
+                <li>Secret scanning and push protection configuration, and how detected tokens were handled</li>
+              </ul>
+              <p><strong>Common finding:</strong> a former contractor&apos;s token with write access to production repositories was still valid months after they left and was later found in a public repository. Fix: token revocation in the leaver process, maximum token lifetime, and secret scanning.</p>
+              <p><strong>Framework links:</strong> ISO/IEC 27001:2022 A.5.16, A.5.17 (authentication information), A.5.18 and A.8.2; SOC 2 CC6.1 to CC6.3; NIST CSF 2.0 PR.AA. Related: <a className="ui-link" href="/knowledge?topic=secrets">Secrets Scanning</a>.</p>
+            </div>
+          </details>
+        </section>
+
         {/* Where AI helps */}
         <section id="uar-ai" className="mt-16">
           <h3 className="text-2xl font-bold text-navy-900 dark:text-text-dark-primary mb-3">Where AI Helps in Access Reviews</h3>
