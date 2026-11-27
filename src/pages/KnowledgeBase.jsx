@@ -35,6 +35,7 @@ import { PARTS as CCT_PARTS } from '../data/cloudTestingGuide.js';
 import StreamlineGrc from '../components/toolkit/StreamlineGrc.jsx';
 import FindingClassification from '../components/toolkit/FindingClassification.jsx';
 import SiteNav from '../components/nav/SiteNav.jsx';
+import InfraConsultingTopic from '../components/toolkit/InfraConsultingTopic.jsx';
 import SapGrcTopic from '../components/toolkit/SapGrcTopic.jsx';
 import { CustomerTrustTab, PolicyLifecycleTab, DueDiligenceTab, AwarenessTab, ErpReviewTab } from '../components/toolkit/Phase4Modules.jsx';
 import CryptoExchangeTab from '../components/CryptoExchangeTab.jsx';
@@ -97,6 +98,7 @@ const TABS = [
   { id: 'zerotrust', label: 'Zero Trust and Shadow IT', icon: BookOpenCheck, group: 'GRC: Security architecture', area: 'GRC', desc: 'Zero trust principles and shadow IT, with practical examples.' },
   { id: 'infranet', label: 'Infra & Network Audit', icon: Network, group: 'IT audit areas', area: 'Internal audit', desc: 'Infrastructure and network audit areas and evidence.' },
   { id: 'infra-review', label: 'Infrastructure Security Review Playbook', icon: Network, group: 'IT audit areas', area: 'Internal audit', desc: 'End-to-end review of network, BC/DR, incident response, access and firewall rules, with priority, effort, rollback and owners for each fix, plus key rotation and contractor access scenarios', parts: IRP_PARTS, partPrefix: 'irp' },
+  { id: 'infra-consulting', label: 'Infrastructure Management Consulting', icon: ShieldAlert, group: 'IT audit areas', area: 'Internal audit', desc: 'Assess performance, optimise VMware and Hyper-V, plan AWS and Azure migrations, review Cisco and Fortinet network posture, and run ITIL operations in ServiceNow.' },
   { id: 'cloud-testing', label: 'Cloud Control Testing Guide', icon: ShieldAlert, group: 'IT audit areas', area: 'Internal audit', desc: 'Testing SOC 2 CC6, CC7, CC8, A1 and HIPAA 164.308 and 164.312 directly in AWS, GCP and Azure', parts: CCT_PARTS },
   { id: 'erp', label: 'ERP Security Review', icon: ShieldAlert, group: 'IT audit areas', area: 'Internal audit', desc: 'Privileged accounts, critical transactions, SoD, change transports and logging in ERP systems' },
   { id: 'sap-grc', label: 'SAP GRC Access Control', icon: ShieldAlert, group: 'IT audit areas', area: 'Internal audit', desc: 'SoD rule set design, Firefighter governance, key transactions, ITGC testing and planning ahead for the next SAP Access Control release.' },
@@ -399,6 +401,7 @@ export default function KnowledgeBase() {
     'due-diligence': <DueDiligenceTab />,
     erp: <ErpReviewTab />,
     'sap-grc': <SapGrcTopic />,
+    'infra-consulting': <InfraConsultingTopic />,
     'customer-trust': <CustomerTrustTab />,
     awareness: <AwarenessTab />,
     zerotrust: <ZeroTrustShadowIt />,
