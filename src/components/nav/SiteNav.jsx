@@ -20,6 +20,7 @@ export const SITE_SECTIONS = [
     ['kb', 'it-audit', 'IT Audit Toolkit'],
     ['kb', 'infranet', 'Infra and Network Audit'],
     ['kb', 'infra-review', 'Infrastructure Security Review Playbook'],
+    ['kb', 'infra-consulting', 'Infrastructure Management Consulting'],
     ['kb', 'erp', 'ERP Security Review'],
     ['kb', 'sap-grc', 'SAP GRC Access Control'],
   ]],
