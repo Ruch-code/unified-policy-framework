@@ -4860,6 +4860,159 @@
           ]
         }
       ]
+    },
+    {
+      "id": "security-governance-lead",
+      "title": "Security Governance Lead",
+      "subtitle": "Programme governance, security metrics, leadership reporting, remediation tracking and escalation",
+      "icon": "Shield",
+      "color": "indigo",
+      "questions": [
+        {
+          "q": "How would you set up governance for a security function from scratch?",
+          "a": "Agree the operating rhythm first: a quarterly steering committee for priorities and risk acceptance, a monthly programme review, a fortnightly risk and remediation review and a weekly operational review. Build one tracker for programmes, findings, vulnerabilities, exceptions and actions, with owners and dates. Define a small metrics set with targets, then report trends and decisions needed to leadership.",
+          "tags": [
+            "Governance"
+          ],
+          "example": "In the first month I would inventory every open security action across tools and spreadsheets, then run the first remediation review from one list.",
+          "pitfalls": [
+            {
+              "pitfall": "Starting with a large dashboard.",
+              "reply": "Start with ownership and the forum rhythm; dashboards follow."
+            }
+          ]
+        },
+        {
+          "q": "How do you design a security metrics framework?",
+          "a": "Separate KPIs (is the programme running, for example patch SLA met) from KRIs (is risk rising, for example critical vulnerabilities on internet-facing assets). Each metric has a definition, formula, data source, owner, frequency, target and red, amber, green thresholds. Keep 8 to 12 for leadership and show trends and ageing.",
+          "tags": [
+            "Metrics",
+            "KPI",
+            "KRI"
+          ],
+          "example": "Mean time to remediate critical vulnerabilities and percentage of critical assets with EDR were the two metrics the board followed most.",
+          "pitfalls": [
+            {
+              "pitfall": "Reporting activity counts such as alerts handled.",
+              "reply": "Report outcomes and risk, not volume."
+            }
+          ]
+        },
+        {
+          "q": "How do you drive remediation across teams you do not manage?",
+          "a": "Make ownership explicit with a named person and an accountable leader, agree realistic dates, track ageing visibly, remove blockers, and use an agreed escalation path. Most delays come from unclear ownership or dependencies, so I chase those first rather than the owner.",
+          "tags": [
+            "Stakeholders",
+            "Remediation"
+          ],
+          "example": "An overdue firewall finding was stuck between network and cloud teams; agreeing a single owner in the review closed it within two weeks.",
+          "pitfalls": [
+            {
+              "pitfall": "Escalating as the first move.",
+              "reply": "Escalation is a tool when agreed steps fail, not a replacement for follow-up."
+            }
+          ]
+        },
+        {
+          "q": "How do you handle an overdue critical finding?",
+          "a": "Confirm the current risk and any compensating control, get a recovery plan with dated steps, and if the new date is still beyond tolerance, escalate to the CISO or steering committee for a decision: fund the fix, accept the risk formally with an expiry, or reduce scope. Record the decision and track it.",
+          "tags": [
+            "Escalation",
+            "Risk"
+          ],
+          "example": "A critical vulnerability on a legacy system was isolated as an interim control and formally accepted for 60 days while the replacement was delivered.",
+          "pitfalls": [
+            {
+              "pitfall": "Quietly moving the due date.",
+              "reply": "Every date change needs a reason and an approver."
+            }
+          ]
+        },
+        {
+          "q": "How do you challenge an inadequate remediation plan?",
+          "a": "Check whether it fixes the root cause, whether there is an interim control, whether owners and dependencies are named, and whether the date is realistic given past slippage. If the plan cannot meet the risk tolerance, I ask for options and take them to the right forum.",
+          "tags": [
+            "Remediation"
+          ],
+          "example": "A plan to 'monitor' an unsupported server was replaced by migration with segmentation in the meantime.",
+          "pitfalls": [
+            {
+              "pitfall": "Accepting any plan with a date.",
+              "reply": "A date without a credible plan is not a plan."
+            }
+          ]
+        },
+        {
+          "q": "What goes into a security update for senior leadership?",
+          "a": "One page: overall posture and trend, top risks and their movement, programme status with RAG and reasons, the few metrics that changed, and the decisions needed from leadership at the top. Detail goes in an appendix.",
+          "tags": [
+            "Executive reporting"
+          ],
+          "example": "Putting 'Decisions needed' first got approval for an EDR budget in the first steering meeting.",
+          "pitfalls": [
+            {
+              "pitfall": "Twenty slides of metrics.",
+              "reply": "Leaders need decisions and risk, not raw data."
+            }
+          ]
+        },
+        {
+          "q": "How do you track programmes against milestones?",
+          "a": "Each programme has a charter with scope, owner, milestones, deliverables and outcomes; status is reported with RAG, reason and next steps; dependencies and risks are logged; and I compare planned against actual dates to spot slippage early.",
+          "tags": [
+            "Programme management"
+          ],
+          "example": "A zero trust rollout showed amber two months early because identity integration slipped, so we re-sequenced the rollout by business unit.",
+          "pitfalls": [
+            {
+              "pitfall": "Green status with no evidence.",
+              "reply": "RAG needs a reason and evidence."
+            }
+          ]
+        },
+        {
+          "q": "How would you automate security governance and reporting?",
+          "a": "Connect the tracker to source systems such as ticketing, scanners, the GRC platform and cloud posture tools; calculate ageing, SLA breaches and RAG automatically; send reminders and escalations by rule; and generate the leadership pack from the same data.",
+          "tags": [
+            "Automation"
+          ],
+          "example": "Moving from monthly spreadsheets to a scanner-to-ticket integration cut reporting effort from three days to an hour and removed disputes about the numbers.",
+          "pitfalls": [
+            {
+              "pitfall": "Automating a broken process.",
+              "reply": "Fix definitions and ownership first, then automate."
+            }
+          ]
+        },
+        {
+          "q": "How do you make sure governance decisions are actually followed through?",
+          "a": "Keep a decision and action log for each forum, with owners and dates, link actions to the tracker, review open actions at the start of each meeting, and report closure rates.",
+          "tags": [
+            "Governance"
+          ],
+          "example": "Opening every steering committee with last meeting's actions raised closure from about half to most within a quarter.",
+          "pitfalls": [
+            {
+              "pitfall": "Minutes with no owners or dates.",
+              "reply": "Every decision becomes a tracked action."
+            }
+          ]
+        },
+        {
+          "q": "How do you manage security exceptions in a governance role?",
+          "a": "Exceptions need a reason, compensating control, risk owner, approver at the right level and an expiry. They sit in the same tracker, are reported by age and count, and expired ones are renewed with a fresh decision or closed.",
+          "tags": [
+            "Exceptions"
+          ],
+          "example": "A quarterly exception review removed a third of exceptions that were no longer needed.",
+          "pitfalls": [
+            {
+              "pitfall": "Permanent exceptions.",
+              "reply": "Every exception expires and is reviewed."
+            }
+          ]
+        }
+      ]
     }
   ]
 }
