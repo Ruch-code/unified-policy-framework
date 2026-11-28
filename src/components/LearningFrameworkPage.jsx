@@ -365,10 +365,6 @@ function FrameworkBody({ framework, extraSections }) {
               <Link to="/" className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-slate-200 inline-block transition-colors">
                 ← Back to Home
               </Link>
-              <a href="https://inspiring-ganache-fdd3be.netlify.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-[#415d7d] hover:text-[#2a3d53] transition-colors">
-                ISO 42001 companion site (external)
-                <ExternalLink className="w-4 h-4" />
-              </a>
             </div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2 flex items-center gap-3 flex-wrap">
               {framework.flag && <Flag code={framework.flag} height={28} label={framework.region || framework.name} />}
@@ -731,25 +727,6 @@ function FrameworkBody({ framework, extraSections }) {
         {Array.isArray(extensionNodes) && extensionNodes.map((node, i) => (
           <Fragment key={`extra-${i}`}>{node}</Fragment>
         ))}
-
-        {/* ISO 42001 Link (not shown where the page header already links to the companion site) */}
-        {!framework.hide42001Block && <div className={`bg-white rounded-2xl border ${colors.border} p-6 mb-8`}>
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-[#e3e9f1] dark:bg-[#1f2e40] rounded-xl">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-[#415d7d] flex items-center justify-center">
-                <BookOpen className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-gray-900 dark:text-text-dark-primary">ISO/IEC 42001:2023 - AI Governance</h3>
-                <p className="text-gray-600 dark:text-text-dark-secondary text-sm">Extend your compliance expertise to AI governance with the world's first AI management system standard</p>
-              </div>
-            </div>
-            <a href="https://inspiring-ganache-fdd3be.netlify.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#415d7d] text-white px-5 py-2.5 rounded-lg hover:bg-[#344c67] transition font-medium whitespace-nowrap">
-              <ExternalLink className="w-4 h-4" />
-              ISO 42001 companion site (external)
-            </a>
-          </div>
-        </div>}
 
         {/* Startup Gaps & Pushback: now consolidated in the GRC Knowledge Base */}
         {(() => {
