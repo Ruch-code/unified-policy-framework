@@ -1199,7 +1199,6 @@ const JUMP_SECTIONS = [
 const SOC2_PAGE = {
   ...FRAMEWORK_WITH_EVIDENCE,
   compactLayout: true,
-  hide42001Block: true,
   jumpSections: JUMP_SECTIONS,
   levelMeta: [{}, {}, {}, { desc: 'Edge cases and audit readiness' }],
   afterConventions: (
