@@ -56,7 +56,7 @@ export default function ThreatModelView() {
           <li>Rate the remaining risk and add controls where a high-value asset has an open path.</li>
           <li>Repeat when assets, threats or the architecture change.</li>
         </ol>
-        <p className={`mt-2 ${P}`}>Structured methods such as STRIDE, PASTA and attack trees are in <Link className="ui-link" to="/knowledge?topic=infranet">Infra and Network Audit</Link>; threat modelling in the development lifecycle is in the <Link className="ui-link" to="/#engineering-partnership">Engineering Partnership</Link> module.</p>
+        <p className={`mt-2 ${P}`}>Structured methods such as STRIDE and PASTA are in <Link className="ui-link" to="/knowledge?topic=infranet">Infra and Network Audit</Link>; threat modelling in the development lifecycle is in the <Link className="ui-link" to="/#engineering-partnership">Engineering Partnership</Link> module.</p>
       </div>
     </details>
   );
