@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import GrcAngle from './GrcAngle.jsx';
 import { Layers, Siren, Shield, Globe, Key, Mail, Workflow, Lock, ArrowRight, Search, Network } from 'lucide-react';
 
 // Network and security fundamentals: one place for defence in depth, OSI attacks, common network attacks,
@@ -32,6 +33,14 @@ function Flow({ steps }) {
   );
 }
 
+function Cards({ items }) {
+  return (
+    <div className="grid gap-2 sm:grid-cols-2 my-2">
+      {items.map(([t, d]) => <div key={t} className="rounded-lg border border-gray-200 dark:border-gray-700 p-2.5 text-sm break-words"><p className="font-semibold text-gray-900 dark:text-white">{t}</p><p className="text-gray-700 dark:text-gray-300">{d}</p></div>)}
+    </div>
+  );
+}
+
 const SECTIONS = [
   ['nf-layers', 'Seven layers of security', Layers],
   ['nf-firewall', 'How a firewall decides', Shield],
@@ -39,7 +48,7 @@ const SECTIONS = [
   ['nf-ids', 'IDS vs IPS', Shield],
   ['nf-proxy', 'Proxies and API gateways', Globe],
   ['nf-nat', 'NAT', Workflow],
-  ['nf-dns', 'DNS record types', Search],
+  ['nf-dns', 'DNS: resolution and records', Search],
   ['nf-vpn', 'VPN protocols', Lock],
   ['nf-auth', 'Authentication methods', Key],
   ['nf-email', 'How email is delivered and checked', Mail],
@@ -83,6 +92,16 @@ export default function NetworkFundamentals() {
           ['Data', 'Stored and transmitted data', 'Encryption, DLP, backups, access control on data'],
           ['People', 'Staff behaviour', 'Awareness training, phishing simulations, clear reporting routes'],
         ]} />
+        <h3 className={H}>Defence check by layer</h3>
+        <p className={P}>Ask one question per layer. If the answer is no, that layer is the weak point.</p>
+        <Cards items={[
+          ['Data', 'Controls: encryption at rest and in transit, key management, DLP, masking, immutable backups. Check: if an attacker copies the database or encrypts it, is the data still unreadable and recoverable?'],
+          ['Application', 'Controls: input validation, parameterised queries, secrets management, dependency scanning, API authorisation on every call. Check: can a single malformed request or leaked secret expose data?'],
+          ['Endpoint', 'Controls: EDR, patching, secure boot, application allow-listing, USB controls. Check: would a malicious download be blocked or caught and the device isolated?'],
+          ['Network', 'Controls: segmentation, IDS and IPS, ingress and egress filtering, DNS filtering. Check: can a compromised laptop reach production servers or call out to an attacker?'],
+          ['People and access', 'Controls: FIDO2 or passkeys, least privilege, just-in-time admin, separation of duties, phishing exercises. Check: could one phished password or one person alone cause serious harm?'],
+        ]} />
+        <GrcAngle>ISO 27001:2022 Annex A themes A.5 to A.8 (organisational, people, physical, technological) together; SOC 2 CC6 (logical and physical access) and CC7 (system operations). Auditors look for layers that back each other up, not a single control.</GrcAngle>
       </Sec>
 
 
@@ -94,6 +113,7 @@ export default function NetworkFundamentals() {
           ['Stateful inspection', 'Tracks connection state, verifies new connections, applies timeouts, checks sequence numbers'],
           ['Application layer', 'Content inspection, URL and file type filtering, intrusion detection and prevention, anomaly detection'],
         ]} min={560} />
+        <GrcAngle>ISO 27001:2022 A.8.20 (networks security), A.8.22 (segregation of networks), A.8.23 (web filtering); SOC 2 CC6.6 (boundary protection). Evidence: approved rule set, default-deny final rule, periodic rule review.</GrcAngle>
       </Sec>
 
       <Sec {...S['nf-attacks']}>
@@ -147,9 +167,21 @@ export default function NetworkFundamentals() {
         <p className={P}>Network address translation (NAT) lets many devices with private IP addresses (for example 192.168.x.x) share one public IP address. The router rewrites the source address and port on the way out, records the mapping in a NAT table, and reverses it for the reply.</p>
         <Flow steps={['Laptop 192.168.3.6 sends to a web server', 'Router swaps the source to its public IP and a port', 'Mapping saved in the NAT table', 'Reply arrives at the public IP and port', 'Router looks up the table and forwards to the laptop']} />
         <p className={P}>Security notes: NAT hides internal addresses but is not a firewall; inbound connections still need explicit firewall rules. Fixed outbound NAT addresses are useful for supplier allow-lists. Keep NAT and firewall logs so you can trace a public IP and port back to the internal device during an investigation.</p>
+        <h3 className={H}>Example NAT table</h3>
+        <Cards items={[
+          ['Laptop A', 'Inside private 192.168.3.6:5733 → inside public 203.0.113.1:5733 → outside 198.51.100.24:443'],
+          ['Laptop B', 'Inside private 192.168.3.7:6812 → inside public 203.0.113.1:6812 → outside 198.51.100.24:443'],
+          ['Laptop C', 'Inside private 192.168.3.8:7888 → inside public 203.0.113.1:7888 → outside 198.51.100.24:443'],
+        ]} />
+        <p className={P}>All three devices share one public IP; the port tells the router which reply belongs to which device. (Addresses are documentation examples.)</p>
+        <GrcAngle>ISO 27001:2022 A.8.20 (networks security) and A.8.15 (logging, to trace NAT translations); SOC 2 CC6.6 and CC7.2. NAT is not a security control on its own.</GrcAngle>
       </Sec>
 
       <Sec {...S['nf-dns']}>
+        <h3 className={H}>How a name is resolved</h3>
+        <Flow steps={['Browser cache', 'Operating system cache and hosts file', 'Recursive resolver (ISP, company or public DNS) checks its cache', 'Root server points to the TLD server (for example .com)', 'TLD server points to the domain\'s authoritative name server', 'Authoritative server returns the record', 'Resolver caches the answer for its TTL and returns it']} />
+        <p className={P}>The TTL (time to live) on each record says how long resolvers may cache it. Short TTLs make changes take effect quickly; long TTLs reduce load but slow down changes.</p>
+        <h3 className={H}>Record types</h3>
         <Table head={['Record', 'Purpose', 'Example', 'Security note']} rows={[
           ['A', 'Maps a name to an IPv4 address', 'www.example.com to 192.0.2.10', 'Remove records pointing to retired IPs'],
           ['AAAA', 'Maps a name to an IPv6 address', 'www.example.com to 2001:db8::10', 'Same as A'],
@@ -162,10 +194,13 @@ export default function NetworkFundamentals() {
           ['SOA', 'Zone details: primary server, admin contact, serial number', 'One per zone', 'Restrict zone transfers'],
           ['CAA', 'Which certificate authorities may issue certificates for the domain', 'example.com allows one named CA', 'Stops unapproved CAs issuing certificates'],
         ]} min={900} />
+        <GrcAngle>ISO 27001:2022 A.8.20 (networks security), A.8.21 (security of network services), A.8.23 (web filtering via DNS filtering); SOC 2 CC6.6 and CC7.2. Evidence: DNS change records, registrar MFA, DNS filtering logs.</GrcAngle>
       </Sec>
 
       <Sec {...S['nf-vpn']}>
-        <p className={P}>How a VPN works and how to secure it is in the <Link className="ui-link" to="/knowledge?topic=infra-review">Infrastructure Security Review Playbook</Link>. This table covers the protocols you will see.</p>
+        <h3 className={H}>How tunnelling works</h3>
+        <Flow steps={['User\'s device starts a request', 'VPN client encrypts it', 'Encrypted traffic crosses the internet in the tunnel', 'VPN server decrypts it and forwards it to the destination', 'The response returns to the VPN server, is encrypted, and travels back through the tunnel', 'The client decrypts it for the user']} />
+        <p className={P}>Types: site-to-site (office to office or cloud), remote access (one user), cloud VPN (gateway run as a cloud service), SSL VPN (over HTTPS, often browser based) and double VPN (two hops, mainly for privacy). How a VPN works and how to secure it is in the <Link className="ui-link" to="/knowledge?topic=infra-review">Infrastructure Security Review Playbook</Link>. This table covers the protocols you will see.</p>
         <Table head={['Protocol', 'Notes', 'Use today?']} rows={[
           ['IPsec (IKEv2)', 'Standard for site-to-site and many remote access VPNs', 'Yes'],
           ['OpenVPN', 'Open source, TLS-based, widely supported', 'Yes'],
@@ -184,8 +219,11 @@ export default function NetworkFundamentals() {
           ['Gives access to', 'Specific applications such as web apps, email or portals', 'Whole networks or subnets'],
           ['Best for', 'Remote staff needing a few internal apps', 'Site-to-site links and full network access'],
           ['Encryption', 'TLS with modern ciphers such as AES-GCM', 'IPsec with modern ciphers such as AES-GCM; retire 3DES'],
+          ['NAT and firewall traversal', 'Easy: uses TCP 443, which most networks allow', 'Needs UDP 500 and 4500 (NAT traversal) and ESP to be allowed; can be blocked by hotel or guest networks'],
         ]} min={700} />
         <p className={P}>Other names you will see: cloud VPN (a VPN gateway run as a cloud service) and double VPN (traffic routed through two VPN servers, mainly a consumer privacy feature).</p>
+        <p className={P}>Neither is inherently stronger: both can use strong modern ciphers. Security depends on configuration, patching and authentication, not on the VPN family.</p>
+        <GrcAngle>ISO 27001:2022 A.6.7 (remote working), A.8.20 (networks security), A.8.24 (use of cryptography), A.8.5 (secure authentication); SOC 2 CC6.1, CC6.6 and CC6.7 (data in transit). Evidence: MFA enforcement, approved protocol and cipher settings, gateway patch status.</GrcAngle>
       </Sec>
 
       <Sec {...S['nf-auth']}>
@@ -196,6 +234,11 @@ export default function NetworkFundamentals() {
           ['Certificates and mutual TLS', 'The server proves its identity with a certificate issued by a certificate authority. In mutual TLS the client presents a certificate too, and each side checks the other.', 'Strong machine-to-machine authentication', 'Expired certificates, weak certificate lifecycle management'],
         ]} min={900} />
         <p className={P}>Note: OAuth 2.0 is an authorisation framework. When it is used to sign users in, OpenID Connect adds the identity layer on top.</p>
+        <GrcAngle>ISO 27001:2022 A.5.17 (authentication information), A.8.5 (secure authentication), A.5.15 (access control); SOC 2 CC6.1 and CC6.2. Evidence: MFA coverage, password policy, SSO and OAuth app reviews, certificate inventory.</GrcAngle>
+        <h3 id="nf-ssh" className={`${H} scroll-mt-24`}>How SSH works</h3>
+        <Flow steps={['Client opens a TCP connection to the server (port 22)', 'Both sides exchange versions and agree algorithms', 'Key exchange (for example Diffie-Hellman) creates a shared session key; the server proves its identity with its host key', 'User authenticates: the server checks the user\'s public key in authorized_keys and the client proves it holds the private key', 'Encrypted session: commands and output travel encrypted']} />
+        <p className={P}>Local port forwarding (ssh -L 8080:internal-host:80 user@jump-host) sends a local port through the encrypted session to a host the server can reach. Useful for admins, but it can bypass network controls, so restrict it on jump hosts where it is not needed.</p>
+        <GrcAngle>ISO 27001:2022 A.8.2 (privileged access rights), A.8.5 (secure authentication), A.8.24 (use of cryptography); SOC 2 CC6.1 and CC6.7. Evidence: SSH key inventory, removal of keys for leavers, password login disabled on servers.</GrcAngle>
       </Sec>
 
       <Sec {...S['nf-email']}>

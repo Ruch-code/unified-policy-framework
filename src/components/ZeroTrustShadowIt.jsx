@@ -1,3 +1,4 @@
+import GrcAngle from './kb/GrcAngle.jsx';
 import * as D from '../data/zeroTrustShadowIt.js';
 import MappingWorkbookCard from './mappings/MappingWorkbookCard.jsx';
 import ZT_MAPPING from '../data/mappings/zeroTrust.json';
@@ -26,6 +27,16 @@ export default function ZeroTrustShadowIt() {
       <Sub>Zero trust principles</Sub>
       <p className={`text-sm max-w-3xl ${TXT}`}>{D.ZT_INTRO}</p>
       <Rows label="Zero trust principles" headers={['Principle', 'What it means', 'Practical example', 'Evidence an auditor accepts']} rows={D.ZT_PRINCIPLES} min={1100} />
+      <Sub>Access models and NIST SP 800-207</Sub>
+      <p className={`text-sm max-w-3xl ${TXT}`}>NIST SP 800-207 describes zero trust architecture: never trust, always verify. A policy decision point decides each request and a policy enforcement point applies it, using identity, device and context signals.</p>
+      <ul className={`list-disc pl-5 space-y-1 text-sm max-w-3xl ${TXT}`}>
+        <li><strong>RBAC (role-based):</strong> access follows the job role, for example payroll clerk. Simple, but roles grow too broad over time.</li>
+        <li><strong>ABAC (attribute-based):</strong> access depends on attributes of the user, resource and context, such as department, data classification, device health and location.</li>
+        <li><strong>PBAC (policy-based):</strong> central written policies combine roles and attributes into rules, often managed as code.</li>
+        <li><strong>MFA and continuous verification:</strong> phishing-resistant MFA at sign-in, then trust is re-checked during the session when risk changes.</li>
+        <li><strong>Least privilege:</strong> only the access needed, for only as long as needed.</li>
+      </ul>
+      <GrcAngle>ISO 27001:2022 A.5.15 (access control), A.5.18 (access rights), A.8.2 (privileged access), A.8.5 (secure authentication), A.8.22 (segregation of networks); SOC 2 CC6.1 to CC6.3. Evidence: access policy, MFA reports, access reviews, conditional access rules.</GrcAngle>
       <Sub>{D.ZT_SCENARIO_TITLE}</Sub>
       <Rows label="Zero trust worked example" headers={['Step', 'What happens', 'Principle applied']} rows={D.ZT_SCENARIO} />
       <p className={`text-sm max-w-3xl ${TXT}`}>{D.ZT_CONTRAST}</p>

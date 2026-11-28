@@ -45,6 +45,8 @@ import CryptoAlgorithms from '../components/kb/CryptoAlgorithms.jsx';
 import NetworkFundamentals from '../components/kb/NetworkFundamentals.jsx';
 import ApiTestingTypes from '../components/kb/ApiTestingTypes.jsx';
 import ControlFunctions from '../components/kb/ControlFunctions.jsx';
+import EdrExplainer from '../components/kb/EdrExplainer.jsx';
+import FrameworkCompareCobitIsoNist from '../components/kb/FrameworkCompareCobitIsoNist.jsx';
 import FrameworksByIndustry from '../components/kb/FrameworksByIndustry.jsx';
 import SecretsScanningTab from '../components/SecretsScanningTab.jsx';
 import AuditObservations from '../components/AuditObservations.jsx';
@@ -393,7 +395,7 @@ export default function KnowledgeBase() {
         </div>
       </div>
     ),
-    edp: <><EdpTab /><DlpDeepDive /></>,
+    edp: <><EdpTab /><EdrExplainer /><DlpDeepDive /></>,
     crypto: <CryptoExchangeTab />,
     'crypto-algorithms': <CryptoAlgorithms />,
     secrets: <SecretsScanningTab />,
@@ -402,7 +404,7 @@ export default function KnowledgeBase() {
     bom: <BomTab onOpenTab={setTab} />,
     evidence: <EvidenceAutomationKb />,
     sysdesign: <SystemDesignKb />,
-    otherfw: <><FrameworksByIndustry /><OtherFrameworksKb /></>,
+    otherfw: <><FrameworksByIndustry /><FrameworkCompareCobitIsoNist /><OtherFrameworksKb /></>,
     'evidence-checklist': <AuditEvidenceChecklist />,
     'auditor-requests': <AuditorRequestList />,
     tabletop: <><TabletopExercise /><CryptoTabletopScenario /></>,
