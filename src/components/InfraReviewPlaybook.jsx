@@ -75,6 +75,51 @@ export default function InfraReviewPlaybook() {
         <Table head={['Domain', 'What to review', 'Red flags']} rows={DOMAINS} min={900} />
       </Section>
 
+      <Section id="network-basics" title="Network access basics: VPN, allow-lists, ingress, egress and default deny">
+        <h3 className={H3}>How a VPN works</h3>
+        <Table head={['Step', 'What happens']} rows={[
+          ['1. Authenticate', 'The client (a laptop or a branch router) proves who it is to the VPN gateway: password plus MFA, a device certificate, or both.'],
+          ['2. Agree keys', 'Both ends negotiate encryption keys (IKE for IPsec, a TLS handshake for SSL VPNs).'],
+          ['3. Tunnel', 'Each packet is encrypted and wrapped inside another packet addressed to the gateway, so anyone in between sees only encrypted traffic.'],
+          ['4. Forward', 'The gateway decrypts the packet and sends it into the internal network as if the user were in the office.'],
+        ]} min={600} />
+        <Table head={['Type', 'Use', 'Watch out for']} rows={[
+          ['Remote access VPN', 'One user connects to the company network', 'Accounts without MFA; access left after people leave'],
+          ['Site-to-site VPN', 'Two offices, or an office and a cloud network, joined permanently (usually IPsec between firewalls)', 'Broad network-to-network access with no filtering'],
+          ['Full tunnel', 'All user traffic goes through the company', 'Higher load, but full visibility'],
+          ['Split tunnel', 'Only company traffic goes through the tunnel', 'Faster, but internet traffic is not inspected'],
+          ['Zero trust network access (ZTNA)', 'Access to one application at a time, with user and device checked on every request', 'Replaces broad network access; needs good identity and device posture data'],
+        ]} min={760} />
+        <p className={P}>VPN gateways face the internet, so attackers target them heavily. Keep firmware current, enforce MFA, avoid shared accounts, log and review connections, and limit what each user can reach after connecting.</p>
+
+        <h3 className={H3}>IP allow-listing</h3>
+        <p className={P}>An allow-list lets only named source IP addresses reach a service and drops everything else. Examples: only the office and VPN gateway IPs can reach the admin portal; a supplier API accepts calls only from your fixed outbound IP; a cloud database accepts connections only from the application subnet. Enforce it on the firewall, cloud security groups or network ACLs, the load balancer or web application firewall, or in the application. Limits: IPs can be shared or spoofed through a compromised allowed machine, and lists go stale. Use it alongside MFA, never instead of it. Geo-blocking is a coarser version that blocks whole countries and is easy to bypass with a VPN or proxy.</p>
+
+        <h3 className={H3}>Ingress and egress control</h3>
+        <Table head={['Direction', 'Meaning', 'Good practice']} rows={[
+          ['Ingress', 'Traffic coming into your network', 'Expose only services that must be public (for example HTTPS on 443) in a separate segment; restrict admin ports (SSH 22, RDP 3389, database ports) to the VPN or allow-listed IPs; never open them to 0.0.0.0/0; put a WAF and DDoS protection in front of public apps'],
+          ['Egress', 'Traffic leaving your network', 'Servers reach only what they need (update servers, named APIs, logging); user web traffic goes through a proxy or secure web gateway; block unusual outbound ports; allow DNS only through approved resolvers'],
+        ]} min={760} />
+        <p className={P}>Ingress rules keep attackers out. Egress rules limit the damage once someone is in: they stop malware calling home and data being sent out. In the cloud the same ideas apply through security groups (stateful, per instance), network ACLs (stateless, per subnet), NAT gateways with fixed outbound IPs, private endpoints and egress firewalls.</p>
+
+        <h3 className={H3}>Default deny: what it means</h3>
+        <p className={P}>Default deny means anything not explicitly allowed is blocked. The firewall checks rules from top to bottom and acts on the first match. The rule set starts with specific allow rules for approved traffic, and the last rule blocks everything else. The opposite, default allow, permits everything except what you remember to block, so every forgotten port or new service is open.</p>
+        <Table head={['Order', 'Example rule', 'Action']} rows={[
+          ['1', 'Internet to web server, TCP 443', 'Allow'],
+          ['2', 'VPN subnet to admin servers, TCP 22', 'Allow'],
+          ['3', 'App servers to database, TCP 5432', 'Allow'],
+          ['4', 'App servers to update servers, TCP 443', 'Allow'],
+          ['Last', 'Any source to any destination, any port', 'Deny and log'],
+        ]} min={600} />
+        <List items={[
+          'Apply it in both directions: inbound and outbound.',
+          'Log the final deny rule, so blocked attempts are visible and you can spot what a missing allow rule broke.',
+          'Give every allow rule a business owner, a reason and a review date.',
+          'Cloud security groups deny inbound traffic by default but usually allow all outbound traffic, so egress needs explicit restriction.',
+          'Audit check: the final rule is an explicit deny all with logging, and there are no broad "any to any allow" rules above it.',
+        ]} />
+      </Section>
+
       <Section id="firewall" title="4. Firewall rule review register">
         <Table head={FIREWALL_COLUMNS} rows={FIREWALL_EXAMPLES} min={1500} />
         <p className={`mt-2 ${P}`}>{FIREWALL_NOTE}</p>
