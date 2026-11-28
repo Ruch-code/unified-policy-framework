@@ -1,4 +1,5 @@
 // Reference blocks added to the matching sections of the site. Data lives in src/data/topicExtras.js and aiVendorExtras.js.
+import GrcAngle from './GrcAngle.jsx';
 import { CHANGE_EXAMPLES, CHANGE_EVIDENCE_MATRIX, CAB, VULN_RELEASE, MICROSERVICES, CLOUD_MODELS, DPA_CHECKS, DPA_TEAMS, BAA_COVERAGE, SOC_COMPARE, INDIA_US_SCENARIOS, CRYPTO_COMPARE } from '../../data/topicExtras.js';
 import * as AI from '../../data/aiVendorExtras.js';
 
@@ -181,6 +182,15 @@ export function EncryptionBlock() {
       <Sub>TLS 1.3 handshake</Sub>
       <p className={`text-sm ${TXT}`}>{C.tls}</p>
       <Flow label="TLS 1.3 handshake" steps={C.tlsFlow} />
+      <Sub>How certificate validation works</Sub>
+      <Bullets items={[
+        'The server sends its certificate plus any intermediate certificates.',
+        'The browser builds a chain from the server certificate to a root certificate authority in its trust store, checking each signature.',
+        'It checks the name on the certificate matches the site, the dates are valid, and the certificate has not been revoked.',
+        'In TLS 1.3 the session secret comes from an ephemeral Diffie-Hellman exchange; the server\'s key is used only to sign, never to encrypt the secret. This gives forward secrecy.',
+        'SSL (all versions) and TLS 1.0 and 1.1 are deprecated; use TLS 1.2 or 1.3. "SSL certificate" is just the common name for a TLS certificate.',
+      ]} />
+      <GrcAngle>ISO 27001:2022 A.8.24 (use of cryptography), A.5.14 (information transfer), A.8.20 (networks security); SOC 2 CC6.7 (data in transit). Evidence: TLS configuration scan, certificate inventory with expiry dates.</GrcAngle>
       <Sub>Encryption at rest with a KMS (envelope encryption)</Sub>
       <Flow label="Envelope encryption" steps={C.envelopeFlow} />
       <Sub>Evidence auditors ask for</Sub>
