@@ -29,7 +29,7 @@ export default function GamingTopic({ id }) {
           {s.list && <ul className={`list-disc pl-5 space-y-1 ${P}`}>{s.list.map((x) => <li key={x}><Txt s={x} /></li>)}</ul>}
           {s.table && (
             <div className="overflow-x-auto rounded border border-gray-200 dark:border-slate-700" tabIndex={0} role="region" aria-label={s.h}>
-              <table className="w-full text-sm" style={{ minWidth: s.table.head.length > 2 ? 760 : 560 }}>
+              <table className="w-full text-sm" style={{ minWidth: Math.max(560, s.table.head.length * 190) }}>
                 <thead><tr>{s.table.head.map((h) => <th key={h} scope="col" className={TH}>{h}</th>)}</tr></thead>
                 <tbody>{s.table.rows.map((r) => <tr key={r[0]}>{r.map((c, j) => <td key={j} className={`${TD} ${j === 0 ? 'font-semibold text-gray-900 dark:text-white' : ''}`}><Txt s={c} /></td>)}</tr>)}</tbody>
               </table>
