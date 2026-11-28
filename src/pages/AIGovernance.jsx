@@ -5,6 +5,7 @@ import AiSessionOffboarding from '../components/aiAssurance/AiSessionOffboarding
 import SecureRagPipeline from '../components/aiAssurance/SecureRagPipeline.jsx';
 import AgentToAgentBanking from '../components/aiAssurance/AgentToAgentBanking.jsx';
 import AgentAutonomyControls from '../components/aiAssurance/AgentAutonomyControls.jsx';
+import AgenticGovernanceTerms from '../components/aiAssurance/AgenticGovernanceTerms.jsx';
 import AiEcosystemMap from '../components/aiAssurance/AiEcosystemMap.jsx';
 import AgentHarnessLayers from '../components/aiAssurance/AgentHarnessLayers.jsx';
 import AiFrameworksAtAGlance from '../components/aiAssurance/AiFrameworksAtAGlance.jsx';
@@ -214,6 +215,7 @@ export default function AIGovernance({ isDark = false }) {
         <AiSessionOffboarding />
         <SecureRagPipeline />
         <AgentToAgentBanking />
+        <AgenticGovernanceTerms />
         <AgentAutonomyControls />
         <AgentHarnessLayers />
         <AiEcosystemMap />
