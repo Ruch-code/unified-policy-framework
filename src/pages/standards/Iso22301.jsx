@@ -1,4 +1,5 @@
 import LearningFrameworkPage from "../../components/LearningFrameworkPage.jsx";
+import ContinuityEssentials from "../../components/bcms/ContinuityEssentials.jsx";
 import { BiaDrillCard } from "../../components/toolkit/Phase4Modules.jsx";
 
 const FRAMEWORK = {
@@ -151,6 +152,7 @@ export default function Iso22301Page() {
     <>
       <LearningFrameworkPage framework={FRAMEWORK} />
       <div className="px-4"><BiaDrillCard /></div>
+      <ContinuityEssentials />
     </>
   );
 }
