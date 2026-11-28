@@ -7,6 +7,7 @@ import AgentToAgentBanking from '../components/aiAssurance/AgentToAgentBanking.j
 import AgentAutonomyControls from '../components/aiAssurance/AgentAutonomyControls.jsx';
 import AiEcosystemMap from '../components/aiAssurance/AiEcosystemMap.jsx';
 import AgentHarnessLayers from '../components/aiAssurance/AgentHarnessLayers.jsx';
+import AiFrameworksAtAGlance from '../components/aiAssurance/AiFrameworksAtAGlance.jsx';
 import AiSecurityIceberg from '../components/aiAssurance/AiSecurityIceberg.jsx';
 import ShadowAi from '../components/aiAssurance/ShadowAi.jsx';
 import RaiCrosswalk from '../components/aiAssurance/RaiCrosswalk.jsx';
@@ -199,6 +200,7 @@ export default function AIGovernance({ isDark = false }) {
           </div>
         </section>
 
+        <AiFrameworksAtAGlance />
         <AiSecurityIceberg />
         <RaiCrosswalk />
         <AiArchitectureRisks />
