@@ -10,6 +10,7 @@ import AiEcosystemMap from '../components/aiAssurance/AiEcosystemMap.jsx';
 import AgentHarnessLayers from '../components/aiAssurance/AgentHarnessLayers.jsx';
 import AiFrameworksAtAGlance from '../components/aiAssurance/AiFrameworksAtAGlance.jsx';
 import AiFieldsMap from '../components/aiAssurance/AiFieldsMap.jsx';
+import AiGovernanceGlossary from '../components/aiAssurance/AiGovernanceGlossary.jsx';
 import AiGovernanceSixLayers from '../components/aiAssurance/AiGovernanceSixLayers.jsx';
 import AiSecurityIceberg from '../components/aiAssurance/AiSecurityIceberg.jsx';
 import ShadowAi from '../components/aiAssurance/ShadowAi.jsx';
@@ -204,6 +205,7 @@ export default function AIGovernance({ isDark = false }) {
         </section>
 
         <AiFieldsMap />
+        <AiGovernanceGlossary />
         <AiFrameworksAtAGlance />
         <AiGovernanceSixLayers />
         <AiSecurityIceberg />
