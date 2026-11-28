@@ -28,6 +28,25 @@ export default function AgentHarnessLayers() {
           </table>
         </div>
 
+        <h3 className={H}>Reference architecture: the path of an agent request</h3>
+        <ol className="space-y-2 my-2" aria-label="Agent security request flow">
+          {[
+            ['User', 'Connects the agent to their accounts.', false],
+            ['Identity and consent gateway', 'The user approves the exact systems and scopes. MFA to connect, step-up MFA for sensitive actions.', false],
+            ['Input guard', 'Emails, web pages, PDFs and tickets are untrusted content: treated as data, never as commands.', true],
+            ['AI agent', 'Runs with its own identity, least privilege per task, and short-lived, revocable tokens.', false],
+            ['Policy and approval gateway', 'Enforces scopes on every tool call and sends irreversible actions to a human approver, who confirms or denies.', false],
+            ['Approved MCP servers and tools', 'Allow-listed, version pinned and reviewed; nothing installed outside the registry.', false],
+            ['Business systems', 'Email, payments, CRM and data stores, reached only through the approved path.', false],
+          ].map(([t, d, untrusted], i) => (
+            <li key={t} className={`rounded-lg border p-3 text-sm ${untrusted ? 'border-orange-400 dark:border-orange-600 bg-orange-50 dark:bg-orange-900/20' : 'border-teal-300 dark:border-teal-700'}`}>
+              <span className="font-semibold text-gray-900 dark:text-white">{i + 1}. {t}{untrusted ? ' (untrusted input)' : ''}</span>
+              <span className="block text-gray-700 dark:text-gray-300">{d}</span>
+            </li>
+          ))}
+        </ol>
+        <p className={P}><strong>Audit log and monitoring across every step:</strong> each consent, tool call, approval and decision is logged, alerted on and reviewed, so you can reconstruct what the agent did and on whose authority.</p>
+
         <h3 className={H}>Why the order matters</h3>
         <ul className={`list-disc pl-5 space-y-1 ${P}`}>
           <li>Inner layers decide what the agent can do; outer layers decide what it is allowed to do and prove what it did.</li>
