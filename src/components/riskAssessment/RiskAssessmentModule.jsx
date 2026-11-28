@@ -5,6 +5,7 @@ import RiskCrossCheck from './RiskCrossCheck.jsx';
 import RiskDownloads from './RiskDownloads.jsx';
 import RiskTypes from './RiskTypes.jsx';
 import ThreatModelView from './ThreatModelView.jsx';
+import RiskRaci from './RiskRaci.jsx';
 import SecurityExceptions from './SecurityExceptions.jsx';
 import PracticalScenarios from './PracticalScenarios.jsx';
 import AiRiskFactors from '../aiAssurance/AiRiskFactors.jsx';
@@ -50,6 +51,7 @@ export default function RiskAssessmentModule({ isDark = false }) {
       <MethodologySection />
       <ThreatModelView />
       <RiskTypes />
+      <RiskRaci />
       <RubricSection />
       <AiRiskFactors />
       <TreatmentSection />
