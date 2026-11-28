@@ -93,6 +93,7 @@ const MEGA_MENU_REGIONS = [
       { path: '/knowledge?topic=cicd#api-testing-types', label: 'API testing types', desc: 'Smoke to fuzz testing' },
       { path: '/iso/22301#continuity-essentials', label: 'BCP, DR and BIA', desc: 'Plan types, test types, RA vs BIA' },
       { path: '/knowledge?topic=awareness#ai-fraud-guide', label: 'AI fraud awareness', desc: 'Deepfakes, vishing, BEC playbook' },
+      { path: '/ai-governance#ai-guardrails-map', label: 'AI guardrails', desc: 'Input, tool, output and policy guardrails' },
       { path: '/ai-governance#ai-governance-glossary', label: 'AI governance glossary', desc: 'AIGP key terms in four domains' },
       { path: '/knowledge?topic=otherfw#frameworks-by-industry', label: 'Frameworks by industry', desc: 'Which framework applies where' },
       { path: '/knowledge?topic=evidence-checklist', label: 'Audit evidence checklist', desc: 'What to collect for each control' },

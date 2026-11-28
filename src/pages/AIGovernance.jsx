@@ -9,6 +9,7 @@ import AgenticGovernanceTerms from '../components/aiAssurance/AgenticGovernanceT
 import AiEcosystemMap from '../components/aiAssurance/AiEcosystemMap.jsx';
 import AgentHarnessLayers from '../components/aiAssurance/AgentHarnessLayers.jsx';
 import AiFrameworksAtAGlance from '../components/aiAssurance/AiFrameworksAtAGlance.jsx';
+import AiGuardrailsMap from '../components/aiAssurance/AiGuardrailsMap.jsx';
 import AiFieldsMap from '../components/aiAssurance/AiFieldsMap.jsx';
 import AiGovernanceGlossary from '../components/aiAssurance/AiGovernanceGlossary.jsx';
 import AiGovernanceSixLayers from '../components/aiAssurance/AiGovernanceSixLayers.jsx';
@@ -222,6 +223,7 @@ export default function AIGovernance({ isDark = false }) {
         <AgenticGovernanceTerms />
         <AgentAutonomyControls />
         <AgentHarnessLayers />
+        <AiGuardrailsMap />
         <AiEcosystemMap />
         <ShadowAi />
         <AiSecurityAudit />
