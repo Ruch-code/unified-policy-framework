@@ -46,6 +46,19 @@ export default function InfraReviewPlaybook() {
         <p className={P}>How to review network security, BC/DR, incident response, access management and firewall rules end to end, and how to present each finding so an infrastructure leader can act on it: priority, effort, outage risk, rollback and the teams involved. Firewall types, common ports and BC/DR basics are in the <Link className="ui-link" to="/knowledge?topic=infranet">Infra &amp; Network Audit</Link> topic.</p>
       </section>
 
+      <section className={CARD} id="irp-six-measures">
+        <h2 className={H2}>Six measures to put in place without delay</h2>
+        <p className={P}>National cyber security centres repeatedly recommend these as the first steps against attacks on internet-facing systems. Use them as a quick check before the full review.</p>
+        <Table head={['#', 'Measure', 'What it means', 'What to check']} rows={[
+          ['1', 'Limit exposed systems', 'Keep as few systems internet-facing as possible; use geo-blocking or IP allow-lists where you can.', 'External attack surface list matches the approved list; unused services closed'],
+          ['2', 'Patch within 24 hours', 'Apply critical updates to internet-facing systems no later than 24 hours after release.', 'Patch dates versus release dates for edge devices, VPNs and web apps'],
+          ['3', 'MFA or passkeys', 'Require strong authentication on every internet-accessible service, such as webmail and VPN.', 'No external login without MFA; exceptions approved and time-limited'],
+          ['4', 'Least privilege', 'Grant the lowest access rights that still let people do their job.', 'Admin accounts reviewed; standing privileges removed'],
+          ['5', 'Detect anomalies', 'Watch for unusual behaviour in identities, applications, workloads and data volumes.', 'Alerts exist for unusual logins, new admin rights and large data transfers'],
+          ['6', 'Test regularly', 'Run penetration tests, in-house or with external specialists.', 'Latest test date, scope covers external systems, findings tracked to closure'],
+        ]} min={760} />
+      </section>
+
       <Section id="approach" title="1. Review approach and finding format">
         <List items={APPROACH} />
         <h3 className={H3}>Fields for every finding</h3>
