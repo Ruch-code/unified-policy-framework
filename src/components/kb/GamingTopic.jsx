@@ -20,7 +20,7 @@ export default function GamingTopic({ id }) {
       <header>
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{t.label}<NewBadge /></h2>
         <p className={`mt-1 ${P}`}>{t.desc}</p>
-        <p className="mt-1 text-[11px] text-gray-500 dark:text-slate-400">Commercial Gaming GRC (UAE / GCGRA). Last verified: {GAMING_VERIFIED}. Items marked [VERIFY] could not be confirmed from a primary source; check them before relying on them.</p>
+        <p className="mt-1 text-[11px] text-gray-500 dark:text-slate-400">Commercial Gaming GRC (UAE / GCGRA). Last verified: {GAMING_VERIFIED}.</p>
       </header>
       {t.sections.map((s) => (
         <section key={s.h}>
@@ -42,11 +42,6 @@ export default function GamingTopic({ id }) {
       <section>
         <h3 className="mb-1 text-base font-bold text-gray-900 dark:text-white">Related on OneLens</h3>
         <p className={P}>{GAMING_TOPICS.filter((x) => x.id !== t.id).map((x, i) => <span key={x.id}>{i ? ' · ' : ''}<Link className="ui-link" to={`/knowledge?topic=${x.id}`}>{x.label}</Link></span>)} · <Link className="ui-link" to="/gli-19">GLI-19 playbook</Link> · <Link className="ui-link" to="/#interview-prep">Regulated gaming interview questions</Link></p>
-      </section>
-      <section>
-        <h3 className="mb-1 text-base font-bold text-gray-900 dark:text-white">Sources</h3>
-        <ul className={`list-disc pl-5 space-y-1 ${P}`}>{t.sources.map(([l, u]) => <li key={u}><a className="ui-link" href={u} target="_blank" rel="noopener noreferrer">{l}</a></li>)}</ul>
-        <p className="mt-1 text-xs text-gray-500 dark:text-slate-400">Summarised in our own words. Not legal advice.</p>
       </section>
     </article>
   );
