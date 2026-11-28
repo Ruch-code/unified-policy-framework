@@ -70,6 +70,11 @@ export const REGION_GROUPS = [
 
 export const REGULATIONS = [
   {
+    id: 'uae-gcgra', name: 'UAE Commercial Gaming (GCGRA)', region: 'EMEA', subCategory: 'Middle East & Africa',
+    countries: ['AE'], flag: 'ae', timezone: 'GST', lat: 24.4, lng: 54.4, color: '#0f766e', path: '/knowledge?topic=gaming-gcgra',
+    blurb: 'GCGRA licensing, AML-CFT, responsible gaming, sports integrity, GLI standards, PDPL and payments for UAE gaming operators.',
+  },
+  {
     id: 'gdpr', name: 'GDPR', region: 'EMEA', subCategory: 'European Union',
     countries: ['DE', 'FR', 'IT', 'ES', 'NL', 'SE', 'PL', 'IE', 'AT', 'FI', 'PT'],
     flag: 'eu', timezone: 'CET', lat: 50.1, lng: 9.4, color: '#557395', path: '/gdpr',
