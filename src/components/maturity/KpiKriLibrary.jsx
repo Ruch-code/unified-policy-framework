@@ -1,6 +1,7 @@
 import { Fragment, useState } from 'react';
 import TemplateDownloadButton from '../templates/TemplateDownloadButton.jsx';
 import { useAuth } from '../../context/AuthContext.jsx';
+import SecurityGovernanceRhythm from './SecurityGovernanceRhythm.jsx';
 
 // KPI and KRI library (Module M). Thresholds are suggested starting points, not standards.
 const H = 'text-gray-900 dark:text-white';
@@ -56,6 +57,7 @@ export default function KpiKriLibrary() {
         <p className={`font-semibold ${H} mb-1`}>Template</p>
         {user ? <div className="flex flex-wrap items-center justify-between gap-2"><span className={TXT}>KPI and KRI register with a monthly dashboard</span><TemplateDownloadButton template={{ name: 'KPI and KRI Register', file: 'kpi-kri-register.xlsx' }} compact /></div> : <p className={`text-xs ${TXT}`}>Log in to download the template.</p>}
       </div>
+      <SecurityGovernanceRhythm />
       <p className={`mt-3 text-xs ${TXT}`}>Source: common information security metrics practice; thresholds are illustrative. Last verified: 17 Nov 2026.</p>
     </section>
   );

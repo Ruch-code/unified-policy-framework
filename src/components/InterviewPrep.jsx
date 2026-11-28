@@ -4,7 +4,7 @@ import MockInterview from './MockInterview.jsx';
 import Skeleton from './ui/Skeleton.jsx';
 
 const ROLE_GROUPS = [
-  ['GRC and compliance', ['grc-analyst', 'compliance-manager', 'grc-program-manager', 'senior-grc-engineering', 'lead-grc-situational', 'grc-deep-dives']],
+  ['GRC and compliance', ['security-governance-lead', 'grc-analyst', 'compliance-manager', 'grc-program-manager', 'senior-grc-engineering', 'lead-grc-situational', 'grc-deep-dives']],
   ['Security, AI and engineering', ['security-engineer', 'ai-appsec-soc', 'engineering-partnership', 'grilling']],
   ['Risk, vendors and resilience', ['tprm', 'tech-risk-resilience', 'bcms-bia']],
   ['Privacy, leadership and industry', ['privacy-engineer', 'ciso', 'logistics-security-head', 'regulated-gaming-grc', 'behavioral']],
@@ -113,6 +113,7 @@ export default function InterviewPrep({ isDark = false }) {
     'bcms-bia': 'bg-teal-700',
     'ai-appsec-soc': 'bg-red-700',
     'grc-deep-dives': 'bg-indigo-800',
+    'security-governance-lead': 'bg-violet-700',
   };
 
   return (
