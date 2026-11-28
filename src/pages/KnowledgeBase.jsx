@@ -43,6 +43,8 @@ import { CustomerTrustTab, PolicyLifecycleTab, DueDiligenceTab, AwarenessTab, Er
 import CryptoExchangeTab from '../components/CryptoExchangeTab.jsx';
 import CryptoAlgorithms from '../components/kb/CryptoAlgorithms.jsx';
 import NetworkFundamentals from '../components/kb/NetworkFundamentals.jsx';
+import ApiTestingTypes from '../components/kb/ApiTestingTypes.jsx';
+import ControlFunctions from '../components/kb/ControlFunctions.jsx';
 import FrameworksByIndustry from '../components/kb/FrameworksByIndustry.jsx';
 import SecretsScanningTab from '../components/SecretsScanningTab.jsx';
 import AuditObservations from '../components/AuditObservations.jsx';
@@ -100,7 +102,7 @@ const TABS = [
   { id: 'bom', label: 'SBOM, AIBOM & ABOM', icon: Package, group: 'GRC: Engineering and change', area: 'GRC', desc: 'Software, AI and agent bills of materials and why they matter.' },
   { id: 'sysdesign', label: 'System Design for GRC', icon: Network, group: 'GRC: Engineering and change', area: 'GRC', desc: '53 system design concepts explained for GRC work, with examples.' },
   { id: 'zerotrust', label: 'Zero Trust and Shadow IT', icon: BookOpenCheck, group: 'GRC: Security architecture', area: 'GRC', desc: 'Zero trust principles and shadow IT, with practical examples.' },
-  { id: 'infranet', label: 'Infra & Network Audit', icon: Network, group: 'IT audit areas', area: 'Internal audit', desc: 'Infrastructure and network audit areas and evidence.' },
+  { id: 'infranet', label: 'Infra & Network Audit', icon: Network, group: 'IT audit areas', area: 'Internal audit', desc: 'Infrastructure and network audit areas and evidence, plus fundamentals: devices, OSI attacks, firewalls, IDS and IPS, proxies, NAT, DNS, VPN, authentication and email security.' },
   { id: 'infra-review', label: 'Infrastructure Security Review Playbook', icon: Network, group: 'IT audit areas', area: 'Internal audit', desc: 'End-to-end review of network, BC/DR, incident response, access and firewall rules, with priority, effort, rollback and owners for each fix, plus key rotation and contractor access scenarios', parts: IRP_PARTS, partPrefix: 'irp' },
   { id: 'infra-consulting', label: 'Infrastructure Management Consulting', icon: ShieldAlert, group: 'IT audit areas', area: 'Internal audit', desc: 'Assess performance, optimise VMware and Hyper-V, plan AWS and Azure migrations, review Cisco and Fortinet network posture, and run ITIL operations in ServiceNow.' },
   { id: 'cloud-testing', label: 'Cloud Control Testing Guide', icon: ShieldAlert, group: 'IT audit areas', area: 'Internal audit', desc: 'Testing SOC 2 CC6, CC7, CC8, A1 and HIPAA 164.308 and 164.312 directly in AWS, GCP and Azure', parts: CCT_PARTS },
@@ -108,7 +110,6 @@ const TABS = [
   { id: 'sap-grc', label: 'SAP GRC Access Control', icon: ShieldAlert, group: 'IT audit areas', area: 'Internal audit', desc: 'SoD rule set design, Firefighter governance, key transactions, ITGC testing and planning ahead for the next SAP Access Control release.' },
   { id: 'edp', label: 'Endpoint & Data Protection', icon: Smartphone, group: 'GRC: Security architecture', area: 'GRC', desc: 'MDM, DLP, BYOD, ecosystems, mapping, roadmap, evidence and checklists.' },
   { id: 'crypto-algorithms', label: 'Cryptographic Algorithms', icon: Key, group: 'GRC: Security architecture', area: 'GRC', desc: 'AES-128, AES-256 (GCM), ChaCha20-Poly1305, RSA, ECDHE, ECDSA and Ed25519: flow charts, pros and cons' },
-  { id: 'net-fundamentals', label: 'Network and Security Fundamentals', icon: Network, group: 'GRC: Security architecture', area: 'GRC', desc: 'Defence in depth, OSI layers and attacks, MITM, spoofing, DDoS, IDS vs IPS, proxies, API gateways, NAT, VPN protocols, authentication methods, SPF, DKIM and DMARC' },
   { id: 'data-governance', label: 'Data Governance', icon: Shield, group: 'GRC: Security architecture', area: 'GRC', desc: 'Data discovery, classification, labelling, data flow mapping and records of processing' },
   { id: 'logistics', label: 'Logistics and Supply Chain Security', icon: Network, group: 'GRC: Industry', area: 'GRC', desc: 'Security, compliance and privacy for logistics, supply chain and transport platforms: hubs, fleets, driver apps, partners and DPDP' },
   { id: 'crypto', label: 'Crypto Exchanges (VDA)', icon: Key, group: 'GRC: Industry', area: 'GRC', desc: 'Security and compliance for crypto exchanges: CERT-In, FIU-IND, DPDP, CCSS, and two anonymised exchange incidents as worked examples' },
@@ -180,7 +181,7 @@ export default function KnowledgeBase() {
       return;
     } else if (t === 'zero-trust' || t === 'shadow-it') {
       setTab('zerotrust');
-    } else if (t === 'infra-network' || t === 'network-security') {
+    } else if (t === 'infra-network' || t === 'network-security' || t === 'net-fundamentals') {
       setTab('infranet');
     } else if (t === 'other-frameworks') {
       setTab('otherfw');
@@ -382,10 +383,9 @@ export default function KnowledgeBase() {
     edp: <><EdpTab /><DlpDeepDive /></>,
     crypto: <CryptoExchangeTab />,
     'crypto-algorithms': <CryptoAlgorithms />,
-    'net-fundamentals': <NetworkFundamentals />,
     secrets: <SecretsScanningTab />,
     change: <ChangeManagementTab onOpenTab={setTab} />,
-    cicd: <CicdPipelineSecurity onOpenTab={setTab} />,
+    cicd: <><CicdPipelineSecurity onOpenTab={setTab} /><ApiTestingTypes /></>,
     bom: <BomTab onOpenTab={setTab} />,
     evidence: <EvidenceAutomationKb />,
     sysdesign: <SystemDesignKb />,
@@ -393,7 +393,7 @@ export default function KnowledgeBase() {
     'evidence-checklist': <AuditEvidenceChecklist />,
     'auditor-requests': <AuditorRequestList />,
     tabletop: <><TabletopExercise /><CryptoTabletopScenario /></>,
-    'it-audit': <ItAuditToolkit />,
+    'it-audit': <><ControlFunctions /><ItAuditToolkit /></>,
     rcsa: <RcsaTab />,
     'data-governance': <DataGovernanceTab />,
     'cloud-testing': <><CloudTestingGuide /><CloudRunGrc /></>,
@@ -413,7 +413,7 @@ export default function KnowledgeBase() {
     'customer-trust': <CustomerTrustTab />,
     awareness: <AwarenessTab />,
     zerotrust: <ZeroTrustShadowIt />,
-    infranet: <><InfraNetworkAudit /><CloudLegacyPrimer /></>,
+    infranet: <><InfraNetworkAudit /><NetworkFundamentals /><CloudLegacyPrimer /></>,
     'threat-news': <ThreatNewsNov2026 />,
     tooling: <GrcToolingKb />,
     gaps: <ItgcGapsKb initialFramework={new URLSearchParams(location.search).get('gapfw') || 'all'} />,

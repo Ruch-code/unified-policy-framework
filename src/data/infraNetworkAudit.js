@@ -15,17 +15,25 @@ export const NETWORK_BASICS = [
   ['WAN', 'Connects geographically separate networks over long distances.'],
   ['Hub', 'Layer 1 device that repeats traffic to every port. Rare in corporate networks today.'],
   ['Switch', 'Layer 2 device that learns MAC addresses and forwards frames only to the right port. Supports VLANs to split broadcast domains.'],
+  ['Access point', 'Lets wireless devices join the network over Wi-Fi.'],
+  ['Modem', 'Converts signals between the provider line (cable, DSL, fibre) and digital data.'],
+  ['Network interface card', 'Hardware that connects a device to the network; each has a MAC address.'],
+  ['Repeater', 'Regenerates a signal to extend network reach.'],
+  ['Load balancer', 'Spreads traffic across several servers for capacity and resilience.'],
+  ['Proxy server', 'Intermediary between clients and servers (see forward vs reverse proxy below).'],
+  ['Network attached storage', 'Shared file storage on the network; restrict access and back it up.'],
+  ['Network printers and scanners', 'Often forgotten devices with stored documents and default passwords; segment and patch them.'],
   ['Router', 'Layer 3 device that forwards packets between networks using IP addresses and chooses the best path.'],
 ];
 
 export const OSI_TCPIP = [
-  ['7 Application', 'Application (TCP/IP layer 4)', 'HTTP, DNS, SMTP', 'WAF, application-level / proxy firewall, web filtering'],
-  ['6 Presentation', 'Application', 'Data format, encryption, compression (TLS is often placed here conceptually)', 'Content inspection'],
-  ['5 Session', 'Application', 'Session set-up and teardown', 'Circuit-level gateway'],
-  ['4 Transport', 'Transport (TCP/IP layer 3)', 'TCP, UDP, ports', 'Stateful firewall, port rules'],
-  ['3 Network', 'Internet (TCP/IP layer 2)', 'IPv4, IPv6, ICMP', 'Packet-filtering firewall, ACLs on routers'],
-  ['2 Data link', 'Network access (TCP/IP layer 1)', 'Ethernet, MAC addresses, VLANs', 'Port security, 802.1X'],
-  ['1 Physical', 'Network access', 'Cables, radio', 'Physical security'],
+  ['7 Application', 'Application (TCP/IP layer 4)', 'HTTP, DNS, SMTP, FTP', 'WAF, application-level / proxy firewall, web filtering', 'SQL injection, cross-site scripting, application-layer DDoS'],
+  ['6 Presentation', 'Application', 'Data format, encryption, compression (TLS is often placed here conceptually)', 'Content inspection, HSTS, current TLS only', 'SSL stripping, encoding tricks to bypass filters'],
+  ['5 Session', 'Application', 'Session set-up and teardown', 'Circuit-level gateway, secure session IDs and timeouts', 'Session hijacking, session fixation, replay'],
+  ['4 Transport', 'Transport (TCP/IP layer 3)', 'TCP, UDP, ports', 'Stateful firewall, port rules, SYN cookies, rate limits', 'SYN flood, UDP flood'],
+  ['3 Network', 'Internet (TCP/IP layer 2)', 'IPv4, IPv6, ICMP, IPsec', 'Packet-filtering firewall, ACLs on routers, anti-spoofing filters', 'IP spoofing, route manipulation, ICMP floods'],
+  ['2 Data link', 'Network access (TCP/IP layer 1)', 'Ethernet, Wi-Fi, MAC addresses, VLANs, ARP', 'Port security, 802.1X, dynamic ARP inspection', 'ARP spoofing, MAC spoofing, switch flooding'],
+  ['1 Physical', 'Network access', 'Cables, fibre, radio', 'Physical security, cable protection', 'Tapping, tampering, jamming'],
 ];
 
 export const FIREWALL_TYPES = [
@@ -104,6 +112,8 @@ export const CRYPTO = [
   ['Encryption', 'Reversible with a key, protects confidentiality. Symmetric: AES. Asymmetric: RSA, ECC. Diffie-Hellman is a key exchange method, not data encryption.'],
   ['Data in transit', 'TLS 1.2 or higher (HTTPS), SSH / SFTP, IPsec for VPNs.'],
   ['Data at rest', 'AES-256 at disk, database or application level. Keys held in a KMS or HSM (for example a cloud key vault), with rotation and restricted access.'],
+  ['Homomorphic encryption', 'Lets systems compute on encrypted data without decrypting it. Still slow and used in specialised cases such as privacy-preserving analytics.'],
+  ['Post-quantum cryptography', 'Algorithms designed to resist attacks by future quantum computers. NIST published its first post-quantum standards (FIPS 203, 204 and 205) in August 2024; plan an inventory of where RSA and ECC are used.'],
   ['Digital signature', 'Hash signed with a private key. Proves origin and integrity, not confidentiality.'],
 ];
 

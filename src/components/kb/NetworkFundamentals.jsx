@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Layers, Network, Siren, Shield, Globe, Key, Mail, Workflow, Lock, ArrowRight } from 'lucide-react';
+import { Layers, Siren, Shield, Globe, Key, Mail, Workflow, Lock, ArrowRight, Search, Network } from 'lucide-react';
 
 // Network and security fundamentals: one place for defence in depth, OSI attacks, common network attacks,
 // IDS and IPS, proxies, API gateways, NAT, VPN protocols, authentication methods and email authentication.
@@ -33,15 +33,16 @@ function Flow({ steps }) {
 }
 
 const SECTIONS = [
-  ['nf-layers', 'Defence in depth', Layers],
-  ['nf-osi', 'OSI layers and attacks', Network],
+  ['nf-layers', 'Seven layers of security', Layers],
+  ['nf-firewall', 'How a firewall decides', Shield],
   ['nf-attacks', 'Common network attacks', Siren],
   ['nf-ids', 'IDS vs IPS', Shield],
   ['nf-proxy', 'Proxies and API gateways', Globe],
   ['nf-nat', 'NAT', Workflow],
+  ['nf-dns', 'DNS record types', Search],
   ['nf-vpn', 'VPN protocols', Lock],
   ['nf-auth', 'Authentication methods', Key],
-  ['nf-email', 'SPF, DKIM and DMARC', Mail],
+  ['nf-email', 'How email is delivered and checked', Mail],
 ];
 
 function Sec({ id, title, icon: Icon, children }) {
@@ -60,7 +61,7 @@ export default function NetworkFundamentals() {
     <div className="space-y-3">
       <section className="rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-5">
         <h2 className="text-xl font-bold text-gray-900 dark:text-white">Network and security fundamentals</h2>
-        <p className={P}>Plain-language explainers on how networks are attacked and defended, with what to check in an audit. Jump to a topic:</p>
+        <p className={P}>Plain-language explainers that build on the audit tables above (network basics and devices, OSI layers with attacks, firewall types, ports, email security and cryptography). Jump to a topic:</p>
         <nav aria-label="Topics on this page" className="mt-3 flex flex-wrap gap-2">
           {SECTIONS.map(([id, t, Icon]) => (
             <button key={id} type="button" onClick={() => open(id)} className="inline-flex items-center gap-1.5 rounded-full border border-indigo-200 dark:border-indigo-800 px-3 py-1 text-xs font-medium text-indigo-700 dark:text-indigo-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30">
@@ -84,17 +85,15 @@ export default function NetworkFundamentals() {
         ]} />
       </Sec>
 
-      <Sec {...S['nf-osi']}>
-        <p className={P}>The OSI model splits network communication into seven layers. Attacks target specific layers, so knowing the layer tells you which control helps.</p>
-        <Table head={['Layer', 'What happens here', 'Examples', 'Typical attacks', 'Defences']} rows={[
-          ['7 Application', 'Services users and apps talk to', 'HTTP, DNS, SMTP, FTP', 'SQL injection, cross-site scripting, application-layer DDoS', 'Secure coding, WAF, rate limiting'],
-          ['6 Presentation', 'Data format, encoding and encryption', 'TLS, character encoding, compression', 'SSL stripping, encoding tricks to bypass filters', 'HSTS, current TLS only, input normalisation'],
-          ['5 Session', 'Opening and keeping conversations', 'Sessions, sockets', 'Session hijacking, session fixation, replay', 'Secure random session IDs, timeouts, rotate IDs at login'],
-          ['4 Transport', 'Delivery between hosts', 'TCP, UDP', 'SYN flood, UDP flood', 'SYN cookies, rate limits, DDoS protection'],
-          ['3 Network', 'Routing between networks', 'IP, ICMP, IPsec', 'IP spoofing, route manipulation, ICMP floods', 'Anti-spoofing filters, route authentication'],
-          ['2 Data link', 'Delivery on the local network', 'Ethernet, Wi-Fi, ARP', 'ARP spoofing, MAC spoofing, switch flooding', 'Port security, dynamic ARP inspection, 802.1X'],
-          ['1 Physical', 'Cables, radio and hardware', 'Copper, fibre, radio', 'Tapping, tampering, jamming', 'Physical access control, cable protection'],
-        ]} min={900} />
+
+      <Sec {...S['nf-firewall']}>
+        <p className={P}>A firewall checks each connection against its rules and allows or blocks it. The firewall types (packet filtering, stateful, proxy, WAF, next generation) are compared in the table above; this is the decision path.</p>
+        <Flow steps={['Client sends a request', 'Firewall checks source, destination, port and protocol against the rules', 'Stateful check: is this a new connection or part of an existing one?', 'Application checks where supported: URL, content, file type, intrusion signatures', 'Match an allow rule: forward. No match: default deny drops and logs it', 'Reply comes back through the firewall and is checked against the connection state']} />
+        <Table head={['Inspection level', 'Checks']} rows={[
+          ['Packet filtering', 'Allow or block by IP address, port, protocol, source and destination; default deny rule'],
+          ['Stateful inspection', 'Tracks connection state, verifies new connections, applies timeouts, checks sequence numbers'],
+          ['Application layer', 'Content inspection, URL and file type filtering, intrusion detection and prevention, anomaly detection'],
+        ]} min={560} />
       </Sec>
 
       <Sec {...S['nf-attacks']}>
@@ -117,6 +116,7 @@ export default function NetworkFundamentals() {
         <Table head={['', 'IDS (intrusion detection system)', 'IPS (intrusion prevention system)']} rows={[
           ['What it does', 'Watches traffic or hosts and raises alerts', 'Watches traffic and also blocks what it judges malicious'],
           ['Where it sits', 'Out of band, on a copy of traffic (network IDS) or on the host (host IDS)', 'Inline, usually behind the firewall, so traffic passes through it'],
+          ['Logging', 'Detailed alerts and logs for investigation', 'Records blocks; focuses on stopping threats, so alert detail can be lighter'],
           ['Effect of a false positive', 'An unnecessary alert', 'Legitimate traffic is blocked, which can stop business services'],
           ['Typical use', 'Visibility and investigation, sensitive segments where blocking is risky', 'Stopping known attacks at the perimeter and between key segments'],
         ]} />
@@ -149,6 +149,21 @@ export default function NetworkFundamentals() {
         <p className={P}>Security notes: NAT hides internal addresses but is not a firewall; inbound connections still need explicit firewall rules. Fixed outbound NAT addresses are useful for supplier allow-lists. Keep NAT and firewall logs so you can trace a public IP and port back to the internal device during an investigation.</p>
       </Sec>
 
+      <Sec {...S['nf-dns']}>
+        <Table head={['Record', 'Purpose', 'Example', 'Security note']} rows={[
+          ['A', 'Maps a name to an IPv4 address', 'www.example.com to 192.0.2.10', 'Remove records pointing to retired IPs'],
+          ['AAAA', 'Maps a name to an IPv6 address', 'www.example.com to 2001:db8::10', 'Same as A'],
+          ['CNAME', 'Alias from one name to another', 'shop.example.com to a hosted provider', 'Dangling CNAMEs to deleted cloud resources allow subdomain takeover'],
+          ['MX', 'Mail servers for the domain', 'example.com to mail.example.com', 'Only approved mail providers'],
+          ['NS', 'Authoritative name servers for the domain', 'example.com to ns1.provider.net', 'Protect the registrar account with MFA and registry lock'],
+          ['TXT', 'Free text, used for verification and email policies', 'SPF, DKIM keys, DMARC, domain verification', 'Review regularly; old verification records can be removed'],
+          ['PTR', 'Reverse lookup from IP to name', '192.0.2.10 to mail.example.com', 'Mail servers need matching reverse DNS'],
+          ['SRV', 'Location of a service (host and port)', 'SIP or directory services', 'Expose only what external users need'],
+          ['SOA', 'Zone details: primary server, admin contact, serial number', 'One per zone', 'Restrict zone transfers'],
+          ['CAA', 'Which certificate authorities may issue certificates for the domain', 'example.com allows one named CA', 'Stops unapproved CAs issuing certificates'],
+        ]} min={900} />
+      </Sec>
+
       <Sec {...S['nf-vpn']}>
         <p className={P}>How a VPN works and how to secure it is in the <Link className="ui-link" to="/knowledge?topic=infra-review">Infrastructure Security Review Playbook</Link>. This table covers the protocols you will see.</p>
         <Table head={['Protocol', 'Notes', 'Use today?']} rows={[
@@ -159,7 +174,18 @@ export default function NetworkFundamentals() {
           ['SSTP', 'Microsoft protocol that tunnels over TLS', 'Mainly in Windows environments'],
           ['L2TP', 'Provides no encryption itself; used together with IPsec', 'Legacy; prefer IKEv2'],
           ['PPTP', 'Old protocol with known weaknesses', 'No, retire it'],
+          ['SoftEther', 'Open source, multi-protocol VPN software', 'Possible; check it is centrally managed'],
+          ['GRE and MPLS', 'Tunnelling and carrier network technologies that do not encrypt by themselves', 'Only with IPsec or another encryption layer'],
         ]} min={600} />
+        <h3 className={H}>SSL/TLS VPN vs IPsec VPN</h3>
+        <Table head={['', 'SSL/TLS VPN', 'IPsec VPN']} rows={[
+          ['Works at', 'Transport and application layers, over HTTPS', 'Network layer: all IP traffic'],
+          ['Client', 'Browser or light client', 'Installed client or a router at a remote site'],
+          ['Gives access to', 'Specific applications such as web apps, email or portals', 'Whole networks or subnets'],
+          ['Best for', 'Remote staff needing a few internal apps', 'Site-to-site links and full network access'],
+          ['Encryption', 'TLS with modern ciphers such as AES-GCM', 'IPsec with modern ciphers such as AES-GCM; retire 3DES'],
+        ]} min={700} />
+        <p className={P}>Other names you will see: cloud VPN (a VPN gateway run as a cloud service) and double VPN (traffic routed through two VPN servers, mainly a consumer privacy feature).</p>
       </Sec>
 
       <Sec {...S['nf-auth']}>
@@ -173,14 +199,16 @@ export default function NetworkFundamentals() {
       </Sec>
 
       <Sec {...S['nf-email']}>
-        <p className={P}>Three DNS-based controls work together to stop attackers sending email that pretends to come from your domain.</p>
-        <Table head={['Control', 'What it checks', 'Setup notes']} rows={[
-          ['SPF', 'Is the sending server allowed to send for this domain?', 'Publish a DNS TXT record listing approved senders, including third-party services; keep it within the 10 DNS lookup limit; end with -all or ~all'],
-          ['DKIM', 'Was the message signed by the domain and not changed in transit?', 'Publish the public key in DNS, sign outgoing mail, use 2048-bit keys, rotate keys'],
-          ['DMARC', 'Does SPF or DKIM pass and align with the visible From domain? What should the receiver do if not?', 'Publish a policy (none, quarantine or reject) and a report address; start at none, read the reports, then move to reject'],
-        ]} min={760} />
+        <h3 className={H}>Delivery</h3>
+        <Table head={['Component or protocol', 'Role']} rows={[
+          ['Mail user agent (MUA)', 'The email app the person uses, such as Outlook or a webmail client'],
+          ['SMTP submission (587 with STARTTLS, or 465)', 'The app sends the message to the sender\'s mail server, with authentication'],
+          ['Mail transfer agent (MTA) and SMTP (25)', 'The sender\'s server finds the recipient\'s server from its MX record and relays the message, with STARTTLS where supported'],
+          ['IMAP (993) or POP3 (995)', 'The recipient\'s app fetches the message; use the TLS versions'],
+        ]} min={600} />
+        <h3 className={H}>Checks on arrival</h3>
         <Flow steps={['Email arrives', 'Receiver checks SPF', 'Receiver checks DKIM signature', 'DMARC checks alignment with the From domain', 'Pass: inbox. Fail: apply the policy (none, quarantine or reject)', 'Reports sent to the domain owner']} />
-        <p className={P}>Audit check: all sending domains (including ones that never send mail, which should publish a reject policy) have SPF, DKIM and DMARC; DMARC is at quarantine or reject; reports are reviewed.</p>
+        <p className={P}>What SPF, DKIM and DMARC each do, and what good looks like, is in the email security table above. Remember domains that never send mail: publish SPF -all and DMARC reject for them too.</p>
       </Sec>
     </div>
   );
