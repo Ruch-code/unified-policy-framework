@@ -54,6 +54,14 @@ export default function AwarenessProgrammeExtras() {
         <p className={P}>Use Export (.xlsx) to download this as an editable template.</p>
         <SortableGrid label="12-month awareness calendar" headers={['Month', 'Theme', 'Audience', 'Channel', 'Owner']} rows={AWARENESS_CALENDAR} file="awareness-12-month-calendar" min={820} />
 
+        <h3 className={H}>Example: one quarter&apos;s campaign</h3>
+        <SortableGrid label="Quarterly awareness campaign example" headers={['Month', 'Theme', 'Activities', 'Measure']} file="quarterly-awareness-campaign" min={860} rows={[
+          ['Month 1', 'Phishing and reporting', 'Short video, intranet article, tier 1 phishing simulation, reminder of the report button', 'Baseline click rate, report rate and time to report'],
+          ['Month 2', 'Passwords, passkeys and MFA', 'Password manager rollout guide, MFA fatigue explainer, live 20-minute session for staff', 'Password manager adoption, MFA enrolment, session attendance'],
+          ['Month 3', 'Data protection and secure remote work', 'Data handling quiz, home network and public Wi-Fi tips, tier 2 phishing simulation, feedback survey', 'Quiz score, change in click and report rates against month 1, survey results'],
+        ]} />
+        <p className={P}>At quarter end, report results to leadership, give extra coaching to repeat clickers, use survey feedback to fix unclear topics, and pick the next quarter&apos;s themes from the weakest results and recent real incidents.</p>
+
         <h3 className={H}>What auditors ask for</h3>
         <Ul items={['Training records reconciled to the HR list', 'Policy acknowledgements for the current version', 'Phishing simulation results with dates and audiences', 'Evidence of follow-up for clickers and repeat clickers', 'The approved awareness plan and management reporting']} />
       </div>

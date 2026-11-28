@@ -30,6 +30,18 @@ function Intro() {
       <h3 className={H3}>Overview</h3>
       <p className={P}>SAP Access Control has five main capabilities: Access Risk Analysis (ARA) checks users and roles against the SoD rule set; Access Request Management (ARM) runs the request and approval workflow; Business Role Management (BRM) designs business roles; Emergency Access Management (EAM) controls Firefighter access; User Access Review (UAR) runs periodic certification. SAP Process Control documents and tests internal controls, and SAP Risk Management covers enterprise risk. A capability table and a worked vendor-payment example are in <Link className="ui-link" to="/knowledge?topic=erp">ERP Security Review</Link>.</p>
 
+      <p className={P}>Beyond Access Control, SAP GRC Process Control tracks compliance obligations by linking regulations and policies to controls, running automated control monitoring and manual control tests, and collecting sign-offs. SAP Audit Management supports internal audit planning, fieldwork, findings and follow-up. Check which components your organisation licenses.</p>
+
+      <h3 className={H3}>Stakeholders</h3>
+      <ModuleTable head={['Stakeholder', 'Role in SAP GRC']} rows={[
+        ['Business process owners', 'Define functions and risks with GRC, approve access to their processes, own mitigating controls and access review decisions'],
+        ['IT and SAP security (Basis, role administrators)', 'Build and maintain roles, provision access, run technical configuration and transports'],
+        ['GRC or compliance team', 'Own the rule set, run risk analysis, manage mitigations, coordinate access reviews and report'],
+        ['Information security', 'Set access policy, review privileged and Firefighter use, link SAP risks to the wider security programme'],
+        ['Internal and external auditors', 'Test SoD, provisioning, reviews and emergency access; rely on GRC reports after checking completeness'],
+        ['Firefighter controllers', 'Review emergency access sessions and sign off'],
+      ]} />
+
       <h3 className={H3}>SoD rule set design</h3>
       <ModuleTable head={['Level', 'What it is', 'Example']} rows={[
         ['Function', 'A business activity made of one or more actions', 'Maintain vendor master'],

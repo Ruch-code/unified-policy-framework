@@ -38,8 +38,46 @@ export default function IncidentGovernanceExtras() {
           'Board reporting: significant incidents reported to the board or a committee, with a periodic summary of all incidents and trends.',
           'Evidence and chain of custody: who collected what, when and how, with hashes where relevant, stored with restricted access.',
           'Incident register: every incident logged with severity, timeline, owner, root cause and actions.',
-          'Metrics: mean time to detect (MTTD), mean time to acknowledge (MTTA), mean time to resolve (MTTR) and recurrence rate.',
           'Annual tabletop: at least one exercise a year with leadership, with findings tracked to closure.',
+        ]} />
+
+        <h3 className={H}>Severity levels (example)</h3>
+        <SortableGrid label="Incident severity levels" headers={['Severity', 'Definition', 'Example', 'Response target']} file="incident-severity-levels" min={860} rows={[
+          ['Critical (Sev 1)', 'Major business impact, confirmed data breach or regulator notification likely', 'Ransomware on production; customer data exfiltrated', 'Commander within 15 minutes; leadership informed within 1 hour'],
+          ['High (Sev 2)', 'Significant impact or likely data exposure, contained to part of the business', 'Compromised admin account; malware on several devices', 'Response within 1 hour'],
+          ['Medium (Sev 3)', 'Limited impact, no confirmed data exposure', 'Single phished account with no evidence of data access', 'Response within 4 hours'],
+          ['Low (Sev 4)', 'Minor policy breach or contained event', 'Malware blocked by EDR; lost encrypted laptop', 'Response within 1 working day'],
+        ]} />
+        <p className="text-xs text-gray-500 dark:text-slate-400">Targets are examples; set your own in the policy.</p>
+
+        <h3 className={H}>Incident response RACI</h3>
+        <SortableGrid label="Incident response RACI" headers={['Activity', 'Incident commander', 'SOC and technical lead', 'IT and system owners', 'Legal and privacy', 'Communications', 'Executive sponsor']} file="incident-response-raci" min={1000} rows={[
+          ['Triage and classify', 'A', 'R', 'C', 'I', '-', 'I'],
+          ['Contain and eradicate', 'A', 'R', 'R', 'I', '-', 'I'],
+          ['Notification decision', 'C', 'C', '-', 'A/R', 'C', 'C'],
+          ['Internal and external communication', 'C', 'I', 'I', 'C', 'R', 'A'],
+          ['Recovery', 'A', 'C', 'R', '-', 'I', 'I'],
+          ['Post-incident review', 'A', 'R', 'R', 'C', 'C', 'I'],
+        ]} />
+
+        <h3 className={H}>Metrics</h3>
+        <Ul items={[
+          'Mean time to detect (MTTD): from the start of malicious activity to detection.',
+          'Mean time to acknowledge (MTTA): from alert to a person starting work on it.',
+          'Mean time to contain (MTTC): from detection to the threat being contained.',
+          'Mean time to resolve (MTTR): from detection to recovery and closure.',
+          'Incidents by severity and category per month or quarter, and repeat incidents with the same root cause.',
+          'Post-incident actions overdue.',
+        ]} />
+
+        <h3 className={H}>How incident management connects to other domains</h3>
+        <Ul items={[
+          'Risk management: incidents update likelihood and impact in the risk register.',
+          'Business continuity: high-severity incidents may trigger continuity and DR plans.',
+          'Access control: compromised accounts drive access reviews and MFA gaps get fixed.',
+          'Change management: fixes go through change control; failed changes feed incident reviews.',
+          'Vendor management: supplier incidents follow contract notification terms and feed vendor reassessment.',
+          'Audit readiness: the incident register and reviews are standard audit evidence.',
         ]} />
 
         <h3 className={H}>Regulatory clocks</h3>

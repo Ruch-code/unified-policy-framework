@@ -48,6 +48,22 @@ export default function PolicyGovernanceLifecycle() {
         <p className={P}>Use Export (.xlsx) to download the register with these example rows, then replace them with your own.</p>
         <SortableGrid label="Policy exceptions register" headers={['ID', 'Policy and clause', 'Reason', 'Compensating control', 'Risk owner', 'Approver', 'Approved on', 'Expires on', 'Status']} rows={EXCEPTIONS} file="policy-exceptions-register" min={1200} />
 
+        <h3 className={H}>Governance for the Change and Incident Management policies</h3>
+        <SortableGrid label="Policy governance for change and incident management" headers={['Item', 'Change Management policy', 'Incident Management policy']} file="change-incident-policy-governance" min={900} rows={[
+          ['Policy owner', 'Head of IT operations or engineering', 'CISO or head of security operations'],
+          ['Approver', 'CIO or CTO', 'CISO, with executive sign-off'],
+          ['Review frequency', 'Yearly, and after major process or tooling changes', 'Yearly, and after every major incident or exercise'],
+          ['Exceptions', 'Recorded in the exceptions register with expiry and compensating control', 'Recorded in the exceptions register with expiry and compensating control'],
+          ['Monitoring', 'Failed change rate, emergency change share, unauthorised changes found', 'MTTD, MTTR, incidents by severity, overdue post-incident actions'],
+          ['Audit evidence', 'Change population from the tool, sampled tickets with approval, test and backout plan, post-implementation reviews', 'Incident register, sampled records with timeline, notification decisions, post-incident reviews, exercise reports'],
+        ]} />
+
+        <h3 className={H}>Sample policy language</h3>
+        <div className={`rounded-lg border border-gray-200 dark:border-slate-700 p-3 ${P}`}>
+          <p><strong>Change Management:</strong> &quot;All changes to production systems must be recorded in the change management tool, assessed for risk and impact, tested, and approved before implementation according to their category. The person who develops a change must not be the only person to approve and deploy it. Emergency changes may be implemented to restore service or prevent harm, but must be approved retrospectively within two working days. Every normal and emergency change must include a backout plan.&quot;</p>
+          <p className="mt-2"><strong>Incident Management:</strong> &quot;All employees and contractors must report suspected security incidents immediately through the approved channels. The security team will classify each incident by severity and assign an incident commander for high and critical incidents. Evidence must be preserved and handled to maintain its integrity. Legal and privacy teams must be consulted on any incident that may involve personal or regulated data, to decide on notification. A post-incident review must be completed for every high and critical incident.&quot;</p>
+        </div>
+
         <div className="mt-4 rounded-xl border border-amber-300 dark:border-amber-700 bg-amber-50 dark:bg-amber-900/20 p-4">
           <p className="font-semibold text-gray-900 dark:text-white">Approved isn&apos;t the same as implemented</p>
           <p className={P}>After a policy is approved or changed, check that it is followed: training completion for affected staff, configuration evidence that the rule is enforced (for example MFA or branch protection settings), and a spot check about 30 days after the change.</p>
