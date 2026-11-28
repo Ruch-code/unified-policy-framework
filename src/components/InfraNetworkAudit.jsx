@@ -30,7 +30,7 @@ export default function InfraNetworkAudit() {
       <Sub>Network basics</Sub>
       <Rows label="Network basics" headers={['Term', 'Meaning']} rows={D.NETWORK_BASICS} />
       <Sub>OSI vs TCP/IP and where controls sit</Sub>
-      <Rows label="OSI and TCP/IP" headers={['OSI layer', 'TCP/IP layer', 'Examples', 'Controls at this layer']} rows={D.OSI_TCPIP} min={800} />
+      <Rows label="OSI and TCP/IP" headers={['OSI layer', 'TCP/IP layer', 'Examples', 'Controls at this layer', 'Typical attacks']} rows={D.OSI_TCPIP} min={1000} />
 
       <Sub>Firewall types</Sub>
       <Rows label="Firewall types" headers={['Type', 'Layer', 'How it works']} rows={D.FIREWALL_TYPES} min={800} />
