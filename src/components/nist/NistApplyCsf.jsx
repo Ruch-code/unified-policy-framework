@@ -97,6 +97,15 @@ export default function NistApplyCsf() {
             <p className={P}>CSF sets outcomes and priorities and is voluntary; there is no CSF certification. ISO 27001 is a certifiable management system with required clauses and an Annex A control set. Use CSF to decide what matters most and to report to the board, and ISO 27001 to run and certify the programme. Short crosswalk: GV.PO to A.5.1; GV.SC to A.5.19 to A.5.22; ID.AM to A.5.9; PR.AA to A.5.15 to A.5.18 and A.8.2 to A.8.5; PR.AT to A.6.3; DE.CM to A.8.16; RS.MA to A.5.24 to A.5.26; RC.RP to A.5.29 and A.5.30. Check NIST&apos;s published informative references for the full mapping.</p>
           </div>
 
+          <h3 className={H}>How CSF connects to the rest of the GRC programme</h3>
+          <Table head={['Programme element', 'How CSF is used']} rows={[
+            ['Risk register', 'Tag each risk with the CSF categories it affects, so gaps and risks are reported in the same language'],
+            ['Policies', 'Map each policy to the categories it supports (for example access control policy to PR.AA), which shows uncovered categories'],
+            ['Audits', 'Use the Current Profile as an audit plan input and map findings back to categories'],
+            ['Security metrics', 'Pick one or two outcome metrics per function (for example MTTD for Detect, MTTR for Respond)'],
+            ['Executive reporting', 'Report a profile by function each quarter with movement against the target and the top gaps'],
+          ]} />
+
           <h3 className={H}>Self-assessment</h3>
           <p className={P}>Rate each category 0 to 4 and export the gaps in the <Link className="ui-link" to="/grc-maturity#csf-gap">CSF 2.0 gap self-assessment</Link>, which scores each function and lists your biggest gaps.</p>
         </div>
