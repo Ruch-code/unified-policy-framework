@@ -161,6 +161,19 @@ export default function KnowledgeBase() {
   const fwObj = isEdpTopic ? null : FRAMEWORK_KB[fw];
 
   const location = useLocation();
+  // Open and scroll to an in-page section when the URL has a #hash (used by the header topics menu).
+  useEffect(() => {
+    const id = (location.hash || '').slice(1);
+    if (!id) return undefined;
+    const t = setTimeout(() => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      let p = el;
+      while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; }
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 400);
+    return () => clearTimeout(t);
+  }, [location]);
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const p = params.get('fw');

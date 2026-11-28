@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 // Continuity essentials: risk assessment vs BIA, BCP vs DRP vs crisis management plan, and the four BCP test types.
 const TH = 'p-2 text-left font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-900';
 const TD = 'p-2 align-top border-t border-gray-100 dark:border-gray-700 text-gray-700 dark:text-gray-300';
@@ -19,6 +20,11 @@ const Box = ({ id, title, children }) => (
 );
 
 export default function ContinuityEssentials() {
+  useEffect(() => {
+    if (typeof window === 'undefined' || window.location.hash !== '#continuity-essentials') return undefined;
+    const t = setTimeout(() => document.getElementById('continuity-essentials')?.scrollIntoView({ behavior: 'smooth' }), 400);
+    return () => clearTimeout(t);
+  }, []);
   return (
     <section id="continuity-essentials" className="max-w-6xl mx-auto px-4 my-8 space-y-3 scroll-mt-24">
       <h2 className="text-xl font-bold text-gray-900 dark:text-white">Continuity essentials</h2>
