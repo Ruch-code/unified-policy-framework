@@ -192,7 +192,7 @@ export const GAMING_TOPICS = [
         ['GLI-33', 'Event wagering (sports betting) systems', 'v1.1 in use; v2.0 draft released for comment in June 2026'],
         ['GLI-11', 'Gaming devices such as slot machines in land-based venues', 'Check the current version on gaminglabs.com'],
         ['GLI-16', 'Cashless systems in casinos', 'Check the current version on gaminglabs.com'],
-      ] }, note: 'GCGRA has adopted a technical standard series produced by GLI: 17 standards including GLI-11, GLI-12, GLI-13, GLI-16, GLI-19, GLI-21 and GLI-33. Which apply depends on the licence type. See the control mapping page for how they connect to ISO 27001 and SOC 2.' },
+      ] }, note: 'Which GLI standards GCGRA has adopted, and how they map to ISO 27001 and SOC 2, is on the control mapping page.' },
       { h: 'Key control areas', list: [
         'RNG certification by an accredited independent test lab, with production monitoring.',
         'Return to player (RTP) documented per game and checked against actual results.',
