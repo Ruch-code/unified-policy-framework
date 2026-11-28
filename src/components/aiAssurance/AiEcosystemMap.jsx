@@ -24,6 +24,22 @@ export default function AiEcosystemMap() {
       <div className="mt-3">
         <p className={P}>AI systems are assembled from many layers of tools. Each layer brings its own data flows, vendors and risks, so an AI inventory and vendor review should cover every layer, not just the model.</p>
         <SortableGrid label="AI tool ecosystem by layer" headers={['Layer', 'What it does', 'Example tools', 'GRC and security questions']} rows={LAYERS} file="ai-tool-ecosystem" min={1100} />
+        <h3 className="mt-5 mb-1 text-base font-semibold text-gray-900 dark:text-white">MCP vs API</h3>
+        <p className={P}>An API is a standard interface any client can call: the client sends a request to an endpoint, the server processes it and returns a response, regardless of programming language. MCP (Model Context Protocol) is a standard built for AI: an MCP host (the app using the model) contains MCP clients that connect to MCP servers, and each server exposes tools, data and prompts in one consistent format. MCP usually sits on top of APIs; it replaces one-off integrations between each AI app and each system.</p>
+        <div className="overflow-x-auto my-2" tabIndex={0} role="region" aria-label="MCP vs API">
+          <table className="w-full text-sm" style={{ minWidth: 760 }}>
+            <thead><tr>{['', 'API', 'MCP'].map((h) => <th key={h} scope="col" className="p-2 text-left font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-900">{h}</th>)}</tr></thead>
+            <tbody>{[
+              ['Built for', 'Any software talking to any other software', 'AI models and agents discovering and using tools and data'],
+              ['Parts', 'Client, endpoint, server', 'Host (the AI app), client inside the host, servers exposing capabilities'],
+              ['Discovery', 'Developer reads docs and codes each call', 'The model is told at runtime which tools exist and how to call them'],
+              ['Integration effort', 'One integration per system per app', 'One MCP server per system, reusable by any MCP-capable app'],
+              ['Who decides the call', 'Code written by a developer', 'The model chooses tools and arguments, so behaviour is less predictable'],
+              ['Main security concern', 'Authentication, authorisation, rate limits, input validation', 'All API concerns plus prompt injection through tool output, over-scoped tokens, unreviewed third-party servers and tools that change after approval'],
+              ['Key controls', 'API gateway, OAuth scopes, schema validation, logging', 'Approved server registry, version pinning, least-privilege tokens per server, human approval for sensitive tools, logging of every tool call'],
+            ].map((r) => <tr key={r[0]}>{r.map((c, j) => <td key={j} className={`p-2 align-top border-t border-gray-100 dark:border-gray-700 ${j === 0 ? 'font-semibold text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300'}`}>{c}</td>)}</tr>)}</tbody>
+          </table>
+        </div>
         <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">Tool names are examples of what is commonly used, not endorsements. The market changes quickly; check each vendor&apos;s current terms and security documentation.</p>
       </div>
     </details>
