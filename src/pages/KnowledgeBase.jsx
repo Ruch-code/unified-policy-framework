@@ -42,6 +42,8 @@ import SapGrcTopic from '../components/toolkit/SapGrcTopic.jsx';
 import { CustomerTrustTab, PolicyLifecycleTab, DueDiligenceTab, AwarenessTab, ErpReviewTab } from '../components/toolkit/Phase4Modules.jsx';
 import CryptoExchangeTab from '../components/CryptoExchangeTab.jsx';
 import CryptoAlgorithms from '../components/kb/CryptoAlgorithms.jsx';
+import NetworkFundamentals from '../components/kb/NetworkFundamentals.jsx';
+import FrameworksByIndustry from '../components/kb/FrameworksByIndustry.jsx';
 import SecretsScanningTab from '../components/SecretsScanningTab.jsx';
 import AuditObservations from '../components/AuditObservations.jsx';
 import CicdPipelineSecurity from '../components/CicdPipelineSecurity.jsx';
@@ -106,6 +108,7 @@ const TABS = [
   { id: 'sap-grc', label: 'SAP GRC Access Control', icon: ShieldAlert, group: 'IT audit areas', area: 'Internal audit', desc: 'SoD rule set design, Firefighter governance, key transactions, ITGC testing and planning ahead for the next SAP Access Control release.' },
   { id: 'edp', label: 'Endpoint & Data Protection', icon: Smartphone, group: 'GRC: Security architecture', area: 'GRC', desc: 'MDM, DLP, BYOD, ecosystems, mapping, roadmap, evidence and checklists.' },
   { id: 'crypto-algorithms', label: 'Cryptographic Algorithms', icon: Key, group: 'GRC: Security architecture', area: 'GRC', desc: 'AES-128, AES-256 (GCM), ChaCha20-Poly1305, RSA, ECDHE, ECDSA and Ed25519: flow charts, pros and cons' },
+  { id: 'net-fundamentals', label: 'Network and Security Fundamentals', icon: Network, group: 'GRC: Security architecture', area: 'GRC', desc: 'Defence in depth, OSI layers and attacks, MITM, spoofing, DDoS, IDS vs IPS, proxies, API gateways, NAT, VPN protocols, authentication methods, SPF, DKIM and DMARC' },
   { id: 'data-governance', label: 'Data Governance', icon: Shield, group: 'GRC: Security architecture', area: 'GRC', desc: 'Data discovery, classification, labelling, data flow mapping and records of processing' },
   { id: 'logistics', label: 'Logistics and Supply Chain Security', icon: Network, group: 'GRC: Industry', area: 'GRC', desc: 'Security, compliance and privacy for logistics, supply chain and transport platforms: hubs, fleets, driver apps, partners and DPDP' },
   { id: 'crypto', label: 'Crypto Exchanges (VDA)', icon: Key, group: 'GRC: Industry', area: 'GRC', desc: 'Security and compliance for crypto exchanges: CERT-In, FIU-IND, DPDP, CCSS, and two anonymised exchange incidents as worked examples' },
@@ -379,13 +382,14 @@ export default function KnowledgeBase() {
     edp: <><EdpTab /><DlpDeepDive /></>,
     crypto: <CryptoExchangeTab />,
     'crypto-algorithms': <CryptoAlgorithms />,
+    'net-fundamentals': <NetworkFundamentals />,
     secrets: <SecretsScanningTab />,
     change: <ChangeManagementTab onOpenTab={setTab} />,
     cicd: <CicdPipelineSecurity onOpenTab={setTab} />,
     bom: <BomTab onOpenTab={setTab} />,
     evidence: <EvidenceAutomationKb />,
     sysdesign: <SystemDesignKb />,
-    otherfw: <OtherFrameworksKb />,
+    otherfw: <><FrameworksByIndustry /><OtherFrameworksKb /></>,
     'evidence-checklist': <AuditEvidenceChecklist />,
     'auditor-requests': <AuditorRequestList />,
     tabletop: <><TabletopExercise /><CryptoTabletopScenario /></>,
