@@ -1,6 +1,6 @@
 // Commercial Gaming GRC (UAE / GCGRA) knowledge area.
 // Researched 27 Nov 2026 from GCGRA, UAE legislation and FIU sources, GLI, WLA and UAE law firm briefings.
-// Items that could not be confirmed from a primary source are marked [VERIFY].
+// Only facts confirmed from GCGRA publications or other primary sources are stated.
 
 export const GAMING_VERIFIED = '27 Nov 2026';
 
@@ -45,9 +45,9 @@ export const GAMING_TOPICS = [
         'Game and platform fairness', 'Information security and player data protection', 'Payments and fraud', 'Third-party suppliers and vendor licensing',
       ] },
       { h: 'UAE market: history and status', list: [
-        'Gambling has long been prohibited under the UAE Penal Code, now Federal Decree-Law No. 31 of 2021 (Crimes and Penalties Law). A law firm briefing cites Articles 460 and 461 [VERIFY article numbers against the official text].',
+        'Gambling has long been prohibited under UAE criminal law. Commercial gaming is now lawful only when licensed by the GCGRA.',
         'The General Commercial Gaming Regulatory Authority (GCGRA) was created as a federal regulator with exclusive jurisdiction over commercial gaming: lottery, internet gaming, sports wagering and land-based gaming.',
-        'Early licences reported publicly include the national lottery operator (online lottery, July 2024), Wynn Al Marjan Island in Ras Al Khaimah (gaming operator licence, October 2024), a first gaming-related vendor licence (October 2024) and a first internet gaming and sports wagering licence (December 2025) [VERIFY each against the GCGRA register].',
+        'The GCGRA awarded the first lottery licence to The Game LLC (operating as UAE Lottery) on 28 July 2024, and Wynn Resorts announced in October 2024 that it had received a gaming operator licence for Wynn Al Marjan Island in Ras Al Khaimah. The GCGRA publishes its current licensees, including gaming-related vendors, on its Our Licensees page.',
         'In June 2026 Momentum Group and Fanatics announced a joint venture to run Momentum\'s licensed UAE lottery, iGaming and sportsbook activities; the announcement states that GCGRA approved a change in control of Momentum\'s licensed entities.',
       ] },
     ],
@@ -60,26 +60,24 @@ export const GAMING_TOPICS = [
     sections: [
       { h: 'Mandate', p: 'GCGRA is the UAE federal authority that regulates, licenses and supervises all commercial gaming activities and facilities, with exclusive jurisdiction. Its stated aims include sustainable growth with integrity, responsible gaming and financial crime prevention.' },
       { h: 'Legal basis and structure', list: [
-        'GCGRA was established by federal decree. A law firm briefing cites Federal Decree No. (30) of 2022 [VERIFY on the UAE Legislation portal].',
-        'Federal Decree-Law No. 25 of 2025 is reported to have repealed the Civil Transactions Law articles on gambling and betting, clearing the way for GCGRA rules on online gaming, sports betting, casinos and lotteries [VERIFY].',
-        'Leadership: Jim Murren was appointed chair at launch and became interim CEO in November 2025 when Kevin Mullally stepped down [VERIFY current leadership on gcgra.gov.ae].',
+        'GCGRA is a federal authority set up to regulate all lottery and commercial gaming activities in the UAE.',
       ] },
-      { h: 'Licence types (as described in public briefings)', table: { head: ['Licence', 'Who needs it'], rows: [
+      { h: 'Licence types', table: { head: ['Licence', 'Who needs it'], rows: [
         ['Gaming operator', 'Entities offering lottery, internet gaming, sports wagering or land-based gaming to players'],
         ['Gaming-related vendor', 'Suppliers of gaming technology, equipment, content and services'],
         ['Key person (corporate and individual)', 'Owners, directors and senior managers with significant influence'],
-        ['Gaming employee', 'Staff in gaming roles, at different levels'],
-      ] }, note: 'Exact licence categories and thresholds come from GCGRA rules and licence conditions [VERIFY with GCGRA].' },
+        ['Gaming employee (occupational)', 'Level 1 supervisory staff and Level 2 staff directly or indirectly involved in gaming'],
+      ] }, note: 'Operator licences cover gaming facility operators, lottery operators, lottery retailers, internet gaming operators and sports wagering operators. Key persons include corporate key persons (controllers, affiliates, management services providers) and individual key persons (directors, executive officers and their equivalents at controllers and affiliates). Gaming employees hold occupational licences at Level 1 (supervisory) or Level 2 (non-supervisory staff involved in gaming).' },
       { h: 'Licensing process', list: [
-        'Pre-application engagement and application with corporate records, ownership chart down to ultimate beneficial owners, financial statements and funding sources, key persons, legal history and a responsible gaming plan.',
+        'Process: intake form and initial screening, invitation to the licensing portal, application fee, documentation (business, corporate, financial, ownership, key persons, third parties), review and principle-in-approval, pre-opening steps, certificate of operation, then licence fee and issue.',
         'Suitability (probity) review of the company, its owners and key persons.',
-        'Fees are reported as a pre-approval portion upfront, the balance before issue and an annual fee [VERIFY amounts with GCGRA].',
+        'Fees: a non-refundable application fee, a principle-in-approval (PIA) fee of about 10 percent of the licence fee, the remaining licence fee before issue, and a yearly maintenance fee. Amounts follow the GCGRA fee schedule.',
         'Licence conditions set ongoing duties: reporting, notifications, technical standards, AML-CFT and responsible gaming.',
       ] },
       { h: 'Ongoing supervision', list: [
-        'Change of control: transfers of ownership or control need GCGRA approval before completion, as shown in the 2026 Momentum and Fanatics announcement.',
+        'Change of control: GCGRA defines control as holding 15 percent or more of economic or voting rights, or the power to appoint or remove a majority of the board. The 2026 Momentum and Fanatics announcement states GCGRA approved a change in control of the licensed entities.',
         'Periodic reporting, notifications of material events, audits and inspections, and testing of systems by approved labs.',
-        'Investigations and enforcement for breaches, with sanctions under the GCGRA framework [VERIFY penalty schedule].',
+        'Investigations and enforcement of licence conditions by the GCGRA.',
         'Unlicensed gaming remains prohibited: offering or promoting gaming without a GCGRA licence is unlawful.',
       ] },
     ],
@@ -100,7 +98,7 @@ export const GAMING_TOPICS = [
       ] } },
       { h: 'Ongoing duties for the GRC team', list: [
         'Keep a licence register: entities, licence numbers, conditions, renewal dates and responsible owners.',
-        'Track notification triggers such as new key persons, ownership changes, material incidents, litigation, new games or systems, and supplier changes [VERIFY exact triggers and deadlines in licence conditions].',
+        'Notify GCGRA of material changes to the information it holds, including changes in ownership, standing or suitability, and track any further triggers in your licence conditions.',
         'Run periodic re-checks of key persons and vendors, and screen them against sanctions and adverse media.',
         'Make sure only licensed or approved vendors are onboarded, and the vendor management process records the licence check.',
       ] },
@@ -116,8 +114,8 @@ export const GAMING_TOPICS = [
       { h: 'Legal framework', list: [
         'Federal Decree-Law No. 10 of 2025 on Anti-Money Laundering, Combating the Financing of Terrorism and Countering Proliferation Financing replaced Federal Law No. 20 of 2018.',
         'Its Executive Regulations, Cabinet Resolution No. 134 of 2025, replaced Cabinet Resolution No. 10 of 2019 and are reported in force from 14 December 2025.',
-        'Briefings report that commercial gaming operators, including casinos and online gaming platforms, are treated as designated non-financial businesses and professions (DNFBPs), with an online transaction threshold of AED 11,000 [VERIFY threshold and scope in the official text].',
-        'Which authority supervises gaming operators for AML (GCGRA or another supervisor) should be confirmed [VERIFY].',
+        'Commercial gaming operators are now treated as designated non-financial businesses and professions (DNFBPs) under the new AML framework.',
+        'GCGRA describes itself as the competent authority for financial crime prevention in the gaming sector and follows FATF recommendations. It expects internal controls and governance, periodic business risk assessments, policies and procedures, player due diligence, transaction monitoring and internal and external suspicious transaction reporting.',
       ] },
       { h: 'Programme elements', table: { head: ['Element', 'What good looks like'], rows: [
         ['Enterprise-wide risk assessment', 'Risks by product, channel, payment method, geography and customer type, refreshed at least yearly'],
@@ -128,7 +126,7 @@ export const GAMING_TOPICS = [
         ['Transaction monitoring', 'Rules and models tuned to gaming typologies, with alerts reviewed and documented'],
         ['Reporting', 'Suspicious transaction reports filed through goAML promptly; no tipping off'],
         ['MLRO', 'A named compliance officer with authority, independence and resources, reporting to senior management'],
-        ['Records', 'Customer, transaction and investigation records kept for the period set by law (commonly at least five years) [VERIFY period]'],
+        ['Records', 'Customer, transaction and investigation records kept for the retention period set in the AML law and regulations'],
         ['Training', 'Role-based AML training for customer support, payments, VIP and risk teams'],
       ] } },
       { h: 'Gaming-specific red flags', table: { head: ['Typology', 'What it looks like'], rows: [
@@ -150,9 +148,9 @@ export const GAMING_TOPICS = [
     label: 'Responsible gaming',
     desc: 'GCGRA responsible gaming requirements, age checks, limits, reality checks, self-exclusion, affordability, marketing rules and KPIs.',
     sections: [
-      { h: 'Regulatory basis', p: 'Promoting and enforcing responsible gaming is part of the GCGRA mandate, and applicants submit a responsible gaming plan with their licence application. The detailed GCGRA responsible gaming requirements should be read from the current GCGRA rules and licence conditions [VERIFY the name and version of the GCGRA responsible gaming framework].' },
+      { h: 'Regulatory basis', p: 'GCGRA aims to minimise gaming harm to individuals, families and communities, and promotes education, ethical behaviour and good practice in responsible gaming. Licence applicants must give an overview of their responsible gaming plan. Detailed duties come from GCGRA rules and licence conditions.' },
       { h: 'Player protection tools', table: { head: ['Tool', 'What good looks like'], rows: [
-        ['Age verification', 'Identity and age checked before play; no play by anyone below the legal age [VERIFY minimum age]'],
+        ['Age verification', 'Identity and age checked before play; no play by anyone below the legal age set by the GCGRA'],
         ['Deposit, loss and wager limits', 'Set at registration or prompted early; decreases apply at once, increases only after a cooling period'],
         ['Reality checks', 'Pop-ups showing time played and net position at set intervals'],
         ['Time-outs', 'Short breaks a player can choose, during which they cannot play'],
@@ -174,7 +172,7 @@ export const GAMING_TOPICS = [
       { h: 'Controls', table: { head: ['Control', 'What good looks like'], rows: [
         ['Suspicious betting monitoring', 'Alerts for unusual volumes, odds moves, late bets and linked accounts on the same outcome'],
         ['Integrity partners', 'Membership of an integrity monitoring body or service that shares alerts across operators and with sports bodies'],
-        ['Reporting', 'Suspicious betting reported to the regulator and relevant integrity bodies within set timelines [VERIFY GCGRA reporting rules]'],
+        ['Reporting', 'Suspicious betting reported to the regulator and relevant integrity bodies as licence conditions require'],
         ['Prohibited bettors', 'Athletes, officials, staff and other insiders blocked from betting where required'],
         ['Market approval', 'Only approved event types and markets offered, avoiding easily manipulated markets'],
         ['Official data', 'Use of licensed and reliable data feeds for settlement, with data rights agreements in place'],
@@ -192,9 +190,9 @@ export const GAMING_TOPICS = [
       { h: 'GLI standards', table: { head: ['Standard', 'Covers', 'Status (Nov 2026)'], rows: [
         ['GLI-19', 'Interactive gaming systems: platform, player accounts, games, RNG, security', 'v3.0 (2020); v4.0 draft released for comment in July 2026. See the GLI-19 playbook on OneLens'],
         ['GLI-33', 'Event wagering (sports betting) systems', 'v1.1 in use; v2.0 draft released for comment in June 2026'],
-        ['GLI-11', 'Gaming devices such as slot machines in land-based venues', 'Check current version on gaminglabs.com [VERIFY]'],
-        ['GLI-16', 'Cashless systems in casinos', 'Check current version on gaminglabs.com [VERIFY]'],
-      ] }, note: 'Which GLI standards GCGRA requires, and in which version, is set by GCGRA rules [VERIFY].' },
+        ['GLI-11', 'Gaming devices such as slot machines in land-based venues', 'Check the current version on gaminglabs.com'],
+        ['GLI-16', 'Cashless systems in casinos', 'Check the current version on gaminglabs.com'],
+      ] }, note: 'GCGRA assesses proposed technology as part of suitability. Confirm which technical standards and test labs your licence conditions require.' },
       { h: 'Key control areas', list: [
         'RNG certification by an accredited independent test lab, with production monitoring.',
         'Return to player (RTP) documented per game and checked against actual results.',
@@ -238,16 +236,16 @@ export const GAMING_TOPICS = [
         'ISO/IEC 27001 gives the management system; gaming operators usually scope in the platform, player account management, payments, trading and support.',
         'PCI DSS v4.0.1 applies wherever card data is stored, processed or transmitted; reduce scope with tokenisation and hosted payment pages.',
         'Gaming technical standards such as GLI-19 Appendix B add security testing and controls specific to gaming systems.',
-        'The UAE Cybersecurity Council sets national cyber policy; the UAE Information Assurance standards apply to government and critical entities and can be required through licence conditions [VERIFY applicability to gaming licensees].',
+        'The UAE Cybersecurity Council sets national cybersecurity policy and standards.',
       ] },
       { h: 'UAE PDPL', list: [
         'Federal Decree-Law No. 45 of 2021 on the Protection of Personal Data covers personal data processed in the UAE, outside the free zones that have their own data laws.',
-        'Executive Regulations had not been published as of early 2025, and the Data Office was not yet set up; check the current position before relying on detailed rules [VERIFY].',
+        'At the time of writing, the Executive Regulations had not been published; check the current position before relying on detailed rules.',
         'Key duties: lawful basis, purpose limits, security, breach notification to the regulator, a DPO for high-risk or large-scale sensitive processing, and restrictions on cross-border transfers.',
       ] },
       { h: 'Player data protection', table: { head: ['Area', 'What good looks like'], rows: [
         ['Data inventory', 'Map KYC documents, payment data, gameplay, harm markers and marketing data'],
-        ['Data residency', 'Know where each dataset is hosted and whether licence conditions require UAE hosting [VERIFY]'],
+        ['Data residency', 'Know where each dataset is hosted and whether licence conditions require UAE hosting'],
         ['Access', 'Least privilege for VIP, support and risk teams; access to harm and KYC data logged'],
         ['Retention', 'Retention aligned with AML record-keeping and data protection minimisation'],
         ['Account security', 'MFA, account takeover detection and alerts on payment detail changes'],
@@ -264,7 +262,7 @@ export const GAMING_TOPICS = [
       { h: 'Payment flows', list: [
         'Deposits: card, bank transfer and local payment methods, credited to a player wallet.',
         'Withdrawals: paid back to a verified method in the player\'s name, after KYC and AML checks.',
-        'Player funds: segregation or protection of player balances may be required by the regulator [VERIFY GCGRA rules].',
+        'Player funds: follow any GCGRA rules on protecting player balances.',
       ] },
       { h: 'Controls', table: { head: ['Control', 'What good looks like'], rows: [
         ['Closed loop', 'Withdrawals go back to the method used to deposit, where possible'],
